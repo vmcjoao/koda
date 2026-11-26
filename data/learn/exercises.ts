@@ -444,4 +444,230 @@ export const LESSON_EXERCISES: Record<string, LearnExercise[]> = {
       explain_md: 'lower_bound is the insertion / first-≥ template.',
     },
   ],
+
+
+  quicksort: [
+    {
+      id: 'qs-mcq',
+      kind: 'mcq',
+      prompt: 'Worst-case time of naive quicksort (bad pivots)?',
+      choices: ['O(N log N)', 'O(N)', 'O(N²)', 'O(log N)'],
+      answer: 2,
+      explain_md: 'Sorted input + fixed end pivot → unbalanced partitions → **O(N²)**.',
+    },
+  ],
+
+  'counting-sort': [
+    {
+      id: 'count-mcq',
+      kind: 'mcq',
+      prompt: 'Counting sort is ideal when…',
+      choices: [
+        'Keys are arbitrary strings',
+        'Keys are integers in a small range [0, K]',
+        'You need comparison-based stability only',
+        'N ≤ 10',
+      ],
+      answer: 1,
+      explain_md: 'Time O(N+K) — needs a compact integer universe.',
+    },
+  ],
+
+  'bellman-ford': [
+    {
+      id: 'bf-mcq',
+      kind: 'mcq',
+      prompt: 'Bellman-Ford is preferred over Dijkstra when…',
+      choices: [
+        'The graph is undirected only',
+        'Edge weights may be negative',
+        'You need an MST',
+        'N is huge and M = N−1',
+      ],
+      answer: 1,
+      explain_md: 'Handles negative weights (and can detect negative cycles).',
+    },
+  ],
+
+  'floyd-warshall': [
+    {
+      id: 'fw-mcq',
+      kind: 'mcq',
+      prompt: 'Floyd–Warshall computes…',
+      choices: [
+        'Single-source shortest paths only',
+        'All-pairs shortest paths',
+        'A minimum spanning tree',
+        'Strongly connected components',
+      ],
+      answer: 1,
+      explain_md: 'DP over intermediate vertices → all pairs in O(N³).',
+    },
+  ],
+
+  scc: [
+    {
+      id: 'scc-mcq',
+      kind: 'mcq',
+      prompt: 'Kosaraju’s second DFS runs on…',
+      choices: [
+        'The original graph in discovery order',
+        'The transpose graph in decreasing finish time',
+        'A BFS tree only',
+        'Undirected edges sorted by weight',
+      ],
+      answer: 1,
+      explain_md: 'Finish-time order on G, then DFS on Gᵀ yields SCCs.',
+    },
+  ],
+
+  bridges: [
+    {
+      id: 'bridges-mcq',
+      kind: 'mcq',
+      prompt: 'A bridge is an edge whose removal…',
+      choices: [
+        'Increases the number of connected components',
+        'Creates a negative cycle',
+        'Always disconnects a leaf',
+        'Is required for bipartiteness',
+      ],
+      answer: 0,
+      explain_md: 'Bridge = critical edge for connectivity.',
+    },
+  ],
+
+  'max-flow': [
+    {
+      id: 'flow-mcq',
+      kind: 'mcq',
+      prompt: 'In a residual graph, a reverse edge appears when…',
+      choices: [
+        'The original graph was undirected',
+        'We pushed flow on the forward edge',
+        'Capacity was zero initially',
+        'The cut is saturated',
+      ],
+      answer: 1,
+      explain_md: 'Residual reverse capacity lets algorithms “undo” flow.',
+    },
+  ],
+
+  'bitmask-dp': [
+    {
+      id: 'mask-mcq',
+      kind: 'mcq',
+      prompt: 'Typical bitmask DP size for N ≤ 20?',
+      choices: ['O(N)', 'O(N²)', 'O(2ᴺ · poly(N))', 'O(N!)'],
+      answer: 2,
+      explain_md: 'One state per subset — 2ᴺ times transition work.',
+    },
+  ],
+
+  trie: [
+    {
+      id: 'trie-mcq',
+      kind: 'mcq',
+      prompt: 'A trie shines when you need…',
+      choices: [
+        'Prefix queries / dictionary of strings',
+        'Shortest paths with weights',
+        'Range minimum on an array',
+        'Sorting integers in O(N)',
+      ],
+      answer: 0,
+      explain_md: 'Shared prefixes → fast starts-with / xor tricks.',
+    },
+  ],
+
+  'z-algorithm': [
+    {
+      id: 'z-mcq',
+      kind: 'mcq',
+      prompt: 'Z-box Z[i] is the longest substring from i that…',
+      choices: [
+        'Is a palindrome',
+        'Matches a prefix of the string',
+        'Is strictly increasing',
+        'Has all unique characters',
+      ],
+      answer: 1,
+      explain_md: 'Z[i] = LCP(s[i..], s[0..]).',
+    },
+  ],
+
+  'string-hashing': [
+    {
+      id: 'hash-mcq',
+      kind: 'mcq',
+      prompt: 'Rolling hash substring equality is…',
+      choices: [
+        'Always correct with one 32-bit mod',
+        'Fast but probabilistic (use double hash / 64-bit)',
+        'Slower than KMP for every query',
+        'Only for lowercase letters',
+      ],
+      answer: 1,
+      explain_md: 'Collisions exist — mitigate with two mods or unsigned overflow 64-bit.',
+    },
+  ],
+
+  'dynamic-programming': [
+    {
+      id: 'dp-mcq',
+      kind: 'mcq',
+      prompt: 'A DP state needs…',
+      choices: [
+        'Only the answer size',
+        'Enough info to compute transitions without re-deriving history',
+        'A greedy choice property',
+        'Negative edge weights',
+      ],
+      answer: 1,
+      explain_md: 'State = minimal memory of the past so transitions are well-defined.',
+    },
+  ],
+
+  'divide-conquer': [
+    {
+      id: 'dnc-mcq',
+      kind: 'mcq',
+      prompt: 'Mergesort recurrence when merge is O(N)?',
+      choices: ['T=N', 'T=2T(N/2)+O(N) → O(N log N)', 'T=T(N−1)+O(1)', 'T=O(N²) always'],
+      answer: 1,
+      explain_md: 'Master theorem / tree of merges → **O(N log N)**.',
+    },
+  ],
+
+  'difference-array': [
+    {
+      id: 'diff-mcq',
+      kind: 'mcq',
+      prompt: 'Range add +v on [l,r) via difference array?',
+      choices: [
+        'd[l]+=v; d[r]-=v; then prefix',
+        'd[l]-=v; d[r]+=v only',
+        'Sort then binary search',
+        'Fenwick required',
+      ],
+      answer: 0,
+      explain_md: 'Difference encodes starts/ends; prefix rebuilds the array.',
+    },
+  ],
+
+  'sparse-table': [
+    {
+      id: 'st-mcq',
+      kind: 'mcq',
+      prompt: 'Sparse table is great for…',
+      choices: [
+        'Point updates + range sum',
+        'Static idempotent range queries (RMQ / gcd)',
+        'Online edge insertions',
+        'Negative-cycle detection',
+      ],
+      answer: 1,
+      explain_md: 'O(1) idempotent queries after O(N log N) build; no updates.',
+    },
+  ],
 };
