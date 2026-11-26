@@ -164,6 +164,11 @@ const ORB = 64;
 const styles = StyleSheet.create({
   profileBtn: {
     marginRight: spacing.md,
+    backgroundColor: colors.surfaceElevated,
+    borderRadius: 22,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: 3,
   },
   tabBar: {
     backgroundColor: colors.surface,
