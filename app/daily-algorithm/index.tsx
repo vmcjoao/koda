@@ -8,6 +8,8 @@ import { DailyAlgorithmCalendar } from '@/components/daily/DailyAlgorithmCalenda
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import {
+  beatCountForDate,
+  dailyAlgoBestStreak,
   dailyAlgoStreak,
   isToday,
   lessonForDate,
@@ -39,17 +41,19 @@ export default function DailyAlgorithmCalendarScreen() {
   const todayLesson = lessonForDate(today);
   const todayDone = cleared.has(today);
   const streak = dailyAlgoStreak(cleared, today);
-  const clearedThisMonth = useMemo(() => {
-    const prefix = `${year}-${String(monthIndex + 1).padStart(2, '0')}`;
-    let n = 0;
-    for (const d of cleared) if (d.startsWith(prefix)) n += 1;
-    return n;
-  }, [cleared, year, monthIndex]);
+  const best = dailyAlgoBestStreak(cleared);
+  const beats = beatCountForDate(today);
 
   function shiftMonth(delta: number) {
     const d = new Date(year, monthIndex + delta, 1);
     setYear(d.getFullYear());
     setMonthIndex(d.getMonth());
+  }
+
+  function jumpToday() {
+    const n = new Date();
+    setYear(n.getFullYear());
+    setMonthIndex(n.getMonth());
   }
 
   return (
@@ -58,14 +62,15 @@ export default function DailyAlgorithmCalendarScreen() {
         <Text style={styles.kicker}>DAILY ALGORITHM</Text>
         <Text style={styles.title}>Puzzle calendar</Text>
         <Text style={styles.sub}>
-          One skill-check a day — like Duolingo Chess daily puzzles. Tap a day to play.
+          One seeded skill-check a day. Catch up missed days anytime — future stays locked.
         </Text>
       </FadeInUp>
 
       <FadeInUp delayMs={60} waitForLaunch={false}>
         <View style={styles.statsRow}>
           <XpChip label={`${streak} DAY STREAK`} tone="accent" />
-          <XpChip label={`${clearedThisMonth} THIS MONTH`} tone="xp" delayMs={60} />
+          <XpChip label={`BEST ${best}`} tone="xp" delayMs={40} />
+          <XpChip label={`${cleared.size} TOTAL`} tone="warning" delayMs={80} />
         </View>
       </FadeInUp>
 
@@ -75,12 +80,19 @@ export default function DailyAlgorithmCalendarScreen() {
           style={[styles.todayCard, todayDone && styles.todayCardDone]}
           onPress={() => router.push(`/daily-algorithm/${today}`)}
         >
-          <Text style={styles.todayKicker}>{todayDone ? 'TODAY · CLEARED' : 'TODAY\'S PUZZLE'}</Text>
+          <Text style={styles.todayKicker}>
+            {todayDone ? 'TODAY · CLEARED' : "TODAY'S PUZZLE"}
+          </Text>
           <Text style={styles.todayTitle}>{todayLesson?.title ?? 'Algorithm'}</Text>
           <Text style={styles.todaySub} numberOfLines={2}>
-            {todayLesson?.summary ?? 'Open the calendar day to train.'}
+            {todayLesson?.summary ?? 'Open the day to train.'}
           </Text>
-          <Text style={styles.todayCta}>{todayDone ? 'Replay →' : 'Solve today →'}</Text>
+          <View style={styles.todayMeta}>
+            <Text style={styles.todayBeats}>
+              {beats} beat{beats === 1 ? '' : 's'} · seeded for {today}
+            </Text>
+            <Text style={styles.todayCta}>{todayDone ? 'Replay →' : 'Solve today →'}</Text>
+          </View>
         </PressableScale>
       </FadeInUp>
 
@@ -91,6 +103,7 @@ export default function DailyAlgorithmCalendarScreen() {
           cleared={cleared}
           onPrevMonth={() => shiftMonth(-1)}
           onNextMonth={() => shiftMonth(1)}
+          onJumpToday={jumpToday}
           onSelectDate={(iso) => {
             if (isToday(iso) || iso <= today) router.push(`/daily-algorithm/${iso}`);
           }}
@@ -159,11 +172,19 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
     fontSize: 13,
   },
+  todayMeta: {
+    marginTop: 6,
+    gap: 2,
+  },
+  todayBeats: {
+    color: colors.textDim,
+    fontSize: 12,
+    fontFamily: 'SpaceMono',
+  },
   todayCta: {
     color: colors.radar,
     fontSize: 13,
     fontWeight: '800',
-    marginTop: 4,
   },
   back: { marginTop: spacing.md, marginBottom: spacing.xl },
 });

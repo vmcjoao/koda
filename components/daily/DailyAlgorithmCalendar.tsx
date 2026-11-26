@@ -4,7 +4,9 @@ import { PressableScale } from '@/components/game/PressableScale';
 import {
   WEEKDAYS,
   isFutureDate,
+  isMissedDate,
   isToday,
+  monthClearedStats,
   monthMatrix,
   monthTitle,
 } from '@/lib/dailyAlgorithm';
@@ -18,6 +20,7 @@ type Props = {
   onSelectDate: (iso: string) => void;
   onPrevMonth: () => void;
   onNextMonth: () => void;
+  onJumpToday?: () => void;
 };
 
 export function DailyAlgorithmCalendar({
@@ -27,15 +30,29 @@ export function DailyAlgorithmCalendar({
   onSelectDate,
   onPrevMonth,
   onNextMonth,
+  onJumpToday,
 }: Props) {
   const today = todayIso();
   const rows = useMemo(() => monthMatrix(year, monthIndex), [year, monthIndex]);
   const title = monthTitle(year, monthIndex);
+  const stats = useMemo(
+    () => monthClearedStats(year, monthIndex, cleared, today),
+    [year, monthIndex, cleared, today],
+  );
+
+  const viewingCurrentMonth = useMemo(() => {
+    const now = new Date();
+    return year === now.getFullYear() && monthIndex === now.getMonth();
+  }, [year, monthIndex]);
 
   const canGoNext = useMemo(() => {
     const now = new Date();
     return year < now.getFullYear() || (year === now.getFullYear() && monthIndex < now.getMonth());
   }, [year, monthIndex]);
+
+  const fillPct = stats.available
+    ? Math.round((stats.cleared / stats.available) * 100)
+    : 0;
 
   return (
     <View style={styles.wrap}>
@@ -43,7 +60,12 @@ export function DailyAlgorithmCalendar({
         <PressableScale haptic="light" onPress={onPrevMonth} style={styles.chevBtn}>
           <Text style={styles.chev}>‹</Text>
         </PressableScale>
-        <Text style={styles.title}>{title}</Text>
+        <View style={styles.titleBlock}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.monthStat}>
+            {stats.cleared}/{stats.available} days
+          </Text>
+        </View>
         <PressableScale
           haptic="light"
           disabled={!canGoNext}
@@ -53,6 +75,16 @@ export function DailyAlgorithmCalendar({
           <Text style={[styles.chev, !canGoNext && styles.chevMuted]}>›</Text>
         </PressableScale>
       </View>
+
+      <View style={styles.monthTrack}>
+        <View style={[styles.monthFill, { width: `${fillPct}%` }]} />
+      </View>
+
+      {!viewingCurrentMonth && onJumpToday ? (
+        <PressableScale haptic="light" onPress={onJumpToday} style={styles.jumpBtn}>
+          <Text style={styles.jumpText}>Jump to today</Text>
+        </PressableScale>
+      ) : null}
 
       <View style={styles.weekRow}>
         {WEEKDAYS.map((d, i) => (
@@ -72,6 +104,7 @@ export function DailyAlgorithmCalendar({
               const done = cleared.has(iso);
               const future = isFutureDate(iso, today);
               const todayCell = isToday(iso, today);
+              const missed = isMissedDate(iso, cleared, today);
               const locked = future;
 
               return (
@@ -88,6 +121,7 @@ export function DailyAlgorithmCalendar({
                       styles.day,
                       done && styles.dayDone,
                       todayCell && !done && styles.dayToday,
+                      missed && styles.dayMissed,
                       locked && styles.dayLocked,
                     ]}
                   >
@@ -98,6 +132,7 @@ export function DailyAlgorithmCalendar({
                         style={[
                           styles.dayNum,
                           todayCell && styles.dayNumToday,
+                          missed && styles.dayNumMissed,
                           locked && styles.dayNumLocked,
                         ]}
                       >
@@ -120,6 +155,10 @@ export function DailyAlgorithmCalendar({
         <View style={styles.legendItem}>
           <View style={[styles.legendDot, styles.dayToday]} />
           <Text style={styles.legendText}>Today</Text>
+        </View>
+        <View style={styles.legendItem}>
+          <View style={[styles.legendDot, styles.dayMissed]} />
+          <Text style={styles.legendText}>Missed</Text>
         </View>
         <View style={styles.legendItem}>
           <View style={[styles.legendDot, styles.dayLocked]} />
@@ -146,6 +185,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  titleBlock: { alignItems: 'center', gap: 2 },
   chevBtn: {
     width: 40,
     height: 40,
@@ -165,6 +205,37 @@ const styles = StyleSheet.create({
   title: {
     color: colors.text,
     fontSize: 18,
+    fontWeight: '800',
+  },
+  monthStat: {
+    color: colors.textDim,
+    fontSize: 11,
+    fontWeight: '700',
+    fontFamily: 'SpaceMono',
+  },
+  monthTrack: {
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.runTrack,
+    overflow: 'hidden',
+  },
+  monthFill: {
+    height: '100%',
+    backgroundColor: colors.accent,
+    borderRadius: 3,
+  },
+  jumpBtn: {
+    alignSelf: 'center',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs,
+    borderRadius: radii.sm,
+    backgroundColor: colors.surfaceElevated,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  jumpText: {
+    color: colors.radar,
+    fontSize: 12,
     fontWeight: '800',
   },
   weekRow: {
@@ -208,6 +279,10 @@ const styles = StyleSheet.create({
     borderColor: colors.accent,
     backgroundColor: colors.chipSelected,
   },
+  dayMissed: {
+    borderColor: colors.warning,
+    backgroundColor: colors.atmosphereBoss,
+  },
   dayLocked: {
     opacity: 0.35,
     backgroundColor: colors.runTrack,
@@ -219,6 +294,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceMono',
   },
   dayNumToday: { color: colors.accent },
+  dayNumMissed: { color: colors.warning },
   dayNumLocked: { color: colors.textDim },
   check: {
     color: colors.background,
