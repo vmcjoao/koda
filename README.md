@@ -32,7 +32,7 @@ See [`eas.json`](eas.json). Bundle IDs: `app.koda.mobile`.
 ## Supabase setup
 
 1. Create a project and enable Email auth.
-2. Run migrations in order: `001_initial.sql`, `002_grants.sql`, `003_favorites.sql`, `004_playlists.sql`.
+2. Run migrations in order: `001` … `005_io_formats.sql` (favorites, playlists, I/O format columns).
 3. Run [`supabase/seed.sql`](supabase/seed.sql) (regenerate with `npm run generate:seed`).
 
 ## Features

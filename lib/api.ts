@@ -102,6 +102,8 @@ function mapProblemRow(
     url: (problem.url as string) ?? null,
     difficulty_rating: problem.difficulty_rating as number,
     statement_md: problem.statement_md as string,
+    input_format_md: (problem.input_format_md as string) ?? '',
+    output_format_md: (problem.output_format_md as string) ?? '',
     constraints_text: problem.constraints_text as string,
     sample_io: (problem.sample_io as ProblemWithApproaches['sample_io']) ?? [],
     target_complexity: problem.target_complexity as string,

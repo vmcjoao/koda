@@ -8,6 +8,8 @@ type Draft = {
   url: string | null;
   difficulty_rating: number;
   statement_md: string;
+  input_format_md?: string;
+  output_format_md?: string;
   constraints_text: string;
   sample_io: { input: string; output: string }[];
   target_complexity: string;
@@ -42,6 +44,12 @@ if (!raw.constraints_text?.trim()) fail('missing constraints_text');
 if (!Number.isFinite(raw.difficulty_rating)) fail('difficulty_rating must be a number');
 if (!Array.isArray(raw.sample_io)) fail('sample_io must be an array');
 if (!Array.isArray(raw.approaches) || raw.approaches.length < 1) fail('need ≥1 approach');
+if (!raw.input_format_md?.trim()) {
+  console.warn('Warning: missing input_format_md (expected input format)');
+}
+if (!raw.output_format_md?.trim()) {
+  console.warn('Warning: missing output_format_md (expected output format)');
+}
 
 const complexities = new Set<string>(COMPLEXITY_OPTIONS);
 if (!complexities.has(raw.target_complexity)) {

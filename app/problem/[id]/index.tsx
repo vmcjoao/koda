@@ -106,6 +106,20 @@ export default function EncounterScreen() {
       <Text style={styles.label}>Statement</Text>
       <MarkdownMath markdown={problem.statement_md} minHeight={220} />
 
+      {problem.input_format_md?.trim() ? (
+        <>
+          <Text style={styles.label}>Input format</Text>
+          <MarkdownMath markdown={problem.input_format_md} minHeight={90} />
+        </>
+      ) : null}
+
+      {problem.output_format_md?.trim() ? (
+        <>
+          <Text style={styles.label}>Output format</Text>
+          <MarkdownMath markdown={problem.output_format_md} minHeight={80} />
+        </>
+      ) : null}
+
       <Text style={styles.label}>Constraints</Text>
       <MarkdownMath markdown={problem.constraints_text} minHeight={80} />
 

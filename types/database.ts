@@ -15,6 +15,10 @@ export type Problem = {
   url: string | null;
   difficulty_rating: number;
   statement_md: string;
+  /** How the input is structured (expected input format). Prefer always set for new problems. */
+  input_format_md?: string;
+  /** What to print (expected output format). Prefer always set for new problems. */
+  output_format_md?: string;
   constraints_text: string;
   sample_io: SampleIO[];
   target_complexity: string;

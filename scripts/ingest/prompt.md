@@ -12,6 +12,8 @@ Given a problem statement (and optional editorial), output **only** valid JSON m
   "url": "https://...",
   "difficulty_rating": 1400,
   "statement_md": "Markdown with $LaTeX$ math...",
+  "input_format_md": "The first line contains an integer $n$.\\n\\nThe second line contains $n$ integers...",
+  "output_format_md": "Print a single integer — the answer.",
   "constraints_text": "$1 \\le n \\le 10^5$",
   "sample_io": [{ "input": "...", "output": "..." }],
   "target_complexity": "O(N log N)",
@@ -34,6 +36,7 @@ Rules:
 - Prefer tags from Koda’s catalog (DP, Greedy, Graphs, Two Pointers, Binary Search on Answer, etc.).
 - Always include at least one approach; multiple valid approaches are encouraged.
 - `key_insights` must be the non-obvious twists (not “use an array”).
+- **Always** include `input_format_md` and `output_format_md` (expected I/O structure — not just samples).
 - Do **not** invent constraints; leave uncertain fields empty and note them.
 - Human will review before import — accuracy over cleverness.
 
