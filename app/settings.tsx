@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Platform, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { router } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
@@ -11,6 +11,11 @@ import {
   exportLocalTrainingJson,
   resetOnboardingTips,
 } from '@/lib/localData';
+import {
+  areRemindersEnabled,
+  REMINDER_LABEL,
+  setRemindersEnabled,
+} from '@/lib/notifications';
 import { shareText } from '@/lib/share';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -20,6 +25,12 @@ export default function SettingsScreen() {
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
+  const [reminders, setReminders] = useState(false);
+  const [reminderBusy, setReminderBusy] = useState(false);
+
+  useEffect(() => {
+    areRemindersEnabled().then(setReminders);
+  }, []);
 
   async function saveBand() {
     const n = Number(band);
@@ -39,10 +50,28 @@ export default function SettingsScreen() {
     setBand(String(next));
   }
 
+  async function onToggleReminders(next: boolean) {
+    if (Platform.OS === 'web') {
+      setStatus('Reminders need a native build / Expo Go on a phone.');
+      return;
+    }
+    setReminderBusy(true);
+    const ok = await setRemindersEnabled(next);
+    setReminders(ok ? next : false);
+    setReminderBusy(false);
+    if (next && !ok) {
+      setStatus('Notification permission denied.');
+    } else if (next) {
+      setStatus(`Reminder on · ${REMINDER_LABEL}`);
+    } else {
+      setStatus('Reminder off.');
+    }
+  }
+
   function confirmClear() {
     Alert.alert(
       'Clear local data?',
-      'Deletes guest attempts, daily set, favorites, and onboarding on this device. Cloud data (if signed in) is not wiped from Supabase.',
+      'Deletes guest attempts, daily set, favorites, reminders pref, and onboarding on this device. Cloud data (if signed in) is not wiped from Supabase.',
       [
         { text: 'Cancel', style: 'cancel' },
         {
@@ -50,6 +79,8 @@ export default function SettingsScreen() {
           style: 'destructive',
           onPress: async () => {
             await clearLocalTrainingData();
+            await setRemindersEnabled(false);
+            setReminders(false);
             await refreshProfile();
             setBand('1200');
             setStatus('Local training data cleared.');
@@ -81,6 +112,21 @@ export default function SettingsScreen() {
         <PrimaryButton label="+100" variant="secondary" onPress={() => nudge(100)} style={styles.nudge} />
       </View>
       <PrimaryButton label={saved ? 'Saved' : 'Save band'} onPress={saveBand} loading={saving} />
+
+      <Text style={styles.label}>Reminders</Text>
+      <View style={styles.reminderRow}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.statLine}>{REMINDER_LABEL}</Text>
+          <Text style={styles.hint}>Nudges Daily Set + Review habit.</Text>
+        </View>
+        <Switch
+          value={reminders}
+          onValueChange={onToggleReminders}
+          disabled={reminderBusy}
+          trackColor={{ false: colors.border, true: colors.accentDim }}
+          thumbColor={reminders ? colors.accent : colors.textDim}
+        />
+      </View>
 
       <View style={styles.stats}>
         <Text style={styles.statLine}>Streak · {profile?.streak ?? 0}d</Text>
@@ -171,6 +217,16 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceMono',
     textAlign: 'center',
     paddingVertical: spacing.md,
+  },
+  reminderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.md,
   },
   stats: {
     backgroundColor: colors.surface,

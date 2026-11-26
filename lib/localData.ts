@@ -8,6 +8,7 @@ export const LOCAL_KEYS = [
   'koda.daily_set',
   'koda.favorites',
   'koda.onboarding.v1',
+  'koda.reminders.enabled',
 ] as const;
 
 export async function clearLocalTrainingData(): Promise<void> {

@@ -8,6 +8,7 @@ import 'react-native-reanimated';
 
 import { AuthProvider } from '@/contexts/AuthContext';
 import { AttemptProvider } from '@/contexts/AttemptContext';
+import { syncRemindersOnLaunch } from '@/lib/notifications';
 import { colors } from '@/constants/theme';
 
 export { ErrorBoundary } from 'expo-router';
@@ -42,6 +43,13 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) SplashScreen.hideAsync();
+  }, [loaded]);
+
+  useEffect(() => {
+    if (!loaded) return;
+    syncRemindersOnLaunch().catch(() => {
+      /* permissions / web */
+    });
   }, [loaded]);
 
   if (!loaded) return null;

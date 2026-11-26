@@ -21,6 +21,14 @@ cp .env.example .env
 # fill EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY
 ```
 
+Native builds (when you leave Expo Go):
+
+```bash
+npx eas-cli build --profile preview
+```
+
+See [`eas.json`](eas.json). Bundle IDs: `app.koda.mobile`.
+
 ## Supabase setup
 
 1. Create a project and enable Email auth.
@@ -36,6 +44,7 @@ cp .env.example .env
 4. **Implement queue** — copy blueprints, open OJ links, mark AC (also works as a **web companion**: `npm run web`)
 5. **Analytics** — topic mastery, blind spots, pipeline funnel, mistakes
 6. **Band auto-adjust** (+ manual edit in Settings)
+7. **Daily reminder** (19:00 device time) — toggle in Settings
 
 ## Ingest new problems
 
