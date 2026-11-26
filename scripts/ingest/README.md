@@ -17,6 +17,7 @@ npm run ingest:vjudge-index
 
 ```bash
 npm run ingest:vjudge-statements
+npm run ingest:vjudge-pdf-extract   # UVA PDF → text via onlinejudge.org + pdftotext
 npm run ingest:vjudge-import-statements
 npm run ingest:vjudge-index
 npm run generate:seed
@@ -24,7 +25,7 @@ npm run generate:seed
 
 6. In the app: **Playlists → Import UFV VJudge…**
 
-Stub approaches are marked “Pending editorial review” — replace them as you solve. PDF-only UVA rows stay in `vjudge-exports/vjudge-pdf-pending.json`.
+Stub approaches are marked “Pending editorial review” — replace them as you solve. Any PDFs that still fail extraction stay in `vjudge-exports/vjudge-pdf-pending.json` (requires `pdftotext` / poppler).
 
 ## Flow
 

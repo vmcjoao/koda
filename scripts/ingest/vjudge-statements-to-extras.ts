@@ -218,7 +218,27 @@ function toDraft(
     p.text.trim() ||
     p.sections.map((s) => plain(s.content, s.format)).filter(Boolean).join('\n\n');
 
+  const fromBody = (label: RegExp): string => {
+    const m = statement.match(
+      new RegExp(
+        `(?:^|\\n)${label.source}\\s*\\n([\\s\\S]*?)(?=\\n(?:Input|Output|Sample|Example|Note|Constraints?)\\b|$)`,
+        'i',
+      ),
+    );
+    return m?.[1]?.trim().slice(0, 800) || '';
+  };
+
+  const input_format_md =
+    (inputSec ? plain(inputSec.content, inputSec.format) : '') ||
+    fromBody(/Input/) ||
+    'See statement.';
+  const output_format_md =
+    (outputSec ? plain(outputSec.content, outputSec.format) : '') ||
+    fromBody(/Output/) ||
+    'See statement.';
+
   const paradigms = paradigmsFor(title, hints);
+  const fromPdf = /PDF text extraction/i.test(statement);
   const approach: Approach = {
     id: `${id}-a1`,
     problem_id: id,
@@ -229,6 +249,7 @@ function toDraft(
     key_insights: [
       'Auto-imported from VJudge — replace this approach after you solve / read an editorial',
       `Origin: ${p.vjudgeKey}`,
+      ...(fromPdf ? ['Statement text extracted from PDF — check figures against the original'] : []),
     ],
     editorial_summary_md:
       'Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring.',
@@ -241,12 +262,8 @@ function toDraft(
     url,
     difficulty_rating: difficultyFor(p.oj),
     statement_md: statement,
-    input_format_md: inputSec
-      ? plain(inputSec.content, inputSec.format) || 'See statement.'
-      : 'See statement.',
-    output_format_md: outputSec
-      ? plain(outputSec.content, outputSec.format) || 'See statement.'
-      : 'See statement.',
+    input_format_md,
+    output_format_md,
     constraints_text: extractConstraints(p.sections, statement),
     sample_io: extractSamples(p.sections, statement),
     target_complexity: COMPLEXITY_OPTIONS.includes('O(N log N)' as (typeof COMPLEXITY_OPTIONS)[number])

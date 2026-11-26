@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-26T03:20:43.358Z",
+  "generatedAt": "2026-11-26T04:51:46.555Z",
   "summary": {
-    "catalogSize": 199,
+    "catalogSize": 235,
     "groups": [
       "inf330-2026-2",
       "inf333-ccl",
@@ -10,8 +10,8 @@
     ],
     "contests": 37,
     "uniqueProblems": 183,
-    "inCatalog": 143,
-    "pending": 36,
+    "inCatalog": 179,
+    "pending": 0,
     "custom": 4,
     "byOj": {
       "CodeForces": 34,
@@ -46,8 +46,8 @@
           "proposedId": "uva-12363",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-12363",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-12363",
+          "status": "in_catalog"
         },
         {
           "letter": "B",
@@ -57,8 +57,8 @@
           "proposedId": "uva-10842",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10842",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10842",
+          "status": "in_catalog"
         },
         {
           "letter": "C",
@@ -178,8 +178,8 @@
           "proposedId": "uva-429",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-429",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-429",
+          "status": "in_catalog"
         }
       ]
     },
@@ -200,8 +200,8 @@
           "proposedId": "uva-11550",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-11550",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-11550",
+          "status": "in_catalog"
         },
         {
           "letter": "B",
@@ -310,8 +310,8 @@
           "proposedId": "uva-10034",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10034",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10034",
+          "status": "in_catalog"
         },
         {
           "letter": "B",
@@ -321,8 +321,8 @@
           "proposedId": "uva-1235",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-1235",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-1235",
+          "status": "in_catalog"
         },
         {
           "letter": "C",
@@ -365,8 +365,8 @@
           "proposedId": "uva-10099",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10099",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10099",
+          "status": "in_catalog"
         },
         {
           "letter": "C",
@@ -409,8 +409,8 @@
           "proposedId": "uva-10330",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10330",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10330",
+          "status": "in_catalog"
         }
       ]
     },
@@ -1575,8 +1575,8 @@
           "proposedId": "uva-13012",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-13012",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-13012",
+          "status": "in_catalog"
         },
         {
           "letter": "B",
@@ -1718,8 +1718,8 @@
           "proposedId": "uva-12114",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-12114",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-12114",
+          "status": "in_catalog"
         },
         {
           "letter": "B",
@@ -1729,8 +1729,8 @@
           "proposedId": "uva-651",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-651",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-651",
+          "status": "in_catalog"
         },
         {
           "letter": "C",
@@ -1740,8 +1740,8 @@
           "proposedId": "uva-10591",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10591",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10591",
+          "status": "in_catalog"
         },
         {
           "letter": "D",
@@ -1762,8 +1762,8 @@
           "proposedId": "uva-10964",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10964",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10964",
+          "status": "in_catalog"
         },
         {
           "letter": "F",
@@ -1773,8 +1773,8 @@
           "proposedId": "uva-160",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-160",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-160",
+          "status": "in_catalog"
         },
         {
           "letter": "G",
@@ -1784,8 +1784,8 @@
           "proposedId": "uva-12459",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-12459",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-12459",
+          "status": "in_catalog"
         },
         {
           "letter": "H",
@@ -1795,8 +1795,8 @@
           "proposedId": "uva-12068",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-12068",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-12068",
+          "status": "in_catalog"
         }
       ]
     },
@@ -1817,8 +1817,8 @@
           "proposedId": "uva-11459",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-11459",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-11459",
+          "status": "in_catalog"
         },
         {
           "letter": "B",
@@ -1850,8 +1850,8 @@
           "proposedId": "uva-11559",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-11559",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-11559",
+          "status": "in_catalog"
         },
         {
           "letter": "E",
@@ -1894,8 +1894,8 @@
           "proposedId": "uva-11496",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-11496",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-11496",
+          "status": "in_catalog"
         },
         {
           "letter": "I",
@@ -2004,8 +2004,8 @@
           "proposedId": "uva-10194",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10194",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10194",
+          "status": "in_catalog"
         },
         {
           "letter": "H",
@@ -2026,8 +2026,8 @@
           "proposedId": "uva-10026",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10026",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10026",
+          "status": "in_catalog"
         },
         {
           "letter": "J",
@@ -2059,8 +2059,8 @@
           "proposedId": "uva-10161",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10161",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10161",
+          "status": "in_catalog"
         },
         {
           "letter": "B",
@@ -2070,8 +2070,8 @@
           "proposedId": "uva-10182",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10182",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10182",
+          "status": "in_catalog"
         },
         {
           "letter": "C",
@@ -2103,8 +2103,8 @@
           "proposedId": "uva-10188",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10188",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10188",
+          "status": "in_catalog"
         },
         {
           "letter": "F",
@@ -2114,8 +2114,8 @@
           "proposedId": "uva-499",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-499",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-499",
+          "status": "in_catalog"
         },
         {
           "letter": "G",
@@ -2125,8 +2125,8 @@
           "proposedId": "uva-498",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-498",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-498",
+          "status": "in_catalog"
         },
         {
           "letter": "H",
@@ -2158,8 +2158,8 @@
           "proposedId": "uva-10814",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10814",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10814",
+          "status": "in_catalog"
         }
       ]
     },
@@ -2202,8 +2202,8 @@
           "proposedId": "uva-10139",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10139",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10139",
+          "status": "in_catalog"
         },
         {
           "letter": "D",
@@ -2213,8 +2213,8 @@
           "proposedId": "uva-10940",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10940",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10940",
+          "status": "in_catalog"
         },
         {
           "letter": "E",
@@ -2224,8 +2224,8 @@
           "proposedId": "uva-10007",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10007",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10007",
+          "status": "in_catalog"
         },
         {
           "letter": "F",
@@ -2257,8 +2257,8 @@
           "proposedId": "uva-294",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-294",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-294",
+          "status": "in_catalog"
         },
         {
           "letter": "I",
@@ -2268,8 +2268,8 @@
           "proposedId": "uva-10090",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10090",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10090",
+          "status": "in_catalog"
         },
         {
           "letter": "J",
@@ -2279,8 +2279,8 @@
           "proposedId": "uva-10489",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-10489",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-10489",
+          "status": "in_catalog"
         }
       ]
     },
@@ -2730,8 +2730,8 @@
           "proposedId": "uva-216",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-216",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-216",
+          "status": "in_catalog"
         }
       ]
     },
@@ -2752,8 +2752,8 @@
           "proposedId": "uva-102",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-102",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-102",
+          "status": "in_catalog"
         },
         {
           "letter": "B",
@@ -2829,8 +2829,8 @@
           "proposedId": "uva-11951",
           "proposedSource": "UVA",
           "proposedUrl": "https://vjudge.net/problem/UVA-11951",
-          "catalogId": null,
-          "status": "pending"
+          "catalogId": "uva-11951",
+          "status": "in_catalog"
         }
       ]
     },

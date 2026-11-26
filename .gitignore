@@ -37,6 +37,9 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# VJudge PDF download cache (rebuilt by ingest:vjudge-pdf-extract)
+scripts/ingest/vjudge-exports/pdf-cache/
+
 # generated native folders
 /ios
 /android
