@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Pressable,
@@ -29,6 +29,8 @@ type SourceFilter = 'All' | string;
 type DiffFilter = 'All' | '≤1200' | '1200–1600' | '1600+';
 type StatusFilter = 'All' | 'Unattempted' | 'Needs work' | 'Favorites';
 
+const PAGE_SIZE = 20;
+
 export default function CatalogScreen() {
   const { topic: topicParam, addTo } = useLocalSearchParams<{
     topic?: string;
@@ -47,6 +49,7 @@ export default function CatalogScreen() {
   const [diff, setDiff] = useState<DiffFilter>('All');
   const [status, setStatus] = useState<StatusFilter>('All');
   const [topic, setTopic] = useState<string | null>(topicParam ?? null);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   useFocusEffect(
     useCallback(() => {
@@ -119,6 +122,21 @@ export default function CatalogScreen() {
     });
   }, [problems, query, source, diff, topic, status, bestByProblem, favorites]);
 
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [query, source, diff, topic, status]);
+
+  const visible = useMemo(
+    () => filtered.slice(0, visibleCount),
+    [filtered, visibleCount],
+  );
+  const hasMore = visibleCount < filtered.length;
+
+  function loadMore() {
+    if (!hasMore) return;
+    setVisibleCount((n) => Math.min(n + PAGE_SIZE, filtered.length));
+  }
+
   function start(p: ProblemWithApproaches) {
     beginProblem(p);
     router.push(`/problem/${p.id}`);
@@ -139,10 +157,11 @@ export default function CatalogScreen() {
   }
 
   return (
-    <Screen scroll>
+    <Screen scroll onEndReached={loadMore}>
       <Text style={styles.title}>Catalog</Text>
       <Text style={styles.sub}>
-        {filtered.length} of {problems.length} problems
+        Showing {visible.length} of {filtered.length}
+        {filtered.length !== problems.length ? ` · ${problems.length} total` : ''}
         {topic ? ` · ${topic}` : ''}
       </Text>
 
@@ -243,7 +262,7 @@ export default function CatalogScreen() {
 
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
-      {filtered.map((p) => {
+      {visible.map((p) => {
         const best = bestByProblem.get(p.id);
         const fav = favorites.includes(p.id);
         const inTarget = !!targetPlaylist?.problemIds.includes(p.id);
@@ -297,6 +316,13 @@ export default function CatalogScreen() {
           </Pressable>
         );
       })}
+
+      {!loading && hasMore ? (
+        <Text style={styles.moreHint}>Scroll for more · {filtered.length - visible.length} left</Text>
+      ) : null}
+      {!loading && !hasMore && filtered.length > 0 ? (
+        <Text style={styles.moreHint}>End of results</Text>
+      ) : null}
     </Screen>
   );
 }
@@ -422,5 +448,11 @@ const styles = StyleSheet.create({
   topics: {
     color: colors.textDim,
     fontSize: 12,
+  },
+  moreHint: {
+    color: colors.textDim,
+    fontSize: 12,
+    textAlign: 'center',
+    paddingVertical: spacing.sm,
   },
 });

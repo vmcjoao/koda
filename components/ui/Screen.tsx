@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -20,6 +22,10 @@ type Props = {
   onRefresh?: () => void;
   /** Soft mint wash behind content (default on). */
   atmosphere?: boolean;
+  /** Fired when the user scrolls near the bottom (ScrollView only). */
+  onEndReached?: () => void;
+  /** Distance from bottom (px) that triggers onEndReached. Default 240. */
+  onEndReachedThreshold?: number;
 };
 
 export function Screen({
@@ -30,7 +36,24 @@ export function Screen({
   refreshing,
   onRefresh,
   atmosphere = true,
+  onEndReached,
+  onEndReachedThreshold = 240,
 }: Props) {
+  const locked = useRef(false);
+
+  function handleScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
+    if (!onEndReached) return;
+    const { layoutMeasurement, contentOffset, contentSize } = e.nativeEvent;
+    const distance = contentSize.height - (layoutMeasurement.height + contentOffset.y);
+    if (distance < onEndReachedThreshold) {
+      if (locked.current) return;
+      locked.current = true;
+      onEndReached();
+    } else {
+      locked.current = false;
+    }
+  }
+
   if (scroll) {
     return (
       <SafeAreaView style={[styles.safe, style]} edges={['top', 'left', 'right']}>
@@ -42,6 +65,8 @@ export function Screen({
         <ScrollView
           contentContainerStyle={[styles.content, contentStyle]}
           keyboardShouldPersistTaps="handled"
+          scrollEventThrottle={16}
+          onScroll={onEndReached ? handleScroll : undefined}
           refreshControl={
             onRefresh ? (
               <RefreshControl
