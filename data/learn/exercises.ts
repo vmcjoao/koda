@@ -670,4 +670,404 @@ export const LESSON_EXERCISES: Record<string, LearnExercise[]> = {
       explain_md: 'O(1) idempotent queries after O(N log N) build; no updates.',
     },
   ],
+
+  'brute-force': [
+    {
+      id: 'bf-mcq',
+      kind: 'mcq',
+      prompt: 'Before coding complete search, first estimate…',
+      choices: [
+        'Only asymptotic big-O of sort',
+        'States × work per transition vs time limit',
+        'MST weight',
+        'Segment tree height',
+      ],
+      answer: 1,
+      explain_md: 'If $2^{20}$ or $9!$ already blows the limit, prune or change approach.',
+    },
+    {
+      id: 'bf-sym',
+      kind: 'mcq',
+      prompt: 'Common blow-up in backtracking?',
+      choices: [
+        'Exploring symmetric states repeatedly',
+        'Using long long',
+        'Sorting the input once',
+        'Marking visited when enqueueing in BFS',
+      ],
+      answer: 0,
+      explain_md: 'Canonicalize / mark visited early to cut duplicates.',
+    },
+  ],
+
+  'bipartite-matching': [
+    {
+      id: 'bpm-mcq',
+      kind: 'mcq',
+      prompt: 'Kuhn / DFS matching grows the matching by finding…',
+      choices: [
+        'A negative cycle',
+        'An augmenting path',
+        'An MST edge',
+        'A topological order',
+      ],
+      answer: 1,
+      explain_md: 'Augmenting paths flip free↔matched edges and increase size by 1.',
+    },
+  ],
+
+  sieve: [
+    {
+      id: 'sieve-trace',
+      kind: 'trace',
+      title: 'Eratosthenes',
+      context_md: 'Linear sieve / classic sieve marking multiples. Consider $n = 10$.',
+      steps: [
+        {
+          prompt: 'How many primes ≤ 10?',
+          choices: ['3', '4', '5', '6'],
+          answer: 1,
+          explain_md: '2,3,5,7 → **4**.',
+        },
+        {
+          prompt: 'First composite marked when p=2?',
+          choices: ['3', '4', '9', '1'],
+          answer: 1,
+          explain_md: 'Start marking from $p^2$ or $2p$ — **4** is the first even composite.',
+        },
+      ],
+    },
+  ],
+
+  lca: [
+    {
+      id: 'lca-mcq',
+      kind: 'mcq',
+      prompt: 'Binary lifting LCA preprocess typically…',
+      choices: [
+        'O(1) memory',
+        'O(N log N) parents up[k][v]',
+        'O(N²) Floyd table only',
+        'No DFS needed',
+      ],
+      answer: 1,
+      explain_md: 'DFS depths + $2^k$ ancestors → O(log N) queries.',
+    },
+  ],
+
+  'ternary-search': [
+    {
+      id: 'ter-mcq',
+      kind: 'mcq',
+      prompt: 'Ternary search needs the objective to be…',
+      choices: [
+        'Arbitrary multimodal',
+        'Unimodal / convex-like',
+        'Only integer XOR',
+        'A DAG',
+      ],
+      answer: 1,
+      explain_md: 'Without unimodality the trim is wrong.',
+    },
+  ],
+
+  'meet-in-middle': [
+    {
+      id: 'mitm-mcq',
+      kind: 'mcq',
+      prompt: 'Classic MITM for subset-sum with N≈40 splits into…',
+      choices: [
+        'N and 1',
+        'Two halves ≈N/2, enumerate 2^{N/2}',
+        '√N blocks like Mo',
+        'Only even indices',
+      ],
+      answer: 1,
+      explain_md: 'Meet sums of both halves — ~$2^{20}$ instead of $2^{40}$.',
+    },
+  ],
+
+  'mo-algorithm': [
+    {
+      id: 'mo-mcq',
+      kind: 'mcq',
+      prompt: 'Mo’s algorithm is typically…',
+      choices: [
+        'Online with arbitrary updates',
+        'Offline: sort queries into √N blocks',
+        'Only for trees',
+        'A max-flow method',
+      ],
+      answer: 1,
+      explain_md: 'Reorder queries to move L/R cheaply; need add/remove.',
+    },
+  ],
+
+  'matrix-expo': [
+    {
+      id: 'mat-mcq',
+      kind: 'mcq',
+      prompt: 'Matrix expo computes linear recurrences in…',
+      choices: [
+        'O(N)',
+        'O(K³ log N) for K×K transition',
+        'O(2ᴺ)',
+        'O(1) always',
+      ],
+      answer: 1,
+      explain_md: 'Raise the companion matrix to the N-th power.',
+    },
+  ],
+
+  'game-theory': [
+    {
+      id: 'gt-mcq',
+      kind: 'mcq',
+      prompt: 'Nim heaps [3,4,5]. XOR of sizes?',
+      choices: ['0', '2', '6', '7'],
+      answer: 1,
+      explain_md: '3⊕4⊕5 = 3⊕4=7, 7⊕5=**2** ≠ 0 → first wins.',
+    },
+    {
+      id: 'gt-zero',
+      kind: 'mcq',
+      prompt: 'Position is losing (normal play) when grundy/XOR is…',
+      choices: ['Positive', 'Zero', 'Odd only', 'Equal to heap count'],
+      answer: 1,
+      explain_md: 'XOR 0 → whatever you do, opponent can mirror to 0.',
+    },
+  ],
+
+  'convex-hull': [
+    {
+      id: 'hull-mcq',
+      kind: 'mcq',
+      prompt: 'Andrew / monotone chain builds hull in…',
+      choices: ['O(N)', 'O(N log N) dominated by sort', 'O(N²) always', 'O(log N)'],
+      answer: 1,
+      explain_md: 'Sort by x then lower/upper chain with cross products.',
+    },
+  ],
+
+  'sweep-line': [
+    {
+      id: 'sweep-mcq',
+      kind: 'mcq',
+      prompt: 'Sweep-line events are usually processed…',
+      choices: [
+        'In random order',
+        'Sorted by coordinate (then type)',
+        'Only with DFS',
+        'Using max-flow',
+      ],
+      answer: 1,
+      explain_md: 'Sort events; maintain active set as the sweep moves.',
+    },
+  ],
+
+  'priority-queue': [
+    {
+      id: 'pq-mcq',
+      kind: 'mcq',
+      prompt: 'Binary heap priority_queue top/pop are…',
+      choices: ['O(1) / O(1)', 'O(1) / O(log N)', 'O(N) / O(N)', 'O(log N) / O(1)'],
+      answer: 1,
+      explain_md: 'Peek O(1), extract-min O(log N).',
+    },
+  ],
+
+  'ordered-set': [
+    {
+      id: 'os-mcq',
+      kind: 'mcq',
+      prompt: 'Policy-based / tree order statistics give…',
+      choices: [
+        'Only hash lookups',
+        'Find-by-order / order-of-key in O(log N)',
+        'O(1) updates always',
+        'No duplicates ever possible',
+      ],
+      answer: 1,
+      explain_md: 'Rank and k-th element on a balanced BST.',
+    },
+  ],
+
+  'deque-window': [
+    {
+      id: 'dq-mcq',
+      kind: 'mcq',
+      prompt: 'Monotone deque for sliding-window maximum keeps…',
+      choices: [
+        'All indices in input order only',
+        'Candidates decreasing (or increasing) by value',
+        'A full segment tree',
+        'Only the window sum',
+      ],
+      answer: 1,
+      explain_md: 'Pop back while beaten; pop front when out of window → O(N).',
+    },
+  ],
+
+  'segment-tree-lazy': [
+    {
+      id: 'lazy-mcq',
+      kind: 'mcq',
+      prompt: 'Lazy propagation exists to…',
+      choices: [
+        'Avoid storing the tree',
+        'Push pending range updates only when needed',
+        'Sort queries offline',
+        'Replace DSU',
+      ],
+      answer: 1,
+      explain_md: 'Tag nodes; push to children on descend — range add/update in O(log N).',
+    },
+  ],
+
+  'bfs-01': [
+    {
+      id: 'bfs01-mcq',
+      kind: 'mcq',
+      prompt: '0-1 BFS uses a deque because…',
+      choices: [
+        'All edges weight 1',
+        'Weight-0 edges push front, weight-1 push back',
+        'It needs a binary heap',
+        'Negative edges appear',
+      ],
+      answer: 1,
+      explain_md: 'Maintains increasing dist like Dial/deque Dijkstra for {0,1}.',
+    },
+  ],
+
+  'mst-prim': [
+    {
+      id: 'prim-mcq',
+      kind: 'mcq',
+      prompt: 'Prim grows the MST by…',
+      choices: [
+        'Sorting all edges globally first (Kruskal)',
+        'Repeatedly adding the lightest edge out of the tree',
+        'Running Bellman-Ford',
+        'Finding SCCs',
+      ],
+      answer: 1,
+      explain_md: 'Like Dijkstra on “distance to tree”; heap Prim is O(M log N).',
+    },
+  ],
+
+  'ad-hoc': [
+    {
+      id: 'adhoc-mcq',
+      kind: 'mcq',
+      prompt: 'Ad-hoc problems usually reward…',
+      choices: [
+        'Only copying a named algorithm',
+        'Careful casework, invariants, and construction',
+        'Always max-flow',
+        'Ignoring samples',
+      ],
+      answer: 1,
+      explain_md: 'No single template — prove structure, then implement carefully.',
+    },
+  ],
+
+  'math-number-theory': [
+    {
+      id: 'nt-mcq',
+      kind: 'mcq',
+      prompt: 'Modular inverse of a mod m (m prime) via Fermat is…',
+      choices: ['a^{m}', 'a^{m-2} mod m', 'a/2', 'gcd only'],
+      answer: 1,
+      explain_md: '$a^{p-2} \\equiv a^{-1} \\pmod p$ when p∤a.',
+    },
+  ],
+
+  'geometry-basics': [
+    {
+      id: 'geo-mcq',
+      kind: 'mcq',
+      prompt: 'Cross product (B−A)×(C−A) sign tells…',
+      choices: [
+        'Distance only',
+        'Left/right turn / orientation',
+        'Whether AB is an MST edge',
+        'Hash of the points',
+      ],
+      answer: 1,
+      explain_md: 'Orientation test — core of hulls and segment intersection.',
+    },
+  ],
+
+  interactive: [
+    {
+      id: 'inter-mcq',
+      kind: 'mcq',
+      prompt: 'After printing a query you must usually…',
+      choices: [
+        'Sleep 1 second',
+        'Flush stdout',
+        'Close stdin',
+        'Recompile',
+      ],
+      answer: 1,
+      explain_md: 'Without flush the judge never sees the query → TLE/idleness.',
+    },
+  ],
+
+  'flows-matching': [
+    {
+      id: 'fm-mcq',
+      kind: 'mcq',
+      prompt: 'Unit-capacity bipartite matching via flow sets each edge cap to…',
+      choices: ['∞', '1', 'N', '0'],
+      answer: 1,
+      explain_md: 'Cap 1 + source/sink edges model assignment.',
+    },
+  ],
+
+  'hash-map': [
+    {
+      id: 'hm-mcq',
+      kind: 'mcq',
+      prompt: 'Unordered map average lookup is…',
+      choices: ['O(log N)', 'O(1) expected', 'O(N) always', 'O(N log N)'],
+      answer: 1,
+      explain_md: 'Expected O(1); worst-case adversarial — custom hash if needed.',
+    },
+  ],
+
+  'stack-ds': [
+    {
+      id: 'stack-trace',
+      kind: 'trace',
+      title: 'Stack ops',
+      context_md: 'Empty stack. Ops: push 2, push 5, pop, push 3.',
+      steps: [
+        {
+          prompt: 'After these ops, top is?',
+          choices: ['2', '5', '3', 'empty'],
+          answer: 2,
+          explain_md: 'push2, push5, pop→2 left, push3 → top **3**.',
+        },
+      ],
+    },
+  ],
+
+  'queue-ds': [
+    {
+      id: 'queue-trace',
+      kind: 'trace',
+      title: 'Queue ops',
+      context_md: 'Empty queue. Ops: push 1, push 4, pop, push 7.',
+      steps: [
+        {
+          prompt: 'Front after these ops?',
+          choices: ['1', '4', '7', 'empty'],
+          answer: 1,
+          explain_md: 'FIFO: pop removes 1; front is **4**.',
+        },
+      ],
+    },
+  ],
 };
