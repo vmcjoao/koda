@@ -5,7 +5,7 @@ import { FadeInUp } from '@/components/game/FadeInUp';
 import { PressableScale } from '@/components/game/PressableScale';
 import { CodeBlock } from '@/components/learn/CodeBlock';
 import { VizPlayer } from '@/components/learn/VizPlayer';
-import { MarkdownMath } from '@/components/MarkdownMath';
+import { ProseCard } from '@/components/ProseCard';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAttempt } from '@/contexts/AttemptContext';
@@ -71,13 +71,7 @@ export default function LearnLessonScreen() {
 
       <FadeInUp delayMs={80} waitForLaunch={false}>
         <Text style={styles.section}>Usage</Text>
-        <View style={styles.card}>
-          <MarkdownMath
-            markdown={lesson.usage_md}
-            minHeight={Math.min(420, Math.max(180, 100 + lesson.usage_md.length * 0.45))}
-            embedded
-          />
-        </View>
+        <ProseCard markdown={lesson.usage_md} />
       </FadeInUp>
 
       <FadeInUp delayMs={120} waitForLaunch={false}>
@@ -171,14 +165,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '800',
     marginTop: spacing.sm,
-  },
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: radii.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.md,
-    overflow: 'hidden',
   },
   complexityRow: { flexDirection: 'row', gap: spacing.sm },
   complexityCell: {

@@ -3,7 +3,7 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-nati
 import { router, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
-import { MarkdownMath } from '@/components/MarkdownMath';
+import { ProseCard } from '@/components/ProseCard';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchProblem } from '@/lib/api';
 import { getFavorites, toggleFavorite } from '@/lib/favorites';
@@ -104,24 +104,24 @@ export default function EncounterScreen() {
       </Text>
 
       <Text style={styles.label}>Statement</Text>
-      <MarkdownMath markdown={problem.statement_md} minHeight={220} />
+      <ProseCard markdown={problem.statement_md} />
 
       {problem.input_format_md?.trim() ? (
         <>
           <Text style={styles.label}>Input format</Text>
-          <MarkdownMath markdown={problem.input_format_md} minHeight={90} />
+          <ProseCard markdown={problem.input_format_md} />
         </>
       ) : null}
 
       {problem.output_format_md?.trim() ? (
         <>
           <Text style={styles.label}>Output format</Text>
-          <MarkdownMath markdown={problem.output_format_md} minHeight={80} />
+          <ProseCard markdown={problem.output_format_md} />
         </>
       ) : null}
 
       <Text style={styles.label}>Constraints</Text>
-      <MarkdownMath markdown={problem.constraints_text} minHeight={80} />
+      <ProseCard markdown={problem.constraints_text} />
 
       <Text style={styles.label}>Samples</Text>
       {problem.sample_io.map((s, i) => (

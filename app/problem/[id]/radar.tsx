@@ -4,7 +4,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { ChipPicker } from '@/components/ChipPicker';
-import { MarkdownMath } from '@/components/MarkdownMath';
+import { ProseCard } from '@/components/ProseCard';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { COMPLEXITY_OPTIONS } from '@/constants/tags';
 import { colors, spacing } from '@/constants/theme';
@@ -42,7 +42,7 @@ export default function RadarScreen() {
         Read the limits and guess the target complexity. Correct guesses award bonus XP.
       </Text>
 
-      <MarkdownMath markdown={problem.constraints_text} minHeight={90} />
+      <ProseCard markdown={problem.constraints_text} />
 
       <View style={styles.hintBox}>
         <Text style={styles.hint}>

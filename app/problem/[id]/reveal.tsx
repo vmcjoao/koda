@@ -14,7 +14,7 @@ import { XpChip } from '@/components/game/XpChip';
 import { scoreRank } from '@/components/game/scoreRank';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
-import { MarkdownMath } from '@/components/MarkdownMath';
+import { ProseCard } from '@/components/ProseCard';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { saveAttempt, type SaveAttemptResult } from '@/lib/api';
@@ -133,7 +133,7 @@ export default function RevealScreen() {
       {approach ? (
         <>
           <Text style={styles.label}>Editorial</Text>
-          <MarkdownMath markdown={approach.editorial_summary_md} minHeight={140} />
+          <ProseCard markdown={approach.editorial_summary_md} />
           <Text style={styles.label}>Registered tags</Text>
           <Text style={styles.tags}>
             {[...approach.paradigms, ...approach.algorithms, ...approach.data_structures].join(' · ')}

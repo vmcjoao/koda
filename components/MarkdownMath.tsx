@@ -12,7 +12,7 @@ type Props = {
   markdown: string;
   minHeight?: number;
   /**
-   * Fit a parent card (lessons): 100% width, no extra border.
+   * Fit a parent ProseCard: 100% width, no extra border / plain-text link.
    * Keeps KaTeX WebView with inner scroll — does not auto-resize height
    * (that path blanked content on some devices).
    */
