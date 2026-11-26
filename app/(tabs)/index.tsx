@@ -135,7 +135,10 @@ export default function HomeScreen() {
           streak={profile?.streak ?? 0}
           xp={profile?.xp ?? 0}
           band={profile?.rating_band ?? 1200}
+          displayName={profile?.display_name}
+          avatarId={profile?.avatar_id}
           onBandPress={() => router.push('/settings')}
+          onProfilePress={() => router.push('/settings')}
         />
       </FadeInUp>
 

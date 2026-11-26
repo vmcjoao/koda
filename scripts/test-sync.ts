@@ -13,6 +13,7 @@ const local: UserProfile = {
   streak: 4,
   xp: 500,
   last_active_date: '2026-11-25',
+  avatar_id: 'sigma',
 };
 
 const remote: UserProfile = {
@@ -31,5 +32,6 @@ assert.strictEqual(merged.streak, 4);
 assert.strictEqual(merged.rating_band, 1400);
 assert.strictEqual(merged.last_active_date, '2026-11-25');
 assert.strictEqual(merged.display_name, 'cloud');
+assert.strictEqual(merged.avatar_id, 'sigma');
 
 console.log('sync tests passed');

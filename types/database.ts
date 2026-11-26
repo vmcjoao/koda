@@ -50,6 +50,8 @@ export type UserProfile = {
   streak: number;
   xp: number;
   last_active_date: string | null;
+  /** Local glyph avatar id (`lib/avatar` presets). Not a DB column yet. */
+  avatar_id?: string | null;
 };
 
 export type UserAttempt = {

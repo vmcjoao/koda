@@ -88,6 +88,7 @@ async function readLocalProfile(): Promise<UserProfile> {
     streak: 0,
     xp: 0,
     last_active_date: null,
+    avatar_id: 'bolt',
   };
 }
 
@@ -279,10 +280,28 @@ export async function getProfile(userId: string | null): Promise<UserProfile> {
   // Keep local XP as source of truth when remote is stale zeroes after guest play
   const local = await readLocalProfile();
   const remote = data as UserProfile;
+  // avatar_id is device-local until a DB column exists
   if (local.xp > remote.xp) {
-    return { ...remote, xp: local.xp, streak: Math.max(local.streak, remote.streak), last_active_date: local.last_active_date ?? remote.last_active_date };
+    return {
+      ...remote,
+      xp: local.xp,
+      streak: Math.max(local.streak, remote.streak),
+      last_active_date: local.last_active_date ?? remote.last_active_date,
+      avatar_id: local.avatar_id ?? remote.avatar_id,
+    };
   }
-  return remote;
+  return { ...remote, avatar_id: local.avatar_id ?? remote.avatar_id };
+}
+
+export async function updateAvatarId(
+  userId: string | null,
+  avatarId: string,
+): Promise<UserProfile> {
+  void userId;
+  const profile = await readLocalProfile();
+  profile.avatar_id = avatarId;
+  await writeLocalProfile(profile);
+  return profile;
 }
 
 export async function updateRatingBand(userId: string | null, band: number): Promise<UserProfile> {

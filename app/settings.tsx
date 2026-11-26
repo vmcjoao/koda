@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Platform, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { Alert, Platform, Pressable, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import { router } from 'expo-router';
 import { FadeInUp } from '@/components/game/FadeInUp';
+import { PlayerAvatar } from '@/components/game/PlayerAvatar';
 import { XpChip } from '@/components/game/XpChip';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
-import { updateDisplayName, updateRatingBand } from '@/lib/api';
+import { updateAvatarId, updateDisplayName, updateRatingBand } from '@/lib/api';
+import { AVATAR_PRESETS } from '@/lib/avatar';
 import {
   clearLocalTrainingData,
   exportLocalTrainingJson,
@@ -55,6 +57,7 @@ export default function SettingsScreen() {
   } = useAuth();
   const [band, setBand] = useState(String(profile?.rating_band ?? 1200));
   const [displayName, setDisplayName] = useState(profile?.display_name ?? '');
+  const [avatarId, setAvatarId] = useState(profile?.avatar_id ?? 'bolt');
   const [saved, setSaved] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [syncing, setSyncing] = useState(false);
@@ -77,7 +80,15 @@ export default function SettingsScreen() {
   useEffect(() => {
     if (profile?.rating_band != null) setBand(String(profile.rating_band));
     if (profile?.display_name != null) setDisplayName(profile.display_name);
-  }, [profile?.rating_band, profile?.display_name]);
+    if (profile?.avatar_id) setAvatarId(profile.avatar_id);
+  }, [profile?.rating_band, profile?.display_name, profile?.avatar_id]);
+
+  async function pickAvatar(id: string) {
+    setAvatarId(id);
+    await updateAvatarId(user?.id ?? null, id);
+    await refreshProfile();
+    flashSaved(`Avatar · ${AVATAR_PRESETS.find((p) => p.id === id)?.label ?? id}`);
+  }
 
   function flashSaved(label: string) {
     setSaved(label);
@@ -204,6 +215,7 @@ export default function SettingsScreen() {
             await refreshProfile();
             setBand('1200');
             setDisplayName('Coder');
+            setAvatarId('bolt');
             setStatus('Local training data cleared.');
           },
         },
@@ -219,10 +231,20 @@ export default function SettingsScreen() {
         <Text style={styles.kicker}>PLAYER CARD</Text>
         <Text style={styles.title}>Profile & settings</Text>
         <View style={styles.heroCard}>
-          <Text style={styles.heroName}>{profile?.display_name || 'Coder'}</Text>
-          <Text style={styles.heroMeta}>
-            {demoMode ? 'Guest · local device' : email ?? 'Signed in'}
-          </Text>
+          <View style={styles.heroTop}>
+            <PlayerAvatar
+              avatarId={avatarId}
+              displayName={displayName || profile?.display_name}
+              size="lg"
+              showInitials
+            />
+            <View style={styles.heroCopy}>
+              <Text style={styles.heroName}>{profile?.display_name || 'Coder'}</Text>
+              <Text style={styles.heroMeta}>
+                {demoMode ? 'Guest · local device' : email ?? 'Signed in'}
+              </Text>
+            </View>
+          </View>
           <View style={styles.chipRow}>
             <XpChip label={`${profile?.streak ?? 0}D STREAK`} tone="accent" />
             <XpChip label={`${profile?.xp ?? 0} XP`} tone="xp" delayMs={40} />
@@ -257,6 +279,27 @@ export default function SettingsScreen() {
           placeholderTextColor={colors.textDim}
           maxLength={40}
         />
+        <Text style={styles.label}>Avatar</Text>
+        <View style={styles.avatarGrid}>
+          {AVATAR_PRESETS.map((preset) => {
+            const selected = preset.id === avatarId;
+            return (
+              <Pressable
+                key={preset.id}
+                onPress={() => pickAvatar(preset.id)}
+                style={[styles.avatarPick, selected && styles.avatarPickOn]}
+                accessibilityRole="button"
+                accessibilityState={{ selected }}
+                accessibilityLabel={`Avatar ${preset.label}`}
+              >
+                <PlayerAvatar avatarId={preset.id} size="sm" />
+                <Text style={[styles.avatarPickLabel, selected && styles.avatarPickLabelOn]}>
+                  {preset.label}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
         {demoMode ? (
           <PrimaryButton label="Sign in / Register" onPress={() => router.push('/(auth)/login')} />
         ) : (
@@ -441,6 +484,15 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
     marginBottom: spacing.sm,
   },
+  heroTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+  },
+  heroCopy: {
+    flex: 1,
+    gap: 4,
+  },
   heroName: {
     color: colors.text,
     fontSize: 22,
@@ -449,6 +501,34 @@ const styles = StyleSheet.create({
   heroMeta: {
     color: colors.textMuted,
     fontSize: 14,
+  },
+  avatarGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
+  },
+  avatarPick: {
+    width: '23%',
+    minWidth: 72,
+    alignItems: 'center',
+    gap: 6,
+    paddingVertical: spacing.sm,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+  },
+  avatarPickOn: {
+    borderColor: colors.accent,
+    backgroundColor: colors.chipSelected,
+  },
+  avatarPickLabel: {
+    color: colors.textDim,
+    fontSize: 11,
+    fontWeight: '600',
+  },
+  avatarPickLabelOn: {
+    color: colors.accent,
   },
   chipRow: {
     flexDirection: 'row',

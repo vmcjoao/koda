@@ -26,5 +26,6 @@ export function mergeProfilesForSync(local: UserProfile, remote: UserProfile): U
     streak: Math.max(local.streak, remote.streak),
     rating_band: localWins ? local.rating_band : remote.rating_band,
     last_active_date: laterDate(local.last_active_date, remote.last_active_date),
+    avatar_id: local.avatar_id ?? remote.avatar_id ?? null,
   };
 }
