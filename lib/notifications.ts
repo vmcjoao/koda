@@ -76,7 +76,7 @@ export async function scheduleDailyReminder(): Promise<void> {
     content: {
       title: 'Koda · Daily Set',
       body: 'Warm-up, Target, Boss — keep the streak. Check Review if anything is due.',
-      data: { screen: 'home' },
+      data: { url: '/(tabs)' },
     },
     trigger: {
       type: Notifications.SchedulableTriggerInputTypes.DAILY,

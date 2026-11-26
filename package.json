@@ -45,6 +45,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
+    "test": "npm run test:scoring && npm run test:habit && npm run test:local-data",
     "test:scoring": "tsx scripts/test-scoring.ts",
     "test:habit": "tsx scripts/test-habit.ts",
     "test:local-data": "tsx scripts/test-local-data.ts",

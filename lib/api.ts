@@ -24,7 +24,33 @@ const LOCAL_ATTEMPTS_KEY = 'koda.attempts';
 const LOCAL_PROFILE_KEY = 'koda.profile';
 const LOCAL_STATE_KEY = 'koda.problem_state';
 const LOCAL_DAILY_KEY = 'koda.daily_set';
+const LOCAL_CATALOG_KEY = 'koda.catalog.cache';
 const DEMO_USER_ID = 'demo-user';
+
+function mergeCatalog(
+  primary: ProblemWithApproaches[],
+  secondary: ProblemWithApproaches[],
+): ProblemWithApproaches[] {
+  const byId = new Map<string, ProblemWithApproaches>();
+  for (const p of secondary) byId.set(p.id, p);
+  for (const p of primary) byId.set(p.id, p);
+  return [...byId.values()].sort((a, b) => a.difficulty_rating - b.difficulty_rating);
+}
+
+async function readCatalogCache(): Promise<ProblemWithApproaches[] | null> {
+  const raw = await AsyncStorage.getItem(LOCAL_CATALOG_KEY);
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as ProblemWithApproaches[];
+    return Array.isArray(parsed) && parsed.length ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+async function writeCatalogCache(problems: ProblemWithApproaches[]) {
+  await AsyncStorage.setItem(LOCAL_CATALOG_KEY, JSON.stringify(problems));
+}
 
 async function readLocalAttempts(): Promise<UserAttempt[]> {
   const raw = await AsyncStorage.getItem(LOCAL_ATTEMPTS_KEY);
@@ -115,8 +141,9 @@ export async function fetchProblems(): Promise<ProblemWithApproaches[]> {
     .order('difficulty_rating', { ascending: true });
 
   if (error || !problems?.length) {
-    console.warn('Falling back to local seed:', error?.message);
-    return local;
+    console.warn('Falling back to catalog cache / local seed:', error?.message);
+    const cached = await readCatalogCache();
+    return cached?.length ? mergeCatalog(cached, local) : local;
   }
 
   const { data: approaches } = await supabase.from('solution_approaches').select('*');
@@ -127,7 +154,10 @@ export async function fetchProblems(): Promise<ProblemWithApproaches[]> {
     byProblem.set(a.problem_id, list);
   }
 
-  return problems.map((p) => mapProblemRow(p, byProblem.get(p.id) ?? []));
+  const remote = problems.map((p) => mapProblemRow(p, byProblem.get(p.id) ?? []));
+  await writeCatalogCache(remote);
+  // Remote wins on id clash; keep local-only extras (ingestion) available offline.
+  return mergeCatalog(remote, local);
 }
 
 export async function fetchProblem(id: string): Promise<ProblemWithApproaches | null> {
@@ -135,7 +165,9 @@ export async function fetchProblem(id: string): Promise<ProblemWithApproaches | 
 
   const { data: problem, error } = await supabase.from('problems').select('*').eq('id', id).maybeSingle();
   if (error || !problem) {
-    return getLocalProblem(id) ?? null;
+    const cached = await readCatalogCache();
+    const fromCache = cached?.find((p) => p.id === id);
+    return fromCache ?? getLocalProblem(id) ?? null;
   }
   const { data: approaches } = await supabase
     .from('solution_approaches')

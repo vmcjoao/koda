@@ -1,8 +1,10 @@
 import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, router, type Href } from 'expo-router';
+import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
@@ -32,10 +34,42 @@ const KodaDarkTheme = {
   },
 };
 
+/** Open in-app route when the user taps a scheduled reminder. */
+function useNotificationObserver() {
+  useEffect(() => {
+    if (Platform.OS === 'web') return;
+
+    function redirect(notification: Notifications.Notification) {
+      const url = notification.request.content.data?.url;
+      if (typeof url === 'string' && url.length > 0) {
+        router.push(url as Href);
+        try {
+          Notifications.clearLastNotificationResponse();
+        } catch {
+          /* native module unavailable */
+        }
+      }
+    }
+
+    const response = Notifications.getLastNotificationResponse();
+    if (response?.notification) {
+      redirect(response.notification);
+    }
+
+    const subscription = Notifications.addNotificationResponseReceivedListener((next) => {
+      redirect(next.notification);
+    });
+
+    return () => subscription.remove();
+  }, []);
+}
+
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+
+  useNotificationObserver();
 
   useEffect(() => {
     if (error) throw error;
