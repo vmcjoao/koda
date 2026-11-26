@@ -659,6 +659,188 @@ function genDsu(rng: Rng): LearnExercise[] {
   ];
 }
 
+function genSieve(rng: Rng): LearnExercise[] {
+  const n = randInt(rng, 12, 30);
+  const prime = Array(n + 1).fill(true);
+  prime[0] = prime[1] = false;
+  for (let i = 2; i * i <= n; i++) {
+    if (!prime[i]) continue;
+    for (let j = i * i; j <= n; j += i) prime[j] = false;
+  }
+  const count = prime.reduce((a, p) => a + (p ? 1 : 0), 0);
+  return [
+    mcqFrom(
+      rng,
+      'sieve-gen',
+      `How many primes ≤ ${n}?`,
+      String(count),
+      [String(count + 1), String(Math.max(0, count - 1)), String(count + 2)],
+      `Sieve of Eratosthenes up to ${n} → **${count}**.`,
+    ),
+  ];
+}
+
+function genTernary(rng: Rng): LearnExercise[] {
+  // unimodal: decrease then increase — find min index
+  const n = randInt(rng, 7, 10);
+  const mid = randInt(rng, 2, n - 3);
+  const a: number[] = [];
+  let v = randInt(rng, 8, 15);
+  for (let i = 0; i < n; i++) {
+    if (i <= mid) {
+      a.push(v);
+      v -= randInt(rng, 1, 3);
+    } else {
+      v += randInt(rng, 1, 3);
+      a.push(v);
+    }
+  }
+  let best = 0;
+  for (let i = 1; i < n; i++) if (a[i]! < a[best]!) best = i;
+  return [
+    {
+      id: 'ter-gen',
+      kind: 'trace',
+      title: 'Unimodal min',
+      context_md: `Unimodal array \`a = [${a.join(', ')}]\` (decreases then increases).`,
+      steps: [
+        makeMcq(rng, {
+          prompt: 'Index of the minimum?',
+          correct: String(best),
+          wrong: [String(Math.max(0, best - 1)), String(Math.min(n - 1, best + 1)), String(0)],
+          explain_md: `Minimum value ${a[best]} at index **${best}**.`,
+        }),
+      ],
+    },
+  ];
+}
+
+function genStack(rng: Rng): LearnExercise[] {
+  const stack: number[] = [];
+  const ops: string[] = [];
+  for (let i = 0; i < 5; i++) {
+    if (!stack.length || rng() < 0.65) {
+      const x = randInt(rng, 1, 9);
+      stack.push(x);
+      ops.push(`push ${x}`);
+    } else {
+      stack.pop();
+      ops.push('pop');
+    }
+  }
+  const top = stack.length ? String(stack[stack.length - 1]) : 'empty';
+  return [
+    {
+      id: 'stack-gen',
+      kind: 'trace',
+      title: 'Stack ops',
+      context_md: `Start empty. Ops: ${ops.join(', ')}.`,
+      steps: [
+        makeMcq(rng, {
+          prompt: 'Top after these ops?',
+          correct: top,
+          wrong: ['empty', String(randInt(rng, 1, 9)), String(stack[0] ?? 0)].filter(
+            (x, i, a) => a.indexOf(x) === i && x !== top,
+          ),
+          explain_md: `LIFO → top is **${top}**.`,
+        }),
+      ],
+    },
+  ];
+}
+
+function genQueue(rng: Rng): LearnExercise[] {
+  const q: number[] = [];
+  const ops: string[] = [];
+  for (let i = 0; i < 5; i++) {
+    if (!q.length || rng() < 0.65) {
+      const x = randInt(rng, 1, 9);
+      q.push(x);
+      ops.push(`push ${x}`);
+    } else {
+      q.shift();
+      ops.push('pop');
+    }
+  }
+  const front = q.length ? String(q[0]) : 'empty';
+  return [
+    {
+      id: 'queue-gen',
+      kind: 'trace',
+      title: 'Queue ops',
+      context_md: `Start empty. Ops: ${ops.join(', ')}.`,
+      steps: [
+        makeMcq(rng, {
+          prompt: 'Front after these ops?',
+          correct: front,
+          wrong: ['empty', String(randInt(rng, 1, 9)), String(q[q.length - 1] ?? 0)].filter(
+            (x, i, a) => a.indexOf(x) === i && x !== front,
+          ),
+          explain_md: `FIFO → front is **${front}**.`,
+        }),
+      ],
+    },
+  ];
+}
+
+function genNim(rng: Rng): LearnExercise[] {
+  const heaps = Array.from({ length: randInt(rng, 3, 4) }, () => randInt(rng, 1, 7));
+  const x = heaps.reduce((a, b) => a ^ b, 0);
+  return [
+    mcqFrom(
+      rng,
+      'nim-gen',
+      `Nim heaps [${heaps.join(', ')}]. XOR?`,
+      String(x),
+      [String(x ^ 1), String(x ^ 2), String(heaps[0])],
+      `${heaps.join(' ⊕ ')} = **${x}**${x === 0 ? ' (second wins)' : ' (first wins)'}.`,
+    ),
+  ];
+}
+
+function genMitm(rng: Rng): LearnExercise[] {
+  const n = 6;
+  const a = Array.from({ length: n }, () => randInt(rng, 1, 8));
+  const target = a.slice(0, 3).reduce((s, x) => s + x, 0) + (rng() < 0.5 ? 0 : randInt(rng, 1, 3));
+  let ok = false;
+  for (let mask = 0; mask < 1 << n; mask++) {
+    let s = 0;
+    for (let i = 0; i < n; i++) if (mask & (1 << i)) s += a[i]!;
+    if (s === target) {
+      ok = true;
+      break;
+    }
+  }
+  return [
+    mcqFrom(
+      rng,
+      'mitm-gen',
+      `Subset of [${a.join(', ')}] summing to ${target}?`,
+      ok ? 'Yes' : 'No',
+      [ok ? 'No' : 'Yes', 'Only if sorted', 'Impossible to know'],
+      `Full enumerate $2^{${n}}$ → **${ok ? 'Yes' : 'No'}** (MITM mindset for larger N).`,
+    ),
+  ];
+}
+
+function genHashMap(rng: Rng): LearnExercise[] {
+  const a = Array.from({ length: 6 }, () => randInt(rng, 1, 5));
+  const freq = new Map<number, number>();
+  for (const x of a) freq.set(x, (freq.get(x) ?? 0) + 1);
+  const key = pick(rng, a);
+  const ans = freq.get(key)!;
+  return [
+    mcqFrom(
+      rng,
+      'hm-gen',
+      `Frequency of ${key} in [${a.join(', ')}]?`,
+      String(ans),
+      [String(ans + 1), String(Math.max(0, ans - 1)), '0'],
+      `Hash map count → **${ans}**.`,
+    ),
+  ];
+}
+
 type Gen = (rng: Rng) => LearnExercise[];
 
 const GENERATORS: Record<string, Gen> = {
@@ -675,6 +857,13 @@ const GENERATORS: Record<string, Gen> = {
   lis: genLis,
   'coordinate-compression': genCoordCompress,
   dsu: genDsu,
+  sieve: genSieve,
+  'ternary-search': genTernary,
+  'stack-ds': genStack,
+  'queue-ds': genQueue,
+  'game-theory': genNim,
+  'meet-in-middle': genMitm,
+  'hash-map': genHashMap,
 };
 
 /** True if this lesson can show a Check stage. */

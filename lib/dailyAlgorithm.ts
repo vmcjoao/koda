@@ -21,6 +21,13 @@ const GENERATIVE_DAILY = [
   'lis',
   'coordinate-compression',
   'dsu',
+  'sieve',
+  'ternary-search',
+  'stack-ds',
+  'queue-ds',
+  'game-theory',
+  'meet-in-middle',
+  'hash-map',
 ] as const;
 
 /** Lessons eligible for the daily algorithm puzzle. */
