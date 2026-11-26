@@ -56,6 +56,17 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "9e2b1c7b-5484-4cbb-92c7-1e85924f6f00"
+      }
+    },
+    "owner": "vmcjoao"
   }
 }
