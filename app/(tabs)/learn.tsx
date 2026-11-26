@@ -11,6 +11,7 @@ import {
   nextStudyPathLesson,
   studyPathLessons,
 } from '@/lib/learn';
+import { lessonHasExercises } from '@/lib/learnExerciseGen';
 import { getStudiedLessonIds } from '@/lib/learnProgress';
 import { LEARN_FAMILY_LABELS, type LearnFamily, type LearnLesson } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -214,12 +215,15 @@ export default function LearnScreen() {
                           </Text>
                           <View style={styles.badges}>
                             {done ? <Text style={styles.doneBadge}>DONE</Text> : null}
+                            {lessonHasExercises(l.id) ? (
+                              <Text style={styles.checkBadge}>CHECK</Text>
+                            ) : null}
+                            {l.visualization ? <Text style={styles.vizBadge}>VIZ</Text> : null}
                             {l.tagKind && l.tagKind !== 'algorithm' ? (
                               <Text style={styles.kindBadge} numberOfLines={1}>
                                 {l.tagLabel}
                               </Text>
                             ) : null}
-                            {l.visualization ? <Text style={styles.vizBadge}>VIZ</Text> : null}
                           </View>
                         </View>
                         <Text style={styles.cardTitle}>{l.title}</Text>
@@ -422,6 +426,12 @@ const styles = StyleSheet.create({
   },
   vizBadge: {
     color: colors.xp,
+    fontSize: 10,
+    fontWeight: '900',
+    letterSpacing: 1,
+  },
+  checkBadge: {
+    color: colors.warning,
     fontSize: 10,
     fontWeight: '900',
     letterSpacing: 1,

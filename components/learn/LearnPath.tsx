@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { FadeInUp } from '@/components/game/FadeInUp';
 import { PressableScale } from '@/components/game/PressableScale';
 import { LEARN_UNITS, getLesson, unitProgress } from '@/lib/learn';
+import { lessonHasExercises } from '@/lib/learnExerciseGen';
 import type { LearnLesson } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -126,6 +127,19 @@ export function LearnPath({ studied, currentId, onSelect }: Props) {
                             >
                               {lesson.title}
                             </Text>
+                            <View
+                              style={[
+                                styles.featRow,
+                                side === 'right' && styles.featRowRight,
+                              ]}
+                            >
+                              {lessonHasExercises(lesson.id) ? (
+                                <Text style={styles.featCheck}>CHECK</Text>
+                              ) : null}
+                              {lesson.visualization ? (
+                                <Text style={styles.featViz}>VIZ</Text>
+                              ) : null}
+                            </View>
                             {showNow ? <Text style={styles.now}>SUGGESTED</Text> : null}
                             {done ? <Text style={styles.cleared}>CLEARED</Text> : null}
                           </View>
@@ -295,6 +309,26 @@ const styles = StyleSheet.create({
   },
   nodeTitleCurrent: {
     color: colors.accent,
+  },
+  featRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+  },
+  featRowRight: {
+    justifyContent: 'flex-end',
+  },
+  featCheck: {
+    color: colors.warning,
+    fontSize: 10,
+    fontWeight: '900',
+    letterSpacing: 0.8,
+  },
+  featViz: {
+    color: colors.xp,
+    fontSize: 10,
+    fontWeight: '900',
+    letterSpacing: 0.8,
   },
   now: {
     color: colors.accent,
