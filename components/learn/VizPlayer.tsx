@@ -12,6 +12,7 @@ import {
   twoPointersFrameCount,
 } from '@/components/learn/viz/TwoPointersViz';
 import { LisViz, lisFrameCount } from '@/components/learn/viz/LisViz';
+import { SortViz, sortFrameCount } from '@/components/learn/viz/SortViz';
 import type { ArrayDemo, GraphDemo, KnapsackDemo, LearnDemo, LearnVizKind } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import {
@@ -79,6 +80,7 @@ export function VizPlayer({ kind, demo }: Props) {
     if (kind === 'array-two-pointers' && isArray(demo))
       return Math.max(0, twoPointersFrameCount(demo) - 1);
     if (kind === 'array-lis' && isArray(demo)) return Math.max(0, lisFrameCount(demo) - 1);
+    if (kind === 'array-sort' && isArray(demo)) return Math.max(0, sortFrameCount(demo) - 1);
     return Math.max(0, graphSteps.length - 1);
   }, [demo, graphSteps.length, kind]);
 
@@ -115,6 +117,7 @@ export function VizPlayer({ kind, demo }: Props) {
           <TwoPointersViz demo={demo} step={step} />
         ) : null}
         {kind === 'array-lis' && isArray(demo) ? <LisViz demo={demo} step={step} /> : null}
+        {kind === 'array-sort' && isArray(demo) ? <SortViz demo={demo} step={step} /> : null}
       </View>
       <Text style={styles.caption}>
         Step {step}/{maxStep}

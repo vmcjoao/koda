@@ -623,6 +623,8 @@ int bpm(int nL, int nR, vector<vector<int>>& g) {
       extraMemory: 'O(N)',
       notes_md: 'SPFA is a queue optimization — still $O(NM)$ worst case; fine for many contests, risky against anti-SPFA tests.',
     },
+    visualization: { kind: 'graph-dijkstra', demo: DEMO_GRAPH },
+    relatedIds: ['dijkstra', 'floyd-warshall', 'bfs-01'],
     implementation: {
       language: 'cpp',
       code: `using ll = long long;
@@ -669,6 +671,8 @@ vector<ll> bellman(int n, vector<array<ll,3>>& edges, int s, vector<char>& neg) 
       time: 'O(N³)',
       extraMemory: 'O(N²)',
     },
+    visualization: { kind: 'graph-dijkstra', demo: DEMO_GRAPH },
+    relatedIds: ['bellman-ford', 'dijkstra', 'matrix-expo'],
     implementation: {
       language: 'cpp',
       code: `using ll = long long;
@@ -750,6 +754,10 @@ int lca(int a, int b) {
       'counting-sort',
       'coordinate-compression',
     ],
+    visualization: {
+      kind: 'array-sort',
+      demo: { values: [5, 2, 8, 1, 9, 3] },
+    },
     implementation: {
       language: 'cpp',
       code: `// sort indices by a[i] (keeps the original array intact)

@@ -158,6 +158,10 @@ long long count_pair_sum(vector<int> a, long long x) {
       extraMemory: 'O(1)',
       notes_md: '$R$ = size of the answer range; $f(N)$ = cost of one feasibility check.',
     },
+    visualization: {
+      kind: 'array-binary-search',
+      demo: { values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], target: 5 },
+    },
     relatedIds: ['binary-search', 'lower-bound', 'upper-bound', 'ternary-search'],
     implementation: {
       language: 'cpp',
@@ -476,6 +480,11 @@ int pred = (it == s.begin() ? -1 : *prev(it)); // first < 6 → 5
       time: 'O(N)',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'mono-stack',
+      demo: { values: [1, 3, 2, 5, 4, 6] },
+    },
+    relatedIds: ['monotonic-stack', 'two-pointers', 'queue-ds'],
     implementation: {
       language: 'cpp',
       code: `// sliding window maximum over windows of length k; returns n-k+1 answers
@@ -555,6 +564,11 @@ vector<int> window_max(vector<int>& a, int k) {
       time: 'O(1) update, O(N) build',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-prefix',
+      demo: { values: [2, -1, 3, 0, -2, 1] },
+    },
+    relatedIds: ['prefix-sums', 'fenwick', 'segment-tree'],
     implementation: {
       language: 'cpp',
       code: `// apply range adds, then build final array

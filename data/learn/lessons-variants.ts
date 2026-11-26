@@ -16,6 +16,10 @@ export const LESSONS_VARIANTS: LearnLesson[] = [
       extraMemory: 'O(N)',
       notes_md: 'Always Θ(N log N) — no quadratic worst case.',
     },
+    visualization: {
+      kind: 'array-sort',
+      demo: { values: [5, 2, 8, 1, 9, 3] },
+    },
     relatedIds: ['sorting', 'quicksort', 'divide-conquer', 'counting-sort'],
     implementation: {
       language: 'cpp',
@@ -52,6 +56,10 @@ void sort_all(vector<int>& a) {
       time: 'Avg O(N log N), worst O(N²)',
       extraMemory: 'O(log N) stack',
       notes_md: 'Random pivot or median-of-three reduces pathological cases. Prefer std::sort in contests.',
+    },
+    visualization: {
+      kind: 'array-sort',
+      demo: { values: [4, 7, 2, 9, 1, 5] },
     },
     relatedIds: ['sorting', 'mergesort', 'counting-sort'],
     implementation: {
@@ -96,6 +104,10 @@ int kth(vector<int> a, int k) {
       extraMemory: 'O(N + K)',
       notes_md: 'D = digits, B = digit base (often 256). Comparison sort still wins for generic comparable keys.',
     },
+    visualization: {
+      kind: 'array-sort',
+      demo: { values: [3, 1, 2, 0, 3, 1] },
+    },
     relatedIds: ['sorting', 'mergesort', 'coordinate-compression'],
     implementation: {
       language: 'cpp',
@@ -133,6 +145,10 @@ vector<int> radix_pass(const vector<int>& a) {
     complexity: {
       time: 'O(N log N) build, O(log N) per rank',
       extraMemory: 'O(N)',
+    },
+    visualization: {
+      kind: 'array-binary-search',
+      demo: { values: [10, 20, 30, 40, 50], target: 30 },
     },
     relatedIds: ['sorting', 'lower-bound', 'fenwick', 'segment-tree'],
     implementation: {

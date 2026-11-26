@@ -22,7 +22,8 @@ export type LearnVizKind =
   | 'dp-knapsack'
   | 'mono-stack'
   | 'array-two-pointers'
-  | 'array-lis';
+  | 'array-lis'
+  | 'array-sort';
 
 export type GraphDemo = {
   nodes: { id: string; x: number; y: number; label?: string }[];
