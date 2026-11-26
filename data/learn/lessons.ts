@@ -1,6 +1,7 @@
 import type { LearnLesson } from '@/types/learn';
 import { LESSONS_MORE } from '@/data/learn/lessons-more';
 import { LESSONS_EXTRA } from '@/data/learn/lessons-extra';
+import { LESSONS_VARIANTS } from '@/data/learn/lessons-variants';
 
 const DEMO_GRAPH = {
   nodes: [
@@ -223,42 +224,37 @@ long long kruskal(int n, vector<array<int,3>>& edges) {
   {
     id: 'binary-search',
     tagLabel: 'Binary Search',
-    title: 'Binary Search',
+    title: 'Binary Search (exact)',
     family: 'search',
-    summary: 'Halve a monotonic search space — on arrays or on the answer.',
+    summary: 'Find whether a value exists in a sorted array — the classic half-interval loop.',
     usage_md:
-      'Sorted array lookup, lower_bound/upper_bound, and **binary search on the answer** when “can we achieve X?” is monotonic.\n\n**Pitfall:** off-by-one in `lo/hi` updates; overflow in `(lo+hi)/2` — prefer `lo + (hi-lo)/2`.',
+      'Membership on a sorted vector, “is there an index with `a[i] == x`?”, and any search where the predicate flips once from false→true on a discrete range.\n\nPick **one** loop invariant and stick to it. Contest default: `lo` is the first candidate, `hi` is exclusive, mid never overflows.\n\nFor the **first** `≥ x` or `> x` index, use the dedicated lower/upper-bound lessons — don’t overload this template.\n\n**Pitfall:** mixing inclusive `hi` with exclusive updates; using `(lo+hi)/2` on large ints; returning `mid` when the loop exited without a hit.',
     complexity: {
       time: 'O(log N)',
       extraMemory: 'O(1)',
-      notes_md: 'On-the-answer variants multiply by the cost of the feasibility check.',
     },
     visualization: {
       kind: 'array-binary-search',
       demo: { values: [2, 4, 5, 7, 9, 12, 15, 18], target: 9 },
     },
+    relatedIds: ['lower-bound', 'upper-bound', 'binary-search-answer'],
     implementation: {
       language: 'cpp',
-      code: `// first index with a[i] >= x (lower_bound)
-int lower_bound_idx(vector<int>& a, int x) {
-  int lo = 0, hi = (int)a.size();
+      code: `// return any index with a[i] == x, or -1
+int find_exact(const vector<int>& a, int x) {
+  int lo = 0, hi = (int)a.size(); // [lo, hi)
   while (lo < hi) {
     int mid = lo + (hi - lo) / 2;
+    if (a[mid] == x) return mid;
     if (a[mid] < x) lo = mid + 1;
     else hi = mid;
   }
-  return lo;
+  return -1;
 }
 
-// binary search on answer: max t with ok(t)
-int max_feasible(int lo, int hi, auto ok) {
-  while (lo < hi) {
-    int mid = lo + (hi - lo + 1) / 2;
-    if (ok(mid)) lo = mid;
-    else hi = mid - 1;
-  }
-  return lo;
-}`,
+// STL: binary_search(a.begin(), a.end(), x) → bool
+`,
+      notes_md: 'When duplicates matter (first / last occurrence), switch to lower_bound / upper_bound.',
     },
   },
   {
@@ -311,9 +307,9 @@ int max_feasible(int lo, int hi, auto ok) {
     tagLabel: 'Prefix Sums',
     title: 'Prefix Sums',
     family: 'structures',
-    summary: 'Precompute running sums for O(1) range queries.',
+    summary: 'Precompute running sums for O(1) range queries — 1D, 2D, and difference arrays.',
     usage_md:
-      'Range sum on a static array, 2D grids (inclusion-exclusion), and **difference arrays** (range add then prefix to materialize).\n\n**Pitfall:** off-by-one on inclusive vs exclusive bounds; sum overflow — prefer 64-bit accumulators.',
+      '**1D:** `pref[0]=0`, `pref[i+1]=pref[i]+a[i]`, then `sum[l..r) = pref[r]-pref[l]`.\n\n**2D:** inclusion-exclusion on a pref grid for sub-rectangle sums.\n\n**Difference array:** to add $+v$ on `[l,r)`, do `d[l]+=v`, `d[r]-=v`, then prefix to materialize. Batch many range updates, one rebuild.\n\nRelated: fenwick/segtree when you need **point updates** mixed with range sums.\n\n**Pitfall:** inclusive vs exclusive bounds; `int` overflow — use `long long`; building pref 0-based vs 1-based inconsistently.',
     complexity: {
       time: 'O(N) build, O(1) query',
       extraMemory: 'O(N)',
@@ -322,19 +318,32 @@ int max_feasible(int lo, int hi, auto ok) {
       kind: 'array-prefix',
       demo: { values: [3, 1, 4, 1, 5, 9, 2] },
     },
+    relatedIds: ['difference-array', 'fenwick', 'two-pointers'],
     implementation: {
       language: 'cpp',
       code: `// pref[i] = sum of a[0..i)
-vector<long long> build_pref(vector<int>& a) {
+vector<long long> build_pref(const vector<int>& a) {
   int n = (int)a.size();
   vector<long long> pref(n + 1);
   for (int i = 0; i < n; i++) pref[i + 1] = pref[i] + a[i];
   return pref;
 }
-// sum a[l..r)
-long long range_sum(vector<long long>& pref, int l, int r) {
-  return pref[r] - pref[l];
-}`,
+long long range_sum(const vector<long long>& pref, int l, int r) {
+  return pref[r] - pref[l]; // a[l..r)
+}
+
+// difference array: batch range adds, then prefix to materialize
+vector<long long> apply_range_adds(int n, const vector<array<int,3>>& updates) {
+  vector<long long> d(n + 1);
+  for (auto [l, r, v] : updates) { // add v on [l, r)
+    d[l] += v;
+    d[r] -= v;
+  }
+  for (int i = 1; i < n; i++) d[i] += d[i - 1];
+  d.pop_back();
+  return d; // length n
+}
+`,
       notes_md: 'Half-open $[l,r)$. For inclusive $[L,R]$ use `pref[R+1] - pref[L]`.',
     },
   },
@@ -343,9 +352,9 @@ long long range_sum(vector<long long>& pref, int l, int r) {
     tagLabel: 'Knapsack',
     title: '0/1 Knapsack',
     family: 'dp',
-    summary: 'Pick or skip items under a capacity — classic DP.',
+    summary: 'Pick or skip each item under a capacity — the classic DP template.',
     usage_md:
-      'Each item usable at most once; maximize value under weight capacity W. Pattern generalizes to “subset sum”, “count ways”, bounded knapsack.\n\n**Pitfall:** iterating the capacity loop the wrong direction (must go high→low for 0/1 in 1D).',
+      'Each item at most once; maximize value under weight $W$. Same skeleton covers **subset sum** (`v[i]=w[i]` or boolean DP), **count ways**, and (with a ascending capacity loop) **unbounded** knapsack.\n\n1D rolling: iterate capacity **high→low** so each item is used ≤ once. 2D `dp[i][cap]` is clearer when you need reconstruction.\n\n**Pitfall:** ascending capacity loop for 0/1 (turns into unbounded); `int` overflow on value sums; $W$ too large — then meet-in-the-middle or bitset DP.',
     complexity: {
       time: 'O(N · W)',
       extraMemory: 'O(W)',
@@ -355,18 +364,29 @@ long long range_sum(vector<long long>& pref, int l, int r) {
       kind: 'dp-knapsack',
       demo: { weights: [2, 3, 4, 5], values: [3, 4, 5, 6], capacity: 8 },
     },
+    relatedIds: ['dynamic-programming', 'bitmask-dp', 'meet-in-middle'],
     implementation: {
       language: 'cpp',
-      code: `int knapsack(vector<int>& w, vector<int>& v, int W) {
+      code: `int knapsack01(const vector<int>& w, const vector<int>& v, int W) {
   vector<int> dp(W + 1, 0);
-  int n = w.size();
-  for (int i = 0; i < n; i++) {
-    for (int cap = W; cap >= w[i]; cap--)
+  for (int i = 0; i < (int)w.size(); i++) {
+    for (int cap = W; cap >= w[i]; cap--) // high → low: 0/1
       dp[cap] = max(dp[cap], dp[cap - w[i]] + v[i]);
   }
   return dp[W];
-}`,
-      notes_md: 'Inner loop descends so each item is used at most once.',
+}
+
+// unbounded: each item reusable — flip the inner loop direction
+int knapsack_unbounded(const vector<int>& w, const vector<int>& v, int W) {
+  vector<int> dp(W + 1, 0);
+  for (int i = 0; i < (int)w.size(); i++) {
+    for (int cap = w[i]; cap <= W; cap++) // low → high: unbounded
+      dp[cap] = max(dp[cap], dp[cap - w[i]] + v[i]);
+  }
+  return dp[W];
+}
+`,
+      notes_md: 'Direction of the capacity loop is the whole 0/1 vs unbounded distinction in 1D.',
     },
   },
   {
@@ -713,37 +733,45 @@ int lca(int a, int b) {
   {
     id: 'sorting',
     tagLabel: 'Sorting',
-    title: 'Sorting',
+    title: 'Sorting (STL & comparators)',
     family: 'search',
-    summary: 'Order data — the gateway to greedy, two pointers, and binary search.',
+    summary: 'Contest sorting in practice — std::sort, stable_sort, and safe custom keys.',
     usage_md:
-      'Almost every constructive / greedy problem starts with `sort`. Custom comparators, stable sort for ties, sorting indices instead of values.\n\n**Pitfall:** comparator that is not a strict weak ordering → UB; sorting huge structs by value when indices suffice.',
+      '`std::sort` (introsort) is the default: $O(N \\log N)$ worst-case. Use `stable_sort` when equal keys must keep input order (ties, multi-key sorts done in passes).\n\n**Custom comparator** must be a **strict weak ordering**: `cmp(a,a)` false, and never both `cmp(a,b)` and `cmp(b,a)`. Prefer sorting **indices** or a key array over moving huge structs.\n\nSee also: mergesort (inversions / stable merge), quicksort (partition intuition), counting sort (tiny domains), coordinate compression (map big values → ranks).\n\n**Pitfall:** `<=` in a comparator (not strict) → UB / crash; sorting by a float key with NaNs.',
     complexity: {
       time: 'O(N log N)',
       extraMemory: 'O(log N) typical',
-      notes_md: 'Counting / radix sort when the domain is tiny.',
+      notes_md: 'stable_sort uses more memory (merge-based). Counting/radix when the domain is tiny — see those lessons.',
     },
+    relatedIds: [
+      'mergesort',
+      'quicksort',
+      'counting-sort',
+      'coordinate-compression',
+    ],
     implementation: {
       language: 'cpp',
-      code: `// sort indices by a[i]
-vector<int> argsort(vector<int>& a) {
-  int n = a.size();
+      code: `// sort indices by a[i] (keeps the original array intact)
+vector<int> argsort(const vector<int>& a) {
+  int n = (int)a.size();
   vector<int> idx(n);
   iota(idx.begin(), idx.end(), 0);
   sort(idx.begin(), idx.end(), [&](int i, int j) {
-    return a[i] < a[j];
+    return a[i] < a[j]; // strict <
   });
   return idx;
 }
 
-// coordinate compression
-vector<int> compress(vector<int> a) {
-  vector<int> b = a;
-  sort(b.begin(), b.end());
-  b.erase(unique(b.begin(), b.end()), b.end());
-  for (int& x : a) x = lower_bound(b.begin(), b.end(), x) - b.begin();
-  return a;
-}`,
+// multi-key: sort by height asc, then id asc
+struct Person { int h, id; };
+void sort_people(vector<Person>& p) {
+  sort(p.begin(), p.end(), [](const Person& A, const Person& B) {
+    if (A.h != B.h) return A.h < B.h;
+    return A.id < B.id;
+  });
+}
+`,
+      notes_md: 'For “sort by A, break ties by B” you can also stable_sort by B then stable_sort by A.',
     },
   },
   {
@@ -1218,4 +1246,9 @@ vector<long long> coverage_by_k(vector<pair<long long,long long>>& segs) {
   },
 ];
 
-export const LESSONS: LearnLesson[] = [...LESSONS_CORE, ...LESSONS_MORE, ...LESSONS_EXTRA];
+export const LESSONS: LearnLesson[] = [
+  ...LESSONS_CORE,
+  ...LESSONS_MORE,
+  ...LESSONS_EXTRA,
+  ...LESSONS_VARIANTS,
+];

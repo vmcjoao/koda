@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FadeInUp } from '@/components/game/FadeInUp';
 import { PressableScale } from '@/components/game/PressableScale';
-import {
-  LEARN_UNITS,
-  getLesson,
-  isPathLessonUnlocked,
-  unitProgress,
-} from '@/lib/learn';
+import { LEARN_UNITS, getLesson, unitProgress } from '@/lib/learn';
 import type { LearnLesson } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 
 type Props = {
   studied: Set<string>;
-  /** First unfinished unlocked path lesson id — shown as START. */
+  /** Suggested next unfinished path lesson — shown as SUGGESTED. */
   currentId?: string;
   onSelect: (lesson: LearnLesson) => void;
-  onLockedPress?: (lesson: LearnLesson) => void;
 };
 
-export function LearnPath({ studied, currentId, onSelect, onLockedPress }: Props) {
-  let globalIndex = 0;
+export function LearnPath({ studied, currentId, onSelect }: Props) {
+  const [expanded, setExpanded] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(LEARN_UNITS.map((u) => [u.id, true])),
+  );
+
+  function toggle(unitId: string) {
+    setExpanded((prev) => ({ ...prev, [unitId]: !prev[unitId] }));
+  }
+
+  let pathOffset = 0;
 
   return (
     <View style={styles.wrap}>
@@ -29,21 +31,32 @@ export function LearnPath({ studied, currentId, onSelect, onLockedPress }: Props
         const lessons = unit.lessonIds
           .map((id) => getLesson(id))
           .filter((l): l is LearnLesson => !!l);
+        const open = expanded[unit.id] !== false;
+        const startIndex = pathOffset;
+        pathOffset += lessons.length;
 
         return (
           <View key={unit.id} style={styles.unit}>
             <FadeInUp delayMs={40 + ui * 40} waitForLaunch={false}>
-              <View style={[styles.unitHeader, prog.complete && styles.unitHeaderDone]}>
+              <PressableScale
+                haptic="light"
+                scaleTo={0.98}
+                onPress={() => toggle(unit.id)}
+                style={[styles.unitHeader, prog.complete && styles.unitHeaderDone, open && styles.unitHeaderOpen]}
+              >
+                <Text style={styles.chevron}>{open ? '▾' : '▸'}</Text>
                 <View style={styles.unitText}>
                   <Text style={styles.unitTitle}>{unit.title}</Text>
-                  <Text style={styles.unitBlurb}>{unit.blurb}</Text>
+                  <Text style={styles.unitBlurb} numberOfLines={open ? 3 : 1}>
+                    {unit.blurb}
+                  </Text>
                 </View>
                 <View style={[styles.ring, prog.complete && styles.ringDone]}>
                   <Text style={[styles.ringText, prog.complete && styles.ringTextDone]}>
                     {prog.complete ? '✓' : `${prog.done}/${prog.total}`}
                   </Text>
                 </View>
-              </View>
+              </PressableScale>
               <View style={styles.unitTrack}>
                 <View
                   style={[
@@ -56,87 +69,73 @@ export function LearnPath({ studied, currentId, onSelect, onLockedPress }: Props
               </View>
             </FadeInUp>
 
-            <View style={styles.pathColumn}>
-              {lessons.map((lesson, li) => {
-                const idx = globalIndex++;
-                const side = idx % 2 === 0 ? 'left' : 'right';
-                const done = studied.has(lesson.id);
-                const unlocked = isPathLessonUnlocked(lesson.id, studied);
-                const showNow = !done && unlocked && lesson.id === currentId;
-                const locked = !unlocked && !done;
+            {open ? (
+              <View style={styles.pathColumn}>
+                {lessons.map((lesson, li) => {
+                  const idx = startIndex + li;
+                  const side = idx % 2 === 0 ? 'left' : 'right';
+                  const done = studied.has(lesson.id);
+                  const showNow = !done && lesson.id === currentId;
 
-                return (
-                  <FadeInUp key={lesson.id} delayMs={60 + idx * 28} waitForLaunch={false}>
-                    <View style={styles.stepRow}>
-                      {(li > 0 || ui > 0) && (
+                  return (
+                    <FadeInUp key={lesson.id} delayMs={40 + li * 28} waitForLaunch={false}>
+                      <View style={styles.stepRow}>
+                        {li > 0 ? (
+                          <View
+                            style={[
+                              styles.connector,
+                              (done || showNow) && styles.connectorLit,
+                            ]}
+                          />
+                        ) : null}
                         <View
                           style={[
-                            styles.connector,
-                            side === 'left' ? styles.connectorFromRight : styles.connectorFromLeft,
-                            (done || showNow) && styles.connectorLit,
-                          ]}
-                        />
-                      )}
-                      <View
-                        style={[
-                          styles.nodeSlot,
-                          side === 'left' ? styles.slotLeft : styles.slotRight,
-                        ]}
-                      >
-                        <PressableScale
-                          haptic={showNow ? 'medium' : 'light'}
-                          scaleTo={0.92}
-                          onPress={() => {
-                            if (locked) {
-                              onLockedPress?.(lesson);
-                              return;
-                            }
-                            onSelect(lesson);
-                          }}
-                          style={[
-                            styles.node,
-                            done && styles.nodeDone,
-                            showNow && styles.nodeCurrent,
-                            locked && styles.nodeLocked,
+                            styles.nodeSlot,
+                            side === 'left' ? styles.slotLeft : styles.slotRight,
                           ]}
                         >
-                          <Text
+                          <PressableScale
+                            haptic={showNow ? 'medium' : 'light'}
+                            scaleTo={0.92}
+                            onPress={() => onSelect(lesson)}
                             style={[
-                              styles.nodeGlyph,
-                              done && styles.nodeGlyphDone,
-                              showNow && styles.nodeGlyphCurrent,
-                              locked && styles.nodeGlyphLocked,
+                              styles.node,
+                              done && styles.nodeDone,
+                              showNow && styles.nodeCurrent,
                             ]}
                           >
-                            {done ? '✓' : locked ? '○' : idx + 1}
-                          </Text>
-                        </PressableScale>
-                        <View
-                          style={[
-                            styles.nodeMeta,
-                            side === 'right' && styles.nodeMetaRight,
-                          ]}
-                        >
-                          <Text
+                            <Text
+                              style={[
+                                styles.nodeGlyph,
+                                done && styles.nodeGlyphDone,
+                                showNow && styles.nodeGlyphCurrent,
+                              ]}
+                            >
+                              {done ? '✓' : idx + 1}
+                            </Text>
+                          </PressableScale>
+                          <View
                             style={[
-                              styles.nodeTitle,
-                              showNow && styles.nodeTitleCurrent,
-                              locked && styles.nodeTitleLocked,
+                              styles.nodeMeta,
+                              side === 'right' && styles.nodeMetaRight,
                             ]}
-                            numberOfLines={2}
                           >
-                            {lesson.title}
-                          </Text>
-                          {showNow ? <Text style={styles.now}>START</Text> : null}
-                          {done ? <Text style={styles.cleared}>CLEARED</Text> : null}
-                          {locked ? <Text style={styles.lockedLabel}>LOCKED</Text> : null}
+                            <Text
+                              style={[styles.nodeTitle, showNow && styles.nodeTitleCurrent]}
+                              numberOfLines={2}
+                            >
+                              {lesson.title}
+                            </Text>
+                            {showNow ? <Text style={styles.now}>SUGGESTED</Text> : null}
+                            {done ? <Text style={styles.cleared}>CLEARED</Text> : null}
+                          </View>
                         </View>
                       </View>
-                    </View>
-                  </FadeInUp>
-                );
-              })}
-            </View>
+                    </FadeInUp>
+                  );
+                })}
+              </View>
+            ) : null}
           </View>
         );
       })}
@@ -145,20 +144,30 @@ export function LearnPath({ studied, currentId, onSelect, onLockedPress }: Props
 }
 
 const styles = StyleSheet.create({
-  wrap: { gap: spacing.xl },
-  unit: { gap: spacing.md },
+  wrap: { gap: spacing.md },
+  unit: { gap: spacing.sm },
   unitHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.md,
+    gap: spacing.sm,
     backgroundColor: colors.surface,
     borderRadius: radii.md,
     borderWidth: 1,
     borderColor: colors.border,
     padding: spacing.md,
   },
+  unitHeaderOpen: {
+    borderColor: colors.chipSelectedBorder,
+  },
   unitHeaderDone: {
     borderColor: colors.accentDim,
+  },
+  chevron: {
+    color: colors.textMuted,
+    fontSize: 18,
+    fontWeight: '800',
+    width: 18,
+    textAlign: 'center',
   },
   unitText: { flex: 1, gap: 2 },
   unitTitle: {
@@ -223,8 +232,6 @@ const styles = StyleSheet.create({
     left: '50%',
     marginLeft: -2,
   },
-  connectorFromRight: {},
-  connectorFromLeft: {},
   connectorLit: {
     backgroundColor: colors.accentDim,
   },
@@ -262,10 +269,6 @@ const styles = StyleSheet.create({
     borderColor: colors.accent,
     backgroundColor: colors.accent,
   },
-  nodeLocked: {
-    opacity: 0.45,
-    borderColor: colors.textDim,
-  },
   nodeGlyph: {
     color: colors.textMuted,
     fontSize: 24,
@@ -277,9 +280,6 @@ const styles = StyleSheet.create({
   },
   nodeGlyphCurrent: {
     color: colors.background,
-  },
-  nodeGlyphLocked: {
-    color: colors.textDim,
   },
   nodeMeta: {
     flex: 1,
@@ -296,9 +296,6 @@ const styles = StyleSheet.create({
   nodeTitleCurrent: {
     color: colors.accent,
   },
-  nodeTitleLocked: {
-    color: colors.textDim,
-  },
   now: {
     color: colors.accent,
     fontSize: 11,
@@ -307,12 +304,6 @@ const styles = StyleSheet.create({
   },
   cleared: {
     color: colors.accentDim,
-    fontSize: 11,
-    fontWeight: '800',
-    letterSpacing: 1,
-  },
-  lockedLabel: {
-    color: colors.textDim,
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 1,

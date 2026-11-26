@@ -100,18 +100,19 @@ long long merge_count(vector<int>& a, int l, int r, vector<int>& tmp) {
     tagKind: 'paradigm',
     title: 'Two Pointers / Sliding Window',
     family: 'search',
-    summary: 'Advance indices monotonically over a sorted or windowed array.',
+    summary: 'Advance indices monotonically over a sorted array or a growing/shrinking window.',
     usage_md:
-      'Two-sum on a sorted array, longest substring with $\\le K$ distinct, subarray product/sum under a bound. One pointer only moves forward → $O(N)$ total.\n\n**Pitfall:** resetting the window state incorrectly when shrinking; using two pointers on a non-monotone condition.',
+      'Two flavors:\n\n1. **Opposite ends** on a sorted array — two-sum, pair with difference $K$, container-with-most-water style.\n2. **Sliding window** — `l` and `r` move only forward; maintain a window invariant (sum ≤ budget, ≤ K distinct, all equal, …).\n\nTotal movement is $O(N)$ when each index enters/leaves at most once. Needs a **monotone** condition: expanding $r$ only makes the predicate “worse”, shrinking $l` only makes it “better”.\n\n**Pitfall:** resetting frequency maps wrong when shrinking; using the pattern on non-monotone predicates (then you need sets/multisets or sparse tables).',
     complexity: {
       time: 'O(N)',
       extraMemory: 'O(1) or O(Σ)',
       notes_md: 'Alphabet/frequency maps add $O(\\Sigma)$ memory for sliding windows.',
     },
+    relatedIds: ['sorting', 'binary-search', 'prefix-sums', 'deque-window'],
     implementation: {
       language: 'cpp',
       code: `// longest subarray with sum <= budget (non-negative a[i])
-int longest_sum_at_most(vector<int>& a, long long budget) {
+int longest_sum_at_most(const vector<int>& a, long long budget) {
   int n = (int)a.size(), best = 0, l = 0;
   long long sum = 0;
   for (int r = 0; r < n; r++) {
@@ -120,8 +121,23 @@ int longest_sum_at_most(vector<int>& a, long long budget) {
     best = max(best, r - l + 1);
   }
   return best;
-}`,
-      notes_md: 'Works because non-negative elements make the feasible window shrink monotonically.',
+}
+
+// two-sum count on sorted a: pairs i<j with a[i]+a[j]==x
+long long count_pair_sum(vector<int> a, long long x) {
+  sort(a.begin(), a.end());
+  int l = 0, r = (int)a.size() - 1;
+  long long ans = 0;
+  while (l < r) {
+    long long s = a[l] + (long long)a[r];
+    if (s == x) { ans++; l++; r--; } // extend for duplicates if needed
+    else if (s < x) l++;
+    else r--;
+  }
+  return ans;
+}
+`,
+      notes_md: 'Non-negative elements (or a monotone window metric) make the shrink loop valid.',
     },
   },
   {
@@ -130,14 +146,15 @@ int longest_sum_at_most(vector<int>& a, long long budget) {
     tagKind: 'paradigm',
     title: 'Binary Search on Answer',
     family: 'search',
-    summary: 'Binary search the numeric answer when feasibility is monotone.',
+    summary: 'Search the numeric answer when “is x feasible?” flips once.',
     usage_md:
-      'Minimize maximum load, maximize minimum distance, “smallest time to finish”. Check `ok(x)` in $O(f(N))$ and search $x$.\n\n**Pitfall:** off-by-one on integer bounds; `ok` that is not actually monotone; overflowing mid when using `(lo+hi)/2` on huge ranges — prefer `lo + (hi-lo)/2`.',
+      'Pattern: the answer is some integer/real $x$, and `ok(x)` is monotone (false…false,true…true or the reverse). Binary search $x$; each probe runs a greedy/DP/graph check in $O(f(N))$.\n\nClassics: minimize the maximum load, maximize the minimum distance (aggressive cows), smallest capacity to finish in $T$ days.\n\nOn **reals**, run a fixed ~80–100 iterations instead of an epsilon exit.\n\nArray lower/upper bound are different tools — see those lessons. This one searches the **answer**, not an index in `a[]`.\n\n**Pitfall:** `ok` that isn’t monotone; wrong min vs max template (`mid` bias); `(lo+hi)/2` overflow on 64-bit ranges.',
     complexity: {
       time: 'O(f(N) log R)',
       extraMemory: 'O(1)',
       notes_md: '$R$ = size of the answer range; $f(N)$ = cost of one feasibility check.',
     },
+    relatedIds: ['binary-search', 'lower-bound', 'upper-bound', 'ternary-search'],
     implementation: {
       language: 'cpp',
       code: `// minimize x such that ok(x) is true (ok monotone false→true)
@@ -153,13 +170,24 @@ int min_feasible(int lo, int hi, auto ok) {
 // maximize x such that ok(x) is true (ok monotone true→false)
 int max_feasible(int lo, int hi, auto ok) {
   while (lo < hi) {
-    int mid = lo + (hi - lo + 1) / 2;
+    int mid = lo + (hi - lo + 1) / 2; // bias up so lo can advance
     if (ok(mid)) lo = mid;
     else hi = mid - 1;
   }
   return lo;
-}`,
-      notes_md: 'Pick the branch that matches whether larger $x$ makes the predicate easier or harder.',
+}
+
+// reals: fixed iterations
+double min_feasible_real(double lo, double hi, auto ok) {
+  for (int it = 0; it < 80; it++) {
+    double mid = (lo + hi) / 2;
+    if (ok(mid)) hi = mid;
+    else lo = mid;
+  }
+  return hi;
+}
+`,
+      notes_md: 'Pick min vs max from whether larger $x$ makes the predicate easier (min) or harder (max).',
     },
   },
 

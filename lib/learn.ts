@@ -12,15 +12,30 @@ export function getLesson(id: string): LearnLesson | undefined {
   return LESSONS.find((l) => l.id === id);
 }
 
-/** Other lessons sharing the same catalog tag (e.g. BFS + 0-1 BFS). */
+/** Sibling lessons: explicit relatedIds first, then same catalog tag. */
 export function relatedLessons(lesson: LearnLesson, limit = 4): LearnLesson[] {
+  const seen = new Set<string>([lesson.id]);
+  const out: LearnLesson[] = [];
+
+  for (const id of lesson.relatedIds ?? []) {
+    const l = getLesson(id);
+    if (l && !seen.has(l.id)) {
+      seen.add(l.id);
+      out.push(l);
+      if (out.length >= limit) return out;
+    }
+  }
+
   const kind = lesson.tagKind ?? 'algorithm';
-  return LESSONS.filter(
-    (l) =>
-      l.id !== lesson.id &&
-      (l.tagKind ?? 'algorithm') === kind &&
-      l.tagLabel === lesson.tagLabel,
-  ).slice(0, limit);
+  for (const l of LESSONS) {
+    if (seen.has(l.id)) continue;
+    if ((l.tagKind ?? 'algorithm') !== kind) continue;
+    if (l.tagLabel !== lesson.tagLabel) continue;
+    seen.add(l.id);
+    out.push(l);
+    if (out.length >= limit) break;
+  }
+  return out;
 }
 
 export function filterLessons(query: string): LearnLesson[] {
@@ -48,80 +63,86 @@ export type LearnUnit = {
   lessonIds: string[];
 };
 
-/** Duolingo-style curriculum units (sequential unlock). */
+/** Suggested curriculum units (order is guidance — all lessons stay open). */
 export const LEARN_UNITS: LearnUnit[] = [
   {
     id: 'foundations',
     title: 'Unit 1 · Foundations',
     blurb: 'Sort, search, and scan like a contestant.',
-    lessonIds: ['sorting', 'binary-search', 'two-pointers', 'prefix-sums'],
+    lessonIds: [
+      'sorting',
+      'mergesort',
+      'binary-search',
+      'lower-bound',
+      'upper-bound',
+      'two-pointers',
+      'prefix-sums',
+    ],
+  },
+  {
+    id: 'sorting-lab',
+    title: 'Unit 2 · Sorting lab',
+    blurb: 'Partitions, counting sorts, and rank maps.',
+    lessonIds: ['quicksort', 'counting-sort', 'coordinate-compression'],
   },
   {
     id: 'graph-basics',
-    title: 'Unit 2 · Graph basics',
+    title: 'Unit 3 · Graph basics',
     blurb: 'Walk the graph — BFS, DFS, components.',
     lessonIds: ['bfs', 'dfs', 'dsu', 'topo-sort'],
   },
   {
     id: 'techniques',
-    title: 'Unit 3 · Techniques',
+    title: 'Unit 4 · Techniques',
     blurb: 'Greedy moves and answer-space search.',
     lessonIds: ['greedy', 'brute-force', 'binary-search-answer', 'divide-conquer'],
   },
   {
     id: 'dp-core',
-    title: 'Unit 4 · Dynamic programming',
+    title: 'Unit 5 · Dynamic programming',
     blurb: 'States, transitions, and classic patterns.',
     lessonIds: ['dynamic-programming', 'knapsack', 'lis', 'bitmask-dp'],
   },
   {
     id: 'weighted',
-    title: 'Unit 5 · Weighted graphs',
+    title: 'Unit 6 · Weighted graphs',
     blurb: 'Shortest paths and spanning trees.',
     lessonIds: ['dijkstra', 'bellman-ford', 'mst', 'floyd-warshall'],
   },
   {
     id: 'structures',
-    title: 'Unit 6 · Power structures',
+    title: 'Unit 7 · Power structures',
     blurb: 'Fenwick, segtree, and monotone tricks.',
     lessonIds: ['fenwick', 'segment-tree', 'monotonic-stack', 'sparse-table'],
   },
   {
     id: 'advanced-graphs',
-    title: 'Unit 7 · Advanced graphs',
+    title: 'Unit 8 · Advanced graphs',
     blurb: 'Components, cuts, and flows.',
     lessonIds: ['scc', 'bridges', 'max-flow', 'bipartite-matching'],
   },
   {
     id: 'strings',
-    title: 'Unit 8 · Strings',
+    title: 'Unit 9 · Strings',
     blurb: 'Prefixes, Z-boxes, and hashing.',
     lessonIds: ['kmp', 'z-algorithm', 'string-hashing', 'trie'],
   },
 ];
 
-/** Flattened path order used for locks + continue. */
+/** Flattened suggested path order (continue + step labels). */
 export const STUDY_PATH_IDS: string[] = LEARN_UNITS.flatMap((u) => u.lessonIds);
 
 export function studyPathLessons(): LearnLesson[] {
   return STUDY_PATH_IDS.map((id) => getLesson(id)).filter((l): l is LearnLesson => !!l);
 }
 
-/** Next unstudied lesson on the study path (undefined if path cleared). */
+/** Next unstudied lesson on the suggested path (undefined if path cleared). */
 export function nextStudyPathLesson(studied: Set<string>): LearnLesson | undefined {
   return studyPathLessons().find((l) => !studied.has(l.id));
 }
 
 export function pathIndexOf(lessonId: string): number {
   return STUDY_PATH_IDS.indexOf(lessonId);
-}
-
-/** A path node is unlocked if it is the first lesson or the previous path lesson is studied. */
-export function isPathLessonUnlocked(lessonId: string, studied: Set<string>): boolean {
-  const idx = pathIndexOf(lessonId);
-  if (idx < 0) return true; // library lessons always open
-  if (idx === 0) return true;
-  return studied.has(STUDY_PATH_IDS[idx - 1]!);
 }
 
 export function unitProgress(unit: LearnUnit, studied: Set<string>): {

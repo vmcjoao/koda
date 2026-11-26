@@ -128,7 +128,7 @@ export default function LearnLessonScreen() {
             <Text style={styles.clearedKicker}>LESSON CLEARED</Text>
             <Text style={styles.clearedText}>
               {nextOnPath
-                ? `Next unlock: ${nextOnPath.title}`
+                ? `Suggested next: ${nextOnPath.title}`
                 : 'Nice work — this path node is done.'}
             </Text>
           </View>

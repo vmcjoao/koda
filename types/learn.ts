@@ -67,6 +67,8 @@ export type LearnLesson = {
     notes_md?: string;
   };
   practiceProblemIds?: string[];
+  /** Explicit sibling lessons (merged with same-tag matches). */
+  relatedIds?: string[];
 };
 
 export const LEARN_FAMILY_LABELS: Record<LearnFamily, string> = {

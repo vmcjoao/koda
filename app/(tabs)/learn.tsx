@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { Alert, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { FadeInUp } from '@/components/game/FadeInUp';
 import { PressableScale } from '@/components/game/PressableScale';
@@ -90,7 +90,7 @@ export default function LearnScreen() {
           <Text style={styles.sub}>
             {pathComplete
               ? `Path cleared · ${allLessons.length} lessons in the library`
-              : `Path ${pathDone}/${pathLessons.length} · clear units to unlock the next`}
+              : `Suggested path ${pathDone}/${pathLessons.length} · jump in anywhere`}
           </Text>
         </View>
       </FadeInUp>
@@ -147,12 +147,6 @@ export default function LearnScreen() {
             studied={studied}
             currentId={pathComplete ? undefined : continueLesson?.id}
             onSelect={(lesson) => router.push(`/learn/${lesson.id}`)}
-            onLockedPress={() =>
-              Alert.alert(
-                'Locked',
-                'Clear the previous lesson on the path to unlock this one.',
-              )
-            }
           />
         </>
       ) : (
