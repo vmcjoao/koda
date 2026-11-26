@@ -33,9 +33,9 @@ cp .env.example .env
 1. **Encounter → Radar → Hypothesis → Blueprint → Reveal**
 2. **Daily Set** — warm-up / target / boss from your rating **band**
 3. **Review deck** — spaced repetition for misses
-4. **Implement queue** — saved pseudocode for PC coding
+4. **Implement queue** — copy blueprints, open OJ links, mark AC (also works as a **web companion**: `npm run web`)
 5. **Analytics** — topic mastery, blind spots, pipeline funnel, mistakes
-6. **Band auto-adjust** — moves with solve quality vs problem difficulty
+6. **Band auto-adjust** (+ manual edit in Settings)
 
 ## Ingest new problems
 

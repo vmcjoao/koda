@@ -162,6 +162,18 @@ export async function getProfile(userId: string | null): Promise<UserProfile> {
   return remote;
 }
 
+export async function updateRatingBand(userId: string | null, band: number): Promise<UserProfile> {
+  const clamped = Math.max(800, Math.min(2400, Math.round(band)));
+  const profile = await readLocalProfile();
+  profile.rating_band = clamped;
+  await writeLocalProfile(profile);
+
+  if (supabase && userId) {
+    await supabase.from('user_profiles').update({ rating_band: clamped }).eq('user_id', userId);
+  }
+  return profile;
+}
+
 export async function fetchProblemStates(userId: string | null): Promise<UserProblemState[]> {
   const local = await readLocalStates();
   if (!supabase || !userId) return local;

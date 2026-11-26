@@ -71,7 +71,9 @@ export default function HomeScreen() {
       <View style={styles.stats}>
         <Stat label="Streak" value={`${profile?.streak ?? 0}d`} />
         <Stat label="XP" value={`${profile?.xp ?? 0}`} />
-        <Stat label="Band" value={`${profile?.rating_band ?? 1200}`} />
+        <Pressable style={{ flex: 1 }} onPress={() => router.push('/settings')}>
+          <Stat label="Band ✎" value={`${profile?.rating_band ?? 1200}`} />
+        </Pressable>
       </View>
 
       {demoMode ? (
