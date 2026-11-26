@@ -101,9 +101,7 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 
 Each test: first line $n$ and $x$; second line $n$ integers.', 'Print `Yes` or `No` for each test.', '$1 \le t \le 1000$, $1 \le x \le n \le 1000$', '[{"input":"5\n1 1\n999\n1 1\n1000\n2 1\n1000 1000\n2 2\n19 20\n3 2\n1 1 1","output":"Yes\nNo\nNo\nYes\nYes"}]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1363a-a1', 'cf-1363a', 'Parity cases', ARRAY['Math / Number Theory','Brute Force']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Need odd count of odds in the chosen subset; check parity availability']::text[], 'Track counts of odd/even; verify whether an odd sum of size x exists.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-a-ambiguo-gato-de-schrodinger', 'Ambíguo Gato de Schrödinger', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 900, 'Problema A
-                       Ambíguo Gato de Schrödinger
-                         Tempo limite: 0,5 s   Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-a-ambiguo-gato-de-schrodinger', 'Ambíguo Gato de Schrödinger', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 900, 'Tempo limite: 0,5 s   Limite de memória: 1 GiB
 
 No ano de 1935, o físico Erwin Schrödinger recebeu uma encomenda misteriosa rotulada apenas como
 Caixa 42. Dentro dela, um experimento quântico bizarro foi montado por um grupo de cientistas
@@ -334,8 +332,7 @@ A saída deve conter um único inteiro $1 ≤ I ≤ 4$, que representa o índice
 
 Explicação do Exemplo 1: Nesse caso, o Elemento X está na primeira posição. O valor na posição 2 então é 1 porque a distancia entre o recipiente 2 e o recipiente onde o Elemento X se encontra é 1.', 'See statement.', 'See statement.', '1 ≤ I ≤ 4$, que representa o índice do pote ; 1 ≤ r_1, r_2, r_3, r_4 ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-a-elemento-x-a1', 'mineira-2023-a-elemento-x', 'X Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-a-antissocial', 'Antissocial', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1000, 'Problema A. Antissocial
- Hoje é dia de show! Os fãs estão ansiosos para ouvir seus músicos favoritos: Clube da Esquina.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-a-antissocial', 'Antissocial', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1000, 'Hoje é dia de show! Os fãs estão ansiosos para ouvir seus músicos favoritos: Clube da Esquina.
 
 Apesar de apaixonados pela música, os N fãs que chegarão um por vez no show não gostam de
 contato entre si (são definitivamente antissociais). Devido a isso, decidiram ocupar cada uma das
@@ -368,8 +365,7 @@ menor índice). A última pessoa ocupará a cadeira 4. Desta forma, obtemos a or
  Exemplo de entrada 2                             Exemplo de saída 2
  8                                                1 5 6 3 7 4 8 2', 'See statement.', 'See statement.', '1 ≤ N ≤ 3 × 105 ), a quantidade de fãs', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-a-antissocial-a1', 'mineira-2025-a-antissocial', 'XII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-a-ana-viva-a-mariana', 'Ana, viva a Mariana!', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1000, 'Problema A. Ana, viva a Mariana!
-                                         Viva a Mariana!
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-a-ana-viva-a-mariana', 'Ana, viva a Mariana!', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1000, 'Viva a Mariana!
 
 Mariana conta 1 é uma música muito usada no processo de numeramento de crianças, já que
 apresenta uma forma didática e divertida para contar. Para crianças mais velhas, a música foi
@@ -415,8 +411,7 @@ nas duas primeiras estrofes do enunciado.
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-a-ana-viva-a-mariana-a1', 'mineira-2026-a-ana-viva-a-mariana', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-a-pao-de-queijo', 'Pão de Queijo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1000, 'Problema A. Pão de Queijo
-Em Minas Gerais, é muito comum tomar um bom café com deliciosos pães de queijo. Maria está
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-a-pao-de-queijo', 'Pão de Queijo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1000, 'Em Minas Gerais, é muito comum tomar um bom café com deliciosos pães de queijo. Maria está
 organizando um café da tarde para seus amigos e quer garantir que todos recebam pelo menos dois
 pães de queijo.
 
@@ -446,9 +441,7 @@ Exemplos
 
                                                                                               4', 'See statement.', 'See statement.', '1≤ C ≤ 104 ), representando a quantidade de; 0 ≤ P ≤ 10 ), representando a', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-a-pao-de-queijo-a1', 'minas-2025-a-pao-de-queijo', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-b-busca-periodica', 'Busca Periódica', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1000, 'Problema B
-                                    Busca Periódica
-                         Tempo limite: 0,5 s     Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-b-busca-periodica', 'Busca Periódica', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1000, 'Tempo limite: 0,5 s     Limite de memória: 1 GiB
 
 Foi feita uma análise da evolução dos estados quânticos possíveis de um sistema de partículas,
 resultando numa árvore enraizada de     N estados.       Cada estado, com exceção do estado raiz, é
@@ -681,9 +674,7 @@ Imprima  S caso seja posssível construir as estradas, e  N caso contrário.
 % will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
 %in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^3$; 1 ≤ c_i ≤ N$, em que $c_i$ representa o tipo; 1 ≤ N ≤ 10^3$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-b-contorno-a1', 'mineira-2023-b-contorno', 'X Maratona Mineira — standard', ARRAY['Graph Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-b-bares', 'Bares', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1100, 'Problema B. Bares
-
-Luffy é um entusiasta de suco de laranja, porém ele já gastou toda a sua mesada e não consegue
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-b-bares', 'Bares', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1100, 'Luffy é um entusiasta de suco de laranja, porém ele já gastou toda a sua mesada e não consegue
 comprar nenhum copo. Para satisfazer sua paixão, mesmo sem dinheiro, ele foi para a Rua Sapucaí.
 
 A Rua Sapucaí é famosa por sua grande quantidade de bares, sendo composta por uma sequência
@@ -723,8 +714,7 @@ Explicação do exemplo 2
 
 Luffy consegue participar de até 3 rodadas na ordem: (1, 0), (2, 2), (3, 3).', 'See statement.', 'See statement.', '1 ≤ N ≤ 106 ), o número de rodadas de suco; 0 ≤ xi ≤ 106 ) e ti (0 ≤ ti ≤ 106 ),', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-b-bares-a1', 'mineira-2025-b-bares', 'XII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-b-bario-world', 'Bário World', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1100, 'Problema B. Bário World
-                                          It’s-a-Me, Bário!
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-b-bario-world', 'Bário World', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1100, 'It’s-a-Me, Bário!
 
 Por conta de suas divertidas mecânicas, Super Bário World é um sucesso entre os gamers mineiros.
 No jogo, Bário se move em fases compostas por N blocos, cada um podendo ser sólido ou um buraco
@@ -767,8 +757,7 @@ No primeiro caso de teste, uma possível solução com apenas dois pulos envolve
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-b-bario-world-a1', 'mineira-2026-b-bario-world', 'XIII Maratona Mineira — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-b-fibo-uai-trem-so', 'Fibo UAI, TREM, SO!', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1100, 'Problema B. Fibo UAI, TREM, SO!
-O pessoal das Minas de Minas resolveu brincar com a famosa sequência de Fibonacci. Mas, como
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-b-fibo-uai-trem-so', 'Fibo UAI, TREM, SO!', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1100, 'O pessoal das Minas de Minas resolveu brincar com a famosa sequência de Fibonacci. Mas, como
 um bom mineiro não perde a chance de deixar tudo com a sua marca registrada, nasceu a sequência
 Fibo UAI, TREM SO!.
 
@@ -815,9 +804,7 @@ Exemplos
 
                                                                                                   5', 'See statement.', 'See statement.', '2 ≤ N ≤ 10 ), indicando a quantidade de term', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-b-fibo-uai-trem-so-a1', 'minas-2025-b-fibo-uai-trem-so', '1ª Maratona Minas de Minas — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-a-jogo-do-bicho', 'Jogo do Bicho', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1100, 'Problema A
-                                    Jogo do Bicho
-              Arquivo fonte: bicho.c, bicho.cpp, bicho.java ou bicho.pas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-a-jogo-do-bicho', 'Jogo do Bicho', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1100, 'Arquivo fonte: bicho.c, bicho.cpp, bicho.java ou bicho.pas
 
     Em um paı́s muito distante, as pessoas são viciadas em um jogo de apostas bastante simples.
 O jogo é baseado em números e é chamado jogo do bicho. O nome do jogo deriva do fato que
@@ -873,9 +860,7 @@ A saı́da deve ser escrita na saı́da padrão.
       10.00 1111 578311                        500.00
       0 0 0', 'See statement.', 'See statement.', '0 ≤ N ≤ 1000000); 0 ≤ M ≤ 1000000); 01 ≤ V ≤ 1000; 0 ≤ N ≤ 1000000) e; 0 ≤ M ≤ 1000000)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2005-p1-a-jogo-do-bicho-a1', 'sbc-2005-p1-a-jogo-do-bicho', 'SBC 2005 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2005 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2005 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-a-apagando-e-ganhando', 'Apagando e Ganhando', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1100, 'Problema A
-                              Apagando e Ganhando
-           Nome do arquivo fonte: apagando.c, apagando.cpp ou apagando.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-a-apagando-e-ganhando', 'Apagando e Ganhando', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1100, 'Nome do arquivo fonte: apagando.c, apagando.cpp ou apagando.java
 
      Juliano é fã do programa de auditório Apagando e Ganhando, um programa no qual os
 participantes são selecionados atráves de um sorteio e recebem prêmios em dinheiro por parti-
@@ -909,9 +894,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    1000000
    0 0', 'See statement.', 'See statement.', '1 ≤ D < N ≤ 105 ), indicando a quantidade de dı́gitos ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-a-apagando-e-ganhando-a1', 'sbc-2008-p1-a-apagando-e-ganhando', 'SBC 2008 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2008 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-a-ataque-fulminante', 'Ataque Fulminante', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1100, 'Problema A
-                                  Ataque Fulminante
-               Nome do arquivo fonte: ataque.c, ataque.cpp ou ataque.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-a-ataque-fulminante', 'Ataque Fulminante', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1100, 'Nome do arquivo fonte: ataque.c, ataque.cpp ou ataque.java
 
 Desde que o Rei da Nlogônia construiu, décadas atrás, um enorme muro de proteção ao redor
 de todo o reino, os seus habitantes vivem em segurança. O muro é imponente, extremamente
@@ -963,9 +946,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    8 4 180 179
    0 0 0 0', 'See statement.', 'See statement.', '0 ≤ X ≤ 1000 e 0 ≤ Y ≤ 1000), e R o seu raio; 1 ≤ R ≤ 100); 0 ≤ P ≤ 1000 e 0 ≤ Q ≤ 1000),; 0 ≤ A ≤ 359), e T representa o ângulo de; 1 ≤ T ≤ 179)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2009-p1-a-ataque-fulminante-a1', 'sbc-2009-p1-a-ataque-fulminante', 'SBC 2009 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2009 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2009 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-a-revisao-de-contrato', 'Revisão de Contrato', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1100, 'Problema A
-                                Revisão de Contrato
-           Nome do arquivo fonte: contrato.c, contrato.cpp ou contrato.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-a-revisao-de-contrato', 'Revisão de Contrato', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1100, 'Nome do arquivo fonte: contrato.c, contrato.cpp ou contrato.java
 
     Durante anos, todos os contratos da Associação de Contratos da Modernolândia (ACM)
 foram datilografados em uma velha máquina de datilografia.
@@ -999,9 +980,7 @@ inteiro V , o valor numérico representado de fato no contrato.
    7 777                                          0
    0 0', 'See statement.', 'See statement.', '1 ≤ D ≤ 9, 1 ≤ N < 10100 ), representando, respectivam', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-a-revisao-de-contrato-a1', 'sbc-2010-p1-a-revisao-de-contrato', 'SBC 2010 — 1ª fase — standard', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-a-acido-ribonucleico-alien-gena', 'Ácido Ribonucléico Alienı́gena', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1100, 'Problema A
-                     Ácido Ribonucléico Alienı́gena
-                 Nome do arquivo fonte: acido.c, acido.cpp, ou acido.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-a-acido-ribonucleico-alien-gena', 'Ácido Ribonucléico Alienı́gena', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1100, 'Nome do arquivo fonte: acido.c, acido.cpp, ou acido.java
 
     Foi descoberta uma espécie alienı́gena de ácido ribonucléico (popularmente conhecido como
 RNA). Os cientistas, por falta de criatividade, batizaram a descoberta de ácido ribonucléico
@@ -1060,9 +1039,7 @@ Exemplos
  SFBCFSCB                                   4
  CFCBSFFSBCCB                               5', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2011-p1-a-acido-ribonucleico-alien-gena-a1', 'sbc-2011-p1-a-acido-ribonucleico-alien-gena', 'SBC 2011 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2011 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2011 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-a-concurso-de-contos', 'Concurso de Contos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1100, 'Problema A
-                                  Concurso de Contos
-                                 Arquivo: concurso.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-a-concurso-de-contos', 'Concurso de Contos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1100, 'Arquivo: concurso.[c|cpp|java]
 
     Machado gosta muito de escrever. Já escreveu muitos contos, resenhas, relatos de viagens que fez,
 além de um pequeno romance. Agora Machado quer participar de um concurso de contos, que tem
@@ -1116,9 +1093,7 @@ Saída para o exemplo de entrada
 3
 3', 'See statement.', 'See statement.', '2 ≤ N ≤ 1000; 1 ≤ L ≤ 30; 1 ≤ C ≤ 70; 1 ≤ comprimento de cada palavra ≤ C', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-a-concurso-de-contos-a1', 'sbc-2012-p1-a-concurso-de-contos', 'SBC 2012 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2012 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-a-zerinho-ou-um', 'Zerinho ou Um', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1100, 'Problema A
-                                       Zerinho ou Um
-                                    Arquivo: zerinho.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-a-zerinho-ou-um', 'Zerinho ou Um', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1100, 'Arquivo: zerinho.[c|cpp|java]
 
     Todos devem conhecer o jogo Zerinho ou Um (em algumas regiões também conhecido como Dois
 ou Um), utilizado para determinar um ganhador entre três ou mais jogadores. Para quem não conhece,
@@ -1159,9 +1134,7 @@ Exemplos
 
  1 0 0                                                A', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-a-zerinho-ou-um-a1', 'sbc-2013-p1-a-zerinho-ou-um', 'SBC 2013 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2013 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-a-volta', 'Volta', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1100, 'Problema A
-                                                 Volta
-                                      Arquivo: volta.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-a-volta', 'Volta', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1100, 'Arquivo: volta.[c|cpp|java]
 
     No automobilismo é bastante comum que o lı́der de uma prova, em determinado momento, ultra-
 passe o último colocado. O lı́der, neste momento, está uma volta à frente do último colocado, que se
@@ -1195,9 +1168,7 @@ Exemplos
 
  6875 7109                                             31', 'See statement.', 'See statement.', '1 ≤ X < Y ≤ 10000), os tem-', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-a-volta-a1', 'sbc-2014-p1-a-volta', 'SBC 2014 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2014 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-a-mania-de-par', 'Mania de Par', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1100, 'Problema A
-                                         Mania de Par
-Patrı́cia é uma ótima desenvolvedora de software. No entanto, como quase toda pessoa brilhante,
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-a-mania-de-par', 'Mania de Par', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1100, 'Patrı́cia é uma ótima desenvolvedora de software. No entanto, como quase toda pessoa brilhante,
 ela tem algumas manias estranhas, e uma delas é que tudo que ela faz tem que ser em número par.
 Muitas vezes essa mania não atrapalha, apesar de causar estranhamento nos outros. Alguns exemplos:
 ela tem que fazer diariamente um número par de refeições; no café da manhã toma duas xı́caras de
@@ -1242,9 +1213,7 @@ Exemplos
  2 4 1
  4 5 4', 'See statement.', 'See statement.', '2 ≤ C ≤ 104 e 0 ≤ V ≤ 50000); 1 ≤ C1 , C2 ≤ C e 1 ≤ G ≤ 104 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-a-mania-de-par-a1', 'sbc-2015-p1-a-mania-de-par', 'SBC 2015 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2015 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-a-andando-no-tempo', 'Andando no tempo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1100, 'Problema A
-                                  Andando no tempo
-Imagine que você tenha uma máquina do tempo que pode ser usada no máximo três vezes, e a cada
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-a-andando-no-tempo', 'Andando no tempo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1100, 'Imagine que você tenha uma máquina do tempo que pode ser usada no máximo três vezes, e a cada
 uso da máquina você pode escolher voltar para o passado ou ir para o futuro. A máquina possui três
 créditos fixos; cada crédito representa uma certa quantidade de anos, e pode ser usado para ir essa
 quantidade de anos para o passado ou para o futuro. Você pode fazer uma, duas ou três viagens, e
@@ -1273,9 +1242,7 @@ o presente, ou “N” caso contrário.
  Exemplo de entrada 3                               Exemplo de saı́da 3
  45 8 7                                             N', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-a-andando-no-tempo-a1', 'sbc-2016-p1-a-andando-no-tempo', 'SBC 2016 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-a-acordes-intergalaticos', 'Acordes intergaláticos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1100, 'Problema A
-                                   Acordes intergaláticos
-A maratona de composição de sonatas para piano intergalático está tentando dificultar a vida dos
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-a-acordes-intergalaticos', 'Acordes intergaláticos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1100, 'A maratona de composição de sonatas para piano intergalático está tentando dificultar a vida dos
 competidores, pois cada vez mais seres de inteligência superior estão participando. O piano é composto
 de N teclas, numeradas de 0 a N − 1. O sistema tonal intergalático possui 9 notas musicais, com
 valores de 0 a 8. Inicialmente todas as teclas do piano estão associadas à mesma nota 1. O competidor
@@ -1333,9 +1300,7 @@ Exemplos
  8 14                                        4
  3 9', 'See statement.', 'See statement.', '0 ≤ a < b < N ; 2 ≤ N ≤ 100000), e Q (1 ≤ Q ≤ 100000),; 0 ≤ A < B < N ), representando um acorde', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-a-acordes-intergalaticos-a1', 'sbc-2017-p1-a-acordes-intergalaticos', 'SBC 2017 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-a-aventurando-se-no-slackline', 'Aventurando-se no Slackline', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1100, 'Problema A
-                           Aventurando-se no Slackline
-Beltrano recentemente se interessou por slackline. Slackline é um esporte de equilı́brio sobre uma fita
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-a-aventurando-se-no-slackline', 'Aventurando-se no Slackline', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1100, 'Beltrano recentemente se interessou por slackline. Slackline é um esporte de equilı́brio sobre uma fita
 elástica esticada entre dois pontos fixos, o que permite ao praticante andar e fazer manobras em cima
 da fita. Durante as férias tudo que Beltrano quer fazer é praticar, e para isso ele foi para a fazenda
 de um amigo, onde há uma plantação de eucaliptos.
@@ -1371,9 +1336,7 @@ número módulo 109 + 7.
  Exemplo de entrada 3                                Exemplo de saı́da 3
  3 4 1 4                                             49', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 105 ; 1 ≤ L ≤ R ≤ 105 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-a-aventurando-se-no-slackline-a1', 'sbc-2018-p1-a-aventurando-se-no-slackline', 'SBC 2018 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-a-arte-valiosa', 'Arte Valiosa', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1100, 'Problema A
-                                          Arte Valiosa
-A Mona Dura é uma das obras de arte mais valiosas do museu da Nlogônia. A famosa pintura fica em
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-a-arte-valiosa', 'Arte Valiosa', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1100, 'A Mona Dura é uma das obras de arte mais valiosas do museu da Nlogônia. A famosa pintura fica em
 exibição num salão retangular de M por N metros. A entrada do salão fica em um canto, e a Mona
 fica no canto diagonalmente oposto à entrada.
     Para impedir roubos, o salão dispõe de sensores de movimento, que são ativados toda noite quando
@@ -1416,9 +1379,7 @@ a pintura, ou o caractere ‘N’ caso contrário.
  5 90 50
  90 10 5', 'See statement.', 'See statement.', '10 ≤ M, N ≤ 104 , 1 ≤ K ≤ 1000)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-a-arte-valiosa-a1', 'sbc-2019-p1-a-arte-valiosa', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-a-album-de-figurinhas', 'Álbum de Figurinhas', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1100, 'Problema A
-                                  Álbum de Figurinhas
-O álbum de figurinhas da Subregional Nlogoniana do ICPC 2020 já está disponı́vel na Nlogônia!
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-a-album-de-figurinhas', 'Álbum de Figurinhas', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1100, 'O álbum de figurinhas da Subregional Nlogoniana do ICPC 2020 já está disponı́vel na Nlogônia!
 Programadores competitivos de todo o paı́s estão comprando álbuns e colecionando figurinhas para
 celebrar a competição.
     Este álbum é especial porque todas as figurinhas são iguais: elas contêm uma foto do troféu deste
@@ -1462,9 +1423,7 @@ ou relativo de 10−5 da resposta correta.
  Exemplo de entrada 4                                 Exemplo de saı́da 4
  314 5 8                                              48.74556', 'See statement.', 'See statement.', '1 ≤ N ≤ 106 , 0 ≤ A ≤ B ≤ 106 e B > 0, onde:', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-a-album-de-figurinhas-a1', 'sbc-2020-p1-a-album-de-figurinhas', 'SBC 2020 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2020 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-a-alocacao-de-premios', 'Alocação de Prêmios', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1100, 'Problema A
-                                  Alocação de Prêmios
-Uma competição de programação se dará na Nlogônia, para determinar quem é o melhor programador
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-a-alocacao-de-premios', 'Alocação de Prêmios', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1100, 'Uma competição de programação se dará na Nlogônia, para determinar quem é o melhor programador
 Nlogoniano de todos os tempos.
     A competição terá N participantes e não há empates, ou seja, todo participante terminará colocado
 em uma posição de 1 a N , e todas as posições são distintas. Menores posições correspondem a melhores
@@ -1497,9 +1456,7 @@ Saı́da
  3 10                                                  1
  7 1 10', 'See statement.', 'See statement.', '1 ≤ N ≤ 5000, 1 ≤ R ≤ 109 ), representando o; 1 ≤ pi ≤ 109 ), representando a menor quantidade de po', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-a-alocacao-de-premios-a1', 'sbc-2021-p1-a-alocacao-de-premios', 'SBC 2021 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-a-achando-os-monotonos-nao-triviais-maximais', 'Achando os Monótonos Não-Triviais Maximais', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1100, 'Problema A
-           Achando os Monótonos Não-Triviais Maximais
-Neste problemas iremos lidar com sequências de caracteres, muitas vezes chamadas de strings. Uma
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-a-achando-os-monotonos-nao-triviais-maximais', 'Achando os Monótonos Não-Triviais Maximais', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1100, 'Neste problemas iremos lidar com sequências de caracteres, muitas vezes chamadas de strings. Uma
 sequência é não-trivial se ela possui ao menos dois elementos.
    Dada uma sequência s, dizemos que um trecho si , . . . , sj é monótono se todos seus caracteres são
 iguais, e dizemos que ela é maximal se este trecho não pode ser estendido à esquerda e nem à direita
@@ -1532,9 +1489,7 @@ de vezes que o caractere “a” ocorre em trechos monótonos maximais não-tr
  10                                                   5
  bbaababaaa', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-a-achando-os-monotonos-nao-triviais-maximais-a1', 'sbc-2022-p1-a-achando-os-monotonos-nao-triviais-maximais', 'SBC 2022 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Monotonic Stack','Stack']::text[], ARRAY['SBC 2022 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-a-altura-m-nima', 'Altura Mı́nima', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1100, 'Problema A
-                                       Altura Mı́nima
-Carlitos é um entusiasta de aventuras com um amor insaciável por parques de diversões. Apesar da
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-a-altura-m-nima', 'Altura Mı́nima', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1100, 'Carlitos é um entusiasta de aventuras com um amor insaciável por parques de diversões. Apesar da
 sua paixão vibrante, Carlitos enfrenta um desafio único: a sua estatura limitada. Enquanto planeja
 ansiosamente sua aventura de fim de semana, ele percebe que suas limitações verticais podem atrapa-
 lhar sua experiência no parque de diversões. Não se trata apenas de escolher um parque; trata-se de
@@ -1566,9 +1521,7 @@ tão grande quanto a altura mı́nima necessária.
  6 120                                               3
  200 90 100 123 120 169', 'See statement.', 'See statement.', '1 ≤ N ≤ 6 e 90 ≤ H ≤ 200), que represen-; 90 ≤ Ai ≤ 200) de', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-a-altura-m-nima-a1', 'sbc-2023-p1-a-altura-m-nima', 'SBC 2023 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-a-atencao-a-reuniao', 'Atenção à Reunião', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1100, 'Problema A
-                                    Atenção à Reunião
-Vinicius está em uma reunião da diretoria do Instituto de Consultoria de Palestras e Comentários
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-a-atencao-a-reuniao', 'Atenção à Reunião', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1100, 'Vinicius está em uma reunião da diretoria do Instituto de Consultoria de Palestras e Comentários
 (ICPC) pensando que seria muito bom se os membros da diretoria fossem mais concisos, e mantivessem
 suas falas dentro do tempo definido para cada diretor, para que a reunião terminasse antes do almoço.
 Infelizmente, talvez devido à natureza da instituição, todos gostam muito de falar.
@@ -1611,9 +1564,7 @@ fala de cada membro da diretoria, em minutos.
  100                                                9
  1000', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), o número de diretores; 1 ≤ K ≤ 1000 e K ≥ N ), a duração máxima da reuniã', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-a-atencao-a-reuniao-a1', 'sbc-2024-p1-a-atencao-a-reuniao', 'SBC 2024 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2024 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-a-alimentacao-saudavel', 'Alimentação saudável', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1100, 'Problema A
-                                 Alimentação saudável
-No Instituto de Competição em Programação Criativa (ICPC), todos os alunos adoram frutas! Sa-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-a-alimentacao-saudavel', 'Alimentação saudável', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1100, 'No Instituto de Competição em Programação Criativa (ICPC), todos os alunos adoram frutas! Sa-
 bendo disso, a direção decidiu realizar uma grande pesquisa sobre preferências alimentares para ajudar
 na elaboração do cardápio anual. Para tornar o levantamento mais profissional, contrataram a em-
 presa SBC Research Solutions™, sigla para “Saladas Bem Cientı́ficas”, embora alguns digam que
@@ -1653,8 +1604,7 @@ de alunos na escola, considerando as restrições dadas.
  5 2 4
  4 3 6', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 1000), respectivamente o número de; 0 ≤ Gi,j ≤ 106 para 1 ≤ i ≤ N e 1 ≤ j ≤ M )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-a-alimentacao-saudavel-a1', 'sbc-2025-p1-a-alimentacao-saudavel', 'SBC 2025 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-a-alta-frequencia', 'Alta Frequência', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1100, 'Problema A – Alta Frequência
-Você foi contratado por uma empresa brasileira de HFT (High Frequency Trading, ou negociação
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-a-alta-frequencia', 'Alta Frequência', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1100, 'Você foi contratado por uma empresa brasileira de HFT (High Frequency Trading, ou negociação
 em alta frequência), que usa robôs para comprar e vender ações na bolsa de valores em frações
 de segundo de forma totalmente sistemática e automatizada. Sua primeira tarefa é implementar
 um sinal : um número, calculado a partir do estado atual do mercado, que orienta a decisão
@@ -1715,9 +1665,7 @@ Maratona SBC de Programação 2026 – Problema A – Alta Frequência       
 
 Maratona SBC de Programação 2026 – Problema A – Alta Frequência         2', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ), o número de nı́veis do livro de oferta; 0 ≤ ci , vi ≤ 10000), respec-; 1 ≤ Q ≤ 105 ), o número de consultas; 1 ≤ nj ≤ N ), a profundidade da j-ésima consulta', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2026-p1-a-alta-frequencia-a1', 'sbc-2026-p1-a-alta-frequencia', 'SBC 2026 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Queue','Deque']::text[], ARRAY['SBC 2026 — 1ª fase, problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2026 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-c-circuitos-logicos-matriciais', 'Circuitos Lógicos Matriciais', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1100, 'Problema C
-                            Circuitos Lógicos Matriciais
-                            Tempo limite: 0,5 s      Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-c-circuitos-logicos-matriciais', 'Circuitos Lógicos Matriciais', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1100, 'Tempo limite: 0,5 s      Limite de memória: 1 GiB
 
 Na computação quântica, as portas lógicas funcionam de um jeito um pouco diferente.                    Portas
 lógicas quânticas são reversíveis e o número de qubits de entrada é igual ao número de qubits de
@@ -2728,8 +2676,7 @@ Explicação do Exemplo 1: Em base 2, $1/3$ é representado como $0.01010101...$
 
 Explicação do Exemplo 2: Em base 2 já não teremos dízimas, pois $9/3$ é representado como $11$ e $5/2$ é representado como $10.1$.', 'See statement.', 'See statement.', '1 ≤ i ≤ N$; 1 ≤ N ≤ 10^5$; 1 ≤ a_i, b_i ≤ 10^5$; 1 ≤ N ≤ 10^5$; 1 ≤ a_i, b_i ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-c-dever-de-casa-a1', 'mineira-2023-c-dever-de-casa', 'X Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-c-cartas', 'Cartas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1200, 'Problema C. Cartas
-                                           Truco, ladrão!
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-c-cartas', 'Cartas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1200, 'Truco, ladrão!
 
 O Truco Mineiro é o mais querido jogo de cartas do estado, entretanto, ele é notoriamente difícil
 de se jogar por conta de suas regras esquisitas. Truco é jogado com apenas um baralho (nenhuma
@@ -2816,9 +2763,7 @@ Turno 1: A - AE / B - 7 / C - J / D - 7C* (dupla B/D ganha)
 Turno 2: A - 3* / B - Q / C - J / D - 6 (dupla A/C ganha)
 Turno 3: A - Q / B - 3* / C - 3* / D - 2 (empate)', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-c-cartas-a1', 'mineira-2025-c-cartas', 'XII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-c-cartas', 'Cartas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1200, 'Problema C. Cartas
-
-Certo dia, Rened decidiu convidar seus amigos para um jogo de cartas. O jogo consiste em uma
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-c-cartas', 'Cartas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1200, 'Certo dia, Rened decidiu convidar seus amigos para um jogo de cartas. O jogo consiste em uma
 sequência de N cartas numeradas colocadas sobre uma mesa, inicialmente vazia. Os jogadores, em
 turnos, vão adicionando novas cartas ao final dessa sequência, sendo que o i-ésimo jogador irá jogar
 a carta de valor Ci .
@@ -2888,8 +2833,7 @@ XIII
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-c-cartas-a1', 'mineira-2026-c-cartas', 'XIII Maratona Mineira — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-c-corrida-do-pao-de-queijo', 'Corrida do Pão de Queijo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1200, 'Problema C. Corrida do Pão de Queijo
-Durante o feriado de Tiradentes, Luana, estudante de Ciência da Computação, decidiu organizar
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-c-corrida-do-pao-de-queijo', 'Corrida do Pão de Queijo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1200, 'Durante o feriado de Tiradentes, Luana, estudante de Ciência da Computação, decidiu organizar
 uma competição inusitada: a   Corrida do Pão de Queijo !
 Nessa corrida, as competidoras são as capivaras, conhecidas por sua habilidade incomparável em
 mastigar sem parar.   Mas ao contrário de uma corrida comum, aqui elas participam como uma
@@ -2926,9 +2870,7 @@ Exemplos
 
                                                                                                   6', 'See statement.', 'See statement.', '1 ≤ N ≤ 10 ), o número de capivaras competid; 1 ≤ G ≤ 10 ), a quantidade total de pães de ; 1 ≤ Ci    ≤ 109 ), onde cada valor represent', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-c-corrida-do-pao-de-queijo-a1', 'minas-2025-c-corrida-do-pao-de-queijo', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-b-curso-universitario', 'Curso Universitário', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1200, 'Problema B
-                                  Curso Universitário
-              Arquivo fonte: curso.c, curso.cpp, curso.java ou curso.pas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-b-curso-universitario', 'Curso Universitário', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1200, 'Arquivo fonte: curso.c, curso.cpp, curso.java ou curso.pas
 
 Há alguns anos atrás, a Universidade de Pinguinhos introduziu um novo sistema flexı́vel de
 créditos para os alunos ingressantes de cursos de graduação. No novo sistema os alunos podem
@@ -3006,9 +2948,7 @@ A saı́da deve ser escrita na saı́da padrão.
                                        Semestre 3 : PROG2
                                        Semestre 4 : PROG3', 'See statement.', 'See statement.', '1 ≤ N ≤ 100 e 1 ≤ M ≤ 10 indicando respectivamente o n; 1 ≤ K ≤ 15 é o número de disciplinas que', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2005-p1-b-curso-universitario-a1', 'sbc-2005-p1-b-curso-universitario', 'SBC 2005 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2005 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2005 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-b-babel', 'Babel', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1200, 'Problema B
-                                            Babel
-                Nome do arquivo fonte: babel.c, babel.cpp ou babel.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-b-babel', 'Babel', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1200, 'Nome do arquivo fonte: babel.c, babel.cpp ou babel.java
 
      Joãozinho e Mariazinha são dois irmãos que estão muito empolgados com suas aulas de
 idiomas, cada um está fazendo vários diferentes cursinhos. Ao chegar em casa comentam sobre
@@ -3083,9 +3023,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    espanhol ingles actual
    0', 'See statement.', 'See statement.', '1 ≤ M ≤ 2000), representando o total de palavras compi', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-b-babel-a1', 'sbc-2008-p1-b-babel', 'SBC 2008 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2008 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-b-alarme-despertador', 'Alarme Despertador', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1200, 'Problema B
-                                Alarme Despertador
-              Nome do arquivo fonte: alarme.c, alarme.cpp ou alarme.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-b-alarme-despertador', 'Alarme Despertador', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1200, 'Nome do arquivo fonte: alarme.c, alarme.cpp ou alarme.java
 
     Daniela é enfermeira em um grande hospital, e tem os horários de trabalho muito variáveis.
 Para piorar, ela tem sono pesado, e uma grande dificuldade para acordar com relógios desper-
@@ -3121,9 +3059,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    21 33 21 10                                   1417
    0 0 0 0', 'See statement.', 'See statement.', '0 ≤ H1 ≤ 23, 0 ≤ M1 ≤ 59, 0 ≤ H2 ≤ 23, 0 ≤ M2 ≤ 59)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2009-p1-b-alarme-despertador-a1', 'sbc-2009-p1-b-alarme-despertador', 'SBC 2009 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2009 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2009 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-b-robo-colecionador', 'Robô Colecionador', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1200, 'Problema B
-                                  Robô Colecionador
-                   Nome do arquivo fonte: robo.c, robo.cpp ou robo.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-b-robo-colecionador', 'Robô Colecionador', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1200, 'Nome do arquivo fonte: robo.c, robo.cpp ou robo.java
 
     Um dos esportes favoritos na Robolândia é o Rali dos Robôs. Este rali é praticado em uma
 arena retangular gigante de N linhas por M colunas de células quadradas. Algumas das células
@@ -3198,9 +3134,7 @@ único inteiro, indicando o número de figurinhas que o robô colecionou dura
    FDFFFFFFEEFFFFFFEFDF
    0 0 0', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 100, 1 ≤ S ≤ 5 × 104 ), separados por espac', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-b-robo-colecionador-a1', 'sbc-2010-p1-b-robo-colecionador', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Hash Map']::text[], ARRAY['SBC 2010 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-b-botas-perdidas', 'Botas perdidas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1200, 'Problema B
-                                 Botas perdidas
-                  Nome do arquivo fonte: botas.c, botas.cpp, ou botas.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-b-botas-perdidas', 'Botas perdidas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1200, 'Nome do arquivo fonte: botas.c, botas.cpp, ou botas.java
 
    A divisão de Suprimentos de Botas e Calçados do Exército comprou um grande número
 de pares de botas de vários tamanhos para seus soldados. No entanto, por uma falha de
@@ -3249,9 +3183,7 @@ Exemplos
  40 D
  37 E', 'See statement.', 'See statement.', '2 ≤ N ≤ 104; 30 ≤ M ≤ 60', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2011-p1-b-botas-perdidas-a1', 'sbc-2011-p1-b-botas-perdidas', 'SBC 2011 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2011 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2011 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-b-tobogan-de-bolinhas', 'Tobogan de bolinhas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1200, 'Problema B
-                                  Tobogan de bolinhas
-                                  Arquivo: tobogan.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-b-tobogan-de-bolinhas', 'Tobogan de bolinhas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1200, 'Arquivo: tobogan.[c|cpp|java]
 
     Uma fábrica quer produzir um tobogan de brinquedo como o da figura abaixo, composto de duas
 hastes de madeira sustentando aletas que se alternam nas duas hastes. Uma bolinha de aço é solta na
@@ -3328,9 +3260,7 @@ Exemplos
      7 2 4
      2 3 0', 'See statement.', 'See statement.', '1 ≤ N ≤ 103; 1 ≤ L ≤ 103; 1 ≤ H ≤ 103; 0 ≤ Yi ≤ H, 0 ≤ Yf ≤ H e Yi > Yf', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-b-tobogan-de-bolinhas-a1', 'sbc-2012-p1-b-tobogan-de-bolinhas', 'SBC 2012 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2012 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-b-balao', 'Balão', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1200, 'Problema B
-                                               Balão
-                                     Arquivo: balao.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-b-balao', 'Balão', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1200, 'Arquivo: balao.[c|cpp|java]
 
     Uma das principais dificuldades de organizar uma 
 que escapam e ficam presos no teto do salão: muitas vezes o contrato com o dono do salão exige que
@@ -3402,9 +3332,7 @@ Exemplos
  9
  8', 'See statement.', 'See statement.', '1 ≤ N ≤ 105; 1 ≤ C ≤ 105; 0 ≤ X1 , X2 ≤ 106 , 0 < Y1 , Y2 ≤ 106 , X1 6= X2; 0 ≤ X ≤ 106', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-b-balao-a1', 'sbc-2013-p1-b-balao', 'SBC 2013 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2013 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-b-baralho-embaralhado', 'Baralho Embaralhado', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1200, 'Problema B
-                                      Baralho Embaralhado
-                                         Arquivo: baralho.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-b-baralho-embaralhado', 'Baralho Embaralhado', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1200, 'Arquivo: baralho.[c|cpp|java]
 
      Um baralho contém um número par 2n de cartas a1 , a2 , . . . , a2n , todas distintas (a1 < a2 < · · · <
 a2n ). O baralho encontra-se perfeitamente ordenado, ou seja, a primeira carta é a1 , a segunda carta
@@ -3444,9 +3372,7 @@ Exemplos
 
  100002                                                     100002', 'See statement.', 'See statement.', '2 ≤ P ≤ 2 × 105 ), indicando o número de cartas', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-b-baralho-embaralhado-a1', 'sbc-2014-p1-b-baralho-embaralhado', 'SBC 2014 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2014 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-b-bolsa-de-valores', 'Bolsa de Valores', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1200, 'Problema B
-                                         Bolsa de Valores
-Um investidor principiante deseja aprender a investir na bolsa de valores. Como ele não tem ex-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-b-bolsa-de-valores', 'Bolsa de Valores', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1200, 'Um investidor principiante deseja aprender a investir na bolsa de valores. Como ele não tem ex-
 periência, selecionou uma única empresa, e acompanhou os valores diários das ações dessa empresa,
 durante N dias. Ficou curioso quanto teria ganhado se tivesse investido nesse perı́odo em que acompa-
 nhou os valores. Na verdade, o investidor é milionário e tem muito dinheiro, suficiente para comprar
@@ -3479,9 +3405,7 @@ Exemplos
  13 30                                                    220
  10 80 20 40 30 50 40 60 50 70 60 10 200', 'See statement.', 'See statement.', '1 ≤ N ≤ 2 × 105 e 0 ≤ C ≤ 30); 1 ≤ Pi ≤ 1000', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-b-bolsa-de-valores-a1', 'sbc-2015-p1-b-bolsa-de-valores', 'SBC 2015 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2015 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-b-batata-quente', 'Batata quente', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1200, 'Problema B
-                                         Batata quente
-Batata quente é uma brincadeira bastante popular entre crianças na escola. A brincadeira é simples:
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-b-batata-quente', 'Batata quente', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1200, 'Batata quente é uma brincadeira bastante popular entre crianças na escola. A brincadeira é simples:
 a criança que está com a batata a joga para uma outra criança. Em algum momento, o professor,
 que não está olhando para o que está acontecendo, irá dizer que a brincadeira acabou. Quando isso
 acontece, a criança que está com a batata perde.
@@ -3527,9 +3451,7 @@ inteiro X que o professor deverá escolher para que a brincadeira seja a mais j
  1 2
  2 3', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-b-batata-quente-a1', 'sbc-2016-p1-b-batata-quente', 'SBC 2016 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Queue','Deque']::text[], ARRAY['SBC 2016 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-b-brincadeira', 'Brincadeira', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1200, 'Problema B
-                                                    Brincadeira
-Um Registrador de Deslocamento é um circuito que desloca de uma posição os elementos de um vetor
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-b-brincadeira', 'Brincadeira', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1200, 'Um Registrador de Deslocamento é um circuito que desloca de uma posição os elementos de um vetor
 de bits. O registrador de deslocamento tem uma entrada (um bit) e uma saı́da (também um bit),
 e é comandado por um pulso de relógio. Quando o pulso ocorre, o bit de entrada se transforma no
 bit mais significativo do vetor, o bit menos significativo é jogado na saı́da do registrador, e todos os
@@ -3598,9 +3520,7 @@ de I.
  8 3 169 238 2                                       13 25
  0 3 5', 'See statement.', 'See statement.', '2 ≤ N ≤ 30), T é o número de torneiras (1 ≤ T ≤ N ),; 1 ≤ X ≤ 106 ); 1 ≤ Y ≤ 106 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-b-brincadeira-a1', 'sbc-2017-p1-b-brincadeira', 'SBC 2017 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-b-bolinhas-de-gude', 'Bolinhas de Gude', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1200, 'Problema B
-                                     Bolinhas de Gude
-Usar bolinhas de gude como moeda não deu muito certo em Cubicônia. Na tentativa de se redimir
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-b-bolinhas-de-gude', 'Bolinhas de Gude', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1200, 'Usar bolinhas de gude como moeda não deu muito certo em Cubicônia. Na tentativa de se redimir
 com seus amigos, depois de roubar suas bolinhas de gude, o imperador decidiu convidar todos para
 uma noite de jogos em seu palácio.
     Naturalmente, os jogos utilizam bolinhas de gude, afinal agora o imperador precisa encontrar
@@ -3643,9 +3563,7 @@ imperador ganhar o jogo ou N caso contrário.
  1                                                    N
  1 2', 'See statement.', 'See statement.', '1 ≤ N ≤ 1000); 1 ≤ li , ci ≤ 100)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-b-bolinhas-de-gude-a1', 'sbc-2018-p1-b-bolinhas-de-gude', 'SBC 2018 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-b-bobo-da-corte', 'Bobo da Corte', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1200, 'Problema B
-                                         Bobo da Corte
-O Reino dos Emparelhamentos é governado por um generoso Comendador. A fama do Comendador
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-b-bobo-da-corte', 'Bobo da Corte', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1200, 'O Reino dos Emparelhamentos é governado por um generoso Comendador. A fama do Comendador
 e de suas grandes qualidades é conhecida por todos, inclusive em reinos vizinhos. Uma de suas
 mais famosas qualidades é seu bom humor, que é nutrido diariamente por um bobo da corte, eleito
 anualmente no Grande Concurso de Comédia (GCC) do reino. O bobo da corte ajuda a aliviar as
@@ -3691,9 +3609,7 @@ eleito bobo da corte, ou o caractere ‘N’ caso contrário.
  4
  5', 'See statement.', 'See statement.', '2 ≤ N ≤ 104 ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-b-bobo-da-corte-a1', 'sbc-2019-p1-b-bobo-da-corte', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-b-batalha-naval', 'Batalha Naval', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1200, 'Problema B
-                                        Batalha Naval
-Batalha Naval é um clássico jogo de estratégia para dois jogadores. Cada jogador posiciona seus navios
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-b-batalha-naval', 'Batalha Naval', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1200, 'Batalha Naval é um clássico jogo de estratégia para dois jogadores. Cada jogador posiciona seus navios
 num grid 10 × 10, e cada rodada do jogo consiste em adivinhar as posições dos navios do adversário.
 Existem muitas variações das regras, mas tais regras são irrelevantes para esse problema. Estamos
 interessados num problema mais básico: Dada a lista dos navios e suas posições, você deve determinar
@@ -3755,9 +3671,7 @@ válido, então imprima o caractere maiúsculo ‘Y’; do contrário, impri
  0 4 8 4
  0 2 10 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), o número de navios; 1 ≤ L ≤ 5 e; 1 ≤ R, C ≤ 10 descrevendo um navio', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-b-batalha-naval-a1', 'sbc-2020-p1-b-batalha-naval', 'SBC 2020 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2020 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-b-belas-palavras', 'Belas Palavras', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1200, 'Problema B
-                                       Belas Palavras
-São dados uma string A de comprimento N e um conjunto S contendo M strings.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-b-belas-palavras', 'Belas Palavras', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1200, 'São dados uma string A de comprimento N e um conjunto S contendo M strings.
     Uma permutação cı́clica Bi de A, onde i é um número entre 1 e N , é a string
                                 Bi = Ai Ai+1 · · · AN −1 AN A1 A2 · · · Ai−2 Ai−1
     e a sua pontuação é definida como o maior comprimento de uma substring de Bi que é também
@@ -3801,9 +3715,7 @@ mutações cı́clicas da string A.
  wsgh
  kqpdb', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 , 1 ≤ M ≤ 104 ), representando', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-b-belas-palavras-a1', 'sbc-2021-p1-b-belas-palavras', 'SBC 2021 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2021 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-b-brincando-com-pedras', 'Brincando com Pedras', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1200, 'Problema B
-                                 Brincando com Pedras
-Alice e Bob irão jogar um jogo com 3 pilhas de pedras. As jogadas são feitas alternadamente, e cada
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-b-brincando-com-pedras', 'Brincando com Pedras', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1200, 'Alice e Bob irão jogar um jogo com 3 pilhas de pedras. As jogadas são feitas alternadamente, e cada
 jogador deve escolher uma pilha que ainda tenha pedras e retirar um número positivo de pedras dela.
 Vence quem remover a última pedra da última pilha que ainda tenha pedras. Alice faz a primeira
 jogada.
@@ -3831,9 +3743,7 @@ são inteiros e q 6≡ 0 (mod 109 + 7), ou seja, estamos interessados no inteir
  Exemplo de entrada 4                                  Exemplo de saı́da 4
  5 15 2 9 35 42                                        1', 'See statement.', 'See statement.', '1 ≤ Li ≤ Ri ≤ 109 ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-b-brincando-com-pedras-a1', 'sbc-2022-p1-b-brincando-com-pedras', 'SBC 2022 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Monotonic Stack','Stack']::text[], ARRAY['SBC 2022 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-b-baralho-embaralhado', 'Baralho Embaralhado', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1200, 'Problema B
-                                  Baralho Embaralhado
-Um embaralhamento justo é uma forma de rearranjar N cartas de um baralho disposto horizontalmente
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-b-baralho-embaralhado', 'Baralho Embaralhado', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1200, 'Um embaralhamento justo é uma forma de rearranjar N cartas de um baralho disposto horizontalmente
 da esquerda para a direita. Nesse embaralhamento, as cartas são inicialmente dividas em duas partes
 contı́guas de tamanhos possivelmente diferentes em que uma delas pode ter até mesmo zero cartas!
 Denotemos por L e R as partes da esquerda e direita, respectivamente. As cartas de L são, então,
@@ -3890,9 +3800,7 @@ cessários para obter a permutação dada.
  5                                               0
  1 2 3 4 5', 'See statement.', 'See statement.', '1 ≤ N ≤ 106 ), o número de cartas no baralho', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-b-baralho-embaralhado-a1', 'sbc-2023-p1-b-baralho-embaralhado', 'SBC 2023 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-b-bacon-number', 'Bacon Number', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1200, 'Problema B
-                                          Bacon Number
-Carlinhos adora filmes, e recentemente tem estado fascinado com o número de Bacon, mais conhecido
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-b-bacon-number', 'Bacon Number', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1200, 'Carlinhos adora filmes, e recentemente tem estado fascinado com o número de Bacon, mais conhecido
 como Bacon Number, que é definido da seguinte forma.
 
    • O número de Bacon do ator Kevin Bacon é igual a 0;
@@ -3939,9 +3847,7 @@ delas.
  3 4
  1 6', 'See statement.', 'See statement.', '1 ≤ aj ≤ N são atores e 1 ≤ fj ≤ M são filmes, e o a; 1 ≤ N ≤ 100) e M (1 ≤ M ≤ 106 ),; 1 ≤ ni ≤ M ) denota o número de atores no filme i; 1 ≤ Q ≤ 104 ): o número de consultas; 1 ≤ xi ̸= yi ≤ M ), os atores que; 2 ≤ ki ≤ 106 ) em alguma maneira de', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-b-bacon-number-a1', 'sbc-2024-p1-b-bacon-number', 'SBC 2024 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY['Dijkstra']::text[], ARRAY['Priority Queue']::text[], ARRAY['SBC 2024 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-b-baralho-alho', 'Baralho Alho', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1200, 'Problema B
-                                         Baralho Alho
-Pesquisadora Isadora adora jogar baralho com seus amigos. Mais especificamente, ela joga uma versão
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-b-baralho-alho', 'Baralho Alho', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1200, 'Pesquisadora Isadora adora jogar baralho com seus amigos. Mais especificamente, ela joga uma versão
 chamada Baralho Alho, em que há N cartas (podendo haver cartas iguais). Inicialmente, as N cartas
 estão em uma ordem especı́fica: a i-ésima carta tem valor Ai . Duas cartas são consideradas iguais se
 possuem o mesmo valor.
@@ -4022,8 +3928,7 @@ a partir de Ai , até que a configuração obtida seja Bi .
  2 1 4
  1 2 3', 'See statement.', 'See statement.', '1 ≤ N ≤ 106 ); 1 ≤ Ai ≤ 109 ), representando a configuração inicial; 1 ≤ Bi ≤ 109 ), representando a configuração final d; 1 ≤ Pi ≤ N ), indicando que a carta na posição i', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-b-baralho-alho-a1', 'sbc-2025-p1-b-baralho-alho', 'SBC 2025 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-b-sequencias', 'Sequências', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1200, 'Problema B – Sequências
-São dados N intervalos de inteiros [Li , Ri ], em uma ordem fixa. Para cada ı́ndice i, deve-se
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-b-sequencias', 'Sequências', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1200, 'São dados N intervalos de inteiros [Li , Ri ], em uma ordem fixa. Para cada ı́ndice i, deve-se
 escolher exatamente um inteiro xi pertencente ao i-ésimo intervalo, isto é, Li ≤ xi ≤ Ri .
 Uma escolha é válida se a sequência x1 , x2 , . . . , xN for estritamente crescente, ou seja, se x1 <
 x2 < · · · < xN . Duas escolhas são consideradas distintas se diferirem em pelo menos um valor
@@ -4049,9 +3954,7 @@ As quatro sequências válidas são (2, 3, 4), (2, 3, 5), (2, 4, 5) e (3, 4, 
 
 Maratona SBC de Programação 2026 – Problema B – Sequências                                             3', 'See statement.', 'See statement.', '1 ≤ N ≤ 300); 1 ≤ Li ≤ Ri ≤ 109 ), descrevendo', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2026-p1-b-sequencias-a1', 'sbc-2026-p1-b-sequencias', 'SBC 2026 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2026 — 1ª fase, problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2026 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-d-decoerencia-quantica', 'Decoerência Quântica', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1200, 'Problema D
-                              Decoerência Quântica
-                        Tempo limite: 0,5 s    Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-d-decoerencia-quantica', 'Decoerência Quântica', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1200, 'Tempo limite: 0,5 s    Limite de memória: 1 GiB
 
 A SBC (Sociedade Brasileira de Computação) está desenvolvendo diversos modelos de arquiteturas
 para computadores quânticos, com o objetivo de torná-los acessíveis a todas as pessoas no futuro.
@@ -4506,9 +4409,7 @@ A saída deve conter $N$ linhas com números $d_0, d_1, …, d_N - 1$. O número
 
 - $1 ≤ N ≤ 10^5$.', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^5$), o número de crianças partici; 1 ≤ N ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-d-adedanha-a1', 'mineira-2023-d-adedanha', 'X Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-d-dados', 'Dados', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1300, 'Problema D. Dados
-
-Eis que você e seus amigos acabam de pedir uma porção de torresmo mineiro em um boteco. Para
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-d-dados', 'Dados', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1300, 'Eis que você e seus amigos acabam de pedir uma porção de torresmo mineiro em um boteco. Para
 ser justo, a quantidade de torresmo que cada um vai comer vai ser decidida pela sorte!
 
 Um de seus amigos, por acaso, tinha 3 dados de 6 lados (com valores de 1 a 6) no bolso. Assim,
@@ -4551,9 +4452,7 @@ Para especificar o número de casas decimais na saída, você pode usar:
      • print("%.12f" % val) em Python.
      • System.out.printf("%.12f", val) em Java.', 'See statement.', 'See statement.', '3 ≤ K ≤ 18)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-d-dados-a1', 'mineira-2025-d-dados', 'XII Maratona Mineira — standard', ARRAY['Geometry']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-d-datas-incertas', 'Datas incertas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1300, 'Problema D. Datas incertas
-
-A NeoSpace é uma startup inovadora que utiliza modelos avançados de Inteligência Artificial para
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-d-datas-incertas', 'Datas incertas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1300, 'A NeoSpace é uma startup inovadora que utiliza modelos avançados de Inteligência Artificial para
 processar volumes massivos de informações corporativas. Nos corredores da empresa, é comum
 ouvir uma piada clássica entre os engenheiros: apesar de serem especialistas em lidar com Big Data,
 o maior pesadelo do sistema ainda são as pequenas datas inseridas incorretamente pelos usuários.
@@ -4595,8 +4494,7 @@ A data pode ser interpretada apenas como 9 de Setembro.
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-d-datas-incertas-a1', 'mineira-2026-d-datas-incertas', 'XIII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-d-bandeja-de-pao-de-queijos', 'Bandeja de Pão de Queijos', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1300, 'Problema D. Bandeja de Pão de Queijos
-Em Minas Gerais, o pão de queijo não pode faltar. Dona Maria, uma quitandeira de mão cheia da
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-d-bandeja-de-pao-de-queijos', 'Bandeja de Pão de Queijos', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1300, 'Em Minas Gerais, o pão de queijo não pode faltar. Dona Maria, uma quitandeira de mão cheia da
 cidade de Uberaba, sabe fazer pão de queijo como ninguém. Todos os dias, ela recebe pedidos de
 diversos clientes, cada um solicitando uma quantidade diferente de pães de queijo.
 
@@ -4634,9 +4532,7 @@ Exemplos
 
                                                                                                      7', 'See statement.', 'See statement.', '1 ≤ N ≤ 10 ), que representa a quantidade; 1 ≤ ai ≤ 10 ) separados por um', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-d-bandeja-de-pao-de-queijos-a1', 'minas-2025-d-bandeja-de-pao-de-queijos', '1ª Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-c-reducao-de-pena', 'Redução de Pena', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1300, 'Problema C
-                                   Redução de Pena
-                Arquivo fonte: pena.c, pena.cpp, pena.java ou pena.pas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-c-reducao-de-pena', 'Redução de Pena', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1300, 'Arquivo fonte: pena.c, pena.cpp, pena.java ou pena.pas
 
 O conhecido e temido hacker SideBarCoder finalmente decidiu entregar-se às autoridades, de-
 pois de anos infernizando a vida de administradores de sistemas. SideBarCoder nunca causou
@@ -4714,9 +4610,7 @@ A saı́da deve ser escrita na saı́da padrão.
                                                  Qui: 0
                                                  Sex: 0', 'See statement.', 'See statement.', '0 ≤ N ≤ 10000 que indica o número de tarefas disponib; 1 ≤ Codigo ≤ 10000)); 1 ≤ Pontos ≤ 50))', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2005-p1-c-reducao-de-pena-a1', 'sbc-2005-p1-c-reducao-de-pena', 'SBC 2005 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2005 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2005 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-c-o-salao-do-clube', 'O Salão do Clube', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1300, 'Problema C
-                                   O Salão do Clube
-                 Nome do arquivo fonte: clube.c, clube.cpp ou clube.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-c-o-salao-do-clube', 'O Salão do Clube', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1300, 'Nome do arquivo fonte: clube.c, clube.cpp ou clube.java
 
     O Clube Recreativo de Tinguá está construindo a sua nova sede social. Os sócios desejam
 que o piso do salão da sede seja de tábuas de madeira, pois consideram que este é o melhor
@@ -4781,9 +4675,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    2 4 1 4 2 4 4
    0 0', 'See statement.', 'See statement.', '1 ≤ M, N ≤ 104 ); 1 ≤ L ≤ 100); 1 ≤ K ≤ 105 ); 1 ≤ Xi ≤ 104 para 1 ≤ i ≤ K)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-c-o-salao-do-clube-a1', 'sbc-2008-p1-c-o-salao-do-clube', 'SBC 2008 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2008 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-c-troca-de-cartas', 'Troca de Cartas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1300, 'Problema C
-                                    Troca de Cartas
-                 Nome do arquivo fonte: troca.c, troca.cpp ou troca.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-c-troca-de-cartas', 'Troca de Cartas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1300, 'Nome do arquivo fonte: troca.c, troca.cpp ou troca.java
 
     Alice e Beatriz colecionam cartas de Pokémon. As cartas são produzidas para um jogo que
 reproduz a batalha introduzida em um dos mais bem sucedidos jogos de videogame da história,
@@ -4832,9 +4724,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    2 2 2 3 4 6 10 11 11
    0 0', 'See statement.', 'See statement.', '1 ≤ A ≤ 104 e 1 ≤ B ≤ 104 ); 1 ≤ Xi ≤ 105 ); 1 ≤ Yi ≤ 105 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2009-p1-c-troca-de-cartas-a1', 'sbc-2009-p1-c-troca-de-cartas', 'SBC 2009 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2009 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2009 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-c-livro-caixa', 'Livro-caixa', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1300, 'Problema C
-                                          Livro-caixa
-                 Nome do arquivo fonte: caixa.c, caixa.cpp ou caixa.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-c-livro-caixa', 'Livro-caixa', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1300, 'Nome do arquivo fonte: caixa.c, caixa.cpp ou caixa.java
 
      A FCC (Fundação de Combate à Corrupção) desmontou um grande esquema de corrupção
 na Nlogônia. Durante a operação, foram apreendidos diversos cadernos e livros com anotações
@@ -4893,9 +4783,7 @@ imprima uma única linha contendo o caractere ‘*’.
    7
    0 0', 'See statement.', 'See statement.', '2 ≤ N ≤ 40) e o fluxo de; 16000 ≤ F ≤ 16000); 1 ≤ Ti ≤ 1000)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-c-livro-caixa-a1', 'sbc-2010-p1-c-livro-caixa', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-c-campeonato-de-sms', 'Campeonato de SMS', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1300, 'Problema C
-                            Campeonato de SMS
-       Nome do arquivo fonte: campeonato.c, campeonato.cpp, ou campeonato.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-c-campeonato-de-sms', 'Campeonato de SMS', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1300, 'Nome do arquivo fonte: campeonato.c, campeonato.cpp, ou campeonato.java
 
    A Só Birutas Celulares, uma renomada empresa do ramo de telefonia móvel, promove um
 campeonato de mensagens de texto todos os anos. Neste campeonato, ganha quem digitar uma
@@ -4971,9 +4859,7 @@ Exemplos
  garra                                        2.23
  paraquedas com defeito                       10.10', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2011-p1-c-campeonato-de-sms-a1', 'sbc-2011-p1-c-campeonato-de-sms', 'SBC 2011 — 1ª fase — standard', ARRAY['String Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2011 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2011 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-c-cartoes', 'Cartões', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1300, 'Problema C
-                                            Cartões
-                                 Arquivo: cartoes.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-c-cartoes', 'Cartões', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1300, 'Arquivo: cartoes.[c|cpp|java]
 
     Dois jogadores, Alberto e Wanderley, disputam um jogo. Um conjunto com um número par de
 cartões contendo números inteiros é disposto sobre uma mesa, um ao lado do outro, formando uma
@@ -5014,9 +4900,7 @@ Exemplos
     4
     47 50 -3 7', 'See statement.', 'See statement.', '2 ≤ N ≤ 104', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-c-cartoes-a1', 'sbc-2012-p1-c-cartoes', 'SBC 2012 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2012 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-c-chefe', 'Chefe', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1300, 'Problema C
-                                                                    Chefe
-                                                     Arquivo: chefe.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-c-chefe', 'Chefe', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1300, 'Arquivo: chefe.[c|cpp|java]
 
     Todos conhecem Iks, a última moda em redes sociais, que fez tanto sucesso que competidores como
 Facebook e Google+ estão começando a ter dificuldades financeiras. Assim como muitas companhias
@@ -5152,9 +5036,7 @@ Restrições
 
    • 1≤E≤N', '1 ≤ N ≤ 500; 0 ≤ M ≤ 60 × 103; 1 ≤ I ≤ 500; 1 ≤ Ki ≤ 100, para 1 ≤ i ≤ N; 1 ≤ X, Y ≤ N , X 6= Y; 1 ≤ A, B ≤ N; 1≤E≤N', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-c-chefe-a1', 'sbc-2013-p1-c-chefe', 'SBC 2013 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2013 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-c-confederacao', 'Confederação', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1300, 'Problema C
-                                         Confederação
-                                  Arquivo: confederacao.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-c-confederacao', 'Confederação', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1300, 'Arquivo: confederacao.[c|cpp|java]
 
    A Confederação Galática resolveu fazer uma reforma administrativa, para melhor distribuir os
 recursos de sua frota. Para isso, ela dividiu todo o espaço em regiões. Para definir as regiões, inicial-
@@ -5204,9 +5086,7 @@ Exemplos
  89 -45 18
  3 1 0', 'See statement.', 'See statement.', '1 ≤ M ≤ 500) e N (1 ≤ N ≤ 10000), indicando; 10000 ≤ A, B, C, D ≤ 10000), os coeficientes e o termo liv; 10000 ≤ X, Y, Z ≤ 10000), indicando a posição (X, Y, Z) ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-c-confederacao-a1', 'sbc-2014-p1-c-confederacao', 'SBC 2014 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2014 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-c-tri-du', 'Tri-du', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1300, 'Problema C
-                                              Tri-du
-Tri-du é um jogo de cartas derivado do popular jogo de Truco. O jogo utiliza um baralho normal de
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-c-tri-du', 'Tri-du', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1300, 'Tri-du é um jogo de cartas derivado do popular jogo de Truco. O jogo utiliza um baralho normal de
 52 cartas, com treze cartas de cada naipe, mas os naipes são ignorados. Apenas o valor das cartas,
 considerados como inteiros de 1 a 13, são utilizados.
     No jogo, cada jogador recebe três cartas. As regras são simples:
@@ -5239,9 +5119,7 @@ Exemplos
  Entrada                                            Saı́da
  2 2                                                2', 'See statement.', 'See statement.', '1 ≤ A ≤ 13) e B (1 ≤ B ≤ 13)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-c-tri-du-a1', 'sbc-2015-p1-c-tri-du', 'SBC 2015 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2015 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-c-containers', 'Containers', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1300, 'Problema C
-                                            Containers
-O SBC–Sistema de Balanceamento de Containers precisa ser atua-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-c-containers', 'Containers', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1300, 'O SBC–Sistema de Balanceamento de Containers precisa ser atua-
 lizado para funcionar com uma nova classe de navios, a “dois por
 quatro”, que são navios que podem carregar oito grandes containers           3 1 2 1
 numa disposição de duas linhas e quatro colunas, como mostrado na
@@ -5288,9 +5166,7 @@ mı́nimo de uma sequência de movimentos que leve da configuração inicial 
  34 5 6 998
  4 17 77 84', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-c-containers-a1', 'sbc-2016-p1-c-containers', 'SBC 2016 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-c-cigarras-periodicas', 'Cigarras periódicas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1300, 'Problema C
-                                    Cigarras periódicas
-As “cigarras periódicas” americanas têm o ciclo de vida mais longo de todos os insetos conhecidos.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-c-cigarras-periodicas', 'Cigarras periódicas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1300, 'As “cigarras periódicas” americanas têm o ciclo de vida mais longo de todos os insetos conhecidos.
 A cada 17 anos, estas cigarras periódicas amadurecem, se acasalam, depositam ovos e morrem. Suas
 crias se refugiam debaixo da terra, a 20 centı́metros de profundidade, onde elas se alimentarão da seiva
 de raı́zes por 17 anos, até que chegue seu dia de buscar um lugar ao sol.
@@ -5337,9 +5213,7 @@ menor deles.
  3 60                                        1
  12 10 15', 'See statement.', 'See statement.', '2 ≤ N ≤; 1 ≤ L ≤ 106 ; 1 ≤ Ci ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-c-cigarras-periodicas-a1', 'sbc-2017-p1-c-cigarras-periodicas', 'SBC 2017 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-c-cortador-de-pizza', 'Cortador de Pizza', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1300, 'Problema C
-                                    Cortador de Pizza
-Vô Giuseppe ganhou de presente um cortador profissional de pizza, daqueles do tipo carretilha e, para
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-c-cortador-de-pizza', 'Cortador de Pizza', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1300, 'Vô Giuseppe ganhou de presente um cortador profissional de pizza, daqueles do tipo carretilha e, para
 comemorar, assou uma pizza retangular gigante para seus netos! Ele sempre dividiu suas pizzas em
 pedaços fazendo cortes ao longo de linhas contı́nuas, não necessariamente retilı́neas, de dois tipos:
 algumas começam na borda esquerda da pizza, seguem monotonicamente para a direita e terminam
@@ -5408,9 +5282,7 @@ Saı́da
  10 2347
  543 8765', 'See statement.', 'See statement.', '1 ≤ X, Y ≤ 109 ), representando as coor-; 1 ≤ H, V ≤ 105 ), indicando, respectivamente, o', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-c-cortador-de-pizza-a1', 'sbc-2018-p1-c-cortador-de-pizza', 'SBC 2018 — 1ª fase — standard', ARRAY['Geometry','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Monotonic Stack','Stack']::text[], ARRAY['SBC 2018 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-c-cruzamento-perigoso', 'Cruzamento Perigoso', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1300, 'Problema C
-                                    Cruzamento Perigoso
-A Agência de Simulação Veicular (ASV), gerenciada pela fundadora Crishna, está trabalhando em um
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-c-cruzamento-perigoso', 'Cruzamento Perigoso', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1300, 'A Agência de Simulação Veicular (ASV), gerenciada pela fundadora Crishna, está trabalhando em um
 projeto que tem como objetivo a obtenção de dados relacionados às colisões de veı́culos nos cruzamentos
 de determinadas regiões do paı́s.
      A primeira simulação da ASV consiste em posicionar arbitrariamente C veı́culos em cruzamentos
@@ -5465,9 +5337,7 @@ veı́culos que não colidirão.
  1 2 O
  2 1 N', 'See statement.', 'See statement.', '2 ≤ N, M ≤ 105 e 1 ≤ C ≤ min(105 , N × M )),; 1 ≤ Ai ≤ N e 1 ≤ Bi ≤ M ), representando que o i-ésim', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-c-cruzamento-perigoso-a1', 'sbc-2019-p1-c-cruzamento-perigoso', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-c-concatenando-times', 'Concatenando Times', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1300, 'Problema C
-                                 Concatenando Times
-Pepito é um coach da Maratona que com frequência gosta de “concatenar” os nomes de dois times,
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-c-concatenando-times', 'Concatenando Times', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1300, 'Pepito é um coach da Maratona que com frequência gosta de “concatenar” os nomes de dois times,
 tais como “AJI” e “Oxidados”, a fim de obter nomes para novos times, tal como “AJIOxidados”.
     Dado que Pepito é coach de times de duas universidades onde ele leciona, ele teve uma ideia: ele vai
 considerar todas as possı́veis concatenações de um nome de um time da universidade A, com um nome
@@ -5510,9 +5380,7 @@ universidade A e o número de times peculiares da universidade B, separados por
  xx xxy
  z yz xx', 'See statement.', 'See statement.', '1 ≤ M ≤ 105 ), e o número de times da universidade B ; 1 ≤ N ≤ 105 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-c-concatenando-times-a1', 'sbc-2020-p1-c-concatenando-times', 'SBC 2020 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2020 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-c-criando-multiplos', 'Criando Multiplos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1300, 'Problema C
-                                       Criando Multiplos
-Malba é um garoto muito inteligente que gosta de calcular. Já ganhou muitas competições, inclusive a
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-c-criando-multiplos', 'Criando Multiplos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1300, 'Malba é um garoto muito inteligente que gosta de calcular. Já ganhou muitas competições, inclusive a
 prestigiosa competição Tahan, em que conseguiu o primeiro lugar, representando o seu paı́s, a Logônia.
     Ele inventou um problema, no qual ele considera um número N , escrito numa certa base B, e
 representado por L algarismos. O objetivo do jogo é reduzir não mais do que um dos algarismos de
@@ -5564,9 +5432,7 @@ problema, imprima -1 -1. Se N já for um múltiplo de B + 1, imprima 0 0.
  16 5                                            0 0
  1 15 0 13 10', 'See statement.', 'See statement.', '2 ≤ B ≤ 104 , 1 ≤ L ≤ 2 × 105 ), representando a base; 0 ≤ Di < B para i = 1, 2, ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-c-criando-multiplos-a1', 'sbc-2021-p1-c-criando-multiplos', 'SBC 2021 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-c-cortes-a-laser', 'Cortes a Laser', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1300, 'Problema C
-                                           Cortes a Laser
-Uma máquina de corte a laser para chapas de madeira possui uma cabeça de laser que pode movimentar-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-c-cortes-a-laser', 'Cortes a Laser', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1300, 'Uma máquina de corte a laser para chapas de madeira possui uma cabeça de laser que pode movimentar-
 se apenas nas direções horizontal e vertical. Você foi contratado para compor a equipe de testes da
 máquina.
     Um dos testes consiste em programar a máquina para realizar uma sequência não vazia de cortes
@@ -5630,9 +5496,7 @@ produzido pela sequência de cortes.
  1 6
  1 1', 'See statement.', 'See statement.', '4 ≤ N ≤ 104 ); 1 ≤ X0 ≤ 103 e 1 ≤ Y0 ≤ 103 ); 1 ≤ Xi ≤ 103 e 1 ≤ Yi ≤ 103 , para 1 ≤ i ≤ N , e (XN ,', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-c-cortes-a-laser-a1', 'sbc-2022-p1-c-cortes-a-laser', 'SBC 2022 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-c-caminhada-na-montanha', 'Caminhada na Montanha', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1300, 'Problema C
-                               Caminhada na Montanha
-Finalmente acabaram as provas e é chegada a hora de dar uma pausa na trabalheira da faculdade para
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-c-caminhada-na-montanha', 'Caminhada na Montanha', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1300, 'Finalmente acabaram as provas e é chegada a hora de dar uma pausa na trabalheira da faculdade para
 umas merecidas férias. Com suas malas arrumadas, você partiu em uma aventura para explorar uma
 belı́ssima montanha da sua região – um passeio que você tem sonhado fazer há anos e que finalmente
 se torna realidade.
@@ -5681,9 +5545,7 @@ de fotos que você pode postar se você iniciar sua caminhada no marco 1 e ter
  3 1 3 1
  5 4 7 6 5', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ), que representa o número de; 1 ≤ pi ≤ N ), onde pi; 1 ≤ vi ≤ 109 ), onde vi representa o número de curtid', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-c-caminhada-na-montanha-a1', 'sbc-2023-p1-c-caminhada-na-montanha', 'SBC 2023 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-c-casal-do-bipbop', 'Casal do BipBop', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1300, 'Problema C
-                                     Casal do BipBop
-É hora de Bob e Charlie entrarem em um novo hiperfoco de casal: dancinhas de BipBop. Essa rede
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-c-casal-do-bipbop', 'Casal do BipBop', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1300, 'É hora de Bob e Charlie entrarem em um novo hiperfoco de casal: dancinhas de BipBop. Essa rede
 social especializada em vı́deos curtos está viralizando mais do que nunca. Como consequência, agora
 os casais medem o quanto se amam em termos do quão bem conseguem dançar juntos. Em teoria, o
 estilo de dança BipBop é simples e pode ser usado para praticamente qualquer música. Geralmente,
@@ -5730,9 +5592,7 @@ forma.
  7                                               48/49
  1 2 1 3 1 2 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ), o número de movimentos da sequência; 1 ≤ Vi ≤ N ), correspondentes ao movimento', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-c-casal-do-bipbop-a1', 'sbc-2024-p1-c-casal-do-bipbop', 'SBC 2024 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2024 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-c-collatz-polinomial', 'Collatz polinomial', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1300, 'Problema C
-                                   Collatz polinomial
-Todos conhecem (ou já ouviram falar) da famosa Conjectura de Collatz: pegue um número inteiro
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-c-collatz-polinomial', 'Collatz polinomial', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1300, 'Todos conhecem (ou já ouviram falar) da famosa Conjectura de Collatz: pegue um número inteiro
 positivo. Se ele for ı́mpar, multiplique por 3 e some 1. Se for par, divida por 2. Repita o processo
 até chegar em 1. Apesar de sua simplicidade, ninguém sabe provar se a sequência realmente sempre
 alcança 1, qualquer que seja o número inicial.
@@ -5811,8 +5671,7 @@ linômio se tornar P (x) = 1. representando
  0                                                   0
  1', 'See statement.', 'See statement.', '0 ≤ N ≤ 20), indicando o grau do polinômio', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-c-collatz-polinomial-a1', 'sbc-2025-p1-c-collatz-polinomial', 'SBC 2025 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-c-cambio', 'Câmbio', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1300, 'Problema C – Câmbio
-Robertinho há algum tempo vem pensando em comprar mais uma unidade de um de seus
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-c-cambio', 'Câmbio', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1300, 'Robertinho há algum tempo vem pensando em comprar mais uma unidade de um de seus
 objetos favoritos: um teclado. Como ele vai fazer uma viagem para o exterior e sabe que
 alguns produtos podem custar muito menos fora do paı́s, ele quer ajuda para decidir se vale a
 pena comprar o novo teclado por lá.
@@ -5850,9 +5709,7 @@ Portanto, o menor valor que Robertinho pode pagar é de 25 reais.
 
 Maratona SBC de Programação 2026 – Problema C – Câmbio                                       4', 'See statement.', 'See statement.', '1 ≤ T, C, K ≤', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2026-p1-c-cambio-a1', 'sbc-2026-p1-c-cambio', 'SBC 2026 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2026 — 1ª fase, problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2026 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-e-energizacao-de-particulas', 'Energização de Partículas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1300, 'Problema E
-                            Energização de Partículas
-                         Tempo limite: 0,5 s   Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-e-energizacao-de-particulas', 'Energização de Partículas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1300, 'Tempo limite: 0,5 s   Limite de memória: 1 GiB
 
 Há uma partícula no ponto X = 1 de uma reta numérica innita com um valor de carga Y . Ao
 interagir com a reta, ela ganha propriedades incomuns: ao absorver energia essa partícula libera
@@ -7289,8 +7146,7 @@ Imprima uma sequência de índices que descreve uma sequência de pulos que mini
 % will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
 %in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^5$, a quantidade de vitórias-régi; 1 ≤ x_i, y_i ≤ 10^9$, o quanto de energia qu; 1 ≤ N ≤ 10^5$; 1 ≤ x_i, y_i ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-e-problema-de-sapo-a1', 'mineira-2023-e-problema-de-sapo', 'X Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-e-emparelhamento', 'Emparelhamento', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1400, 'Problema E. Emparelhamento
-                                  Qual doce vencerá este ano?
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-e-emparelhamento', 'Emparelhamento', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1400, 'Qual doce vencerá este ano?
 
 O Ultimate Battle de Açúcares (UBA) é um torneio realizado entre regiões de Minas Gerais para a
 disputa do melhor doce. Neste ano, o doce escolhido é o “Queijo com Goiabada” (também conhecido
@@ -7349,9 +7205,7 @@ Explicação do exemplo 2
 
 Todos os doces já estão formados por peças da mesma região, portanto não é necessário fazer trocas.', 'See statement.', 'See statement.', '1 ≤ N ≤ 2 × 105 ) que representa o número; 1 ≤ A, B ≤ N ) que', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-e-emparelhamento-a1', 'mineira-2025-e-emparelhamento', 'XII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-e-explorando-o-terreno', 'Explorando o terreno', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1400, 'Problema E. Explorando o terreno
-
-Giovana e Arthur acabaram de ser contratados pela ArcelorMittal Sistemas para desenvolver
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-e-explorando-o-terreno', 'Explorando o terreno', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1400, 'Giovana e Arthur acabaram de ser contratados pela ArcelorMittal Sistemas para desenvolver
 tecnologia de ponta na extração mineral. Como projeto inicial, ambos implementaram algoritmos e
 heurísticas para criar um plano de exploração de uma perfuratriz, máquina muito comum nas lavras
 minerais, objetivando maximizar o minério extraído após T minutos de operação da perfuratriz.
@@ -7440,8 +7294,7 @@ Exemplos
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-e-explorando-o-terreno-a1', 'mineira-2026-e-explorando-o-terreno', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-e-a-nova-geracao-de-minas', 'A nova geração de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1400, 'Problema E. A nova geração de Minas
-As programadoras de Minas, motivadas em incentivar novas gerações de meninas a desenvolverem
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-e-a-nova-geracao-de-minas', 'A nova geração de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1400, 'As programadoras de Minas, motivadas em incentivar novas gerações de meninas a desenvolverem
 suas habilidades, propuseram um jogo de contagem para treinar raciocínio matemático e pensamento
 algorítmico.
 
@@ -7472,9 +7325,7 @@ Exemplos
 
                                                                                                 8', 'See statement.', 'See statement.', '1 ≤ I ≤ 105 ), F (I ≤ F ≤ 105 ) e P (0 ≤ P ≤', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-e-a-nova-geracao-de-minas-a1', 'minas-2025-e-a-nova-geracao-de-minas', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-d-cubos-coloridos', 'Cubos Coloridos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1400, 'Problema D
-                                    Cubos Coloridos
-              Arquivo fonte: cubos.c, cubos.cpp, cubos.java ou cubos.pas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-d-cubos-coloridos', 'Cubos Coloridos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1400, 'Arquivo fonte: cubos.c, cubos.cpp, cubos.java ou cubos.pas
 
     Crianças adoram brincar com pequenos cubos. Elas passam horas criando ’casas’, ’prédios’,
 etc. O irmãozinho de Tomaz acabou de ganhar um conjunto de blocos coloridos no seu ani-
@@ -7524,9 +7375,7 @@ A saı́da deve ser escrita na saı́da padrão.
      2
      0', 'See statement.', 'See statement.', '1 ≤ N ≤ 1000)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2005-p1-d-cubos-coloridos-a1', 'sbc-2005-p1-d-cubos-coloridos', 'SBC 2005 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2005 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2005 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-d-dama', 'Dama', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1400, 'Problema D
-                                             Dama
-                   Nome do arquivo fonte: dama.c, dama.cpp ou dama.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-d-dama', 'Dama', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1400, 'Nome do arquivo fonte: dama.c, dama.cpp ou dama.java
 
    O jogo de xadrez possui várias peças com movimentos curiosos: uma delas é a dama, que
 pode se mover qualquer quantidade de casas na mesma linha, na mesma coluna, ou em uma
@@ -7559,9 +7408,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    5 5 4 3                                         2
    0 0 0 0', 'See statement.', 'See statement.', '1 ≤ X1 , Y1 , X2 , Y2 ≤ 8)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-d-dama-a1', 'sbc-2008-p1-d-dama', 'SBC 2008 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2008 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-d-sub-prime', 'Sub-prime', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1400, 'Problema D
-                                         Sub-prime
-           Nome do arquivo fonte: subprime.c, subprime.cpp ou subprime.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-d-sub-prime', 'Sub-prime', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1400, 'Nome do arquivo fonte: subprime.c, subprime.cpp ou subprime.java
 
 A mais recente crise econômica foi em parte causada pela forma como os bancos faziam
 empréstimos para pessoas que não tinham capacidade de honrá-los e revendiam tais empréstimos
@@ -7613,9 +7460,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    3 1 2
    0 0', 'See statement.', 'See statement.', '1 ≤ B ≤ 20) e o número de; 1 ≤ N ≤ 20); 0 ≤ Ri ≤ 104 , para 1 ≤ i ≤ B); 1 ≤ D ≤ B), um inteiro C, indicando o banco credor (1 ; 1 ≤ V ≤ 104 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2009-p1-d-sub-prime-a1', 'sbc-2009-p1-d-sub-prime', 'SBC 2009 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2009 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2009 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-d-desvio-de-rota', 'Desvio de Rota', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1400, 'Problema D
-                                      Desvio de Rota
-               Nome do arquivo fonte: desvio.c, desvio.cpp ou desvio.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-d-desvio-de-rota', 'Desvio de Rota', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1400, 'Nome do arquivo fonte: desvio.c, desvio.cpp ou desvio.java
 
     O sistema rodoviário de um paı́s interliga todas as suas N cidades de modo que, a partir
 de uma cidade qualquer, é possı́vel chegar a cada uma das outras cidades trafegando pelas
@@ -7676,9 +7521,7 @@ destino.
    4 0 5
    0 0 0 0', 'See statement.', 'See statement.', '4 ≤ N ≤ 250, 3 ≤ M ≤ N ×(N −1)/2, 2 ≤ C ≤ N −1 e C ≤ K; 0 ≤ U, V ≤ N −1, U 6= V , 0 ≤ P ≤ 250),', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-d-desvio-de-rota-a1', 'sbc-2010-p1-d-desvio-de-rota', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-d-desvio-de-rua', 'Desvio de rua', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1400, 'Problema D
-                                    Desvio de rua
-              Nome do arquivo fonte: desvio.c, desvio.cpp, ou desvio.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-d-desvio-de-rua', 'Desvio de rua', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1400, 'Nome do arquivo fonte: desvio.c, desvio.cpp, ou desvio.java
 
     A prefeitura de uma grande cidade da Nlogônia iniciou um programa de recuperação do
 asfalto de suas ruas. Na Nlogônia, cada rua liga diretamente dois cruzamentos, e pode ter mão
@@ -7751,9 +7594,7 @@ Exemplos
  2 1 1
  4 1 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 103; 1 ≤ M ≤ 105; 1 ≤ A, B ≤ N', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2011-p1-d-desvio-de-rua-a1', 'sbc-2011-p1-d-desvio-de-rua', 'SBC 2011 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2011 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2011 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-d-coral-perfeito', 'Coral Perfeito', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1400, 'Problema D
-                                        Coral Perfeito
-                                    Arquivo: coral.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-d-coral-perfeito', 'Coral Perfeito', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1400, 'Arquivo: coral.[c|cpp|java]
 
    A Maestrina do coral está planejando o espetáculo que apresentará na famosa Semana Brasileira
 de Corais. Ela pensou em preparar uma nova música, definida da seguinte maneira:
@@ -7805,9 +7646,7 @@ Exemplos
     5
     10 10 10 10 10', 'See statement.', 'See statement.', '2 ≤ N ≤ 104; 105 ≤ notai ≤ 105 para 0 ≤ i ≤ N − 1; 0 ≤ i ≤ N − 2', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-d-coral-perfeito-a1', 'sbc-2012-p1-d-coral-perfeito', 'SBC 2012 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2012 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-d-maquina-dobradora', 'Máquina Dobradora', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1400, 'Problema D
-                                         Máquina Dobradora
-                                             Arquivo: dobra.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-d-maquina-dobradora', 'Máquina Dobradora', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1400, 'Arquivo: dobra.[c|cpp|java]
 
    Uma das principais ferramentas de uma Máquina de Turing, que possibilita que seu poder de
 computação seja maior do que de outros modelos mais simples, é uma fita infinita, dividida em células,
@@ -7912,9 +7751,7 @@ Exemplos
  6
  6 5 4 3 2 1', 'See statement.', 'See statement.', '1 ≤ M ≤ N ≤ 15; 0 ≤ vi , wj ≤ 108 , para 1 ≤ i ≤ N e 1 ≤ j ≤ M ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-d-maquina-dobradora-a1', 'sbc-2013-p1-d-maquina-dobradora', 'SBC 2013 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2013 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-d-dona-minhoca', 'Dona Minhoca', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1400, 'Problema D
-                                            Dona Minhoca
-                                        Arquivo: minhoca.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-d-dona-minhoca', 'Dona Minhoca', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1400, 'Arquivo: minhoca.[c|cpp|java]
 
      Dona Minhoca fica furiosa quando ouve as pessoas dizerem que minhocas são bichos palı́ndromes,
 nos quais não é possı́vel distinguir a cabeça do rabo. Que infâmia!
@@ -7978,9 +7815,7 @@ Exemplos
  8 5
  7 55', 'See statement.', 'See statement.', '1 ≤ i ≤ n; 2 ≤ S ≤ 104 ) e T (1 ≤ T ≤ 2S) representando respectiv; 1 ≤ A < B ≤; 1 ≤ C ≤ 100), onde A e B representam os salões ligado; 1 ≤ Q ≤ 100), que indica o número; 1 ≤ X ≤ S) e M (1 ≤ M ≤ 105 ), que indicam respectivam', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-d-dona-minhoca-a1', 'sbc-2014-p1-d-dona-minhoca', 'SBC 2014 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Hash Map']::text[], ARRAY['SBC 2014 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-d-quebra-cabeca', 'Quebra-cabeça', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1400, 'Problema D
-                                        Quebra-cabeça
-Discussões recentes na Internet causaram uma onda de renovado interesse em quebra-cabeças de lógica.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-d-quebra-cabeca', 'Quebra-cabeça', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1400, 'Discussões recentes na Internet causaram uma onda de renovado interesse em quebra-cabeças de lógica.
 Neste problema a sua tarefa é escrever um programa que resolva quebra-cabeças como o mostrado na
 figura abaixo, muito comum em revistas de desafios lógicos. Nesse quebra-cabeças, as letras dentro do
 quadriculado representam variáveis, e os números representam as somas dos valores das variáveis em
@@ -8039,9 +7874,7 @@ Exemplos
  kk kk aa 40                                 zz -9
  15 -7 54', 'See statement.', 'See statement.', '1 ≤ L ≤ 100) e C (1 ≤ C ≤ 100) indicando o número de; 108 ≤ S ≤ 108 ); 108 ≤ Xi ≤ 108 ), indicando respectivamente a soma das v', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-d-quebra-cabeca-a1', 'sbc-2015-p1-d-quebra-cabeca', 'SBC 2015 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2015 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-d-divisores', 'Divisores', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1400, 'Problema D
-                                           Divisores
-Pense um número positivo n. Agora me diga um divisor A de n. Agora me dê um outro número B
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-d-divisores', 'Divisores', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1400, 'Pense um número positivo n. Agora me diga um divisor A de n. Agora me dê um outro número B
 que não seja divisor de n. Agora um múltiplo C. E um não múltiplo D. O número que você pensou
 é...
       Parece um truque de mágica, mas é matemática! Será que, conhecendo os números A, B, C e D,
@@ -8064,9 +7897,7 @@ conter 1.
  Exemplo de entrada 2                              Exemplo de saı́da 2
  3 4 60 105                                        6', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-d-divisores-a1', 'sbc-2016-p1-d-divisores', 'SBC 2016 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-d-despojados', 'Despojados', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1400, 'Problema D
-                                         Despojados
-Todo inteiro positivo pode ser escrito como um produto de potências de primos. Por exemplo, 252 =
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-d-despojados', 'Despojados', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1400, 'Todo inteiro positivo pode ser escrito como um produto de potências de primos. Por exemplo, 252 =
 22 × 32 × 7. Um inteiro é despojado se pode ser escrito como um produto de dois ou mais primos
 distintos, sem repetição. Por exemplo, 6 = 2 × 3 e 14 = 2 × 7 são despojados, mas 28 = 22 × 7, 1, 17
 não são despojados.
@@ -8093,9 +7924,7 @@ despojados de N .
  Exemplo de entrada 5                               Exemplo de saı́da 5
  88290298627                                        0', 'See statement.', 'See statement.', '1 ≤ N ≤ 1012 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-d-despojados-a1', 'sbc-2017-p1-d-despojados', 'SBC 2017 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-d-desvendando-monty-hall', 'Desvendando Monty Hall', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1400, 'Problema D
-                              Desvendando Monty Hall
-No palco de um programa de auditório há três portas fechadas: porta 1, porta 2 e porta 3. Atrás de
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-d-desvendando-monty-hall', 'Desvendando Monty Hall', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1400, 'No palco de um programa de auditório há três portas fechadas: porta 1, porta 2 e porta 3. Atrás de
 uma dessas portas há um carro, atrás de cada uma das outras duas portas há um bode. A produção do
 programa sorteia aleatoriamente a porta onde vai estar o carro, sem trapaça. Somente o apresentador
 do programa sabe onde está o carro. Ele pede para o jogador escolher uma das portas. Veja que agora,
@@ -8163,9 +7992,7 @@ portas que não foram escolhidas inicialmente.
  1
  1', 'See statement.', 'See statement.', '1 ≤ N ≤ 104 ), indicando o número de jogos na', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-d-desvendando-monty-hall-a1', 'sbc-2018-p1-d-desvendando-monty-hall', 'SBC 2018 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-d-delacao-premiada', 'Delação Premiada', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1400, 'Problema D
-                                     Delação Premiada
-A polı́cia da Nlogônia está investigando a máfia local. Eles já conhecem todos os membros e a estrutura
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-d-delacao-premiada', 'Delação Premiada', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1400, 'A polı́cia da Nlogônia está investigando a máfia local. Eles já conhecem todos os membros e a estrutura
 da organização: a máfia nlogoniana tem N membros no total, e cada um é identificado por um inteiro
 entre 1 e N , onde 1 é o ID do chefão. Além disso, todo membro é subordinado direto de um outro
 membro, exceto o chefão.
@@ -8202,9 +8029,7 @@ mafiosos que a polı́cia pode prender.
  10 3                                                 8
  1 1 2 2 3 3 4 4 5', 'See statement.', 'See statement.', '3 ≤ N ≤ 105 , 1 ≤ K < N )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-d-delacao-premiada-a1', 'sbc-2019-p1-d-delacao-premiada', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-d-danca-da-divisibilidade', 'Dança da Divisibilidade', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1400, 'Problema D
-                                Dança da Divisibilidade
-No paı́s da Nlogônia os habitantes realizam uma dança especial para homenagear o deus da divisibili-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-d-danca-da-divisibilidade', 'Dança da Divisibilidade', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1400, 'No paı́s da Nlogônia os habitantes realizam uma dança especial para homenagear o deus da divisibili-
 dade. A dança é executada por N homens e N mulheres dispostos em dois cı́rculos. Os homens ficam
 no cı́rculo interno e as mulheres no cı́rculo externo. Cada mulher inicia de frente para um homem.
     A dança é composta de K movimentos; homens e mulheres se alternam nos movimentos, começando
@@ -8256,9 +8081,7 @@ por 109 + 7.
  10 58 23 31 37 2
  45 17 9 24 38 30', 'See statement.', 'See statement.', '3 ≤ N ≤ 106 ), M (1 ≤ M ≤ 109 ) e K; 1 ≤ K ≤ 109 ), correspondendo à quantidade de pessoas; 1 ≤ Ai ≤ 109 ) separados por um espaço em; 1 ≤ Bi ≤ 109 ) separados por um espaço em', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-d-danca-da-divisibilidade-a1', 'sbc-2020-p1-d-danca-da-divisibilidade', 'SBC 2020 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2020 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-d-dividindo-o-reino', 'Dividindo o Reino', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1400, 'Problema D
-                                     Dividindo o Reino
-O reino da Nlogônia historicamente tem sido um lugar rico e tranquilo. Entretanto, as atuais cir-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-d-dividindo-o-reino', 'Dividindo o Reino', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1400, 'O reino da Nlogônia historicamente tem sido um lugar rico e tranquilo. Entretanto, as atuais cir-
 cunstâncias podem dar fim a esta era de paz e prosperidade: o rei é pai de gêmeos, então ambos são
 herdeiros do trono.
     Os gêmeos não se dão muito bem e são ciumentos e competitivos um com o outro. Devido a este
@@ -8314,9 +8137,7 @@ ordem crescente, um por linha.
  2 1                                             0
  1 2 10', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 5 × 105 ), representando o número de; 1 ≤ xi < yi ≤ N , 1 ≤ bi ≤ 109 ),', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-d-dividindo-o-reino-a1', 'sbc-2021-p1-d-dividindo-o-reino', 'SBC 2021 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2021 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-d-deslocando-part-culas', 'Deslocando Partı́culas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1400, 'Problema D
-                                  Deslocando Partı́culas
-Um quadrado possui seus vértices nas coordenadas (0, 0), (0, 2N ), (2N , 2N ), (2N , 0). Cada vértice possui
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-d-deslocando-part-culas', 'Deslocando Partı́culas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1400, 'Um quadrado possui seus vértices nas coordenadas (0, 0), (0, 2N ), (2N , 2N ), (2N , 0). Cada vértice possui
 um atrator. Uma partı́cula é posicionada inicialmente na posição (2N −1 , 2N −1 ). Cada atrator pode
 ser ativado individualmente, qualquer quantidade de vezes. Quando um atrator na posição (i, j) é
 ativado, se a partı́cula encontra-se na posição (p, q), ela desloca-se para o ponto médio entre (i, j) e
@@ -8340,9 +8161,7 @@ Saı́da
  Exemplo de entrada 3                                   Exemplo de saı́da 3
  4 3 1                                                  3', 'See statement.', 'See statement.', '1 ≤ N ≤ 20 e', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-d-deslocando-part-culas-a1', 'sbc-2022-p1-d-deslocando-part-culas', 'SBC 2022 — 1ª fase — standard', ARRAY['Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-d-desvio', 'Desvio', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1400, 'Problema D
-                                             Desvio
-Na cidade de Nlogonia, o prefeito finalmente vai cumprir sua promessa de campanha e irá repavimentar
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-d-desvio', 'Desvio', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1400, 'Na cidade de Nlogonia, o prefeito finalmente vai cumprir sua promessa de campanha e irá repavimentar
 alguns trechos de ruas. Contudo, enquanto um trecho estiver sendo repavimentado, os carros não
 poderão usá-lo e portanto um desvio deve ser utilizado.
      Cada trecho de rua conecta duas esquinas na cidade, tem comprimento positivo e pode ser percor-
@@ -8379,9 +8198,7 @@ trechos na saı́da deve ser a mesma ordem fornecida na entrada.
  2 1                                                -1
  1 2 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 300), que representam, respectivamente,; 1 ≤ U ≤ N , 1 ≤ V ≤ N , U ̸= V , 1 ≤ L ≤ 106 ), que re', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-d-desvio-a1', 'sbc-2023-p1-d-desvio', 'SBC 2023 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-d-desafio-do-chefao', 'Desafio do Chefão', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1400, 'Problema D
-                                    Desafio do Chefão
-Fulano, um jogador ávido, se deparou com um desafio épico no jogo online “Desafio do Chefão”. O
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-d-desafio-do-chefao', 'Desafio do Chefão', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1400, 'Fulano, um jogador ávido, se deparou com um desafio épico no jogo online “Desafio do Chefão”. O
 objetivo é derrotar um chefão poderoso, cujo poder é descrito por um conjunto de runas ancestrais.
 Essas runas representam um número binário gigante N , indicando a força total do inimigo.
     Para vencer o chefão, Fulano dispõe de M magias diferentes, e o objetivo é reduzir a força total
@@ -8427,9 +8244,7 @@ módulo 109 + 7), que reduzem o poder do chefão de N para 0.
  1 1
  8 0', 'See statement.', 'See statement.', '1 ≤ N ≤ 1018 ), representando o poder do; 1 ≤ M ≤ 105 ), denotando o número de; 1 ≤ ai ≤ 100) e bi (0 ≤ bi ≤ 60)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-d-desafio-do-chefao-a1', 'sbc-2024-p1-d-desafio-do-chefao', 'SBC 2024 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2024 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-d-dominos', 'Dominós', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1400, 'Problema D
-                                                Dominós
-Alice, cansada de sair com seus amigos, inventou sua própria variação do famoso jogo de dominó. Sua
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-d-dominos', 'Dominós', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1400, 'Alice, cansada de sair com seus amigos, inventou sua própria variação do famoso jogo de dominó. Sua
 versão usa o mesmo conjunto de peças de dominó que o jogo tradicional, em que cada peça é uma
 ficha que mostra dois números entre um e seis, com um número em cada extremidade.
     Para começar o jogo, Alice embaralha as peças de dominó em uma pilha e então pega uma peça
@@ -8483,8 +8298,7 @@ de peças com os quais Alice tem uma chance não nula de vencer.
    Alice pode colocar a peça 1-2 à esquerda da 2-2 e, em seguida, a 2-3 à direita, como ilustrado na
    imagem. Portanto, para este subconjunto, a chance de Alice vencer não é nula.', 'See statement.', 'See statement.', '1 ≤ T ≤ 104 ),; 1 ≤ N ≤ 21), o número de peças que Alice possui; 1 ≤ ai ≤ bi ≤ 6), indicando que a i-ésima peça', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-d-dominos-a1', 'sbc-2025-p1-d-dominos', 'SBC 2025 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Monotonic Stack','Stack','Ordered Set']::text[], ARRAY['SBC 2025 — 1ª fase, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-d-dragoes-em-harmonia', 'Dragões em Harmonia', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1400, 'Problema D – Dragões em Harmonia
-Os tratadores de dragões de Dragolândia estão reorganizando um grande terreno retangular,
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-d-dragoes-em-harmonia', 'Dragões em Harmonia', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1400, 'Os tratadores de dragões de Dragolândia estão reorganizando um grande terreno retangular,
 dividido em células quadradas de mesmo tamanho, dispostas em N linhas e M colunas. Algu-
 mas células contêm obstáculos, como montanhas e poços de lava, enquanto as demais células
 são espaços livres, cada uma habitada por um dragão.
@@ -9538,9 +9352,7 @@ of the apple pie, followed by those Q integers R1 , R2 , . . . , RQ (1 ≤ Ri �
 Both the left and right portions of the sequence are described from left to right.', 'Output a single line with the uppercase letter “Y” if the original full sequence could have been valid,
 and the uppercase letter “N” otherwise.', '2 ≤ N ≤ 1000); 0 ≤ P ≤ 5 · 105 ) indicating the number of integers on; 1 ≤ Li ≤ N for i = 1, 2, ; 0 ≤ Q ≤ 5 · 105 ) representing the number of integers ; 1 ≤ Ri ≤ N for i = 1, 2, ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-final-a-apple-pie-a1', 'sbc-2025-final-a-apple-pie', 'SBC 2025 — Final (LATAM) — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2025 — Final (LATAM), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Final (LATAM). Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-f-feynman-decorando-numeros', 'Feynman Decorando Números', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1400, 'Problema F
-                        Feynman Decorando Números
-                            Tempo limite: 2 s   Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-f-feynman-decorando-numeros', 'Feynman Decorando Números', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1400, 'Tempo limite: 2 s   Limite de memória: 1 GiB
 
 Richard Feynman foi o primeiro a propor a utilização de um fenômeno quântico para executar rotinas
 computacionais.   Foi numa palestra apresentada na Primeira Conferência de Computação Física
@@ -17155,9 +16967,7 @@ Imprima um número que representa o tamanho da maior pista de pouso para o 14-bi
 % will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
 %in the documents directory and include them as samples.', 'See statement.', 'See statement.', '0 ≤ a_i, j ≤ 10^9$; 1 ≤ N × M ≤ 2× 10^5$; 0 ≤ a_i, j ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-f-14-bis-a1', 'mineira-2023-f-14-bis', 'X Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Hash Map']::text[], ARRAY['X Maratona Mineira (2023), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-f-fome-de-queijo', 'Fome de Queijo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1500, 'Problema F. Fome de Queijo
-
-Cientistas de uma universidade mineira estão estudando o comportamento de um rato quando
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-f-fome-de-queijo', 'Fome de Queijo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1500, 'Cientistas de uma universidade mineira estão estudando o comportamento de um rato quando
 exposto a um labirinto com alguns pedaços de queijo minas, com o interesse de avaliar a capacidade
 do rato de encontrar o queijo mais próximo.
 
@@ -17233,9 +17043,7 @@ Neste caso, o valor esperado é 18
                                7 . A resposta é 427819011, uma vez que 427819011 × 7 ≡ 18
 (mod 998244353).', 'See statement.', 'See statement.', '2 ≤ N, M ≤ 1000 e 1 ≤ K ≤ N M − 1); 0 ≤ x < M e x · q ≡ p (mod M )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-f-fome-de-queijo-a1', 'mineira-2025-f-fome-de-queijo', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-f-fechando-estradas', 'Fechando estradas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1500, 'Problema F. Fechando estradas
-
-Dentre as várias delícias de Minas, queijo e doce de leite são as mais famosas. Apesar de serem
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-f-fechando-estradas', 'Fechando estradas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1500, 'Dentre as várias delícias de Minas, queijo e doce de leite são as mais famosas. Apesar de serem
 feitas da mesma matéria-prima, o leite, seus processos de produção e armazenamento são bastante
 diferentes. Em particular, todo o queijo do estado é produzido na cidade A1 e armazenado na cidade
 A2 , enquanto todo o doce de leite é produzido na cidade B1 e armazenado na cidade B2 . Para levar
@@ -17311,8 +17119,7 @@ interditada, fica impossível tanto ir de 1 para 2 quanto de 4 para 5.
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-f-fechando-estradas-a1', 'mineira-2026-f-fechando-estradas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XIII Maratona Mineira (2026), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-f-cafe-da-tarde', 'Café da Tarde', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1500, 'Problema F. Café da Tarde
-Ariel está programando sua primeira viagem a Minas Gerais e não quer deixar de aproveitar um
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-f-cafe-da-tarde', 'Café da Tarde', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1500, 'Ariel está programando sua primeira viagem a Minas Gerais e não quer deixar de aproveitar um
 de nossos maiores patrimônios: a culinária! Ela ouviu falar muito bem do restaurante Monte de
 Minas e separou T minutos de sua viagem para passar no restaurante, provando alguns de nossos
 N melhores pratos e sobremesas. Como Ariel é ótima em fazer projeções, ela sabe que conseguirá
@@ -17349,9 +17156,7 @@ Exemplos
 
                                                                                                    9', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), T (1 ≤ T ≤ 100), e G (1 ≤ G ≤ ; 1 ≤ ti ≤ T ) e pi; 1 ≤ pi ≤ G), que representam o tempo de cons', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-f-cafe-da-tarde-a1', 'minas-2025-f-cafe-da-tarde', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-e-gerente-de-espaco', 'Gerente de Espaço', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1500, 'Problema E
-                                 Gerente de Espaço
-           Arquivo fonte: espaco.c, espaco.cpp, espaco.java ou espaco.pas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-e-gerente-de-espaco', 'Gerente de Espaço', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1500, 'Arquivo fonte: espaco.c, espaco.cpp, espaco.java ou espaco.pas
 
 É bem verdade que a maioria das pessoas não se importa muito com o que ocorre dentro de
 um computador, desde que ele execute as tarefas que devem ser desempenhadas. Existem, no
@@ -17434,9 +17239,7 @@ A saı́da deve ser escrita na saı́da padrão.
          insere arq0001 5Mb
          0', 'See statement.', 'See statement.', '0 ≤ P ≤ 25, respectiva-', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2005-p1-e-gerente-de-espaco-a1', 'sbc-2005-p1-e-gerente-de-espaco', 'SBC 2005 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2005 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2005 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-e-bolhas-e-baldes', 'Bolhas e Baldes', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1500, 'Problema E
-                                     Bolhas e Baldes
-               Nome do arquivo fonte: bolhas.c, bolhas.cpp ou bolhas.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-e-bolhas-e-baldes', 'Bolhas e Baldes', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1500, 'Nome do arquivo fonte: bolhas.c, bolhas.cpp ou bolhas.java
 
     Andrea, Carlos e Marcelo são muito amigos e passam todos os finais de semana à beira
 da piscina. Enquanto Andrea se bronzeia ao sol, os dois ficam jogando Bolhas. Andrea, uma
@@ -17478,9 +17281,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    6 6 5 4 3 2 1                                    Marcelo
    0', 'See statement.', 'See statement.', '2 ≤ N ≤ 105 , seguido da seqüência inicial P = (X1 ,; 1 ≤ Xi ≤ N para 1 ≤ i ≤ N ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-e-bolhas-e-baldes-a1', 'sbc-2008-p1-e-bolhas-e-baldes', 'SBC 2008 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2008 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-e-dragster', 'Dragster', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1500, 'Problema E
-                                          Dragster
-           Nome do arquivo fonte: dragster.c, dragster.cpp ou dragster.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-e-dragster', 'Dragster', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1500, 'Nome do arquivo fonte: dragster.c, dragster.cpp ou dragster.java
 
 Embora não seja uma modalidade muito popular no Brasil, as corridas de dragsters atraem
 multidões nos EUA. Os fãs gostam de ver os carros velozes correndo a velocidades de até
@@ -17548,9 +17349,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    1 2
    0', 'See statement.', 'See statement.', '2 ≤ N ≤ 300); 0 ≤ M [i, j] ≤ 1, para 1 ≤ i ≤ N e 1 ≤ j ≤ N ); 001 ≤ M [i, j] ≤ 0; 1 ≤ A ≤ 2 × N − 1; 1 ≤ B ≤ 2 × N − 1)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2009-p1-e-dragster-a1', 'sbc-2009-p1-e-dragster', 'SBC 2009 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2009 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2009 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-e-elevador', 'Elevador', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1500, 'Problema E
-                                              Elevador
-           Nome do arquivo fonte: elevador.c, elevador.cpp ou elevador.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-e-elevador', 'Elevador', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1500, 'Nome do arquivo fonte: elevador.c, elevador.cpp ou elevador.java
 
     A FCC (Fábrica de Cilindros de Carbono) fabrica de vários tipos de cilindros de carbono.
 A FCC está instalada no décimo andar de um prédio, e utiliza os vários elevadores do prédio
@@ -17595,9 +17394,7 @@ Para cada caso de teste, o seu programa deve imprimir uma única linha com um u
    8 9 3 2                                         S
    0 0 0 0', 'See statement.', 'See statement.', '1 ≤ L ≤ 100), o comprimento do elevador (1 ≤ C ≤ 100),; 1 ≤ R1 , R2 ≤ 100)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-e-elevador-a1', 'sbc-2010-p1-e-elevador', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-e-estacionamento', 'Estacionamento', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1500, 'Problema E
-                                 Estacionamento
-Nome do arquivo fonte: estacionamento.c, estacionamento.cpp, ou estacionamento.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-e-estacionamento', 'Estacionamento', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1500, 'Nome do arquivo fonte: estacionamento.c, estacionamento.cpp, ou estacionamento.java
 
     Um estacionamento utiliza um terreno em que os veı́culos têm que ser guardados em fila
 única, um atrás do outro. A tarifa tem o valor fixo de R$ 10,00 por veı́culo estacionado, cobrada
@@ -17680,9 +17477,7 @@ Exemplos
  C 5555 1
  S 5678', 'See statement.', 'See statement.', '1 ≤ C ≤ 1000; 1 ≤ N ≤ 10000; 1 ≤ Q ≤ 100; 1000 ≤ P ≤ 9999', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2011-p1-e-estacionamento-a1', 'sbc-2011-p1-e-estacionamento', 'SBC 2011 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Queue','Deque']::text[], ARRAY['SBC 2011 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2011 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-e-elevador-espacial', 'Elevador Espacial', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1500, 'Problema E
-                                    Elevador Espacial
-                                 Arquivo: elevador.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-e-elevador-espacial', 'Elevador Espacial', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1500, 'Arquivo: elevador.[c|cpp|java]
 
     A China está construindo um elevador espacial, que permitirá o lançamento de sondas e satélites a
 um custo muito mais baixo, viabilizando não só projetos de pesquisa científica como o turismo espacial.
@@ -17716,9 +17511,7 @@ Exemplos
     12                                               15
     440                                              666', 'See statement.', 'See statement.', '1 ≤ N ≤ 1018', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-e-elevador-espacial-a1', 'sbc-2012-p1-e-elevador-espacial', 'SBC 2012 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2012 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-e-mergulho', 'Mergulho', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1500, 'Problema E
-                                           Mergulho
-                                   Arquivo: mergulho.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-e-mergulho', 'Mergulho', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1500, 'Arquivo: mergulho.[c|cpp|java]
 
     O recente terremoto em Nlogônia não chegou a afetar muito as edificações da capital, principal
 epicentro do abalo. Mas os cientistas detectaram que o principal dique de contenção teve um dano
@@ -17760,9 +17553,7 @@ Exemplos
  6 6                                                *
  6 1 3 2 5 4', 'See statement.', 'See statement.', '1 ≤ R ≤ N ≤ 104', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-e-mergulho-a1', 'sbc-2013-p1-e-mergulho', 'SBC 2013 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2013 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-e-ecologia', 'Ecologia', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1500, 'Problema E
-                                           Ecologia
-                                  Arquivo: ecologia.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-e-ecologia', 'Ecologia', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1500, 'Arquivo: ecologia.[c|cpp|java]
 
    O reino da Poliminogônia passou recentemente uma lei ecológica que obriga todas as fazendas a
 preservar o máximo de árvores possı́vel em uma porcentagem fixa da área da fazenda. Além disso,
@@ -17805,9 +17596,7 @@ Exemplos
  9 1 9 1
  9 9 9 1', 'See statement.', 'See statement.', '2 ≤ N ≤ 50, 1 ≤ M ≤ 10)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-e-ecologia-a1', 'sbc-2014-p1-e-ecologia', 'SBC 2014 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2014 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-e-espiral', 'Espiral', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1500, 'Problema E
-                                              Espiral
-Dado um tabuleiro de dimensões N × N , gostarı́amos de                 C           6
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-e-espiral', 'Espiral', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1500, 'Dado um tabuleiro de dimensões N × N , gostarı́amos de                 C           6
 colocar feijões, um grão em cada quadrado, seguindo uma           1
 espiral como mostrado na figura. Começando do canto            L
 superior esquerdo, com coordenadas (1, 1), e depois indo
@@ -17833,9 +17622,7 @@ Exemplos
  Entrada                                             Saı́da
  1073741824 1152921504603393520                      536871276 536869983', 'See statement.', 'See statement.', '1 ≤ N ≤ 230 and 1 ≤ B ≤ N 2 ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-e-espiral-a1', 'sbc-2015-p1-e-espiral', 'SBC 2015 — 1ª fase — standard', ARRAY['Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2015 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-e-estat-stica-hexa', 'Estatı́stica hexa', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1500, 'Problema E
-                                             Estatı́stica hexa
-Dada uma sequência de inteiros positivos em hexadecimal, por exemplo, S = [9af47c0b, 2545557,
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-e-estat-stica-hexa', 'Estatı́stica hexa', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1500, 'Dada uma sequência de inteiros positivos em hexadecimal, por exemplo, S = [9af47c0b, 2545557,
 ff6447979], definimos soma(S) como sendo a soma de todos os elementos de S. Considere agora uma
 certa permutação dos 16 dı́gitos hexadecimais, por exemplo, p = [4, 9, 5, a, 0, c, f, 3, d, 7, 8, b, 1, 2, 6, e].
 A partir da sequência base S, podemos definir uma sequência transformada S [4] , que é obtida pela
@@ -17874,9 +17661,7 @@ considerando todas as permutações possı́veis dos 16 dı́gitos hexadecimai
  1                                                             0 effffffff1 15dac189
  fffffffff', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-e-estat-stica-hexa-a1', 'sbc-2016-p1-e-estat-stica-hexa', 'SBC 2016 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-e-escala-musical', 'Escala musical', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1500, 'Problema E
-                                        Escala musical
-As notas musicais são as unidades mais básicas da composição musical no ocidente. Muitas pessoas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-e-escala-musical', 'Escala musical', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1500, 'As notas musicais são as unidades mais básicas da composição musical no ocidente. Muitas pessoas
 acreditam que existem apenas 7 notas musicais:
 
                                          dó ré mi fá sol lá si
@@ -17957,9 +17742,7 @@ que “do” < “do#” < “re”, . . .
  12
  3', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 , correspondente ao', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-e-escala-musical-a1', 'sbc-2017-p1-e-escala-musical', 'SBC 2017 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-e-enigma', 'Enigma', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1500, 'Problema E
-                                              Enigma
-Dada uma configuração inicial, a máquina de criptografia alemã Enigma, da Segunda Guerra Mundial,
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-e-enigma', 'Enigma', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1500, 'Dada uma configuração inicial, a máquina de criptografia alemã Enigma, da Segunda Guerra Mundial,
 substituı́a cada letra digitada no teclado por alguma outra letra. A substituição era bastante complexa,
 mas a máquina tinha uma vulnerabilidade: uma letra nunca seria substituı́da por ela mesma! Essa
 vulnerabilidade foi explorada por Alan Turing, que trabalhou na criptoanálise da Enigma durante
@@ -18003,9 +17786,7 @@ mensagem cifrada.
  AAAAABABABABABABABABA                                7
  ABA', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-e-enigma-a1', 'sbc-2018-p1-e-enigma', 'SBC 2018 — 1ª fase — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-e-exibicao-de-peixes', 'Exibição de Peixes', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1500, 'Problema E
-                                     Exibição de Peixes
-O Grande Aquário da Nlogônia recebe milhares de visitantes todo mês. Uma das suas atrações mais
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-e-exibicao-de-peixes', 'Exibição de Peixes', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1500, 'O Grande Aquário da Nlogônia recebe milhares de visitantes todo mês. Uma das suas atrações mais
 populares é a exibição de peixes-palhaço, um salão com vários tanques com cardumes dessa bela
 espécie branca e laranja. Os visitantes têm a oportunidade de aprender muitas curiosidades sobre os
 peixes-palhaço, incluindo sua organização social: cardumes de peixes-palhaço são liderados por fêmeas,
@@ -18051,9 +17832,7 @@ de movimentos necessários.
  3 1
  0 0', 'See statement.', 'See statement.', '2 ≤ N ≤ 3000); 0 ≤ M, F ≤ 105 , M = 0 ou', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-e-exibicao-de-peixes-a1', 'sbc-2019-p1-e-exibicao-de-peixes', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-e-empresa-de-festas', 'Empresa de Festas', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1500, 'Problema E
-                                    Empresa de Festas
-Yankovich trabalha como Engenheiro de Software numa empresa, chamada POI, que promove festas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-e-empresa-de-festas', 'Empresa de Festas', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1500, 'Yankovich trabalha como Engenheiro de Software numa empresa, chamada POI, que promove festas
 online. Para testar os seus sistemas, os empregados organizaram festas e convidaram colegas, mas
 com algumas restrições.
     A empresa tem uma estrutura hierárquica: Cada empregado, com exceção do dono da empresa,
@@ -18107,9 +17886,7 @@ números deve ser o número de festas de que o empregado i participou.
  5 3 8
  3 2 6', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 105 ); 1 ≤ Ai ≤ 105 , 1 ≤ Bi ≤ N ) representando a idade do i; 1 ≤ i ≤ N ; 1 ≤ Lj ≤ AOj ≤ Rj ≤ 105 ) representando o anfitrião d', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-e-empresa-de-festas-a1', 'sbc-2020-p1-e-empresa-de-festas', 'SBC 2020 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2020 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-e-escada-rolante', 'Escada Rolante', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1500, 'Problema E
-                                      Escada Rolante
-Você acaba de inventar um novo tipo de escada rolante: uma escada rolante dupla. Escadas rolantes
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-e-escada-rolante', 'Escada Rolante', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1500, 'Você acaba de inventar um novo tipo de escada rolante: uma escada rolante dupla. Escadas rolantes
 normais levam as pessoas de uma das pontas para a outra, mas não na direção contrária, enquanto
 que as escadas rolantes duplas podem levar pessoas de qualquer uma das pontas para a outra.
     Leva-se 10 segundos para que a escada rolante dupla leve uma pessoa de uma das pontas até a
@@ -18162,9 +17939,7 @@ Saı́da
  10 1
  16 0', 'See statement.', 'See statement.', '1 ≤ N ≤ 104 ), representando quantas pessoas usarão a; 1 ≤ ti ≤ 105 , 0 ≤ di ≤ 1),', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-e-escada-rolante-a1', 'sbc-2021-p1-e-escada-rolante', 'SBC 2021 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-e-estourando-baloes', 'Estourando Balões', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1500, 'Problema E
-                                    Estourando Balões
-Após a cerimônia de encerramento da Maratona um número enorme de balões soltos estão flutuando
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-e-estourando-baloes', 'Estourando Balões', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1500, 'Após a cerimônia de encerramento da Maratona um número enorme de balões soltos estão flutuando
 no espaço do salão. O dono do salão está bravo porque no dia seguinte ocorre outro evento importante
 e os balões precisam ser removidos. Felizmente este ano Carlinhos veio preparado com seu arco e
 flecha para estourar os balões.
@@ -18203,9 +17978,7 @@ flechas que Carlinhos precisa atirar para estourar todos os balões.
  6                                                    3
  5 3 2 4 6 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 5 × 105 ); 1 ≤ Hi ≤ 106 para 1 ≤ i ≤ N )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-e-estourando-baloes-a1', 'sbc-2022-p1-e-estourando-baloes', 'SBC 2022 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-e-extraindo-polen', 'Extraindo Pólen', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1500, 'Problema E
-                                      Extraindo Pólen
-É chegada a primavera, dando inı́cio a mais uma temporada de trabalho intenso na Sociedade das
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-e-extraindo-polen', 'Extraindo Pólen', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1500, 'É chegada a primavera, dando inı́cio a mais uma temporada de trabalho intenso na Sociedade das
 aBelhas de Chapecó (SBC)! No jardim da SBC, N lindas flores floresceram, cada uma com uma certa
 quantidade de grãos de pólen, que serão coletados pelas árduas trabalhadoras da sociedade. Para
 manter o ambiente de trabalho seguro, a SBC tem regras muito estritas para a coleta do pólen, sendo
@@ -18253,9 +18026,7 @@ Saı́da
  3 9                                             9
  21 21 21', 'See statement.', 'See statement.', '1 ≤ N ≤ 106 ) e K (1 ≤ K ≤ 109 ), que representam o; 1 ≤ Fi ≤ 106 para 1 ≤ i ≤ N ) denota a quantidade inic', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-e-extraindo-polen-a1', 'sbc-2023-p1-e-extraindo-polen', 'SBC 2023 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Queue','Deque']::text[], ARRAY['SBC 2023 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-e-estojo-de-joias', 'Estojo de Joias', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1500, 'Problema E
-                                           Estojo de Joias
-A princesa da Nlogônia guarda sua coleção de pérolas em um estojo de jóias quadrado composto de N
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-e-estojo-de-joias', 'Estojo de Joias', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1500, 'A princesa da Nlogônia guarda sua coleção de pérolas em um estojo de jóias quadrado composto de N
 colunas, cada coluna com N caixinhas. Ela coloca um número diferente de pérolas em cada caixinha, e
 organiza o estojo de forma que em cada coluna, de cima para baixo, as caixinhas contenham números
 crescentes de pérolas e que em cada linha, da esquerda para a direita, as caixinhas também contenham
@@ -18318,9 +18089,7 @@ para retornar ao estado original.
    Explicação do exemplo 3 :
    É necessário rotacionar o estojo no sentido anti-horário três vezes.', 'See statement.', 'See statement.', '2 ≤ N ≤; 0 ≤ Ki,j ≤ 105 , para 1 ≤ i ≤ N e 1 ≤ j ≤ N )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-e-estojo-de-joias-a1', 'sbc-2024-p1-e-estojo-de-joias', 'SBC 2024 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2024 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-e-expansao-rodoviaria', 'Expansão rodoviária', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1500, 'Problema E
-                                   Expansão rodoviária
-Diz a lenda que, há muito tempo, o Serviço de Bandeirantes Conectados (SBC) administrava uma
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-e-expansao-rodoviaria', 'Expansão rodoviária', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1500, 'Diz a lenda que, há muito tempo, o Serviço de Bandeirantes Conectados (SBC) administrava uma
 rede de estradas bidirecionais que ligava diversas cidades. Naquela época, o traçado era extremamente
 simples: entre quaisquer duas cidades existia exatamente um único caminho.
     Com o crescimento da população e o aumento no transporte de mercadorias, o Instituto de Cidades
@@ -18363,8 +18132,7 @@ havia uma estrada direta entre as cidades ai e bi no traçado original.
  1 2
  2 3', 'See statement.', 'See statement.', '3 ≤ N ≤ 105 , 2 ≤ M ≤ 4 × 105 ), representando,; 1 ≤ ui , vi ≤ N , ui ̸= vi ), indicando; 1 ≤ ai , bi ≤ N , ai ̸= bi ), representando que', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-e-expansao-rodoviaria-a1', 'sbc-2025-p1-e-expansao-rodoviaria', 'SBC 2025 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Hash Map']::text[], ARRAY['SBC 2025 — 1ª fase, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-e-edicao-de-rede', 'Edição de Rede', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1500, 'Problema E – Edição de Rede
-A empresa Sistemas Brasileiros de Conectividade (SBC) administra uma rede formada por N
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-e-edicao-de-rede', 'Edição de Rede', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1500, 'A empresa Sistemas Brasileiros de Conectividade (SBC) administra uma rede formada por N
 estações, numeradas de 1 a N . Cada conexão da rede é um enlace dedicado formado por dois
 terminais, um em cada estação conectada. As conexões são bidirecionais, e existe no máximo
 uma conexão entre cada par de estações distintas.
@@ -19312,9 +19080,7 @@ bring.', 'Output a single line with an integer indicating the number of balloon 
 satisfy the fairness rule. Because this number can be very large, output the remainder of dividing it by
 998244353.', '1 ≤ N ≤ 109 ) and K (1 ≤ K ≤ 2000),', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-final-b-balanced-balloons-a1', 'sbc-2025-final-b-balanced-balloons', 'SBC 2025 — Final (LATAM) — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — Final (LATAM), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Final (LATAM). Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-g-grover-e-seus-caminhos-especiais', 'Grover e Seus Caminhos Especiais', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1500, 'Problema G
-                      Grover e Seus Caminhos Especiais
-                            Tempo limite: 1 s      Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-g-grover-e-seus-caminhos-especiais', 'Grover e Seus Caminhos Especiais', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1500, 'Tempo limite: 1 s      Limite de memória: 1 GiB
 
 Grover é um cientista da computação indo-americano que quer propor um algoritmo de busca
 quântica que oferece uma aceleração quadrática em relação aos algoritmos de busca clássicos para
@@ -25779,8 +25545,7 @@ A saída deve consistir de um número de $1$ a $3$: qual foi a posição final d
 % will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
 %in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ N ≤ 210^5$; 1 ≤ A, B ≤ 3, A  B$), que indica que o copo ; 1 ≤ N ≤ 2× 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-g-jogo-dos-copos-a1', 'mineira-2023-g-jogo-dos-copos', 'X Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-g-gps', 'GPS', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1600, 'Problema G. GPS
-  Nú, vei, não acredito que o motorista vai ter que dar essa volta toda. Eu poderia só andar um
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-g-gps', 'GPS', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1600, 'Nú, vei, não acredito que o motorista vai ter que dar essa volta toda. Eu poderia só andar um
                              quarteirão que seria muito mais rápido!
 
 Você se encontra em uma cidade, que pode ser representada por um conjunto de N esquinas (vérti-
@@ -25870,8 +25635,7 @@ Explicação do exemplo 3
 
 Neste caso, a única possibilidade é fazer o trajeto inteiro a pé, em 1 + 1 = 2 minutos.', 'See statement.', 'See statement.', '2 ≤ N ≤ 5 × 105 , 0 ≤ C, P ≤ 5 × 105 ); 1 ≤ ai , bi ≤ N , ai ̸= bi ) percorrida por ; 1 ≤ ci ≤ 109 ); 1 ≤ ai , bi ≤ N , ai ̸= bi ) percorrida a pé; 1 ≤ pi ≤ 109 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-g-gps-a1', 'mineira-2025-g-gps', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','Dynamic Programming','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XII Maratona Mineira (2025), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-g-grupos-de-camisas', 'Grupos de camisas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1600, 'Problema G. Grupos de camisas
-Após cada maratona, cabe a nós contemplar tudo aquilo que vivemos: problemas passados, balões
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-g-grupos-de-camisas', 'Grupos de camisas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1600, 'Após cada maratona, cabe a nós contemplar tudo aquilo que vivemos: problemas passados, balões
 conquistados, as amizades que fizemos pelo caminho, e as camisas usadas durante a competição.
 
         Na figura acima, temos quatro camisas, usando sete pregadores, formando três grupos de camisas.
@@ -25916,8 +25680,7 @@ Assim, as duas camisetas ficam pregadas por um mesmo pregador, formando um grupo
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-g-grupos-de-camisas-a1', 'mineira-2026-g-grupos-de-camisas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-g-jogo-do-pre-xo', 'Jogo do prexo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1600, 'Problema G. Jogo do prexo
-Alice e Beto inventaram um jogo com a lousa de sua sala de aula. Para começar, escrevem na lousa
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-g-jogo-do-pre-xo', 'Jogo do prexo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1600, 'Alice e Beto inventaram um jogo com a lousa de sua sala de aula. Para começar, escrevem na lousa
 uma palavra com N letras minúsculas e para cada letra também se escreve um inteiro positivo ou
 negativo para indicar a pontuação de cada uma das letras.
 
@@ -25973,9 +25736,7 @@ tremsotrem
 
                                                                                                 11', 'See statement.', 'See statement.', '1 ≤ N ≤ 10 ), o número de letras, seguido de; 1 ≤ K ≤ N ), o número de letras máximo que s; 1000 ≤ Ci ≤ 1000) indicando a pontuação de cada', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-g-jogo-do-pre-xo-a1', 'minas-2025-g-jogo-do-pre-xo', '1ª Maratona Minas de Minas — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-f-tecle-some', 'Tecle & Some', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1600, 'Problema F
-                                      Tecle & Some
-              Arquivo fonte: tecle.c, tecle.cpp, tecle.java ou tecle.pas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-f-tecle-some', 'Tecle & Some', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1600, 'Arquivo fonte: tecle.c, tecle.cpp, tecle.java ou tecle.pas
 
 Strike Boy, como o apelido sugere, é um garoto fanático por todo tipo de jogos em computador.
 Ele está passando as férias em uma ilha paradisı́aca, onde computadores não são permitidos.
@@ -26053,9 +25814,7 @@ A saı́da deve ser escrita na saı́da padrão.
                                                        #5
                                                        2', 'See statement.', 'See statement.', '0 ≤ S ≤ 10, 000, 000, 000 e 1 ≤ D ≤ 10)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2005-p1-f-tecle-some-a1', 'sbc-2005-p1-f-tecle-some', 'SBC 2005 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2005 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2005 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-f-loop-musical', 'Loop Musical', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1600, 'Problema F
-                                      Loop Musical
-                  Nome do arquivo fonte: loop.c, loop.cpp ou loop.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-f-loop-musical', 'Loop Musical', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1600, 'Nome do arquivo fonte: loop.c, loop.cpp ou loop.java
 
     Um loop musical é um trecho de música que foi composto para repetir continuamente (ou
 seja, o trecho inicia novamente toda vez que chega ao final), sem que se note descontinuidade.
@@ -26102,9 +25861,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    300 450 449 450
    0', 'See statement.', 'See statement.', '2 ≤ N ≤ 104 ); 104 ≤ Hi ≤ 104 para 1 ≤ i ≤ N , H1 6= HN e Hi 6= Hi+1 pa; 1 ≤ i < N )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-f-loop-musical-a1', 'sbc-2008-p1-f-loop-musical', 'SBC 2008 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2008 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-f-torres-de-telefonia-celular', 'Torres de Telefonia Celular', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1600, 'Problema F
-                             Torres de Telefonia Celular
-            Nome do arquivo fonte: celular.c, celular.cpp ou celular.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-f-torres-de-telefonia-celular', 'Torres de Telefonia Celular', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1600, 'Nome do arquivo fonte: celular.c, celular.cpp ou celular.java
 
 Uma nova operadora de telefonia pretende oferecer serviços de telefone residencial em sua
 cidade. Os telefones serão residenciais, mas a operadora vai utilizar tecnologia de telefonia
@@ -26162,9 +25919,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    11 3
    0', 'See statement.', 'See statement.', '3 ≤ N ≤ 40); 0 ≤ X ≤ 104; 0 ≤ Y ≤ 104 ), representando a coordenada de uma resid', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2009-p1-f-torres-de-telefonia-celular-a1', 'sbc-2009-p1-f-torres-de-telefonia-celular', 'SBC 2009 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2009 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2009 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-f-formula-1', 'Fórmula 1', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1600, 'Problema F
-                                          Fórmula 1
-            Nome do arquivo fonte: formula.c, formula.cpp ou formula.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-f-formula-1', 'Fórmula 1', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1600, 'Nome do arquivo fonte: formula.c, formula.cpp ou formula.java
 
     A temporada de Fórmula 1 consiste de uma série de corridas, conhecidas como Grandes
 Prêmios, organizados pela Federação Internacional de Automobilismo (FIA). Os resultados de
@@ -26243,9 +25998,7 @@ de Pilotos, em ordem crescente de identificador, separados por um espaço em br
    3 5 4 2
    0 0', 'See statement.', 'See statement.', '1 ≤ G ≤ 100) e o número de pilotos (1 ≤ P ≤ 100); 1 ≤ S ≤ 10), e após, cada uma das S linhas seguintes; 1 ≤ K ≤ P ), indicando a última ordem de chegada que ; 1 ≤ ki ≤ 100)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-f-formula-1-a1', 'sbc-2010-p1-f-formula-1', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-f-foco', 'Foco', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1600, 'Problema F
-                                                 Foco
-                   Nome do arquivo fonte: foco.c, foco.cpp, ou foco.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-f-foco', 'Foco', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1600, 'Nome do arquivo fonte: foco.c, foco.cpp, ou foco.java
 
      Daniel está fazendo um curso de Visão Computacional e decidiu reproduzir um trabalho
 muito interessante visto em aula: ele tirou várias fotos de uma mesma cena, variando apenas
@@ -26292,9 +26045,7 @@ Exemplos
  5 6
  1 2', 'See statement.', 'See statement.', '1 ≤ N ≤ 106; 1 ≤ A ≤ B ≤ 109', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2011-p1-f-foco-a1', 'sbc-2011-p1-f-foco', 'SBC 2011 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2011 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2011 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-f-perdido-na-noite', 'Perdido na Noite', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1600, 'Problema F
-                                      Perdido na Noite
-                                   Arquivo: perdido.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-f-perdido-na-noite', 'Perdido na Noite', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1600, 'Arquivo: perdido.[c|cpp|java]
 
     Numa cidade da Nlogônia, o sistema viário é composto de N rotatórias e N − 1 ruas, sendo que
 cada rua liga duas rotatórias distintas. Utilizando o sistema viário, é possível ir de qualquer rotatória
@@ -26349,9 +26100,7 @@ Exemplos
     3 4
     4 5', 'See statement.', 'See statement.', '3 ≤ N ≤ 100; 1 ≤ A, B, C ≤ N; 1 ≤ X, Y ≤ N ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-f-perdido-na-noite-a1', 'sbc-2012-p1-f-perdido-na-noite', 'SBC 2012 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2012 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-f-triangulos', 'Triângulos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1600, 'Problema F
-                                                   Triângulos
-                                           Arquivo: triangulos.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-f-triangulos', 'Triângulos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1600, 'Arquivo: triangulos.[c|cpp|java]
 
 São dados N pontos em uma circunferência. Você deve escrever um programa que determine quantos
 triângulos equiláteros distintos podem ser construı́dos usando esses pontos como vértices.
@@ -26396,9 +26145,7 @@ Exemplos
  6                                                          1
  3 4 2 1 5 3', 'See statement.', 'See statement.', '1 ≤ i ≤ (N − 1), Xi representa o comprimento do arco e; 3 ≤ N ≤ 105; 1 ≤ Xi ≤ 103 , para 1 ≤ i ≤ N', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-f-triangulos-a1', 'sbc-2013-p1-f-triangulos', 'SBC 2013 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2013 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-f-teletransporte', 'Teletransporte', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1600, 'Problema F
-                                          Teletransporte
-                                    Arquivo: teletransporte.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-f-teletransporte', 'Teletransporte', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1600, 'Arquivo: teletransporte.[c|cpp|java]
 
     A Confederação Galática instalou um novo sistema de teletransporte em suas naves espaciais. Cada
 nave recebeu uma cabine de teletransporte, na qual há um painel com quatro botões. Cada botão é
@@ -26472,9 +26219,7 @@ Exemplos
  2 1 3 2
  2 2 3 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 100) e L (0 ≤ L < 230 ), indicando; 1 ≤ S, T ≤ N ), indicando respectivamente a nave de pa; 1 ≤ i ≤ N , contém quatro inteiros A, B, C e D (1 ≤ A', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-f-teletransporte-a1', 'sbc-2014-p1-f-teletransporte', 'SBC 2014 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2014 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-f-fatorial', 'Fatorial', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1600, 'Problema F
-                                             Fatorial
-O fatorial de um número inteiro positivo N , denotado por N !, é definido como o produto dos inteiros
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-f-fatorial', 'Fatorial', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1600, 'O fatorial de um número inteiro positivo N , denotado por N !, é definido como o produto dos inteiros
 positivos menores do que ou iguais a N . Por exemplo 4! = 4 × 3 × 2 × 1 = 24.
     Dado um inteiro positivo N , você deve escrever um programa para determinar o menor número k
 tal que N = a1 ! + a2 ! + . . . + ak !, onde cada ai , para 1 ≤ i ≤ k, é um número inteiro positivo.
@@ -26496,9 +26241,7 @@ Exemplos
  Entrada                                             Saı́da
  25                                                  2', 'See statement.', 'See statement.', '1 ≤ i ≤ k, é um número inteiro positivo; 1 ≤ N ≤ 105 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-f-fatorial-a1', 'sbc-2015-p1-f-fatorial', 'SBC 2015 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2015 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-f-fundindo-arvores', 'Fundindo árvores', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1600, 'Problema F
-                                               Fundindo árvores
-Em Computação árvores são objetos estranhos: a raiz está no topo e as folhas estão embaixo! Uma
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-f-fundindo-arvores', 'Fundindo árvores', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1600, 'Em Computação árvores são objetos estranhos: a raiz está no topo e as folhas estão embaixo! Uma
 árvore é uma estrutura de dados composta de N vértices conectados por N 1 arestas de forma que é
 possı́vel chegar de um vértice a qualquer outro vértice seguindo as arestas. Em uma árvore enraizada,
 cada aresta conecta um vértice pai a um vértice filho. Um único vértice não tem pai, e é chamado de
@@ -26615,9 +26358,7 @@ na entrada.
  2 0 0
  1 2 0', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-f-fundindo-arvores-a1', 'sbc-2016-p1-f-fundindo-arvores', 'SBC 2016 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-f-fase', 'Fase', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1600, 'Problema F
-                                                Fase
-Em diversas competições acadêmicas, como a Olimpı́ada Brasileira de Informática (OBI), uma certa
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-f-fase', 'Fase', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1600, 'Em diversas competições acadêmicas, como a Olimpı́ada Brasileira de Informática (OBI), uma certa
 quantidade de competidores se classifica de uma fase para a fase seguinte, garantindo uma das vagas
 disponı́veis. Entretanto, normalmente essa quantidade é variável, pois dada uma certa quantidade
 mı́nima de classificados, é frequente que haja empate na última vaga de classificação. Neste caso, é
@@ -26658,9 +26399,7 @@ Saı́da
  500
  500', 'See statement.', 'See statement.', '1 ≤ N ≤ 1000, representando o número; 1 ≤ K ≤ N , indicando o número mı́nimo de', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-f-fase-a1', 'sbc-2017-p1-f-fase', 'SBC 2017 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-f-festival', 'Festival', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1600, 'Problema F
-                                               Festival
-Festivais de música deveriam ser pura diversão, porém alguns deles se tornam tão grandes a ponto de
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-f-festival', 'Festival', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1600, 'Festivais de música deveriam ser pura diversão, porém alguns deles se tornam tão grandes a ponto de
 causar dor de cabeça para os frequentadores. O problema é que são tantas atrações boas tocando em
 tantos palcos que a simples tarefa de escolher quais shows assistir se torna complexa.
     Para ajudar frequentadores de tais festivais, Fulano decidiu criar um aplicativo que, após avaliar
@@ -26710,9 +26449,7 @@ previamente ouvidas dos artistas escolhidos, ou −1 caso não haja solução
  2 13 14 99 15 20 99
  2 13 15 99 18 20 99', 'See statement.', 'See statement.', '1 ≤ N ≤ 10 representando o número de palcos; 1 ≤ ij < fj ≤ 86400 e; 1 ≤ oj ≤ 1000), representando respectivamente os horá', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-f-festival-a1', 'sbc-2018-p1-f-festival', 'SBC 2018 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-f-florestas-em-risco', 'Florestas em Risco', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1600, 'Problema F
-                                       Florestas em Risco
-Devido ao avanço do desmatamento nas última décadas, os rios da Nlogônia registraram uma signi-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-f-florestas-em-risco', 'Florestas em Risco', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1600, 'Devido ao avanço do desmatamento nas última décadas, os rios da Nlogônia registraram uma signi-
 ficativa redução em sua vazão. Como a Nlogônia é uma nação desenvolvida que baseia suas decisões
 em dados técnicos, o lı́der da nação encomendou uma série de estudos para compreender que medidas
 devem ser tomadas para garantir água para as próximas gerações.
@@ -26770,9 +26507,7 @@ pode ser usado para garantir a preservação de P % do território da Nlogô
  50
  0 0 4 4', 'See statement.', 'See statement.', '1 ≤ N ≤ 104 ) indicando a quantidade de segmentos de; 1 ≤ P ≤ 100) indicando o percentual mı́nimo do territo', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-f-florestas-em-risco-a1', 'sbc-2019-p1-f-florestas-em-risco', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-f-fastminton', 'Fastminton', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1600, 'Problema F
-                                         Fastminton
-A Comissão RegionaL de Fastminton (CRLF) organiza torneiros anuais deste novo e inusitado esporte
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-f-fastminton', 'Fastminton', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1600, 'A Comissão RegionaL de Fastminton (CRLF) organiza torneiros anuais deste novo e inusitado esporte
 derivado do badminton. Neste ano, ocorrerá a terceira edição do grande torneio.
     O antigo programador da comissão (sobrinho da diretora) desenvolveu um sistema para capturar
 e armazenar o resultado de cada ponto de uma partida, cujo resultado é salvo para um arquivo. Com
@@ -26827,9 +26562,7 @@ adicionada no final do marcador de games do jogador ganhador da partida.
  Exemplo de entrada 3                            Exemplo de saı́da 3
  RSRSSRRRRRRRRRRSSSSRRSQ                         2 (winner) - 0', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-f-fastminton-a1', 'sbc-2020-p1-f-fastminton', 'SBC 2020 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2020 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-f-fuga-da-prisao', 'Fuga da Prisão', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1600, 'Problema F
-                                         Fuga da Prisão
-Michael e seu irmão Lincoln foram presos injustamente, na mesma prisão, mas Michael tem um plano
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-f-fuga-da-prisao', 'Fuga da Prisão', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1600, 'Michael e seu irmão Lincoln foram presos injustamente, na mesma prisão, mas Michael tem um plano
 para resgatar seu irmão. Pode-se considerar que a prisão é um conjunto de polı́gonos convexos no
 plano, cujas arestas são muros. Os muros de polı́gonos distintos não se interceptam, mas os polı́gonos
 podem ser encaixados, isto é, um polı́gono pode estar dentro de outro polı́gono. Pode-se considerar que
@@ -26901,9 +26634,7 @@ possı́vel.
  2 2
  1 2', 'See statement.', 'See statement.', '1 ≤ N ≤ 2 × 105 ), que é o número de polı́gonos; 3 ≤ ki ≤ 6 × 105 ), seguida de ki linhas, cada uma das; 109 ≤ xj , yj ≤ 109 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-f-fuga-da-prisao-a1', 'sbc-2021-p1-f-fuga-da-prisao', 'SBC 2021 — 1ª fase — standard', ARRAY['Graph Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2021 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-f-forca-multidimensional', 'Forca Multidimensional', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1600, 'Problema F
-                                Forca Multidimensional
-O Jogo da Forca Multidimensional tem regras muito peculiares. De certa forma, é como se você
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-f-forca-multidimensional', 'Forca Multidimensional', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1600, 'O Jogo da Forca Multidimensional tem regras muito peculiares. De certa forma, é como se você
 estivesse jogando várias partidas do tradicional Jogo da Forca ao mesmo tempo, com a diferença que
 as palavras não precisam existir no dicionário. Se você nunca jogou o Jogo da Forca, não se preocupe:
 toda a informação que você precisa estará abaixo.
@@ -26950,9 +26681,7 @@ M.
  *eto
  *ano', 'See statement.', 'See statement.', '1 ≤ N ≤ 104 e 1 ≤ C ≤ 12,', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-f-forca-multidimensional-a1', 'sbc-2022-p1-f-forca-multidimensional', 'SBC 2022 — 1ª fase — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-f-ferias-cansativas', 'Férias Cansativas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1600, 'Problema F
-                                       Férias Cansativas
-William está planejando suas próximas férias. Um tema recorrente em todas as suas férias é a neces-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-f-ferias-cansativas', 'Férias Cansativas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1600, 'William está planejando suas próximas férias. Um tema recorrente em todas as suas férias é a neces-
 sidade de lidar com o cansaço. Alguns dias ele nem aproveita muito, pois depois de várias atividades
 o cansaço começa a ser maior do que ele consegue suportar.
     Desta vez, William teve uma ideia. Ele vai estimar o impacto de cada uma das atividades de turismo
@@ -27011,9 +26740,7 @@ cansativas e revigorantes) que William conseguirá realizar.
  50
  10', 'See statement.', 'See statement.', '1 ≤ D ≤; 1 ≤ C ≤ 104 e 1 ≤ R ≤ 104 ); 1 ≤ Ci ≤ 105; 1 ≤ i ≤ C), indicando o consumo de disposição para u; 1 ≤ Ri ≤ 105; 1 ≤ i ≤ R), indicando o retorno de disposição para u', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-f-ferias-cansativas-a1', 'sbc-2023-p1-f-ferias-cansativas', 'SBC 2023 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2023 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-f-fracoes-cont-nuas', 'Frações Contı́nuas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1600, 'Problema F
-                                      Frações Contı́nuas
-O pequeno Charles era um dos melhores programadores competitivos do mundo. No entanto, ele
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-f-fracoes-cont-nuas', 'Frações Contı́nuas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1600, 'O pequeno Charles era um dos melhores programadores competitivos do mundo. No entanto, ele
 nunca gostou muito de programar. Agora que está aposentado, ele pode dedicar seus estudos ao que
 realmente ama: frações contı́nuas.
     Para se preparar para a próxima Imensa Competição de Phrações Contı́nuas (ICPC), ele precisa
@@ -27042,9 +26769,7 @@ linha contendo o valor de a.
  Exemplo de entrada 2                                   Exemplo de saı́da 2
  10                                                     89', 'See statement.', 'See statement.', '1 ≤ N ≤ 40)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-f-fracoes-cont-nuas-a1', 'sbc-2024-p1-f-fracoes-cont-nuas', 'SBC 2024 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['SBC 2024 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-f-frangolino-ali-na-mesa', 'Frangolino ali na mesa', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1600, 'Problema F
-                                Frangolino ali na mesa
-Washington, um chef entusiasta da inteligência artificial e amante da culinária, decidiu construir
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-f-frangolino-ali-na-mesa', 'Frangolino ali na mesa', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1600, 'Washington, um chef entusiasta da inteligência artificial e amante da culinária, decidiu construir
 um robô-garçom para o seu novo restaurante, o Frangolino, especializado em frangos empanados.
 Washington abrirá o restaurante para uma noite especial entre amigos e decidiu testar o robô-garçom
 nessa ocasião.
@@ -27085,8 +26810,7 @@ imprimir p × q −1 mod (109 + 7), onde q −1 é o inverso multiplicativo de 
                                                      1
                                                      0', 'See statement.', 'See statement.', '1 ≤ N, Q ≤ 105 ), o número de mesas e o; 1 ≤ Xi ≤ N ) separados por espaço', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-f-frangolino-ali-na-mesa-a1', 'sbc-2025-p1-f-frangolino-ali-na-mesa', 'SBC 2025 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — 1ª fase, problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-f-flor', 'Flor', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1600, 'Problema F – Flor
-Nas águas serenas da Amazônia, lendas ribeirinhas falam de uma Vitória-Régia mágica. Difer-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-f-flor', 'Flor', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1600, 'Nas águas serenas da Amazônia, lendas ribeirinhas falam de uma Vitória-Régia mágica. Difer-
 entemente das flores comuns, esta reage a oferendas. Ao depositar sementes em seu centro, a flor
 gentilmente fecha suas pétalas e mergulha no rio. Instantes depois, ela ressurge e desabrocha,
 devolvendo uma quantidade estritamente maior de sementes.
@@ -28223,9 +27947,7 @@ y is an irreducible fraction indicating the minimum total payment for cleaning t
 those guidelines.
 If the requirements cannot be fulfilled, output a line with the character “*” (asterisk) instead.', '1 ≤ N, S ≤ 105 and 1 ≤ K ≤ 109 ), indicating; 1 ≤ Hi ≤ 105 ), Li and Ui; 1 ≤ Li ≤ Ui ≤ 100), indicating that the cleaner can cl', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-final-c-clean-streets-a1', 'sbc-2025-final-c-clean-streets', 'SBC 2025 — Final (LATAM) — standard', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2025 — Final (LATAM), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Final (LATAM). Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-h-harmonia-palindromica-binaria', 'Harmonia Palíndromica Binária', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1600, 'Problema H
-                       Harmonia Palíndromica Binária
-                         Tempo limite: 0,5 s   Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-h-harmonia-palindromica-binaria', 'Harmonia Palíndromica Binária', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1600, 'Tempo limite: 0,5 s   Limite de memória: 1 GiB
 
 Várias alternativas quânticas a algoritmos tradicionais vem sendo pesquisadas para resolver os mais
 diversos problemas.   Usando portas lógicas quânticas, é possível ganhar desempenho em alguns
@@ -30050,9 +29772,7 @@ enumerate
 enumerate
 multicols', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^6$; 1 ≤ N ≤ 10^6$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-h-tenet-a1', 'mineira-2023-h-tenet', 'X Maratona Mineira — standard', ARRAY['Dynamic Programming','String Algorithms','Math / Number Theory','Greedy','Brute Force']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-h-horoscopo', 'Horóscopo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1700, 'Problema H. Horóscopo
-
-Tobias é o organizador do Torneio Mineiro de Totó, o Totórneio Mineiro. O Totórneio é composto
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-h-horoscopo', 'Horóscopo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1700, 'Tobias é o organizador do Torneio Mineiro de Totó, o Totórneio Mineiro. O Totórneio é composto
 por 2N times (identificados por inteiros 1, . . . , 2N ) e é jogado no formato “mata-mata” (logo, o
 campeonato tem N rodadas):
 
@@ -30123,9 +29843,7 @@ o que é impossível dado que o time 1 sempre vence o time 2.
  3                                                3 4 1 7 6 8 5 2
  0 3 2 1 1 2 1 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 18), o número de rodadas do; 1 ≤ ri ≤ N ) sendo ri a rodada que o astroló', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-h-horoscopo-a1', 'mineira-2025-h-horoscopo', 'XII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-h-heranca-cultural', 'Herança cultural', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1700, 'Problema H. Herança cultural
-
-A equipe da Maratona Mineira está organizando uma caça ao tesouro. O tesouro serão dois baús do
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-h-heranca-cultural', 'Herança cultural', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1700, 'A equipe da Maratona Mineira está organizando uma caça ao tesouro. O tesouro serão dois baús do
 mais delicioso doce de leite do mundo, herança cultural de Minas Gerais, que serão escondidos no
 mapa do jogo.
 
@@ -30195,8 +29913,7 @@ Neste exemplo não existem escolhas válidas para as posições dos baús.
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-h-heranca-cultural-a1', 'mineira-2026-h-heranca-cultural', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','String Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set','Hash Map']::text[], ARRAY['XIII Maratona Mineira (2026), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-h-mineiridade-de-um-texto', 'Mineiridade de um texto', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1700, 'Problema H. Mineiridade de um texto
-Durante o período de férias de julho, Jéssica, estudante do segundo período do curso de Sistemas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-h-mineiridade-de-um-texto', 'Mineiridade de um texto', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1700, 'Durante o período de férias de julho, Jéssica, estudante do segundo período do curso de Sistemas
 de Informação na Universidade do Mineiro, decidiu se dedicar a um desao divertido:        medir a
 mineiridade de textos escritos em português.
 
@@ -30259,9 +29976,7 @@ tambem .
 
                                                                                                      13', 'See statement.', 'See statement.', '1 ≤; 0 ≤ P ≤ 10000), que representa a pontuação a', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-h-mineiridade-de-um-texto-a1', 'minas-2025-h-mineiridade-de-um-texto', '1ª Maratona Minas de Minas — standard', ARRAY['String Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-g-regata-de-cientistas', 'Regata de Cientistas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1700, 'Problema G
-                                Regata de Cientistas
-            Arquivo fonte: regata.c, regata.cpp, regata.java ou regata.pas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-g-regata-de-cientistas', 'Regata de Cientistas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1700, 'Arquivo fonte: regata.c, regata.cpp, regata.java ou regata.pas
 
 Todos os anos, desde 1996, cientistas da computação do mundo todo se encontram para a famosa
 Regata dos Cientistas. A competição consiste em uma corrida de barcos com obstáculos pelo
@@ -30299,9 +30014,7 @@ A saı́da deve ser escrita na saı́da padrão.
       5 0 5 1
       0 0 0 0 0', 'See statement.', 'See statement.', '5000 ≤ x, y ≤ 5000', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2005-p1-g-regata-de-cientistas-a1', 'sbc-2005-p1-g-regata-de-cientistas', 'SBC 2005 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2005 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2005 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-g-set', 'Set', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1700, 'Problema G
-                                                Set
-                     Nome do arquivo fonte: set.c, set.cpp ou set.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-g-set', 'Set', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1700, 'Nome do arquivo fonte: set.c, set.cpp ou set.java
 
     Set é um jogo jogado com um baralho no qual cada carta pode ter uma, duas ou três figuras.
 Todas as figuras em uma carta são iguais, e podem ser cı́rculos, quadrados ou triângulos.
@@ -30363,9 +30076,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    dois triangulos
    0', 'See statement.', 'See statement.', '3 ≤ N ≤ 3 × 104 ), indicando o número de cartas na me', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-g-set-a1', 'sbc-2008-p1-g-set', 'SBC 2008 — 1ª fase — standard', ARRAY['String Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2008 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-g-registrador-de-deslocamento', 'Registrador de Deslocamento', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1700, 'Problema G
-                              Registrador de Deslocamento
-     Nome do arquivo fonte: registrador.c, registrador.cpp ou registrador.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-g-registrador-de-deslocamento', 'Registrador de Deslocamento', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1700, 'Nome do arquivo fonte: registrador.c, registrador.cpp ou registrador.java
 
      Um Registrador de Deslocamento é um circuito que desloca de uma posição os elementos
 de um vetor de bits. O registrador de deslocamento tem uma entrada (um bit) e uma saı́da
@@ -30434,9 +30145,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    4d 1a
    0 0', 'See statement.', 'See statement.', '2 ≤ N ≤ 32) e o número de torneiras (2 ≤ T ≤ N )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2009-p1-g-registrador-de-deslocamento-a1', 'sbc-2009-p1-g-registrador-de-deslocamento', 'SBC 2009 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2009 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2009 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-g-guerra-nas-estrelas', 'Guerra nas estrelas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1700, 'Problema G
-                                 Guerra nas estrelas
-               Nome do arquivo fonte: guerra.c, guerra.cpp ou guerra.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-g-guerra-nas-estrelas', 'Guerra nas estrelas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1700, 'Nome do arquivo fonte: guerra.c, guerra.cpp ou guerra.java
 
     Há muito tempo atrás, em uma galáxia muito, muito distante, havia um império que do-
 minava a todos. Uma aliança rebelde, descontente com essa situação, decidiu lutar contra tais
@@ -30493,9 +30202,7 @@ naves é sempre maior que zero.
    1 -4 0
    1 0 -1', 'See statement.', 'See statement.', '103 ≤ X ≤ 103 , −103 ≤ Y ≤ 103 , −103 ≤ Z ≤ 103 ); os', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-g-guerra-nas-estrelas-a1', 'sbc-2010-p1-g-guerra-nas-estrelas', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-g-guarda-costeira', 'Guarda Costeira', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1700, 'Problema G
-                                  Guarda Costeira
-               Nome do arquivo fonte: guarda.c, guarda.cpp, ou guarda.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-g-guarda-costeira', 'Guarda Costeira', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1700, 'Nome do arquivo fonte: guarda.c, guarda.cpp, ou guarda.java
 
     “Pega ladrão! Pega ladrão!” Roubaram a bolsa de uma inocente senhora que caminhava
 na praia da Nlogônia e o ladrão fugiu em direção ao mar. Seu plano parece óbvio: ele pretende
@@ -30538,9 +30245,7 @@ Exemplos
  10 5 5                                 N
  9 12 15                                S', 'See statement.', 'See statement.', '1 ≤ D ≤ 100; 1 ≤ VF ≤ 100; 1 ≤ VG ≤ 100', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2011-p1-g-guarda-costeira-a1', 'sbc-2011-p1-g-guarda-costeira', 'SBC 2011 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2011 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2011 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-g-grid-de-largada', 'Grid de Largada', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1700, 'Problema G
-                                    Grid de Largada
-                                   Arquivo: grid.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-g-grid-de-largada', 'Grid de Largada', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1700, 'Arquivo: grid.[c|cpp|java]
 
     Na Nlogônia, vai ser realizada a sensacional final mundial da fórmula 17. Os competidores se
 alinham na largada e disputam a corrida. Você vai ter acesso aos grids de largada e de chegada. A
@@ -30573,9 +30278,7 @@ Exemplos
     3 1 2 5 4
     5 3 2 1 4', 'See statement.', 'See statement.', '2 ≤ N ≤ 24', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-g-grid-de-largada-a1', 'sbc-2012-p1-g-grid-de-largada', 'SBC 2012 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2012 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-g-linhas-de-conteineres', 'Linhas de contêineres', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1700, 'Problema G
-                                      Linhas de contêineres
-                                       Arquivo: linhas.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-g-linhas-de-conteineres', 'Linhas de contêineres', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1700, 'Arquivo: linhas.[c|cpp|java]
 
 Um carregamento de Nlogs, principal produto de exportação de Nlogônia, está no porto, em contêineres,
 pronto para ser embarcado. Todos os contêineres têm as mesmas dimensões e são cubos. Os contêineres
@@ -30657,9 +30360,7 @@ Exemplos
  1 3 2 4
  17 19 18 20', 'See statement.', 'See statement.', '1 ≤ L ≤ 300; 1 ≤ C ≤ 300; 1 ≤ Xl,c ≤ LC', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-g-linhas-de-conteineres-a1', 'sbc-2013-p1-g-linhas-de-conteineres', 'SBC 2013 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2013 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-g-letras', 'Letras', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1700, 'Problema G
-                                              Letras
-                                   Arquivo: letras.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-g-letras', 'Letras', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1700, 'Arquivo: letras.[c|cpp|java]
 
     Os parques na Cidade da Lógica são reticulados de N × N quadrados (2 ≤ N ≤ 100), onde cada
 quadrado contém uma das 10 primeiras letras ASCII, abcdefghijABCDEFGHIJ, em caixa minúscula ou
@@ -30711,9 +30412,7 @@ Exemplos
  aaAAaAa
  aaaaaAa', 'See statement.', 'See statement.', '2 ≤ N ≤ 100), onde cada; 2 ≤ N ≤ 100), o tamanho do parque', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-g-letras-a1', 'sbc-2014-p1-g-letras', 'SBC 2014 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Dijkstra','Sorting']::text[], ARRAY['Priority Queue']::text[], ARRAY['SBC 2014 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-g-guardioes-curiosos', 'Guardiões Curiosos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1700, 'Problema G
-                                    Guardiões Curiosos
-Oa é um dos mundos mais antigos do universo DC, é lá que habitam os guardiões do universo. Eles
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-g-guardioes-curiosos', 'Guardiões Curiosos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1700, 'Oa é um dos mundos mais antigos do universo DC, é lá que habitam os guardiões do universo. Eles
 administram a tropa dos lanternas verdes, uma das maiores forças do universo! Todos sabem que os
 lanternas verdes sabem voar devido ao poder do anel, porém nem todos os habitantes de Oa fazem
 parte da tropa. Para esses habitantes está difı́cil se locomover entre as cidades, pois não há estradas!
@@ -30755,9 +30454,7 @@ Exemplos
  Entrada                                              Saı́da
  4 3                                                  16', 'See statement.', 'See statement.', '1 ≤ N ≤ 102 ) e K; 1 ≤ K ≤ N )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-g-guardioes-curiosos-a1', 'sbc-2015-p1-g-guardioes-curiosos', 'SBC 2015 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2015 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-g-go', 'Go', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1700, 'Problema G
-                                             Go
-Go       é até parecido com o tradicional jogo de Go, mas é bem mais
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-g-go', 'Go', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1700, 'Go       é até parecido com o tradicional jogo de Go, mas é bem mais
 fácil! Ele é jogado em um tabuleiro quadrado de dimensão N , inicial-
 mente vazio, no qual dois jogadores, um jogando com as pedras pretas
 e o outro com as brancas, se alternam colocando uma pedra por vez
@@ -30815,9 +30512,7 @@ tencentes às pretas e às brancas.
  251 269
  499 498', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-g-go-a1', 'sbc-2016-p1-g-go', 'SBC 2016 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-g-ginastica', 'Ginástica', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1700, 'Problema G
-                                           Ginástica
-Vinı́cius gosta muito de se exercitar na academia de ginástica. Ele fez um acordo com o seu treinador
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-g-ginastica', 'Ginástica', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1700, 'Vinı́cius gosta muito de se exercitar na academia de ginástica. Ele fez um acordo com o seu treinador
 para ter programas de exercı́cios diferentes a cada vez que usar a bicicleta ergométrica. Um programa,
 na linguagem das academias, é uma sequência de nı́veis de dificuldade do exercı́cio. Os programas de
 Vinı́cius para a bicicleta ergométrica devem ter a mesma duração em minutos e os nı́veis de dificul-
@@ -30846,9 +30541,7 @@ esse número módulo 109 + 7.
  Exemplo de entrada 3                               Exemplo de saı́da 3
  50 1 100000                                        738072143', 'See statement.', 'See statement.', '1 ≤ T ≤ 50, 1 ≤ M <', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-g-ginastica-a1', 'sbc-2017-p1-g-ginastica', 'SBC 2017 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-g-gasolina', 'Gasolina', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1700, 'Problema G
-                                               Gasolina
-Terminada a greve dos caminhoneiros, você e os demais especialistas em logı́stica da Nlogônia agora têm
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-g-gasolina', 'Gasolina', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1700, 'Terminada a greve dos caminhoneiros, você e os demais especialistas em logı́stica da Nlogônia agora têm
 a tarefa de planejar o reabastecimento dos postos da cidade. Para isso, foram coletadas informações
 sobre os estoques das R refinarias e sobre as demandas dos P postos de gasolina. Além disso, há
 restrições contratuais que fazem com que algumas refinarias não possam atender alguns postos; quando
@@ -30921,9 +30614,7 @@ completamente abastecidos. Caso isso não seja possı́vel, imprima −1.
  1 1 100
  1 2 200', 'See statement.', 'See statement.', '1 ≤ P, R ≤ 1000 e 1 ≤ C ≤ 20000); 1 ≤ Di ≤ 104 ),; 1 ≤ Ei ≤ 104 ), representando os estoques, em litros d; 1 ≤ I ≤ P; 1 ≤ J ≤ R e 1 ≤ T ≤ 106 ), onde I é a identificação', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-g-gasolina-a1', 'sbc-2018-p1-g-gasolina', 'SBC 2018 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-g-guardando-enfeites', 'Guardando Enfeites', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1700, 'Problema G
-                                    Guardando Enfeites
-Sicrana adora enfeites. Em casa, ela tem N enfeites que são exibidos enfileirados em uma grande
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-g-guardando-enfeites', 'Guardando Enfeites', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1700, 'Sicrana adora enfeites. Em casa, ela tem N enfeites que são exibidos enfileirados em uma grande
 prateleira. Cada enfeite é identificado por um inteiro distinto entre 1 e N .
     Um dia, enquanto jogava bola dentro de casa, Fulano, filho de Sicrana, acertou a prateleira de
 enfeites de sua mãe, derrubando todos no chão. Mas felizmente nenhum enfeite foi danificado com a
@@ -30964,9 +30655,7 @@ que resulte na confiança máxima, qualquer uma delas será aceita.
  15 1
  33 42', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), indicando o número de enfeites', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-g-guardando-enfeites-a1', 'sbc-2019-p1-g-guardando-enfeites', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-g-game-show', 'Game Show!', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1700, 'Problema G
-                                         Game Show!
-A Sociedade de Bons Competidores (SBC) organiza shows televisivos (e agora também transmitidos
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-g-game-show', 'Game Show!', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1700, 'A Sociedade de Bons Competidores (SBC) organiza shows televisivos (e agora também transmitidos
 online!) para os seus competidores filiados. A SBC usa um sistema de créditos, denominados sbecs,
 que podem ser usados para participar de suas competições ou podem ser trocados por prêmios no final
 de cada temporada. Eles iniciaram um novo tipo de jogo, e precisam fazer algumas simulações para
@@ -31005,9 +30694,7 @@ para aquela sequência de caixas.
  40
  -50', 'See statement.', 'See statement.', '1 ≤ C ≤ 100, o número de caixas do jogo; 1000 ≤ V ≤ 1000, correspondente ao conteúdo da caixa cor', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-g-game-show-a1', 'sbc-2020-p1-g-game-show', 'SBC 2020 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2020 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-g-garantindo-o-treino', 'Garantindo o Treino', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1700, 'Problema G
-                                     Garantindo o Treino
-Juan decidiu começar a se exercitar e está começando a preparar uma sessão de treinamento.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-g-garantindo-o-treino', 'Garantindo o Treino', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1700, 'Juan decidiu começar a se exercitar e está começando a preparar uma sessão de treinamento.
    Ele sabe que em alguns dias pode não querer fazer todos os exercı́cios de sua sessão. Ele então
 decidiu criar algumas regras para evitar pular a sessão inteira e acabar não se exercitando, mas de
 forma que ainda possa evitar alguns exercı́cios de vez em quando.
@@ -31047,9 +30734,7 @@ sessões válidas, imprima uma linha contendo a string “IMPOSSIBLE” (sem a
  Exemplo de entrada 3                                    Exemplo de saı́da 3
  7                                                       IMPOSSIBLE', 'See statement.', 'See statement.', '2 ≤ N ≤ 1015 ), representando', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-g-garantindo-o-treino-a1', 'sbc-2021-p1-g-garantindo-o-treino', 'SBC 2021 — 1ª fase — standard', ARRAY['Graph Algorithms','String Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-g-geometria-triangular', 'Geometria Triangular', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1700, 'Problema G
-                                    Geometria Triangular
-Todo polı́gono pode ser construı́do juntando-se triângulos. Em particular, podemos fazer isso ite-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-g-geometria-triangular', 'Geometria Triangular', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1700, 'Todo polı́gono pode ser construı́do juntando-se triângulos. Em particular, podemos fazer isso ite-
 rativamente: começamos com um triângulo, adicionamos um segundo triângulo identificando um de
 seus lados a um dos lados do triângulo inicial, adicionamos um terceiro triângulo identificando um de
 seus lados a um dos lados livres de um dos triângulos originais e assim por diante. Consideraremos
@@ -31105,9 +30790,7 @@ uma casa decimal.
 primeiro e o segundo exemplo. Note como S1 = {a, c, d} é um subconjunto válido para o primeiro caso.
 O triângulo b é deixado de fora, mas todos os seus lados estão presentes nos triângulos selecionados.', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 correspondendo ao número de', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-g-geometria-triangular-a1', 'sbc-2022-p1-g-geometria-triangular', 'SBC 2022 — 1ª fase — standard', ARRAY['Geometry','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2022 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-g-grande-tratado-da-bytelandia', 'Grande Tratado da Bytelândia', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1700, 'Problema G
-                         Grande Tratado da Bytelândia
-A Grande Guerra da Bytelândia chegou ao fim. Os reinos restantes agora estão discutindo o Tratado
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-g-grande-tratado-da-bytelandia', 'Grande Tratado da Bytelândia', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1700, 'A Grande Guerra da Bytelândia chegou ao fim. Os reinos restantes agora estão discutindo o Tratado
 de Divisão, que dividirá todas as terras do mundo entre eles. Este tratado se refere não apenas ao
 mundo conhecido, mas também a quaisquer territórios ainda não descobertos ou habitados, incluindo
 terra ou mar. Podemos assumir que o mundo é um plano infinito.
@@ -31150,9 +30833,7 @@ garantido que sempre haverá pelo menos um reino assim.
  6 3
  4 3', 'See statement.', 'See statement.', '2 ≤ N ≤ 105 ), o número de reinos; 0 ≤ X, Y ≤ 104 ), as coordenadas 2D da localização d', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-g-grande-tratado-da-bytelandia-a1', 'sbc-2023-p1-g-grande-tratado-da-bytelandia', 'SBC 2023 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-g-geografia-dos-rios', 'Geografia dos Rios', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1700, 'Problema G
-                                     Geografia dos Rios
-Ao estudar a geografia dos rios do mundo, você se pergunta: quando dois rios se unem, quem escolhe
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-g-geografia-dos-rios', 'Geografia dos Rios', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1700, 'Ao estudar a geografia dos rios do mundo, você se pergunta: quando dois rios se unem, quem escolhe
 qual vai ser o nome do rio a partir dessa junção? De fato, a resposta é simples: com a união de dois
 rios, o nome passa a ser o nome daquele que tinha maior volume de água. Dado que todos os rios
 eventualmente se unem e desaguam no mar, um problema interessante é calcular, dado o nome de
@@ -31194,9 +30875,7 @@ Q linhas: após cada operação, o nome do rio que desagua no mar.
  3 2
  1 2', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ): o número de nascentes; 1 ≤ li ≤ 109 ): o número de litros de água que nasce; 1 ≤ ai , bi < N + i) indicam que os rios ai e bi se un; 1 ≤ Q ≤ 105 ), o número de operações; 1 ≤ ni ≤ N e; 1 ≤ qi ≤ 109 ), significando que na nascente represent', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-g-geografia-dos-rios-a1', 'sbc-2024-p1-g-geografia-dos-rios', 'SBC 2024 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2024 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-g-gerador-universal', 'Gerador universal', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1700, 'Problema G
-                                      Gerador universal
-Sandy está desenvolvendo um novo computador como parte do ambicioso projeto Sistema Binário
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-g-gerador-universal', 'Gerador universal', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1700, 'Sandy está desenvolvendo um novo computador como parte do ambicioso projeto Sistema Binário
 Compactador (SBC). Esse projeto faz parte de um grande desafio tecnológico conhecido como Interface
 de Codificação por Padrões Compactos (ICPC), cuja meta é atingir a máxima eficiência na escrita de
 grandes volumes de dados.
@@ -31255,8 +30934,7 @@ significativo.
  10                                              01000011 2
  0101001111', 'See statement.', 'See statement.', '0 ≤; 8 ≤ N ≤ 4096), o comprimento de C', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-g-gerador-universal-a1', 'sbc-2025-p1-g-gerador-universal', 'SBC 2025 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — 1ª fase, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-g-genes', 'Genes', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1700, 'Problema G – Genes
-Uma sequência de DNA é representada por uma cadeia de caracteres T . Também são conhecidos
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-g-genes', 'Genes', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1700, 'Uma sequência de DNA é representada por uma cadeia de caracteres T . Também são conhecidos
 diversos genes, representados por cadeias de caracteres e ordenados do mais relevante para o
 menos relevante. Os genes são numerados sequencialmente, começando de 1.
 São feitas Q consultas. Cada uma delas delimita um trecho de T , entre os ı́ndices Li e Ri ,
@@ -32327,9 +32005,7 @@ The expected number of digits needed to display the quotient A j
 random between 1 and N , can be expressed as an irreducible fraction P/Q, with Q and M = 998244353
 coprime. Let Q−1 be the modular multiplicative inverse of Q modulo M , that is, Q · Q−1 ≡ 1 (mod M ).', '1 ≤ N ≤ 105 ) indicating the number of currencies; 1 ≤ Ai ≤ 105 for i = 1, 2, ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-final-d-displaying-decimals-a1', 'sbc-2025-final-d-displaying-decimals', 'SBC 2025 — Final (LATAM) — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — Final (LATAM), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Final (LATAM). Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-i-inspecionando-o-emaranhamento', 'Inspecionando o Emaranhamento', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1700, 'Problema I
-                        Inspecionando o Emaranhamento
-                              Tempo limite: 1 s     Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-i-inspecionando-o-emaranhamento', 'Inspecionando o Emaranhamento', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1700, 'Tempo limite: 1 s     Limite de memória: 1 GiB
 
 No laboratório do Instituto de Física Quântica, uma equipe de cientistas está conduzindo um novo
 experimento. A ideia é reconstruir a evolução de um conjunto de partículas emaranhadas ao longo
@@ -34457,8 +34133,7 @@ A saída deve ser composta por um único número: o número de formas que o bêb
 % will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
 %in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ K ≤ 5000$) e $P$ primo ($10^8 ≤ P ≤ 10^9; 1 ≤ K ≤ 5000$; 8 ≤ P ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-i-o-andar-do-trebado-a1', 'mineira-2023-i-o-andar-do-trebado', 'X Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-i-interativo', 'Interativo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1800, 'Problema I. Interativo
-                                     Uai, que trem diferente, sô!
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-i-interativo', 'Interativo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1800, 'Uai, que trem diferente, sô!
 
 Este problema é interativo.
 
@@ -34526,8 +34201,7 @@ veredito TIME LIMIT EXCEEDED. Para fazer isso, use:
      • sys.stdout.flush() em Python.
      • System.out.flush() em Java.', 'See statement.', 'See statement.', '1 ≤ N ≤ 100); 1 ≤ i ≤ N ), ou “C j” (sem aspas) para troca; 1 ≤ j ≤ N )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-i-interativo-a1', 'mineira-2025-i-interativo', 'XII Maratona Mineira — standard', ARRAY['Interactive','Dynamic Programming','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-i-idiomas', 'Idiomas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1800, 'Problema I. Idiomas
-   Durante eras, as criaturas desenvolveram suas próprias formas de falar, cada idioma vinha
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-i-idiomas', 'Idiomas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1800, 'Durante eras, as criaturas desenvolveram suas próprias formas de falar, cada idioma vinha
  carregado de toda cultura e estilo de vida das raças. Os Elfos criaram o élfico, uma língua mais
 suave e elegante, os dragões criaram o dracônico que representava sua dominância e ferocidade e,
         aos poucos, todas as outras raças criaram suas próprias línguas ao seu bel prazer.
@@ -34589,8 +34263,7 @@ Explicação do exemplo 1
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-i-idiomas-a1', 'mineira-2026-i-idiomas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XIII Maratona Mineira (2026), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-i-princesa-nikita', 'Princesa Nikita', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1800, 'Problema I. Princesa Nikita
-A princesa das capivaras e futura soberana dos corpos d''água de Minas  Nikita I  cansou de ser
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-i-princesa-nikita', 'Princesa Nikita', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1800, 'A princesa das capivaras e futura soberana dos corpos d''água de Minas  Nikita I  cansou de ser
 mantida como refém pela feiticeira malvada e decidiu escapar por conta própria de seu cativeiro! O
 covil da feiticeira onde se encontra Nikita I tem N
                                                        2 quartos dispostos em um formato retangular
@@ -34622,9 +34295,7 @@ Exemplos
 
                                                                                                  14', 'See statement.', 'See statement.', '2 ≤ N         ≤ 500); 2 ≤ ti,j ≤ 106 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-i-princesa-nikita-a1', 'minas-2025-i-princesa-nikita', '1ª Maratona Minas de Minas — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-h-piscina', 'Piscina', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1800, 'Problema H
-                                               Piscina
-         Arquivo fonte: piscina.c, piscina.cpp, piscina.java ou piscina.pas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-h-piscina', 'Piscina', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1800, 'Arquivo fonte: piscina.c, piscina.cpp, piscina.java ou piscina.pas
 
 O Centro Comunitário decidiu construir uma nova piscina, em tempo para o verão do ano que
 vem. A nova piscina será retangular, com dimensões X por Y e profundidade Z. A piscina
@@ -34669,9 +34340,7 @@ A saı́da deve ser escrita na saı́da padrão.
      300 300 300
      0 0 0', 'See statement.', 'See statement.', '0 ≤ P, M, G ≤ 2000000), respectivamente', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2005-p1-h-piscina-a1', 'sbc-2005-p1-h-piscina', 'SBC 2005 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2005 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2005 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-h-divisao-da-nlogonia', 'Divisão da Nlogônia', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1800, 'Problema H
-                                 Divisão da Nlogônia
-                   Nome do arquivo fonte: nlog.c, nlog.cpp ou nlog.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-h-divisao-da-nlogonia', 'Divisão da Nlogônia', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1800, 'Nome do arquivo fonte: nlog.c, nlog.cpp ou nlog.java
 
     Depois de séculos de escaramuças entre os quatro povos habitantes da Nlogônia, e de dezenas
 de anos de negociações envolvendo diplomatas, polı́ticos e as forças armadas de todas as partes
@@ -34743,9 +34412,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    -999 -1001
    0', 'See statement.', 'See statement.', '104 ≤ X, Y ≤ 104 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-h-divisao-da-nlogonia-a1', 'sbc-2008-p1-h-divisao-da-nlogonia', 'SBC 2008 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Hash Map']::text[], ARRAY['SBC 2008 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-h-escultura-a-laser', 'Escultura a Laser', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1800, 'Problema H
-                                           Escultura a Laser
-                    Nome do arquivo fonte: laser.c, laser.cpp ou laser.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2009-p1-h-escultura-a-laser', 'Escultura a Laser', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2009/primeira-fase/primeirafase09/maratona.pdf', 1800, 'Nome do arquivo fonte: laser.c, laser.cpp ou laser.java
 
 Desde a sua invenção, em 1958, os raios laser têm sido utilizados em uma imensa variedade de
 aplicações, como equipamentos eletrônicos, instrumentos cirúrgicos, armamentos, e muito mais.
@@ -34812,9 +34479,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    4 4 1
    0 0', 'See statement.', 'See statement.', '1 ≤ A ≤ 104 ) e o comprimento (1 ≤ C ≤ 104 ); 0 ≤ Xi ≤ A, para 0 ≤ i ≤ C − 1)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2009-p1-h-escultura-a-laser-a1', 'sbc-2009-p1-h-escultura-a-laser', 'SBC 2009 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2009 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2009 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-h-plagio-musical', 'Plágio Musical', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1800, 'Problema H
-                                                     Plágio Musical
-              Nome do arquivo fonte: plagio.c, plagio.cpp ou plagio.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-h-plagio-musical', 'Plágio Musical', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1800, 'Nome do arquivo fonte: plagio.c, plagio.cpp ou plagio.java
 
     As notas musicais são unidades básicas da música ocidental tradicional. Cada nota está
 associada a uma frequência. Duas notas musicais cujas frequências fundamentais tenham uma
@@ -34888,9 +34553,7 @@ realmente tenha sido plagiado pela música ou ‘N’ caso contrário.
    D F# A
    0 0', 'See statement.', 'See statement.', '1 ≤ M ≤ 100000, 1 ≤ T ≤ 10000, T ≤ M ), indicando resp', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-h-plagio-musical-a1', 'sbc-2010-p1-h-plagio-musical', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-h-homem-elefante-e-rato', 'Homem, Elefante e Rato', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1800, 'Problema H
-                        Homem, Elefante e Rato
-                Nome do arquivo fonte: homem.c, homem.cpp, ou homem.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-h-homem-elefante-e-rato', 'Homem, Elefante e Rato', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1800, 'Nome do arquivo fonte: homem.c, homem.cpp, ou homem.java
 
    Um jogo muito popular na Nlogônia é o Homem, Elefante e Rato. Ele é tipicamente jogado
 com apenas dois jogadores, e funciona da seguinte forma: cada jogador secretamente escolhe um
@@ -34969,9 +34632,7 @@ Exemplos
  C 1 5
  C 3 4', 'See statement.', 'See statement.', '1 ≤ N ≤ 105; 0 ≤ M ≤ 106; 1≤A≤B≤N', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2011-p1-h-homem-elefante-e-rato-a1', 'sbc-2011-p1-h-homem-elefante-e-rato', 'SBC 2011 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY['Queue','Deque']::text[], ARRAY['SBC 2011 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2011 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-h-combate-ao-cancer', 'Combate ao câncer', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1800, 'Problema H
-                                   Combate ao câncer
-                                  Arquivo: cancer.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-h-combate-ao-cancer', 'Combate ao câncer', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1800, 'Arquivo: cancer.[c|cpp|java]
 
     Pesquisadores da Fundação Contra o Câncer (FCC) anunciaram uma descoberta revolucionária na
 Química: eles descobriram como fazer átomos de carbono ligarem-se a qualquer quantidade de outros
@@ -35038,9 +34699,7 @@ Exemplos
     1 4
     5 6', 'See statement.', 'See statement.', '2 ≤ N ≤ 104; 1 ≤ A, B ≤ N', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-h-combate-ao-cancer-a1', 'sbc-2012-p1-h-combate-ao-cancer', 'SBC 2012 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2012 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-h-onibus', 'Ônibus', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1800, 'Problema H
-                                             Ônibus
-                                    Arquivo: onibus.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-h-onibus', 'Ônibus', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1800, 'Arquivo: onibus.[c|cpp|java]
 
     Competições de programação normalmente exigem infraestrutura e organização por parte dos res-
 ponsáveis. Um problema que frequentemente deve ser resolvido é em relação ao transporte. Ao
@@ -35086,9 +34745,7 @@ Exemplos
 
  15 9 2                                      000765', 'See statement.', 'See statement.', '5 ≤ N ≤ 1015 e N é múltiplo de 5; 1 ≤ K ≤ 1015; 1 ≤ L ≤ 1015', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-h-onibus-a1', 'sbc-2013-p1-h-onibus', 'SBC 2013 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Queue','Deque']::text[], ARRAY['SBC 2013 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-h-handebol', 'Handebol', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1800, 'Problema H
-                                           Handebol
-                                   Arquivo: handebol.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-h-handebol', 'Handebol', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1800, 'Arquivo: handebol.[c|cpp|java]
 
     Frustrado e desanimado com os resultados de sua equipe de futebol, o Super Brasileiro Clube (SBC)
 resolveu investir na equipe de handebol. Para melhor avaliar os atletas, os técnicos identificaram que
@@ -35131,9 +34788,7 @@ Exemplos
  10 10 0 10 10
  1 1 2 0 9', 'See statement.', 'See statement.', '1 ≤ N ≤ 100 e 1 ≤ M ≤ 100), indicando; 0 ≤ Xj ≤ 100, para; 1 ≤ j ≤ M ), informando o número de gols do i-ésimo ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-h-handebol-a1', 'sbc-2014-p1-h-handebol', 'SBC 2014 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2014 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-h-praca-do-retangulo', 'Praça do Retângulo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1800, 'Problema H
-                                   Praça do Retângulo
-Retangolândia é uma cidade muito antiga e, por isso, guarda diversas riquezas históricas. A cidade
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-h-praca-do-retangulo', 'Praça do Retângulo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1800, 'Retangolândia é uma cidade muito antiga e, por isso, guarda diversas riquezas históricas. A cidade
 foi planejada muitas décadas atrás, com todas as suas ruas indo nas direções norte-sul ou leste-oeste.
 Atualmente, há um projeto de revitalização da cidade, no qual uma nova praça retangular será feita. A
 escolha da nova praça será feita pela administração pública mas, no momento, eles estão interessados
@@ -35206,9 +34861,7 @@ Exemplos
  -3 -1
  8 -2', 'See statement.', 'See statement.', '1 ≤ N ≤ 3000, representanto o número; 108 ≤ X, Y ≤ 108 , correspondendo às suas', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-h-praca-do-retangulo-a1', 'sbc-2015-p1-h-praca-do-retangulo', 'SBC 2015 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Hash Map']::text[], ARRAY['SBC 2015 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-h-huaauhahhuahau', 'huaauhahhuahau', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1800, 'Problema H
-                                     huaauhahhuahau
-Em chats, é muito comum entre jovens e adolescentes utilizar sequências de letras, que parecem muitas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-h-huaauhahhuahau', 'huaauhahhuahau', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1800, 'Em chats, é muito comum entre jovens e adolescentes utilizar sequências de letras, que parecem muitas
 vezes aleatórias, para representar risadas. Alguns exemplos comuns são:
 
 huaauhahhuahau
@@ -35250,9 +34903,7 @@ engraçadas, ou “N” caso contrário.
  Exemplo de entrada 4                                 Exemplo de saı́da 4
  huaauhahhuahau                                       S', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-h-huaauhahhuahau-a1', 'sbc-2016-p1-h-huaauhahhuahau', 'SBC 2016 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-h-hipercampo', 'Hipercampo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1800, 'Problema H
-                                            Hipercampo
-São dadas duas âncoras, dois pontos A = (XA , 0) e B = (XB , 0), formando um segmento horizontal,
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-h-hipercampo', 'Hipercampo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1800, 'São dadas duas âncoras, dois pontos A = (XA , 0) e B = (XB , 0), formando um segmento horizontal,
 tal que 0 < XA < XB , e um conjunto P de N pontos da forma (X, Y ), tal que X > 0 e Y > 0. A
 figura mais à esquerda exemplifica uma possı́vel entrada.
 
@@ -35300,9 +34951,7 @@ Exemplos
  3 4
  7 4', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), XA e XB (0 < XA < XB ≤; 1 ≤ i ≤ N ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-h-hipercampo-a1', 'sbc-2017-p1-h-hipercampo', 'SBC 2017 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2017 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-h-hipotese-policial', 'Hipótese Policial', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1800, 'Problema H
-                                      Hipótese Policial
-O sistema de transporte público da Nlogônia conta com uma rede expressa conectando os principais
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-h-hipotese-policial', 'Hipótese Policial', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1800, 'O sistema de transporte público da Nlogônia conta com uma rede expressa conectando os principais
 pontos turı́sticos do paı́s. São usados N − 1 trens-bala para conectar N atrações de modo que a partir
 de um dos pontos turı́sticos é possı́vel alcançar qualquer outro ponto usando apenas essa rede expressa.
     Como em qualquer lugar do mundo, é comum que haja pichações nas estações de trem. O que
@@ -35370,9 +35019,7 @@ representa o número de ocorrências do padrão P no caminho analisado.
  1 1 5
  1 5 1', 'See statement.', 'See statement.', '1 ≤ N, Q ≤ 105 ), representando o número de; 1 ≤ |P | ≤ 100)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-h-hipotese-policial-a1', 'sbc-2018-p1-h-hipotese-policial', 'SBC 2018 — 1ª fase — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-h-hora-da-corrida', 'Hora da Corrida', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1800, 'Problema H
-                                      Hora da Corrida
-Vinicius leva muito a sério seu condicionamento fı́sico e, diariamente às 6h da manhã, chova ou faça
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-h-hora-da-corrida', 'Hora da Corrida', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1800, 'Vinicius leva muito a sério seu condicionamento fı́sico e, diariamente às 6h da manhã, chova ou faça
 sol, no verão e no inverno, ele corre no entorno de uma lagoa. Ao longo da pista de corrida existem
 N placas igualmente espaçadas. Para não desanimar do exercı́cio, Vinicius conta o número de placas
 pelas quais ele já passou e verifica se ele já correu pelo menos 10%, pelo menos 20%, . . . , pelo menos
@@ -35402,9 +35049,7 @@ meta.
  Exemplo de entrada 3                                 Exemplo de saı́da 3
  3 11                                                 4 7 10 14 17 20 24 27 30', 'See statement.', 'See statement.', '1 ≤ V, N ≤ 104 ), onde V', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-h-hora-da-corrida-a1', 'sbc-2019-p1-h-hora-da-corrida', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-h-hangar-do-sbc', 'Hangar do SBC', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1800, 'Problema H
-                                      Hangar do SBC
-Um pequeno avião de carga do Sistema Binário de Cargas (SBC) foi projetado para transportar
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-h-hangar-do-sbc', 'Hangar do SBC', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1800, 'Um pequeno avião de carga do Sistema Binário de Cargas (SBC) foi projetado para transportar
 produtos especiais e secretos. Esses produtos são agrupados em caixas com diversos pesos.
     O avião tem uma faixa de peso de segurança, dentro da qual a aeronave fica estável. Mais especifi-
 camente, existe um intervalo tal que se o peso total das caixas transportadas ficar fora desse intervalo
@@ -35450,9 +35095,7 @@ quantidade especificada, sem por em risco o voo.
  14 70 3 1 6 31
  10 74', 'See statement.', 'See statement.', '1 ≤ N ≤ 50; 1 ≤ K ≤ 50; 1 ≤ P ≤ 1018 ; 1 ≤ A ≤ B ≤ 2 × 1018 ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-h-hangar-do-sbc-a1', 'sbc-2020-p1-h-hangar-do-sbc', 'SBC 2020 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2020 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-h-haja-ordenacao', 'Haja Ordenação', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1800, 'Problema H
-                                      Haja Ordenação
-Um amigo seu inventou um jogo e quer saber se você consegue resolvê-lo ou se ele é impossı́vel.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-h-haja-ordenacao', 'Haja Ordenação', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1800, 'Um amigo seu inventou um jogo e quer saber se você consegue resolvê-lo ou se ele é impossı́vel.
     Ele montou uma sequencia de N blocos. Cada bloco tem um número gravado e uma cor. Todos
 os números são números distintos entre 1 e N , e blocos diferentes podem ter a mesma cor.
     O jogo funciona da seguinte maneira: você pode jogar quantos turnos você quiser. Em um turno,
@@ -35489,9 +35132,7 @@ imprima a letra maiúscula ‘Y’; caso contrário, imprima a letra maiúscu
  2 1
  3 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 , 1 ≤ K ≤ N ), representando o número; 1 ≤ ni ≤ N , 1 ≤ ci ≤ K),', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-h-haja-ordenacao-a1', 'sbc-2021-p1-h-haja-ordenacao', 'SBC 2021 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-h-habilitando-a-movimentacao', 'Habilitando a Movimentação', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1800, 'Problema H
-                          Habilitando a Movimentação
-O presidente da Nlogônia decidiu, por decreto, que todas as ruas da Nlogônia deveriam ser de mão
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-h-habilitando-a-movimentacao', 'Habilitando a Movimentação', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1800, 'O presidente da Nlogônia decidiu, por decreto, que todas as ruas da Nlogônia deveriam ser de mão
 única. Devido a certo desconhecimento de ciência básica, não houve um planejamento adequado para
 as mudanças. Depois que o novo sistema entrou em vigor, as pessoas não eram capazes de ir trabalhar,
 ou não conseguiam voltar para casa do trabalho, por exemplo. Como resultado, houve caos e rebeliões
@@ -35554,9 +35195,7 @@ para deixar os habitantes felizes.
  4 6
  5 6', 'See statement.', 'See statement.', '1 ≤ N ≤ 104 , 1 ≤ M ≤ 106 ), onde N é; 1 ≤ R, S ≤ N , R 6= S, que corresponde a uma rua que l', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-h-habilitando-a-movimentacao-a1', 'sbc-2022-p1-h-habilitando-a-movimentacao', 'SBC 2022 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-h-honroso-trabalhador', 'Honroso Trabalhador', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1800, 'Problema H
-                                   Honroso Trabalhador
-Rafael vive em uma sociedade igualitária ideal: todos os trabalhos oferecem um salário diário igual
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-h-honroso-trabalhador', 'Honroso Trabalhador', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1800, 'Rafael vive em uma sociedade igualitária ideal: todos os trabalhos oferecem um salário diário igual
 e você só precisa trabalhar em um emprego que seja de seu interesse. Infelizmente, nem essa utopia
 estava preparada para o fato de que Rafael não tem nenhuma habilidade.
     Para compensar essa situação, Rafael irá trabalhar apenas em empreitadas, onde empregadores
@@ -35618,9 +35257,7 @@ trabalhos.
    Explicação do exemplo 4 :
    Não vale a pena gastar dinheiro com uma carta de recomendação falsa para este trabalho.', 'See statement.', 'See statement.', '1 ≤ N ≤ 106 ) e S (1 ≤ S ≤ 109 ), que representam o; 1 ≤ ℓi ≤ ri ≤ 109 , 1 ≤ ci ≤ 109 ),', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-h-honroso-trabalhador-a1', 'sbc-2023-p1-h-honroso-trabalhador', 'SBC 2023 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-h-harmonicos-interferentes', 'Harmônicos Interferentes', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1800, 'Problema H
-                              Harmônicos Interferentes
-A transmissão de mensagens por meios eletromagnéticos apresenta diversos desafios, como interferência
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-h-harmonicos-interferentes', 'Harmônicos Interferentes', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1800, 'A transmissão de mensagens por meios eletromagnéticos apresenta diversos desafios, como interferência
 de outros sinais, naturais ou artificiais, que podem corromper uma transmissão.
     Uma estratégia comum é o envio de informações adicionais que permitam validar uma mensagem
 recebida. Alguns protocolos mais robustos permitem até mesmo corrigir alguns erros da mensagem
@@ -35679,9 +35316,7 @@ recebida por Bruna.
    correspondentes aos inteiros 20, 21, 22 e 23, e apenas 21, representado por 10101, é divisı́vel por
    3.', 'See statement.', 'See statement.', '1 ≤; 1 ≤ |N ′ | ≤ 16', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-h-harmonicos-interferentes-a1', 'sbc-2024-p1-h-harmonicos-interferentes', 'SBC 2024 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2024 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-h-habilidades-especiais', 'Habilidades especiais', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1800, 'Problema H
-                                 Habilidades especiais
-A 
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-h-habilidades-especiais', 'Habilidades especiais', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1800, 'A 
 (SBC). Nela, as equipes são formadas por exatos três integrantes e o objetivo principal é desenvolver
 um projeto utilizando CSS e JavaScript.
     Cada competidor possui um subconjunto das K habilidades mais importantes de um desenvolvedor
@@ -35745,8 +35380,7 @@ igual a Ei .
  1
  10', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 , 1 ≤ K ≤ 20), representando,; 1 ≤ j ≤ K) for 1, significa que o aluno possui a; 1 ≤ M ≤ 5 · 104 ), representando o número de subconju; 1 ≤ j ≤ K) for 1, significa que o subconjunto especial', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-h-habilidades-especiais-a1', 'sbc-2025-p1-h-habilidades-especiais', 'SBC 2025 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2025 — 1ª fase, problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-h-semaforos', 'Semáforos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1800, 'Problema H – Semáforos
-Uma rua possui N semáforos, numerados de 1 a N . Cada semáforo pode estar em um de dois
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-h-semaforos', 'Semáforos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1800, 'Uma rua possui N semáforos, numerados de 1 a N . Cada semáforo pode estar em um de dois
 estados: fechado, representado por 1, ou aberto, representado por 0.
 Para preparar a rua para uma operação especial, foram instalados M dispositivos de controle.
 Cada dispositivo atua sobre um trecho contı́nuo da rua: ao ser ativado, ele alterna o estado de
@@ -36755,9 +36389,7 @@ It is guaranteed that every removal is valid, that is, whenever a removal Xi = �
 least one box in the supply that contains exactly c rations.', 'Output a single line with Q integers, such that the i-th integer indicates the minimum number of days
 needed to use up all rations right after the i-th change in the supply.', '1 ≤ Q ≤ 3 · 105 ) indicating the number of changes to ; 1 ≤ |Xi | ≤ 109 for i = 1, 2, ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-final-e-emergency-rations-a1', 'sbc-2025-final-e-emergency-rations', 'SBC 2025 — Final (LATAM) — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — Final (LATAM), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Final (LATAM). Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-j-jornada-das-particulas', 'Jornada das Partículas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1800, 'Problema J
-                               Jornada das Partículas
-                           Tempo limite: 1 s     Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-j-jornada-das-particulas', 'Jornada das Partículas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1800, 'Tempo limite: 1 s     Limite de memória: 1 GiB
 
 Um experimento no Grande Colisor de Hádrons está sendo montado para testar propriedades de
 fase de várias partículas diferentes. São N ltros colocados em um círculo em que a i-ésimo ltro
@@ -37812,8 +37444,7 @@ Imprima uma única linha contendo a maior soma das majestosidades das $k$-peias 
 % will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
 %in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ N ≤ 500$ e $1 ≤ T ≤ 500$, que representa; 2 ≤ k_i ≤ 100$), $t_i$ ($1 ≤ t_i ≤ T$) e $m_; 1 ≤ m_i ≤ 10^9$): o número de pés da $i$-ési; 0 ≤ e_j, d_j ≤ 50000$): quantos sapatos esqu; 1 ≤ N, T ≤ 500$; 2 ≤ k_i ≤ 100$; 1 ≤ t_i ≤ T$; 1 ≤ m_i ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-j-o-desfile-das-k-peias-a1', 'mineira-2023-j-o-desfile-das-k-peias', 'X Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-j-jeito-de-falar', 'Jeito de Falar', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1900, 'Problema J. Jeito de Falar
-             Sinto a fúria em suas palavras, mas não entendo nada do que você diz.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-j-jeito-de-falar', 'Jeito de Falar', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1900, 'Sinto a fúria em suas palavras, mas não entendo nada do que você diz.
 
                                      – William Shakespeare
 
@@ -37894,9 +37525,7 @@ o período entre colchetes e a parte repetida entre parênteses, as decodificaç
  16956758163750637                                 41
  114', 'See statement.', 'See statement.', '2 ≤ |N | ≤ 2000), onde |N | representa o núm; 1 ≤ M ≤ 2000)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-j-jeito-de-falar-a1', 'mineira-2025-j-jeito-de-falar', 'XII Maratona Mineira — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-j-jogo-do-beta', 'Jogo do beta', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1900, 'Problema J. Jogo do beta
-
-Um grupo de N amigos vai participar de um jogo no qual cada jogador escolhe um número inteiro
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-j-jogo-do-beta', 'Jogo do beta', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1900, 'Um grupo de N amigos vai participar de um jogo no qual cada jogador escolhe um número inteiro
 Pi . Em seguida, deveria ser sorteado um número inteiro X maior que 1, mas Pedro descobriu uma
 forma de trapacear e pode escolher esse valor.
 
@@ -37931,8 +37560,7 @@ Exemplos
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-j-jogo-do-beta-a1', 'mineira-2026-j-jogo-do-beta', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-j-distancias-em-minas', 'Distâncias em Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1900, 'Problema J. Distâncias em Minas
-João é um turista que está explorando Minas Gerais e deseja conhecer várias cidades históricas, como
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-j-distancias-em-minas', 'Distâncias em Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1900, 'João é um turista que está explorando Minas Gerais e deseja conhecer várias cidades históricas, como
 Belo Horizonte, Ouro Preto, Tiradentes e Diamantina. Durante a viagem, ele anotou a distância
 percorrida em quilômetros a cada dia, já que adora registrar suas aventuras.
 
@@ -37971,9 +37599,7 @@ Exemplos
 
                                                                                                  15', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), representando a quantidade de ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-j-distancias-em-minas-a1', 'minas-2025-j-distancias-em-minas', '1ª Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-i-maior-subsequencia-crescente', 'Maior Subseqüência Crescente', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1900, 'Problema I
-                        Maior Subseqüência Crescente
-                    Nome do arquivo fonte: seq.c, seq.cpp ou seq.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-i-maior-subsequencia-crescente', 'Maior Subseqüência Crescente', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 1900, 'Nome do arquivo fonte: seq.c, seq.cpp ou seq.java
 
      Determinar a subseqüência (contı́gua) crescente de maior comprimento em uma lista de
 números é um problema já clássico em competições de programação. Este é o problema que
@@ -38034,9 +37660,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    2 2 2 2
    0 0', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 600); 106 ≤ Xi,j ≤ 106 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-i-maior-subsequencia-crescente-a1', 'sbc-2008-p1-i-maior-subsequencia-crescente', 'SBC 2008 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2008 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-i-ir-e-vir', 'Ir e Vir', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1900, 'Problema I
-                                            Ir e Vir
-                      Nome do arquivo fonte: ir.c, ir.cpp ou ir.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-i-ir-e-vir', 'Ir e Vir', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 1900, 'Nome do arquivo fonte: ir.c, ir.cpp ou ir.java
 
     Numa certa cidade há N intersecções ligadas por ruas de mão única e ruas com mão dupla de
 direção. É uma cidade moderna, de forma que muitas ruas atravessam túneis ou têm viadutos.
@@ -38078,9 +37702,7 @@ é igual a um se o requisito de conexidade está satisfeito, ou G é igual a 
    3 4 2
    0 0', 'See statement.', 'See statement.', '2 ≤ N ≤ 2000) e o número de ruas (2 ≤ M ≤ N (N − 1)/2; 1 ≤ V, W ≤ N , V 6= W ) e P pode ser 1 ou', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-i-ir-e-vir-a1', 'sbc-2010-p1-i-ir-e-vir', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-i-incidente-em-atlantida', 'Incidente em Atlântida', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1900, 'Problema I
-                          Incidente em Atlântida
-        Nome do arquivo fonte: incidente.c, incidente.cpp, ou incidente.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2011-p1-i-incidente-em-atlantida', 'Incidente em Atlântida', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2011/primeira-fase/competicao/maratona.pdf', 1900, 'Nome do arquivo fonte: incidente.c, incidente.cpp, ou incidente.java
 
     No ano de 2222 B.C.E., uma terrı́vel tragédia ocorreu na ilha de Atlântida, mas até hoje
 só se sabe do ocorrido pelos relatos históricos; ninguém nunca encontrou evidência fı́sica do
@@ -38166,9 +37788,7 @@ Exemplos
  9 0
  0 0 10 0', 'See statement.', 'See statement.', '0 ≤ T, M, C ≤ 50', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2011-p1-i-incidente-em-atlantida-a1', 'sbc-2011-p1-i-incidente-em-atlantida', 'SBC 2011 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2011 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2011 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-i-integral', 'Integral', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1900, 'Problema I
-                                              Integral
-                                  Arquivo: integral.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-i-integral', 'Integral', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 1900, 'Arquivo: integral.[c|cpp|java]
 
    Dado um inteiro positivo n, denotaremos por [n] o intervalo real {x : 0 ≤ x ≤ n}. Uma função
 f : [n] ⇒ R é parcialmente especificada, sendo fornecidos valores de f apenas em pontos de um
@@ -38248,9 +37868,7 @@ Exemplos
     0 0
     2 1', 'See statement.', 'See statement.', '0 ≤ x ≤ n}; 1 ≤ N ≤ 106; 0 ≤ X ≤ N , X inteiro, ∀X ∈ S; 0 ≤ F ≤ 106 , F inteiro; 0 ≤ Y ≤ 109 , Y inteiro', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-i-integral-a1', 'sbc-2012-p1-i-integral', 'SBC 2012 — 1ª fase — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2012 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-i-remendo', 'Remendo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1900, 'Problema I
-                                           Remendo
-                                   Arquivo: remendo.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-i-remendo', 'Remendo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 1900, 'Arquivo: remendo.[c|cpp|java]
 
     Carlão é muito preocupado com o meio ambiente. Sempre que possı́vel, ele tenta utilizar meios de
 transporte menos poluentes. Recentemente ele conseguiu um emprego próximo de casa e agora está
@@ -38299,9 +37917,7 @@ Exemplos
  4 20 12 9                                   12
  1 2 3 13', 'See statement.', 'See statement.', '1 ≤ N ≤ 1000; 1 ≤ C ≤ 106; 1 ≤ T1 , T2 ≤ C; 0 ≤ Fi ≤ C − 1, 1 ≤ i ≤ N', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-i-remendo-a1', 'sbc-2013-p1-i-remendo', 'SBC 2013 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2013 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-i-rsa', 'RSA', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1900, 'Problema I
-                                                RSA
-                                      Arquivo: rsa.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-i-rsa', 'RSA', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 1900, 'Arquivo: rsa.[c|cpp|java]
 
     O algoritmo RSA é um dos algoritmos de criptografia mais utilizados e é considerado uma das
 alternativas mais seguras existentes. Seu funcionamento básico é descrito a seguir.
@@ -38334,9 +37950,7 @@ Exemplos
 
  91 43 19                                            33', 'See statement.', 'See statement.', '15 ≤ N ≤ 109 , 1 ≤ E < N e 1 ≤ C < N ,; 1 ≤ M < N , a mensagem', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-i-rsa-a1', 'sbc-2014-p1-i-rsa', 'SBC 2014 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['SBC 2014 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-i-ominobox', 'Ominobox', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1900, 'Problema I
-                                             Ominobox
-O planeta de Skyrk nunca vai conhecer a paz enquanto o malvado Mago estiver livre. Dessa vez, o
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-i-ominobox', 'Ominobox', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 1900, 'O planeta de Skyrk nunca vai conhecer a paz enquanto o malvado Mago estiver livre. Dessa vez, o
 malicioso plano do Mago foi armar uma bomba no meio da maior cidade do planeta. Mago aprecia
 observar o caos, então, ao invés de explodir a bomba imediatamente, ele colocou um temporizador na
 bomba e a deixou junto com um desafio. A bomba tem um teclado, e a solução do desafio desarma a
@@ -38406,9 +38020,7 @@ da caixa. Esta configuração rende um total de 1 ponto.
     No quarto desafio, Fig. 5-8 mostram as melhores maneiras de colocar os quatro 4-ominos que cabem
 dentro da caixa. Esta configuração rende um total de 5 pontos.', 'See statement.', 'See statement.', '1 ≤ R, C, H ≤ 30; 1 ≤ N ≤ 10); 0 ≤ Hi,j ≤ H) — o número de cubos no quadrado', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-i-ominobox-a1', 'sbc-2015-p1-i-ominobox', 'SBC 2015 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Monotonic Stack','Stack']::text[], ARRAY['SBC 2015 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-i-isosceles', 'Isósceles', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1900, 'Problema I
-                                            Isósceles
-Os irmãos Sérgio e Luiz estavam brincando com cubinhos de madeira e queriam construir um muro,
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-i-isosceles', 'Isósceles', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 1900, 'Os irmãos Sérgio e Luiz estavam brincando com cubinhos de madeira e queriam construir um muro,
 que acabou ficando incompleto, com as colunas tendo diferentes alturas, como nessa figura.
 
     Eles decidiram agora que a brincadeira seria retirar cubinhos, sempre de cima para baixo nas
@@ -38438,9 +38050,7 @@ que um triângulo poderia ter ao final.
  8                                                   1
  5 1 1 1 1 1 1 3', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-i-isosceles-a1', 'sbc-2016-p1-i-isosceles', 'SBC 2016 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-i-imposto-real', 'Imposto Real', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1900, 'Problema I
-                                         Imposto Real
-O reino de Nlogônia é rico, o povo é educado e feliz, mas o Rei é um tirano quando o assunto se refere
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-i-imposto-real', 'Imposto Real', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 1900, 'O reino de Nlogônia é rico, o povo é educado e feliz, mas o Rei é um tirano quando o assunto se refere
 a impostos. A cada final de ano, cada cidade do paı́s deve pagar uma determinada quantidade de
 quilos de ouro em impostos. Chegado o momento de coletar os impostos, o Rei envia sua carruagem
 real para recolher o ouro devido, usando as estradas do reino.
@@ -38493,9 +38103,7 @@ a carruagem real deve percorrer para recolher todo o imposto devido, em km.
  2 4 1
  2 5 1', 'See statement.', 'See statement.', '2 ≤ N ≤ 104 e 1 ≤ C ≤ 100); 0 ≤ Ei ≤ 100 para; 1 ≤ i ≤ N ); 1 ≤ A, B ≤ N ) e tem comprimento C (1 ≤ C ≤ 100)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-i-imposto-real-a1', 'sbc-2017-p1-i-imposto-real', 'SBC 2017 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-i-interruptores', 'Interruptores', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1900, 'Problema I
-                                           Interruptores
-No painel de controle de um grande anfiteatro existem N interruptores, numerados de 1 a N , que
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-i-interruptores', 'Interruptores', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 1900, 'No painel de controle de um grande anfiteatro existem N interruptores, numerados de 1 a N , que
 controlam as M lâmpadas do local, numeradas de 1 a M . Note que o número de interruptores e
 lâmpadas não é necessariamente o mesmo e isso acontece porque cada interruptor está associado a
 um conjunto de lâmpadas e não apenas a uma lâmpada. Quando um interruptor é acionado, o estado
@@ -38542,9 +38150,7 @@ apagadas ao mesmo tempo. Caso isso nunca vá acontecer, imprima −1.
  2 1 2
  1 2', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 1000) representando, respectivamente, o; 1 ≤ L ≤ M ); 1 ≤ Xi ≤ M ), representando as lâmpadas acesas inicia; 1 ≤ Ki ≤ M ) seguido por Ki inteiros distintos; 1 ≤ Yi ≤ M ), representando as lâmpadas associadas ao; 1 ≤ i ≤ N )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-i-interruptores-a1', 'sbc-2018-p1-i-interruptores', 'SBC 2018 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2018 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-i-interplanetario', 'Interplanetário', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1900, 'Problema I
-                                       Interplanetário
-Estamos no ano de 2306 e, com o avanço da nanotecnologia, viagens interplanetárias estão cada vez
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-i-interplanetario', 'Interplanetário', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 1900, 'Estamos no ano de 2306 e, com o avanço da nanotecnologia, viagens interplanetárias estão cada vez
 mais acessı́veis. Bibika trabalha na maior agência de viagem interplanetária do universo e recebe
 clientes interessados diariamente.
      Os clientes de Bibika são exigentes e fazem várias demandas antes de fechar o roteiro de suas
@@ -38616,9 +38222,7 @@ viagem não seja possı́vel.
  4 5 1 0
  2 4 1 1', 'See statement.', 'See statement.', '2 ≤ N ≤ 400 e 0 ≤ R ≤ N ·(N −1)/2), representando; 109 ≤ Ti ≤ 109 ), representando a temperatura média de ; 1 ≤ X, Y ≤ N; 1 ≤ D ≤ 103 ), representando uma rota direta de compri; 1 ≤ Q ≤ 105 ), representando a quantidade de pedidos d; 1 ≤ A, B, K ≤ N com A 6= B e T ∈ {0, 1}), representand', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-i-interplanetario-a1', 'sbc-2019-p1-i-interplanetario', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-i-interatividade', 'Interatividade', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1900, 'Problema I
-                                          Interatividade
-Um dia, Alice desafiou Beto com o problema interativo de programação descrito a seguir.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-i-interatividade', 'Interatividade', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 1900, 'Um dia, Alice desafiou Beto com o problema interativo de programação descrito a seguir.
                                          —————oo—————
     Você tem uma árvore (um grafo acı́clico conexo). Cada nó da árvore tem exatamente um pai, com
 exceção do nó raiz, que não tem pai. Um nó que não é pai de nenhum outro nó é uma folha. Você
@@ -38663,9 +38267,7 @@ ser calculada módulo 1000000007 (109 + 7).
  5                                                  7
  1 2 2 2', 'See statement.', 'See statement.', '2 ≤ N ≤ 105 ; 1 ≤ Pi ≤ N , para i = 1, 2, ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-i-interatividade-a1', 'sbc-2020-p1-i-interatividade', 'SBC 2020 — 1ª fase — standard', ARRAY['Interactive','Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2020 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-i-invertendo-ferrovias', 'Invertendo Ferrovias', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1900, 'Problema I
-                                  Invertendo Ferrovias
-O governo de Nlogônia está incomodado com a falta de eficiência de seu sistema ferroviário. Todo
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-i-invertendo-ferrovias', 'Invertendo Ferrovias', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 1900, 'O governo de Nlogônia está incomodado com a falta de eficiência de seu sistema ferroviário. Todo
 par de cidades possui uma única ferrovia que as liga, porém, devido a problemas monetários, algumas
 delas estão inativas.
     Uma configuração ideal da malha ferroviária é tal que, para qualquer par de cidades, existe um
@@ -38751,9 +38353,7 @@ módulo 109 + 7.
  4 10
  9 10', 'See statement.', 'See statement.', '1 ≤ N ≤ 100, 0 ≤ M ≤ N × (N − 1)/2),; 1 ≤ u < v ≤ N ), representando a', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-i-invertendo-ferrovias-a1', 'sbc-2021-p1-i-invertendo-ferrovias', 'SBC 2021 — 1ª fase — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2021 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-i-interceptando-informacoes', 'Interceptando Informações', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1900, 'Problema I
-                             Interceptando Informações
-A Spies Breaching Computers (SBC), uma agência privada de espiões digitais, está desenvolvendo um
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-i-interceptando-informacoes', 'Interceptando Informações', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 1900, 'A Spies Breaching Computers (SBC), uma agência privada de espiões digitais, está desenvolvendo um
 novo dispositivo para interceptação de informações que, através de ondas eletromagnéticas, permite a
 espionagem mesmo sem contato fı́sico com o alvo.
     O dispositivo tenta coletar informações de um byte por vez, isto é, uma sequência de 8 bits onde
@@ -38778,9 +38378,7 @@ caso contrário imprima uma única linha contendo a letra maiúscula “F”,
  Exemplo de entrada 2                                 Exemplo de saı́da 2
  0 0 1 9 0 1 0 1                                      F', 'See statement.', 'See statement.', '1 ≤ i ≤ 8)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-i-interceptando-informacoes-a1', 'sbc-2022-p1-i-interceptando-informacoes', 'SBC 2022 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-i-investigando-zeros-e-uns', 'Investigando Zeros e Uns', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1900, 'Problema I
-                                 Investigando Zeros e Uns
-Você se encontra em um misterioso mundo binário, onde um vetor de N dı́gitos binários aguarda pelo
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-i-investigando-zeros-e-uns', 'Investigando Zeros e Uns', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 1900, 'Você se encontra em um misterioso mundo binário, onde um vetor de N dı́gitos binários aguarda pelo
 seu exame minucioso. Cada dı́gito é zero ou um, criando um padrão único em toda a paisagem. Sua
 missão é descobrir os padrões ocultos deste reino binário, desvendando o significado de subvetores com
 um número ı́mpar de uns.
@@ -38812,9 +38410,7 @@ tidade ı́mpar de uns.
  10                                                         30
  1 0 0 1 1 0 1 1 1 0', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ), representando o comprimento da', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-i-investigando-zeros-e-uns-a1', 'sbc-2023-p1-i-investigando-zeros-e-uns', 'SBC 2023 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-i-ingredientes-alergenicos', 'Ingredientes Alergênicos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1900, 'Problema I
-                                 Ingredientes Alergênicos
-Na Nlogonia, as comidas são identificadas por números. Os números primos identificam os ingredientes
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-i-ingredientes-alergenicos', 'Ingredientes Alergênicos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 1900, 'Na Nlogonia, as comidas são identificadas por números. Os números primos identificam os ingredientes
 básicos, e o número que identifica cada comida é dado pelo produto dos números associados aos
 ingredientes que a compõem, respeitando multiplicidades. Por exemplo, uma comida de número 12
 contém duas unidades do ingrediente 2, e uma unidade do ingrediente 3, já que 12 = 2 · 2 · 3.
@@ -38857,9 +38453,7 @@ por 109 + 7.
    vazio (sem nenhuma comida), o prato apenas com a comida 1 (que não tem nenhum ingrediente),
    o prato com a comida 5, e o prato com as comidas 1 e 5.', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ), o número de comidas no seu; 1 ≤ Vi ≤ 106 ); 1 ≤ Q ≤ 105 ), o número de pessoas que vai comer no s; 1 ≤ Xi ≤ 106 ), o número que', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-i-ingredientes-alergenicos-a1', 'sbc-2024-p1-i-ingredientes-alergenicos', 'SBC 2024 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2024 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-i-investigacao-cosmica', 'Investigação Cósmica', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1900, 'Problema I
-                                  Investigação Cósmica
-A Sociedade Brasileira de Cosmonáutica (SBC) está treinando suas equipes para a próxima edição da
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-i-investigacao-cosmica', 'Investigação Cósmica', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 1900, 'A Sociedade Brasileira de Cosmonáutica (SBC) está treinando suas equipes para a próxima edição da
 Investigação Cósmica de Planetas Celestes (ICPC).
     A SBC fará uma exploração simulada de uma galáxia distante chamada Quadradômeda. Para
 esta missão, foram selecionadas N estrelas, por sua localização geometricamente estratégica, e foi
@@ -38915,8 +38509,7 @@ que exista uma configuração válida de órbitas, ou -1 caso a missão sej
  4 4
  4 7', 'See statement.', 'See statement.', '1 ≤ i < N , a estrela i está alinhada com a; 1 ≤ i < N , o raio Ri deve ser estritamente menor que; 2 ≤ N ≤ 105 ), o número de estrelas; 1 ≤ i < N , as estrelas i e i + 1 estão alinhadas hor', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-i-investigacao-cosmica-a1', 'sbc-2025-p1-i-investigacao-cosmica', 'SBC 2025 — 1ª fase — standard', ARRAY['Geometry','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2025 — 1ª fase, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-i-porquinho-da-india', 'Porquinho-da-Índia', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1900, 'Problema I – Porquinho-da-Índia
-Jaime é um porquinho-da-ı́ndia que está comemorando uma ocasião especial e convidou muitas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-i-porquinho-da-india', 'Porquinho-da-Índia', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 1900, 'Jaime é um porquinho-da-ı́ndia que está comemorando uma ocasião especial e convidou muitas
 pessoas para a sua festa. Jaime tem F amigos, numerados de 1 a F , e enviou convites para
 N deles. Cada convite pode incluir uma ou mais pessoas, indicando se apenas o amigo foi
 convidado ou se ele pode levar outras pessoas, como sua famı́lia, por exemplo.
@@ -39908,9 +39501,7 @@ The i-th of the next k lines must contain the two positive integers pi and ei , 
 prime factor of Y with multiplicity ei .
 It can be proven that a valid answer exists under the given constraints. If there are multiple solutions,', '2 ≤ X ≤ 101000 ); 1073741825 ≤ 10−9 ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-final-f-fuzzy-factorization-a1', 'sbc-2025-final-f-fuzzy-factorization', 'SBC 2025 — Final (LATAM) — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — Final (LATAM), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Final (LATAM). Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-k-k-elementos-perdidos', 'K Elementos Perdidos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1900, 'Problema K
-                                K Elementos Perdidos
-                           Tempo limite: 2 s     Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-k-k-elementos-perdidos', 'K Elementos Perdidos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1900, 'Tempo limite: 2 s     Limite de memória: 1 GiB
 
 No núcleo da Estação Q-42, os cientistas criaram o mais avançado simulador de estados quânticos
 combinatoriais: o Entrelaçador de Caminhos Aumentados, também conhecido como ECA. O ECA
@@ -40470,8 +40061,7 @@ A saída contém três inteiros $R, G, B$, que correspondem ao código da cor qu
 
 ### Exemplos', 'See statement.', 'See statement.', '1 ≤ N ≤ 20$; 1 ≤ N ≤ 20$; 0 ≤ R, G, B ≤ 255$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-k-baloes-da-maratona-a1', 'mineira-2023-k-baloes-da-maratona', 'X Maratona Mineira — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-k-kubitschek', 'Kubitschek', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2000, 'Problema K. Kubitschek
- Meta 27: O programa de implantação da indústria automobilística exigirá um esfôrço financeiro
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-k-kubitschek', 'Kubitschek', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2000, 'Meta 27: O programa de implantação da indústria automobilística exigirá um esfôrço financeiro
  que se estima em 38 bilhões de cruzeiros, incluído, nesta cifra, o equivalente a 263 milhões de
                                             dólares.
 
@@ -40545,9 +40135,7 @@ Explicação do exemplo 3
 
 Outra solução viável para o caso anterior: aqui todos as locomotivas são destruídas no instante 0.', 'See statement.', 'See statement.', '1 ≤ N ≤ 1000), o número de locomotivas; 0 ≤ |pi |, |vi | ≤ 1000) a posição e; 1 ≤ M ≤ 2000, o número de dinamites que; 0 ≤ |xi | ≤ 2 × 106 ,; 0 ≤ ti ≤ 2000) em cada uma: a posição da din', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-k-kubitschek-a1', 'mineira-2025-k-kubitschek', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XII Maratona Mineira (2025), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-k-kampo-minado', 'Kampo Minado', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2000, 'Problema K. Kampo Minado
-
-A Universidade do Heptágono Mineiro está criando um novo sistema operacional, o “Janelas OS”
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-k-kampo-minado', 'Kampo Minado', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2000, 'A Universidade do Heptágono Mineiro está criando um novo sistema operacional, o “Janelas OS”
 que virá instalado com o famoso jogo Campo Minado. Para fugir de problemas legais decidiu-se fazer
 o Campo Minado 1-D, uma versão diferente o suficiente para acalmar os advogados da concorrência.
 O jogo funciona da seguinte maneira:
@@ -40602,8 +40190,7 @@ As partidas possíveis são:
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-k-kampo-minado-a1', 'mineira-2026-k-kampo-minado', 'XIII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory','Two Pointers']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-k-o-trem-de-minas', 'O Trem de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 2000, 'Problema K. O Trem de Minas
-Em Minas Gerais, o trem é muito mais que um meio de transporte: ele cruza montanhas, corta
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-k-o-trem-de-minas', 'O Trem de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 2000, 'Em Minas Gerais, o trem é muito mais que um meio de transporte: ele cruza montanhas, corta
 cidades históricas e carrega histórias de trabalhadores, estudantes e famílias inteiras.
 
 Miguel é responsável por anotar com quantos passageiros o trem saiu da cidade de origem. Infelizmente,
@@ -40650,9 +40237,7 @@ Exemplos
  2 1
  4 0', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), representando o número de esta; 0 ≤ ai , bi ≤ 100) que', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-k-o-trem-de-minas-a1', 'minas-2025-k-o-trem-de-minas', '1ª Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-j-vampiros', 'Vampiros', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 2000, 'Problema J
-                                        Vampiros
-          Nome do arquivo fonte: vampiros.c, vampiros.cpp ou vampiros.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2008-p1-j-vampiros', 'Vampiros', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2008/primeira-fase/maratona_v5.pdf', 2000, 'Nome do arquivo fonte: vampiros.c, vampiros.cpp ou vampiros.java
 
     Felipinho está empolgado com seu novo jogo de RPG sobre guerras entre clãs de vampiros.
 Nesse jogo ele representa um personagem de um vampiro e constantemente entra em conflito
@@ -40696,9 +40281,7 @@ O resultado de seu programa deve ser escrito na saı́da padrão.
    7 5 2 4                                20.0
    0 0 0 0', 'See statement.', 'See statement.', '1 ≤ EV1 , EV2 ≤ 10,; 1 ≤ AT ≤ 5 e 1 ≤ D ≤ 10)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2008-p1-j-vampiros-a1', 'sbc-2008-p1-j-vampiros', 'SBC 2008 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2008 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2008 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-j-leitura-otica', 'Leitura Ótica', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 2000, 'Problema J
-                                        Leitura Ótica
-             Nome do arquivo fonte: leitura.c, leitura.cpp ou leitura.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-j-leitura-otica', 'Leitura Ótica', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 2000, 'Nome do arquivo fonte: leitura.c, leitura.cpp ou leitura.java
 
      O professor João decidiu aplicar somente provas de múltipla escolha, para facilitar a correção.
 Em cada prova, cada questão terá cinco alternativas (A, B, C, D e E), e o professor vai distribuir
@@ -40751,9 +40334,7 @@ linha deve conter o caractere ‘*’ (asterisco).
    255 5 200 130 205
    0', 'See statement.', 'See statement.', '1 ≤ N ≤ 255); 0 ≤ A, B, C, D, E ≤ 255)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-j-leitura-otica-a1', 'sbc-2010-p1-j-leitura-otica', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-j-palavras', 'Palavras', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 2000, 'Problema J
-                                           Palavras
-                                 Arquivo: palavras.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-j-palavras', 'Palavras', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 2000, 'Arquivo: palavras.[c|cpp|java]
 
    Dados dois conjuntos de palavras formadas por zeros e uns, você deve escrever um programa para
 determinar se existem concatenações de palavras de cada um dos conjuntos que gerem uma mesma
@@ -40798,9 +40379,7 @@ Exemplos
     00
     000', 'See statement.', 'See statement.', '1 ≤ N1 , N2 ≤ 20', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-j-palavras-a1', 'sbc-2012-p1-j-palavras', 'SBC 2012 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2012 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-j-caminhao', 'Caminhão', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 2000, 'Problema J
-                                            Caminhão
-                                    Arquivo: caminhao.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2013-p1-j-caminhao', 'Caminhão', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2013/primeira-fase/prim-fase2013/maratona.pdf', 2000, 'Arquivo: caminhao.[c|cpp|java]
 
     A Sociedade de Balões Coloridos (SBC) é a principal fornecedora de balões para competições de
 programação; ela dispõe de grandes fábricas e depósitos, além de uma extensa frota de caminhões para
@@ -40867,9 +40446,7 @@ Exemplos
  1 3
  1 2', 'See statement.', 'See statement.', '2 ≤ N ≤ 2 × 104; 1 ≤ M ≤ 105; 1 ≤ S ≤ 5 × 104; 1 ≤ A, B ≤ N , A 6= B; 0 ≤ P ≤ 105', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2013-p1-j-caminhao-a1', 'sbc-2013-p1-j-caminhao', 'SBC 2013 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY['DFS']::text[], ARRAY[]::text[], ARRAY['SBC 2013 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2013 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-j-corte', 'Corte', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 2000, 'Problema J
-                                              Corte
-                                    Arquivo: corte.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-j-corte', 'Corte', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 2000, 'Arquivo: corte.[c|cpp|java]
 
     Todo polı́gono convexo, com 2N vértices, pode ser decomposto em N − 1 quadriláteros, fazendo-
 se N − 2 cortes em linha reta entre certos pares de vértices. A figura abaixo ilustra três diferentes
@@ -40905,9 +40482,7 @@ Exemplos
  5148.8242 3802.9292
  4598.8042 4036.8000', 'See statement.', 'See statement.', '2 ≤ N ≤ 100); 0 ≤ X, Y ≤ 10000), com precisão de 4 casas decimais: ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-j-corte-a1', 'sbc-2014-p1-j-corte', 'SBC 2014 — 1ª fase — standard', ARRAY['Geometry','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2014 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-j-jogo-de-estrategia', 'Jogo de Estratégia', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 2000, 'Problema J
-                                   Jogo de Estratégia
-Um jogo de estratégia, com J jogadores, é jogado em volta de uma mesa. O primeiro a jogar é o
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-j-jogo-de-estrategia', 'Jogo de Estratégia', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 2000, 'Um jogo de estratégia, com J jogadores, é jogado em volta de uma mesa. O primeiro a jogar é o
 jogador 1, o segundo a jogar é o jogador 2 e assim por diante. Uma vez completada uma rodada,
 novamente o jogador 1 faz sua jogada e a ordem dos jogadores se repete novamente. A cada jogada,
 um jogador garante uma certa quantidade de Pontos de Vitória. A pontuação de cada jogador consiste
@@ -40936,9 +40511,7 @@ Exemplos
  2 3                                                1
  0 0 1 0 2 0', 'See statement.', 'See statement.', '1 ≤ J, R ≤ 500)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-j-jogo-de-estrategia-a1', 'sbc-2015-p1-j-jogo-de-estrategia', 'SBC 2015 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2015 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-j-jogos-ol-mpicos', 'Jogos olı́mpicos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 2000, 'Problema J
-                                       Jogos olı́mpicos
-Um grupo de investidores está pensando em investir pesado em atletas da delegação brasileira após
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-j-jogos-ol-mpicos', 'Jogos olı́mpicos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 2000, 'Um grupo de investidores está pensando em investir pesado em atletas da delegação brasileira após
 as olimpı́adas do Rio. Para isso, eles vêm observando N atletas e perceberam que alguns estão em
 decadência e outros em ascensão. Em especial, o grupo está de olho em dois fatores sobre cada atleta:
 seu cansaço e sua habilidade. Eles anotaram os valores de habilidade e cansaço de cada atleta logo ao
@@ -40979,9 +40552,7 @@ que receberão algum investimento do grupo.
  0 1 10 2
  8 3 9 -3', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-j-jogos-ol-mpicos-a1', 'sbc-2016-p1-j-jogos-ol-mpicos', 'SBC 2016 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-j-jogo-de-boca', 'Jogo de Boca', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 2000, 'Problema J
-                                         Jogo de Boca
-Um jogo infantil, muito popular, é o 21 de boca. O jogo é jogado da seguinte forma: o primeiro jogador
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-j-jogo-de-boca', 'Jogo de Boca', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 2000, 'Um jogo infantil, muito popular, é o 21 de boca. O jogo é jogado da seguinte forma: o primeiro jogador
 diz um número, n0 , que pode ser 1 ou 2. O segundo jogador pode então dizer um número n1 tal que
 n1 ∈ {n0 + 1, n0 + 2}. E assim por diante, os jogadores se alternam, dizendo sempre um número que é
 um ou dois maior do que o anterior. O jogador que disser 21 ganha o jogo. Por exemplo, a sequência de
@@ -41013,9 +40584,7 @@ zero.
  Exemplo de entrada 3                                  Exemplo de saı́da 3
  12341234123412341234123412341234                      2', 'See statement.', 'See statement.', '3 ≤ N ≤ 10100 ) escolhido para a', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-j-jogo-de-boca-a1', 'sbc-2017-p1-j-jogo-de-boca', 'SBC 2017 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-j-juntando-capitais', 'Juntando Capitais', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 2000, 'Problema J
-                                    Juntando Capitais
-Um reino longı́nquo possui N cidades, dentre as quais K são capitais. O rei Richard quer construir
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-j-juntando-capitais', 'Juntando Capitais', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 2000, 'Um reino longı́nquo possui N cidades, dentre as quais K são capitais. O rei Richard quer construir
 linhas de transmissão, cada uma delas ligando duas cidades. É preciso haver um caminho, ou seja,
 uma sequência de linhas de transmissão, entre qualquer par de capitais.
     Cada linha de transmissão possui um custo associado, que é a distância euclidiana entre as cidades
@@ -41078,9 +40647,7 @@ mı́nimo para construir as linhas de transmissão, de acordo com as restriço
  -1 -13
  0 2', 'See statement.', 'See statement.', '4 ≤ N ≤ 100 e 3 ≤ K < min(10, N ),; 1000 ≤ X, Y ≤ 1000, representando as coordenadas de uma c', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-j-juntando-capitais-a1', 'sbc-2018-p1-j-juntando-capitais', 'SBC 2018 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-j-jogo-de-baralho', 'Jogo de Baralho', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 2000, 'Problema J
-                                      Jogo de Baralho
-O cronograma do dia das competições de programação normalmente segue o mesmo padrão: aqueci-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-j-jogo-de-baralho', 'Jogo de Baralho', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 2000, 'O cronograma do dia das competições de programação normalmente segue o mesmo padrão: aqueci-
 mento de manhã, seguido do horário de almoço, um tempo de descanso, ajustes finais do ambiente de
 competição e então o inı́cio da prova.
     No tempo de descanso, alguns competidores preferem relaxar, outros preferem socializar e uma
@@ -41150,9 +40717,7 @@ declarado vencedor.
  JJJA
  QQQA', 'See statement.', 'See statement.', '2 ≤ N ≤ 13 e 1 ≤ K ≤ N ) representando,', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-j-jogo-de-baralho-a1', 'sbc-2019-p1-j-jogo-de-baralho', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-j-juntando-dados', 'Juntando Dados', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2000, 'Problema J
-                                      Juntando Dados
-Acre e Amanda são muito curiosos e estão sempre procurando padrões à sua volta. Eles rotineiramente
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-j-juntando-dados', 'Juntando Dados', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2000, 'Acre e Amanda são muito curiosos e estão sempre procurando padrões à sua volta. Eles rotineiramente
 coletam e analisam dados de várias fontes (tráfego na cidade, volume de chuvas, número de folhas que
 caem das árvores), na esperança de encontrar padrões interessantes.
     Na sua última expedição eles obtiveram um conjunto de dados bastante promissor: formava uma
@@ -41198,9 +40763,7 @@ ser muito grande, sua resposta deverá ser calculada módulo 1000000007 (109 +
  8                                                   10
  1 2 5 5 5 5 8 9', 'See statement.', 'See statement.', '4 ≤ N ≤ 200; 10000 ≤ I ≤ 10000', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-j-juntando-dados-a1', 'sbc-2020-p1-j-juntando-dados', 'SBC 2020 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2020 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-j-jogo-duro', 'Jogo Duro', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2000, 'Problema J
-                                           Jogo Duro
-Futebol nem sempre foi o esporte mais popular das Américas. Historiadores encontraram registros
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-j-jogo-duro', 'Jogo Duro', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2000, 'Futebol nem sempre foi o esporte mais popular das Américas. Historiadores encontraram registros
 de um antigo esporte que era jogado em muitas civilizações pelo continente. Por causa da falta da
 tradição de se falar sobre este esporte, o nome original é desconhecido, mas em tempos modernos ele
 é criativamente chamado de “butefol”.
@@ -41257,9 +40820,7 @@ time.
 1 e 2 estarem distantes por 1 posição, e a penalidade seja 0 pelos jogadores 1 e 3 estarem na mesma
 posição).', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 50, 0 ≤ K ≤ 50, 0 ≤ C ≤ 106 ),; 0 ≤ Pi,j ≤ 106 ); 1 ≤ ai < bi ≤ N ), que representa que', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-j-jogo-duro-a1', 'sbc-2021-p1-j-jogo-duro', 'SBC 2021 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-j-jogando-23', 'Jogando 23', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2000, 'Problema J
-                                           Jogando 23
-Vinte e três é um jogo de cartas simples, jogado por crianças. Como o nome sugere, ele é uma variação
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-j-jogando-23', 'Jogando 23', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2000, 'Vinte e três é um jogo de cartas simples, jogado por crianças. Como o nome sugere, ele é uma variação
 do jogo vinte e um (blackjack em inglês), que é um dos jogos mais jogados em cassinos e sites de jogos.
     O jogo utiliza um baralho de 52 cartas, com quatro naipes, cada naipe com 13 cartas (ás, 2, 3, 4,
 5, 6, 7, 8, 9, 10, valete, dama e rei). Os naipes das cartas não são relevantes. As cartas com figuras
@@ -41325,9 +40886,7 @@ possı́vel Maria vencer a partida nessa próxima rodada.
  1 1
  1 2 2 2 3 3 3 3', 'See statement.', 'See statement.', '1 ≤ N ≤ 8), o número de rodadas do jogo até; 1 ≤ I ≤ 13)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-j-jogando-23-a1', 'sbc-2022-p1-j-jogando-23', 'SBC 2022 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-j-jogo-de-volei', 'Jogo de Vôlei', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 2000, 'Problema J
-                                         Jogo de Vôlei
-Está tudo pronto para a grande final do super voleibol nos Jogos Olı́mpicos, e a tensão é tamanha
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-j-jogo-de-volei', 'Jogo de Vôlei', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 2000, 'Está tudo pronto para a grande final do super voleibol nos Jogos Olı́mpicos, e a tensão é tamanha
 que pode ser cortada com uma faca! Ricardão, o treinador de um dos times finalistas, está cuida-
 dosamente posicionando seus jogadores para ter uma vantagem estratégica. Porém, ainda resta uma
 preocupação crescente: a de que algumas regiões da quadra não estejam cobertas por seus jogadores,
@@ -41376,9 +40935,7 @@ ou relativo de no máximo 10−5 da resposta correta.
  1 3
  -1 3', 'See statement.', 'See statement.', '105 ≤ xi , yi ≤ 105 ), que representam as coordenadas do; 1 ≤ N ≤ 105 ), que representa o número de jogadores; 105 ≤ xi , yi ≤ 105 ) que nos dão as coordenadas do i-e', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-j-jogo-de-volei-a1', 'sbc-2023-p1-j-jogo-de-volei', 'SBC 2023 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2023 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-j-jornada-colorida', 'Jornada Colorida', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 2000, 'Problema J
-                                       Jornada Colorida
-No paı́s de Oz as estradas são pavimentadas com pedras coloridas. Cada estrada conecta exatamente
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-j-jornada-colorida', 'Jornada Colorida', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 2000, 'No paı́s de Oz as estradas são pavimentadas com pedras coloridas. Cada estrada conecta exatamente
 duas cidades, pode ser percorrida nos dois sentidos e é colorida com pedras de uma única cor.
    Dorotéia está visitando Oz pela primeira vez e deseja realizar um passeio pelo paı́s, atendendo às
 seguintes condições:
@@ -41465,9 +41022,7 @@ qualquer um deles.
  2 3 1
  3 1 1', 'See statement.', 'See statement.', '2 ≤ N ≤ 1000), o número de estradas (1 ≤ M ≤ 1000) e ; 1 ≤ K ≤ 1000); 1 ≤ I, J ≤ N e; 1 ≤ C ≤ K', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-j-jornada-colorida-a1', 'sbc-2024-p1-j-jornada-colorida', 'SBC 2024 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2024 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-j-joao-joao', 'João João', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 2000, 'Problema J
-                                             João João
-Em 2025, o responsável por coordenar a equipe criadora da prova da OBI – Olimpı́ada Brasileira de
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-j-joao-joao', 'João João', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 2000, 'Em 2025, o responsável por coordenar a equipe criadora da prova da OBI – Olimpı́ada Brasileira de
 Influenciadores – é o professor João João, que, além de professor, é um famoso e influente influenciador.
     Até o momento, a equipe criou 10 tarefas, e cada uma dessas tarefas foi categorizada em um de
 quatro nı́veis de dificuldade: 1, 2, 3 e 4.
@@ -41500,8 +41055,7 @@ nı́veis distintos possa ser produzida.
    Já foram criadas tarefas de nı́veis de dificuldade 1, 2, 3 e 4. Como não falta nenhum nı́vel de
    dificuldade, a resposta é 0.', 'See statement.', 'See statement.', '1 ≤ Di ≤ 4, para 1 ≤ i ≤ 10)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-j-joao-joao-a1', 'sbc-2025-p1-j-joao-joao', 'SBC 2025 — 1ª fase — standard', ARRAY['Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2025 — 1ª fase, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-j-linhas-telefonicas', 'Linhas Telefônicas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2000, 'Problema J – Linhas Telefônicas
-Empresas de telefonia alteraram recentemente a forma como operam. Como você e seus dois
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-j-linhas-telefonicas', 'Linhas Telefônicas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2000, 'Empresas de telefonia alteraram recentemente a forma como operam. Como você e seus dois
 colegas de equipe precisam treinar juntos para maratonas de programação online, você deseja
 calcular quanto gastará para contatá-los por telefone.
 Existem ao todo N empresas de telefonia, numeradas de 1 a N . Cada empresa U pode possuir
@@ -42719,9 +42273,7 @@ integer number of minutes t in the range [0, K].
 
 ICPC', '2 ≤ N, M ≤ 300, P ≥ 0 and 0 ≤ K ≤ 1012 ); 0 ≤ Cij ≤ 1012 for i = 1, 2, ; 106 ≤ Rij ≤ 106 for i = 1, 2, ; 1 ≤ X1 , X2 ≤ N and 1 ≤ Y1 , Y2 ≤ M ), indicating that', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-final-g-gridoland-power-gauge-a1', 'sbc-2025-final-g-gridoland-power-gauge', 'SBC 2025 — Final (LATAM) — standard', ARRAY['Graph Algorithms','Flows / Matching']::text[], ARRAY[]::text[], ARRAY['Hash Map']::text[], ARRAY['SBC 2025 — Final (LATAM), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Final (LATAM). Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-l-linha-de-producao-de-qphones', 'Linha de Produção de qPhones', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 2000, 'Problema L
-                       Linha de Produção de qPhones
-                          Tempo limite: 0,5 s      Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-l-linha-de-producao-de-qphones', 'Linha de Produção de qPhones', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 2000, 'Tempo limite: 0,5 s      Limite de memória: 1 GiB
 
 A Sociedade Brasileira de Celulares (SBC) está desenvolvendo um novo modelo de smartphones
 que utiliza computação quântica, os qPhones. Diferente dos aparelhos tradicionais, que armazenam
@@ -42998,9 +42550,7 @@ Para cada evento do tipo $3$, imprima o número de vértices acesos na sub-árvo
 
 - $1 ≤ N, Q ≤ 10^5$.', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^5$, o número de vértices da árvor; 1 ≤ a_i, b_i ≤ N$ da árvore; 1 ≤ Q ≤ 10^5$ que representa o número de eve; 1 ≤ v_i ≤ N$ o vértice que enraiza a sub-árv; 1 ≤ N, Q ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-l-bacon-e-a-arvore-magica-a1', 'mineira-2023-l-bacon-e-a-arvore-magica', 'X Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem L. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-l-lucro', 'Lucro', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2100, 'Problema L. Lucro
-
-Um mercado é dito eficiente quando os produtos são corretamente precificados, de forma tal que não
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-l-lucro', 'Lucro', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2100, 'Um mercado é dito eficiente quando os produtos são corretamente precificados, de forma tal que não
 é possível lucrar fazendo trocas dentro do mercado. Para testar a Hipótese do Mercado Eficiente,
 você foi a uma casa de câmbio e olhou os valores para trocas de três moedas:
 
@@ -43038,8 +42588,7 @@ Exemplos
  Exemplo de entrada 3                              Exemplo de saída 3
  2 2 2                                             N', 'See statement.', 'See statement.', '1 ≤ A, B, C ≤', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-l-lucro-a1', 'mineira-2025-l-lucro', 'XII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem L. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-l-lavando-a-louca', 'Lavando a louça', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2100, 'Problema L. Lavando a louça
-Após um excelente café com pão de queijo em família, Beto ficou encarregado de lavar a louça.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-l-lavando-a-louca', 'Lavando a louça', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2100, 'Após um excelente café com pão de queijo em família, Beto ficou encarregado de lavar a louça.
 Após ensaboar tudo, Beto se lembrou o quão chato é colocar os copos no escorredor linear de sua
 casa, em particular, a trabalheira que é colocar um copo entre dois outros que já estão secando. Ele
 estimou que o esforço para colocar um copo em uma determinada posição no escorredor é igual à
@@ -43083,9 +42632,7 @@ colocação, já os copos 2 e 5 possuem custo 1, totalizando um esforço de 2.
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-l-lavando-a-louca-a1', 'mineira-2026-l-lavando-a-louca', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem L. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-k-jogo-da-velha', 'Jogo da Velha', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 2100, 'Problema K
-                                     Jogo da Velha
-                 Nome do arquivo fonte: velha.c, velha.cpp ou velha.java
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2010-p1-k-jogo-da-velha', 'Jogo da Velha', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2010/primeira-fase/maratona.pdf', 2100, 'Nome do arquivo fonte: velha.c, velha.cpp ou velha.java
 
      O jogo da velha é um dos jogos mais antigos da humanidade; os primeiros registros dele são
 do século I antes de Cristo, no Império Romano. João e Maria jogam bastante jogo da velha,
@@ -43123,9 +42670,7 @@ único caractere: ‘S’ caso Maria possua uma estratégia vencedora e ‘N�
    ............
    0', 'See statement.', 'See statement.', '3 ≤ N ≤ 104 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2010-p1-k-jogo-da-velha-a1', 'sbc-2010-p1-k-jogo-da-velha', 'SBC 2010 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2010 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2010 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-k-ciclo-de-rubik', 'Ciclo de Rubik', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 2100, 'Problema K
-                                        Ciclo de Rubik
-                                   Arquivo: rubik.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-k-ciclo-de-rubik', 'Ciclo de Rubik', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 2100, 'Arquivo: rubik.[c|cpp|java]
 
     Provavelmente todos conhecem o Cubo de Rubik, um passatempo 3-D desafiador, que tem cada
 uma das seis faces cobertas com nove etiquetas, cada etiqueta de uma cor (azul, amarelo, laranja,
@@ -43182,9 +42727,7 @@ Exemplos
     dl                                       105
     RUUdBd                                   1260', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-k-ciclo-de-rubik-a1', 'sbc-2012-p1-k-ciclo-de-rubik', 'SBC 2012 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2012 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-k-pizza-do-vo-pepe', 'Pizza do Vô Pepe', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 2100, 'Problema K
-                                               Pizza do Vô Pepe
-                                               Arquivo: pizza.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2014-p1-k-pizza-do-vo-pepe', 'Pizza do Vô Pepe', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2014/primeira-fase/maratona.pdf', 2100, 'Arquivo: pizza.[c|cpp|java]
 
     Vovô Pepe é famoso por suas pizzas. Elas são deliciosas, e têm o formato de um cı́rculo perfeito.
 Vovô preparou uma pizza especial para o jantar de hoje à noite, e colocou um certo número de azeitonas
@@ -43231,9 +42774,7 @@ Exemplos
  12 4                                                         N
  4 5 7 11', 'See statement.', 'See statement.', '3 ≤ C ≤ 105 ) e N (3 ≤ N ≤ 104 , N ≤ C) representando; 0 ≤ X1 < X2 < ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2014-p1-k-pizza-do-vo-pepe-a1', 'sbc-2014-p1-k-pizza-do-vo-pepe', 'SBC 2014 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2014 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2014 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-k-pal-ndromo', 'Palı́ndromo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 2100, 'Problema K
-                                          Palı́ndromo
-Um palı́ndromo é uma cadeia de caracteres tal que sua reversão é igual à cadeia original. Em outras
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-k-pal-ndromo', 'Palı́ndromo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 2100, 'Um palı́ndromo é uma cadeia de caracteres tal que sua reversão é igual à cadeia original. Em outras
 palavras, é uma cadeia que, quando lida de trás pra frente, é igual à cadeia original. Por exemplo
 BANANAB é um palı́ndromo, enquanto BANANAS não. Neste problema estamos interessados em
 uma questão um pouco mais interessante.
@@ -43272,9 +42813,7 @@ Exemplos
  MARATONA                                            3
  4 3 1 5 2', 'See statement.', 'See statement.', '0 ≤ N ≤ |S|,', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-k-pal-ndromo-a1', 'sbc-2015-p1-k-pal-ndromo', 'SBC 2015 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2015 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-k-kit-de-encolhimento-de-pol-gonos', 'Kit de encolhimento de polı́gonos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 2100, 'Problema K
-                       Kit de encolhimento de polı́gonos
-Um Kit de Encolhimento de Polı́gonos é um material muito utilizado nas aulas de magia geométrica
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-k-kit-de-encolhimento-de-pol-gonos', 'Kit de encolhimento de polı́gonos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 2100, 'Um Kit de Encolhimento de Polı́gonos é um material muito utilizado nas aulas de magia geométrica
 na Nlogônia. O kit consiste de dois pontos, A e B no plano cartesiano. Considere um polı́gono convexo
 dado pelos vértices 1, 2...N , nessa ordem. Para encolher esse polı́gono usando o kit, algumas regras
 devem ser respeitadas. Cada vértice x do polı́gono deve ser movido uma vez só: para o ponto médio
@@ -43335,9 +42874,7 @@ representando a menor área possı́vel para um polı́gono obtido com o uso do
  0 0
  2 -2 -2 -2', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-k-kit-de-encolhimento-de-pol-gonos-a1', 'sbc-2016-p1-k-kit-de-encolhimento-de-pol-gonos', 'SBC 2016 — 1ª fase — standard', ARRAY['String Algorithms','Geometry','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-k-k-esimo', 'K-ésimo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 2100, 'Problema K
-                                             K-ésimo
-                                         √                                               √
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-k-k-esimo', 'K-ésimo', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 2100, '√                                               √
 Dado um número real X da forma A + B, com A e B inteiros positivos e −1 < A − B < 1, e dois
 números inteiros N e K, sua tarefa é determinar o K-ésimo dı́gito menos significativo da parte inteira
 de X N . Por exemplo, se K = 1, você precisa determinar o algarismo das unidades de bX N c.
@@ -43362,9 +42899,7 @@ parte inteira de X N .
  Exemplo de entrada 4                                Exemplo de saı́da 4
  10 90 1000000000 2                                  9', 'See statement.', 'See statement.', '1 ≤ A, B ≤ 104 , 1 ≤ N ≤ 109 e 1 ≤ K ≤ 4', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-k-k-esimo-a1', 'sbc-2017-p1-k-k-esimo', 'SBC 2017 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-k-kepler', 'Kepler', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 2100, 'Problema K
-                                                Kepler
-Neste estranho sistema planetário, N planetas se-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-k-kepler', 'Kepler', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 2100, 'Neste estranho sistema planetário, N planetas se-
 guem órbitas circulares ao redor de uma estrela
 que está nas coordenadas (0, 0) do sistema. A es-
 trela está estritamente contida no interior de to-
@@ -43407,9 +42942,7 @@ órbitas, se esse número for menor ou igual a 2N . Caso contrário, imprima 
  -3.004 3.003 5.002
  1.000 1.000 3.005', 'See statement.', 'See statement.', '2 ≤ N ≤ 150000), representando o número; 0 ≤ X, Y ≤ 25; 0 ≤ R ≤ 200000', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-k-kepler-a1', 'sbc-2018-p1-k-kepler', 'SBC 2018 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-k-keep-calm-e-venda-baloes', 'Keep Calm e Venda Balões', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 2100, 'Problema K
-                            Keep Calm e Venda Balões
-Walter vende balões de porta em porta. Todo dia ele escolhe uma rua da sua cidade e visita todas as
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-k-keep-calm-e-venda-baloes', 'Keep Calm e Venda Balões', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 2100, 'Walter vende balões de porta em porta. Todo dia ele escolhe uma rua da sua cidade e visita todas as
 casas nela, oferecendo seus coloridos balões.
     Cada rua da cidade de Walter tem a mesma quantidade de casas dos dois lados, e todas as casas
 da cidade são do mesmo tamanho. Dessa forma, cada rua pode ser vista como uma matriz 2 × N ,
@@ -43451,9 +42984,7 @@ fornecer o resto da divisão deste número por 109 + 7.
  Exemplo de entrada 4                               Exemplo de saı́da 4
  61728                                              654783381', 'See statement.', 'See statement.', '1 ≤ N ≤ 109 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-k-keep-calm-e-venda-baloes-a1', 'sbc-2019-p1-k-keep-calm-e-venda-baloes', 'SBC 2019 — 1ª fase — standard', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY['Hash Map']::text[], ARRAY['SBC 2019 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-k-ka-entre-nos', 'Ká entre Nós', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2100, 'Problema K
-                                         Ká entre Nós
-Empates são sempre um problema em eleições ou em jogos. Recentemente, um novo jogo, chamado
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-k-ka-entre-nos', 'Ká entre Nós', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2100, 'Empates são sempre um problema em eleições ou em jogos. Recentemente, um novo jogo, chamado
 Ká entre Nós, foi inventado. O jogo é disputado por jogadores conectados numa rede social. Cada
 jogador tem um conjunto de amigos. A cada rodada há várias votações, mas um competidor somente
 pode receber votos de seus amigos. Ganha o jogador que receber o maior número de votos.
@@ -43500,9 +43031,7 @@ dois grupos, escreva a letra maiúscula ‘Y’; caso contrário, escreva a le
  2 5
  2 4', 'See statement.', 'See statement.', '2 ≤ P ≤ 100 e 1 ≤ F ≤ P × (P − 1)/2; 1 ≤ A, B ≤ P e A 6= B', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-k-ka-entre-nos-a1', 'sbc-2020-p1-k-ka-entre-nos', 'SBC 2020 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2020 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-k-katmandu', 'Katmandu', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2100, 'Problema K
-                                            Katmandu
-Finalmente a pandemia está melhorando e você finalmente pode fazer a coisa com a qual esteve
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-k-katmandu', 'Katmandu', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2100, 'Finalmente a pandemia está melhorando e você finalmente pode fazer a coisa com a qual esteve
 sonhando nos últimos anos: comer no seu restaurante favorito. Acontece que esse restaurante fica em
 Katmandu, mas tudo bem, é só você ir de avião.
     O problema é que viajar de avião quase sempre te deixa muito cansado. Você se considera descan-
@@ -43555,9 +43084,7 @@ e ainda assim comer todas as refeições, imprima ‘Y’; caso contrário, i
  3
  4', 'See statement.', 'See statement.', '1 ≤ T, D ≤ 105 , 0 ≤ M ≤ 1000), que; 0 ≤ yi ≤ D)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-k-katmandu-a1', 'sbc-2021-p1-k-katmandu', 'SBC 2021 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-k-kalel-o-sapo-saltador', 'Kalel, o Sapo Saltador', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2100, 'Problema K
-                                Kalel, o Sapo Saltador
-Kalel é um sapo que gosta de pular sobre pedras.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-k-kalel-o-sapo-saltador', 'Kalel, o Sapo Saltador', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2100, 'Kalel é um sapo que gosta de pular sobre pedras.
     Há N pedras em uma linha, numeradas de 1 a N da esquerda para a direita. Kalel começa na
 pedra 1 e gostaria de chegar na pedra N .
     Em cada movimento, Kalel pode escolher um dentre M tipos de pulo. O j-ésimo pulo permite que
@@ -43588,9 +43115,7 @@ tando no máximo K pontos de energia, módulo 109 (um bilhão).
  2 0
  7 3', 'See statement.', 'See statement.', '1 ≤ N ≤ 109 , 1 ≤ M ≤ 105 , 0 ≤ K ≤ 400); 1 ≤ dj ≤ 10, 0 ≤ pj ≤ K)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-k-kalel-o-sapo-saltador-a1', 'sbc-2022-p1-k-kalel-o-sapo-saltador', 'SBC 2022 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-k-k-pra-mais-k-pra-menos', 'k pra Mais, k pra Menos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 2100, 'Problema K
-                              k pra Mais, k pra Menos
-A vida daquele que estuda ciência da computação nem sempre é tão fácil quanto parece. Alguns dias
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-k-k-pra-mais-k-pra-menos', 'k pra Mais, k pra Menos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 2100, 'A vida daquele que estuda ciência da computação nem sempre é tão fácil quanto parece. Alguns dias
 você pode estar implementando um algoritmo revolucionário, mas em outros você acaba relendo o
 mesmo livro pela décima vez. Mas a todo momento estamos buscando a mesma coisa: otimizar e
 automatizar tarefas. Neste caso, um professor está precisando da sua ajuda para orientar seus alunos
@@ -43635,9 +43160,7 @@ de grau, módulo 998244353.
  3 3 3
  1 0 0', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ) e K (−105 ≤ K ≤ 105 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-k-k-pra-mais-k-pra-menos-a1', 'sbc-2023-p1-k-k-pra-mais-k-pra-menos', 'SBC 2023 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-k-karamell', 'Karamell', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 2100, 'Problema K
-                                            Karamell
-Karamell, Caramel, Caramello ou Caramelo. Diferentes idiomas, mas você sabe do que eu estou
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-k-karamell', 'Karamell', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 2100, 'Karamell, Caramel, Caramello ou Caramelo. Diferentes idiomas, mas você sabe do que eu estou
 falando. Alice e Bob são irmãos gêmeos e também adoram caramelos! Por isso, como presente de
 aniversário, pediram caramelos para todos convidados da festa que estão organizando.
     No dia da festa, Alice e Bob receberam seus presentes: N sacolas de caramelos. A i-ésima sacola
@@ -43677,9 +43200,7 @@ valores ai que garanta que os caramelos serão divididos igualmente entre os ir
  6                                                   -1
  1 12 21 23 33 34', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), indicando o número de sacolas; 1 ≤ ai ≤ 100), onde ai indica o número de caramelos n', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-k-karamell-a1', 'sbc-2024-p1-k-karamell', 'SBC 2024 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2024 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-k-knockout-su-co-e-outros-formatos-de-torneio', 'Knockout, suı́ço e outros formatos de torneio', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 2100, 'Problema K
-            Knockout, suı́ço e outros formatos de torneio
-Torneios de jogos e esportes são cada vez mais frequentes, servindo como uma forma de testar as
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-k-knockout-su-co-e-outros-formatos-de-torneio', 'Knockout, suı́ço e outros formatos de torneio', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 2100, 'Torneios de jogos e esportes são cada vez mais frequentes, servindo como uma forma de testar as
 habilidades dos participantes. A escolha do formato ideal depende da modalidade e do número de
 participantes. Por exemplo, um formato “todos contra todos” pode ser inviável quando o número
 de participantes é grande, enquanto um torneio de knockout (conhecido popularmente como “mata-
@@ -43717,8 +43238,7 @@ torneio. Como a resposta pode ser muito grande, imprima a resposta módulo 109 
  Exemplo de entrada 2                                 Exemplo de saı́da 2
  3 2                                                  16', 'See statement.', 'See statement.', '1 ≤ A, B ≤ 1018 ) separados', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-k-knockout-su-co-e-outros-formatos-de-torneio-a1', 'sbc-2025-p1-k-knockout-su-co-e-outros-formatos-de-torneio', 'SBC 2025 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — 1ª fase, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-k-contingencia', 'Contingência', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2100, 'Problema K – Contingência
-Uma grande montadora localizada no Polo Industrial de Manaus (PIM) gerencia um vasto
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-k-contingencia', 'Contingência', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2100, 'Uma grande montadora localizada no Polo Industrial de Manaus (PIM) gerencia um vasto
 armazém com N tipos diferentes de componentes eletrônicos. O sistema primário de separação
 de peças é eficiente, com robôs autônomos que buscam os componentes necessários no armazém,
 com base em sensores ópticos que identificam o tipo de peça, e os levam para a esteira de triagem
@@ -44793,9 +44313,7 @@ The second line contains N integers D1 , D2 , . . . , DN (1 ≤ Di ≤ 105 for i
 the difficulties of the tasks in the order they appear in the list.', 'Output a single line with an integer indicating the maximum number of days Lola can split the tasks
 into, such that the hardest task in each day is strictly harder than the hardest task in the previous day.', '1 ≤ N ≤ 105 ) indicating the number of tasks; 1 ≤ Di ≤ 105 for i = 1, 2, ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-final-h-harder-horizons-a1', 'sbc-2025-final-h-harder-horizons', 'SBC 2025 — Final (LATAM) — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — Final (LATAM), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Final (LATAM). Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-m-movimentacao-assustadora-a-distancia', 'Movimentação Assustadora à Distância', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 2100, 'Problema M
-                Movimentação Assustadora à Distância
-                           Tempo limite: 1 s     Limite de memória: 1 GiB
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-m-movimentacao-assustadora-a-distancia', 'Movimentação Assustadora à Distância', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 2100, 'Tempo limite: 1 s     Limite de memória: 1 GiB
 
 Charles é um grande físico, criptógrafo e cientista da computação, sendo responsável por grandes
 contribuições que incluem trabalhos fundamentais sobre a relação entre física e informação. Durante
@@ -45026,8 +44544,7 @@ A saída deve ser a área de interseção das figuras. A saída será considerad
 % will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
 %in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ R ≤ 100$; 1 ≤ R ≤ 100', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-m-tres-quatro-cinco-a1', 'mineira-2023-m-tres-quatro-cinco', 'X Maratona Mineira — standard', ARRAY['Geometry']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem M. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-m-mar-de-morros', 'Mar de Morros', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2200, 'Problema M. Mar de Morros
-                                  Tô passando mal, tô passando mal!
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-m-mar-de-morros', 'Mar de Morros', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2200, 'Tô passando mal, tô passando mal!
 
 Minas Gerais é um estado de muitos morros (ou, como muitos falam, um mar de morros). Fernanda
 deseja fazer uma viagem por Minas, porém ela sempre tem problemas com altitude e pode passar
@@ -45098,9 +44615,7 @@ Neste caso, Fernanda pode ir direto no primeiro dia.
  1 2
  2 3', 'See statement.', 'See statement.', '2 ≤ N ≤ 105 , 1 ≤ M ≤ 105 , 1 ≤ H ≤; 1 ≤ hi ≤ 109 ); 1 ≤ ai , bi ≤ N , ai ̸= bi ), representando ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-m-mar-de-morros-a1', 'mineira-2025-m-mar-de-morros', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem M. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-m-movendo-varetas', 'Movendo varetas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2200, 'Problema M. Movendo varetas
-
-Os renomados criadores do pega-varetas acabam de lançar o quebra-cabeça desliza-varetas. O
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-m-movendo-varetas', 'Movendo varetas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2200, 'Os renomados criadores do pega-varetas acabam de lançar o quebra-cabeça desliza-varetas. O
 quebra-cabeça consiste em N ↓ 1 varetas conectadas a N pinos dispostos no plano em posição
 convexa, formando uma árvore planar, isto é, uma estrutura conexa e sem cruzamentos.
 
@@ -45182,9 +44697,7 @@ A figura abaixo mostra um deslize inválido. Na configuração T , o deslize da 
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-m-movendo-varetas-a1', 'mineira-2026-m-movendo-varetas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem M. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-l-estrela', 'Estrela', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 2200, 'Problema L
-                                             Estrela
-                                  Arquivo: estrela.[c|cpp|java]
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2012-p1-l-estrela', 'Estrela', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2012/primeira-fase/maratona.pdf', 2200, 'Arquivo: estrela.[c|cpp|java]
 
     Fernando ganhou um compasso de aniversário, e agora sua diversão favorita é desenhar estrelas:
 primeiro, ele marca N pontos sobre a circunferência, dividindo-a em N arcos iguais; depois, ele liga
@@ -45223,9 +44736,7 @@ Exemplos
     360                                     48
     2147483647                              1073741823', 'See statement.', 'See statement.', '3 ≤ N < 231', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2012-p1-l-estrela-a1', 'sbc-2012-p1-l-estrela', 'SBC 2012 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2012 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2012 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-l-loteria', 'Loteria', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 2200, 'Problema L
-                                               Loteria
-A loteria BWS é feita anualmente. Nela N pessoas apostam escolhendo K números cada uma. De
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2015-p1-l-loteria', 'Loteria', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2015/primeira-fase/maratona.pdf', 2200, 'A loteria BWS é feita anualmente. Nela N pessoas apostam escolhendo K números cada uma. De
 modo formal, podemos dizer que Bij é o j-ésimo valor apostado pela i-ésima pessoa. Então os orga-
 nizadores escolhem K inteiros positivos. Os números escolhidos são chamados de W1 , W2 , . . . , WK .
     Os vencedores são calculados da seguinte maneira:
@@ -45268,9 +44779,7 @@ Exemplos
  2 7 2
  2 2 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 104 ) e K (3 ≤ K ≤ 50), representando o', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2015-p1-l-loteria-a1', 'sbc-2015-p1-l-loteria', 'SBC 2015 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2015 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2015 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-l-ladrilhos', 'Ladrilhos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 2200, 'Problema L
-                                           Ladrilhos
-Avelino tem um mosaico em uma das paredes de sua casa. É uma mosaico muito antigo, composto
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2016-p1-l-ladrilhos', 'Ladrilhos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2016/primeira-fase/maratona.pdf', 2200, 'Avelino tem um mosaico em uma das paredes de sua casa. É uma mosaico muito antigo, composto
 por pequenos ladrilhos coloridos. Como é um mosaico antigo, alguns ladrilhos se soltaram ao longo
 dos anos formando buracos.
     Agora, Avelino quer restaurar o mosaico cobrindo os buracos com novos ladrilhos. Entretanto, para
@@ -45315,9 +44824,7 @@ Saı́da
  2 2 2 0 2 2
  2 2 2 2 0 2', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2016-p1-l-ladrilhos-a1', 'sbc-2016-p1-l-ladrilhos', 'SBC 2016 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2016 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2016 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-l-laboratorio-de-biotecnologia', 'Laboratório de biotecnologia', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 2200, 'Problema L
-                           Laboratório de biotecnologia
-Uma cadeia ponderada é definida sobre um alfabeto Σ e uma função f que atribui um peso a cada
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-l-laboratorio-de-biotecnologia', 'Laboratório de biotecnologia', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 2200, 'Uma cadeia ponderada é definida sobre um alfabeto Σ e uma função f que atribui um peso a cada
 caractere do alfabeto. Assim, podemos definir o peso de uma cadeia s como a soma dos pesos de todos
 os caracteres em s.
     Vários problemas da bioinformática podem ser formalizados como problemas em cadeias ponde-
@@ -45353,9 +44860,7 @@ distintos das subcadeias não vazias de caracteres consecutivos de s.
  Exemplo de entrada 2                                Exemplo de saı́da 2
  adbbabdcdbcbacdabbaccdac                            56', 'See statement.', 'See statement.', '1 ≤ |s| ≤ 105 ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-l-laboratorio-de-biotecnologia-a1', 'sbc-2017-p1-l-laboratorio-de-biotecnologia', 'SBC 2017 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-l-linhas-de-metro', 'Linhas de Metrô', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 2200, 'Problema L
-                                      Linhas de Metrô
-O sistema de metrô de uma grande cidade é formado por um conjunto de estações e por túneis que
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-l-linhas-de-metro', 'Linhas de Metrô', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 2200, 'O sistema de metrô de uma grande cidade é formado por um conjunto de estações e por túneis que
 ligam alguns pares de estações. O sistema foi desenhado de forma que existe exatamente uma sequência
 de túneis ligando qualquer par de estações. As estações nas quais apenas um túnel chega são chamadas
 de terminais. Há várias linhas de trens que fazem viagens de ida e volta entre duas estações terminais,
@@ -45419,9 +44924,7 @@ quantas estações em comum teriam as duas linhas de trem definidas pela consu
  5 4
  1 2 3 4', 'See statement.', 'See statement.', '5 ≤ N ≤ 105 ) e Q (1 ≤ Q ≤ 20000), repre-; 1 ≤ U, V ≤ N ,; 1 ≤ A, B, C, D ≤ N ), representando uma consulta: as d', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-l-linhas-de-metro-a1', 'sbc-2018-p1-l-linhas-de-metro', 'SBC 2018 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2018 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-l-lancando-moedas', 'Lançando Moedas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 2200, 'Problema L
-                                    Lançando Moedas
-Carla e Daniel decidiram jogar cara-ou-coroa para decidir quem vai lavar os pratos hoje. Eles vão
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-l-lancando-moedas', 'Lançando Moedas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 2200, 'Carla e Daniel decidiram jogar cara-ou-coroa para decidir quem vai lavar os pratos hoje. Eles vão
 jogar com uma das moedas antigas da coleção de Carla. Isso deixa Daniel preocupado, pois essas
 moedas são tortas e desbalanceadas: no lançamento de uma moeda, as probabilidades da obtenção de
 cara e de coroa não são necessariamente iguais.
@@ -45466,9 +44969,7 @@ cadeias não utilizadas na divisão.
  Exemplo de entrada 3                                Exemplo de saı́da 3
  8                                                   2', 'See statement.', 'See statement.', '2 ≤ N ≤ 1018 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-l-lancando-moedas-a1', 'sbc-2019-p1-l-lancando-moedas', 'SBC 2019 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2019 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-l-lavaspar', 'Lavaspar', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2200, 'Problema L
-                                              Lavaspar
-Caça Palavras é um passatempo bastante conhecido, embora esteja perdendo um pouco do seu prestı́gio
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-l-lavaspar', 'Lavaspar', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2200, 'Caça Palavras é um passatempo bastante conhecido, embora esteja perdendo um pouco do seu prestı́gio
 nos últimos anos. O objetivo deste jogo é encontrar palavras em uma matriz, onde cada célula dessa
 matriz contém uma letra.
     Bibika e seu irmão estavam jogando Caça Palavras, porém em pouco tempo perderam o interesse,
@@ -45547,9 +45048,7 @@ Saı́da
  AAA
  BBB', 'See statement.', 'See statement.', '2 ≤ L, C ≤ 40; 2 ≤ N ≤ 20; 2 ≤ P ≤ min(15, max(L, C))', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-l-lavaspar-a1', 'sbc-2020-p1-l-lavaspar', 'SBC 2020 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2020 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-l-lembre-sua-senha', 'Lembre sua Senha', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2200, 'Problema L
-                                    Lembre sua Senha
-Michael é o gerente de um escritório pouco conhecido, e dentro de sua sala existe um cofre com o
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-l-lembre-sua-senha', 'Lembre sua Senha', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2200, 'Michael é o gerente de um escritório pouco conhecido, e dentro de sua sala existe um cofre com o
 dinheiro para pagar seus funcionários. Infelizmente, Michael esqueceu a senha do cofre, e agora é a
 responsabilidade de Dwight ajudar seu chefe.
     A senha é uma sequência de N dı́gitos, contendo apenas zeros e uns, e Michael lembra do valor
@@ -45594,9 +45093,7 @@ imprima ‘0’.
  1 3
  3 5', 'See statement.', 'See statement.', '1 ≤ N ≤ 3 × 105 , 1 ≤ M ≤ 3 × 105 ), representando; 1 ≤ li ≤ ri ≤ N ), que significa que', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-l-lembre-sua-senha-a1', 'sbc-2021-p1-l-lembre-sua-senha', 'SBC 2021 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-l-listando-caminhos-tediosos', 'Listando Caminhos Tediosos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2200, 'Problema L
-                            Listando Caminhos Tediosos
-Uma árvore é um grafo conexo (existe um caminho entre quaisquer dois de seus vértices), não direci-
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-l-listando-caminhos-tediosos', 'Listando Caminhos Tediosos', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2200, 'Uma árvore é um grafo conexo (existe um caminho entre quaisquer dois de seus vértices), não direci-
 onado (as arestas do grafo não possuem orientação), e acı́clico (não possui ciclos).
     Uma árvore colorida é aquela em que cada um de seus vértices tem uma determinada cor.
     Um caminho tedioso é um caminho na árvore tal que tanto o vértice inicial quanto o vértice final
@@ -45639,9 +45136,7 @@ seguindo a mesma ordem em que as arestas aparecem na entrada.
  6 11
  6 12', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ); 1 ≤ Ci ≤ N ) representa a cor do vértice i; 1 ≤ u, v ≤ N e u 6= v)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-l-listando-caminhos-tediosos-a1', 'sbc-2022-p1-l-listando-caminhos-tediosos', 'SBC 2022 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-l-lexicograficamente-agradavel', 'Lexicograficamente Agradável', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 2200, 'Problema L
-                          Lexicograficamente Agradável
-Na pitoresca vila da Lexiconia, viviam dois amigos, Lily e Ethan. Um dia, uma misteriosa carta chegou
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-l-lexicograficamente-agradavel', 'Lexicograficamente Agradável', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 2200, 'Na pitoresca vila da Lexiconia, viviam dois amigos, Lily e Ethan. Um dia, uma misteriosa carta chegou
 na casa dos amigos, fechada com uma encantadora insignia. Dentro do envelope, eles encontraram
 uma charada complexa demais até mesmo para as mentes mais sábias da vila.
     Nessa charada, foram dados um inteiro K e uma string S contendo apenas letras minúsculas, que
@@ -45674,9 +45169,7 @@ zando essas operações.
  njoab                                               banjo
  2', 'See statement.', 'See statement.', '1 ≤ |S| ≤ 105 ); 1 ≤ K < |S|)', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-l-lexicograficamente-agradavel-a1', 'sbc-2023-p1-l-lexicograficamente-agradavel', 'SBC 2023 — 1ª fase — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-l-lexicograficamente-maximo', 'Lexicograficamente Máximo', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 2200, 'Problema L
-                            Lexicograficamente Máximo
-Uma lista de N inteiros a1 , . . . , aN está armazenada na memória de um dispositivo eletrônico. Este
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2024-p1-l-lexicograficamente-maximo', 'Lexicograficamente Máximo', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2024/maratona.pdf', 2200, 'Uma lista de N inteiros a1 , . . . , aN está armazenada na memória de um dispositivo eletrônico. Este
 dispositivo possui uma operação muito peculiar disponı́vel: a de troca de bits entre números. Mais
 precisamente, dados inteiros i, j e k, tal operação troca o k-ésimo bit do inteiro ai pelo k-ésimo bit do
 inteiro aj (e vice-versa).
@@ -45704,9 +45197,7 @@ pondentes à sequência lexicograficamente máxima que pode ser obtida.
  4                                                      31 13 4 0
  12 15 1 20', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ) e a segunda linha contém N; 0 ≤ ai ≤ 109 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2024-p1-l-lexicograficamente-maximo-a1', 'sbc-2024-p1-l-lexicograficamente-maximo', 'SBC 2024 — 1ª fase — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY['DFS']::text[], ARRAY[]::text[], ARRAY['SBC 2024 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2024 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-l-llms', 'LLMs', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 2200, 'Problema L
-                                                 LLMs
-Bruno recentemente começou a se interessar por grandes modelos de linguagem (os chamados LLMs,
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-l-llms', 'LLMs', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 2200, 'Bruno recentemente começou a se interessar por grandes modelos de linguagem (os chamados LLMs,
 sigla do termo em inglês, large language models). Uma das primeiras coisas que ele aprendeu foi
 que um dos componentes mais fundamentais das LLMs é o sistema de predição de tokens (que, por
 simplicidade, consideraremos como palavras). A ideia deste tipo de sistema é relativamente simples
@@ -45790,8 +45281,7 @@ próxima palavra prevista pelo SBC, se existir, ou seguidas de “*” (asteris
  4 star trek is very
  3 star star star', 'See statement.', 'See statement.', '2 ≤ N ≤ 103 ), indicando o número de palavras; 103 ≤ Xi , Yi ≤ 103 ), que indicam o vetor (Xi , Yi ) as; 2 ≤ M ≤ 103 ), o número de palavras no texto correspo; 1 ≤ Q ≤ 10) e K (1 ≤ K ≤ 5), indicando o número de co', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-l-llms-a1', 'sbc-2025-p1-l-llms', 'SBC 2025 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory','Greedy','Two Pointers']::text[], ARRAY['Sorting']::text[], ARRAY['Ordered Set','Hash Map']::text[], ARRAY['SBC 2025 — 1ª fase, problem L. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-l-labirinto', 'Labirinto', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2200, 'Problema L – Labirinto
-Yan está abrindo uma empresa de jogos! Sua primeira criação é um jogo de quebra-cabeça
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-l-labirinto', 'Labirinto', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2200, 'Yan está abrindo uma empresa de jogos! Sua primeira criação é um jogo de quebra-cabeça
 em um labirinto, onde o jogador precisa alcançar a célula objetivo no menor número de passos
 possı́vel. O labirinto é representado por uma grade N × M e possui diversos tipos de células:
 
@@ -46850,9 +46340,7 @@ Um único inteiro: o número de formas de se fazer até um movimento em cada um 
 
 Explicação do Exemplo 1: Podemos fazer um dos dois movimentos possíveis no segundo tabuleiro; dessa forma, apenas o primeiro tabuleiro tem jogadas possíveis, e podemos ver que o primeiro jogador ganha. Outra possibilidade é fazer um dos dois movimentos no primeiro tabuleiro. Pode ser provado que no arranjo inicial o segundo jogador ganha.', 'See statement.', 'See statement.', '1 ≤ N× M ≤ 10^5$); 1 ≤ N× M ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-n-trapaca-na-pastelaria-a1', 'mineira-2023-n-trapaca-na-pastelaria', 'X Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem N. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-n-nome-minimo', 'Nome Mínimo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2300, 'Problema N. Nome Mínimo
-
-Você é prefeito de um município mineiro, cujo nome é S. Sua primeira ação após ser eleito é
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-n-nome-minimo', 'Nome Mínimo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2300, 'Você é prefeito de um município mineiro, cujo nome é S. Sua primeira ação após ser eleito é
 possivelmente modificar o nome do município para que ele fique mais alto na lista de municípios de
 Minas, que sempre é dada em ordem alfabética (lexicográfica), sem modificá-lo demais.
 
@@ -46891,8 +46379,7 @@ Explicação do exemplo 3
 
 Neste caso, S já é o menor nome possível.', 'See statement.', 'See statement.', '1 ≤ |S| ≤ 106 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-n-nome-minimo-a1', 'mineira-2025-n-nome-minimo', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem N. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-n-n-amas', 'N-amas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2300, 'Problema N. N-amas
- Poucos sabem disso, mas o nome ‘damas’ é na verdade uma corrupção linguística de ‘dez-amas’,
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-n-n-amas', 'N-amas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2300, 'Poucos sabem disso, mas o nome ‘damas’ é na verdade uma corrupção linguística de ‘dez-amas’,
                              um subconjunto do lendário n-amas.
 
 O tabuleiro de n-amas é um grid n ↑ n com casas alternando entre branco e preto, sendo branca a
@@ -47009,9 +46496,7 @@ Explicação do exemplo 2
 
 XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-n-n-amas-a1', 'mineira-2026-n-n-amas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XIII Maratona Mineira (2026), problem N. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-m-maquina-de-cafe', 'Máquina de café', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 2300, 'Problema M
-                                     Máquina de café
-O novo prédio da Sociedade Brasileira de Computação (SBC) possui 3 andares. Em determinadas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2017-p1-m-maquina-de-cafe', 'Máquina de café', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2017/prim-fase17/maratona.pdf', 2300, 'O novo prédio da Sociedade Brasileira de Computação (SBC) possui 3 andares. Em determinadas
 épocas do ano, os funcionários da SBC bebem muito café. Por conta disso, a presidência da SBC decidiu
 presentear os funcionários com uma nova máquina de expresso. Esta máquina deve ser instalada em
 um dos 3 andares, mas a instalação deve ser feita de forma que as pessoas não percam muito tempo
@@ -47046,9 +46531,7 @@ com o melhor posicionamento possı́vel da máquina.
  10
  20', 'See statement.', 'See statement.', '0 ≤ A1 , A2 , A3 ≤ 1000), um por linha, onde Ai', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2017-p1-m-maquina-de-cafe-a1', 'sbc-2017-p1-m-maquina-de-cafe', 'SBC 2017 — 1ª fase — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2017 — 1ª fase, problem M. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2017 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-m-modificando-sat', 'Modificando SAT', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 2300, 'Problema M
-                                      Modificando SAT
-O problema da Satisfatibilidade Booleana (conhecido como SAT) consiste em decidir, dada uma
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2018-p1-m-modificando-sat', 'Modificando SAT', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2018/prim-fase18/maratona.pdf', 2300, 'O problema da Satisfatibilidade Booleana (conhecido como SAT) consiste em decidir, dada uma
 fórmula booleana na forma normal conjuntiva, se existe alguma atribuição de valores “verdadeiro”
 ou “falso” a suas variáveis de forma que a fórmula inteira seja verdadeira.
      Na forma normal conjuntiva, a fórmula é dada em um formato bem especı́fico. Em primeiro
@@ -47110,9 +46593,7 @@ deve ser T se a variável é verdadeira na atribuição e F caso contrário
  1 1                                         F
  (x1 or x1 or not x1)', 'See statement.', 'See statement.', '1 ≤ M, N ≤ 2000), descrevendo o', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2018-p1-m-modificando-sat-a1', 'sbc-2018-p1-m-modificando-sat', 'SBC 2018 — 1ª fase — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2018 — 1ª fase, problem M. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2018 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-m-maratona-brasileira-de-comedores-de-pipocas', 'Maratona Brasileira de Comedores de pipocas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 2300, 'Problema M
-           Maratona Brasileira de Comedores de pipocas
-A Maratona Brasileira de Comedores de pipocas é uma competição que ocorre anualmente com o
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2019-p1-m-maratona-brasileira-de-comedores-de-pipocas', 'Maratona Brasileira de Comedores de pipocas', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2019/primfase19/provas/competicao/maratona.pdf', 2300, 'A Maratona Brasileira de Comedores de pipocas é uma competição que ocorre anualmente com o
 intuito de descobrir qual a equipe mais organizada, preparada e bem-treinada na arte de comer pipoca.
 Ela é organizada pela SBCp (Sociedade Brasileira de Comedores de pipocas), que periodicamente se
 reúne para discutir as regras e o formato da competição.
@@ -47155,9 +46636,7 @@ possı́vel.
  3 2 1                                              5
  1 1 5', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 , 1 ≤ C ≤ 105 e 1 ≤ T ≤ 50),; 1 ≤ Pi ≤ 104 ), sendo estes a quantidade de pipoca em ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2019-p1-m-maratona-brasileira-de-comedores-de-pipocas-a1', 'sbc-2019-p1-m-maratona-brasileira-de-comedores-de-pipocas', 'SBC 2019 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2019 — 1ª fase, problem M. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2019 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-m-metralhadora', 'Metralhadora', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2300, 'Problema M
-                                        Metralhadora
-Fulanito foi jogar um arcade das antigas. No jogo, ele pode colocar uma metralhadora em qualquer
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-m-metralhadora', 'Metralhadora', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2300, 'Fulanito foi jogar um arcade das antigas. No jogo, ele pode colocar uma metralhadora em qualquer
 lugar da sua base, que consiste de todos os pontos (x, y) com coordenadas inteiras e x < 0. Há N
 inimigos no campo de batalha. O i-ésimo inimigo (1 ≤ i ≤ N ) está na posição (xi , yi ) com xi > 0.
 Todas as posições são dadas de antemão.
@@ -47234,9 +46713,7 @@ Saı́da
  2 3
  373785639 373785644', 'See statement.', 'See statement.', '1 ≤ i ≤ N ) está na posição (xi , yi ) com xi > 0; 1 ≤ N, Q ≤ 105 ), o número de inimigos e o número de; 1 ≤ xi , yi ≤ 109 ), as coorde-; 0 ≤ a, b < 109 +7) que especificam', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-m-metralhadora-a1', 'sbc-2020-p1-m-metralhadora', 'SBC 2020 — 1ª fase — standard', ARRAY['Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2020 — 1ª fase, problem M. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-m-monarquia-em-vertigem', 'Monarquia em Vertigem', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2300, 'Problema M
-                               Monarquia em Vertigem
-A ordem de sucessão da monarquia é um tópico complexo, pois pode envolver múltiplos fatores tal
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-m-monarquia-em-vertigem', 'Monarquia em Vertigem', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2300, 'A ordem de sucessão da monarquia é um tópico complexo, pois pode envolver múltiplos fatores tal
 como descendência, gênero, legitimidade, e religião. Geralmente a Coroa é herdada pelo filho do
 soberano, ou pela linhagem lateral do soberano caso ele não tenha filhos. Não é muito óbvio, não é
 mesmo? E este é um dos motivos pelos quais, em todos os lugares do mundo, a monarquia está quase
@@ -47300,9 +46777,7 @@ representando o identificador do monarca atual.
  2 2
  2 1', 'See statement.', 'See statement.', '1 ≤ Q ≤ 105 ), representando quantos eventos devem', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-m-monarquia-em-vertigem-a1', 'sbc-2021-p1-m-monarquia-em-vertigem', 'SBC 2021 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem M. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-m-maratona-de-amarelinha', 'Maratona de Amarelinha', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2300, 'Problema M
-                              Maratona de Amarelinha
-Nesta data, 8 de outubro de 2022, ocorre o mais aclamado evento por estudantes de computação de
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-m-maratona-de-amarelinha', 'Maratona de Amarelinha', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2300, 'Nesta data, 8 de outubro de 2022, ocorre o mais aclamado evento por estudantes de computação de
 todo o paı́s. Não, não estamos falando da maratona de programação.
     Estamos falando, é claro, da Amarelinha! Para quem não conhece, a Amarelinha é uma competição
 anual tradicionalmente organizada como evento paralelo da maratona de programação. Transmitida
@@ -47351,9 +46826,7 @@ acontece, o valor −1).
  5 99                                            4
  5 1                                             2', 'See statement.', 'See statement.', '1 ≤ N, Q ≤ 105 ); 1 ≤ Ai ≤ 109 ); 1 ≤ cq ≤ 105 , 1 ≤ dq ≤ 109 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-m-maratona-de-amarelinha-a1', 'sbc-2022-p1-m-maratona-de-amarelinha', 'SBC 2022 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem M. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-m-malha-aerea', 'Malha Aérea', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 2300, 'Problema M
-                                             Malha Aérea
-No reino de Quadradônia, o monarca quer rever todas as tarifas aéreas. Para isso, pediu ao seu
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2023-p1-m-malha-aerea', 'Malha Aérea', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2023/maratona.pdf', 2300, 'No reino de Quadradônia, o monarca quer rever todas as tarifas aéreas. Para isso, pediu ao seu
 contador uma tabela com as propostas de novos preços.
     Todavia, o monarca estudou no Instituto de Computação e Programação de Chapecó (ICPC) e
 tem conhecimento suficiente para exigir coerência na tabela. A tabela é coerente se nenhuma rota com
@@ -47393,9 +46866,7 @@ removidos sem aumento nos custos das viagens para os passageiros.
  2 0 2
  9 2 0', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), que é o número de cidades da Quadradô; 1 ≤ i ≤ N e 1 ≤ j ≤ N ; 1 ≤ Cij ≤ 103 ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2023-p1-m-malha-aerea-a1', 'sbc-2023-p1-m-malha-aerea', 'SBC 2023 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2023 — 1ª fase, problem M. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2023 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-m-muralhas-reforcadas', 'Muralhas reforçadas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 2300, 'Problema M
-                                    Muralhas reforçadas
-Devido à sua localização privilegiada, com um relevo bem favorável, geralmente apenas muralhas
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-p1-m-muralhas-reforcadas', 'Muralhas reforçadas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2025/maratona.pdf', 2300, 'Devido à sua localização privilegiada, com um relevo bem favorável, geralmente apenas muralhas
 frontais eram necessárias para a proteção de cidades medievais em Minas Gerais. Ainda hoje, é
 possı́vel encontrar vestı́gios dessas construções ao admirar o belo horizonte da região.
     Cada uma dessas muralhas era composta por um número de segmentos consecutivos, cada um com
@@ -47438,8 +46909,7 @@ possı́vel da muralha após um único reforço.
    valor mı́nimo é 7.
    Portanto, a maior altura mı́nima possı́vel é 7.', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ), o número de segmentos da muralha, e K; 1 ≤ K ≤ N ), o número de blocos adicionados ao segmen; 1 ≤ xi ≤ 109 ), representando as alturas iniciais', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-p1-m-muralhas-reforcadas-a1', 'sbc-2025-p1-m-muralhas-reforcadas', 'SBC 2025 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — 1ª fase, problem M. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-m-micro-ondas', 'Micro-ondas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2300, 'Problema M – Micro-ondas
-A empresa Charliebot negocia várias estratégias de investimento de alta frequência na SBC
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-m-micro-ondas', 'Micro-ondas', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2300, 'A empresa Charliebot negocia várias estratégias de investimento de alta frequência na SBC
 (Sociedade de Bolsas Computadorizadas). A empresa se preocupa muito com a latência de
 rede, pois quanto menor ela for, maior será o retorno esperado das estratégias.
 A rede de fibra óptica utilizada atualmente foi mapeada em N pontos de presença e M links
@@ -48394,9 +47864,7 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-986c-a1', 'cf-986c', 'Bitmask components', ARRAY['Graph Algorithms','Bitmask / Bit DP']::text[], ARRAY['DFS','BFS','Meet in the Middle']::text[], ARRAY['Queue']::text[], ARRAY['Complement graph on bitmasks; DFS components of given numbers and reachable complements']::text[], 'Traverse using subset edges of XOR complement; count components.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-626e', 'Group of Students', 'Codeforces', 'https://codeforces.com/problemset/problem/626/E', 2400, 'Choose an odd-sized multiset from the array maximizing (mean − median). Print the subset.', 'n and array a.', 'Size then elements.', '$n \le 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-626e-a1', 'cf-626e', 'Ternary on take size', ARRAY['Binary Search on Answer','Math / Number Theory']::text[], ARRAY['Ternary Search','Sorting','Prefix Sums']::text[], ARRAY[]::text[], ARRAY['Sort; for each median ternary/binary search how many to take from ends to max mean−median']::text[], 'For fixed median index, the optimal number of paired extremes is unimodal.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-o-operacoes-matematicas', 'Operações matemáticas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2400, 'Problema O. Operações matemáticas
-
-Durante a aula de matemática, os alunos do fundão fizeram a maior algazarra. Irritada com a
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-o-operacoes-matematicas', 'Operações matemáticas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2400, 'Durante a aula de matemática, os alunos do fundão fizeram a maior algazarra. Irritada com a
 situação, a professora não deixou barato e decidiu aplicar uma tarefa desafiadora como punição.
 
 A tarefa consiste em uma lista, inicialmente vazia, de operações matemáticas contendo soma e
@@ -48445,9 +47913,7 @@ A primeira consulta consiste da sequência de operações 2 ↓↓↗ 3 ↓↓�
  ? 1
  ? 998244353', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-o-operacoes-matematicas-a1', 'mineira-2026-o-operacoes-matematicas', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem O. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-n-numeros-multiplicados', 'Números Multiplicados', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2400, 'Problema N
-                                 Números Multiplicados
-Eugênio é um brilhante matemático que se diverte multiplicando números.
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-n-numeros-multiplicados', 'Números Multiplicados', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2400, 'Eugênio é um brilhante matemático que se diverte multiplicando números.
      Certa vez, ele encontrou M pedaços de papel, numerados de 1 a M , cada um com um vértice
 desenhado. Chamaremos tais vértices de M -vértices. Cada um desses vértices estava rotulado com
 um primo distinto. Além disso, os primos estavam ordenados: Se chamarmos o rótulo do vértice no
@@ -48504,9 +47970,7 @@ Saı́da
  4 5 1
  4 4 1', 'See statement.', 'See statement.', '1 ≤ m ≤ M; 1 ≤ n ≤ N ); 1 ≤ M, N < 103 e 1 ≤ K < 104 ; 1 ≤ m ≤ M , 1 ≤ n ≤ N e 1 ≤ d ≤ 50', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2020-p1-n-numeros-multiplicados-a1', 'sbc-2020-p1-n-numeros-multiplicados', 'SBC 2020 — 1ª fase — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sieve','Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2020 — 1ª fase, problem N. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2020 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-n-na-trave', 'Na Trave!', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2400, 'Problema N
-                                            Na Trave!
-Vini é um pintor de carros muito dedicado. Desde que ele aprendeu como pintar carros, o seu sonho
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2021-p1-n-na-trave', 'Na Trave!', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2021/maratona.pdf', 2400, 'Vini é um pintor de carros muito dedicado. Desde que ele aprendeu como pintar carros, o seu sonho
 tem sido participar da Internacional Competição de Pintores de Carros (ICPC).
      Todo ano a região de Vini tem uma competição local para classificar todos os times competitivos de
 pintores de carro da região. Pintores em times que se classificaram nas melhores x posições avançam
@@ -48560,9 +48024,7 @@ i-ésimo antigo competidor se sentiu azarado.
  8 8 8 8
  1 7 3', 'See statement.', 'See statement.', '1 ≤ Y, N ≤ 3 × 105 ), representando a quantidade; 0 ≤ xi ≤ 105 ), representando quantas vagas; 1 ≤ ai ≤ Y , 1 ≤ pi ≤ 105 ,; 0 ≤ fi ≤ Y −ai ), representando o ano em que o i-ésim', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2021-p1-n-na-trave-a1', 'sbc-2021-p1-n-na-trave', 'SBC 2021 — 1ª fase — standard', ARRAY['String Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2021 — 1ª fase, problem N. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2021 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-n-numeros-virados', 'Números Virados', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2400, 'Problema N
-                                      Números Virados
-Você acaba de ganhar um baralho com N cartas. Cada uma dessas cartas tem dois números escritos:
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2022-p1-n-numeros-virados', 'Números Virados', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2022/maratona.pdf', 2400, 'Você acaba de ganhar um baralho com N cartas. Cada uma dessas cartas tem dois números escritos:
 um no lado da frente, e outro no lado de trás.
      Seu amigo te desafiou para um jogo. Ele embaralhou as cartas do baralho e as colocou numa mesa.
 As cartas estão dispostas em uma linha, uma ao lado da outra, todas com a face da frente virada para
@@ -48597,8 +48059,7 @@ Saı́da
  5 9 2 3 1
  2 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 105 ); 1 ≤ Ai ≤ 109 ); 1 ≤ Bi ≤ 109 ); 1 ≤ L ≤ K ≤ N )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2022-p1-n-numeros-virados-a1', 'sbc-2022-p1-n-numeros-virados', 'SBC 2022 — 1ª fase — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2022 — 1ª fase, problem N. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2022 — 1ª fase. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-n-chaves-da-nlogonia', 'Chaves da Nlogônia', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2400, 'Problema N – Chaves da Nlogônia
-A Nlogônia está implementando um novo sistema de transmissão de dados entre suas N estações
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2026-p1-n-chaves-da-nlogonia', 'Chaves da Nlogônia', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/subbr-2026/documentos/contest.pt.pdf', 2400, 'A Nlogônia está implementando um novo sistema de transmissão de dados entre suas N estações
 de pesquisa, numeradas de 1 a N . A infraestrutura da rede é econômica: existem exatamente
 N −1 cabos bidirecionais interligando as estações, de modo que sempre existe um único caminho
 simples entre qualquer par de estações.
@@ -49390,9 +48851,7 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-mo-06-a1', 'koda-b9-mo-06', 'Sack / Mo tree', ARRAY['Data Structures','Graph Algorithms']::text[], ARRAY['Mo''s Algorithm','DFS']::text[], ARRAY['Hash Map']::text[], ARRAY['DSU on tree / small-to-large; Mo alternative']::text[], 'For each subtree find most frequent depth; small-to-large merging of depth counts.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-bpm-01', 'Maximize Mex', 'Other', 'https://codeforces.com/problemset/problem/1139/E', 2400, 'Students with potentials and clubs. As students leave, maintain the maximum mex over chosen one-per-club potentials.', 'n m, potentials, clubs, leaving order.', 'Mex after each departure (including initial).', '$n \le 5000$', '[]'::jsonb, 'O(N · M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-bpm-01-a1', 'koda-b10-bpm-01', 'Offline matching mex', ARRAY['Flows / Matching']::text[], ARRAY['Bipartite Matching','Max Flow']::text[], ARRAY['Adjacency List']::text[], ARRAY['Offline deletions; grow matching mex of potential']::text[], 'Process leaving students in reverse; extend bipartite matching while trying to raise mex of matched potentials.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-o-onibus-venusiano', 'Ônibus Venusiano', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2500, 'Problema O
-                                     Ônibus Venusiano
-A Colônia Humana em Vênus está prosperando! Aqui, o meio de transporte mais usado é o Ônibus
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-o-onibus-venusiano', 'Ônibus Venusiano', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2500, 'A Colônia Humana em Vênus está prosperando! Aqui, o meio de transporte mais usado é o Ônibus
 Venusiano: um disco voador com janelas e assentos ao longo de suas bordas. Nesse ônibus, todos os
 assentos são nas janelas. E não é permitido mudar de assento. Portanto, uma vez que uma pessoa
 escolhe um lugar, ela deve permanecer nele até descer do ônibus.
