@@ -125,7 +125,7 @@ export default function HomeScreen() {
       <OnboardingTips />
       <FadeInUp delayMs={40}>
         <View style={styles.hero}>
-          <BrandWordmark size="hero" />
+          <BrandWordmark size="hero" animateKOnPress />
           <Text style={styles.tagline}>Clear Warm-up → Target → Boss</Text>
         </View>
       </FadeInUp>
