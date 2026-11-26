@@ -1,10 +1,13 @@
 import assert from 'assert';
 import { SEED_PROBLEMS } from '../data/seed-problems';
 import {
+  activityIntensity,
   adjustRatingBand,
   buildDailySet,
+  computeActivityHeatmap,
   computeXpGain,
   computePipeline,
+  filterAttempts,
   nextReviewDate,
   relativeDifficulty,
   reviewDue,
@@ -72,5 +75,15 @@ assert.strictEqual(pipe.diagnosed, 1);
 assert.strictEqual(relativeDifficulty(1000, 1200), 'easier');
 assert.strictEqual(relativeDifficulty(1200, 1200), 'at band');
 assert.strictEqual(relativeDifficulty(1500, 1200), 'harder');
+
+assert.strictEqual(filterAttempts(attempts, 'weak').length, 1);
+assert.strictEqual(filterAttempts(attempts, 'strong').length, 0);
+assert.strictEqual(filterAttempts(attempts, 'radar').length, 0);
+
+const heat = computeActivityHeatmap(attempts, 7, attempts[0].timestamp.slice(0, 10));
+assert.strictEqual(heat.length, 7);
+assert.ok(heat.some((d) => d.count === 1));
+assert.strictEqual(activityIntensity(0), 0);
+assert.strictEqual(activityIntensity(3), 3);
 
 console.log('habit tests passed');

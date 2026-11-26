@@ -24,12 +24,18 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 async function runSync(userId: string): Promise<string> {
   const result = await syncLocalProgressToCloud(userId);
   if (result.error) return result.error;
-  if (result.uploadedAttempts === 0 && result.upsertedStates === 0 && !result.profileSynced) {
+  if (
+    result.uploadedAttempts === 0 &&
+    result.upsertedStates === 0 &&
+    result.uploadedFavorites === 0 &&
+    !result.profileSynced
+  ) {
     return 'Nothing new to sync.';
   }
   const parts: string[] = [];
   if (result.uploadedAttempts) parts.push(`${result.uploadedAttempts} attempt(s)`);
   if (result.upsertedStates) parts.push(`${result.upsertedStates} review state(s)`);
+  if (result.uploadedFavorites) parts.push(`${result.uploadedFavorites} favorite(s)`);
   if (result.profileSynced) parts.push('XP/streak');
   const base = parts.length ? `Synced ${parts.join(', ')}` : 'Synced';
   return result.pendingLeft > 0 ? `${base} · ${result.pendingLeft} still pending` : base;

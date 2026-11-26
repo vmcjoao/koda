@@ -1,12 +1,19 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
+import {
+  filterAttempts,
+  HISTORY_FILTER_LABELS,
+  type HistoryFilter,
+} from '@/lib/habit';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
+
+const FILTERS = Object.keys(HISTORY_FILTER_LABELS) as HistoryFilter[];
 
 export default function HistoryScreen() {
   const { user } = useAuth();
@@ -14,6 +21,7 @@ export default function HistoryScreen() {
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [problems, setProblems] = useState<Record<string, ProblemWithApproaches>>({});
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState<HistoryFilter>('all');
 
   useFocusEffect(
     useCallback(() => {
@@ -35,8 +43,9 @@ export default function HistoryScreen() {
   );
 
   const sorted = useMemo(
-    () => [...attempts].sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1)),
-    [attempts],
+    () =>
+      filterAttempts(attempts, filter).sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1)),
+    [attempts, filter],
   );
 
   function reopen(a: UserAttempt) {
@@ -51,10 +60,31 @@ export default function HistoryScreen() {
       <Text style={styles.title}>Attempt history</Text>
       <Text style={styles.sub}>Past diagnoses — tap to retry a problem.</Text>
 
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filters}>
+        {FILTERS.map((f) => {
+          const active = filter === f;
+          return (
+            <Pressable
+              key={f}
+              style={[styles.chip, active && styles.chipOn]}
+              onPress={() => setFilter(f)}
+            >
+              <Text style={[styles.chipText, active && styles.chipTextOn]}>
+                {HISTORY_FILTER_LABELS[f]}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </ScrollView>
+
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
       {!loading && sorted.length === 0 ? (
-        <Text style={styles.empty}>No attempts yet. Finish a Daily Set problem to start logging.</Text>
+        <Text style={styles.empty}>
+          {attempts.length === 0
+            ? 'No attempts yet. Finish a Daily Set problem to start logging.'
+            : 'No attempts match this filter.'}
+        </Text>
       ) : null}
 
       {sorted.map((a) => {
@@ -110,6 +140,31 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
     fontSize: 14,
     marginBottom: spacing.sm,
+  },
+  filters: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    paddingBottom: spacing.sm,
+  },
+  chip: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: radii.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+  },
+  chipOn: {
+    borderColor: colors.chipSelectedBorder,
+    backgroundColor: colors.chipSelected,
+  },
+  chipText: {
+    color: colors.textMuted,
+    fontSize: 13,
+    fontWeight: '600',
+  },
+  chipTextOn: {
+    color: colors.accent,
   },
   empty: {
     color: colors.textDim,

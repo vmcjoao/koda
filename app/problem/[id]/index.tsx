@@ -13,7 +13,7 @@ import { colors, radii, spacing } from '@/constants/theme';
 
 export default function EncounterScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { profile } = useAuth();
+  const { profile, user } = useAuth();
   const { problem, draft, beginProblem, tickTime } = useAttempt();
   const [loading, setLoading] = useState(!problem || problem.id !== id);
   const [error, setError] = useState<string | null>(null);
@@ -50,13 +50,13 @@ export default function EncounterScreen() {
   useEffect(() => {
     let active = true;
     (async () => {
-      const favs = await getFavorites();
+      const favs = await getFavorites(user?.id ?? null);
       if (active) setFavorite(favs.includes(id));
     })();
     return () => {
       active = false;
     };
-  }, [id]);
+  }, [id, user?.id]);
 
   if (loading) {
     return (
@@ -85,7 +85,7 @@ export default function EncounterScreen() {
         <View style={styles.headerRight}>
           <Pressable
             onPress={async () => {
-              const next = await toggleFavorite(problem.id);
+              const next = await toggleFavorite(problem.id, user?.id ?? null);
               setFavorite(next.includes(problem.id));
             }}
             hitSlop={10}

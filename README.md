@@ -32,9 +32,8 @@ See [`eas.json`](eas.json). Bundle IDs: `app.koda.mobile`.
 ## Supabase setup
 
 1. Create a project and enable Email auth.
-2. Run [`supabase/migrations/001_initial.sql`](supabase/migrations/001_initial.sql).
-3. Run [`supabase/migrations/002_grants.sql`](supabase/migrations/002_grants.sql) if needed.
-4. Run [`supabase/seed.sql`](supabase/seed.sql) (regenerate with `npm run generate:seed`).
+2. Run migrations in order: `001_initial.sql`, `002_grants.sql`, `003_favorites.sql`.
+3. Run [`supabase/seed.sql`](supabase/seed.sql) (regenerate with `npm run generate:seed`).
 
 ## Features
 
@@ -42,12 +41,13 @@ See [`eas.json`](eas.json). Bundle IDs: `app.koda.mobile`.
 2. **Daily Set** — warm-up / target / boss from your rating **band**
 3. **Review deck** — spaced repetition for misses
 4. **Implement queue** — copy blueprints, open OJ links, mark AC (`npm run web` as PC companion)
-5. **Analytics** — topic mastery, blind spots, pipeline funnel, mistakes
+5. **Analytics** — topic mastery, 12-week activity heatmap, blind spots, pipeline funnel, mistakes
 6. **Band auto-adjust** (+ manual edit in Settings)
 7. **Daily reminder** — pick hour in Settings; tap notification opens Home
 8. **Backup** — export / import local training JSON
-9. **Catalog cache** — last successful Supabase catalog kept for offline use
-10. **Guest → cloud sync** — sign-in uploads local attempts, review state, and XP
+9. **Offline catalog** — SQLite on device (AsyncStorage fallback on web); migrates legacy cache
+10. **Guest → cloud sync** — sign-in uploads attempts, review state, favorites, and XP
+11. **History filters** — strong/weak, status, radar bonus
 
 ## Ingest new problems
 

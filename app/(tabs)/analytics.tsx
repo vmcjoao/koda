@@ -5,7 +5,13 @@ import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
-import { computePipeline, computeTopicStats } from '@/lib/habit';
+import {
+  activityIntensity,
+  computeActivityHeatmap,
+  computePipeline,
+  computeTopicStats,
+  type DayActivity,
+} from '@/lib/habit';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -64,6 +70,8 @@ export default function AnalyticsScreen() {
   }, [attempts]);
 
   const funnel = useMemo(() => computePipeline(attempts), [attempts]);
+  const heatmap = useMemo(() => computeActivityHeatmap(attempts, 84), [attempts]);
+  const activeDays = useMemo(() => heatmap.filter((d) => d.count > 0).length, [heatmap]);
 
   const avgScore = attempts.length
     ? Math.round(attempts.reduce((s, a) => s + a.score_accuracy, 0) / attempts.length)
@@ -97,6 +105,19 @@ export default function AnalyticsScreen() {
       <View style={styles.row}>
         <Metric label="Avg insight" value={formatTime(avgInsightSec)} />
         <Metric label="Miss rate" value={`${missRate}%`} />
+      </View>
+
+      <Text style={styles.section}>Activity · 12 weeks</Text>
+      <Text style={styles.sectionHint}>{activeDays} active day{activeDays === 1 ? '' : 's'} in this window</Text>
+      <View style={styles.card}>
+        <HeatmapGrid days={heatmap} />
+        <View style={styles.legendRow}>
+          <Text style={styles.legendLabel}>Less</Text>
+          {[0, 1, 2, 3].map((level) => (
+            <View key={level} style={[styles.heatCell, heatColor(level as 0 | 1 | 2 | 3)]} />
+          ))}
+          <Text style={styles.legendLabel}>More</Text>
+        </View>
       </View>
 
       <Text style={styles.section}>Pipeline funnel</Text>
@@ -241,6 +262,45 @@ function FunnelBar({ label, pct, color }: { label: string; pct: number; color: s
         <View style={[styles.funnelBarFill, { height: `${Math.max(8, pct)}%`, backgroundColor: color }]} />
       </View>
       <Text style={styles.funnelBarLabel}>{label}</Text>
+    </View>
+  );
+}
+
+function heatColor(level: 0 | 1 | 2 | 3) {
+  switch (level) {
+    case 0:
+      return { backgroundColor: colors.surfaceElevated };
+    case 1:
+      return { backgroundColor: '#1F4D3A' };
+    case 2:
+      return { backgroundColor: colors.accentDim };
+    case 3:
+      return { backgroundColor: colors.accent };
+  }
+}
+
+function HeatmapGrid({ days }: { days: DayActivity[] }) {
+  const weeks: DayActivity[][] = [];
+  for (let i = 0; i < days.length; i += 7) {
+    weeks.push(days.slice(i, i + 7));
+  }
+
+  return (
+    <View style={styles.heatGrid}>
+      {weeks.map((week, wi) => (
+        <View key={wi} style={styles.heatWeek}>
+          {week.map((day) => {
+            const level = activityIntensity(day.count);
+            return (
+              <View
+                key={day.date}
+                style={[styles.heatCell, heatColor(level)]}
+                accessibilityLabel={`${day.date}: ${day.count} attempt(s)`}
+              />
+            );
+          })}
+        </View>
+      ))}
     </View>
   );
 }
@@ -405,5 +465,28 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '700',
     marginTop: 4,
+  },
+  heatGrid: {
+    flexDirection: 'row',
+    gap: 3,
+    justifyContent: 'space-between',
+  },
+  heatWeek: {
+    gap: 3,
+  },
+  heatCell: {
+    width: 10,
+    height: 10,
+    borderRadius: 2,
+  },
+  legendRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    marginTop: spacing.sm,
+  },
+  legendLabel: {
+    color: colors.textDim,
+    fontSize: 11,
   },
 });

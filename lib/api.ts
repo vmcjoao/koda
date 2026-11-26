@@ -10,6 +10,8 @@ import {
   todayIso,
   type DailySet,
 } from '@/lib/habit';
+import { syncFavoritesToCloud } from '@/lib/favorites';
+import { readCatalogCache, writeCatalogCache } from '@/lib/offlineDb';
 import { isPendingCloudAttempt, mergeProfilesForSync } from '@/lib/sync';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import type {
@@ -25,7 +27,6 @@ const LOCAL_ATTEMPTS_KEY = 'koda.attempts';
 const LOCAL_PROFILE_KEY = 'koda.profile';
 const LOCAL_STATE_KEY = 'koda.problem_state';
 const LOCAL_DAILY_KEY = 'koda.daily_set';
-const LOCAL_CATALOG_KEY = 'koda.catalog.cache';
 const DEMO_USER_ID = 'demo-user';
 
 function mergeCatalog(
@@ -36,21 +37,6 @@ function mergeCatalog(
   for (const p of secondary) byId.set(p.id, p);
   for (const p of primary) byId.set(p.id, p);
   return [...byId.values()].sort((a, b) => a.difficulty_rating - b.difficulty_rating);
-}
-
-async function readCatalogCache(): Promise<ProblemWithApproaches[] | null> {
-  const raw = await AsyncStorage.getItem(LOCAL_CATALOG_KEY);
-  if (!raw) return null;
-  try {
-    const parsed = JSON.parse(raw) as ProblemWithApproaches[];
-    return Array.isArray(parsed) && parsed.length ? parsed : null;
-  } catch {
-    return null;
-  }
-}
-
-async function writeCatalogCache(problems: ProblemWithApproaches[]) {
-  await AsyncStorage.setItem(LOCAL_CATALOG_KEY, JSON.stringify(problems));
 }
 
 async function readLocalAttempts(): Promise<UserAttempt[]> {
@@ -211,13 +197,14 @@ export async function updateRatingBand(userId: string | null, band: number): Pro
 export type SyncResult = {
   uploadedAttempts: number;
   upsertedStates: number;
+  uploadedFavorites: number;
   profileSynced: boolean;
   pendingLeft: number;
   error?: string;
 };
 
 /**
- * Push guest/local attempts + problem state + XP into the signed-in cloud account.
+ * Push guest/local attempts + problem state + favorites + XP into the signed-in cloud account.
  * Safe to call repeatedly — only `local-*` / demo-user attempts are uploaded.
  */
 export async function syncLocalProgressToCloud(userId: string): Promise<SyncResult> {
@@ -225,6 +212,7 @@ export async function syncLocalProgressToCloud(userId: string): Promise<SyncResu
     return {
       uploadedAttempts: 0,
       upsertedStates: 0,
+      uploadedFavorites: 0,
       profileSynced: false,
       pendingLeft: 0,
       error: 'Supabase is not configured.',
@@ -310,8 +298,10 @@ export async function syncLocalProgressToCloud(userId: string): Promise<SyncResu
     }
   }
 
+  const uploadedFavorites = await syncFavoritesToCloud(userId);
+
   const pendingLeft = (await readLocalAttempts()).filter((a) => isPendingCloudAttempt(a)).length;
-  return { uploadedAttempts, upsertedStates, profileSynced, pendingLeft };
+  return { uploadedAttempts, upsertedStates, uploadedFavorites, profileSynced, pendingLeft };
 }
 
 export async function fetchProblemStates(userId: string | null): Promise<UserProblemState[]> {

@@ -45,7 +45,7 @@ export default function CatalogScreen() {
         const [p, a, favs] = await Promise.all([
           fetchProblems(),
           fetchAttempts(user?.id ?? null),
-          getFavorites(),
+          getFavorites(user?.id ?? null),
         ]);
         if (!active) return;
         setProblems(p);
@@ -111,7 +111,7 @@ export default function CatalogScreen() {
   }
 
   async function onToggleFavorite(id: string) {
-    const next = await toggleFavorite(id);
+    const next = await toggleFavorite(id, user?.id ?? null);
     setFavorites(next);
   }
 

@@ -246,3 +246,88 @@ export function computePipeline(attempts: UserAttempt[]) {
     implementRate: pct(implemented),
   };
 }
+
+export type HistoryFilter =
+  | 'all'
+  | 'strong'
+  | 'weak'
+  | 'drafted'
+  | 'needs_review'
+  | 'implemented_ac'
+  | 'radar';
+
+export const HISTORY_FILTER_LABELS: Record<HistoryFilter, string> = {
+  all: 'All',
+  strong: 'Strong',
+  weak: 'Weak',
+  drafted: 'Drafted',
+  needs_review: 'Review',
+  implemented_ac: 'AC',
+  radar: 'Radar',
+};
+
+export function filterAttempts(attempts: UserAttempt[], filter: HistoryFilter): UserAttempt[] {
+  switch (filter) {
+    case 'all':
+      return attempts;
+    case 'strong':
+      return attempts.filter((a) => a.score_accuracy >= 70);
+    case 'weak':
+      return attempts.filter((a) => a.score_accuracy < 70);
+    case 'drafted':
+      return attempts.filter((a) => a.status === 'drafted');
+    case 'needs_review':
+      return attempts.filter((a) => a.status === 'needs_review');
+    case 'implemented_ac':
+      return attempts.filter((a) => a.status === 'implemented_ac');
+    case 'radar':
+      return attempts.filter((a) => a.complexity_bonus);
+  }
+}
+
+export type DayActivity = {
+  date: string; // YYYY-MM-DD
+  count: number;
+  avgScore: number | null;
+};
+
+/** Last `dayCount` calendar days (oldest → newest), including today. */
+export function computeActivityHeatmap(
+  attempts: UserAttempt[],
+  dayCount = 84,
+  today = todayIso(),
+): DayActivity[] {
+  const byDay = new Map<string, number[]>();
+  for (const a of attempts) {
+    const day = a.timestamp.slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) continue;
+    const list = byDay.get(day) ?? [];
+    list.push(a.score_accuracy);
+    byDay.set(day, list);
+  }
+
+  const end = new Date(`${today}T12:00:00Z`);
+  const days: DayActivity[] = [];
+  for (let i = dayCount - 1; i >= 0; i -= 1) {
+    const d = new Date(end);
+    d.setUTCDate(end.getUTCDate() - i);
+    const key = d.toISOString().slice(0, 10);
+    const scores = byDay.get(key) ?? [];
+    days.push({
+      date: key,
+      count: scores.length,
+      avgScore: scores.length
+        ? Math.round(scores.reduce((s, n) => s + n, 0) / scores.length)
+        : null,
+    });
+  }
+  return days;
+}
+
+/** 0–3 intensity for heatmap cells. */
+export function activityIntensity(count: number): 0 | 1 | 2 | 3 {
+  if (count <= 0) return 0;
+  if (count === 1) return 1;
+  if (count === 2) return 2;
+  return 3;
+}
