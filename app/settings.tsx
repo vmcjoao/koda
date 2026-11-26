@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
 import { router } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { BrandWordmark } from '@/components/BrandWordmark';
 import { useAuth } from '@/contexts/AuthContext';
 import { updateRatingBand } from '@/lib/api';
+import { clearLocalTrainingData, resetOnboardingTips } from '@/lib/localData';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function SettingsScreen() {
@@ -13,6 +14,7 @@ export default function SettingsScreen() {
   const [band, setBand] = useState(String(profile?.rating_band ?? 1200));
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [status, setStatus] = useState<string | null>(null);
 
   async function saveBand() {
     const n = Number(band);
@@ -32,12 +34,32 @@ export default function SettingsScreen() {
     setBand(String(next));
   }
 
+  function confirmClear() {
+    Alert.alert(
+      'Clear local data?',
+      'Deletes guest attempts, daily set, favorites, and onboarding on this device. Cloud data (if signed in) is not wiped from Supabase.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Clear',
+          style: 'destructive',
+          onPress: async () => {
+            await clearLocalTrainingData();
+            await refreshProfile();
+            setBand('1200');
+            setStatus('Local training data cleared.');
+          },
+        },
+      ],
+    );
+  }
+
   return (
     <Screen scroll>
       <BrandWordmark size="md" />
       <Text style={styles.title}>Settings</Text>
       <Text style={styles.sub}>
-        {demoMode ? 'Guest profile (local device).' : `Signed in · band drives Daily Set difficulty.`}
+        {demoMode ? 'Guest profile (local device).' : 'Signed in · band drives Daily Set difficulty.'}
       </Text>
 
       <Text style={styles.label}>Rating band</Text>
@@ -65,6 +87,18 @@ export default function SettingsScreen() {
         variant="secondary"
         onPress={() => router.push('/history')}
       />
+
+      <Text style={styles.label}>Local data</Text>
+      <PrimaryButton
+        label="Show onboarding tips again"
+        variant="secondary"
+        onPress={async () => {
+          await resetOnboardingTips();
+          setStatus('Tips will show next time you open Home.');
+        }}
+      />
+      <PrimaryButton label="Clear local training data" variant="ghost" onPress={confirmClear} />
+      {status ? <Text style={styles.status}>{status}</Text> : null}
 
       {demoMode ? (
         <PrimaryButton label="Sign in" variant="secondary" onPress={() => router.push('/(auth)/login')} />
@@ -135,5 +169,9 @@ const styles = StyleSheet.create({
   statLine: {
     color: colors.textMuted,
     fontSize: 14,
+  },
+  status: {
+    color: colors.accent,
+    fontSize: 13,
   },
 });

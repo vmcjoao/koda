@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { MarkdownMath } from '@/components/MarkdownMath';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchProblem } from '@/lib/api';
+import { getFavorites, toggleFavorite } from '@/lib/favorites';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function EncounterScreen() {
@@ -13,6 +14,7 @@ export default function EncounterScreen() {
   const { problem, draft, beginProblem, tickTime } = useAttempt();
   const [loading, setLoading] = useState(!problem || problem.id !== id);
   const [error, setError] = useState<string | null>(null);
+  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -42,6 +44,17 @@ export default function EncounterScreen() {
     return () => clearInterval(timer);
   }, [tickTime]);
 
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      const favs = await getFavorites();
+      if (active) setFavorite(favs.includes(id));
+    })();
+    return () => {
+      active = false;
+    };
+  }, [id]);
+
   if (loading) {
     return (
       <Screen>
@@ -66,9 +79,20 @@ export default function EncounterScreen() {
         <Text style={styles.source}>
           {problem.source} · {problem.difficulty_rating}
         </Text>
-        <Text style={styles.timer}>
-          {Math.floor(elapsed / 60)}:{String(elapsed % 60).padStart(2, '0')}
-        </Text>
+        <View style={styles.headerRight}>
+          <Pressable
+            onPress={async () => {
+              const next = await toggleFavorite(problem.id);
+              setFavorite(next.includes(problem.id));
+            }}
+            hitSlop={10}
+          >
+            <Text style={[styles.star, favorite && styles.starOn]}>{favorite ? '★' : '☆'}</Text>
+          </Pressable>
+          <Text style={styles.timer}>
+            {Math.floor(elapsed / 60)}:{String(elapsed % 60).padStart(2, '0')}
+          </Text>
+        </View>
       </View>
       <Text style={styles.title}>{problem.title}</Text>
 
@@ -102,11 +126,23 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  headerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+  },
   source: {
     color: colors.accent,
     fontSize: 13,
     fontWeight: '700',
     textTransform: 'uppercase',
+  },
+  star: {
+    color: colors.textDim,
+    fontSize: 22,
+  },
+  starOn: {
+    color: colors.warning,
   },
   timer: {
     color: colors.textMuted,

@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
-import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { colors } from '@/constants/theme';
+import { colors, radii, spacing } from '@/constants/theme';
 
 type Props = {
   markdown: string;
@@ -9,26 +9,25 @@ type Props = {
 };
 
 function escapeHtml(s: string) {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-/** Lightweight markdown → HTML with KaTeX for $...$ / $$...$$ */
+/** Plain-text fallback that keeps $...$ readable offline. */
+export function plainMath(markdown: string): string {
+  return markdown
+    .replace(/\$\$([^$]+)\$\$/g, (_, tex: string) => tex.trim())
+    .replace(/\$([^$\n]+)\$/g, (_, tex: string) => tex.trim())
+    .replace(/\\\\/g, '\\')
+    .trim();
+}
+
 function toHtml(markdown: string): string {
   let body = escapeHtml(markdown);
-
-  // Fenced-ish paragraphs
   body = body.replace(/\n\n+/g, '</p><p>');
   body = body.replace(/\n/g, '<br/>');
-
-  // Display math $$...$$
   body = body.replace(/\$\$([^$]+)\$\$/g, (_m, tex: string) => {
     return `<div class="math">\\[${tex.trim()}\\]</div>`;
   });
-
-  // Inline math $...$
   body = body.replace(/\$([^$\n]+)\$/g, (_m, tex: string) => {
     return `<span class="math">\\(${tex.trim()}\\)</span>`;
   });
@@ -65,6 +64,19 @@ function toHtml(markdown: string): string {
 export function MarkdownMath({ markdown, minHeight = 160 }: Props) {
   const { width } = useWindowDimensions();
   const html = useMemo(() => toHtml(markdown), [markdown]);
+  const fallback = useMemo(() => plainMath(markdown), [markdown]);
+  const [useFallback, setUseFallback] = useState(false);
+
+  if (useFallback) {
+    return (
+      <View style={[styles.wrap, styles.fallbackBox, { width: width - 32, minHeight }]}>
+        <Text style={styles.fallbackText}>{fallback}</Text>
+        <Pressable onPress={() => setUseFallback(false)}>
+          <Text style={styles.toggle}>Try rich math again</Text>
+        </Pressable>
+      </View>
+    );
+  }
 
   return (
     <View style={[styles.wrap, { width: width - 32, minHeight }]}>
@@ -76,14 +88,19 @@ export function MarkdownMath({ markdown, minHeight = 160 }: Props) {
         nestedScrollEnabled
         setSupportMultipleWindows={false}
         androidLayerType="hardware"
+        onError={() => setUseFallback(true)}
+        onHttpError={() => setUseFallback(true)}
       />
+      <Pressable onPress={() => setUseFallback(true)} style={styles.fallbackLink}>
+        <Text style={styles.toggle}>Plain text (offline)</Text>
+      </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   wrap: {
-    borderRadius: 12,
+    borderRadius: radii.md,
     overflow: 'hidden',
     backgroundColor: colors.surface,
     borderWidth: 1,
@@ -92,5 +109,24 @@ const styles = StyleSheet.create({
   web: {
     backgroundColor: colors.surface,
     flex: 1,
+  },
+  fallbackBox: {
+    padding: spacing.md,
+    gap: spacing.sm,
+  },
+  fallbackText: {
+    color: colors.text,
+    fontSize: 15,
+    lineHeight: 22,
+  },
+  fallbackLink: {
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
+    alignSelf: 'flex-end',
+  },
+  toggle: {
+    color: colors.radar,
+    fontSize: 12,
+    fontWeight: '600',
   },
 });

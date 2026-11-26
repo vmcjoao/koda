@@ -12,12 +12,13 @@ import { Screen } from '@/components/ui/Screen';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
+import { getFavorites, toggleFavorite } from '@/lib/favorites';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
 type SourceFilter = 'All' | string;
 type DiffFilter = 'All' | '≤1200' | '1200–1600' | '1600+';
-type StatusFilter = 'All' | 'Unattempted' | 'Needs work';
+type StatusFilter = 'All' | 'Unattempted' | 'Needs work' | 'Favorites';
 
 export default function CatalogScreen() {
   const { topic: topicParam } = useLocalSearchParams<{ topic?: string }>();
@@ -25,6 +26,7 @@ export default function CatalogScreen() {
   const { beginProblem } = useAttempt();
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
+  const [favorites, setFavorites] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState('');
   const [source, setSource] = useState<SourceFilter>('All');
@@ -38,10 +40,15 @@ export default function CatalogScreen() {
       setTopic(topicParam ?? null);
       (async () => {
         setLoading(true);
-        const [p, a] = await Promise.all([fetchProblems(), fetchAttempts(user?.id ?? null)]);
+        const [p, a, favs] = await Promise.all([
+          fetchProblems(),
+          fetchAttempts(user?.id ?? null),
+          getFavorites(),
+        ]);
         if (!active) return;
         setProblems(p);
         setAttempts(a);
+        setFavorites(favs);
         setLoading(false);
       })();
       return () => {
@@ -87,17 +94,23 @@ export default function CatalogScreen() {
       const best = bestByProblem.get(p.id);
       if (status === 'Unattempted' && best != null) return false;
       if (status === 'Needs work' && !(best != null && best < 70)) return false;
+      if (status === 'Favorites' && !favorites.includes(p.id)) return false;
       if (!q) return true;
       const hay = `${p.title} ${p.source} ${p.target_complexity} ${p.approaches
         .flatMap((a) => a.paradigms)
         .join(' ')}`.toLowerCase();
       return hay.includes(q);
     });
-  }, [problems, query, source, diff, topic, status, bestByProblem]);
+  }, [problems, query, source, diff, topic, status, bestByProblem, favorites]);
 
   function start(p: ProblemWithApproaches) {
     beginProblem(p);
     router.push(`/problem/${p.id}`);
+  }
+
+  async function onToggleFavorite(id: string) {
+    const next = await toggleFavorite(id);
+    setFavorites(next);
   }
 
   return (
@@ -158,7 +171,7 @@ export default function CatalogScreen() {
 
       <Text style={styles.filterLabel}>Progress</Text>
       <View style={styles.chips}>
-        {(['All', 'Unattempted', 'Needs work'] as StatusFilter[]).map((s) => (
+        {(['All', 'Unattempted', 'Needs work', 'Favorites'] as StatusFilter[]).map((s) => (
           <Pressable
             key={s}
             onPress={() => setStatus(s)}
@@ -190,11 +203,23 @@ export default function CatalogScreen() {
 
       {filtered.map((p) => {
         const best = bestByProblem.get(p.id);
+        const fav = favorites.includes(p.id);
         return (
           <Pressable key={p.id} style={styles.card} onPress={() => start(p)}>
             <View style={styles.cardTop}>
               <Text style={styles.source}>{p.source}</Text>
-              <Text style={styles.rating}>{p.difficulty_rating}</Text>
+              <View style={styles.cardTopRight}>
+                <Pressable
+                  hitSlop={12}
+                  onPress={(e) => {
+                    e.stopPropagation?.();
+                    onToggleFavorite(p.id);
+                  }}
+                >
+                  <Text style={[styles.star, fav && styles.starOn]}>{fav ? '★' : '☆'}</Text>
+                </Pressable>
+                <Text style={styles.rating}>{p.difficulty_rating}</Text>
+              </View>
             </View>
             <Text style={styles.cardTitle}>{p.title}</Text>
             <Text style={styles.meta}>
@@ -285,12 +310,25 @@ const styles = StyleSheet.create({
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  cardTopRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
   },
   source: {
     color: colors.accent,
     fontSize: 12,
     fontWeight: '700',
     textTransform: 'uppercase',
+  },
+  star: {
+    color: colors.textDim,
+    fontSize: 18,
+  },
+  starOn: {
+    color: colors.warning,
   },
   rating: {
     color: colors.textDim,
