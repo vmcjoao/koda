@@ -43,6 +43,9 @@ scripts/ingest/vjudge-exports/pdf-cache/
 # Maratona Mineira download cache (PDFs / cloned repos; rebuilt by ingest:mineira)
 scripts/ingest/mineira-cache/
 
+# SBC Maratona PDF cache (rebuilt by ingest:sbc)
+scripts/ingest/sbc-cache/
+
 # generated native folders
 /ios
 /android
