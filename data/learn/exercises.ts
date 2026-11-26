@@ -1,7 +1,8 @@
 import type { LearnExercise } from '@/types/learn';
+import { LESSON_EXERCISES_DEEPEN } from '@/data/learn/exercises-deepen';
 
-/** Interactive drills keyed by lesson id. */
-export const LESSON_EXERCISES: Record<string, LearnExercise[]> = {
+/** Base interactive drills keyed by lesson id (merged with deepen below). */
+const LESSON_EXERCISES_BASE: Record<string, LearnExercise[]> = {
   bfs: [
     {
       id: 'bfs-trace',
@@ -1071,3 +1072,20 @@ export const LESSON_EXERCISES: Record<string, LearnExercise[]> = {
     },
   ],
 };
+
+function mergeExerciseBanks(
+  base: Record<string, LearnExercise[]>,
+  extra: Record<string, LearnExercise[]>,
+): Record<string, LearnExercise[]> {
+  const out: Record<string, LearnExercise[]> = { ...base };
+  for (const [id, list] of Object.entries(extra)) {
+    out[id] = [...(out[id] ?? []), ...list];
+  }
+  return out;
+}
+
+/** Interactive drills keyed by lesson id (base + deepened beats). */
+export const LESSON_EXERCISES: Record<string, LearnExercise[]> = mergeExerciseBanks(
+  LESSON_EXERCISES_BASE,
+  LESSON_EXERCISES_DEEPEN,
+);

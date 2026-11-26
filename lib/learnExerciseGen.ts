@@ -873,7 +873,7 @@ export function lessonHasExercises(lessonId: string): boolean {
 
 /**
  * Build exercises for a lesson. Prefers a procedural generator (fresh graph/array);
- * otherwise shuffles the static bank. Mixes a static concept MCQ when both exist.
+ * otherwise shuffles the static bank. Mixes up to two static drills when both exist.
  */
 export function buildExercises(lessonId: string, seed: number): LearnExercise[] {
   const rng = mulberry32(seed >>> 0);
@@ -883,9 +883,10 @@ export function buildExercises(lessonId: string, seed: number): LearnExercise[] 
   if (gen) {
     try {
       const generated = gen(rng).map((ex) => shuffleExercise(rng, ex));
-      // Append one shuffled conceptual MCQ from the static bank when available.
-      const concept = staticBank.find((e) => e.kind === 'mcq');
-      if (concept) generated.push(shuffleExercise(rng, { ...concept, id: `${concept.id}-mix` }));
+      const extras = shuffle(rng, staticBank).slice(0, 2);
+      for (const ex of extras) {
+        generated.push(shuffleExercise(rng, { ...ex, id: `${ex.id}-mix` }));
+      }
       return generated;
     } catch {
       /* fall through to static */
