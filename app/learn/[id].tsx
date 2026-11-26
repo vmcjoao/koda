@@ -1,10 +1,19 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { router, useFocusEffect, useLocalSearchParams, useNavigation } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { FadeInUp } from '@/components/game/FadeInUp';
 import { PressableScale } from '@/components/game/PressableScale';
+import { XpChip } from '@/components/game/XpChip';
 import { CodeBlock } from '@/components/learn/CodeBlock';
+import { LessonExercise } from '@/components/learn/LessonExercise';
 import { VizPlayer } from '@/components/learn/VizPlayer';
 import { ProseCard } from '@/components/ProseCard';
 import { Screen } from '@/components/ui/Screen';
@@ -22,6 +31,36 @@ import { isLessonStudied, setLessonStudied } from '@/lib/learnProgress';
 import type { ProblemWithApproaches } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
+type StageId =
+  | 'briefing'
+  | 'stats'
+  | 'replay'
+  | 'loadout'
+  | 'check'
+  | 'encounters'
+  | 'clear';
+
+type Stage = {
+  id: StageId;
+  label: string;
+  kicker: string;
+};
+
+function buildStages(hasViz: boolean, hasExercises: boolean): Stage[] {
+  const stages: Stage[] = [
+    { id: 'briefing', label: 'Brief', kicker: 'MISSION BRIEFING' },
+    { id: 'stats', label: 'Stats', kicker: 'COST RADAR' },
+  ];
+  if (hasViz) stages.push({ id: 'replay', label: 'Replay', kicker: 'LIVE REPLAY' });
+  stages.push({ id: 'loadout', label: 'Code', kicker: 'LOADOUT' });
+  if (hasExercises) stages.push({ id: 'check', label: 'Check', kicker: 'SKILL CHECK' });
+  stages.push(
+    { id: 'encounters', label: 'Drill', kicker: 'ENCOUNTERS' },
+    { id: 'clear', label: 'Clear', kicker: 'CLEAR THE NODE' },
+  );
+  return stages;
+}
+
 export default function LearnLessonScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const navigation = useNavigation();
@@ -31,15 +70,32 @@ export default function LearnLessonScreen() {
   const [loading, setLoading] = useState(true);
   const [studied, setStudied] = useState(false);
   const [justCleared, setJustCleared] = useState(false);
+  const [stageIndex, setStageIndex] = useState(0);
+
+  const stages = useMemo(
+    () => buildStages(!!lesson?.visualization, (lesson?.exercises?.length ?? 0) > 0),
+    [lesson?.visualization, lesson?.exercises],
+  );
+  const stage = stages[Math.min(stageIndex, stages.length - 1)]!;
+  const progress = (stageIndex + 1) / Math.max(1, stages.length);
+
+  const clearPulse = useSharedValue(1);
+  const clearStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: clearPulse.value }],
+  }));
 
   useEffect(() => {
     if (lesson) navigation.setOptions({ title: lesson.title });
   }, [lesson, navigation]);
 
+  useEffect(() => {
+    setStageIndex(0);
+    setJustCleared(false);
+  }, [lesson?.id]);
+
   useFocusEffect(
     useCallback(() => {
       let active = true;
-      setJustCleared(false);
       (async () => {
         setLoading(true);
         const [p, done] = await Promise.all([
@@ -61,7 +117,6 @@ export default function LearnLessonScreen() {
     () => (lesson ? pickPracticeProblems(lesson, problems) : []),
     [lesson, problems],
   );
-
   const related = useMemo(() => (lesson ? relatedLessons(lesson) : []), [lesson]);
   const pathIndex = lesson ? STUDY_PATH_IDS.indexOf(lesson.id) : -1;
   const nextOnPath = lesson ? nextPathLessonAfter(lesson.id) : undefined;
@@ -82,16 +137,40 @@ export default function LearnLessonScreen() {
     router.push(`/problem/${p.id}`);
   }
 
+  async function bumpHaptic(kind: 'light' | 'medium' | 'success' = 'light') {
+    try {
+      if (kind === 'success') {
+        await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      } else if (kind === 'medium') {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      } else {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }
+    } catch {
+      /* optional */
+    }
+  }
+
+  function goStage(next: number) {
+    const clamped = Math.max(0, Math.min(stages.length - 1, next));
+    setStageIndex(clamped);
+    void bumpHaptic(clamped > stageIndex ? 'medium' : 'light');
+  }
+
+  function advance() {
+    if (stageIndex < stages.length - 1) goStage(stageIndex + 1);
+  }
+
   async function completeLesson() {
     if (!studied) {
       setStudied(true);
       setJustCleared(true);
       await setLessonStudied(current.id, true);
-      try {
-        await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      } catch {
-        /* haptic optional */
-      }
+      clearPulse.value = withSequence(
+        withTiming(1.08, { duration: 160 }),
+        withSpring(1, { damping: 10, stiffness: 180 }),
+      );
+      await bumpHaptic('success');
     }
   }
 
@@ -99,173 +178,311 @@ export default function LearnLessonScreen() {
     setStudied(false);
     setJustCleared(false);
     await setLessonStudied(current.id, false);
-    try {
-      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    } catch {
-      /* haptic optional */
-    }
+    await bumpHaptic('light');
   }
+
+  const kindLabel =
+    current.tagKind === 'paradigm'
+      ? 'Paradigm'
+      : current.tagKind === 'data_structure'
+        ? 'Structure'
+        : 'Algorithm';
 
   return (
     <Screen scroll>
       <FadeInUp delayMs={20} waitForLaunch={false}>
-        <Text style={styles.kicker}>
-          {current.tagKind === 'paradigm'
-            ? `Paradigm · ${current.tagLabel}`
-            : current.tagKind === 'data_structure'
-              ? `Data structure · ${current.tagLabel}`
-              : current.tagLabel}
-        </Text>
-        <Text style={styles.title}>{current.title}</Text>
-        <Text style={styles.summary}>{current.summary}</Text>
-        {pathIndex >= 0 ? (
-          <Text style={styles.pathBadge}>
-            Path · step {pathIndex + 1}/{STUDY_PATH_IDS.length}
-          </Text>
-        ) : null}
-        {justCleared ? (
-          <View style={styles.clearedBanner}>
-            <Text style={styles.clearedKicker}>LESSON CLEARED</Text>
-            <Text style={styles.clearedText}>
-              {nextOnPath
-                ? `Suggested next: ${nextOnPath.title}`
-                : 'Nice work — this path node is done.'}
+        <View style={styles.hero}>
+          <View style={styles.heroTop}>
+            <Text style={styles.kicker}>
+              {kindLabel} · {current.tagLabel}
             </Text>
+            {pathIndex >= 0 ? (
+              <Text style={styles.pathChip}>
+                STEP {pathIndex + 1}/{STUDY_PATH_IDS.length}
+              </Text>
+            ) : (
+              <Text style={styles.pathChip}>LIBRARY</Text>
+            )}
           </View>
-        ) : null}
-      </FadeInUp>
+          <Text style={styles.title}>{current.title}</Text>
+          <Text style={styles.summary}>{current.summary}</Text>
 
-      <FadeInUp delayMs={80} waitForLaunch={false}>
-        <Text style={styles.section}>Usage</Text>
-        <ProseCard markdown={current.usage_md} />
-      </FadeInUp>
-
-      <FadeInUp delayMs={120} waitForLaunch={false}>
-        <Text style={styles.section}>Complexity</Text>
-        <View style={styles.complexityRow}>
-          <View style={styles.complexityCell}>
-            <Text style={styles.complexityLabel}>Time</Text>
-            <Text style={styles.complexityValue}>{current.complexity.time}</Text>
+          <View style={styles.runTrack}>
+            <View style={[styles.runFill, { width: `${Math.round(progress * 100)}%` }]} />
           </View>
-          <View style={styles.complexityCell}>
-            <Text style={styles.complexityLabel}>Memory</Text>
-            <Text style={styles.complexityValue}>{current.complexity.extraMemory}</Text>
-          </View>
-        </View>
-        {current.complexity.notes_md ? (
-          <ProseCard markdown={current.complexity.notes_md} />
-        ) : null}
-      </FadeInUp>
 
-      {current.visualization ? (
-        <FadeInUp delayMs={160} waitForLaunch={false}>
-          <Text style={styles.section}>Visualization</Text>
-          <VizPlayer kind={current.visualization.kind} demo={current.visualization.demo} />
-        </FadeInUp>
-      ) : null}
-
-      <FadeInUp delayMs={200} waitForLaunch={false}>
-        <Text style={styles.section}>
-          Implementation (
-          {current.implementation.language === 'cpp' ? 'C++' : current.implementation.language})
-        </Text>
-        <CodeBlock
-          code={current.implementation.code}
-          language={current.implementation.language}
-        />
-        {current.implementation.notes_md ? (
-          <ProseCard markdown={current.implementation.notes_md} />
-        ) : null}
-      </FadeInUp>
-
-      {related.length ? (
-        <FadeInUp delayMs={220} waitForLaunch={false}>
-          <Text style={styles.section}>Related lessons</Text>
-          <View style={styles.relatedGap}>
-            {related.map((r) => (
-              <PressableScale
-                key={r.id}
-                style={styles.relatedCard}
-                onPress={() => router.push(`/learn/${r.id}`)}
-              >
-                <Text style={styles.relatedTitle}>{r.title}</Text>
-                <Text style={styles.relatedSummary} numberOfLines={2}>
-                  {r.summary}
-                </Text>
-              </PressableScale>
-            ))}
-          </View>
-        </FadeInUp>
-      ) : null}
-
-      <FadeInUp delayMs={240} waitForLaunch={false}>
-        <Text style={styles.section}>Practice</Text>
-        <Text style={styles.practiceHint}>
-          Up to 3 easier catalog problems for today — rotates daily.
-        </Text>
-        {loading ? <ActivityIndicator color={colors.accent} /> : null}
-        {!loading && practice.length === 0 ? (
-          <View style={styles.emptyPractice}>
-            <Text style={styles.emptyTitle}>No practice picks right now</Text>
-            <Text style={styles.emptySub}>
-              No catalog problems currently match “{current.tagLabel}”. Pull to refresh the
-              catalog or try again tomorrow.
-            </Text>
-          </View>
-        ) : null}
-        {practice.map((p, i) => (
-          <PressableScale key={p.id} style={styles.practiceCard} onPress={() => start(p)}>
-            <View style={styles.practiceTop}>
-              <Text style={styles.practiceBadge}>#{i + 1}</Text>
-              <Text style={styles.rating}>{p.difficulty_rating}</Text>
-            </View>
-            <Text style={styles.practiceSource}>{p.source}</Text>
-            <Text style={styles.practiceTitle}>{p.title}</Text>
-            <Text style={styles.practiceCta}>Open encounter →</Text>
-          </PressableScale>
-        ))}
-      </FadeInUp>
-
-      <FadeInUp delayMs={280} waitForLaunch={false}>
-        <View style={styles.finishBlock}>
-          {!studied ? (
-            <PrimaryButton label="Complete lesson" onPress={completeLesson} />
-          ) : (
-            <>
-              <View style={styles.doneRow}>
-                <Text style={styles.doneLabel}>Cleared ✓</Text>
-                <PressableScale onPress={undoStudied} haptic="light">
-                  <Text style={styles.undo}>Undo</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.stageRow}
+          >
+            {stages.map((s, i) => {
+              const done = i < stageIndex || (studied && s.id === 'clear');
+              const active = i === stageIndex;
+              return (
+                <PressableScale
+                  key={s.id}
+                  haptic="light"
+                  scaleTo={0.94}
+                  onPress={() => goStage(i)}
+                  style={[
+                    styles.stageNode,
+                    done && styles.stageNodeDone,
+                    active && styles.stageNodeActive,
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.stageIndex,
+                      done && styles.stageIndexDone,
+                      active && styles.stageIndexActive,
+                    ]}
+                  >
+                    {done && !active ? '✓' : i + 1}
+                  </Text>
+                  <Text
+                    style={[styles.stageLabel, active && styles.stageLabelActive]}
+                    numberOfLines={1}
+                  >
+                    {s.label}
+                  </Text>
                 </PressableScale>
-              </View>
-              {nextOnPath ? (
-                <PrimaryButton
-                  label={`Next: ${nextOnPath.title}`}
-                  onPress={() => router.replace(`/learn/${nextOnPath.id}`)}
-                />
-              ) : pathIndex >= 0 ? (
-                <PrimaryButton
-                  label="Back to path"
-                  variant="secondary"
-                  onPress={() => router.replace('/(tabs)/learn')}
-                />
-              ) : null}
-            </>
-          )}
+              );
+            })}
+          </ScrollView>
         </View>
       </FadeInUp>
+
+      <FadeInUp key={stage.id} delayMs={40} waitForLaunch={false}>
+        <View style={styles.stagePanel}>
+          <Text style={styles.stageKicker}>{stage.kicker}</Text>
+
+          {stage.id === 'briefing' ? (
+            <View style={styles.stageBody}>
+              <Text style={styles.stagePrompt}>When does this tool show up?</Text>
+              <ProseCard markdown={current.usage_md} />
+            </View>
+          ) : null}
+
+          {stage.id === 'stats' ? (
+            <View style={styles.stageBody}>
+              <Text style={styles.stagePrompt}>Know the cost before you cast it.</Text>
+              <View style={styles.complexityRow}>
+                <View style={[styles.statCard, styles.statTime]}>
+                  <Text style={styles.statLabel}>TIME</Text>
+                  <Text style={styles.statValue}>{current.complexity.time}</Text>
+                </View>
+                <View style={[styles.statCard, styles.statMem]}>
+                  <Text style={styles.statLabel}>MEMORY</Text>
+                  <Text style={[styles.statValue, styles.statValueMem]}>
+                    {current.complexity.extraMemory}
+                  </Text>
+                </View>
+              </View>
+              {current.complexity.notes_md ? (
+                <ProseCard markdown={current.complexity.notes_md} />
+              ) : null}
+            </View>
+          ) : null}
+
+          {stage.id === 'replay' && current.visualization ? (
+            <View style={styles.stageBody}>
+              <Text style={styles.stagePrompt}>Watch the pattern move.</Text>
+              <VizPlayer
+                kind={current.visualization.kind}
+                demo={current.visualization.demo}
+              />
+            </View>
+          ) : null}
+
+          {stage.id === 'loadout' ? (
+            <View style={styles.stageBody}>
+              <Text style={styles.stagePrompt}>
+                Steal the template —{' '}
+                {current.implementation.language === 'cpp'
+                  ? 'C++'
+                  : current.implementation.language}
+              </Text>
+              <CodeBlock
+                code={current.implementation.code}
+                language={current.implementation.language}
+              />
+              {current.implementation.notes_md ? (
+                <ProseCard markdown={current.implementation.notes_md} />
+              ) : null}
+            </View>
+          ) : null}
+
+          {stage.id === 'check' && current.exercises?.length ? (
+            <View style={styles.stageBody}>
+              <Text style={styles.stagePrompt}>Prove you can drive it.</Text>
+              <LessonExercise exercises={current.exercises} />
+            </View>
+          ) : null}
+
+          {stage.id === 'encounters' ? (
+            <View style={styles.stageBody}>
+              <Text style={styles.stagePrompt}>Warm up on live catalog fights.</Text>
+              <Text style={styles.practiceHint}>
+                Up to 3 easier picks for “{current.tagLabel}” — rotates daily.
+              </Text>
+              {loading ? <ActivityIndicator color={colors.accent} /> : null}
+              {!loading && practice.length === 0 ? (
+                <View style={styles.emptyPractice}>
+                  <Text style={styles.emptyTitle}>No encounters queued</Text>
+                  <Text style={styles.emptySub}>
+                    Nothing in the catalog matches this tag right now — skip ahead and clear
+                    the node, or check the library tomorrow.
+                  </Text>
+                </View>
+              ) : null}
+              {practice.map((p, i) => {
+                const role = i === 0 ? 'WARM-UP' : i === 1 ? 'TARGET' : 'BOSS';
+                const roleStyle =
+                  i === 0 ? styles.roleWarm : i === 1 ? styles.roleTarget : styles.roleBoss;
+                return (
+                  <PressableScale
+                    key={p.id}
+                    haptic={i === 2 ? 'medium' : 'light'}
+                    style={[styles.practiceCard, i === 2 && styles.practiceBoss]}
+                    onPress={() => start(p)}
+                  >
+                    <View style={styles.practiceTop}>
+                      <Text style={[styles.practiceBadge, roleStyle]}>{role}</Text>
+                      <Text style={styles.rating}>{p.difficulty_rating}</Text>
+                    </View>
+                    <Text style={styles.practiceSource}>{p.source}</Text>
+                    <Text style={styles.practiceTitle}>{p.title}</Text>
+                    <Text style={styles.practiceCta}>Enter encounter →</Text>
+                  </PressableScale>
+                );
+              })}
+            </View>
+          ) : null}
+
+          {stage.id === 'clear' ? (
+            <View style={styles.stageBody}>
+              <Animated.View style={[styles.clearHero, clearStyle]}>
+                {justCleared || studied ? (
+                  <>
+                    <Text style={styles.clearTitle}>Node cleared</Text>
+                    <View style={styles.chipRow}>
+                      <XpChip label="DOJO +1" tone="accent" />
+                      {pathIndex >= 0 ? (
+                        <XpChip label={`STEP ${pathIndex + 1}`} tone="xp" delayMs={80} />
+                      ) : null}
+                    </View>
+                    <Text style={styles.clearSub}>
+                      {nextOnPath
+                        ? `Suggested next: ${nextOnPath.title}`
+                        : 'This path node is done — roam the library or path.'}
+                    </Text>
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.clearTitle}>Ready to clear?</Text>
+                    <Text style={styles.clearSub}>
+                      Mark the lesson studied to tick this node on your path.
+                    </Text>
+                  </>
+                )}
+              </Animated.View>
+
+              {!studied ? (
+                <PrimaryButton label="Clear lesson" onPress={completeLesson} />
+              ) : (
+                <>
+                  <View style={styles.doneRow}>
+                    <Text style={styles.doneLabel}>Cleared ✓</Text>
+                    <PressableScale onPress={undoStudied} haptic="light">
+                      <Text style={styles.undo}>Undo</Text>
+                    </PressableScale>
+                  </View>
+                  {nextOnPath ? (
+                    <PrimaryButton
+                      label={`Next: ${nextOnPath.title}`}
+                      onPress={() => router.replace(`/learn/${nextOnPath.id}`)}
+                    />
+                  ) : (
+                    <PrimaryButton
+                      label="Back to path"
+                      variant="secondary"
+                      onPress={() => router.replace('/(tabs)/learn')}
+                    />
+                  )}
+                </>
+              )}
+
+              {related.length ? (
+                <View style={styles.relatedBlock}>
+                  <Text style={styles.relatedLabel}>Side quests</Text>
+                  {related.map((r) => (
+                    <PressableScale
+                      key={r.id}
+                      style={styles.relatedCard}
+                      onPress={() => router.push(`/learn/${r.id}`)}
+                    >
+                      <Text style={styles.relatedTitle}>{r.title}</Text>
+                      <Text style={styles.relatedSummary} numberOfLines={2}>
+                        {r.summary}
+                      </Text>
+                    </PressableScale>
+                  ))}
+                </View>
+              ) : null}
+            </View>
+          ) : null}
+        </View>
+      </FadeInUp>
+
+      {stage.id !== 'clear' ? (
+        <FadeInUp delayMs={80} waitForLaunch={false}>
+          <View style={styles.footer}>
+            {stageIndex > 0 ? (
+              <PrimaryButton
+                label="Back"
+                variant="secondary"
+                onPress={() => goStage(stageIndex - 1)}
+                style={styles.footerBack}
+              />
+            ) : (
+              <View style={styles.footerBack} />
+            )}
+            <PrimaryButton
+              label={stageIndex === stages.length - 2 ? 'Finish run' : 'Continue'}
+              onPress={advance}
+              style={styles.footerNext}
+            />
+          </View>
+        </FadeInUp>
+      ) : null}
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   missing: { color: colors.textMuted, fontSize: 16 },
+  hero: { gap: spacing.sm, marginBottom: spacing.sm },
+  heroTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.sm,
+  },
   kicker: {
     color: colors.accent,
     fontSize: 12,
     fontWeight: '900',
-    letterSpacing: 1.5,
+    letterSpacing: 1.4,
     textTransform: 'uppercase',
+    flexShrink: 1,
+  },
+  pathChip: {
+    color: colors.radar,
+    fontSize: 11,
+    fontWeight: '900',
+    letterSpacing: 1,
+    fontFamily: 'SpaceMono',
   },
   title: {
     color: colors.text,
@@ -275,88 +492,113 @@ const styles = StyleSheet.create({
   summary: {
     color: colors.textMuted,
     fontSize: 15,
-    marginBottom: spacing.sm,
   },
-  pathBadge: {
-    color: colors.radar,
-    fontSize: 12,
-    fontWeight: '800',
-    letterSpacing: 0.4,
-    marginBottom: spacing.sm,
+  runTrack: {
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.runTrack,
+    overflow: 'hidden',
+    marginTop: spacing.xs,
   },
-  clearedBanner: {
-    backgroundColor: colors.chipSelected,
+  runFill: {
+    height: '100%',
+    backgroundColor: colors.accent,
+    borderRadius: 3,
+  },
+  stageRow: {
+    gap: 8,
+    paddingVertical: spacing.xs,
+    paddingRight: spacing.md,
+  },
+  stageNode: {
+    minWidth: 72,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
     borderRadius: radii.md,
     borderWidth: 1,
-    borderColor: colors.accent,
-    padding: spacing.md,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+    alignItems: 'center',
     gap: 2,
-    marginBottom: spacing.sm,
   },
-  clearedKicker: {
-    color: colors.accent,
+  stageNodeDone: {
+    borderColor: colors.accentDim,
+    backgroundColor: colors.chipSelected,
+  },
+  stageNodeActive: {
+    borderColor: colors.accent,
+    backgroundColor: colors.accent,
+  },
+  stageIndex: {
+    color: colors.textDim,
+    fontFamily: 'SpaceMono',
+    fontWeight: '900',
+    fontSize: 14,
+  },
+  stageIndexDone: { color: colors.accent },
+  stageIndexActive: { color: colors.background },
+  stageLabel: {
+    color: colors.textMuted,
+    fontSize: 11,
+    fontWeight: '800',
+  },
+  stageLabelActive: { color: colors.background },
+  stagePanel: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.md,
+    gap: spacing.sm,
+    minHeight: 220,
+  },
+  stageKicker: {
+    color: colors.warning,
     fontSize: 11,
     fontWeight: '900',
-    letterSpacing: 1.2,
+    letterSpacing: 1.6,
   },
-  clearedText: {
-    color: colors.text,
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  section: {
+  stagePrompt: {
     color: colors.text,
     fontSize: 17,
     fontWeight: '800',
-    marginTop: spacing.sm,
   },
+  stageBody: { gap: spacing.sm },
   complexityRow: { flexDirection: 'row', gap: spacing.sm },
-  complexityCell: {
+  statCard: {
     flex: 1,
-    backgroundColor: colors.surface,
     borderRadius: radii.md,
     borderWidth: 1,
-    borderColor: colors.border,
     padding: spacing.md,
-    gap: 4,
+    gap: 6,
   },
-  complexityLabel: {
+  statTime: {
+    backgroundColor: colors.surfaceElevated,
+    borderColor: colors.xp,
+  },
+  statMem: {
+    backgroundColor: colors.surfaceElevated,
+    borderColor: colors.radar,
+  },
+  statLabel: {
     color: colors.textDim,
     fontSize: 11,
-    fontWeight: '700',
-    textTransform: 'uppercase',
+    fontWeight: '800',
+    letterSpacing: 1,
   },
-  complexityValue: {
+  statValue: {
     color: colors.xp,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '800',
     fontFamily: 'SpaceMono',
   },
-  relatedGap: { gap: spacing.sm },
-  relatedCard: {
-    backgroundColor: colors.surface,
-    borderRadius: radii.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.md,
-    gap: 2,
-  },
-  relatedTitle: {
-    color: colors.text,
-    fontSize: 15,
-    fontWeight: '700',
-  },
-  relatedSummary: {
-    color: colors.textMuted,
-    fontSize: 13,
-  },
+  statValueMem: { color: colors.radar },
   practiceHint: {
     color: colors.textDim,
     fontSize: 12,
-    marginTop: -4,
   },
   emptyPractice: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceElevated,
     borderRadius: radii.md,
     borderWidth: 1,
     borderColor: colors.border,
@@ -366,29 +608,36 @@ const styles = StyleSheet.create({
   emptyTitle: { color: colors.textMuted, fontWeight: '700' },
   emptySub: { color: colors.textDim, fontSize: 13 },
   practiceCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceElevated,
     borderRadius: radii.md,
     borderWidth: 1,
     borderColor: colors.border,
     padding: spacing.md,
     gap: 2,
   },
+  practiceBoss: {
+    borderColor: colors.warning,
+    backgroundColor: 'rgba(245, 166, 35, 0.08)',
+  },
   practiceTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   practiceBadge: {
-    color: colors.radar,
     fontSize: 11,
     fontWeight: '900',
+    letterSpacing: 1,
   },
+  roleWarm: { color: colors.accent },
+  roleTarget: { color: colors.radar },
+  roleBoss: { color: colors.warning },
   rating: {
     color: colors.textDim,
     fontFamily: 'SpaceMono',
     fontSize: 12,
   },
   practiceSource: {
-    color: colors.accent,
+    color: colors.textMuted,
     fontSize: 11,
     fontWeight: '700',
     textTransform: 'uppercase',
@@ -404,16 +653,29 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginTop: 4,
   },
-  finishBlock: {
-    marginTop: spacing.lg,
-    marginBottom: spacing.xl,
+  clearHero: {
+    backgroundColor: colors.chipSelected,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.accent,
+    padding: spacing.md,
     gap: spacing.sm,
   },
+  clearTitle: {
+    color: colors.text,
+    fontSize: 22,
+    fontWeight: '800',
+  },
+  clearSub: {
+    color: colors.textMuted,
+    fontSize: 14,
+  },
+  chipRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   doneRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: colors.chipSelected,
+    backgroundColor: colors.surfaceElevated,
     borderRadius: radii.md,
     borderWidth: 1,
     borderColor: colors.accent,
@@ -430,4 +692,36 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '700',
   },
+  relatedBlock: { gap: spacing.sm, marginTop: spacing.sm },
+  relatedLabel: {
+    color: colors.textDim,
+    fontSize: 12,
+    fontWeight: '800',
+    letterSpacing: 1,
+  },
+  relatedCard: {
+    backgroundColor: colors.surfaceElevated,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.md,
+    gap: 2,
+  },
+  relatedTitle: {
+    color: colors.text,
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  relatedSummary: {
+    color: colors.textMuted,
+    fontSize: 13,
+  },
+  footer: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    marginTop: spacing.md,
+    marginBottom: spacing.xl,
+  },
+  footerBack: { flex: 1 },
+  footerNext: { flex: 2 },
 });
