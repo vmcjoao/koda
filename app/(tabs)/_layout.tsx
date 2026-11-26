@@ -108,6 +108,7 @@ export default function TabLayout() {
       screenOptions={{
         headerStyle: { backgroundColor: colors.surface },
         headerTintColor: colors.text,
+        headerTitle: () => null,
         headerRight: () => <ProfileHeaderButton />,
         tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: colors.accent,
@@ -120,7 +121,6 @@ export default function TabLayout() {
         name="learn"
         options={{
           title: 'Learn',
-          headerTitle: 'Algorithm dojo',
           tabBarIcon: ({ color }) => <TabIcon name="book" color={color} />,
         }}
       />
@@ -128,7 +128,6 @@ export default function TabLayout() {
         name="review"
         options={{
           title: 'Review',
-          headerTitle: 'Review deck',
           tabBarIcon: ({ color }) => <TabIcon name="refresh" color={color} />,
         }}
       />
@@ -136,7 +135,6 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Run',
-          headerTitle: "Today's run",
           tabBarLabel: () => null,
           tabBarIcon: () => null,
           tabBarButton: (props) => <RunTabButton {...props} />,
@@ -146,7 +144,6 @@ export default function TabLayout() {
         name="queue"
         options={{
           title: 'Implement',
-          headerTitle: 'Build queue',
           tabBarIcon: ({ color }) => <TabIcon name="code" color={color} />,
         }}
       />
@@ -154,7 +151,6 @@ export default function TabLayout() {
         name="analytics"
         options={{
           title: 'Stats',
-          headerTitle: 'Stats',
           tabBarIcon: ({ color }) => <TabIcon name="bar-chart" color={color} />,
         }}
       />

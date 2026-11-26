@@ -45,6 +45,7 @@ export function PlayerStrip({ streak, xp, band, onBandPress }: Props) {
       </View>
 
       <Pressable style={[styles.cell, styles.bandCell]} onPress={onBandPress}>
+        <Text style={styles.bandMark}>◎</Text>
         <Text style={styles.bandValue}>{band}</Text>
         <Text style={styles.label}>Band ✎</Text>
       </Pressable>
@@ -78,11 +79,16 @@ const styles = StyleSheet.create({
     flex: 1.15,
   },
   bandCell: {
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
+    backgroundColor: colors.surfaceElevated,
+    borderColor: colors.radar,
   },
   flame: {
     color: colors.warning,
+    fontSize: 12,
+    fontWeight: '900',
+  },
+  bandMark: {
+    color: colors.radar,
     fontSize: 12,
     fontWeight: '900',
   },
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
   },
   bandValue: {
     color: colors.radar,
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '800',
     fontFamily: 'SpaceMono',
   },
