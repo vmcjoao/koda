@@ -1,4 +1,11 @@
-export type LearnFamily = 'graphs' | 'search' | 'structures' | 'dp' | 'math' | 'strings';
+export type LearnFamily =
+  | 'graphs'
+  | 'search'
+  | 'structures'
+  | 'dp'
+  | 'math'
+  | 'strings'
+  | 'geometry';
 
 export type LearnVizKind =
   | 'graph-bfs'
@@ -53,4 +60,5 @@ export const LEARN_FAMILY_LABELS: Record<LearnFamily, string> = {
   dp: 'Dynamic Programming',
   math: 'Math',
   strings: 'Strings',
+  geometry: 'Geometry',
 };

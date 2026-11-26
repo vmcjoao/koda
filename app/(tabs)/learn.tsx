@@ -8,7 +8,15 @@ import { listLessons } from '@/lib/learn';
 import { LEARN_FAMILY_LABELS, type LearnFamily } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 
-const FAMILY_ORDER: LearnFamily[] = ['graphs', 'search', 'structures', 'dp', 'math', 'strings'];
+const FAMILY_ORDER: LearnFamily[] = [
+  'graphs',
+  'search',
+  'structures',
+  'dp',
+  'math',
+  'strings',
+  'geometry',
+];
 
 export default function LearnScreen() {
   const lessons = useMemo(() => listLessons(), []);
