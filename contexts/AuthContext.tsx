@@ -12,7 +12,13 @@ type AuthContextValue = {
   demoMode: boolean;
   lastSyncSummary: string | null;
   signInWithEmail: (email: string, password: string) => Promise<string | null>;
-  signUpWithEmail: (email: string, password: string) => Promise<string | null>;
+  signUpWithEmail: (
+    email: string,
+    password: string,
+    displayName?: string,
+  ) => Promise<string | null>;
+  requestPasswordReset: (email: string) => Promise<string | null>;
+  updatePassword: (password: string) => Promise<string | null>;
   signOut: () => Promise<void>;
   continueAsGuest: () => void;
   refreshProfile: () => Promise<void>;
@@ -130,11 +136,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return error?.message ?? null;
   }, []);
 
-  const signUpWithEmail = useCallback(async (email: string, password: string) => {
-    if (!supabase) return 'Supabase is not configured. Continue as guest.';
-    const { error } = await supabase.auth.signUp({ email, password });
+  const signUpWithEmail = useCallback(
+    async (email: string, password: string, displayName?: string) => {
+      if (!supabase) return 'Supabase is not configured. Continue as guest.';
+      const name = displayName?.trim();
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: name ? { data: { display_name: name } } : undefined,
+      });
+      return error?.message ?? null;
+    },
+    [],
+  );
+
+  const requestPasswordReset = useCallback(async (email: string) => {
+    if (!supabase) return 'Supabase is not configured.';
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim());
     return error?.message ?? null;
   }, []);
+
+  const updatePassword = useCallback(async (password: string) => {
+    if (!supabase) return 'Supabase is not configured.';
+    if (!user) return 'Sign in to change your password.';
+    const { error } = await supabase.auth.updateUser({ password });
+    return error?.message ?? null;
+  }, [user]);
 
   const signOut = useCallback(async () => {
     if (supabase) await supabase.auth.signOut();
@@ -160,6 +187,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       lastSyncSummary,
       signInWithEmail,
       signUpWithEmail,
+      requestPasswordReset,
+      updatePassword,
       signOut,
       continueAsGuest,
       refreshProfile,
@@ -174,6 +203,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       lastSyncSummary,
       signInWithEmail,
       signUpWithEmail,
+      requestPasswordReset,
+      updatePassword,
       signOut,
       continueAsGuest,
       refreshProfile,

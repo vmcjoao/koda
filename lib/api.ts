@@ -224,6 +224,24 @@ export async function updateRatingBand(userId: string | null, band: number): Pro
   return profile;
 }
 
+export async function updateDisplayName(
+  userId: string | null,
+  name: string,
+): Promise<UserProfile> {
+  const trimmed = name.trim().slice(0, 40) || 'Coder';
+  const profile = await readLocalProfile();
+  profile.display_name = trimmed;
+  await writeLocalProfile(profile);
+
+  if (supabase && userId) {
+    await supabase
+      .from('user_profiles')
+      .update({ display_name: trimmed })
+      .eq('user_id', userId);
+  }
+  return profile;
+}
+
 export type SyncResult = {
   uploadedAttempts: number;
   upsertedStates: number;
