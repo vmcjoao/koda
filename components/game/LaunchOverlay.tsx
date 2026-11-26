@@ -43,8 +43,10 @@ export function LaunchOverlay({ onFinished }: Props) {
 
   const rootOpacity = useSharedValue(1);
   const wash = useSharedValue(0);
-  const split = useSharedValue(0);
-  const edges = useSharedValue(0);
+  /** Staggered mitosis: top → NE → SE (each starts before the previous finishes). */
+  const splitTop = useSharedValue(0);
+  const splitNe = useSharedValue(0);
+  const splitSe = useSharedValue(0);
   const centerPulse = useSharedValue(1);
   const reveal = useSharedValue(0);
   const odaWidthSV = useSharedValue(0);
@@ -54,6 +56,11 @@ export function LaunchOverlay({ onFinished }: Props) {
   }, [odaW, odaWidthSV]);
 
   useEffect(() => {
+    const spring = { damping: 13, stiffness: 88, mass: 0.85 };
+    /** Overlap: next vertex begins ~140ms after the previous starts. */
+    const stagger = 140;
+    const splitStart = 400;
+
     wash.value = withTiming(1, { duration: 400, easing: Easing.out(Easing.cubic) });
 
     centerPulse.value = withSequence(
@@ -61,22 +68,17 @@ export function LaunchOverlay({ onFinished }: Props) {
       withTiming(1, { duration: 180 }),
     );
 
-    split.value = withDelay(
-      400,
-      withSpring(1, { damping: 13, stiffness: 88, mass: 0.85 }),
-    );
-    edges.value = withDelay(
-      460,
-      withTiming(1, { duration: 420, easing: Easing.out(Easing.cubic) }),
-    );
+    splitTop.value = withDelay(splitStart, withSpring(1, spring));
+    splitNe.value = withDelay(splitStart + stagger, withSpring(1, spring));
+    splitSe.value = withDelay(splitStart + stagger * 2, withSpring(1, spring));
 
     reveal.value = withDelay(
-      1050,
+      1180,
       withTiming(1, { duration: 560, easing: Easing.out(Easing.cubic) }),
     );
 
     rootOpacity.value = withDelay(
-      1900,
+      2050,
       withTiming(0, { duration: 400, easing: Easing.inOut(Easing.cubic) }, (done) => {
         if (done) {
           runOnJS(setVisible)(false);
@@ -84,7 +86,7 @@ export function LaunchOverlay({ onFinished }: Props) {
         }
       }),
     );
-  }, [centerPulse, edges, onFinished, reveal, rootOpacity, split, wash]);
+  }, [centerPulse, onFinished, reveal, rootOpacity, splitNe, splitSe, splitTop, wash]);
 
   const rootStyle = useAnimatedStyle(() => ({
     opacity: rootOpacity.value,
@@ -118,7 +120,7 @@ export function LaunchOverlay({ onFinished }: Props) {
   });
 
   const topProps = useAnimatedProps(() => {
-    const t = split.value;
+    const t = splitTop.value;
     return {
       cx: CENTER.x + (TOP.x - CENTER.x) * t,
       cy: CENTER.y + (TOP.y - CENTER.y) * t,
@@ -127,7 +129,7 @@ export function LaunchOverlay({ onFinished }: Props) {
   });
 
   const neProps = useAnimatedProps(() => {
-    const t = split.value;
+    const t = splitNe.value;
     return {
       cx: CENTER.x + (NE.x - CENTER.x) * t,
       cy: CENTER.y + (NE.y - CENTER.y) * t,
@@ -136,7 +138,7 @@ export function LaunchOverlay({ onFinished }: Props) {
   });
 
   const seProps = useAnimatedProps(() => {
-    const t = split.value;
+    const t = splitSe.value;
     return {
       cx: CENTER.x + (SE.x - CENTER.x) * t,
       cy: CENTER.y + (SE.y - CENTER.y) * t,
@@ -151,35 +153,35 @@ export function LaunchOverlay({ onFinished }: Props) {
   }));
 
   const stemProps = useAnimatedProps(() => {
-    const t = split.value;
+    const t = splitTop.value;
     return {
       x1: CENTER.x,
       y1: CENTER.y,
       x2: CENTER.x + (TOP.x - CENTER.x) * t,
       y2: CENTER.y + (TOP.y - CENTER.y) * t,
-      strokeOpacity: edges.value,
+      strokeOpacity: Math.min(1, t),
     };
   });
 
   const neLineProps = useAnimatedProps(() => {
-    const t = split.value;
+    const t = splitNe.value;
     return {
       x1: CENTER.x,
       y1: CENTER.y,
       x2: CENTER.x + (NE.x - CENTER.x) * t,
       y2: CENTER.y + (NE.y - CENTER.y) * t,
-      strokeOpacity: edges.value,
+      strokeOpacity: Math.min(1, t),
     };
   });
 
   const seLineProps = useAnimatedProps(() => {
-    const t = split.value;
+    const t = splitSe.value;
     return {
       x1: CENTER.x,
       y1: CENTER.y,
       x2: CENTER.x + (SE.x - CENTER.x) * t,
       y2: CENTER.y + (SE.y - CENTER.y) * t,
-      strokeOpacity: edges.value,
+      strokeOpacity: Math.min(1, t),
     };
   });
 
