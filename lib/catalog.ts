@@ -26,16 +26,27 @@ export function withIoFormats(p: ProblemWithApproaches): ProblemWithApproaches {
   };
 }
 
-/** Built-in seed + reviewed extras from ingestion (+ I/O format overlay). */
-export function getAllLocalProblems(): ProblemWithApproaches[] {
+let localProblemsList: ProblemWithApproaches[] | null = null;
+let localProblemsById: Map<string, ProblemWithApproaches> | null = null;
+
+function buildLocalProblems(): ProblemWithApproaches[] {
   const raw = extraJson as unknown;
   const extras = (Array.isArray(raw) ? raw : []).filter(isProblem);
   const byId = new Map<string, ProblemWithApproaches>();
   for (const p of SEED_PROBLEMS) byId.set(p.id, withIoFormats(p as ProblemWithApproaches));
   for (const p of extras) byId.set(p.id, withIoFormats(p));
-  return [...byId.values()].sort((a, b) => a.difficulty_rating - b.difficulty_rating);
+  const list = [...byId.values()].sort((a, b) => a.difficulty_rating - b.difficulty_rating);
+  localProblemsList = list;
+  localProblemsById = byId;
+  return list;
+}
+
+/** Built-in seed + reviewed extras from ingestion (+ I/O format overlay). Memoized. */
+export function getAllLocalProblems(): ProblemWithApproaches[] {
+  return localProblemsList ?? buildLocalProblems();
 }
 
 export function getLocalProblem(id: string): ProblemWithApproaches | undefined {
-  return getAllLocalProblems().find((p) => p.id === id);
+  if (!localProblemsById) buildLocalProblems();
+  return localProblemsById!.get(id);
 }

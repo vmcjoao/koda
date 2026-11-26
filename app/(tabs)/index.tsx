@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { BrandWordmark } from '@/components/BrandWordmark';
@@ -37,45 +37,54 @@ export default function HomeScreen() {
   const [reminderHint, setReminderHint] = useState<string | null>(null);
   const [dailyAlgoCleared, setDailyAlgoCleared] = useState(false);
   const [dailyAlgoStreakCount, setDailyAlgoStreakCount] = useState(0);
+  const hasLoadedRef = useRef(false);
 
   const today = todayIso();
   const todayAlgo = useMemo(() => lessonForDate(today), [today]);
   const todayAlgoBeats = useMemo(() => beatCountForDate(today), [today]);
 
-  const load = useCallback(async () => {
-    await refreshProfile();
-    const [p, a, algoDates] = await Promise.all([
-      fetchProblems(),
-      fetchAttempts(user?.id ?? null),
-      getClearedDailyAlgoDates(),
-    ]);
-    const band = profile?.rating_band ?? 1200;
-    const [d, review] = await Promise.all([
-      getDailySet(p, a, band),
-      getReviewQueue(user?.id ?? null, p, a),
-    ]);
-    setProblems(p);
-    setAttempts(a);
-    setDaily(d);
-    setReviewCount(review.length);
-    const day = todayIso();
-    setDailyAlgoCleared(algoDates.has(day));
-    setDailyAlgoStreakCount(dailyAlgoStreak(algoDates, day));
-    if (await areRemindersEnabled()) {
-      const hour = await getReminderHour();
-      setReminderHint(formatReminderLabel(hour));
-    } else {
-      setReminderHint(null);
-    }
-  }, [user?.id, refreshProfile, profile?.rating_band]);
+  const load = useCallback(
+    async (mode: 'focus' | 'refresh' = 'focus') => {
+      // Soft tab re-entry: don't block on profile network round-trip.
+      if (mode === 'refresh') await refreshProfile();
+      else void refreshProfile();
+
+      const [p, a, algoDates] = await Promise.all([
+        fetchProblems(mode === 'refresh' ? { force: true } : undefined),
+        fetchAttempts(user?.id ?? null),
+        getClearedDailyAlgoDates(),
+      ]);
+      const band = profile?.rating_band ?? 1200;
+      const [d, review] = await Promise.all([
+        getDailySet(p, a, band),
+        getReviewQueue(user?.id ?? null, p, a),
+      ]);
+      setProblems(p);
+      setAttempts(a);
+      setDaily(d);
+      setReviewCount(review.length);
+      const day = todayIso();
+      setDailyAlgoCleared(algoDates.has(day));
+      setDailyAlgoStreakCount(dailyAlgoStreak(algoDates, day));
+      if (await areRemindersEnabled()) {
+        const hour = await getReminderHour();
+        setReminderHint(formatReminderLabel(hour));
+      } else {
+        setReminderHint(null);
+      }
+    },
+    [user?.id, refreshProfile, profile?.rating_band],
+  );
 
   useFocusEffect(
     useCallback(() => {
       let active = true;
       (async () => {
-        setLoading(true);
-        await load();
-        if (active) setLoading(false);
+        if (!hasLoadedRef.current) setLoading(true);
+        await load('focus');
+        if (!active) return;
+        hasLoadedRef.current = true;
+        setLoading(false);
       })();
       return () => {
         active = false;
@@ -85,7 +94,7 @@ export default function HomeScreen() {
 
   async function onRefresh() {
     setRefreshing(true);
-    await load();
+    await load('refresh');
     setRefreshing(false);
   }
 

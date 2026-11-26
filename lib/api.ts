@@ -139,8 +139,15 @@ function mapProblemRow(
   };
 }
 
-export async function fetchProblems(): Promise<ProblemWithApproaches[]> {
-  const local = getAllLocalProblems();
+const PROBLEMS_TTL_MS = 5 * 60_000;
+
+let problemsMemory: ProblemWithApproaches[] | null = null;
+let problemsMemoryAt = 0;
+let problemsRefreshInflight: Promise<ProblemWithApproaches[]> | null = null;
+
+async function loadProblemsFromNetwork(
+  local: ProblemWithApproaches[],
+): Promise<ProblemWithApproaches[]> {
   if (!supabase) return local;
 
   const { data: problems, error } = await supabase
@@ -166,6 +173,72 @@ export async function fetchProblems(): Promise<ProblemWithApproaches[]> {
   await writeCatalogCache(remote);
   // Remote wins on id clash; keep local-only extras (ingestion) available offline.
   return mergeCatalog(remote, local);
+}
+
+function rememberProblems(list: ProblemWithApproaches[]): ProblemWithApproaches[] {
+  problemsMemory = list;
+  problemsMemoryAt = Date.now();
+  return list;
+}
+
+function refreshProblemsInBackground(local: ProblemWithApproaches[]): void {
+  if (problemsRefreshInflight) return;
+  problemsRefreshInflight = loadProblemsFromNetwork(local)
+    .then((list) => rememberProblems(list))
+    .catch(() => problemsMemory ?? local)
+    .finally(() => {
+      problemsRefreshInflight = null;
+    });
+}
+
+/** Drop in-memory catalog so the next fetch rebuilds (e.g. after a hard refresh). */
+export function invalidateProblemsCache(): void {
+  problemsMemory = null;
+  problemsMemoryAt = 0;
+}
+
+/**
+ * Catalog for training screens. Uses memory → disk → network, and refreshes
+ * Supabase in the background so tab switches stay snappy.
+ */
+export async function fetchProblems(options?: {
+  force?: boolean;
+}): Promise<ProblemWithApproaches[]> {
+  const local = getAllLocalProblems();
+  const force = !!options?.force;
+  const fresh =
+    !!problemsMemory && Date.now() - problemsMemoryAt < PROBLEMS_TTL_MS;
+
+  if (!force && problemsMemory && fresh) {
+    return problemsMemory;
+  }
+
+  if (!force && problemsMemory) {
+    refreshProblemsInBackground(local);
+    return problemsMemory;
+  }
+
+  if (!supabase) {
+    return rememberProblems(local);
+  }
+
+  if (!force) {
+    const cached = await readCatalogCache();
+    if (cached?.length) {
+      const merged = rememberProblems(mergeCatalog(cached, local));
+      refreshProblemsInBackground(local);
+      return merged;
+    }
+  }
+
+  if (problemsRefreshInflight) return problemsRefreshInflight;
+
+  problemsRefreshInflight = loadProblemsFromNetwork(local)
+    .then((list) => rememberProblems(list))
+    .finally(() => {
+      problemsRefreshInflight = null;
+    });
+  return problemsRefreshInflight;
 }
 
 export async function fetchProblem(id: string): Promise<ProblemWithApproaches | null> {

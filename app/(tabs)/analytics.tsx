@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { AnimatedNumber } from '@/components/game/AnimatedNumber';
@@ -34,16 +34,18 @@ export default function AnalyticsScreen() {
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
   const [loading, setLoading] = useState(true);
+  const hasLoadedRef = useRef(false);
 
   useFocusEffect(
     useCallback(() => {
       let active = true;
       (async () => {
-        setLoading(true);
+        if (!hasLoadedRef.current) setLoading(true);
         const [a, p] = await Promise.all([fetchAttempts(user?.id ?? null), fetchProblems()]);
         if (!active) return;
         setAttempts(a);
         setProblems(p);
+        hasLoadedRef.current = true;
         setLoading(false);
       })();
       return () => {

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { AnimatedNumber } from '@/components/game/AnimatedNumber';
@@ -17,16 +17,18 @@ export default function ReviewScreen() {
   const { beginProblem } = useAttempt();
   const [queue, setQueue] = useState<ProblemWithApproaches[]>([]);
   const [loading, setLoading] = useState(true);
+  const hasLoadedRef = useRef(false);
 
   useFocusEffect(
     useCallback(() => {
       let active = true;
       (async () => {
-        setLoading(true);
+        if (!hasLoadedRef.current) setLoading(true);
         const [p, a] = await Promise.all([fetchProblems(), fetchAttempts(user?.id ?? null)]);
         const review = await getReviewQueue(user?.id ?? null, p, a);
         if (!active) return;
         setQueue(review);
+        hasLoadedRef.current = true;
         setLoading(false);
       })();
       return () => {

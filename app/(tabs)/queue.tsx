@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Platform,
@@ -30,31 +30,36 @@ export default function QueueScreen() {
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const hasLoadedRef = useRef(false);
 
-  const reload = useCallback(async () => {
-    setLoading(true);
-    const [a, p] = await Promise.all([fetchAttempts(user?.id ?? null), fetchProblems()]);
-    const map: Record<string, ProblemWithApproaches> = {};
-    for (const item of p) map[item.id] = item;
-    setAttempts(a.filter((x) => x.status === 'drafted' || !!x.pseudocode_draft));
-    setProblems(map);
-    setLoading(false);
-  }, [user?.id]);
+  const reload = useCallback(
+    async (mode: 'focus' | 'action' = 'focus') => {
+      if (!hasLoadedRef.current || mode === 'action') setLoading(true);
+      const [a, p] = await Promise.all([fetchAttempts(user?.id ?? null), fetchProblems()]);
+      const map: Record<string, ProblemWithApproaches> = {};
+      for (const item of p) map[item.id] = item;
+      setAttempts(a.filter((x) => x.status === 'drafted' || !!x.pseudocode_draft));
+      setProblems(map);
+      hasLoadedRef.current = true;
+      setLoading(false);
+    },
+    [user?.id],
+  );
 
   useFocusEffect(
     useCallback(() => {
-      reload();
+      void reload('focus');
     }, [reload]),
   );
 
   async function markAc(id: string) {
     await updateAttemptStatus(id, user?.id ?? null, 'implemented_ac');
-    await reload();
+    await reload('action');
   }
 
   async function markReview(id: string) {
     await updateAttemptStatus(id, user?.id ?? null, 'needs_review');
-    await reload();
+    await reload('action');
   }
 
   async function copyDraft(id: string, text: string) {
