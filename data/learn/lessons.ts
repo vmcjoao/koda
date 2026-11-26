@@ -795,6 +795,11 @@ void sort_people(vector<Person>& p) {
       time: 'O(log range) evaluations',
       extraMemory: 'O(1)',
     },
+    visualization: {
+      kind: 'array-binary-search',
+      demo: { values: [9, 7, 4, 2, 1, 3, 6, 8], target: 1 },
+    },
+    relatedIds: ['binary-search', 'binary-search-answer', 'lower-bound'],
     implementation: {
       language: 'cpp',
       code: `// real unimodal minimum

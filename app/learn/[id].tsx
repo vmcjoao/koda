@@ -326,7 +326,11 @@ export default function LearnLessonScreen() {
             <View style={styles.stageBody}>
               <Text style={styles.stagePrompt}>Prove you can drive it.</Text>
               <Text style={styles.practiceHint}>
-                Fresh instance each visit — graphs and arrays are generated for this run.
+                {drills.reduce(
+                  (n, e) => n + (e.kind === 'mcq' ? 1 : e.steps.length),
+                  0,
+                )}{' '}
+                beats this run · graphs and arrays reshuffle when you reroll.
               </Text>
               <LessonExercise
                 exercises={drills}

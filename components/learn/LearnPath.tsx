@@ -51,6 +51,11 @@ export function LearnPath({ studied, currentId, onSelect }: Props) {
                   <Text style={styles.unitBlurb} numberOfLines={open ? 3 : 1}>
                     {unit.blurb}
                   </Text>
+                  <Text style={styles.unitFeats}>
+                    {lessons.filter((l) => lessonHasExercises(l.id)).length} CHECK
+                    {' · '}
+                    {lessons.filter((l) => l.visualization).length} VIZ
+                  </Text>
                 </View>
                 <View style={[styles.ring, prog.complete && styles.ringDone]}>
                   <Text style={[styles.ringText, prog.complete && styles.ringTextDone]}>
@@ -192,6 +197,13 @@ const styles = StyleSheet.create({
   unitBlurb: {
     color: colors.textMuted,
     fontSize: 13,
+  },
+  unitFeats: {
+    color: colors.textDim,
+    fontSize: 11,
+    fontWeight: '800',
+    letterSpacing: 0.6,
+    marginTop: 2,
   },
   ring: {
     width: 48,
