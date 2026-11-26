@@ -17,6 +17,7 @@ import { colors, radii, spacing } from '@/constants/theme';
 
 type SourceFilter = 'All' | string;
 type DiffFilter = 'All' | '≤1200' | '1200–1600' | '1600+';
+type StatusFilter = 'All' | 'Unattempted' | 'Needs work';
 
 export default function CatalogScreen() {
   const { topic: topicParam } = useLocalSearchParams<{ topic?: string }>();
@@ -28,6 +29,7 @@ export default function CatalogScreen() {
   const [query, setQuery] = useState('');
   const [source, setSource] = useState<SourceFilter>('All');
   const [diff, setDiff] = useState<DiffFilter>('All');
+  const [status, setStatus] = useState<StatusFilter>('All');
   const [topic, setTopic] = useState<string | null>(topicParam ?? null);
 
   useFocusEffect(
@@ -82,13 +84,16 @@ export default function CatalogScreen() {
       }
       if (diff === '1600+' && p.difficulty_rating < 1600) return false;
       if (topic && !p.approaches.some((a) => a.paradigms.includes(topic))) return false;
+      const best = bestByProblem.get(p.id);
+      if (status === 'Unattempted' && best != null) return false;
+      if (status === 'Needs work' && !(best != null && best < 70)) return false;
       if (!q) return true;
       const hay = `${p.title} ${p.source} ${p.target_complexity} ${p.approaches
         .flatMap((a) => a.paradigms)
         .join(' ')}`.toLowerCase();
       return hay.includes(q);
     });
-  }, [problems, query, source, diff, topic]);
+  }, [problems, query, source, diff, topic, status, bestByProblem]);
 
   function start(p: ProblemWithApproaches) {
     beginProblem(p);
@@ -147,6 +152,19 @@ export default function CatalogScreen() {
             style={[styles.chip, diff === d && styles.chipOn]}
           >
             <Text style={[styles.chipText, diff === d && styles.chipTextOn]}>{d}</Text>
+          </Pressable>
+        ))}
+      </View>
+
+      <Text style={styles.filterLabel}>Progress</Text>
+      <View style={styles.chips}>
+        {(['All', 'Unattempted', 'Needs work'] as StatusFilter[]).map((s) => (
+          <Pressable
+            key={s}
+            onPress={() => setStatus(s)}
+            style={[styles.chip, status === s && styles.chipOn]}
+          >
+            <Text style={[styles.chipText, status === s && styles.chipTextOn]}>{s}</Text>
           </Pressable>
         ))}
       </View>

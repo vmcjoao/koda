@@ -7,7 +7,13 @@ import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAttempt } from '@/contexts/AttemptContext';
-import { fetchAttempts, fetchProblems, getDailySet, getReviewQueue } from '@/lib/api';
+import {
+  fetchAttempts,
+  fetchProblems,
+  getDailySet,
+  getReviewQueue,
+  regenerateDailySet,
+} from '@/lib/api';
 import { SLOT_LABELS, type DailySet } from '@/lib/habit';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -20,32 +26,47 @@ export default function HomeScreen() {
   const [daily, setDaily] = useState<DailySet | null>(null);
   const [reviewCount, setReviewCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const load = useCallback(async () => {
+    await refreshProfile();
+    const [p, a] = await Promise.all([fetchProblems(), fetchAttempts(user?.id ?? null)]);
+    const band = profile?.rating_band ?? 1200;
+    const [d, review] = await Promise.all([
+      getDailySet(p, a, band),
+      getReviewQueue(user?.id ?? null, p, a),
+    ]);
+    setProblems(p);
+    setAttempts(a);
+    setDaily(d);
+    setReviewCount(review.length);
+  }, [user?.id, refreshProfile, profile?.rating_band]);
 
   useFocusEffect(
     useCallback(() => {
       let active = true;
       (async () => {
         setLoading(true);
-        await refreshProfile();
-        const [p, a] = await Promise.all([fetchProblems(), fetchAttempts(user?.id ?? null)]);
-        if (!active) return;
-        const band = profile?.rating_band ?? 1200;
-        const [d, review] = await Promise.all([
-          getDailySet(p, a, band),
-          getReviewQueue(user?.id ?? null, p, a),
-        ]);
-        if (!active) return;
-        setProblems(p);
-        setAttempts(a);
-        setDaily(d);
-        setReviewCount(review.length);
-        setLoading(false);
+        await load();
+        if (active) setLoading(false);
       })();
       return () => {
         active = false;
       };
-    }, [user?.id, refreshProfile, profile?.rating_band]),
+    }, [load]),
   );
+
+  async function onRefresh() {
+    setRefreshing(true);
+    await load();
+    setRefreshing(false);
+  }
+
+  async function onRegenerateDaily() {
+    const band = profile?.rating_band ?? 1200;
+    const next = await regenerateDailySet(problems, attempts, band);
+    setDaily(next);
+  }
 
   const problemMap = useMemo(() => {
     const m = new Map<string, ProblemWithApproaches>();
@@ -63,7 +84,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <Screen scroll>
+    <Screen scroll refreshing={refreshing} onRefresh={onRefresh}>
       <OnboardingTips />
       <View style={styles.hero}>
         <BrandWordmark size="hero" />
@@ -129,6 +150,14 @@ export default function HomeScreen() {
               {daily?.bonusAwarded ? ' · +50 XP bonus claimed' : ''}.
             </Text>
           )}
+
+          {dailyDone < dailyTotal ? (
+            <PrimaryButton
+              label="Shuffle daily set"
+              variant="ghost"
+              onPress={onRegenerateDaily}
+            />
+          ) : null}
 
           {reviewCount > 0 ? (
             <PrimaryButton

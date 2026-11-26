@@ -8,6 +8,7 @@ import { MarkdownMath } from '@/components/MarkdownMath';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { saveAttempt, type SaveAttemptResult } from '@/lib/api';
+import { formatScoreShare, shareText } from '@/lib/share';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function RevealScreen() {
@@ -152,6 +153,25 @@ export default function RevealScreen() {
           {result.dailyBonusXp > 0 ? (
             <Text style={styles.good}>Daily Set cleared — nice work.</Text>
           ) : null}
+          <PrimaryButton
+            label="Share result"
+            variant="secondary"
+            onPress={() =>
+              shareText(
+                `Koda · ${problem.title}`,
+                formatScoreShare({
+                  title: problem.title,
+                  score: breakdown.score,
+                  approachName: approach?.approach_name,
+                  paradigms: draft.paradigms,
+                  algorithms: draft.algorithms,
+                  twists: draft.twists,
+                  complexityBonus: breakdown.complexityBonus,
+                  band: result.ratingBand,
+                }),
+              )
+            }
+          />
         </View>
       )}
 

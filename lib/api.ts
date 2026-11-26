@@ -439,6 +439,17 @@ export async function getDailySet(
   return set;
 }
 
+/** Force a new Daily Set for today (keeps completed progress only if force=false). */
+export async function regenerateDailySet(
+  problems: ProblemWithApproaches[],
+  attempts: UserAttempt[],
+  ratingBand: number,
+): Promise<DailySet> {
+  const set = buildDailySet(problems, attempts, ratingBand);
+  await AsyncStorage.setItem(LOCAL_DAILY_KEY, JSON.stringify(set));
+  return set;
+}
+
 /** Marks a daily slot done. Returns bonus XP if the full set just completed. */
 async function markDailySlotComplete(problemId: string, score: number): Promise<number> {
   const raw = await AsyncStorage.getItem(LOCAL_DAILY_KEY);

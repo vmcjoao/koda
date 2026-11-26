@@ -15,6 +15,7 @@ import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems, updateAttemptStatus } from '@/lib/api';
+import { formatBlueprintShare, shareText } from '@/lib/share';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -102,11 +103,30 @@ export default function QueueScreen() {
                       <Text style={styles.toggle}>{open ? 'Show less' : 'Expand draft'}</Text>
                     ) : null}
                   </Pressable>
-                  <PrimaryButton
-                    label={copiedId === a.id ? 'Copied' : 'Copy blueprint'}
-                    variant="secondary"
-                    onPress={() => copyDraft(a.id, draft)}
-                  />
+                  <View style={styles.actions}>
+                    <PrimaryButton
+                      label={copiedId === a.id ? 'Copied' : 'Copy'}
+                      variant="secondary"
+                      onPress={() => copyDraft(a.id, draft)}
+                      style={styles.actionBtn}
+                    />
+                    <PrimaryButton
+                      label="Share"
+                      variant="secondary"
+                      onPress={() =>
+                        shareText(
+                          `Koda blueprint · ${problem?.title ?? a.problem_id}`,
+                          formatBlueprintShare({
+                            title: problem?.title ?? a.problem_id,
+                            url: problem?.url,
+                            draft,
+                            score: a.score_accuracy,
+                          }),
+                        )
+                      }
+                      style={styles.actionBtn}
+                    />
+                  </View>
                 </>
               ) : (
                 <Text style={styles.meta}>No pseudocode saved</Text>
