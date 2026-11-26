@@ -971,7 +971,9 @@
           "Dynamic Programming",
           "String Algorithms"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "String Hashing"
+        ],
         "data_structures": [
           "Trie",
           "1D Array"
@@ -12934,6 +12936,1522 @@
           "Static RMQ: sparse table answers in O(1) after O(N log N) build"
         ],
         "editorial_summary_md": "Precompute minima of dyadic intervals; answer each query with two blocks."
+      }
+    ]
+  },
+  {
+    "id": "cses-polygon-lattice-points",
+    "title": "Polygon Lattice Points",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2193",
+    "difficulty_rating": 1600,
+    "statement_md": "Given a polygon, your task is to calculate the number of lattice points inside the polygon and on its boundary. A lattice point is a point whose coordinates are integers.\n\nThe polygon consists of $n$ vertices $(x_1,y_1),(x_2,y_2),\\dots,(x_n,y_n)$. The vertices $(x_i,y_i)$ and $(x_{i+1},y_{i+1})$ are adjacent for $i=1,2,\\dots,n-1$, and the vertices $(x_1,y_1)$ and $(x_n,y_n)$ are also adjacent.\n\nInput\n\nThe first input line has an integer $n$: the number of vertices.\n\nAfter this, there are $n$ lines that describe the vertices. The $i$th such line has two integers $x_i$ and $y_i$.\n\nYou may assume that the polygon is simple, i.e., it does not intersect itself.\n\nOutput\n\nPrint two integers: the number of lattice points inside the polygon and on its boundary.\n\nConstraints\n\n- $3 \\le n \\le 10^5$\n\n- $-10^9 \\le x_i, y_i \\le 10^9$\n\nExample\n\nInput:\n\n4\n1 1\n5 3\n3 5\n1 4\n\nOutput:\n\n6 8",
+    "input_format_md": "The first input line has an integer $n$: the number of vertices.\n\nAfter this, there are $n$ lines that describe the vertices. The $i$th such line has two integers $x_i$ and $y_i$.\n\nYou may assume that the polygon is simple, i.e., it does not intersect itself.",
+    "output_format_md": "Print two integers: the number of lattice points inside the polygon and on its boundary.",
+    "constraints_text": "- $3 \\le n \\le 10^5$\n\n- $-10^9 \\le x_i, y_i \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-polygon-lattice-points-a1",
+        "problem_id": "cses-polygon-lattice-points",
+        "approach_name": "Pick’s theorem",
+        "paradigms": [
+          "Geometry",
+          "Math / Number Theory"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Pick’s theorem: boundary points via gcd on edges; interior = area - B/2 + 1"
+        ],
+        "editorial_summary_md": "Compute twice-area with shoelace and boundary lattice points with gcd."
+      }
+    ]
+  },
+  {
+    "id": "cses-hotel-queries",
+    "title": "Hotel Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1143",
+    "difficulty_rating": 1500,
+    "statement_md": "There are $n$ hotels on a street. For each hotel you know the number of free rooms. Your task is to assign hotel rooms for groups of tourists. All members of a group want to stay in the same hotel.\n\nThe groups will come to you one after another, and you know for each group the number of rooms it requires. You always assign a group to the first hotel having enough rooms. After this, the number of free rooms in the hotel decreases.\n\nInput\n\nThe first input line contains two integers $n$ and $m$: the number of hotels and the number of groups. The hotels are numbered $1,2,\\ldots,n$.\n\nThe next line contains $n$ integers $h_1,h_2,\\ldots,h_n$: the number of free rooms in each hotel.\n\nThe last line contains $m$ integers $r_1,r_2,\\ldots,r_m$: the number of rooms each group requires.\n\nOutput\n\nPrint the assigned hotel for each group. If a group cannot be assigned a hotel, print 0 instead.\n\nConstraints\n\n- $1 \\le n,m \\le 2 \\cdot 10^5$\n\n- $1 \\le h_i \\le 10^9$\n\n- $1 \\le r_i \\le 10^9$\n\nExample\n\nInput:\n\n8 5\n3 2 4 1 5 5 2 6\n4 4 7 1 1\n\nOutput:\n\n3 5 0 1 1",
+    "input_format_md": "The first input line contains two integers $n$ and $m$: the number of hotels and the number of groups. The hotels are numbered $1,2,\\ldots,n$.\n\nThe next line contains $n$ integers $h_1,h_2,\\ldots,h_n$: the number of free rooms in each hotel.\n\nThe last line contains $m$ integers $r_1,r_2,\\ldots,r_m$: the number of rooms each group requires.",
+    "output_format_md": "Print the assigned hotel for each group. If a group cannot be assigned a hotel, print 0 instead.",
+    "constraints_text": "- $1 \\le n,m \\le 2 \\cdot 10^5$\n\n- $1 \\le h_i \\le 10^9$\n\n- $1 \\le r_i \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-hotel-queries-a1",
+        "problem_id": "cses-hotel-queries",
+        "approach_name": "Max segtree",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Segtree stores max free rooms; find leftmost hotel that fits"
+        ],
+        "editorial_summary_md": "Each query finds the first hotel with enough free rooms and decreases it."
+      }
+    ]
+  },
+  {
+    "id": "cses-polynomial-queries",
+    "title": "Polynomial Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1736",
+    "difficulty_rating": 1900,
+    "statement_md": "Your task is to maintain an array of $n$ values and efficiently process the following types of queries:\n\n- Increase the first value in range $[a,b]$ by $1$, the second value by $2$, the third value by $3$, and so on.\n\n- Calculate the sum of values in range $[a,b]$.\n\nInput\n\nThe first input line has two integers $n$ and $q$: the size of the array and the number of queries.\n\nThe next line has $n$ values $t_1,t_2,\\dots,t_n$: the initial contents of the array.\n\nFinally, there are $q$ lines describing the queries. The format of each line is either \"1 $a$ $b$\" or \"2 $a$ $b$\".\n\nOutput\n\nPrint the answer to each sum query.\n\nConstraints\n\n- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le t_i \\le 10^6$\n\n- $1 \\le a \\le b \\le n$\n\nExample\n\nInput:\n\n5 3\n4 2 3 1 7\n2 1 5\n1 1 5\n2 1 5\n\nOutput:\n\n17\n32",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the size of the array and the number of queries.\n\nThe next line has $n$ values $t_1,t_2,\\dots,t_n$: the initial contents of the array.\n\nFinally, there are $q$ lines describing the queries. The format of each line is either \"1 $a$ $b$\" or \"2 $a$ $b$\".",
+    "output_format_md": "Print the answer to each sum query.",
+    "constraints_text": "- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le t_i \\le 10^6$\n\n- $1 \\le a \\le b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-polynomial-queries-a1",
+        "problem_id": "cses-polynomial-queries",
+        "approach_name": "AP lazy segtree",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Lazy segtree for arithmetic-progression range adds + range sums"
+        ],
+        "editorial_summary_md": "Represent range add of 1,2,3,… with two lazy values and closed-form sums."
+      }
+    ]
+  },
+  {
+    "id": "cses-range-queries-and-copies",
+    "title": "Range Queries and Copies",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1737",
+    "difficulty_rating": 1900,
+    "statement_md": "Your task is to maintain a list of arrays which initially has a single array. You have to process the following types of queries:\n\n- Set the value $a$ in array $k$ to $x$.\n\n- Calculate the sum of values in range $[a,b]$ in array $k$.\n\n- Create a copy of array $k$ and add it to the end of the list.\n\nInput\n\nThe first input line has two integers $n$ and $q$: the array size and the number of queries.\n\nThe next line has $n$ integers $t_1,t_2,\\ldots,t_n$: the initial contents of the array.\n\nFinally, there are $q$ lines describing the queries. The format of each line is one of the following: \"1 $k$ $a$ $x$\", \"2 $k$ $a$ $b$\" or \"3 $k$\".\n\nOutput\n\nPrint the answer to each sum query.\n\nConstraints\n\n- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le t_i, x \\le 10^9$\n\n- $1 \\le a \\le b \\le n$\n\nExample\n\nInput:\n\n5 6\n2 3 1 2 5\n3 1\n2 1 1 5\n2 2 1 5\n1 2 2 5\n2 1 1 5\n2 2 1 5\n\nOutput:\n\n13\n13\n13\n15",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the array size and the number of queries.\n\nThe next line has $n$ integers $t_1,t_2,\\ldots,t_n$: the initial contents of the array.\n\nFinally, there are $q$ lines describing the queries. The format of each line is one of the following: \"1 $k$ $a$ $x$\", \"2 $k$ $a$ $b$\" or \"3 $k$\".",
+    "output_format_md": "Print the answer to each sum query.",
+    "constraints_text": "- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le t_i, x \\le 10^9$\n\n- $1 \\le a \\le b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-range-queries-and-copies-a1",
+        "problem_id": "cses-range-queries-and-copies",
+        "approach_name": "Persistent segtree",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Persistent segtree: each array version is a new root"
+        ],
+        "editorial_summary_md": "Support copy-array operations with persistence; point updates and range sums per version."
+      }
+    ]
+  },
+  {
+    "id": "cses-concert-tickets",
+    "title": "Concert Tickets",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1091",
+    "difficulty_rating": 1300,
+    "statement_md": "There are $n$ concert tickets available, each with a certain price. Then, $m$ customers arrive, one after another.\n\nEach customer announces the maximum price they are willing to pay for a ticket, and after this, they will get a ticket with the nearest possible price such that it does not exceed the maximum price.\n\nInput\n\nThe first input line contains integers $n$ and $m$: the number of tickets and the number of customers.\n\nThe next line contains $n$ integers $h_1,h_2,\\ldots,h_n$: the price of each ticket.\n\nThe last line contains $m$ integers $t_1,t_2,\\ldots,t_m$: the maximum price for each customer in the order they arrive.\n\nOutput\n\nPrint, for each customer, the price that they will pay for their ticket. After this, the ticket cannot be purchased again.\n\nIf a customer cannot get any ticket, print $-1$.\n\nConstraints\n\n- $1 \\le n, m \\le 2 \\cdot 10^5$\n\n- $1 \\le h_i, t_i \\le 10^9$\n\nExample\n\nInput:\n\n5 3\n5 3 7 8 5\n4 8 3\n\nOutput:\n\n3\n8\n-1",
+    "input_format_md": "The first input line contains integers $n$ and $m$: the number of tickets and the number of customers.\n\nThe next line contains $n$ integers $h_1,h_2,\\ldots,h_n$: the price of each ticket.\n\nThe last line contains $m$ integers $t_1,t_2,\\ldots,t_m$: the maximum price for each customer in the order they arrive.",
+    "output_format_md": "Print, for each customer, the price that they will pay for their ticket. After this, the ticket cannot be purchased again.\n\nIf a customer cannot get any ticket, print $-1$.",
+    "constraints_text": "- $1 \\le n, m \\le 2 \\cdot 10^5$\n\n- $1 \\le h_i, t_i \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-concert-tickets-a1",
+        "problem_id": "cses-concert-tickets",
+        "approach_name": "Ordered multiset",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [
+          "Binary Search",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Ordered Set",
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Multiset of ticket prices; upper_bound for customer max price"
+        ],
+        "editorial_summary_md": "For each customer take the most expensive affordable ticket."
+      }
+    ]
+  },
+  {
+    "id": "cses-stick-divisions",
+    "title": "Stick Divisions",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1161",
+    "difficulty_rating": 1500,
+    "statement_md": "You have a stick of length $x$ and you want to divide it into $n$ sticks, with given lengths, whose total length is $x$.\n\nOn each move you can take any stick and divide it into two sticks. The cost of such an operation is the length of the original stick.\n\nWhat is the minimum cost needed to create the sticks?\n\nInput\n\nThe first input line has two integers $x$ and $n$: the length of the stick and the number of sticks in the division.\n\nThe second line has $n$ integers $d_1,d_2,\\ldots,d_n$: the length of each stick in the division.\n\nOutput\n\nPrint one integer: the minimum cost of the division.\n\nConstraints\n\n- $1 \\le x \\le 10^9$\n\n- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $\\sum d_i = x$\n\nExample\n\nInput:\n\n8 3\n2 3 3\n\nOutput:\n\n13\n\nExplanation: You first divide the stick of length $8$ into sticks of length $3$ and $5$ (cost $8$). After this, you divide the stick of length $5$ into sticks of length $2$ and $3$ (cost $5$). The total cost is $8+5=13$.",
+    "input_format_md": "The first input line has two integers $x$ and $n$: the length of the stick and the number of sticks in the division.\n\nThe second line has $n$ integers $d_1,d_2,\\ldots,d_n$: the length of each stick in the division.",
+    "output_format_md": "Print one integer: the minimum cost of the division.",
+    "constraints_text": "- $1 \\le x \\le 10^9$\n\n- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $\\sum d_i = x$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-stick-divisions-a1",
+        "problem_id": "cses-stick-divisions",
+        "approach_name": "Heap merging",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Reverse Huffman: always merge two smallest sticks"
+        ],
+        "editorial_summary_md": "Cost to combine is the new length; greedily combine smallest parts."
+      }
+    ]
+  },
+  {
+    "id": "cses-counting-patterns",
+    "title": "Counting Patterns",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2103",
+    "difficulty_rating": 1800,
+    "statement_md": "Given a string and patterns, count for each pattern the number of positions where it appears in the string.\n\nInput\n\nThe first input line has a string of length $n$.\n\nThe next input line has an integer $k$: the number of patterns. Finally, there are $k$ lines that describe the patterns.\n\nThe string and the patterns consist of characters a–z.\n\nOutput\n\nFor each pattern, print the number of positions.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\n- $1 \\le k \\le 5 \\cdot 10^5$\n\n- the total length of the patterns is at most $5 \\cdot 10^5$\n\nExample\n\nInput:\n\naybabtu\n3\nbab\nabc\na\n\nOutput:\n\n1\n0\n2",
+    "input_format_md": "The first input line has a string of length $n$.\n\nThe next input line has an integer $k$: the number of patterns. Finally, there are $k$ lines that describe the patterns.\n\nThe string and the patterns consist of characters a–z.",
+    "output_format_md": "For each pattern, print the number of positions.",
+    "constraints_text": "- $1 \\le n \\le 10^5$\n\n- $1 \\le k \\le 5 \\cdot 10^5$\n\n- the total length of the patterns is at most $5 \\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-counting-patterns-a1",
+        "problem_id": "cses-counting-patterns",
+        "approach_name": "Aho-Corasick",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "String Hashing",
+          "KMP"
+        ],
+        "data_structures": [
+          "Trie"
+        ],
+        "key_insights": [
+          "Aho-Corasick occurrence counts for each pattern"
+        ],
+        "editorial_summary_md": "Build a trie of patterns with failure links; stream the text and tally matches."
+      }
+    ]
+  },
+  {
+    "id": "cses-pattern-positions",
+    "title": "Pattern Positions",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2104",
+    "difficulty_rating": 1800,
+    "statement_md": "Given a string and patterns, find for each pattern the first position (1-indexed) where it appears in the string.\n\nInput\n\nThe first input line has a string of length $n$.\n\nThe next input line has an integer $k$: the number of patterns. Finally, there are $k$ lines that describe the patterns.\n\nThe string and the patterns consist of characters a–z.\n\nOutput\n\nPrint the first position for each pattern (or $-1$ if it does not appear at all).\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\n- $1 \\le k \\le 5 \\cdot 10^5$\n\n- the total length of the patterns is at most $5 \\cdot 10^5$\n\nExample\n\nInput:\n\naybabtu\n3\nbab\nabc\na\n\nOutput:\n\n3\n-1\n1",
+    "input_format_md": "The first input line has a string of length $n$.\n\nThe next input line has an integer $k$: the number of patterns. Finally, there are $k$ lines that describe the patterns.\n\nThe string and the patterns consist of characters a–z.",
+    "output_format_md": "Print the first position for each pattern (or $-1$ if it does not appear at all).",
+    "constraints_text": "- $1 \\le n \\le 10^5$\n\n- $1 \\le k \\le 5 \\cdot 10^5$\n\n- the total length of the patterns is at most $5 \\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-pattern-positions-a1",
+        "problem_id": "cses-pattern-positions",
+        "approach_name": "First occurrence",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "String Hashing",
+          "KMP"
+        ],
+        "data_structures": [
+          "Trie"
+        ],
+        "key_insights": [
+          "Report first occurrence index of each pattern (Aho-Corasick / SA)"
+        ],
+        "editorial_summary_md": "Multi-pattern search returning the leftmost position for every pattern."
+      }
+    ]
+  },
+  {
+    "id": "cses-divisor-analysis",
+    "title": "Divisor Analysis",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2182",
+    "difficulty_rating": 1600,
+    "statement_md": "Given an integer, your task is to find the number, sum and product of its divisors. As an example, let us consider the number $12$:\n\n- the number of divisors is $6$ (they are $1$, $2$, $3$, $4$, $6$, $12$)\n\n- the sum of divisors is $1+2+3+4+6+12=28$\n\n- the product of divisors is $1 \\cdot 2 \\cdot 3 \\cdot 4 \\cdot 6 \\cdot 12 = 1728$\n\nSince the input number may be large, it is given as a prime factorization.\n\nInput\n\nThe first line has an integer $n$: the number of parts in the prime factorization.\n\nAfter this, there are $n$ lines that describe the factorization. Each line has two numbers $x$ and $k$ where $x$ is a prime and $k$ is its power.\n\nOutput\n\nPrint three integers modulo $10^9+7$: the number, sum and product of the divisors.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\n- $2 \\le x \\le 10^6$\n\n- each $x$ is a distinct prime\n\n- $1 \\le k \\le 10^9$\n\nExample\n\nInput:\n\n2\n2 2\n3 1\n\nOutput:\n\n6 28 1728",
+    "input_format_md": "The first line has an integer $n$: the number of parts in the prime factorization.\n\nAfter this, there are $n$ lines that describe the factorization. Each line has two numbers $x$ and $k$ where $x$ is a prime and $k$ is its power.",
+    "output_format_md": "Print three integers modulo $10^9+7$: the number, sum and product of the divisors.",
+    "constraints_text": "- $1 \\le n \\le 10^5$\n\n- $2 \\le x \\le 10^6$\n\n- each $x$ is a distinct prime\n\n- $1 \\le k \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-divisor-analysis-a1",
+        "problem_id": "cses-divisor-analysis",
+        "approach_name": "Factor formulas",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Given prime factorization, compute number/sum/product of divisors mod 1e9+7"
+        ],
+        "editorial_summary_md": "Use multiplicative formulas; product of divisors needs careful exponents mod φ(MOD-1)."
+      }
+    ]
+  },
+  {
+    "id": "cses-counting-coprime-pairs",
+    "title": "Counting Coprime Pairs",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2417",
+    "difficulty_rating": 1800,
+    "statement_md": "Given a list of $n$ positive integers, your task is to count the number of pairs of integers that are coprime (i.e., their greatest common divisor is one).\n\nInput\n\nThe first input line has an integer $n$: the number of elements.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the list.\n\nOutput\n\nPrint one integer: the answer for the task.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\n- $1 \\le x_i \\le 10^6$\n\nExample\n\nInput:\n\n8\n5 4 20 1 16 17 5 15\n\nOutput:\n\n19",
+    "input_format_md": "The first input line has an integer $n$: the number of elements.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the list.",
+    "output_format_md": "Print one integer: the answer for the task.",
+    "constraints_text": "- $1 \\le n \\le 10^5$\n\n- $1 \\le x_i \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-counting-coprime-pairs-a1",
+        "problem_id": "cses-counting-coprime-pairs",
+        "approach_name": "Mobius sieve",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Mobius inversion over gcd; sieve μ and multiples counts"
+        ],
+        "editorial_summary_md": "Count pairs with gcd 1 via μ(d) · C(cnt_d, 2) style sums."
+      }
+    ]
+  },
+  {
+    "id": "cses-graph-girth",
+    "title": "Graph Girth",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1707",
+    "difficulty_rating": 1700,
+    "statement_md": "Given an undirected graph, your task is to determine its girth, i.e., the length of its shortest cycle.\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the edges. Each line has two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.\n\nYou may assume that there is at most one edge between each two nodes.\n\nOutput\n\nPrint one integer: the girth of the graph. If there are no cycles, print $-1$.\n\nConstraints\n\n- $1 \\le n \\le 2500$\n\n- $1 \\le m \\le 5000$\n\nExample\n\nInput:\n\n5 6\n1 2\n1 3\n2 4\n2 5\n3 4\n4 5\n\nOutput:\n\n3",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the edges. Each line has two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.\n\nYou may assume that there is at most one edge between each two nodes.",
+    "output_format_md": "Print one integer: the girth of the graph. If there are no cycles, print $-1$.",
+    "constraints_text": "- $1 \\le n \\le 2500$\n\n- $1 \\le m \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-graph-girth-a1",
+        "problem_id": "cses-graph-girth",
+        "approach_name": "Multi-source girth BFS",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "BFS"
+        ],
+        "data_structures": [
+          "Queue"
+        ],
+        "key_insights": [
+          "BFS from each node detects shortest cycle through that source"
+        ],
+        "editorial_summary_md": "The girth is the minimum over BFS-found back edges of dist sums."
+      }
+    ]
+  },
+  {
+    "id": "cses-coin-grid",
+    "title": "Coin Grid",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1709",
+    "difficulty_rating": 1800,
+    "statement_md": "There is an $n \\times n$ grid whose each square is empty or has a coin. On each move, you can remove all coins in a row or column.\n\nWhat is the minimum number of moves after which the grid is empty?\n\nInput\n\nThe first input line has an integer $n$: the size of the grid. The rows and columns are numbered $1,2,\\dots,n$.\n\nAfter this, there are $n$ lines describing the grid. Each line has $n$ characters: each character is either . (empty) or o (coin).\n\nOutput\n\nFirst print an integer $k$: the minimum number of moves. After this, print $k$ lines describing the moves.\n\nOn each line, first print $1$ (row) or $2$ (column), and then the number of a row or column. You can print any valid solution.\n\nConstraints\n\n- $1 \\le n \\le 100$\n\nExample\n\nInput:\n\n3\n..o\no.o\n...\n\nOutput:\n\n2\n1 2\n2 3",
+    "input_format_md": "The first input line has an integer $n$: the size of the grid. The rows and columns are numbered $1,2,\\dots,n$.\n\nAfter this, there are $n$ lines describing the grid. Each line has $n$ characters: each character is either . (empty) or o (coin).",
+    "output_format_md": "First print an integer $k$: the minimum number of moves. After this, print $k$ lines describing the moves.\n\nOn each line, first print $1$ (row) or $2$ (column), and then the number of a row or column. You can print any valid solution.",
+    "constraints_text": "- $1 \\le n \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-coin-grid-a1",
+        "problem_id": "cses-coin-grid",
+        "approach_name": "Bipartite cover",
+        "paradigms": [
+          "Flows / Matching",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "BFS",
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Minimum vertex cover on bipartite row-column graph of coins"
+        ],
+        "editorial_summary_md": "Model coins as edges between rows and columns; Konig cover = matching."
+      }
+    ]
+  },
+  {
+    "id": "cses-planets-queries-ii",
+    "title": "Planets Queries II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1160",
+    "difficulty_rating": 1800,
+    "statement_md": "You are playing a game consisting of n planets. Each planet has a teleporter to another planet (or the planet itself).\n\nYou have to process $q$ queries of the form: You are now on planet $a$ and want to reach planet $b$. What is the minimum number of teleportations?\n\nInput\n\nThe first input line contains two integers $n$ and $q$: the number of planets and queries. The planets are numbered $1,2,\\ldots,n$.\n\nThe second line contains $n$ integers $t_1,t_2,\\ldots,t_n$: for each planet, the destination of the teleporter.\n\nFinally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$: you are now on planet $a$ and want to reach planet $b$.\n\nOutput\n\nFor each query, print the minimum number of teleportations. If it is not possible to reach the destination, print $-1$.\n\nConstraints\n\n- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\nExample\n\nInput:\n\n5 3\n2 3 2 3 2\n1 2\n1 3\n1 4\n\nOutput:\n\n1\n2\n-1",
+    "input_format_md": "The first input line contains two integers $n$ and $q$: the number of planets and queries. The planets are numbered $1,2,\\ldots,n$.\n\nThe second line contains $n$ integers $t_1,t_2,\\ldots,t_n$: for each planet, the destination of the teleporter.\n\nFinally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$: you are now on planet $a$ and want to reach planet $b$.",
+    "output_format_md": "For each query, print the minimum number of teleportations. If it is not possible to reach the destination, print $-1$.",
+    "constraints_text": "- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-planets-queries-ii-a1",
+        "problem_id": "cses-planets-queries-ii",
+        "approach_name": "Functional queries",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Binary Search",
+          "DFS"
+        ],
+        "data_structures": [
+          "Queue"
+        ],
+        "key_insights": [
+          "Functional graph: binary lifting + cycle handling for reachability queries"
+        ],
+        "editorial_summary_md": "Answer whether a can reach b and the distance along unique outgoing edges."
+      }
+    ]
+  },
+  {
+    "id": "cses-finding-a-centroid",
+    "title": "Finding a Centroid",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2079",
+    "difficulty_rating": 1500,
+    "statement_md": "Given a tree of $n$ nodes, your task is to find a centroid, i.e., a node such that when it is appointed the root of the tree, each subtree has at most $\\lfloor n/2 \\rfloor$ nodes.\n\nInput\n\nThe first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,…,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.\n\nOutput\n\nPrint one integer: a centroid node. If there are several possibilities, you can choose any of them.\n\nConstraints\n\n- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\nExample\n\nInput:\n\n5\n1 2\n2 3\n3 4\n3 5\n\nOutput:\n\n3",
+    "input_format_md": "The first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,…,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.",
+    "output_format_md": "Print one integer: a centroid node. If there are several possibilities, you can choose any of them.",
+    "constraints_text": "- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-finding-a-centroid-a1",
+        "problem_id": "cses-finding-a-centroid",
+        "approach_name": "Centroid find",
+        "paradigms": [
+          "Graph Algorithms",
+          "Divide & Conquer"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Centroid = node with all subtree sizes ≤ N/2"
+        ],
+        "editorial_summary_md": "Compute subtree sizes; the centroid balances the heaviest child."
+      }
+    ]
+  },
+  {
+    "id": "cses-tree-isomorphism-i",
+    "title": "Tree Isomorphism I",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1700",
+    "difficulty_rating": 1800,
+    "statement_md": "Given two rooted trees, your task is to find out if they are isomorphic, i.e., it is possible to draw them so that they look the same.\n\nInput\n\nThe first input line has an integer $t$: the number of tests. Then, there are $t$ tests described as follows:\n\nThe first line has an integer $n$: the number of nodes in both trees. The nodes are numbered $1,2,\\dots,n$, and node $1$ is the root.\n\nThen, there are $n-1$ lines describing the edges of the first tree, and finally $n-1$ lines describing the edges of the second tree.\n\nOutput\n\nFor each test, print \"YES\", if the trees are isomorphic, and \"NO\" otherwise.\n\nConstraints\n\n- $1 \\le t \\le 1000$\n\n- $2 \\le n \\le 10^5$\n\n- the sum of all values of $n$ is at most $10^5$\n\nExample\n\nInput:\n\n2\n3\n1 2\n2 3\n1 2\n1 3\n3\n1 2\n2 3\n1 3\n3 2\n\nOutput:\n\nNO\nYES",
+    "input_format_md": "The first input line has an integer $t$: the number of tests. Then, there are $t$ tests described as follows:\n\nThe first line has an integer $n$: the number of nodes in both trees. The nodes are numbered $1,2,\\dots,n$, and node $1$ is the root.\n\nThen, there are $n-1$ lines describing the edges of the first tree, and finally $n-1$ lines describing the edges of the second tree.",
+    "output_format_md": "For each test, print \"YES\", if the trees are isomorphic, and \"NO\" otherwise.",
+    "constraints_text": "- $1 \\le t \\le 1000$\n\n- $2 \\le n \\le 10^5$\n\n- the sum of all values of $n$ is at most $10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-tree-isomorphism-i-a1",
+        "problem_id": "cses-tree-isomorphism-i",
+        "approach_name": "AHU hashing",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DFS",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Rooted AHU tree hash: sort child hashes recursively"
+        ],
+        "editorial_summary_md": "Compare two rooted trees via canonical parenthesized hashes."
+      }
+    ]
+  },
+  {
+    "id": "cses-tree-isomorphism-ii",
+    "title": "Tree Isomorphism II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1701",
+    "difficulty_rating": 1900,
+    "statement_md": "Given two (not rooted) trees, your task is to find out if they are isomorphic, i.e., it is possible to draw them so that they look the same.\n\nInput\n\nThe first input line has an integer $t$: the number of tests. Then, there are $t$ tests described as follows:\n\nThe first line has an integer $n$: the number of nodes in both trees. The nodes are numbered $1,2,\\dots,n$.\n\nThen, there are $n-1$ lines describing the edges of the first tree, and finally $n-1$ lines describing the edges of the second tree.\n\nOutput\n\nFor each test, print \"YES\", if the trees are isomorphic, and \"NO\" otherwise.\n\nConstraints\n\n- $1 \\le t \\le 1000$\n\n- $2 \\le n \\le 10^5$\n\n- the sum of all values of $n$ is at most $10^5$\n\nExample\n\nInput:\n\n2\n3\n1 2\n2 3\n1 2\n1 3\n3\n1 2\n2 3\n1 3\n3 2\n\nOutput:\n\nYES\nYES",
+    "input_format_md": "The first input line has an integer $t$: the number of tests. Then, there are $t$ tests described as follows:\n\nThe first line has an integer $n$: the number of nodes in both trees. The nodes are numbered $1,2,\\dots,n$.\n\nThen, there are $n-1$ lines describing the edges of the first tree, and finally $n-1$ lines describing the edges of the second tree.",
+    "output_format_md": "For each test, print \"YES\", if the trees are isomorphic, and \"NO\" otherwise.",
+    "constraints_text": "- $1 \\le t \\le 1000$\n\n- $2 \\le n \\le 10^5$\n\n- the sum of all values of $n$ is at most $10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-tree-isomorphism-ii-a1",
+        "problem_id": "cses-tree-isomorphism-ii",
+        "approach_name": "Center + AHU",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DFS",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Hash Map",
+          "Queue"
+        ],
+        "key_insights": [
+          "Unrooted: try roots at tree centers (1 or 2) and compare AHU hashes"
+        ],
+        "editorial_summary_md": "Find centers then test isomorphism as rooted trees."
+      }
+    ]
+  },
+  {
+    "id": "cses-fixed-length-paths-ii",
+    "title": "Fixed-Length Paths II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2081",
+    "difficulty_rating": 2100,
+    "statement_md": "Given a tree of $n$ nodes, your task is to count the number of distinct paths that have at least $k_1$ and at most $k_2$ edges.\n\nInput\n\nThe first input line contains three integers $n$, $k_1$ and $k_2$: the number of nodes and the path lengths. The nodes are numbered $1,2,\\ldots,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.\n\nOutput\n\nPrint one integer: the number of paths.\n\nConstraints\n\n- $1 \\le k_1 \\le k_2 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\nExample\n\nInput:\n\n5 2 3\n1 2\n2 3\n3 4\n3 5\n\nOutput:\n\n6",
+    "input_format_md": "The first input line contains three integers $n$, $k_1$ and $k_2$: the number of nodes and the path lengths. The nodes are numbered $1,2,\\ldots,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.",
+    "output_format_md": "Print one integer: the number of paths.",
+    "constraints_text": "- $1 \\le k_1 \\le k_2 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-fixed-length-paths-ii-a1",
+        "problem_id": "cses-fixed-length-paths-ii",
+        "approach_name": "Centroid paths",
+        "paradigms": [
+          "Graph Algorithms",
+          "Divide & Conquer"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Centroid decomp counting paths with length in [a,b]"
+        ],
+        "editorial_summary_md": "Count pairs at distance in a range using centroid decomposition and fenwick/prefix."
+      }
+    ]
+  },
+  {
+    "id": "cses-path-queries-ii",
+    "title": "Path Queries II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2134",
+    "difficulty_rating": 2000,
+    "statement_md": "You are given a tree consisting of $n$ nodes. The nodes are numbered $1,2,\\ldots,n$. Each node has a value.\n\nYour task is to process following types of queries:\n\n- change the value of node $s$ to $x$\n\n- find the maximum value on the path between nodes $a$ and $b$.\n\nInput\n\nThe first input line contains two integers $n$ and $q$: the number of nodes and queries. The nodes are numbered $1,2,\\ldots,n$.\n\nThe next line has $n$ integers $v_1,v_2,\\ldots,v_n$: the value of each node.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.\n\nFinally, there are $q$ lines describing the queries. Each query is either of the form \"1 $s$ $x$\" or \"2 $a$ $b$\".\n\nOutput\n\nPrint the answer to each query of type 2.\n\nConstraints\n\n- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b, s \\le n$\n\n- $1 \\le v_i, x \\le 10^9$\n\nExample\n\nInput:\n\n5 3\n2 4 1 3 3\n1 2\n1 3\n2 4\n2 5\n2 3 5\n1 2 2\n2 3 5\n\nOutput:\n\n4 3",
+    "input_format_md": "The first input line contains two integers $n$ and $q$: the number of nodes and queries. The nodes are numbered $1,2,\\ldots,n$.\n\nThe next line has $n$ integers $v_1,v_2,\\ldots,v_n$: the value of each node.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.\n\nFinally, there are $q$ lines describing the queries. Each query is either of the form \"1 $s$ $x$\" or \"2 $a$ $b$\".",
+    "output_format_md": "Print the answer to each query of type 2.",
+    "constraints_text": "- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b, s \\le n$\n\n- $1 \\le v_i, x \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-path-queries-ii-a1",
+        "problem_id": "cses-path-queries-ii",
+        "approach_name": "HLD",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Segment Tree",
+          "LCA"
+        ],
+        "data_structures": [
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "HLD + segtree for path max queries and point updates"
+        ],
+        "editorial_summary_md": "Heavy-light decomposition flattens paths into O(log n) segments."
+      }
+    ]
+  },
+  {
+    "id": "cses-counting-tilings",
+    "title": "Counting Tilings",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2181",
+    "difficulty_rating": 1800,
+    "statement_md": "Your task is to count the number of ways you can fill an $n \\times m$ grid using $1 \\times 2$ and $2 \\times 1$ tiles.\n\nInput\n\nThe only input line has two integers $n$ and $m$.\n\nOutput\n\nPrint one integer: the number of ways modulo $10^9+7$.\n\nConstraints\n\n- $1 \\le n \\le 10$\n\n- $1 \\le m \\le 1000$\n\nExample\n\nInput:\n\n4 7\n\nOutput:\n\n781",
+    "input_format_md": "The only input line has two integers $n$ and $m$.",
+    "output_format_md": "Print one integer: the number of ways modulo $10^9+7$.",
+    "constraints_text": "- $1 \\le n \\le 10$\n\n- $1 \\le m \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-counting-tilings-a1",
+        "problem_id": "cses-counting-tilings",
+        "approach_name": "Profile DP",
+        "paradigms": [
+          "Bitmask / Bit DP",
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Profile DP filling grid column-by-column with bitmasks"
+        ],
+        "editorial_summary_md": "Enumerate vertical/horizontal tile placements transitioning masks between columns."
+      }
+    ]
+  },
+  {
+    "id": "cses-elevator-rides",
+    "title": "Elevator Rides",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1653",
+    "difficulty_rating": 1600,
+    "statement_md": "There are $n$ people who want to get to the top of a building which has only one elevator. You know the weight of each person and the maximum allowed weight in the elevator. What is the minimum number of elevator rides?\n\nInput\n\nThe first input line has two integers $n$ and $x$: the number of people and the maximum allowed weight in the elevator.\n\nThe second line has $n$ integers $w_1,w_2,\\dots,w_n$: the weight of each person.\n\nOutput\n\nPrint one integer: the minimum number of rides.\n\nConstraints\n\n- $1 \\le n \\le 20$\n\n- $1 \\le x \\le 10^9$\n\n- $1 \\le w_i \\le x$\n\nExample\n\nInput:\n\n4 10\n4 8 6 1\n\nOutput:\n\n2",
+    "input_format_md": "The first input line has two integers $n$ and $x$: the number of people and the maximum allowed weight in the elevator.\n\nThe second line has $n$ integers $w_1,w_2,\\dots,w_n$: the weight of each person.",
+    "output_format_md": "Print one integer: the minimum number of rides.",
+    "constraints_text": "- $1 \\le n \\le 20$\n\n- $1 \\le x \\le 10^9$\n\n- $1 \\le w_i \\le x$",
+    "sample_io": [],
+    "target_complexity": "O(2^N)",
+    "approaches": [
+      {
+        "id": "cses-elevator-rides-a1",
+        "problem_id": "cses-elevator-rides",
+        "approach_name": "Bitmask elevator",
+        "paradigms": [
+          "Bitmask / Bit DP",
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "dp[mask] = (rides, last load); try adding people to current ride"
+        ],
+        "editorial_summary_md": "Minimize elevator rides for n≤20 people with weight capacity x."
+      }
+    ]
+  },
+  {
+    "id": "cses-increasing-subsequence-ii",
+    "title": "Increasing Subsequence II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1748",
+    "difficulty_rating": 1700,
+    "statement_md": "Given an array of $n$ integers, your task is to calculate the number of increasing subsequences it contains. If two subsequences have the same values but in different positions in the array, they are counted separately.\n\nInput\n\nThe first input line has an integer $n$: the size of the array.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the array.\n\nOutput\n\nPrint one integer: the number of increasing subsequences modulo $10^9+7$.\n\nConstraints\n\n- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$\n\nExample\n\nInput:\n\n3\n2 1 3\n\nOutput:\n\n5\n\nExplanation: The increasing subsequences are $[2]$, $[1]$, $[3]$, $[2,3]$ and $[1,3]$.",
+    "input_format_md": "The first input line has an integer $n$: the size of the array.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the array.",
+    "output_format_md": "Print one integer: the number of increasing subsequences modulo $10^9+7$.",
+    "constraints_text": "- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-increasing-subsequence-ii-a1",
+        "problem_id": "cses-increasing-subsequence-ii",
+        "approach_name": "Fenwick LIS count",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "LIS",
+          "Segment Tree",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "Count increasing subsequences with fenwick on compressed values"
+        ],
+        "editorial_summary_md": "dp[v] += 1 + sum of dp[u] for u<v; maintain with a BIT."
+      }
+    ]
+  },
+  {
+    "id": "cses-grid-path-description",
+    "title": "Grid Path Description",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1625",
+    "difficulty_rating": 1700,
+    "statement_md": "There are $88418$ paths in a $7 \\times 7$ grid from the upper-left square to the lower-left square. Each path corresponds to a $48$-character description consisting of characters D (down), U (up), L (left) and R (right).\n\nFor example, the path\n\ncorresponds to the description DRURRRRRDDDLUULDDDLDRRURDDLLLLLURULURRUULDLLDDDD.\n\nYou are given a description of a path which may also contain characters ? (any direction). Your task is to calculate the number of paths that match the description.\n\nInput\n\nThe only input line has a $48$-character string of characters ?, D, U, L and R.\n\nOutput\n\nPrint one integer: the total number of paths.\n\nExample\n\nInput:\n\n??????R??????U??????????????????????????LD????D?\n\nOutput:\n\n201",
+    "input_format_md": "The only input line has a $48$-character string of characters ?, D, U, L and R.",
+    "output_format_md": "Print one integer: the total number of paths.",
+    "constraints_text": "See statement.",
+    "sample_io": [],
+    "target_complexity": "O(N!)",
+    "approaches": [
+      {
+        "id": "cses-grid-path-description-a1",
+        "problem_id": "cses-grid-path-description",
+        "approach_name": "Grid backtracking",
+        "paradigms": [
+          "Brute Force",
+          "Bitmask / Bit DP"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Backtracking on a 7×7 grid with pruning when the path self-splits"
+        ],
+        "editorial_summary_md": "Count paths matching a move pattern visiting every cell once."
+      }
+    ]
+  },
+  {
+    "id": "cses-sum-of-four-values",
+    "title": "Sum of Four Values",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1642",
+    "difficulty_rating": 1500,
+    "statement_md": "You are given an array of $n$ integers, and your task is to find four values (at distinct positions) whose sum is $x$.\n\nInput\n\nThe first input line has two integers $n$ and $x$: the array size and the target sum.\n\nThe second line has $n$ integers $a_1,a_2,\\dots,a_n$: the array values.\n\nOutput\n\nPrint four integers: the positions of the values. If there are several solutions, you may print any of them. If there are no solutions, print IMPOSSIBLE.\n\nConstraints\n\n- $1 \\le n \\le 1000$\n\n- $1 \\le x,a_i \\le 10^9$\n\nExample\n\nInput:\n\n8 15\n3 2 5 8 1 3 2 3\n\nOutput:\n\n2 4 6 7",
+    "input_format_md": "The first input line has two integers $n$ and $x$: the array size and the target sum.\n\nThe second line has $n$ integers $a_1,a_2,\\dots,a_n$: the array values.",
+    "output_format_md": "Print four integers: the positions of the values. If there are several solutions, you may print any of them. If there are no solutions, print IMPOSSIBLE.",
+    "constraints_text": "- $1 \\le n \\le 1000$\n\n- $1 \\le x,a_i \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-sum-of-four-values-a1",
+        "problem_id": "cses-sum-of-four-values",
+        "approach_name": "Pair hashing",
+        "paradigms": [
+          "Two Pointers",
+          "Brute Force"
+        ],
+        "algorithms": [
+          "Sorting",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Hash pair sums or fix two indices and two-pointer the rest"
+        ],
+        "editorial_summary_md": "Store two-sums with indices; look for complementary pairs without overlap."
+      }
+    ]
+  },
+  {
+    "id": "cf-487b",
+    "title": "Strip",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/487/B",
+    "difficulty_rating": 1900,
+    "statement_md": "Split an array into the minimum number of contiguous strips such that each strip length $\\ge l$ and max-min $\\le s$.",
+    "input_format_md": "The first line contains $n$, $s$, and $l$.\n\nThe second line contains the array.",
+    "output_format_md": "Print the minimum number of strips or $-1$.",
+    "constraints_text": "$1 \\le n \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "7 2 2\n1 3 1 2 4 1 2",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-487b-a1",
+        "problem_id": "cf-487b",
+        "approach_name": "Deque DP",
+        "paradigms": [
+          "Dynamic Programming",
+          "Two Pointers"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [
+          "Deque",
+          "Sparse Table"
+        ],
+        "key_insights": [
+          "Sparse table / deques for range max-min; DP leftmost valid segment ends"
+        ],
+        "editorial_summary_md": "For each r find minimal l with constraints; DP number of strips."
+      }
+    ]
+  },
+  {
+    "id": "cf-372a",
+    "title": "Counting Kangaroo is Fun",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/372/A",
+    "difficulty_rating": 1600,
+    "statement_md": "You have $n$ kangaroos with sizes $s_i$. A kangaroo can fit into another at least twice as large, and each can contain at most one other (recursively). Maximize the number of visible kangaroos (not inside another).",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 5\\cdot 10^5$).\n\nThen $n$ sizes.",
+    "output_format_md": "Print the minimum number of visible kangaroos.",
+    "constraints_text": "$1 \\le n \\le 5\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "8\n2\n5\n7\n6\n9\n8\n4\n2",
+        "output": "5"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-372a-a1",
+        "problem_id": "cf-372a",
+        "approach_name": "Two-pointer nesting",
+        "paradigms": [
+          "Greedy",
+          "Two Pointers"
+        ],
+        "algorithms": [
+          "Binary Search",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Deque"
+        ],
+        "key_insights": [
+          "Sort; greedy match largest with largest that can nest (≤ half)"
+        ],
+        "editorial_summary_md": "After sorting, pair from the middle split to minimize visible kangaroos."
+      }
+    ]
+  },
+  {
+    "id": "cf-295b",
+    "title": "Greg and Graph",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/295/B",
+    "difficulty_rating": 1800,
+    "statement_md": "You are given an $n\\times n$ adjacency matrix of a complete digraph. Vertices are deleted in a given order. Before each deletion, output the sum of shortest-path distances among remaining vertices.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 400$).\n\nThen an $n\\times n$ matrix.\n\nThen a permutation of $1..n$ — deletion order.",
+    "output_format_md": "Print $n$ numbers — the distance sums before each deletion.",
+    "constraints_text": "$1 \\le n \\le 400$",
+    "sample_io": [
+      {
+        "input": "4\n0 3 1 1\n3 0 1 1\n1 1 0 1\n1 1 1 0\n4 1 2 3",
+        "output": "17 7 2 0"
+      }
+    ],
+    "target_complexity": "O(N³)",
+    "approaches": [
+      {
+        "id": "cf-295b-a1",
+        "problem_id": "cf-295b",
+        "approach_name": "Reverse Floyd",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Floyd-Warshall"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Add vertices in reverse deletion order; Floyd online"
+        ],
+        "editorial_summary_md": "Run Floyd by inserting nodes backward; accumulate distance sums."
+      }
+    ]
+  },
+  {
+    "id": "cf-20c",
+    "title": "Dijkstra?",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/20/C",
+    "difficulty_rating": 1500,
+    "statement_md": "Find any shortest path from vertex $1$ to vertex $n$ in an undirected weighted graph, or determine that none exists.",
+    "input_format_md": "The first line contains $n$ and $m$ ($2 \\le n \\le 10^5$, $0 \\le m \\le 10^5$).\n\nThen $m$ edges $a\\ b\\ w$ ($1 \\le w \\le 10^6$).",
+    "output_format_md": "Print the vertices of a shortest path, or $-1$.",
+    "constraints_text": "$2 \\le n \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "5 6\n1 2 2\n2 5 5\n2 3 4\n1 4 1\n4 3 3\n3 5 1",
+        "output": "1 4 3 5"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-20c-a1",
+        "problem_id": "cf-20c",
+        "approach_name": "Dijkstra path",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Dijkstra"
+        ],
+        "data_structures": [
+          "Priority Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Standard Dijkstra with parent pointers to reconstruct path"
+        ],
+        "editorial_summary_md": "Compute 1→n distances and walk parents back to print the path."
+      }
+    ]
+  },
+  {
+    "id": "cf-938d",
+    "title": "Buy a Ticket",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/938/D",
+    "difficulty_rating": 1900,
+    "statement_md": "A weighted undirected graph of $n$ cities. Concert in city $i$ costs $a_i$. You may travel edges paying twice the weight. For each city compute the minimum cost to attend some concert (travel + ticket).",
+    "input_format_md": "The first line contains $n$ and $m$.\n\nThen $m$ edges.\n\nThen array $a_1\\dots a_n$.",
+    "output_format_md": "Print $n$ answers.",
+    "constraints_text": "$1 \\le n \\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "4 2\n1 2 4\n2 3 7\n6 20 1 25",
+        "output": "6 14 1 25"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-938d-a1",
+        "problem_id": "cf-938d",
+        "approach_name": "Multi-source Dijkstra",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Dijkstra"
+        ],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Multi-source Dijkstra from all concerts with edge weights doubled"
+        ],
+        "editorial_summary_md": "Seed the heap with ticket costs; relax edges at 2w."
+      }
+    ]
+  },
+  {
+    "id": "cf-545e",
+    "title": "Paths and Trees",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/545/E",
+    "difficulty_rating": 2000,
+    "statement_md": "Given an undirected weighted graph and a source $u$, choose a spanning subgraph of $n-1$ edges that preserves shortest-path distances from $u$ to all vertices and has minimum total edge weight among such subgraphs.",
+    "input_format_md": "The first line contains $n$ and $m$.\n\nThen $m$ edges.\n\nThen $u$.",
+    "output_format_md": "Print the total weight and the list of chosen edge indices.",
+    "constraints_text": "$1 \\le n \\le 3\\cdot 10^5$, $0 \\le m \\le 3\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "3 3\n1 2 3\n2 3 4\n1 3 5\n1",
+        "output": "7\n1 2"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-545e-a1",
+        "problem_id": "cf-545e",
+        "approach_name": "Shortest-path tree",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Dijkstra",
+          "MST"
+        ],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Among Dijkstra tree edges, pick lightest incoming edges that realize dist[]"
+        ],
+        "editorial_summary_md": "Build a minimum-weight shortest-path tree from the source."
+      }
+    ]
+  },
+  {
+    "id": "cf-1422d",
+    "title": "Returning Home",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1422/D",
+    "difficulty_rating": 2000,
+    "statement_md": "You move on the plane from $(sx,sy)$ to $(fx,fy)$. You may walk between adjacent integer points for cost $1$ per unit, or teleport between given special points for free if they share x or y. Minimize cost.",
+    "input_format_md": "The first line contains $n$ and $m$ (grid bound and number of specials).\n\nThen start and finish coordinates.\n\nThen $m$ special points.",
+    "output_format_md": "Print the minimum cost.",
+    "constraints_text": "$1 \\le m \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "5 3\n1 1 5 5\n1 2\n4 1\n3 3",
+        "output": "4"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1422d-a1",
+        "problem_id": "cf-1422d",
+        "approach_name": "Implicit grid graph",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Dijkstra",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Graph on specials + start/finish; edges when sharing x/y after sort"
+        ],
+        "editorial_summary_md": "Connect sorted specials by x and by y; Dijkstra from start."
+      }
+    ]
+  },
+  {
+    "id": "cf-61d",
+    "title": "Eternal Victory",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/61/D",
+    "difficulty_rating": 1600,
+    "statement_md": "A tree with weighted edges. Starting at $1$, you must visit every vertex (and may traverse edges multiple times). Minimize the total walked length.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 10^5$).\n\nThen $n-1$ edges $a\\ b\\ d$.",
+    "output_format_md": "Print the minimum walk length.",
+    "constraints_text": "$1 \\le n \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "3\n1 2 3\n2 3 4",
+        "output": "10"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-61d-a1",
+        "problem_id": "cf-61d",
+        "approach_name": "Tree traversal cost",
+        "paradigms": [
+          "Graph Algorithms",
+          "Greedy"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Answer = 2*sum(edges) - max root-to-leaf path"
+        ],
+        "editorial_summary_md": "Must cover every edge twice except you can finish at the farthest leaf."
+      }
+    ]
+  },
+  {
+    "id": "cf-448d",
+    "title": "Multiplication Table",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/448/D",
+    "difficulty_rating": 1800,
+    "statement_md": "Consider the $n \\times m$ multiplication table ($i\\cdot j$ at cell $(i,j)$). Find the $k$-th smallest number in it.",
+    "input_format_md": "A single line with $n$, $m$, and $k$ ($1 \\le n,m \\le 10^5$, $1 \\le k \\le n\\cdot m$).",
+    "output_format_md": "Print the $k$-th smallest entry.",
+    "constraints_text": "$1 \\le n,m \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "2 3 4",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-448d-a1",
+        "problem_id": "cf-448d",
+        "approach_name": "Count in table",
+        "paradigms": [
+          "Binary Search on Answer",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Binary Search",
+          "Ternary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Binary search value x; count entries ≤ x by summing min(m, x/i)"
+        ],
+        "editorial_summary_md": "Monotonic count of table entries ≤ mid; search the k-th."
+      }
+    ]
+  },
+  {
+    "id": "cf-1355c",
+    "title": "Count Triangles",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1355/C",
+    "difficulty_rating": 1600,
+    "statement_md": "Count triangles with integer sides $a\\le x\\le b\\le y\\le c\\le z\\le d$ that satisfy the triangle inequality (degenerate not allowed).",
+    "input_format_md": "Four integers $A,B,C,D$ ($1 \\le A\\le B\\le C\\le D\\le 5\\cdot 10^5$).",
+    "output_format_md": "Print the number of valid triangles.",
+    "constraints_text": "$1 \\le A\\le B\\le C\\le D\\le 5\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "1 2 3 4",
+        "output": "1"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1355c-a1",
+        "problem_id": "cf-1355c",
+        "approach_name": "Triangle enumeration",
+        "paradigms": [
+          "Math / Number Theory",
+          "Two Pointers"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Fix z; count (x,y) with x+y>z using prefix counts on ranges"
+        ],
+        "editorial_summary_md": "Sweep possible hypotenuse lengths with contribution formulas."
+      }
+    ]
+  },
+  {
+    "id": "cf-567c",
+    "title": "Geometric Progression",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/567/C",
+    "difficulty_rating": 1700,
+    "statement_md": "Count index triples $i<j<k$ such that $a_j/a_i = a_k/a_j = r$ (values form a geometric progression with ratio $r$).",
+    "input_format_md": "The first line contains $n$ and $r$ ($1 \\le n \\le 2\\cdot 10^5$, $1 \\le r \\le 10^9$).\n\nThe second line contains $a_1\\dots a_n$ ($|a_i| \\le 10^9$).",
+    "output_format_md": "Print the number of triples.",
+    "constraints_text": "$1 \\le n \\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "5 2\n1 1 2 2 4",
+        "output": "4"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-567c-a1",
+        "problem_id": "cf-567c",
+        "approach_name": "Two-map GP",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Left/right frequency maps for a/r and a*r while scanning"
+        ],
+        "editorial_summary_md": "For each middle value count left predecessors and right successors."
+      }
+    ]
+  },
+  {
+    "id": "cf-1195c",
+    "title": "Basketball Exercise",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1195/C",
+    "difficulty_rating": 1400,
+    "statement_md": "Two rows of $n$ students with heights. Choose a sequence alternating rows (no two adjacent from the same column index pattern: students from different rows each time, columns strictly increasing). Maximize height sum.",
+    "input_format_md": "The first line contains $n$.\n\nThe second line contains row 1 heights.\n\nThe third line contains row 2 heights.",
+    "output_format_md": "Print the maximum sum.",
+    "constraints_text": "$1 \\le n \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "5\n9 3 5 7 3\n5 8 1 4 5",
+        "output": "29"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1195c-a1",
+        "problem_id": "cf-1195c",
+        "approach_name": "Two-row DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "dp1[i]/dp2[i] best ending on row1/row2 at column i"
+        ],
+        "editorial_summary_md": "Transition from the other row’s previous best plus current height."
+      }
+    ]
+  },
+  {
+    "id": "cf-1473d",
+    "title": "Program",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1473/D",
+    "difficulty_rating": 1700,
+    "statement_md": "You have a program of `+`/`-` moves on an integer starting at $0$. For each query that deletes a substring, report how many distinct values the position can take during execution.",
+    "input_format_md": "The first line contains $t$.\n\nEach test: $n$ and $m$, the program string, then $m$ queries $l\\ r$.",
+    "output_format_md": "For each query print the number of distinct positions visited.",
+    "constraints_text": "Sum of $n,m$ $\\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "2\n8 4\n-+--+--+\n1 8\n2 8\n2 5\n1 1\n4 10\n+-++\n1 1\n1 2\n2 2\n1 3\n2 3\n2 4\n1 4\n2 4\n1 2\n1 3",
+        "output": "1\n2\n4\n4\n3\n3\n4\n2\n3\n2\n1\n2\n3\n2"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1473d-a1",
+        "problem_id": "cf-1473d",
+        "approach_name": "Prefix extrema",
+        "paradigms": [
+          "Prefix Sums",
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Sparse Table",
+          "Stack"
+        ],
+        "key_insights": [
+          "Pref min/max outside deleted range combine with middle reset"
+        ],
+        "editorial_summary_md": "Precompute prefix/suffix mins and maxes to answer deletion queries."
+      }
+    ]
+  },
+  {
+    "id": "cf-1363a",
+    "title": "Odd Selection",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1363/A",
+    "difficulty_rating": 900,
+    "statement_md": "You have $n$ integers. Can you choose exactly $x$ of them so that their sum is odd?",
+    "input_format_md": "The first line contains $t$.\n\nEach test: first line $n$ and $x$; second line $n$ integers.",
+    "output_format_md": "Print `Yes` or `No` for each test.",
+    "constraints_text": "$1 \\le t \\le 1000$, $1 \\le x \\le n \\le 1000$",
+    "sample_io": [
+      {
+        "input": "5\n1 1\n999\n1 1\n1000\n2 1\n1000 1000\n2 2\n19 20\n3 2\n1 1 1",
+        "output": "Yes\nNo\nNo\nYes\nYes"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1363a-a1",
+        "problem_id": "cf-1363a",
+        "approach_name": "Parity cases",
+        "paradigms": [
+          "Math / Number Theory",
+          "Brute Force"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Need odd count of odds in the chosen subset; check parity availability"
+        ],
+        "editorial_summary_md": "Track counts of odd/even; verify whether an odd sum of size x exists."
+      }
+    ]
+  },
+  {
+    "id": "cses-sliding-window-minimum",
+    "title": "Sliding Window Minimum",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/3221",
+    "difficulty_rating": 1400,
+    "statement_md": "You are given an array of $n$ integers. Your task is to calculate the minimum of each window of $k$ elements, from left to right.\n\nIn this problem the input data is large and it is created using a generator.\n\nInput\n\nThe first line contains two integers $n$ and $k$: the number of elements and the size of the window.\n\nThe next line contains four integers $x$, $a$, $b$ and $c$: the input generator parameters. The input is generated as follows:\n\n- $x_1=x$\n\n- $x_i=(ax_{i-1}+b) \\bmod c$ for $i=2,3,\\dots,n$\n\nOutput\n\nPrint the xor of all window minimums.\n\nConstraints\n\n- $1 \\le k \\le n \\le 10^7$\n\n- $0 \\le x, a, b \\le 10^9$\n\n- $1 \\le c \\le 10^9$\n\nExample\n\nInput:\n\n8 5\n3 7 1 11\n\nOutput:\n\n3\n\nExplanation: The input array is $[3,0,1,8,2,4,7,6]$. The windows are $[3,0,1,8,2]$, $[0,1,8,2,4]$, $[1,8,2,4,7]$ and $[8,2,4,7,6]$, and their minimums are $0$, $0$, $1$ and $2$. Thus, the answer is $0 \\oplus 0 \\oplus 1 \\oplus 2 = 3$.",
+    "input_format_md": "The first line contains two integers $n$ and $k$: the number of elements and the size of the window.\n\nThe next line contains four integers $x$, $a$, $b$ and $c$: the input generator parameters. The input is generated as follows:\n\n- $x_1=x$\n\n- $x_i=(ax_{i-1}+b) \\bmod c$ for $i=2,3,\\dots,n$",
+    "output_format_md": "Print the xor of all window minimums.",
+    "constraints_text": "- $1 \\le k \\le n \\le 10^7$\n\n- $0 \\le x, a, b \\le 10^9$\n\n- $1 \\le c \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-sliding-window-minimum-a1",
+        "problem_id": "cses-sliding-window-minimum",
+        "approach_name": "Monotonic deque",
+        "paradigms": [
+          "Two Pointers"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Deque"
+        ],
+        "key_insights": [
+          "Monotonic deque maintains candidates for window minimum"
+        ],
+        "editorial_summary_md": "Slide a window of length k; pop back while larger, pop front when out of window."
+      }
+    ]
+  },
+  {
+    "id": "cses-sliding-window-sum",
+    "title": "Sliding Window Sum",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/3220",
+    "difficulty_rating": 1200,
+    "statement_md": "You are given an array of $n$ integers. Your task is to calculate the sum of each window of $k$ elements, from left to right.\n\nIn this problem the input data is large and it is created using a generator.\n\nInput\n\nThe first line contains two integers $n$ and $k$: the number of elements and the size of the window.\n\nThe next line contains four integers $x$, $a$, $b$ and $c$: the input generator parameters. The input is generated as follows:\n\n- $x_1=x$\n\n- $x_i=(ax_{i-1}+b) \\bmod c$ for $i=2,3,\\dots,n$\n\nOutput\n\nPrint the xor of all window sums.\n\nConstraints\n\n- $1 \\le k \\le n \\le 10^7$\n\n- $0 \\le x, a, b \\le 10^9$\n\n- $1 \\le c \\le 10^9$\n\nExample\n\nInput:\n\n8 5\n3 7 1 11\n\nOutput:\n\n12\n\nExplanation: The input array is $[3,0,1,8,2,4,7,6]$. The windows are $[3,0,1,8,2]$, $[0,1,8,2,4]$, $[1,8,2,4,7]$ and $[8,2,4,7,6]$, and their sums are $14$, $15$, $22$ and $27$. Thus, the answer is $14 \\oplus 15 \\oplus 22 \\oplus 27 = 12$.",
+    "input_format_md": "The first line contains two integers $n$ and $k$: the number of elements and the size of the window.\n\nThe next line contains four integers $x$, $a$, $b$ and $c$: the input generator parameters. The input is generated as follows:\n\n- $x_1=x$\n\n- $x_i=(ax_{i-1}+b) \\bmod c$ for $i=2,3,\\dots,n$",
+    "output_format_md": "Print the xor of all window sums.",
+    "constraints_text": "- $1 \\le k \\le n \\le 10^7$\n\n- $0 \\le x, a, b \\le 10^9$\n\n- $1 \\le c \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-sliding-window-sum-a1",
+        "problem_id": "cses-sliding-window-sum",
+        "approach_name": "Window sum",
+        "paradigms": [
+          "Two Pointers",
+          "Prefix Sums"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Queue"
+        ],
+        "key_insights": [
+          "Maintain running sum while advancing the window"
+        ],
+        "editorial_summary_md": "Add entering values and subtract leaving ones for each window sum."
+      }
+    ]
+  },
+  {
+    "id": "cses-sliding-window-median",
+    "title": "Sliding Window Median",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1076",
+    "difficulty_rating": 1600,
+    "statement_md": "You are given an array of $n$ integers. Your task is to calculate the median of each window of $k$ elements, from left to right.\n\nThe median is the middle element when the elements are sorted. If the number of elements is even, there are two possible medians and we assume that the median is the smaller of them.\n\nInput\n\nThe first line contains two integers $n$ and $k$: the number of elements and the size of the window.\n\nThen there are $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the array.\n\nOutput\n\nPrint $n-k+1$ values: the medians.\n\nConstraints\n\n- $1 \\le k \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$\n\nExample\n\nInput:\n\n8 3\n2 4 3 5 8 1 2 1\n\nOutput:\n\n3 4 5 5 2 1",
+    "input_format_md": "The first line contains two integers $n$ and $k$: the number of elements and the size of the window.\n\nThen there are $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the array.",
+    "output_format_md": "Print $n-k+1$ values: the medians.",
+    "constraints_text": "- $1 \\le k \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-sliding-window-median-a1",
+        "problem_id": "cses-sliding-window-median",
+        "approach_name": "Dual multiset median",
+        "paradigms": [
+          "Two Pointers"
+        ],
+        "algorithms": [
+          "Sorting"
+        ],
+        "data_structures": [
+          "Ordered Set",
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Two multisets / policy PBDS keep lower and upper halves for median"
+        ],
+        "editorial_summary_md": "Balance two ordered bags so the median is the max of the lower half."
+      }
+    ]
+  },
+  {
+    "id": "cses-distinct-substrings",
+    "title": "Distinct Substrings",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2105",
+    "difficulty_rating": 1700,
+    "statement_md": "Count the number of distinct substrings that appear in a string.\n\nInput\n\nThe only input line has a string of length $n$ that consists of characters a–z.\n\nOutput\n\nPrint one integer: the number of substrings.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\nExample\n\nInput:\n\nabaa\n\nOutput:\n\n8\n\nExplanation: the substrings are a, b, aa, ab, ba, aba, baa and abaa.",
+    "input_format_md": "The only input line has a string of length $n$ that consists of characters a–z.",
+    "output_format_md": "Print one integer: the number of substrings.",
+    "constraints_text": "- $1 \\le n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-distinct-substrings-a1",
+        "problem_id": "cses-distinct-substrings",
+        "approach_name": "Suffix structures",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "String Hashing"
+        ],
+        "data_structures": [
+          "Trie"
+        ],
+        "key_insights": [
+          "Suffix array/automaton or hash-set of all substrings with SA LCP"
+        ],
+        "editorial_summary_md": "Count distinct substrings via SA+LCP: n(n+1)/2 - sum LCP."
+      }
+    ]
+  },
+  {
+    "id": "cses-string-functions",
+    "title": "String Functions",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2107",
+    "difficulty_rating": 1500,
+    "statement_md": "We consider a string of $n$ characters, indexed $1,2,\\dots,n$. Your task is to calculate all values of the following functions:\n\n- $z(i)$ denotes the maximum length of a substring that begins at position $i$ and is a prefix of the string. In addition, $z(1)=0$.\n\n- $\\pi(i)$ denotes the maximum length of a substring that ends at position $i$, is a prefix of the string, and whose length is at most $i-1$.\n\nNote that the function $z$ is used in the Z-algorithm, and the function $\\pi$ is used in the KMP algorithm.\n\nInput\n\nThe only input line has a string of length $n$. Each character is between a–z.\n\nOutput\n\nPrint two lines: first the values of the $z$ function, and then the values of the $\\pi$ function.\n\nConstraints\n\n- $1 \\le n \\le 10^6$\n\nExample\n\nInput:\n\nabaabca\n\nOutput:\n\n0 0 1 2 0 0 1\n0 0 1 1 2 0 1",
+    "input_format_md": "The only input line has a string of length $n$. Each character is between a–z.",
+    "output_format_md": "Print two lines: first the values of the $z$ function, and then the values of the $\\pi$ function.",
+    "constraints_text": "- $1 \\le n \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-string-functions-a1",
+        "problem_id": "cses-string-functions",
+        "approach_name": "Z and pi",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "KMP",
+          "String Hashing"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Compute Z-array and KMP prefix function (pi) for the string"
+        ],
+        "editorial_summary_md": "Output both the Z-array and the Knuth–Morris–Pratt border array."
+      }
+    ]
+  },
+  {
+    "id": "cses-next-prime",
+    "title": "Next Prime",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/3396",
+    "difficulty_rating": 1200,
+    "statement_md": "Given a positive integer $n$, find the next prime number after it.\n\nInput\n\nThe first line has an integer $t$: the number of tests.\n\nAfter that, each line has a positive integer $n$.\n\nOutput\n\nFor each test, print the next prime after $n$.\n\nConstraints\n\n- $1 \\le t \\le 20$\n\n- $1 \\le n \\le 10^{12}$\n\nExample\n\nInput:\n\n5\n1\n2\n3\n42\n1337\n\nOutput:\n\n2\n3\n5\n43\n1361",
+    "input_format_md": "The first line has an integer $t$: the number of tests.\n\nAfter that, each line has a positive integer $n$.",
+    "output_format_md": "For each test, print the next prime after $n$.",
+    "constraints_text": "- $1 \\le t \\le 20$\n\n- $1 \\le n \\le 10^{12}$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-next-prime-a1",
+        "problem_id": "cses-next-prime",
+        "approach_name": "Next prime",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "For each query find the next prime ≥ n (segmented check / sieve up to bound)"
+        ],
+        "editorial_summary_md": "Primality test each candidate upward; pre-sieve helps for many queries."
+      }
+    ]
+  },
+  {
+    "id": "cses-mst-edge-check",
+    "title": "MST Edge Check",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/3407",
+    "difficulty_rating": 1600,
+    "statement_md": "Given an undirected weighted graph, determine for each edge if it can be included in a minimum spanning tree.\n\nInput\n\nThe first line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\\dots,n$.\n\nThe following $m$ lines describe the edges. Each line has three integers $a$, $b$, $w$: there is an edge between nodes $a$ and $b$ with weight $w$.\n\nYou can assume that the graph is connected and simple and each edge appears at most once in the graph.\n\nOutput\n\nFor each edge in the input order, print YES if it can be included in the minimum spanning tree and NO otherwise.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\n- $1 \\le m \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\n- $1 \\le w \\le 10^9$\n\nExample\n\nInput:\n\n5 6\n1 2 4\n1 3 2\n2 4 2\n3 4 1\n3 5 3\n4 5 3\n\nOutput:\n\nNO\nYES\nYES\nYES\nYES\nYES",
+    "input_format_md": "The first line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\\dots,n$.\n\nThe following $m$ lines describe the edges. Each line has three integers $a$, $b$, $w$: there is an edge between nodes $a$ and $b$ with weight $w$.\n\nYou can assume that the graph is connected and simple and each edge appears at most once in the graph.",
+    "output_format_md": "For each edge in the input order, print YES if it can be included in the minimum spanning tree and NO otherwise.",
+    "constraints_text": "- $1 \\le n \\le 10^5$\n\n- $1 \\le m \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\n- $1 \\le w \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-mst-edge-check-a1",
+        "problem_id": "cses-mst-edge-check",
+        "approach_name": "MST edge check",
+        "paradigms": [
+          "Graph Algorithms",
+          "Greedy"
+        ],
+        "algorithms": [
+          "MST",
+          "DSU",
+          "Sorting"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "An edge can appear in some MST iff it does not create a lighter cycle"
+        ],
+        "editorial_summary_md": "Sort edges; DSU determines which edges are MST-feasible."
       }
     ]
   }

@@ -67,7 +67,8 @@
     "ingest:vjudge-import-statements": "tsx scripts/ingest/vjudge-statements-to-extras.ts",
     "ingest:curated-expansion": "tsx scripts/ingest/curated-expansion.ts",
     "ingest:curated-batch2": "tsx scripts/ingest/curated-batch2.ts",
-    "ingest:curated-batch3": "tsx scripts/ingest/curated-batch3.ts"
+    "ingest:curated-batch3": "tsx scripts/ingest/curated-batch3.ts",
+    "ingest:curated-batch4": "tsx scripts/ingest/curated-batch4.ts"
   },
   "private": true
 }
