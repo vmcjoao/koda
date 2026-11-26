@@ -1486,22 +1486,28 @@
         "output": "FORMAT: (file superbull.out)"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N² log N)",
     "approaches": [
       {
         "id": "usaco-531-a1",
         "problem_id": "usaco-531",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Maximum spanning tree",
         "paradigms": [
-          "Graph Algorithms"
+          "Graph Algorithms",
+          "Greedy"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "MST (Kruskal)",
+          "DSU"
+        ],
+        "data_structures": [
+          "Union-Find"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: USACO-531"
+          "Game score between i,j is |s_i−s_j|",
+          "Maximum total is the MST of the complete graph with those weights (max spanning)"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Model teams as complete-graph edges weighted by score differences. The maximum tournament sum is the maximum spanning tree (Kruskal on edges sorted descending)."
       }
     ]
   },
@@ -1511,27 +1517,32 @@
     "source": "UVA",
     "url": "https://vjudge.net/problem/UVA-200",
     "difficulty_rating": 1500,
-    "statement_md": "src=\"CDN_BASE_URL/d084ba87c5723c4c0499ffa47fe4b0a2?v=1677164122#view=FitH\" style=\"width:100%; height:1400px;\" frameborder=\"0\">",
+    "statement_md": "You are given a list of words sorted in an unknown alphabet order (one word per line, ending with `#`). Infer a total order of the letters consistent with the sorted list.\n\nCompare each pair of consecutive words: the first position where they differ gives a precedence constraint between two letters. Output one valid alphabet order.",
     "input_format_md": "See statement.",
     "output_format_md": "See statement.",
     "constraints_text": "See statement.",
     "sample_io": [],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(L)",
     "approaches": [
       {
         "id": "uva-200-a1",
         "problem_id": "uva-200",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Letter graph topo",
         "paradigms": [
-          "Ad-Hoc"
+          "Graph Algorithms"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [
+          "Stack"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-200"
+          "Compare consecutive words; first mismatch gives a precedence edge",
+          "Topo-order the implied alphabet"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "From consecutive sorted words, the first differing characters yield directed edges (earlier letter → later). Topologically sort the letters that appear."
       }
     ]
   },
@@ -1551,22 +1562,26 @@
         "output": "FORMAT (file pails.out):"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N · M)",
     "approaches": [
       {
         "id": "usaco-620-a1",
         "problem_id": "usaco-620",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Unbounded knapsack milk",
         "paradigms": [
-          "Graph Algorithms"
+          "Dynamic Programming"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "Knapsack"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: USACO-620"
+          "dp[x] = min cost to make exactly x units",
+          "Each package type usable any number of times"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Classic unbounded knapsack: `dp[x]` = minimum cost to obtain exactly x units of milk. Transition by each package. Answer `dp[M]` (or impossible)."
       }
     ]
   },
@@ -1586,22 +1601,28 @@
         "output": "For every test case print only one line of output. This line should contain two numbers separated by a single space - the cost of the two cheapest connection plans. Let S1 be the cheapest cost and S2 the next cheapest cost. It is important that S1 = S2 if and only if there are two cheapest plans, otherwise S1 < S2. You can assume that it is always possible to find the costs S1 and S2."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(M log M · N)",
     "approaches": [
       {
         "id": "uva-10600-a1",
         "problem_id": "uva-10600",
-        "approach_name": "Pending editorial review",
+        "approach_name": "MST + second-best MST",
         "paradigms": [
-          "Ad-Hoc"
+          "Graph Algorithms",
+          "Greedy"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "MST (Kruskal)",
+          "DSU"
+        ],
+        "data_structures": [
+          "Union-Find"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-10600"
+          "Kruskal gives the minimum spanning cost",
+          "Second-best: for each MST edge, force-exclude it and rebuild"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Compute the MST cost with Kruskal. For the second-best network, try excluding each MST edge in turn and take the minimum alternative spanning cost."
       }
     ]
   },
@@ -1656,22 +1677,27 @@
         "output": "For each test case print 'World #n', being n the number of the test case. Then print a line for each language that appears in the test case followed by the number of cities where that language is spoken, in the format:"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(HW)",
     "approaches": [
       {
         "id": "uva-10336-a1",
         "problem_id": "uva-10336",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Flood-fill languages",
         "paradigms": [
           "Graph Algorithms"
         ],
-        "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-10336"
+        "algorithms": [
+          "DFS",
+          "BFS"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Each connected component of equal letters is one world",
+          "Rank languages by world count, then name"
+        ],
+        "editorial_summary_md": "Flood-fill / DFS each unvisited cell; same letters 4-adjacent form a world. Aggregate per language and sort by frequency descending, name ascending."
       }
     ]
   },
@@ -1691,22 +1717,27 @@
         "output": "."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(HW)",
     "approaches": [
       {
         "id": "uva-784-a1",
         "problem_id": "uva-784",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Maze flood fill",
         "paradigms": [
-          "Ad-Hoc"
+          "Graph Algorithms"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "DFS",
+          "BFS"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-784"
+          "Start from the marked room cell",
+          "Paint reachable empty spaces"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Find the starting marker and flood-fill all reachable empty cells inside walls. Print the painted maze for each case."
       }
     ]
   },
@@ -1721,22 +1752,26 @@
     "output_format_md": "See statement.",
     "constraints_text": "(2 ≤ N ≤ 1.000) (1 ≤ M ≤ 50.000) (1 ≤ A, B ≤ N, A ≠ B)",
     "sample_io": [],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N + M)",
     "approaches": [
       {
         "id": "spoj-tubos-a1",
         "problem_id": "spoj-tubos",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Bridge check",
         "paradigms": [
-          "Ad-Hoc"
+          "Graph Algorithms"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: SPOJ-TUBOS"
+          "Critical tube = bridge",
+          "tin/low DFS; bridge when low[v] > tin[u]"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "The network fails a single cut iff the undirected graph has a bridge. Run discovery/low DFS and test the bridge condition."
       }
     ]
   },
@@ -1756,22 +1791,28 @@
         "output": "For each instance, print a line with n integers representing the tasks in a possible order of execution."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N + M)",
     "approaches": [
       {
         "id": "uva-10305-a1",
         "problem_id": "uva-10305",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Topological sort",
         "paradigms": [
-          "Ad-Hoc"
+          "Graph Algorithms"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [
+          "Stack",
+          "1D Array"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-10305"
+          "Edge u→v means u before v in any valid order",
+          "Kahn indegree queue or DFS finish-time reverse both work"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Build the DAG of prerequisites. Emit a topological order (Kahn or DFS). Any valid topo order is accepted."
       }
     ]
   },
@@ -1791,22 +1832,23 @@
         "output": "Output the maximum number of pizza pieces the given number of cuts can produce. Each line should contain only one output integer without any leading or trailing space."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(1)",
     "approaches": [
       {
         "id": "uva-10079-a1",
         "problem_id": "uva-10079",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Pizza cut formula",
         "paradigms": [
+          "Math / Number Theory",
           "Ad-Hoc"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-10079"
+          "Maximum pieces with n cuts is 1 + n(n+1)/2",
+          "Each new cut crosses all previous cuts"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "The maximum number of pieces with $n$ cuts is $1 + n(n+1)/2$. Answer each query with 64-bit integers; stop at $n<0$."
       }
     ]
   },
@@ -1826,22 +1868,26 @@
         "output": "For each input pair (L, U), the output should be one of the following:"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O((U−L+1) log log U)",
     "approaches": [
       {
         "id": "uva-10140-a1",
         "problem_id": "uva-10140",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Segmented prime gaps",
         "paradigms": [
-          "Ad-Hoc"
+          "Math / Number Theory"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-10140"
+          "Segment-sieve [L,U]",
+          "Track consecutive primes for closest / most distant pairs"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Segment-sieve the inclusive range. Scan consecutive primes to report the closest and most distant adjacent pairs (or “no primes” cases)."
       }
     ]
   },
@@ -1861,22 +1907,26 @@
         "output": "For each test case, print one line of the form n = a + b, where a and b are odd primes. Numbers and\n    operators should be separated by exactly one blank like in the sample output below. If there is more\n    than one pair of odd primes adding up to n, choose the pair where the difference b − a is maximized."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N log log N)",
     "approaches": [
       {
         "id": "uva-543-a1",
         "problem_id": "uva-543",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Goldbach via sieve",
         "paradigms": [
-          "Ad-Hoc"
+          "Math / Number Theory"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-543"
+          "Sieve primes up to n",
+          "For even n find smallest prime p with n−p prime"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Sieve odds up to the maximum n. For each even n print `n = p + q` with the smallest odd prime p such that n−p is prime (Goldbach verification)."
       }
     ]
   },
@@ -1896,22 +1946,22 @@
         "output": "For each input pair of lines the output line should consist one integer, the coefficient by the monomial\n${x_1}^{n_1} {x_2}^{n_2} . . . {x_k}^{n_k}$ in expansion of the polynomial $(x_1 + x_2 + . . . + x_k)^n$.\nSample Input\n2 2\n1 1\n2 12\n1 0 0 0 0 0 0 0 0 0 1 0\nSample Output\n2\n2"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "uva-10105-a1",
         "problem_id": "uva-10105",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Multinomial coefficient",
         "paradigms": [
-          "Ad-Hoc"
+          "Math / Number Theory"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-10105"
+          "Coefficient is n! / (n1! n2! … nk!)",
+          "Compute with 64-bit factorials under limits"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "The multinomial coefficient $n!/(n_1!\\cdots n_k!)$ is the answer. Precompute factorials or multiply carefully with 64-bit ints."
       }
     ]
   },
@@ -1931,22 +1981,23 @@
         "output": "For each line of input, you have to output how students Latent Soft will have if no more paid course is running."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N/k)",
     "approaches": [
       {
         "id": "uva-10346-a1",
         "problem_id": "uva-10346",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Cigarette butts loop",
         "paradigms": [
-          "Ad-Hoc"
+          "Ad-Hoc",
+          "Math / Number Theory"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-10346"
+          "Smoke n, keep stubs; every k stubs → +1 cigarette",
+          "Iterate until stubs < k"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Simulate: while stubs ≥ k, trade k stubs for one more smoke (+1 stub left over). Total smoked is the answer."
       }
     ]
   },
@@ -1966,22 +2017,23 @@
         "output": "Print each number the corresponding term in Cantor’s enumeration as given below. No blank line should after the last number."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(√N)",
     "approaches": [
       {
         "id": "uva-264-a1",
         "problem_id": "uva-264",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Cantor diagonal index",
         "paradigms": [
+          "Math / Number Theory",
           "Ad-Hoc"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-264"
+          "Find diagonal d with triangular numbers",
+          "Position on the diagonal gives numerator/denominator"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Locate the diagonal containing term n via triangular numbers, then walk the zig-zag to recover the fraction a/b."
       }
     ]
   },
@@ -2006,17 +2058,20 @@
       {
         "id": "uva-1225-a1",
         "problem_id": "uva-1225",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Digit frequency scan",
         "paradigms": [
-          "Ad-Hoc"
+          "Ad-Hoc",
+          "Math / Number Theory"
         ],
         "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-1225"
+        "data_structures": [
+          "1D Array"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "key_insights": [
+          "Write all numbers 1..n concatenated",
+          "Count digit occurrences 0–9"
+        ],
+        "editorial_summary_md": "For each n, count how often digits 0–9 appear when writing 1,2,…,n in decimal. Brute force is fine under the limits."
       }
     ]
   },
@@ -2036,22 +2091,23 @@
         "output": "For each line of input except the last you should compute and print the number of carry operations that would result from adding the two numbers, in the format shown below."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(D)",
     "approaches": [
       {
         "id": "uva-10035-a1",
         "problem_id": "uva-10035",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Count carries",
         "paradigms": [
-          "Ad-Hoc"
+          "Ad-Hoc",
+          "Math / Number Theory"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-10035"
+          "Add digit-wise from the right",
+          "Carry when sum ≥ 10"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Simulate schoolbook addition from least significant digit. Count how many times a carry is generated."
       }
     ]
   },
@@ -2071,22 +2127,22 @@
         "output": "For each of the N tests, you will have to write a line with the following data: minimum number of iterations and the resulting palindrome itself separated by one space."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(I · D)",
     "approaches": [
       {
         "id": "uva-10018-a1",
         "problem_id": "uva-10018",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Reverse and add",
         "paradigms": [
           "Ad-Hoc"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-10018"
+          "Reverse decimal digits and add until palindrome",
+          "Count iterations (guaranteed small here)"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "While the number is not a palindrome, reverse its digits and add. Print iteration count and the resulting palindrome."
       }
     ]
   },
@@ -2111,17 +2167,22 @@
       {
         "id": "cf-1427a-a1",
         "problem_id": "cf-1427a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Avoid prefix-zero sum",
         "paradigms": [
+          "Greedy",
           "Ad-Hoc"
         ],
-        "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-1427A"
+        "algorithms": [
+          "Sorting"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "If total sum is 0 → NO",
+          "Otherwise put positives first or negatives first so no prefix is 0"
+        ],
+        "editorial_summary_md": "If the array sums to 0, impossible. Else sort ascending or descending so that no prefix sum hits 0 (put the side with larger absolute mass first)."
       }
     ]
   },
@@ -2141,22 +2202,23 @@
         "output": "5\n10 5 0 -5 -10"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "cf-847m-a1",
         "problem_id": "cf-847m",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Arithmetic progression check",
         "paradigms": [
-          "Ad-Hoc"
+          "Ad-Hoc",
+          "Math / Number Theory"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-847M"
+          "Check common difference of the sequence",
+          "Next day continues the AP if valid"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Verify the temperature list is an arithmetic progression. If yes, forecast the next term $a_n + d$; otherwise output $a_n$."
       }
     ]
   },
@@ -2176,22 +2238,24 @@
         "output": "For each test case, print the following line:"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "spoj-anarc09a-a1",
         "problem_id": "spoj-anarc09a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Bracket fix count",
         "paradigms": [
           "Ad-Hoc"
         ],
         "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: SPOJ-ANARC09A"
+        "data_structures": [
+          "Stack"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "key_insights": [
+          "Balance scan with a counter / stack",
+          "Each mismatch flip costs 1"
+        ],
+        "editorial_summary_md": "Scan braces maintaining balance. Every time balance would go negative, flip a `}` → `{` (cost 1). Leftover opens need half flips. Classic minimum flips to valid sequence."
       }
     ]
   },
@@ -2211,22 +2275,24 @@
         "output": "For each test case your program has to output a line containing a single word \"yes\" if the love mobiles can be re-ordered with the help of the side street, and a single word \"no\" in the opposite case."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "spoj-stpar-a1",
         "problem_id": "spoj-stpar",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Stack side street",
         "paradigms": [
           "Ad-Hoc"
         ],
         "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: SPOJ-STPAR"
+        "data_structures": [
+          "Stack"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "key_insights": [
+          "Want cars in order 1,2,3,…",
+          "Side street is a stack; pop when top is next needed"
+        ],
+        "editorial_summary_md": "Greedily send the next required love mobile straight through, otherwise push onto the side-street stack. Feasible iff you can empty into sorted order."
       }
     ]
   },
@@ -2246,22 +2312,25 @@
         "output": "For each case, print the resultant text on the screen."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "uva-11988-a1",
         "problem_id": "uva-11988",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Home/End with list",
         "paradigms": [
           "Ad-Hoc"
         ],
         "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: UVA-11988"
+        "data_structures": [
+          "Deque",
+          "Linked List"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "key_insights": [
+          "`[` moves cursor to front; `]` to back",
+          "Maintain a list of chunks or a linked list of characters"
+        ],
+        "editorial_summary_md": "Treat `[` / `]` as Home / End. Insert typed characters at the current cursor. A deque of strings (or a linked list) models the broken keyboard efficiently."
       }
     ]
   },
@@ -2281,22 +2350,24 @@
         "output": "3\n6\n4 5 1 3 2 6\n5\n5 3 1 2 4\n4\n1 4 3 2"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "cf-1265b-a1",
         "problem_id": "cf-1265b",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Permutation segments",
         "paradigms": [
           "Ad-Hoc"
         ],
         "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-1265B"
+        "data_structures": [
+          "1D Array"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "key_insights": [
+          "Track positions of 1..n",
+          "m is good iff values 1..m occupy a contiguous segment"
+        ],
+        "editorial_summary_md": "Record the index of each value. For each m check that $\\max pos[1..m] - \\min pos[1..m] + 1 = m$."
       }
     ]
   },
@@ -2468,22 +2539,24 @@
         "output": "4\n1\n1\n1000\n4\n1 2 3 4\n3 1 4 2\n3\n2 9 3\n1 100 9\n10\n75019 709259 5 611271314 9024533 81871864 9 3 6 4865\n9503 2 371245467 6 7 37376159 8 364036498 52295554 169"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N log N log A)",
     "approaches": [
       {
         "id": "cf-1728c-a1",
         "problem_id": "cf-1728c",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Priority queue digit length",
         "paradigms": [
-          "Ad-Hoc"
+          "Greedy"
         ],
         "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-1728C"
+        "data_structures": [
+          "Priority Queue"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "key_insights": [
+          "Replace a number by digit-count until multisets match",
+          "Always operate on current maximum"
+        ],
+        "editorial_summary_md": "Use two heaps of the arrays. While tops differ, replace the larger top by its number of digits (one operation). Count operations."
       }
     ]
   },
@@ -2608,22 +2681,23 @@
         "output": "mew"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "cf-981a-a1",
         "problem_id": "cf-981a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Longest non-palindrome substring",
         "paradigms": [
-          "Ad-Hoc"
+          "Ad-Hoc",
+          "String Algorithms"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-981A"
+          "If s not palindrome → answer |s|",
+          "Else if all chars equal → 0, else |s|-1"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Any string that is not a palindrome is already optimal. If it is a palindrome but not unary, drop one character; if unary, answer 0."
       }
     ]
   },
@@ -2678,22 +2752,23 @@
         "output": "1\n1\n1"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "cf-408a-a1",
         "problem_id": "cf-408a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Min cashier time",
         "paradigms": [
-          "Ad-Hoc"
+          "Ad-Hoc",
+          "Greedy"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-408A"
+          "Each cashier time = 15s · items + 5s · people ahead? (per statement)",
+          "Take minimum over cashiers"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "For each queue compute total service time from the given formula and report the minimum across cashiers."
       }
     ]
   },
@@ -2713,22 +2788,23 @@
         "output": "2 10\n8 9"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(1)",
     "approaches": [
       {
         "id": "cf-810a-a1",
         "problem_id": "cf-810a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Add exams to raise average",
         "paradigms": [
-          "Ad-Hoc"
+          "Math / Number Theory",
+          "Greedy"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-810A"
+          "Always add grade k to pull average up",
+          "Binary search / closed form how many needed"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Let S be the current sum. Adding x exams of grade k yields average $(S+kx)/(n+x) \\ge k-0.5$. Solve for minimal x (ceil formula)."
       }
     ]
   },
@@ -3422,26 +3498,23 @@
         "output": "Print one integer: the minimum difference between the weights of the groups."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(2^{n/2} · n)",
     "approaches": [
       {
         "id": "cses-1623-a1",
         "problem_id": "cses-1623",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Meet-in-the-middle subset sums",
         "paradigms": [
           "Brute Force",
-          "Divide & Conquer",
-          "Bitmask / Bit DP"
-        ],
-        "algorithms": [
           "Meet in the Middle"
         ],
+        "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CSES-1623"
+          "Partition into two halves of ≤20",
+          "Enumerate subset sums; minimize |2S − total|"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Split the n≤40 weights into two halves, enumerate all subset sums, and for each sum on the left binary-search the right to minimize the partition difference."
       }
     ]
   },
@@ -3461,26 +3534,23 @@
         "output": "First print an integer $ k $: the number of strings. Then print $ k $ lines: the strings in alphabetical order."
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N! · N)",
     "approaches": [
       {
         "id": "cses-1622-a1",
         "problem_id": "cses-1622",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Distinct permutations",
         "paradigms": [
-          "String Algorithms",
           "Brute Force",
-          "Bitmask / Bit DP"
+          "String Algorithms"
         ],
-        "algorithms": [
-          "Sorting"
-        ],
+        "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CSES-1622"
+          "Generate next_permutation after sorting",
+          "Duplicates skipped automatically by std::next_permutation"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Sort the characters and emit every distinct `next_permutation`. Print the count then each string."
       }
     ]
   },
@@ -3605,22 +3675,25 @@
         "output": "2\n1 2 3 4"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N³)",
     "approaches": [
       {
         "id": "cf-863b-a1",
         "problem_id": "cf-863b",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Remove two then pair adjacent",
         "paradigms": [
+          "Greedy",
           "Ad-Hoc"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Sorting"
+        ],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-863B"
+          "Try every pair of people to exclude",
+          "Sort remaining and sum |a[2i]-a[2i+1]|"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Brute-force which two people sit out. Sort the rest and pair neighbors; instability is the sum of absolute differences. Take the minimum."
       }
     ]
   },
@@ -5158,17 +5231,20 @@
       {
         "id": "cf-1399a-a1",
         "problem_id": "cf-1399a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Sort and check gaps",
         "paradigms": [
+          "Greedy",
           "Ad-Hoc"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Sorting"
+        ],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-1399A"
+          "After sorting, adjacent values must differ by ≤ 1 repeatedly",
+          "Equivalent: max−min checks via chain of deletes"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Sort the array. You can reduce to one element iff every adjacent pair differs by at most 1 (otherwise a gap blocks deletions)."
       }
     ]
   },
@@ -5433,22 +5509,23 @@
         "output": "5"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(1)",
     "approaches": [
       {
         "id": "cf-617a-a1",
         "problem_id": "cf-617a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Ceil divide by 5",
         "paradigms": [
-          "Ad-Hoc"
+          "Math / Number Theory",
+          "Greedy"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-617A"
+          "Always take steps of size 5",
+          "Answer is ceil(x/5)"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "The elephant should always jump 5 when possible. Minimum steps = $\\lceil x/5 \\rceil$."
       }
     ]
   },
@@ -5468,22 +5545,25 @@
         "output": "(())"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N³)",
     "approaches": [
       {
         "id": "cf-149d-a1",
         "problem_id": "cf-149d",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Bracket DP coloring",
         "paradigms": [
-          "Ad-Hoc"
+          "Dynamic Programming",
+          "String Algorithms"
         ],
         "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-149D"
+        "data_structures": [
+          "Stack"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "key_insights": [
+          "Match brackets with a stack",
+          "Interval DP over matched pairs with color constraints"
+        ],
+        "editorial_summary_md": "Parse matching pairs, then interval-DP the number of valid 3-colorings of brackets with adjacency constraints. Classic CF bracket DP."
       }
     ]
   },
@@ -5682,22 +5762,25 @@
         "output": "8 5\n10 9 8 7 7 7 5 5"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "cf-158a-a1",
         "problem_id": "cf-158a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Threshold k-th place",
         "paradigms": [
           "Ad-Hoc"
         ],
-        "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-158A"
+        "algorithms": [
+          "Sorting"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Advance if score ≥ score of k-th and score > 0"
+        ],
+        "editorial_summary_md": "Let $t$ be the score of the $k$-th contestant. Count how many have score $\\ge t$ and $>0$."
       }
     ]
   },
@@ -5717,22 +5800,26 @@
         "output": "3 4\nAAAA\nABCA\nAAAA"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(NM)",
     "approaches": [
       {
         "id": "cf-510b-a1",
         "problem_id": "cf-510b",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Cycle in color grid",
         "paradigms": [
-          "Ad-Hoc"
+          "Graph Algorithms"
         ],
-        "algorithms": [],
-        "data_structures": [],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-510B"
+          "DFS with parent skip",
+          "Same-color 4-adjacent edge; cycle length ≥4 → Yes"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Treat equal-colored 4-neighbors as edges. DFS detects a back-edge to a non-parent → cycle of length ≥ 4."
       }
     ]
   },
@@ -5752,22 +5839,24 @@
         "output": "3 2\n1 3\n2 3\n4 4"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(MAX + Q)",
     "approaches": [
       {
         "id": "cf-474d-a1",
         "problem_id": "cf-474d",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Flower DP prefix sums",
         "paradigms": [
-          "Ad-Hoc"
+          "Dynamic Programming"
         ],
         "algorithms": [],
-        "data_structures": [],
-        "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-474D"
+        "data_structures": [
+          "1D Array"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "key_insights": [
+          "dp[i] = ways to eat i flowers with no k consecutive reds constraint variant",
+          "Prefix sums answer ranges"
+        ],
+        "editorial_summary_md": "Let $dp[i]$ be ways to build a sequence of length i under the k-white rule. Recurrence mixes ending with red vs k whites. Prefix-sum $dp$ for range queries mod $10^9+7$."
       }
     ]
   },
@@ -5787,22 +5876,23 @@
         "output": "4 3\n2 3 2 1"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "cf-435a-a1",
         "problem_id": "cf-435a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Bus packing greedy",
         "paradigms": [
+          "Greedy",
           "Ad-Hoc"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-435A"
+          "Fill groups into capacity m without splitting a group",
+          "Start a new bus when the next group does not fit"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Scan groups in order; keep a remaining capacity. Open a new bus whenever the next group exceeds the remainder."
       }
     ]
   },
@@ -5822,22 +5912,23 @@
         "output": "8 5"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(1)",
     "approaches": [
       {
         "id": "cf-1023b-a1",
         "problem_id": "cf-1023b",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Pair count to sum",
         "paradigms": [
+          "Math / Number Theory",
           "Ad-Hoc"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-1023B"
+          "Count pairs 1≤a<b≤n with a+b=k",
+          "Closed form from intersection of ranges"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Pairs $(a,k-a)$ with $1\\le a<k-a\\le n$. Derive the count with a short closed form on $k$ vs $n$."
       }
     ]
   },
@@ -5857,22 +5948,22 @@
         "output": "5\n1 7 2 11 15"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "cf-702a-a1",
         "problem_id": "cf-702a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Longest increasing run",
         "paradigms": [
-          "Ad-Hoc"
+          "Ad-Hoc",
+          "Greedy"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-702A"
+          "Scan left→right; reset streak when not strictly increasing"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Single pass: maintain the current strictly-increasing streak length and the maximum."
       }
     ]
   },
@@ -5997,22 +6088,23 @@
         "output": "3\n-1 2 0"
       }
     ],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(N)",
     "approaches": [
       {
         "id": "cf-300a-a1",
         "problem_id": "cf-300a",
-        "approach_name": "Pending editorial review",
+        "approach_name": "Partition into three sets",
         "paradigms": [
-          "Ad-Hoc"
+          "Ad-Hoc",
+          "Math / Number Theory"
         ],
         "algorithms": [],
         "data_structures": [],
         "key_insights": [
-          "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
-          "Origin: CodeForces-300A"
+          "Need one negative set, one positive set, rest product positive",
+          "Careful placement of zeros and leftover negatives"
         ],
-        "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
+        "editorial_summary_md": "Construct three nonempty subsets with product negative / positive / positive as required by moving a few negatives and zeros deliberately."
       }
     ]
   },
@@ -19640,33 +19732,33 @@
     "source": "Codeforces",
     "url": "https://codeforces.com/problemset/problem/160/D",
     "difficulty_rating": 2100,
-    "statement_md": "For each edge say if it appears in every MST, some MST, or no MST.",
+    "statement_md": "Given a weighted undirected connected graph, for every edge decide whether it appears in **every** MST, in **some** but not all MSTs, or in **no** MST.",
     "input_format_md": "n m weighted edges.",
     "output_format_md": "m lines: `any`, `at least one`, or `none`.",
     "constraints_text": "$m \\le 10^5$",
     "sample_io": [],
-    "target_complexity": "O(N log N)",
+    "target_complexity": "O(M log M)",
     "approaches": [
       {
         "id": "cf-160d-a1",
         "problem_id": "cf-160d",
-        "approach_name": "Kruskal classify",
+        "approach_name": "MST edge classification",
         "paradigms": [
           "Graph Algorithms"
         ],
         "algorithms": [
-          "MST",
+          "MST (Kruskal)",
           "DSU",
-          "DFS",
-          "Sorting"
+          "DFS"
         ],
         "data_structures": [
-          "Adjacency List"
+          "Union-Find"
         ],
         "key_insights": [
-          "Kruskal by weight; within equal-weight edges classify any/all/none via bridges in component graph"
+          "Sort edges; process equal weights together",
+          "Bridge in the contracted candidate graph ⇒ any MST; non-bridge ⇒ some; disconnected ⇒ none"
         ],
-        "editorial_summary_md": "Process weight groups; build meta-graph of DSU comps and find bridges."
+        "editorial_summary_md": "Kruskal by weight. For each weight class, build the graph on DSU components and classify edges as bridges (any), non-bridges (some), or useless (none)."
       }
     ]
   },
@@ -20537,31 +20629,31 @@
     "source": "Codeforces",
     "url": "https://codeforces.com/problemset/problem/665/E",
     "difficulty_rating": 2100,
-    "statement_md": "Count subarrays whose XOR is ≥ k.",
+    "statement_md": "You are given an array $a_1,\\ldots,a_n$ and an integer $k$. Count the number of subarrays whose XOR is at least $k$.\n\nConstraints typically allow $n \\le 10^6$, so an $O(n\\log A)$ binary-trie solution on prefix XORs is expected.",
     "input_format_md": "n k and array a.",
     "output_format_md": "The count.",
     "constraints_text": "$n \\le 10^6$",
     "sample_io": [],
-    "target_complexity": "O(N)",
+    "target_complexity": "O(N · 30)",
     "approaches": [
       {
         "id": "cf-665e-a1",
         "problem_id": "cf-665e",
-        "approach_name": "Prefix XOR trie",
+        "approach_name": "XOR trie subarrays",
         "paradigms": [
-          "Math / Number Theory",
-          "Bitmask / Bit DP"
+          "String Algorithms",
+          "Data Structures"
         ],
         "algorithms": [
-          "Prefix Sums"
+          "Trie"
         ],
         "data_structures": [
           "Trie"
         ],
         "key_insights": [
-          "Prefix XOR trie counting pairs with XOR ≥ k"
+          "Prefix XOR; count pairs with xor ≥ k via binary trie"
         ],
-        "editorial_summary_md": "Insert prefix xors; for each new prefix walk trie counting branches ≥k."
+        "editorial_summary_md": "Maintain prefix XORs in a binary trie. For each prefix, query how many previous prefixes give XOR ≥ k, then insert."
       }
     ]
   },
@@ -37521,7 +37613,7 @@
     "source": "SPOJ",
     "url": "https://www.spoj.com/problems/PT07Z/",
     "difficulty_rating": 1400,
-    "statement_md": "Given a tree with n nodes, find the length (edges) of the longest simple path.",
+    "statement_md": "Given a tree with $n$ nodes (n−1 edges), find the number of edges on a longest simple path (the diameter).",
     "input_format_md": "n then n−1 edges.",
     "output_format_md": "The diameter length.",
     "constraints_text": "$n \\le 10^4$",
@@ -37531,23 +37623,22 @@
       {
         "id": "spoj-pt07z-a1",
         "problem_id": "spoj-pt07z",
-        "approach_name": "Tree diameter",
+        "approach_name": "Tree diameter two BFS",
         "paradigms": [
           "Graph Algorithms"
         ],
         "algorithms": [
-          "MST",
           "BFS",
           "DFS"
         ],
         "data_structures": [
-          "Adjacency List",
           "Queue"
         ],
         "key_insights": [
-          "Tree diameter via two BFS; related to MST path bottlenecks on trees"
+          "Diameter = longest simple path",
+          "BFS from any node to farthest, BFS again"
         ],
-        "editorial_summary_md": "BFS from arbitrary node to farthest, then BFS again for diameter length."
+        "editorial_summary_md": "On a tree the diameter is found by two BFS/DFS: from an arbitrary node find the farthest u, then from u find the farthest v. Distance u–v is the answer."
       }
     ]
   },
@@ -38561,7 +38652,7 @@
     "source": "Other",
     "url": "https://www.spoj.com/problems/EC_P/",
     "difficulty_rating": 1700,
-    "statement_md": "List all bridges in an undirected graph.",
+    "statement_md": "Given an undirected graph, list every bridge — an edge whose removal increases the number of connected components.",
     "input_format_md": "T tests: n m then edges.",
     "output_format_md": "For each test list bridges sorted.",
     "constraints_text": "$n \\le 700$",
@@ -38571,21 +38662,20 @@
       {
         "id": "koda-b9-br-01-a1",
         "problem_id": "koda-b9-br-01",
-        "approach_name": "Tarjan bridges",
+        "approach_name": "Bridge-finding DFS",
         "paradigms": [
           "Graph Algorithms"
         ],
         "algorithms": [
-          "Bridges / Articulation",
           "DFS"
         ],
         "data_structures": [
-          "Adjacency List"
+          "1D Array"
         ],
         "key_insights": [
-          "Classic Tarjan bridges"
+          "low[v] > tin[u] marks bridge (u,v)"
         ],
-        "editorial_summary_md": "DFS timing tin/low; bridge when low[v] > tin[u]."
+        "editorial_summary_md": "Run the standard discovery/low-link DFS and collect edges satisfying `low[v] > tin[u]`."
       }
     ]
   },
@@ -38595,7 +38685,7 @@
     "source": "Other",
     "url": "https://www.spoj.com/problems/SUBMERGE/",
     "difficulty_rating": 1800,
-    "statement_md": "Count articulation points in an undirected connected graph.",
+    "statement_md": "Given a connected undirected graph, count how many articulation points it has (vertices whose removal disconnects the graph).",
     "input_format_md": "Multiple graphs: n m then edges; 0 0 ends.",
     "output_format_md": "Number of articulation points.",
     "constraints_text": "$n \\le 10^4$",
@@ -38605,21 +38695,21 @@
       {
         "id": "koda-b9-br-02-a1",
         "problem_id": "koda-b9-br-02",
-        "approach_name": "Tarjan cut vertices",
+        "approach_name": "Articulation points",
         "paradigms": [
           "Graph Algorithms"
         ],
         "algorithms": [
-          "Bridges / Articulation",
           "DFS"
         ],
         "data_structures": [
-          "Adjacency List"
+          "1D Array"
         ],
         "key_insights": [
-          "Articulation points via tin/low"
+          "Root is articulation if ≥2 DFS children",
+          "Non-root if some child has low[child] ≥ tin[u]"
         ],
-        "editorial_summary_md": "Standard articulation-point DFS; count how many."
+        "editorial_summary_md": "Same tin/low DFS as bridges. Count vertices that satisfy the articulation-point criteria."
       }
     ]
   },
@@ -39141,31 +39231,31 @@
     "source": "Codeforces",
     "url": "https://codeforces.com/problemset/problem/86/D",
     "difficulty_rating": 2200,
-    "statement_md": "Array a. For queries [l,r] compute Σ_x (count of x in range)² · x.",
+    "statement_md": "You are given an array $a$ and $q$ range queries. For each query $[l,r]$ compute $\\sum_x \\mathrm{freq}(x)^2 \\cdot x$ where frequencies are taken inside the range.",
     "input_format_md": "n t, array, then t queries.",
     "output_format_md": "Answer per query.",
     "constraints_text": "$n,t \\le 2\\cdot 10^5$",
     "sample_io": [],
-    "target_complexity": "O(N √N)",
+    "target_complexity": "O((N+Q)√N)",
     "approaches": [
       {
         "id": "cf-86d-a1",
         "problem_id": "cf-86d",
-        "approach_name": "Mo power",
+        "approach_name": "Mo's algorithm frequency powers",
         "paradigms": [
-          "Data Structures"
+          "Ad-Hoc"
         ],
         "algorithms": [
-          "Mo's Algorithm",
-          "Sorting"
+          "Mo's Algorithm"
         ],
         "data_structures": [
           "1D Array"
         ],
         "key_insights": [
-          "Power = Σ count[x]² · x; Mo add/remove"
+          "Answer = Σ freq[x]² · x",
+          "Add/remove index updates freq and answer in O(1)"
         ],
-        "editorial_summary_md": "Sort queries by block; maintain frequency and power while expanding/shrinking."
+        "editorial_summary_md": "Offline Mo's algorithm on the array. Maintain frequencies and the running Σ freq²·value while expanding/shrinking the window."
       }
     ]
   },
