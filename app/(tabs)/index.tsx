@@ -5,6 +5,7 @@ import { BrandWordmark } from '@/components/BrandWordmark';
 import { OnboardingTips } from '@/components/OnboardingTips';
 import { DailyPath } from '@/components/game/DailyPath';
 import { FadeInUp } from '@/components/game/FadeInUp';
+import { PlayerAvatar } from '@/components/game/PlayerAvatar';
 import { PlayerStrip } from '@/components/game/PlayerStrip';
 import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
@@ -125,8 +126,24 @@ export default function HomeScreen() {
       <OnboardingTips />
       <FadeInUp delayMs={40}>
         <View style={styles.hero}>
-          <BrandWordmark size="hero" />
-          <Text style={styles.tagline}>Clear Warm-up → Target → Boss</Text>
+          <View style={styles.heroTop}>
+            <View style={styles.heroBrand}>
+              <BrandWordmark size="hero" />
+              <Text style={styles.tagline}>Clear Warm-up → Target → Boss</Text>
+            </View>
+            <Pressable
+              onPress={() => router.push('/settings')}
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel="Open profile"
+            >
+              <PlayerAvatar
+                avatarId={profile?.avatar_id}
+                displayName={profile?.display_name}
+                size="md"
+              />
+            </Pressable>
+          </View>
         </View>
       </FadeInUp>
 
@@ -135,10 +152,7 @@ export default function HomeScreen() {
           streak={profile?.streak ?? 0}
           xp={profile?.xp ?? 0}
           band={profile?.rating_band ?? 1200}
-          displayName={profile?.display_name}
-          avatarId={profile?.avatar_id}
           onBandPress={() => router.push('/settings')}
-          onProfilePress={() => router.push('/settings')}
         />
       </FadeInUp>
 
@@ -289,8 +303,17 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   hero: {
-    gap: spacing.xs,
     marginBottom: spacing.xs,
+  },
+  heroTop: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: spacing.md,
+  },
+  heroBrand: {
+    flex: 1,
+    gap: spacing.xs,
   },
   tagline: {
     color: colors.textMuted,
