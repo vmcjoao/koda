@@ -66,6 +66,13 @@ Prefer filling thin slices before stacking more CSES greedy:
 - Math / Number Theory, Binary Search on Answer
 - AtCoder / USACO / harder CF (≥1800) for band stretch
 
+Fetch a curated gap-fill batch (CSES / AtCoder DP / classic CF):
+
+```bash
+npm run ingest:curated-expansion
+npm run generate:seed
+```
+
 ## Figures
 
 Statements may include:

@@ -64,7 +64,8 @@
     "ingest:vjudge-index": "tsx scripts/ingest/vjudge-index.ts",
     "ingest:vjudge-statements": "tsx scripts/ingest/vjudge-fetch-statements.ts",
     "ingest:vjudge-pdf-extract": "tsx scripts/ingest/vjudge-pdf-extract.ts",
-    "ingest:vjudge-import-statements": "tsx scripts/ingest/vjudge-statements-to-extras.ts"
+    "ingest:vjudge-import-statements": "tsx scripts/ingest/vjudge-statements-to-extras.ts",
+    "ingest:curated-expansion": "tsx scripts/ingest/curated-expansion.ts"
   },
   "private": true
 }

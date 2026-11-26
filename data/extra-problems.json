@@ -7482,5 +7482,2303 @@
         "editorial_summary_md": "Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring."
       }
     ]
+  },
+  {
+    "id": "cses-two-sets-ii",
+    "title": "Two Sets II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1093",
+    "difficulty_rating": 1500,
+    "statement_md": "Your task is to count the number of ways numbers $1,2,\\ldots,n$ can be divided into two sets of equal sum.\n\nFor example, if $n=7$, there are four solutions:\n\n- $\\{1,3,4,6\\}$ and $\\{2,5,7\\}$\n\n- $\\{1,2,5,6\\}$ and $\\{3,4,7\\}$\n\n- $\\{1,2,4,7\\}$ and $\\{3,5,6\\}$\n\n- $\\{1,6,7\\}$ and $\\{2,3,4,5\\}$\n\nInput\n\nThe only input line contains an integer $n$.\n\nOutput\n\nPrint the answer modulo $10^9+7$.\n\nConstraints\n\n- $1 ≤ n ≤ 500$\n\nExample\n\nInput:\n\n7\n\nOutput:\n\n4",
+    "input_format_md": "The only input line contains an integer $n$.",
+    "output_format_md": "Print the answer modulo $10^9+7$.",
+    "constraints_text": "- $1 ≤ n ≤ 500$",
+    "sample_io": [
+      {
+        "input": "The only input line contains an integer $n$.",
+        "output": "Print the answer modulo $10^9+7$."
+      },
+      {
+        "input": ":\n\n7",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N · X)",
+    "approaches": [
+      {
+        "id": "cses-two-sets-ii-a1",
+        "problem_id": "cses-two-sets-ii",
+        "approach_name": "Partition DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Knapsack"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Partition 1..n into equal sums iff n(n+1)/2 even; count half the ways"
+        ],
+        "editorial_summary_md": "Subset-sum count to total/2 using numbers 1..n once; divide by 2 for unordered partitions."
+      }
+    ]
+  },
+  {
+    "id": "cses-counting-towers",
+    "title": "Counting Towers",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2413",
+    "difficulty_rating": 1600,
+    "statement_md": "Your task is to build a tower whose width is $2$ and height is $n$. You have an unlimited supply of blocks whose width and height are integers.\n\nFor example, here are some possible solutions for $n=6$:\n\nGiven $n$, how many different towers can you build? Mirrored and rotated towers are counted separately if they look different.\n\nInput\n\nThe first input line contains an integer $t$: the number of tests.\n\nAfter this, there are $t$ lines, and each line contains an integer $n$: the height of the tower.\n\nOutput\n\nFor each test, print the number of towers modulo $10^9+7$.\n\nConstraints\n\n- $1 ≤ t ≤ 100$\n\n- $1 ≤ n ≤ 10^6$\n\nExample\n\nInput:\n\n3\n2\n6\n1337\n\nOutput:\n\n8\n2864\n640403945",
+    "input_format_md": "The first input line contains an integer $t$: the number of tests.\n\nAfter this, there are $t$ lines, and each line contains an integer $n$: the height of the tower.",
+    "output_format_md": "For each test, print the number of towers modulo $10^9+7$.",
+    "constraints_text": "- $1 ≤ t ≤ 100$\n\n- $1 ≤ n ≤ 10^6$",
+    "sample_io": [
+      {
+        "input": "The first input line contains an integer $t$: the number of tests.\n\nAfter this, there are $t$ lines, and each line contains an integer $n$: the height of the tower.",
+        "output": "For each test, print the number of towers modulo $10^9+7$."
+      },
+      {
+        "input": ":\n\n3\n2\n6\n1337",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-counting-towers-a1",
+        "problem_id": "cses-counting-towers",
+        "approach_name": "Tower DP states",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Track whether the top cells are linked or split; two coupled recurrences"
+        ],
+        "editorial_summary_md": "Maintain linked vs split top configurations and transition brick placements carefully."
+      }
+    ]
+  },
+  {
+    "id": "cses-projects",
+    "title": "Projects",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1140",
+    "difficulty_rating": 1600,
+    "statement_md": "There are $n$ projects you can attend. For each project, you know its starting and ending days and the amount of money you would get as reward. You can only attend one project during a day.\n\nWhat is the maximum amount of money you can earn?\n\nInput\n\nThe first input line contains an integer $n$: the number of projects.\n\nAfter this, there are $n$ lines. Each such line has three integers $a_i$, $b_i$, and $p_i$: the starting day, the ending day, and the reward.\n\nOutput\n\nPrint one integer: the maximum amount of money you can earn.\n\nConstraints\n\n- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a_i ≤ b_i ≤ 10^9$\n\n- $1 ≤ p_i ≤ 10^9$\n\nExample\n\nInput:\n\n4\n2 4 4\n3 6 6\n6 8 2\n5 7 3\n\nOutput:\n\n7",
+    "input_format_md": "The first input line contains an integer $n$: the number of projects.\n\nAfter this, there are $n$ lines. Each such line has three integers $a_i$, $b_i$, and $p_i$: the starting day, the ending day, and the reward.",
+    "output_format_md": "Print one integer: the maximum amount of money you can earn.",
+    "constraints_text": "- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a_i ≤ b_i ≤ 10^9$\n\n- $1 ≤ p_i ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line contains an integer $n$: the number of projects.\n\nAfter this, there are $n$ lines. Each such line has three integers $a_i$, $b_i$, and $p_i$: the starting day, the ending day, and the reward.",
+        "output": "Print one integer: the maximum amount of money you can earn."
+      },
+      {
+        "input": ":\n\n4\n2 4 4\n3 6 6\n6 8 2\n5 7 3",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-projects-a1",
+        "problem_id": "cses-projects",
+        "approach_name": "Weighted interval DP",
+        "paradigms": [
+          "Dynamic Programming",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Sort by end day; dp[i] = max reward taking/skipping project i with prev compatible via binary search"
+        ],
+        "editorial_summary_md": "Classic weighted interval scheduling after sorting projects by finishing time."
+      }
+    ]
+  },
+  {
+    "id": "cses-increasing-subsequence",
+    "title": "Increasing Subsequence",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1145",
+    "difficulty_rating": 1400,
+    "statement_md": "You are given an array containing $n$ integers. Your task is to determine the longest increasing subsequence in the array, i.e., the longest subsequence where every element is larger than the previous one.\n\nA subsequence is a sequence that can be derived from the array by deleting some elements without changing the order of the remaining elements.\n\nInput\n\nThe first line contains an integer $n$: the size of the array.\n\nAfter this there are $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the array.\n\nOutput\n\nPrint the length of the longest increasing subsequence.\n\nConstraints\n\n- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ x_i ≤ 10^9$\n\nExample\n\nInput:\n\n8\n7 3 5 3 6 2 9 8\n\nOutput:\n\n4",
+    "input_format_md": "The first line contains an integer $n$: the size of the array.\n\nAfter this there are $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the array.",
+    "output_format_md": "Print the length of the longest increasing subsequence.",
+    "constraints_text": "- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ x_i ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first line contains an integer $n$: the size of the array.\n\nAfter this there are $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the array.",
+        "output": "Print the length of the longest increasing subsequence."
+      },
+      {
+        "input": ":\n\n8\n7 3 5 3 6 2 9 8",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-increasing-subsequence-a1",
+        "problem_id": "cses-increasing-subsequence",
+        "approach_name": "LIS n log n",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "LIS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Patience sorting / tails array for LIS length in n log n"
+        ],
+        "editorial_summary_md": "Maintain the smallest possible tail for each subsequence length; binary search updates."
+      }
+    ]
+  },
+  {
+    "id": "cses-reading-books",
+    "title": "Reading Books",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1631",
+    "difficulty_rating": 1300,
+    "statement_md": "There are $n$ books, and Kotivalo and Justiina are going to read them all. For each book, you know the time it takes to read it.\n\nThey both read each book from beginning to end, and they cannot read a book at the same time. What is the minimum total time required?\n\nInput\n\nThe first input line has an integer $n$: the number of books.\n\nThe second line has $n$ integers $t_1,t_2,\\dots,t_n$: the time required to read each book.\n\nOutput\n\nPrint one integer: the minimum total time.\n\nConstraints\n\n- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ t_i ≤ 10^9$\n\nExample\n\nInput:\n\n3\n2 8 3\n\nOutput:\n\n16",
+    "input_format_md": "The first input line has an integer $n$: the number of books.\n\nThe second line has $n$ integers $t_1,t_2,\\dots,t_n$: the time required to read each book.",
+    "output_format_md": "Print one integer: the minimum total time.",
+    "constraints_text": "- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ t_i ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line has an integer $n$: the number of books.\n\nThe second line has $n$ integers $t_1,t_2,\\dots,t_n$: the time required to read each book.",
+        "output": "Print one integer: the minimum total time."
+      },
+      {
+        "input": ":\n\n3\n2 8 3",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-reading-books-a1",
+        "problem_id": "cses-reading-books",
+        "approach_name": "Max vs sum",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Answer is max(sum, 2*max) — the longest book forces idle time unless others cover it"
+        ],
+        "editorial_summary_md": "Two readers alternate; if one book dominates, total time is twice that book."
+      }
+    ]
+  },
+  {
+    "id": "cses-sum-of-three-values",
+    "title": "Sum of Three Values",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1641",
+    "difficulty_rating": 1400,
+    "statement_md": "You are given an array of $n$ integers, and your task is to find three values (at distinct positions) whose sum is $x$.\n\nInput\n\nThe first input line has two integers $n$ and $x$: the array size and the target sum.\n\nThe second line has $n$ integers $a_1,a_2,\\dots,a_n$: the array values.\n\nOutput\n\nPrint three integers: the positions of the values. If there are several solutions, you may print any of them. If there are no solutions, print IMPOSSIBLE.\n\nConstraints\n\n- $1 ≤ n ≤ 5000$\n\n- $1 ≤ x,a_i ≤ 10^9$\n\nExample\n\nInput:\n\n4 8\n2 7 5 1\n\nOutput:\n\n1 3 4",
+    "input_format_md": "The first input line has two integers $n$ and $x$: the array size and the target sum.\n\nThe second line has $n$ integers $a_1,a_2,\\dots,a_n$: the array values.",
+    "output_format_md": "Print three integers: the positions of the values. If there are several solutions, you may print any of them. If there are no solutions, print IMPOSSIBLE.",
+    "constraints_text": "- $1 ≤ n ≤ 5000$\n\n- $1 ≤ x,a_i ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $x$: the array size and the target sum.\n\nThe second line has $n$ integers $a_1,a_2,\\dots,a_n$: the array values.",
+        "output": "Print three integers: the positions of the values. If there are several solutions, you may print any of them. If there are no solutions, print IMPOSSIBLE."
+      },
+      {
+        "input": ":\n\n4 8\n2 7 5 1",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-sum-of-three-values-a1",
+        "problem_id": "cses-sum-of-three-values",
+        "approach_name": "Fix + two pointers",
+        "paradigms": [
+          "Two Pointers"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Fix one index; two-pointer the rest on a sorted array while tracking original indices"
+        ],
+        "editorial_summary_md": "Sort with indices; for each left value run two pointers for the complementary pair."
+      }
+    ]
+  },
+  {
+    "id": "cses-nearest-smaller-values",
+    "title": "Nearest Smaller Values",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1645",
+    "difficulty_rating": 1300,
+    "statement_md": "Given an array of $n$ integers, your task is to find for each array position the nearest position to its left having a smaller value.\n\nInput\n\nThe first input line has an integer $n$: the size of the array.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.\n\nOutput\n\nPrint $n$ integers: for each array position the nearest position with a smaller value. If there is no such position, print $0$.\n\nConstraints\n\n- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ x_i ≤ 10^9$\n\nExample\n\nInput:\n\n8\n2 5 1 4 8 3 2 5\n\nOutput:\n\n0 1 0 3 4 3 3 7",
+    "input_format_md": "The first input line has an integer $n$: the size of the array.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.",
+    "output_format_md": "Print $n$ integers: for each array position the nearest position with a smaller value. If there is no such position, print $0$.",
+    "constraints_text": "- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ x_i ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line has an integer $n$: the size of the array.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.",
+        "output": "Print $n$ integers: for each array position the nearest position with a smaller value. If there is no such position, print $0$."
+      },
+      {
+        "input": ":\n\n8\n2 5 1 4 8 3 2 5",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-nearest-smaller-values-a1",
+        "problem_id": "cses-nearest-smaller-values",
+        "approach_name": "Monotonic stack",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Stack"
+        ],
+        "key_insights": [
+          "Monotonic increasing stack of indices for previous smaller element"
+        ],
+        "editorial_summary_md": "Scan left-to-right, popping larger-or-equal values; top of stack is the answer."
+      }
+    ]
+  },
+  {
+    "id": "cses-forest-queries",
+    "title": "Forest Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1652",
+    "difficulty_rating": 1300,
+    "statement_md": "You are given an $n \\times n$ grid representing the map of a forest. Each square is either empty or contains a tree. The upper-left square has coordinates $(1,1)$, and the lower-right square has coordinates $(n,n)$.\n\nYour task is to process $q$ queries of the form: how many trees are inside a given rectangle in the forest?\n\nInput\n\nThe first input line has two integers $n$ and $q$: the size of the forest and the number of queries.\n\nThen, there are $n$ lines describing the forest. Each line has $n$ characters: . is an empty square and * is a tree.\n\nFinally, there are $q$ lines describing the queries. Each line has four integers $y_1$, $x_1$, $y_2$, $x_2$ corresponding to the corners of a rectangle.\n\nOutput\n\nPrint the number of trees inside each rectangle.\n\nConstraints\n\n- $1 ≤ n ≤ 1000$\n\n- $1 ≤ q ≤ 2 \\cdot 10^5$\n\n- $1 ≤ y_1 ≤ y_2 ≤ n$\n\n- $1 ≤ x_1 ≤ x_2 ≤ n$\n\nExample\n\nInput:\n\n4 3\n.*..\n*.**\n**..\n****\n2 2 3 4\n3 1 3 1\n1 1 2 2\n\nOutput:\n\n3\n1\n2",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the size of the forest and the number of queries.\n\nThen, there are $n$ lines describing the forest. Each line has $n$ characters: . is an empty square and * is a tree.\n\nFinally, there are $q$ lines describing the queries. Each line has four integers $y_1$, $x_1$, $y_2$, $x_2$ corresponding to the corners of a rectangle.",
+    "output_format_md": "Print the number of trees inside each rectangle.",
+    "constraints_text": "- $1 ≤ n ≤ 1000$\n\n- $1 ≤ q ≤ 2 \\cdot 10^5$\n\n- $1 ≤ y_1 ≤ y_2 ≤ n$\n\n- $1 ≤ x_1 ≤ x_2 ≤ n$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $q$: the size of the forest and the number of queries.\n\nThen, there are $n$ lines describing the forest. Each line has $n$ characters: . is an empty square and * is a tree.\n\nFinally, there are $q$ lines describing the queries. Each line has four integers $y_1$, $x_1$, $y_2$, $x_2$ corresponding to the corners of a rectangle.",
+        "output": "Print the number of trees inside each rectangle."
+      },
+      {
+        "input": ":\n\n4 3\n.*..\n*.**\n**..\n****\n2 2 3 4\n3 1 3 1\n1 1 2 2",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-forest-queries-a1",
+        "problem_id": "cses-forest-queries",
+        "approach_name": "2D prefix sums",
+        "paradigms": [
+          "Prefix Sums"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "2D prefix sums on a grid of trees for O(1) rectangle queries"
+        ],
+        "editorial_summary_md": "Build pref[i][j] counts; answer rectangles with inclusion-exclusion."
+      }
+    ]
+  },
+  {
+    "id": "cses-subarray-divisibility",
+    "title": "Subarray Divisibility",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1662",
+    "difficulty_rating": 1400,
+    "statement_md": "Given an array of $n$ integers, your task is to count the number of subarrays where the sum of values is divisible by $n$.\n\nInput\n\nThe first input line has an integer $n$: the size of the array.\n\nThe next line has $n$ integers $a_1,a_2,\\dots,a_n$: the contents of the array.\n\nOutput\n\nPrint one integer: the required number of subarrays.\n\nConstraints\n\n- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $-10^9 ≤ a_i ≤ 10^9$\n\nExample\n\nInput:\n\n5\n3 1 2 7 4\n\nOutput:\n\n1",
+    "input_format_md": "The first input line has an integer $n$: the size of the array.\n\nThe next line has $n$ integers $a_1,a_2,\\dots,a_n$: the contents of the array.",
+    "output_format_md": "Print one integer: the required number of subarrays.",
+    "constraints_text": "- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $-10^9 ≤ a_i ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line has an integer $n$: the size of the array.\n\nThe next line has $n$ integers $a_1,a_2,\\dots,a_n$: the contents of the array.",
+        "output": "Print one integer: the required number of subarrays."
+      },
+      {
+        "input": ":\n\n5\n3 1 2 7 4",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-subarray-divisibility-a1",
+        "problem_id": "cses-subarray-divisibility",
+        "approach_name": "Prefix mod frequencies",
+        "paradigms": [
+          "Prefix Sums"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Count prefix sums with the same residue mod n (careful with negatives)"
+        ],
+        "editorial_summary_md": "Map residue → count; each pair of equal residues forms a divisible subarray."
+      }
+    ]
+  },
+  {
+    "id": "cses-missing-coin-sum",
+    "title": "Missing Coin Sum",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2183",
+    "difficulty_rating": 1400,
+    "statement_md": "You have $n$ coins with positive integer values. What is the smallest sum you cannot create using a subset of the coins?\n\nInput\n\nThe first line has an integer $n$: the number of coins.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the value of each coin.\n\nOutput\n\nPrint one integer: the smallest coin sum.\n\nConstraints\n\n- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ x_i ≤ 10^9$\n\nExample\n\nInput:\n\n5\n2 9 1 2 7\n\nOutput:\n\n6",
+    "input_format_md": "The first line has an integer $n$: the number of coins.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the value of each coin.",
+    "output_format_md": "Print one integer: the smallest coin sum.",
+    "constraints_text": "- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ x_i ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first line has an integer $n$: the number of coins.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the value of each coin.",
+        "output": "Print one integer: the smallest coin sum."
+      },
+      {
+        "input": ":\n\n5\n2 9 1 2 7",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-missing-coin-sum-a1",
+        "problem_id": "cses-missing-coin-sum",
+        "approach_name": "Reachable mex",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "After sorting, the smallest unreachable sum grows until a coin > reachable+1"
+        ],
+        "editorial_summary_md": "Maintain reachable prefix [1..res]; if next coin > res+1, answer is res+1."
+      }
+    ]
+  },
+  {
+    "id": "cses-finding-borders",
+    "title": "Finding Borders",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1732",
+    "difficulty_rating": 1500,
+    "statement_md": "A border of a string is a prefix that is also a suffix of the string but not the whole string. For example, the borders of abcababcab are ab and abcab.\n\nYour task is to find all border lengths of a given string.\n\nInput\n\nThe only input line has a string of length $n$ consisting of characters a–z.\n\nOutput\n\nPrint all border lengths of the string in increasing order.\n\nConstraints\n\n- $1 ≤ n ≤ 10^6$\n\nExample\n\nInput:\n\nabcababcab\n\nOutput:\n\n2 5",
+    "input_format_md": "The only input line has a string of length $n$ consisting of characters a–z.",
+    "output_format_md": "Print all border lengths of the string in increasing order.",
+    "constraints_text": "- $1 ≤ n ≤ 10^6$",
+    "sample_io": [
+      {
+        "input": "The only input line has a string of length $n$ consisting of characters a–z.",
+        "output": "Print all border lengths of the string in increasing order."
+      },
+      {
+        "input": ":\n\nabcababcab",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-finding-borders-a1",
+        "problem_id": "cses-finding-borders",
+        "approach_name": "KMP borders",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "KMP"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Borders of the string are the KMP failure-function chain from n"
+        ],
+        "editorial_summary_md": "Build pi[]; walk pi[n], pi[pi[n]], … to list all border lengths."
+      }
+    ]
+  },
+  {
+    "id": "cses-finding-periods",
+    "title": "Finding Periods",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1733",
+    "difficulty_rating": 1600,
+    "statement_md": "A period of a string is a prefix that can be used to generate the whole string by repeating the prefix. The last repetition may be partial. For example, the periods of abcabca are abc, abcabc and abcabca.\n\nYour task is to find all period lengths of a string.\n\nInput\n\nThe only input line has a string of length $n$ consisting of characters a–z.\n\nOutput\n\nPrint all period lengths in increasing order.\n\nConstraints\n\n- $1 ≤ n ≤ 10^6$\n\nExample\n\nInput:\n\nabcabca\n\nOutput:\n\n3 6 7",
+    "input_format_md": "The only input line has a string of length $n$ consisting of characters a–z.",
+    "output_format_md": "Print all period lengths in increasing order.",
+    "constraints_text": "- $1 ≤ n ≤ 10^6$",
+    "sample_io": [
+      {
+        "input": "The only input line has a string of length $n$ consisting of characters a–z.",
+        "output": "Print all period lengths in increasing order."
+      },
+      {
+        "input": ":\n\nabcabca",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-finding-periods-a1",
+        "problem_id": "cses-finding-periods",
+        "approach_name": "Z-algorithm periods",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-algorithm"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Period p works iff Z[p] covers the suffix starting at p (with wrap via borders)"
+        ],
+        "editorial_summary_md": "Compute Z-array; p is a period when the string is covered by repeats of the prefix of length p."
+      }
+    ]
+  },
+  {
+    "id": "cses-tree-distances-i",
+    "title": "Tree Distances I",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1132",
+    "difficulty_rating": 1500,
+    "statement_md": "You are given a tree consisting of $n$ nodes.\n\nYour task is to determine for each node the maximum distance to another node.\n\nInput\n\nThe first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,\\ldots,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.\n\nOutput\n\nPrint $n$ integers: for each node $1,2,\\ldots,n$, the maximum distance to another node.\n\nConstraints\n\n- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$\n\nExample\n\nInput:\n\n5\n1 2\n1 3\n3 4\n3 5\n\nOutput:\n\n2 3 2 3 3",
+    "input_format_md": "The first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,\\ldots,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.",
+    "output_format_md": "Print $n$ integers: for each node $1,2,\\ldots,n$, the maximum distance to another node.",
+    "constraints_text": "- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$",
+    "sample_io": [
+      {
+        "input": "The first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,\\ldots,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.",
+        "output": "Print $n$ integers: for each node $1,2,\\ldots,n$, the maximum distance to another node."
+      },
+      {
+        "input": ":\n\n5\n1 2\n1 3\n3 4\n3 5",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-tree-distances-i-a1",
+        "problem_id": "cses-tree-distances-i",
+        "approach_name": "Diameter reroot",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Two DFS/BFS from diameter ends give max distance from every node"
+        ],
+        "editorial_summary_md": "Find diameter endpoints A,B; answer[u]=max(dist(u,A),dist(u,B))."
+      }
+    ]
+  },
+  {
+    "id": "cses-tree-distances-ii",
+    "title": "Tree Distances II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1133",
+    "difficulty_rating": 1600,
+    "statement_md": "You are given a tree consisting of $n$ nodes.\n\nYour task is to determine for each node the sum of the distances from the node to all other nodes.\n\nInput\n\nThe first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,\\ldots,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.\n\nOutput\n\nPrint $n$ integers: for each node $1,2,\\ldots,n$, the sum of the distances.\n\nConstraints\n\n- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$\n\nExample\n\nInput:\n\n5\n1 2\n1 3\n3 4\n3 5\n\nOutput:\n\n6 9 5 8 8",
+    "input_format_md": "The first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,\\ldots,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.",
+    "output_format_md": "Print $n$ integers: for each node $1,2,\\ldots,n$, the sum of the distances.",
+    "constraints_text": "- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$",
+    "sample_io": [
+      {
+        "input": "The first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,\\ldots,n$.\n\nThen there are $n-1$ lines describing the edges. Each line contains two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.",
+        "output": "Print $n$ integers: for each node $1,2,\\ldots,n$, the sum of the distances."
+      },
+      {
+        "input": ":\n\n5\n1 2\n1 3\n3 4\n3 5",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-tree-distances-ii-a1",
+        "problem_id": "cses-tree-distances-ii",
+        "approach_name": "Rerooting DP",
+        "paradigms": [
+          "Graph Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Rerooting: subtree size + sum of distances; move root along edges"
+        ],
+        "editorial_summary_md": "Compute down-sums, then reroot to get total distance sum for every root."
+      }
+    ]
+  },
+  {
+    "id": "cses-company-queries-ii",
+    "title": "Company Queries II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1688",
+    "difficulty_rating": 1600,
+    "statement_md": "A company has $n$ employees, who form a tree hierarchy where each employee has a boss, except for the general director.\n\nYour task is to process $q$ queries of the form: who is the lowest common boss of employees $a$ and $b$ in the hierarchy?\n\nInput\n\nThe first input line has two integers $n$ and $q$: the number of employees and queries. The employees are numbered $1,2,\\dots,n$, and employee $1$ is the general director.\n\nThe next line has $n-1$ integers $e_2,e_3,\\dots,e_n$: for each employee $2,3,\\dots,n$ their boss.\n\nFinally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$: who is the lowest common boss of employees $a$ and $b$?\n\nOutput\n\nPrint the answer for each query.\n\nConstraints\n\n- $1 ≤ n,q ≤ 2 \\cdot 10^5$\n\n- $1 ≤ e_i ≤ i-1$\n\n- $1 ≤ a,b ≤ n$\n\nExample\n\nInput:\n\n5 3\n1 1 3 3\n4 5\n2 5\n1 4\n\nOutput:\n\n3\n1\n1",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the number of employees and queries. The employees are numbered $1,2,\\dots,n$, and employee $1$ is the general director.\n\nThe next line has $n-1$ integers $e_2,e_3,\\dots,e_n$: for each employee $2,3,\\dots,n$ their boss.\n\nFinally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$: who is the lowest common boss of employees $a$ and $b$?",
+    "output_format_md": "Print the answer for each query.",
+    "constraints_text": "- $1 ≤ n,q ≤ 2 \\cdot 10^5$\n\n- $1 ≤ e_i ≤ i-1$\n\n- $1 ≤ a,b ≤ n$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $q$: the number of employees and queries. The employees are numbered $1,2,\\dots,n$, and employee $1$ is the general director.\n\nThe next line has $n-1$ integers $e_2,e_3,\\dots,e_n$: for each employee $2,3,\\dots,n$ their boss.\n\nFinally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$: who is the lowest common boss of employees $a$ and $b$?",
+        "output": "Print the answer for each query."
+      },
+      {
+        "input": ":\n\n5 3\n1 1 3 3\n4 5\n2 5\n1 4",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-company-queries-ii-a1",
+        "problem_id": "cses-company-queries-ii",
+        "approach_name": "Binary lifting LCA",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "LCA"
+        ],
+        "data_structures": [
+          "Binary Lifting"
+        ],
+        "key_insights": [
+          "Binary lifting LCA on a rooted company tree"
+        ],
+        "editorial_summary_md": "Precompute 2^k parents; lift deeper node then jump together."
+      }
+    ]
+  },
+  {
+    "id": "cses-flight-routes-check",
+    "title": "Flight Routes Check",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1682",
+    "difficulty_rating": 1600,
+    "statement_md": "There are $n$ cities and $m$ flight connections. Your task is to check if you can travel from any city to any other city using the available flights.\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of cities and flights. The cities are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the flights. Each line has two integers $a$ and $b$: there is a flight from city $a$ to city $b$. All flights are one-way flights.\n\nOutput\n\nPrint \"YES\" if all routes are possible, and \"NO\" otherwise. In the latter case also print two cities $a$ and $b$ such that you cannot travel from city $a$ to city $b$. If there are several possible solutions, you can print any of them.\n\nConstraints\n\n- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$\n\nExample\n\nInput:\n\n4 5\n1 2\n2 3\n3 1\n1 4\n3 4\n\nOutput:\n\nNO\n4 2",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of cities and flights. The cities are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the flights. Each line has two integers $a$ and $b$: there is a flight from city $a$ to city $b$. All flights are one-way flights.",
+    "output_format_md": "Print \"YES\" if all routes are possible, and \"NO\" otherwise. In the latter case also print two cities $a$ and $b$ such that you cannot travel from city $a$ to city $b$. If there are several possible solutions, you can print any of them.",
+    "constraints_text": "- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $m$: the number of cities and flights. The cities are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the flights. Each line has two integers $a$ and $b$: there is a flight from city $a$ to city $b$. All flights are one-way flights.",
+        "output": "Print \"YES\" if all routes are possible, and \"NO\" otherwise. In the latter case also print two cities $a$ and $b$ such that you cannot travel from city $a$ to city $b$. If there are several possible solutions, you can print any of them."
+      },
+      {
+        "input": ":\n\n4 5\n1 2\n2 3\n3 1\n1 4\n3 4",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-flight-routes-check-a1",
+        "problem_id": "cses-flight-routes-check",
+        "approach_name": "SCC / reachability",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Strong connectivity: reachable from 1 and everyone reaches 1 (or Kosaraju/Tarjan)"
+        ],
+        "editorial_summary_md": "Check the digraph is strongly connected; report a counterexample edge direction if not."
+      }
+    ]
+  },
+  {
+    "id": "cses-planets-and-kingdoms",
+    "title": "Planets and Kingdoms",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1683",
+    "difficulty_rating": 1600,
+    "statement_md": "A game has $n$ planets, connected by $m$ teleporters. Two planets $a$ and $b$ belong to the same kingdom exactly when there is a route both from $a$ to $b$ and from $b$ to $a$. Your task is to determine for each planet its kingdom.\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of planets and teleporters. The planets are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the teleporters. Each line has two integers $a$ and $b$: you can travel from planet $a$ to planet $b$ through a teleporter.\n\nOutput\n\nFirst print an integer $k$: the number of kingdoms. After this, print for each planet a kingdom label between $1$ and $k$. You can print any valid solution.\n\nConstraints\n\n- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$\n\nExample\n\nInput:\n\n5 6\n1 2\n2 3\n3 1\n3 4\n4 5\n5 4\n\nOutput:\n\n2\n1 1 1 2 2",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of planets and teleporters. The planets are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the teleporters. Each line has two integers $a$ and $b$: you can travel from planet $a$ to planet $b$ through a teleporter.",
+    "output_format_md": "First print an integer $k$: the number of kingdoms. After this, print for each planet a kingdom label between $1$ and $k$. You can print any valid solution.",
+    "constraints_text": "- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $m$: the number of planets and teleporters. The planets are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the teleporters. Each line has two integers $a$ and $b$: you can travel from planet $a$ to planet $b$ through a teleporter.",
+        "output": "First print an integer $k$: the number of kingdoms. After this, print for each planet a kingdom label between $1$ and $k$. You can print any valid solution."
+      },
+      {
+        "input": ":\n\n5 6\n1 2\n2 3\n3 1\n3 4\n4 5\n5 4",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-planets-and-kingdoms-a1",
+        "problem_id": "cses-planets-and-kingdoms",
+        "approach_name": "SCC condensation",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Kosaraju or Tarjan SCC labeling"
+        ],
+        "editorial_summary_md": "Compute strongly connected components and assign kingdom ids."
+      }
+    ]
+  },
+  {
+    "id": "cses-road-reparation",
+    "title": "Road Reparation",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1675",
+    "difficulty_rating": 1400,
+    "statement_md": "There are $n$ cities and $m$ roads between them. Unfortunately, the condition of the roads is so poor that they cannot be used. Your task is to repair some of the roads so that there will be a decent route between any two cities.\n\nFor each road, you know its reparation cost, and you should find a solution where the total cost is as small as possible.\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of cities and roads. The cities are numbered $1,2,\\dots,n$.\n\nThen, there are $m$ lines describing the roads. Each line has three integers $a$, $b$ and $c$: there is a road between cities $a$ and $b$, and its reparation cost is $c$. All roads are two-way roads.\n\nEvery road is between two different cities, and there is at most one road between two cities.\n\nOutput\n\nPrint one integer: the minimum total reparation cost. However, if there are no solutions, print \"IMPOSSIBLE\".\n\nConstraints\n\n- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$\n\n- $1 ≤ c ≤ 10^9$\n\nExample\n\nInput:\n\n5 6\n1 2 3\n2 3 5\n2 4 2\n3 4 8\n5 1 7\n5 4 4\n\nOutput:\n\n14",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of cities and roads. The cities are numbered $1,2,\\dots,n$.\n\nThen, there are $m$ lines describing the roads. Each line has three integers $a$, $b$ and $c$: there is a road between cities $a$ and $b$, and its reparation cost is $c$. All roads are two-way roads.\n\nEvery road is between two different cities, and there is at most one road between two cities.",
+    "output_format_md": "Print one integer: the minimum total reparation cost. However, if there are no solutions, print \"IMPOSSIBLE\".",
+    "constraints_text": "- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$\n\n- $1 ≤ c ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $m$: the number of cities and roads. The cities are numbered $1,2,\\dots,n$.\n\nThen, there are $m$ lines describing the roads. Each line has three integers $a$, $b$ and $c$: there is a road between cities $a$ and $b$, and its reparation cost is $c$. All roads are two-way roads.\n\nEvery road is between two different cities, and there is at most one road between two cities.",
+        "output": "Print one integer: the minimum total reparation cost. However, if there are no solutions, print \"IMPOSSIBLE\"."
+      },
+      {
+        "input": ":\n\n5 6\n1 2 3\n2 3 5\n2 4 2\n3 4 8\n5 1 7\n5 4 4",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-road-reparation-a1",
+        "problem_id": "cses-road-reparation",
+        "approach_name": "Kruskal MST",
+        "paradigms": [
+          "Graph Algorithms",
+          "Greedy"
+        ],
+        "algorithms": [
+          "DSU"
+        ],
+        "data_structures": [
+          "DSU"
+        ],
+        "key_insights": [
+          "MST total weight; impossible if not connecting all cities"
+        ],
+        "editorial_summary_md": "Sort edges by cost; DSU merge until one component or declare IMPossible."
+      }
+    ]
+  },
+  {
+    "id": "cses-round-trip-ii",
+    "title": "Round Trip II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1678",
+    "difficulty_rating": 1500,
+    "statement_md": "Byteland has $n$ cities and $m$ flight connections. Your task is to design a round trip that begins in a city, goes through one or more other cities, and finally returns to the starting city. Every intermediate city on the route has to be distinct.\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of cities and flights. The cities are numbered $1,2,\\dots,n$.\n\nThen, there are $m$ lines describing the flights. Each line has two integers $a$ and $b$: there is a flight connection from city $a$ to city $b$. All connections are one-way flights from a city to another city.\n\nOutput\n\nFirst print an integer $k$: the number of cities on the route. Then print $k$ cities in the order they will be visited. You can print any valid solution.\n\nIf there are no solutions, print \"IMPOSSIBLE\".\n\nConstraints\n\n- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$\n\nExample\n\nInput:\n\n4 5\n1 3\n2 1\n2 4\n3 2\n3 4\n\nOutput:\n\n4\n2 1 3 2",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of cities and flights. The cities are numbered $1,2,\\dots,n$.\n\nThen, there are $m$ lines describing the flights. Each line has two integers $a$ and $b$: there is a flight connection from city $a$ to city $b$. All connections are one-way flights from a city to another city.",
+    "output_format_md": "First print an integer $k$: the number of cities on the route. Then print $k$ cities in the order they will be visited. You can print any valid solution.\n\nIf there are no solutions, print \"IMPOSSIBLE\".",
+    "constraints_text": "- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $m$: the number of cities and flights. The cities are numbered $1,2,\\dots,n$.\n\nThen, there are $m$ lines describing the flights. Each line has two integers $a$ and $b$: there is a flight connection from city $a$ to city $b$. All connections are one-way flights from a city to another city.",
+        "output": "First print an integer $k$: the number of cities on the route. Then print $k$ cities in the order they will be visited. You can print any valid solution."
+      },
+      {
+        "input": ":\n\n4 5\n1 3\n2 1\n2 4\n3 2\n3 4",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-round-trip-ii-a1",
+        "problem_id": "cses-round-trip-ii",
+        "approach_name": "Directed cycle DFS",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Directed cycle via 3-color DFS; reconstruct path from back-edge"
+        ],
+        "editorial_summary_md": "Gray-node back edge closes a cycle; walk parents to print it."
+      }
+    ]
+  },
+  {
+    "id": "cses-course-schedule-ii",
+    "title": "Course Schedule II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1757",
+    "difficulty_rating": 1600,
+    "statement_md": "You want to complete $n$ courses that have requirements of the form \"course $a$ has to be completed before course $b$\".\n\nYou want to complete course $1$ as soon as possible. If there are several ways to do this, you want then to complete course $2$ as soon as possible, and so on.\n\nYour task is to determine the order in which you complete the courses.\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of courses and requirements. The courses are numbered $1,2,\\dots,n$.\n\nThen, there are $m$ lines describing the requirements. Each line has two integers $a$ and $b$: course $a$ has to be completed before course $b$.\n\nYou can assume that there is at least one valid schedule.\n\nOutput\n\nPrint one line having $n$ integers: the order in which you complete the courses.\n\nConstraints\n\n- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$\n\nExample\n\nInput:\n\n4 2\n2 1\n2 3\n\nOutput:\n\n2 1 3 4",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of courses and requirements. The courses are numbered $1,2,\\dots,n$.\n\nThen, there are $m$ lines describing the requirements. Each line has two integers $a$ and $b$: course $a$ has to be completed before course $b$.\n\nYou can assume that there is at least one valid schedule.",
+    "output_format_md": "Print one line having $n$ integers: the order in which you complete the courses.",
+    "constraints_text": "- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a,b ≤ n$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $m$: the number of courses and requirements. The courses are numbered $1,2,\\dots,n$.\n\nThen, there are $m$ lines describing the requirements. Each line has two integers $a$ and $b$: course $a$ has to be completed before course $b$.\n\nYou can assume that there is at least one valid schedule.",
+        "output": "Print one line having $n$ integers: the order in which you complete the courses."
+      },
+      {
+        "input": ":\n\n4 2\n2 1\n2 3",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-course-schedule-ii-a1",
+        "problem_id": "cses-course-schedule-ii",
+        "approach_name": "Kahn + heap",
+        "paradigms": [
+          "Graph Algorithms",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Topological Sort"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Lexicographically smallest topo order with a min-heap Kahn"
+        ],
+        "editorial_summary_md": "Priority queue of indegree-0 nodes yields the smallest valid course order."
+      }
+    ]
+  },
+  {
+    "id": "cses-download-speed",
+    "title": "Download Speed",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1694",
+    "difficulty_rating": 1700,
+    "statement_md": "Consider a network consisting of $n$ computers and $m$ connections. Each connection specifies how fast a computer can send data to another computer.\n\nKotivalo wants to download some data from a server. What is the maximum speed he can do this, using the connections in the network?\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of computers and connections. The computers are numbered $1,2,\\dots,n$. Computer $1$ is the server and computer $n$ is Kotivalo's computer.\n\nAfter this, there are $m$ lines describing the connections. Each line has three integers $a$, $b$ and $c$: computer $a$ can send data to computer $b$ at speed $c$.\n\nOutput\n\nPrint one integer: the maximum speed Kotivalo can download data.\n\nConstraints\n\n- $1 ≤ n ≤ 500$\n\n- $1 ≤ m ≤ 1000$\n\n- $1 ≤ a,b ≤ n$\n\n- $1 ≤ c ≤ 10^9$\n\nExample\n\nInput:\n\n4 5\n1 2 3\n2 4 2\n1 3 4\n3 4 5\n4 1 3\n\nOutput:\n\n6",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of computers and connections. The computers are numbered $1,2,\\dots,n$. Computer $1$ is the server and computer $n$ is Kotivalo's computer.\n\nAfter this, there are $m$ lines describing the connections. Each line has three integers $a$, $b$ and $c$: computer $a$ can send data to computer $b$ at speed $c$.",
+    "output_format_md": "Print one integer: the maximum speed Kotivalo can download data.",
+    "constraints_text": "- $1 ≤ n ≤ 500$\n\n- $1 ≤ m ≤ 1000$\n\n- $1 ≤ a,b ≤ n$\n\n- $1 ≤ c ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $m$: the number of computers and connections. The computers are numbered $1,2,\\dots,n$. Computer $1$ is the server and computer $n$ is Kotivalo's computer.\n\nAfter this, there are $m$ lines describing the connections. Each line has three integers $a$, $b$ and $c$: computer $a$ can send data to computer $b$ at speed $c$.",
+        "output": "Print one integer: the maximum speed Kotivalo can download data."
+      },
+      {
+        "input": ":\n\n4 5\n1 2 3\n2 4 2\n1 3 4\n3 4 5\n4 1 3",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-download-speed-a1",
+        "problem_id": "cses-download-speed",
+        "approach_name": "Max flow",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Max Flow"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Max flow from 1 to n with Dinic/EK on the given capacities"
+        ],
+        "editorial_summary_md": "Model the network directly; compute max flow with a standard blocking-flow algorithm."
+      }
+    ]
+  },
+  {
+    "id": "cses-school-dance",
+    "title": "School Dance",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1696",
+    "difficulty_rating": 1700,
+    "statement_md": "There are $n$ boys and $m$ girls in a school. Next week a school dance will be organized. A dance pair consists of a boy and a girl, and there are $k$ potential pairs.\n\nYour task is to find out the maximum number of dance pairs and show how this number can be achieved.\n\nInput\n\nThe first input line has three integers $n$, $m$ and $k$: the number of boys, girls, and potential pairs. The boys are numbered $1,2,\\dots,n$, and the girls are numbered $1,2,\\dots,m$.\n\nAfter this, there are $k$ lines describing the potential pairs. Each line has two integers $a$ and $b$: boy $a$ and girl $b$ are willing to dance together.\n\nOutput\n\nFirst print one integer $r$: the maximum number of dance pairs. After this, print $r$ lines describing the pairs. You can print any valid solution.\n\nConstraints\n\n- $1 ≤ n,m ≤ 500$\n\n- $1 ≤ k ≤ 1000$\n\n- $1 ≤ a ≤ n$\n\n- $1 ≤ b ≤ m$\n\nExample\n\nInput:\n\n3 2 4\n1 1\n1 2\n2 1\n3 1\n\nOutput:\n\n2\n1 2\n3 1",
+    "input_format_md": "The first input line has three integers $n$, $m$ and $k$: the number of boys, girls, and potential pairs. The boys are numbered $1,2,\\dots,n$, and the girls are numbered $1,2,\\dots,m$.\n\nAfter this, there are $k$ lines describing the potential pairs. Each line has two integers $a$ and $b$: boy $a$ and girl $b$ are willing to dance together.",
+    "output_format_md": "First print one integer $r$: the maximum number of dance pairs. After this, print $r$ lines describing the pairs. You can print any valid solution.",
+    "constraints_text": "- $1 ≤ n,m ≤ 500$\n\n- $1 ≤ k ≤ 1000$\n\n- $1 ≤ a ≤ n$\n\n- $1 ≤ b ≤ m$",
+    "sample_io": [
+      {
+        "input": "The first input line has three integers $n$, $m$ and $k$: the number of boys, girls, and potential pairs. The boys are numbered $1,2,\\dots,n$, and the girls are numbered $1,2,\\dots,m$.\n\nAfter this, there are $k$ lines describing the potential pairs. Each line has two integers $a$ and $b$: boy $a$ and girl $b$ are willing to dance together.",
+        "output": "First print one integer $r$: the maximum number of dance pairs. After this, print $r$ lines describing the pairs. You can print any valid solution."
+      },
+      {
+        "input": ":\n\n3 2 4\n1 1\n1 2\n2 1\n3 1",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-school-dance-a1",
+        "problem_id": "cses-school-dance",
+        "approach_name": "Bipartite matching",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Max Flow"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Bipartite matching via max flow: source→boys→girls→sink"
+        ],
+        "editorial_summary_md": "Build bipartite graph of acceptable pairs; max matching = max flow."
+      }
+    ]
+  },
+  {
+    "id": "cses-counting-divisors",
+    "title": "Counting Divisors",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1713",
+    "difficulty_rating": 1200,
+    "statement_md": "Given $n$ integers, your task is to report for each integer the number of its divisors.\n\nFor example, if $x=18$, the correct answer is $6$ because its divisors are $1,2,3,6,9,18$.\n\nInput\n\nThe first input line has an integer $n$: the number of integers.\n\nAfter this, there are $n$ lines, each containing an integer $x$.\n\nOutput\n\nFor each integer, print the number of its divisors.\n\nConstraints\n\n- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ x ≤ 10^6$\n\nExample\n\nInput:\n\n3\n16\n17\n18\n\nOutput:\n\n5\n2\n6",
+    "input_format_md": "The first input line has an integer $n$: the number of integers.\n\nAfter this, there are $n$ lines, each containing an integer $x$.",
+    "output_format_md": "For each integer, print the number of its divisors.",
+    "constraints_text": "- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ x ≤ 10^6$",
+    "sample_io": [
+      {
+        "input": "The first input line has an integer $n$: the number of integers.\n\nAfter this, there are $n$ lines, each containing an integer $x$.",
+        "output": "For each integer, print the number of its divisors."
+      },
+      {
+        "input": ":\n\n3\n16\n17\n18",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N · X)",
+    "approaches": [
+      {
+        "id": "cses-counting-divisors-a1",
+        "problem_id": "cses-counting-divisors",
+        "approach_name": "Sieve divisor counts",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Precompute divisor counts with a linear sieve / loop multiples"
+        ],
+        "editorial_summary_md": "For i in 1..MAX, add 1 to every multiple; answer queries in O(1)."
+      }
+    ]
+  },
+  {
+    "id": "cses-exponentiation",
+    "title": "Exponentiation",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1095",
+    "difficulty_rating": 1200,
+    "statement_md": "Your task is to efficiently calculate values $a^b$ modulo $10^9+7$.\n\nNote that in this task we assume that $0^0=1$.\n\nInput\n\nThe first input line contains an integer $n$: the number of calculations.\n\nAfter this, there are $n$ lines, each containing two integers $a$ and $b$.\n\nOutput\n\nPrint each value $a^b$ modulo $10^9+7$.\n\nConstraints\n\n- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $0 ≤ a,b ≤ 10^9$\n\nExample\n\nInput:\n\n3\n3 4\n2 8\n123 123\n\nOutput:\n\n81\n256\n921450052",
+    "input_format_md": "The first input line contains an integer $n$: the number of calculations.\n\nAfter this, there are $n$ lines, each containing two integers $a$ and $b$.",
+    "output_format_md": "Print each value $a^b$ modulo $10^9+7$.",
+    "constraints_text": "- $1 ≤ n ≤ 2 \\cdot 10^5$\n\n- $0 ≤ a,b ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line contains an integer $n$: the number of calculations.\n\nAfter this, there are $n$ lines, each containing two integers $a$ and $b$.",
+        "output": "Print each value $a^b$ modulo $10^9+7$."
+      },
+      {
+        "input": ":\n\n3\n3 4\n2 8\n123 123",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-exponentiation-a1",
+        "problem_id": "cses-exponentiation",
+        "approach_name": "Modpow",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Binary exponentiation modulo 1e9+7"
+        ],
+        "editorial_summary_md": "Compute a^b mod MOD with repeated squaring for each query."
+      }
+    ]
+  },
+  {
+    "id": "cses-exponentiation-ii",
+    "title": "Exponentiation II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1712",
+    "difficulty_rating": 1500,
+    "statement_md": "Your task is to efficiently calculate values $a^{b^c}$ modulo $10^9+7$.\n\nNote that in this task we assume that $0^0=1$.\n\nInput\n\nThe first input line has an integer $n$: the number of calculations.\n\nAfter this, there are $n$ lines, each containing three integers $a$, $b$ and $c$.\n\nOutput\n\nPrint each value $a^{b^c}$ modulo $10^9+7$.\n\nConstraints\n\n- $1 ≤ n ≤ 10^5$\n\n- $0 ≤ a,b,c ≤ 10^9$\n\nExample\n\nInput:\n\n3\n3 7 1\n15 2 2\n3 4 5\n\nOutput:\n\n2187\n50625\n763327764",
+    "input_format_md": "The first input line has an integer $n$: the number of calculations.\n\nAfter this, there are $n$ lines, each containing three integers $a$, $b$ and $c$.",
+    "output_format_md": "Print each value $a^{b^c}$ modulo $10^9+7$.",
+    "constraints_text": "- $1 ≤ n ≤ 10^5$\n\n- $0 ≤ a,b,c ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line has an integer $n$: the number of calculations.\n\nAfter this, there are $n$ lines, each containing three integers $a$, $b$ and $c$.",
+        "output": "Print each value $a^{b^c}$ modulo $10^9+7$."
+      },
+      {
+        "input": ":\n\n3\n3 7 1\n15 2 2\n3 4 5",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-exponentiation-ii-a1",
+        "problem_id": "cses-exponentiation-ii",
+        "approach_name": "Euler totient exp",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "a^(b^c) mod MOD uses Euler φ: reduce exponent mod φ(MOD) when gcd(a,MOD)=1"
+        ],
+        "editorial_summary_md": "Compute b^c mod (MOD-1) then a^that mod MOD (with edge cases for a≡0)."
+      }
+    ]
+  },
+  {
+    "id": "cses-chessboard-and-queens",
+    "title": "Chessboard and Queens",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1624",
+    "difficulty_rating": 1300,
+    "statement_md": "Your task is to place eight queens on a chessboard so that no two queens are attacking each other. As an additional challenge, each square is either free or reserved, and you can only place queens on the free squares. However, the reserved squares do not prevent queens from attacking each other.\n\nHow many possible ways are there to place the queens?\n\nInput\n\nThe input has eight lines, and each of them has eight characters. Each square is either free (.) or reserved (*).\n\nOutput\n\nPrint one integer: the number of ways you can place the queens.\n\nExample\n\nInput:\n\n........\n........\n..*.....\n........\n........\n.....**.\n...*....\n........\n\nOutput:\n\n65",
+    "input_format_md": "The input has eight lines, and each of them has eight characters. Each square is either free (.) or reserved (*).",
+    "output_format_md": "Print one integer: the number of ways you can place the queens.",
+    "constraints_text": "See statement.",
+    "sample_io": [
+      {
+        "input": "The input has eight lines, and each of them has eight characters. Each square is either free (.) or reserved (*).",
+        "output": "Print one integer: the number of ways you can place the queens."
+      },
+      {
+        "input": ":\n\n........\n........\n..*.....\n........\n........\n.....**.\n...*....\n........",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N!)",
+    "approaches": [
+      {
+        "id": "cses-chessboard-and-queens-a1",
+        "problem_id": "cses-chessboard-and-queens",
+        "approach_name": "Queen backtracking",
+        "paradigms": [
+          "Brute Force"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Backtrack row by row; mask columns and diagonals; skip reserved cells"
+        ],
+        "editorial_summary_md": "Classic 8-queens with a few blocked squares on the board."
+      }
+    ]
+  },
+  {
+    "id": "cses-meet-in-the-middle",
+    "title": "Meet in the Middle",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1628",
+    "difficulty_rating": 1700,
+    "statement_md": "You are given an array of $n$ numbers. In how many ways can you choose a subset of the numbers with sum $x$?\n\nInput\n\nThe first input line has two numbers $n$ and $x$: the array size and the required sum.\n\nThe second line has $n$ integers $t_1,t_2,\\dots,t_n$: the numbers in the array.\n\nOutput\n\nPrint the number of ways you can create the sum $x$.\n\nConstraints\n\n- $1 ≤ n ≤ 40$\n\n- $1 ≤ x ≤ 10^9$\n\n- $1 ≤ t_i ≤ 10^9$\n\nExample\n\nInput:\n\n4 5\n1 2 3 2\n\nOutput:\n\n3",
+    "input_format_md": "The first input line has two numbers $n$ and $x$: the array size and the required sum.\n\nThe second line has $n$ integers $t_1,t_2,\\dots,t_n$: the numbers in the array.",
+    "output_format_md": "Print the number of ways you can create the sum $x$.",
+    "constraints_text": "- $1 ≤ n ≤ 40$\n\n- $1 ≤ x ≤ 10^9$\n\n- $1 ≤ t_i ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line has two numbers $n$ and $x$: the array size and the required sum.\n\nThe second line has $n$ integers $t_1,t_2,\\dots,t_n$: the numbers in the array.",
+        "output": "Print the number of ways you can create the sum $x$."
+      },
+      {
+        "input": ":\n\n4 5\n1 2 3 2",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-meet-in-the-middle-a1",
+        "problem_id": "cses-meet-in-the-middle",
+        "approach_name": "Meet in the middle",
+        "paradigms": [
+          "Brute Force"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Split n≤40 into two halves; sort one half and binary-search complements"
+        ],
+        "editorial_summary_md": "Enumerate subset sums of each half; count pairs that sum to x."
+      }
+    ]
+  },
+  {
+    "id": "cses-movie-festival-ii",
+    "title": "Movie Festival II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1632",
+    "difficulty_rating": 1600,
+    "statement_md": "In a movie festival, $n$ movies will be shown. Syrjälä's movie club consists of $k$ members, who will be all attending the festival.\n\nYou know the starting and ending time of each movie. What is the maximum total number of movies the club members can watch entirely if they act optimally?\n\nInput\n\nThe first input line has two integers $n$ and $k$: the number of movies and club members.\n\nAfter this, there are $n$ lines that describe the movies. Each line has two integers $a$ and $b$: the starting and ending time of a movie.\n\nOutput\n\nPrint one integer: the maximum total number of movies.\n\nConstraints\n\n- $1 ≤ k ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a < b ≤ 10^9$\n\nExample\n\nInput:\n\n5 2\n1 5\n8 10\n3 6\n2 5\n6 9\n\nOutput:\n\n4",
+    "input_format_md": "The first input line has two integers $n$ and $k$: the number of movies and club members.\n\nAfter this, there are $n$ lines that describe the movies. Each line has two integers $a$ and $b$: the starting and ending time of a movie.",
+    "output_format_md": "Print one integer: the maximum total number of movies.",
+    "constraints_text": "- $1 ≤ k ≤ n ≤ 2 \\cdot 10^5$\n\n- $1 ≤ a < b ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $k$: the number of movies and club members.\n\nAfter this, there are $n$ lines that describe the movies. Each line has two integers $a$ and $b$: the starting and ending time of a movie.",
+        "output": "Print one integer: the maximum total number of movies."
+      },
+      {
+        "input": ":\n\n5 2\n1 5\n8 10\n3 6\n2 5\n6 9",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-movie-festival-ii-a1",
+        "problem_id": "cses-movie-festival-ii",
+        "approach_name": "Multiset of end times",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Multiset"
+        ],
+        "key_insights": [
+          "k viewers: always assign a movie to the freest person who finished early enough"
+        ],
+        "editorial_summary_md": "Sort by ending time; multiset stores current free times for k people."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-vacation",
+    "title": "Vacation",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_c",
+    "difficulty_rating": 1200,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nTaro's summer vacation starts tomorrow, and he has decided to make plans for it now.\n\nThe vacation consists of N days.\nFor each i (1 ≤q i ≤q N), Taro will choose one of the following activities and do it on the i-th day:\n\n- A: Swim in the sea. Gain a_i points of happiness.\n\n- B: Catch bugs in the mountains. Gain b_i points of happiness.\n\n- C: Do homework at home. Gain c_i points of happiness.\n\nAs Taro gets bored easily, he cannot do the same activities for two or more consecutive days.\n\nFind the maximum possible total points of happiness that Taro gains.\n\nConstraints\n\n- All values in input are integers.\n\n- 1 ≤q N ≤q 10^5\n\n- 1 ≤q a_i, b_i, c_i ≤q 10^4\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN\na_1 b_1 c_1\na_2 b_2 c_2\n:\na_N b_N c_N\n\nOutput\n\nPrint the maximum possible total points of happiness that Taro gains.\n\nSample Input 1\n\n3\n10 40 70\n20 50 80\n30 60 90\n\nSample Output 1\n\n210\n\nIf Taro does activities in the order C, B, C, he will gain 70 + 50 + 90 = 210 points of happiness.\n\nSample Input 2\n\n1\n100 10 1\n\nSample Output 2\n\n100\n\nSample Input 3\n\n7\n6 7 8\n8 8 3\n2 5 2\n7 8 6\n4 6 8\n2 3 4\n7 5 1\n\nSample Output 3\n\n46\n\nTaro should do activities in the order C, A, B, A, C, B, A.",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN\na_1 b_1 c_1\na_2 b_2 c_2\n:\na_N b_N c_N",
+    "output_format_md": "Print the maximum possible total points of happiness that Taro gains.",
+    "constraints_text": "- All values in input are integers.\n\n- 1 ≤q N ≤q 10^5\n\n- 1 ≤q a_i, b_i, c_i ≤q 10^4",
+    "sample_io": [
+      {
+        "input": "1\n\n3\n10 40 70\n20 50 80\n30 60 90",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n1\n100 10 1",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n7\n6 7 8\n8 8 3\n2 5 2\n7 8 6\n4 6 8\n2 3 4\n7 5 1",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "atc-dp-vacation-a1",
+        "problem_id": "atc-dp-vacation",
+        "approach_name": "Daily activity DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "dp[day][activity] with no two consecutive same activities"
+        ],
+        "editorial_summary_md": "Maximize happiness with the constraint that the same activity is never chosen two days in a row."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-knapsack2",
+    "title": "Knapsack2",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_e",
+    "difficulty_rating": 1500,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nThere are N items, numbered 1, 2, \\ldots, N.\nFor each i (1 ≤q i ≤q N), Item i has a weight of w_i and a value of v_i.\n\nTaro has decided to choose some of the N items and carry them home in a knapsack.\nThe capacity of the knapsack is W, which means that the sum of the weights of items taken must be at most W.\n\nFind the maximum possible sum of the values of items that Taro takes home.\n\nConstraints\n\n- All values in input are integers.\n\n- 1 ≤q N ≤q 100\n\n- 1 ≤q W ≤q 10^9\n\n- 1 ≤q w_i ≤q W\n\n- 1 ≤q v_i ≤q 10^3\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN W\nw_1 v_1\nw_2 v_2\n:\nw_N v_N\n\nOutput\n\nPrint the maximum possible sum of the values of items that Taro takes home.\n\nSample Input 1\n\n3 8\n3 30\n4 50\n5 60\n\nSample Output 1\n\n90\n\nItems 1 and 3 should be taken.\nThen, the sum of the weights is 3 + 5 = 8, and the sum of the values is 30 + 60 = 90.\n\nSample Input 2\n\n1 1000000000\n1000000000 10\n\nSample Output 2\n\n10\n\nSample Input 3\n\n6 15\n6 5\n5 6\n6 4\n6 6\n3 5\n7 2\n\nSample Output 3\n\n17\n\nItems 2, 4 and 5 should be taken.\nThen, the sum of the weights is 5 + 6 + 3 = 14, and the sum of the values is 6 + 6 + 5 = 17.",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN W\nw_1 v_1\nw_2 v_2\n:\nw_N v_N",
+    "output_format_md": "Print the maximum possible sum of the values of items that Taro takes home.",
+    "constraints_text": "- All values in input are integers.\n\n- 1 ≤q N ≤q 100\n\n- 1 ≤q W ≤q 10^9\n\n- 1 ≤q w_i ≤q W\n\n- 1 ≤q v_i ≤q 10^3",
+    "sample_io": [
+      {
+        "input": "1\n\n3 8\n3 30\n4 50\n5 60",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n1 1000000000\n1000000000 10",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n6 15\n6 5\n5 6\n6 4\n6 6\n3 5\n7 2",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N · X)",
+    "approaches": [
+      {
+        "id": "atc-dp-knapsack2-a1",
+        "problem_id": "atc-dp-knapsack2",
+        "approach_name": "Value-dimension knapsack",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Knapsack"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "When W is huge but values are small, DP on value and minimize weight"
+        ],
+        "editorial_summary_md": "Invert the usual knapsack: minimize weight to achieve each total value."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-lcs",
+    "title": "LCS",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_f",
+    "difficulty_rating": 1400,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nYou are given strings s and t.\nFind one longest string that is a subsequence of both s and t.\n\nNotes\n\nA subsequence of a string x is the string obtained by removing zero or more characters from x and concatenating the remaining characters without changing the order.\n\nConstraints\n\n- s and t are strings consisting of lowercase English letters.\n\n- 1 ≤q |s|, |t| ≤q 3000\n\nInput\n\nInput is given from Standard Input in the following format:\n\ns\nt\n\nOutput\n\nPrint one longest string that is a subsequence of both s and t.\nIf there are multiple such strings, any of them will be accepted.\n\nSample Input 1\n\naxyb\nabyxb\n\nSample Output 1\n\naxb\n\nThe answer is axb or ayb; either will be accepted.\n\nSample Input 2\n\naa\nxayaz\n\nSample Output 2\n\naa\n\nSample Input 3\n\na\nz\n\nSample Output 3\n\nThe answer is  (an empty string).\n\nSample Input 4\n\nabracadabra\navadakedavra\n\nSample Output 4\n\naaadara",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\ns\nt",
+    "output_format_md": "Print one longest string that is a subsequence of both s and t.\nIf there are multiple such strings, any of them will be accepted.",
+    "constraints_text": "- s and t are strings consisting of lowercase English letters.\n\n- 1 ≤q |s|, |t| ≤q 3000",
+    "sample_io": [
+      {
+        "input": "1\n\naxyb\nabyxb",
+        "output": "1"
+      },
+      {
+        "input": "2\n\naa\nxayaz",
+        "output": "2"
+      },
+      {
+        "input": "3\n\na\nz",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "atc-dp-lcs-a1",
+        "problem_id": "atc-dp-lcs",
+        "approach_name": "LCS",
+        "paradigms": [
+          "Dynamic Programming",
+          "String Algorithms"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Classic LCS DP; reconstruct by walking the table"
+        ],
+        "editorial_summary_md": "dp[i][j] from prefixes; recover one LCS by tracing equal characters backward."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-longest-path",
+    "title": "Longest Path",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_g",
+    "difficulty_rating": 1400,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nThere is a directed graph G with N vertices and M edges.\nThe vertices are numbered 1, 2, \\ldots, N, and for each i (1 ≤q i ≤q M), the i-th directed edge goes from Vertex x_i to y_i.\nG does not contain directed cycles.\n\nFind the length of the longest directed path in G.\nHere, the length of a directed path is the number of edges in it.\n\nConstraints\n\n- All values in input are integers.\n\n- 2 ≤q N ≤q 10^5\n\n- 1 ≤q M ≤q 10^5\n\n- 1 ≤q x_i, y_i ≤q N\n\n- All pairs (x_i, y_i) are distinct.\n\n- G does not contain directed cycles.\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN M\nx_1 y_1\nx_2 y_2\n:\nx_M y_M\n\nOutput\n\nPrint the length of the longest directed path in G.\n\nSample Input 1\n\n4 5\n1 2\n1 3\n3 2\n2 4\n3 4\n\nSample Output 1\n\n3\n\nThe red directed path in the following figure is the longest:\n\nSample Input 2\n\n6 3\n2 3\n4 5\n5 6\n\nSample Output 2\n\n2\n\nThe red directed path in the following figure is the longest:\n\nSample Input 3\n\n5 8\n5 3\n2 3\n2 4\n5 2\n5 1\n1 4\n4 3\n1 3\n\nSample Output 3\n\n3\n\nThe red directed path in the following figure is one of the longest:",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN M\nx_1 y_1\nx_2 y_2\n:\nx_M y_M",
+    "output_format_md": "Print the length of the longest directed path in G.",
+    "constraints_text": "- All values in input are integers.\n\n- 2 ≤q N ≤q 10^5\n\n- 1 ≤q M ≤q 10^5\n\n- 1 ≤q x_i, y_i ≤q N\n\n- All pairs (x_i, y_i) are distinct.\n\n- G does not contain directed cycles.",
+    "sample_io": [
+      {
+        "input": "1\n\n4 5\n1 2\n1 3\n3 2\n2 4\n3 4",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n6 3\n2 3\n4 5\n5 6",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n5 8\n5 3\n2 3\n2 4\n5 2\n5 1\n1 4\n4 3\n1 3",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "atc-dp-longest-path-a1",
+        "problem_id": "atc-dp-longest-path",
+        "approach_name": "DAG DP",
+        "paradigms": [
+          "Dynamic Programming",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "DAG longest path via memoized DFS / topo DP"
+        ],
+        "editorial_summary_md": "On a DAG, dp[v]=1+max over outgoing edges; memoize or process in topo order."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-grid1",
+    "title": "Grid 1",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_h",
+    "difficulty_rating": 1200,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nThere is a grid with H horizontal rows and W vertical columns.\nLet (i, j) denote the square at the i-th row from the top and the j-th column from the left.\n\nFor each i and j (1 ≤q i ≤q H, 1 ≤q j ≤q W), Square (i, j) is described by a character a_{i, j}.\nIf a_{i, j} is ., Square (i, j) is an empty square; if a_{i, j} is #, Square (i, j) is a wall square.\nIt is guaranteed that Squares (1, 1) and (H, W) are empty squares.\n\nTaro will start from Square (1, 1) and reach (H, W) by repeatedly moving right or down to an adjacent empty square.\n\nFind the number of Taro's paths from Square (1, 1) to (H, W).\nAs the answer can be extremely large, find the count modulo 10^9 + 7.\n\nConstraints\n\n- H and W are integers.\n\n- 2 ≤q H, W ≤q 1000\n\n- a_{i, j} is . or #.\n\n- Squares (1, 1) and (H, W) are empty squares.\n\nInput\n\nInput is given from Standard Input in the following format:\n\nH W\na_{1, 1}\\ldotsa_{1, W}\n:\na_{H, 1}\\ldotsa_{H, W}\n\nOutput\n\nPrint the number of Taro's paths from Square (1, 1) to (H, W), modulo 10^9 + 7.\n\nSample Input 1\n\n3 4\n...#\n.#..\n....\n\nSample Output 1\n\n3\n\nThere are three paths as follows:\n\nSample Input 2\n\n5 2\n..\n#.\n..\n.#\n..\n\nSample Output 2\n\n0\n\nThere may be no paths.\n\nSample Input 3\n\n5 5\n..#..\n.....\n#...#\n.....\n..#..\n\nSample Output 3\n\n24\n\nSample Input 4\n\n20 20\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n....................\n\nSample Output 4\n\n345263555\n\nBe sure to print the count modulo 10^9 + 7.",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nH W\na_{1, 1}\\ldotsa_{1, W}\n:\na_{H, 1}\\ldotsa_{H, W}",
+    "output_format_md": "Print the number of Taro's paths from Square (1, 1) to (H, W), modulo 10^9 + 7.",
+    "constraints_text": "- H and W are integers.\n\n- 2 ≤q H, W ≤q 1000\n\n- a_{i, j} is . or #.\n\n- Squares (1, 1) and (H, W) are empty squares.",
+    "sample_io": [
+      {
+        "input": "1\n\n3 4\n...#\n.#..\n....",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n5 2\n..\n#.\n..\n.#\n..",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n5 5\n..#..\n.....\n#...#\n.....\n..#..",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "atc-dp-grid1-a1",
+        "problem_id": "atc-dp-grid1",
+        "approach_name": "Grid path DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Grid path counts with blocked cells"
+        ],
+        "editorial_summary_md": "dp[i][j] = ways from top-left; zero out walls."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-coins",
+    "title": "Coins",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_i",
+    "difficulty_rating": 1500,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nLet N be a positive odd number.\n\nThere are N coins, numbered 1, 2, \\ldots, N.\nFor each i (1 ≤q i ≤q N), when Coin i is tossed, it comes up heads with probability p_i and tails with probability 1 - p_i.\n\nTaro has tossed all the N coins.\nFind the probability of having more heads than tails.\n\nConstraints\n\n- N is an odd number.\n\n- 1 ≤q N ≤q 2999\n\n- p_i is a real number and has two decimal places.\n\n- 0 < p_i < 1\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN\np_1 p_2 \\ldots p_N\n\nOutput\n\nPrint the probability of having more heads than tails.\nThe output is considered correct when the absolute error is not greater than 10^{-9}.\n\nSample Input 1\n\n3\n0.30 0.60 0.80\n\nSample Output 1\n\n0.612\n\nThe probability of each case where we have more heads than tails is as follows:\n\n- The probability of having (Coin 1, Coin 2, Coin 3) = (Head, Head, Head) is 0.3 × 0.6 × 0.8 = 0.144;\n\n- The probability of having (Coin 1, Coin 2, Coin 3) = (Tail, Head, Head) is 0.7 × 0.6 × 0.8 = 0.336;\n\n- The probability of having (Coin 1, Coin 2, Coin 3) = (Head, Tail, Head) is 0.3 × 0.4 × 0.8 = 0.096;\n\n- The probability of having (Coin 1, Coin 2, Coin 3) = (Head, Head, Tail) is 0.3 × 0.6 × 0.2 = 0.036.\n\nThus, the probability of having more heads than tails is 0.144 + 0.336 + 0.096 + 0.036 = 0.612.\n\nSample Input 2\n\n1\n0.50\n\nSample Output 2\n\n0.5\n\nOutputs such as 0.500, 0.500000001 and 0.499999999 are also considered correct.\n\nSample Input 3\n\n5\n0.42 0.01 0.42 0.99 0.42\n\nSample Output 3\n\n0.3821815872",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN\np_1 p_2 \\ldots p_N",
+    "output_format_md": "Print the probability of having more heads than tails.\nThe output is considered correct when the absolute error is not greater than 10^{-9}.",
+    "constraints_text": "- N is an odd number.\n\n- 1 ≤q N ≤q 2999\n\n- p_i is a real number and has two decimal places.\n\n- 0 < p_i < 1",
+    "sample_io": [
+      {
+        "input": "1\n\n3\n0.30 0.60 0.80",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n1\n0.50",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n5\n0.42 0.01 0.42 0.99 0.42",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "atc-dp-coins-a1",
+        "problem_id": "atc-dp-coins",
+        "approach_name": "Probability DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Probability DP of heads count; answer P(more heads than tails)"
+        ],
+        "editorial_summary_md": "dp[i][h] after i coins; sum probabilities where heads > n/2."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-stones",
+    "title": "Stones",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_k",
+    "difficulty_rating": 1400,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nThere is a set A = \\{ a_1, a_2, \\ldots, a_N \\} consisting of N positive integers.\nTaro and Jiro will play the following game against each other.\n\nInitially, we have a pile consisting of K stones.\nThe two players perform the following operation alternately, starting from Taro:\n\n- Choose an element x in A, and remove exactly x stones from the pile.\n\nA player loses when he becomes unable to play.\nAssuming that both players play optimally, determine the winner.\n\nConstraints\n\n- All values in input are integers.\n\n- 1 ≤q N ≤q 100\n\n- 1 ≤q K ≤q 10^5\n\n- 1 ≤q a_1 < a_2 < \\cdots < a_N ≤q K\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN K\na_1 a_2 \\ldots a_N\n\nOutput\n\nIf Taro will win, print First; if Jiro will win, print Second.\n\nSample Input 1\n\n2 4\n2 3\n\nSample Output 1\n\nFirst\n\nIf Taro removes three stones, Jiro cannot make a move.\nThus, Taro wins.\n\nSample Input 2\n\n2 5\n2 3\n\nSample Output 2\n\nSecond\n\nWhatever Taro does in his operation, Jiro wins, as follows:\n\n- If Taro removes two stones, Jiro can remove three stones to make Taro unable to make a move.\n\n- If Taro removes three stones, Jiro can remove two stones to make Taro unable to make a move.\n\nSample Input 3\n\n2 7\n2 3\n\nSample Output 3\n\nFirst\n\nTaro should remove two stones. Then, whatever Jiro does in his operation, Taro wins, as follows:\n\n- If Jiro removes two stones, Taro can remove three stones to make Jiro unable to make a move.\n\n- If Jiro removes three stones, Taro can remove two stones to make Jiro unable to make a move.\n\nSample Input 4\n\n3 20\n1 2 3\n\nSample Output 4\n\nSecond\n\nSample Input 5\n\n3 21\n1 2 3\n\nSample Output 5\n\nFirst\n\nSample Input 6\n\n1 100000\n1\n\nSample Output 6\n\nSecond",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN K\na_1 a_2 \\ldots a_N",
+    "output_format_md": "If Taro will win, print First; if Jiro will win, print Second.",
+    "constraints_text": "- All values in input are integers.\n\n- 1 ≤q N ≤q 100\n\n- 1 ≤q K ≤q 10^5\n\n- 1 ≤q a_1 < a_2 < \\cdots < a_N ≤q K",
+    "sample_io": [
+      {
+        "input": "1\n\n2 4\n2 3",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n2 5\n2 3",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n2 7\n2 3",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "atc-dp-stones-a1",
+        "problem_id": "atc-dp-stones",
+        "approach_name": "Game DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Nim-like: a pile is winning if some move leaves a losing pile"
+        ],
+        "editorial_summary_md": "win[x] if exists a in A with x≥a and !win[x-a]."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-slimes",
+    "title": "Slimes",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_n",
+    "difficulty_rating": 1600,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nThere are N slimes lining up in a row.\nInitially, the i-th slime from the left has a size of a_i.\n\nTaro is trying to combine all the slimes into a larger slime.\nHe will perform the following operation repeatedly until there is only one slime:\n\n- Choose two adjacent slimes, and combine them into a new slime. The new slime has a size of x + y, where x and y are the sizes of the slimes before combining them. Here, a cost of x + y is incurred. The positional relationship of the slimes does not change while combining slimes.\n\nFind the minimum possible total cost incurred.\n\nConstraints\n\n- All values in input are integers.\n\n- 2 ≤q N ≤q 400\n\n- 1 ≤q a_i ≤q 10^9\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN\na_1 a_2 \\ldots a_N\n\nOutput\n\nPrint the minimum possible total cost incurred.\n\nSample Input 1\n\n4\n10 20 30 40\n\nSample Output 1\n\n190\n\nTaro should do as follows (slimes being combined are shown in bold):\n\n- (10, 20, 30, 40) → (30, 30, 40)\n\n- (30, 30, 40) → (60, 40)\n\n- (60, 40) → (100)\n\nSample Input 2\n\n5\n10 10 10 10 10\n\nSample Output 2\n\n120\n\nTaro should do, for example, as follows:\n\n- (10, 10, 10, 10, 10) → (20, 10, 10, 10)\n\n- (20, 10, 10, 10) → (20, 20, 10)\n\n- (20, 20, 10) → (20, 30)\n\n- (20, 30) → (50)\n\nSample Input 3\n\n3\n1000000000 1000000000 1000000000\n\nSample Output 3\n\n5000000000\n\nThe answer may not fit into a 32-bit integer type.\n\nSample Input 4\n\n6\n7 6 8 6 1 1\n\nSample Output 4\n\n68\n\nTaro should do, for example, as follows:\n\n- (7, 6, 8, 6, 1, 1) → (7, 6, 8, 6, 2)\n\n- (7, 6, 8, 6, 2) → (7, 6, 8, 8)\n\n- (7, 6, 8, 8) → (13, 8, 8)\n\n- (13, 8, 8) → (13, 16)\n\n- (13, 16) → (29)",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN\na_1 a_2 \\ldots a_N",
+    "output_format_md": "Print the minimum possible total cost incurred.",
+    "constraints_text": "- All values in input are integers.\n\n- 2 ≤q N ≤q 400\n\n- 1 ≤q a_i ≤q 10^9",
+    "sample_io": [
+      {
+        "input": "1\n\n4\n10 20 30 40",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n5\n10 10 10 10 10",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n3\n1000000000 1000000000 1000000000",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N³)",
+    "approaches": [
+      {
+        "id": "atc-dp-slimes-a1",
+        "problem_id": "atc-dp-slimes",
+        "approach_name": "Interval merge DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Cost to merge range = sum + best split; prefix sums"
+        ],
+        "editorial_summary_md": "Classic matrix-chain style DP on adjacent slime merges."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-matching",
+    "title": "Matching",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_o",
+    "difficulty_rating": 1700,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nThere are N men and N women, both numbered 1, 2, \\ldots, N.\n\nFor each i, j (1 ≤q i, j ≤q N), the compatibility of Man i and Woman j is given as an integer a_{i, j}.\nIf a_{i, j} = 1, Man i and Woman j are compatible; if a_{i, j} = 0, they are not.\n\nTaro is trying to make N pairs, each consisting of a man and a woman who are compatible.\nHere, each man and each woman must belong to exactly one pair.\n\nFind the number of ways in which Taro can make N pairs, modulo 10^9 + 7.\n\nConstraints\n\n- All values in input are integers.\n\n- 1 ≤q N ≤q 21\n\n- a_{i, j} is 0 or 1.\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN\na_{1, 1} \\ldots a_{1, N}\n:\na_{N, 1} \\ldots a_{N, N}\n\nOutput\n\nPrint the number of ways in which Taro can make N pairs, modulo 10^9 + 7.\n\nSample Input 1\n\n3\n0 1 1\n1 0 1\n1 1 1\n\nSample Output 1\n\n3\n\nThere are three ways to make pairs, as follows ((i, j) denotes a pair of Man i and Woman j):\n\n- (1, 2), (2, 1), (3, 3)\n\n- (1, 2), (2, 3), (3, 1)\n\n- (1, 3), (2, 1), (3, 2)\n\nSample Input 2\n\n4\n0 1 0 0\n0 0 0 1\n1 0 0 0\n0 0 1 0\n\nSample Output 2\n\n1\n\nThere is one way to make pairs, as follows:\n\n- (1, 2), (2, 4), (3, 1), (4, 3)\n\nSample Input 3\n\n1\n0\n\nSample Output 3\n\n0\n\nSample Input 4\n\n21\n0 0 0 0 0 0 0 1 1 0 1 1 1 1 0 0 0 1 0 0 1\n1 1 1 0 0 1 0 0 0 1 0 0 0 0 1 1 1 0 1 1 0\n0 0 1 1 1 1 0 1 1 0 0 1 0 0 1 1 0 0 0 1 1\n0 1 1 0 1 1 0 1 0 1 0 0 1 0 0 0 0 0 1 1 0\n1 1 0 0 1 0 1 0 0 1 1 1 1 0 0 0 0 0 0 0 0\n0 1 1 0 1 1 1 0 1 1 1 0 0 0 1 1 1 1 0 0 1\n0 1 0 0 0 1 0 1 0 0 0 1 1 1 0 0 1 1 0 1 0\n0 0 0 0 1 1 0 0 1 1 0 0 0 0 0 1 1 1 1 1 1\n0 0 1 0 0 1 0 0 1 0 1 1 0 0 1 0 1 0 1 1 1\n0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 0 0 0 1\n0 1 1 0 1 1 0 0 1 1 0 0 0 1 1 1 1 0 1 1 0\n0 0 1 0 0 1 1 1 1 0 1 1 0 1 1 1 0 0 0 0 1\n0 1 1 0 0 1 1 1 1 0 0 0 1 0 1 1 0 1 0 1 1\n1 1 1 1 1 0 0 0 0 1 0 0 1 1 0 1 1 1 0 0 1\n0 0 0 1 1 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1\n1 0 1 1 0 1 0 1 0 0 1 0 0 1 1 0 1 0 1 1 0\n0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 1 1 0 0 1\n0 0 0 1 0 0 1 1 0 1 0 1 0 1 1 0 0 1 1 0 1\n0 0 0 0 1 1 1 0 1 0 1 1 1 0 1 1 0 0 1 1 0\n1 1 0 1 1 0 0 1 1 0 1 1 0 1 1 1 1 1 0 1 0\n1 0 0 1 1 0 1 1 1 1 1 0 1 0 1 1 0 0 0 0 0\n\nSample Output 4\n\n102515160\n\nBe sure to print the number modulo 10^9 + 7.",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN\na_{1, 1} \\ldots a_{1, N}\n:\na_{N, 1} \\ldots a_{N, N}",
+    "output_format_md": "Print the number of ways in which Taro can make N pairs, modulo 10^9 + 7.",
+    "constraints_text": "- All values in input are integers.\n\n- 1 ≤q N ≤q 21\n\n- a_{i, j} is 0 or 1.",
+    "sample_io": [
+      {
+        "input": "1\n\n3\n0 1 1\n1 0 1\n1 1 1",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n4\n0 1 0 0\n0 0 0 1\n1 0 0 0\n0 0 1 0",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n1\n0",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(2^N)",
+    "approaches": [
+      {
+        "id": "atc-dp-matching-a1",
+        "problem_id": "atc-dp-matching",
+        "approach_name": "Bitmask matching DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Bitmask DP over matched women for successive men"
+        ],
+        "editorial_summary_md": "dp[mask] = ways to match first popcount(mask) men to the set mask."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-independent-set",
+    "title": "Independent Set",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_p",
+    "difficulty_rating": 1600,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nThere is a tree with N vertices, numbered 1, 2, \\ldots, N.\nFor each i (1 ≤q i ≤q N - 1), the i-th edge connects Vertex x_i and y_i.\n\nTaro has decided to paint each vertex in white or black.\nHere, it is not allowed to paint two adjacent vertices both in black.\n\nFind the number of ways in which the vertices can be painted, modulo 10^9 + 7.\n\nConstraints\n\n- All values in input are integers.\n\n- 1 ≤q N ≤q 10^5\n\n- 1 ≤q x_i, y_i ≤q N\n\n- The given graph is a tree.\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN\nx_1 y_1\nx_2 y_2\n:\nx_{N - 1} y_{N - 1}\n\nOutput\n\nPrint the number of ways in which the vertices can be painted, modulo 10^9 + 7.\n\nSample Input 1\n\n3\n1 2\n2 3\n\nSample Output 1\n\n5\n\nThere are five ways to paint the vertices, as follows:\n\nSample Input 2\n\n4\n1 2\n1 3\n1 4\n\nSample Output 2\n\n9\n\nThere are nine ways to paint the vertices, as follows:\n\nSample Input 3\n\n1\n\nSample Output 3\n\n2\n\nSample Input 4\n\n10\n8 5\n10 8\n6 5\n1 5\n4 8\n2 10\n3 6\n9 2\n1 7\n\nSample Output 4\n\n157",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN\nx_1 y_1\nx_2 y_2\n:\nx_{N - 1} y_{N - 1}",
+    "output_format_md": "Print the number of ways in which the vertices can be painted, modulo 10^9 + 7.",
+    "constraints_text": "- All values in input are integers.\n\n- 1 ≤q N ≤q 10^5\n\n- 1 ≤q x_i, y_i ≤q N\n\n- The given graph is a tree.",
+    "sample_io": [
+      {
+        "input": "1\n\n3\n1 2\n2 3",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n4\n1 2\n1 3\n1 4",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n1",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "atc-dp-independent-set-a1",
+        "problem_id": "atc-dp-independent-set",
+        "approach_name": "Tree coloring DP",
+        "paradigms": [
+          "Dynamic Programming",
+          "Graph Algorithms"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Tree DP: black/white vertex colors with independence constraint"
+        ],
+        "editorial_summary_md": "For each subtree count ways root is black vs white; multiply child contributions."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-flowers",
+    "title": "Flowers",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_q",
+    "difficulty_rating": 1700,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nThere are N flowers arranged in a row.\nFor each i (1 ≤q i ≤q N), the height and the beauty of the i-th flower from the left is h_i and a_i, respectively.\nHere, h_1, h_2, \\ldots, h_N are all distinct.\n\nTaro is pulling out some flowers so that the following condition is met:\n\n- The heights of the remaining flowers are monotonically increasing from left to right.\n\nFind the maximum possible sum of the beauties of the remaining flowers.\n\nConstraints\n\n- All values in input are integers.\n\n- 1 ≤q N ≤q 2 × 10^5\n\n- 1 ≤q h_i ≤q N\n\n- h_1, h_2, \\ldots, h_N are all distinct.\n\n- 1 ≤q a_i ≤q 10^9\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN\nh_1 h_2 \\ldots h_N\na_1 a_2 \\ldots a_N\n\nOutput\n\nPrint the maximum possible sum of the beauties of the remaining flowers.\n\nSample Input 1\n\n4\n3 1 4 2\n10 20 30 40\n\nSample Output 1\n\n60\n\nWe should keep the second and fourth flowers from the left.\nThen, the heights would be 1, 2 from left to right, which is monotonically increasing, and the sum of the beauties would be 20 + 40 = 60.\n\nSample Input 2\n\n1\n1\n10\n\nSample Output 2\n\n10\n\nThe condition is met already at the beginning.\n\nSample Input 3\n\n5\n1 2 3 4 5\n1000000000 1000000000 1000000000 1000000000 1000000000\n\nSample Output 3\n\n5000000000\n\nThe answer may not fit into a 32-bit integer type.\n\nSample Input 4\n\n9\n4 2 5 8 3 6 1 7 9\n6 8 8 4 6 3 5 7 5\n\nSample Output 4\n\n31\n\nWe should keep the second, third, sixth, eighth and ninth flowers from the left.",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN\nh_1 h_2 \\ldots h_N\na_1 a_2 \\ldots a_N",
+    "output_format_md": "Print the maximum possible sum of the beauties of the remaining flowers.",
+    "constraints_text": "- All values in input are integers.\n\n- 1 ≤q N ≤q 2 × 10^5\n\n- 1 ≤q h_i ≤q N\n\n- h_1, h_2, \\ldots, h_N are all distinct.\n\n- 1 ≤q a_i ≤q 10^9",
+    "sample_io": [
+      {
+        "input": "1\n\n4\n3 1 4 2\n10 20 30 40",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n1\n1\n10",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n5\n1 2 3 4 5\n1000000000 1000000000 1000000000 1000000000 1000000000",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "atc-dp-flowers-a1",
+        "problem_id": "atc-dp-flowers",
+        "approach_name": "Fenwick LIS DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Segment Tree",
+          "Fenwick"
+        ],
+        "key_insights": [
+          "LIS-like max beauty with heights as keys; fenwick/segtree for max prefix"
+        ],
+        "editorial_summary_md": "dp[h]=beauty + max dp[h'<h]; maintain with a BIT on heights."
+      }
+    ]
+  },
+  {
+    "id": "cses-money-sums",
+    "title": "Money Sums",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1745",
+    "difficulty_rating": 1400,
+    "statement_md": "You have $n$ coins with certain values. Your task is to find all money sums you can create using these coins.\n\nInput\n\nThe first input line has an integer $n$: the number of coins.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the values of the coins.\n\nOutput\n\nFirst print an integer $k$: the number of distinct money sums. After this, print all possible sums in increasing order.\n\nConstraints\n\n- $1 ≤ n ≤ 100$\n\n- $1 ≤ x_i ≤ 1000$\n\nExample\n\nInput:\n\n4\n4 2 5 2\n\nOutput:\n\n9\n2 4 5 6 7 8 9 11 13",
+    "input_format_md": "The first input line has an integer $n$: the number of coins.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the values of the coins.",
+    "output_format_md": "First print an integer $k$: the number of distinct money sums. After this, print all possible sums in increasing order.",
+    "constraints_text": "- $1 ≤ n ≤ 100$\n\n- $1 ≤ x_i ≤ 1000$",
+    "sample_io": [
+      {
+        "input": "The first input line has an integer $n$: the number of coins.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the values of the coins.",
+        "output": "First print an integer $k$: the number of distinct money sums. After this, print all possible sums in increasing order."
+      },
+      {
+        "input": ":\n\n4\n4 2 5 2",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N · X)",
+    "approaches": [
+      {
+        "id": "cses-money-sums-a1",
+        "problem_id": "cses-money-sums",
+        "approach_name": "Subset-sum DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Knapsack"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "0/1 knapsack on achievable sums with values as both weight and value"
+        ],
+        "editorial_summary_md": "Mark achievable totals with a boolean DP over coin values (each used at most once)."
+      }
+    ]
+  },
+  {
+    "id": "cses-array-description",
+    "title": "Array Description",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1746",
+    "difficulty_rating": 1500,
+    "statement_md": "You know that an array has $n$ integers between $1$ and  $m$, and the absolute difference between two adjacent values is at most $1$.\n\nGiven a description of the array where some values may be unknown, your task is to count the number of arrays that match the description.\n\nInput\n\nThe first input line has two integers $n$ and $m$: the array size and the upper bound for each value.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the array. Value $0$ denotes an unknown value.\n\nOutput\n\nPrint one integer: the number of arrays modulo $10^9+7$.\n\nConstraints\n\n- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 100$\n\n- $0 ≤ x_i ≤ m$\n\nExample\n\nInput:\n\n3 5\n2 0 2\n\nOutput:\n\n3\n\nExplanation: The arrays $[2,1,2]$, $[2,2,2]$ and $[2,3,2]$ match the description.",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the array size and the upper bound for each value.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the array. Value $0$ denotes an unknown value.",
+    "output_format_md": "Print one integer: the number of arrays modulo $10^9+7$.",
+    "constraints_text": "- $1 ≤ n ≤ 10^5$\n\n- $1 ≤ m ≤ 100$\n\n- $0 ≤ x_i ≤ m$",
+    "sample_io": [
+      {
+        "input": "The first input line has two integers $n$ and $m$: the array size and the upper bound for each value.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the array. Value $0$ denotes an unknown value.",
+        "output": "Print one integer: the number of arrays modulo $10^9+7$."
+      },
+      {
+        "input": ":\n\n3 5\n2 0 2",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-array-description-a1",
+        "problem_id": "cses-array-description",
+        "approach_name": "Adjacent-value DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "dp[i][v] = ways to fill prefix i ending with value v; adjacent differ by ≤1"
+        ],
+        "editorial_summary_md": "Fill unknowns left-to-right; transition only from previous values within distance 1."
+      }
+    ]
+  },
+  {
+    "id": "cses-rectangle-cutting",
+    "title": "Rectangle Cutting",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1744",
+    "difficulty_rating": 1500,
+    "statement_md": "Given an $a \\times b$ rectangle, your task is to cut it into squares. On each move you can select a rectangle and cut it into two rectangles in such a way that all side lengths remain integers. What is the minimum possible number of moves?\n\nInput\n\nThe only input line has two integers $a$ and $b$.\n\nOutput\n\nPrint one integer: the minimum number of moves.\n\nConstraints\n\n- $1 ≤ a,b ≤ 500$\n\nExample\n\nInput:\n\n3 5\n\nOutput:\n\n3",
+    "input_format_md": "The only input line has two integers $a$ and $b$.",
+    "output_format_md": "Print one integer: the minimum number of moves.",
+    "constraints_text": "- $1 ≤ a,b ≤ 500$",
+    "sample_io": [
+      {
+        "input": "The only input line has two integers $a$ and $b$.",
+        "output": "Print one integer: the minimum number of moves."
+      },
+      {
+        "input": ":\n\n3 5",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-rectangle-cutting-a1",
+        "problem_id": "cses-rectangle-cutting",
+        "approach_name": "Rectangle DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Min cuts to split an a×b rectangle into squares; try every first cut"
+        ],
+        "editorial_summary_md": "dp[a][b] = min over horizontal/vertical cuts; base when a=b is 0."
+      }
+    ]
+  },
+  {
+    "id": "cses-removal-game",
+    "title": "Removal Game",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1097",
+    "difficulty_rating": 1600,
+    "statement_md": "There is a list of $n$ numbers and two players who move alternately. On each move, a player removes either the first or last number from the list, and their score increases by that number. Both players try to maximize their scores.\n\nWhat is the maximum possible score for the first player when both players play optimally?\n\nInput\n\nThe first input line contains an integer $n$: the size of the list.\n\nThe next line has $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the list.\n\nOutput\n\nPrint the maximum possible score for the first player.\n\nConstraints\n\n- $1 ≤ n ≤ 5000$\n\n- $-10^9 ≤ x_i ≤ 10^9$\n\nExample\n\nInput:\n\n4\n4 5 1 3\n\nOutput:\n\n8",
+    "input_format_md": "The first input line contains an integer $n$: the size of the list.\n\nThe next line has $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the list.",
+    "output_format_md": "Print the maximum possible score for the first player.",
+    "constraints_text": "- $1 ≤ n ≤ 5000$\n\n- $-10^9 ≤ x_i ≤ 10^9$",
+    "sample_io": [
+      {
+        "input": "The first input line contains an integer $n$: the size of the list.\n\nThe next line has $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the list.",
+        "output": "Print the maximum possible score for the first player."
+      },
+      {
+        "input": ":\n\n4\n4 5 1 3",
+        "output": ":"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-removal-game-a1",
+        "problem_id": "cses-removal-game",
+        "approach_name": "Interval game DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Two-player optimal play on an array ends; score difference / first-player score via interval DP"
+        ],
+        "editorial_summary_md": "dp on subarrays: player takes left or right end optimally against an optimal opponent."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-deque",
+    "title": "Deque",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_l",
+    "difficulty_rating": 1500,
+    "statement_md": "Score : 100 points\n\nProblem Statement\n\nTaro and Jiro will play the following game against each other.\n\nInitially, they are given a sequence a = (a_1, a_2, \\ldots, a_N).\nUntil a becomes empty, the two players perform the following operation alternately, starting from Taro:\n\n- Remove the element at the beginning or the end of a. The player earns x points, where x is the removed element.\n\nLet X and Y be Taro's and Jiro's total score at the end of the game, respectively.\nTaro tries to maximize X - Y, while Jiro tries to minimize X - Y.\n\nAssuming that the two players play optimally, find the resulting value of X - Y.\n\nConstraints\n\n- All values in input are integers.\n\n- 1 ≤q N ≤q 3000\n\n- 1 ≤q a_i ≤q 10^9\n\nInput\n\nInput is given from Standard Input in the following format:\n\nN\na_1 a_2 \\ldots a_N\n\nOutput\n\nPrint the resulting value of X - Y, assuming that the two players play optimally.\n\nSample Input 1\n\n4\n10 80 90 30\n\nSample Output 1\n\n10\n\nThe game proceeds as follows when the two players play optimally (the element being removed is written bold):\n\n- Taro: (10, 80, 90, 30) → (10, 80, 90)\n\n- Jiro: (10, 80, 90) → (10, 80)\n\n- Taro: (10, 80) → (10)\n\n- Jiro: (10) → ()\n\nHere, X = 30 + 80 = 110 and Y = 90 + 10 = 100.\n\nSample Input 2\n\n3\n10 100 10\n\nSample Output 2\n\n-80\n\nThe game proceeds, for example, as follows when the two players play optimally:\n\n- Taro: (10, 100, 10) → (100, 10)\n\n- Jiro: (100, 10) → (10)\n\n- Taro: (10) → ()\n\nHere, X = 10 + 10 = 20 and Y = 100.\n\nSample Input 3\n\n1\n10\n\nSample Output 3\n\n10\n\nSample Input 4\n\n10\n1000000000 1 1000000000 1 1000000000 1 1000000000 1 1000000000 1\n\nSample Output 4\n\n4999999995\n\nThe answer may not fit into a 32-bit integer type.\n\nSample Input 5\n\n6\n4 2 9 7 1 5\n\nSample Output 5\n\n2\n\nThe game proceeds, for example, as follows when the two players play optimally:\n\n- Taro: (4, 2, 9, 7, 1, 5) → (4, 2, 9, 7, 1)\n\n- Jiro: (4, 2, 9, 7, 1) → (2, 9, 7, 1)\n\n- Taro: (2, 9, 7, 1) → (2, 9, 7)\n\n- Jiro: (2, 9, 7) → (2, 9)\n\n- Taro: (2, 9) → (2)\n\n- Jiro: (2) → ()\n\nHere, X = 5 + 1 + 9 = 15 and Y = 4 + 7 + 2 = 13.",
+    "input_format_md": "Input is given from Standard Input in the following format:\n\nN\na_1 a_2 \\ldots a_N",
+    "output_format_md": "Print the resulting value of X - Y, assuming that the two players play optimally.",
+    "constraints_text": "- All values in input are integers.\n\n- 1 ≤q N ≤q 3000\n\n- 1 ≤q a_i ≤q 10^9",
+    "sample_io": [
+      {
+        "input": "1\n\n4\n10 80 90 30",
+        "output": "1"
+      },
+      {
+        "input": "2\n\n3\n10 100 10",
+        "output": "2"
+      },
+      {
+        "input": "3\n\n1\n10",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "atc-dp-deque-a1",
+        "problem_id": "atc-dp-deque",
+        "approach_name": "Interval game DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Interval DP for X-Y under optimal alternating ends"
+        ],
+        "editorial_summary_md": "Similar to Removal Game: maximize score difference on subarrays."
+      }
+    ]
+  },
+  {
+    "id": "cf-1201c",
+    "title": "Maximum Median",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1201/C",
+    "difficulty_rating": 1400,
+    "statement_md": "You are given an array $a$ of $n$ integers, where $n$ is odd, and an integer $k$. In one move you may increase any element by $1$. What is the maximum median you can achieve with at most $k$ moves?",
+    "input_format_md": "The first line contains two integers $n$ and $k$ ($1 \\le n \\le 2\\cdot 10^5$, $n$ odd, $1 \\le k \\le 10^9$).\n\nThe second line contains $n$ integers $a_i$ ($1 \\le a_i \\le 10^9$).",
+    "output_format_md": "Print a single integer — the maximum possible median.",
+    "constraints_text": "$n$ odd, $1 \\le n \\le 2\\cdot 10^5$, $1 \\le k,a_i \\le 10^9$",
+    "sample_io": [
+      {
+        "input": "3 2\n1 3 5",
+        "output": "5"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1201c-a1",
+        "problem_id": "cf-1201c",
+        "approach_name": "Binary search median",
+        "paradigms": [
+          "Binary Search on Answer",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Binary search the median; cost is raising the upper half to mid"
+        ],
+        "editorial_summary_md": "Sort; search max median M affordable with ≤k increments on a[mid..]."
+      }
+    ]
+  },
+  {
+    "id": "cf-189a",
+    "title": "Cut Ribbon",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/189/A",
+    "difficulty_rating": 1300,
+    "statement_md": "Polycarp has a ribbon of length $n$. He can only cut pieces of lengths $a$, $b$, or $c$. What is the maximum number of pieces he can cut the ribbon into? Each piece must have length $a$, $b$, or $c$.",
+    "input_format_md": "A single line with four integers $n, a, b, c$ ($1 \\le n,a,b,c \\le 4000$).",
+    "output_format_md": "Print the maximum number of pieces.",
+    "constraints_text": "$1 \\le n,a,b,c \\le 4000$",
+    "sample_io": [
+      {
+        "input": "5 5 3 2",
+        "output": "2"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-189a-a1",
+        "problem_id": "cf-189a",
+        "approach_name": "Unbounded cut DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Unbounded knapsack: max pieces cutting ribbon into a,b,c lengths"
+        ],
+        "editorial_summary_md": "dp[x]=max pieces to make length x; try subtracting a,b,c."
+      }
+    ]
+  },
+  {
+    "id": "cf-455a",
+    "title": "Boredom",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/455/A",
+    "difficulty_rating": 1500,
+    "statement_md": "You are given a sequence $a_1,\\dots,a_n$. In one move you may take any element $a_i=x$, delete it and gain $x$ points, and all elements equal to $x-1$ or $x+1$ are also deleted (no points for them). Maximize the total points.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 10^5$).\n\nThe second line contains $n$ integers $a_i$ ($1 \\le a_i \\le 10^5$).",
+    "output_format_md": "Print the maximum number of points.",
+    "constraints_text": "$1 \\le n \\le 10^5$, $1 \\le a_i \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "2\n1 2",
+        "output": "2"
+      }
+    ],
+    "target_complexity": "O(N · X)",
+    "approaches": [
+      {
+        "id": "cf-455a-a1",
+        "problem_id": "cf-455a",
+        "approach_name": "House-robber on values",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Points equal value*count; taking v forbids v-1 and v+1"
+        ],
+        "editorial_summary_md": "Compress to frequency array; dp like house robber on consecutive integers."
+      }
+    ]
+  },
+  {
+    "id": "cf-489c",
+    "title": "Given Length and Sum of Digits...",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/489/C",
+    "difficulty_rating": 1400,
+    "statement_md": "Find the smallest and largest decimal integers with exactly $m$ digits and digit sum $s$. Leading zeros are not allowed (except the number $0$ when $m=1$). If impossible, print $-1$ $-1$.",
+    "input_format_md": "A single line with two integers $m$ and $s$ ($1 \\le m \\le 100$, $0 \\le s \\le 900$).",
+    "output_format_md": "Print two integers — the minimal and maximal numbers — or $-1$ $-1$.",
+    "constraints_text": "$1 \\le m \\le 100$, $0 \\le s \\le 900$",
+    "sample_io": [
+      {
+        "input": "2 15",
+        "output": "69 96"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-489c-a1",
+        "problem_id": "cf-489c",
+        "approach_name": "Digit greedy",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Build min and max digit strings with length m and digit sum s"
+        ],
+        "editorial_summary_md": "Greedy place digits from left/right with remaining sum bounds; handle leading zeros."
+      }
+    ]
+  },
+  {
+    "id": "cf-545c",
+    "title": "Woodcutters",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/545/C",
+    "difficulty_rating": 1500,
+    "statement_md": "There are $n$ trees on a line at distinct positions $x_i$ with heights $h_i$. You may fell a tree left or right (occupying $[x_i-h_i,x_i]$ or $[x_i,x_i+h_i]$) or leave it standing. Felled intervals must not contain another tree’s position. Maximize the number of felled trees.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 10^5$).\n\nEach of the next $n$ lines contains $x_i$ and $h_i$ ($1 \\le x_i,h_i \\le 10^9$), sorted by $x_i$.",
+    "output_format_md": "Print the maximum number of trees you can cut.",
+    "constraints_text": "$1 \\le n \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "5\n1 2\n2 1\n5 10\n10 9\n19 1",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-545c-a1",
+        "problem_id": "cf-545c",
+        "approach_name": "Left-prefer cuts",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Cut trees left if possible else right if it does not block the next"
+        ],
+        "editorial_summary_md": "Scan left-to-right; fall left into free space, otherwise try falling right."
+      }
+    ]
+  },
+  {
+    "id": "cf-580b",
+    "title": "Kefa and Company",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/580/B",
+    "difficulty_rating": 1400,
+    "statement_md": "Kefa wants a friend group where the difference between the richest and poorest is strictly less than $d$. Each friend $i$ has money $m_i$ and friendship factor $s_i$. Maximize the sum of friendship factors in such a group.",
+    "input_format_md": "The first line contains $n$ and $d$ ($1 \\le n \\le 10^5$, $1 \\le d \\le 10^9$).\n\nEach of the next $n$ lines contains $m_i$ and $s_i$ ($1 \\le m_i,s_i \\le 10^9$).",
+    "output_format_md": "Print the maximum total friendship factor.",
+    "constraints_text": "$1 \\le n \\le 10^5$, $1 \\le d,m_i,s_i \\le 10^9$",
+    "sample_io": [
+      {
+        "input": "4 5\n75 5\n0 100\n150 20\n75 12",
+        "output": "37"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-580b-a1",
+        "problem_id": "cf-580b",
+        "approach_name": "Sliding window",
+        "paradigms": [
+          "Two Pointers"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Sort friends by money; sliding window max friendship with money span <d"
+        ],
+        "editorial_summary_md": "Two pointers on sorted wealth; maintain friendship sum of the window."
+      }
+    ]
+  },
+  {
+    "id": "cf-702c",
+    "title": "Cellular Network",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/702/C",
+    "difficulty_rating": 1500,
+    "statement_md": "There are $n$ cities and $m$ cellular towers on a line. Find the minimum range $r$ such that every city is within distance $r$ of at least one tower.",
+    "input_format_md": "The first line contains $n$ and $m$ ($1 \\le n,m \\le 10^5$).\n\nThe second line contains $n$ city coordinates.\n\nThe third line contains $m$ tower coordinates.\n\nAll coordinates are between $0$ and $10^9$, given in non-decreasing order.",
+    "output_format_md": "Print the minimum possible range $r$.",
+    "constraints_text": "$1 \\le n,m \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "3 2\n1 5 10\n4 6",
+        "output": "4"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-702c-a1",
+        "problem_id": "cf-702c",
+        "approach_name": "Binary search coverage",
+        "paradigms": [
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Binary search tower radius; each city must be covered by some tower"
+        ],
+        "editorial_summary_md": "For mid r, two-pointer check every city has a tower within r."
+      }
+    ]
+  },
+  {
+    "id": "cf-550b",
+    "title": "Preparing Olympiad",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/550/B",
+    "difficulty_rating": 1300,
+    "statement_md": "You have $n$ problems with difficulties $c_i$. Choose a subset of at least two problems such that the total difficulty is between $l$ and $r$ inclusive, and the difference between the hardest and easiest chosen problem is at least $x$. How many subsets are valid?",
+    "input_format_md": "The first line contains $n,l,r,x$ ($2 \\le n \\le 15$, $1 \\le l \\le r \\le 10^9$, $1 \\le x \\le 10^6$).\n\nThe second line contains $n$ integers $c_i$ ($1 \\le c_i \\le 10^6$).",
+    "output_format_md": "Print the number of valid subsets.",
+    "constraints_text": "$2 \\le n \\le 15$",
+    "sample_io": [
+      {
+        "input": "3 5 6 1\n1 2 3",
+        "output": "2"
+      }
+    ],
+    "target_complexity": "O(2^N)",
+    "approaches": [
+      {
+        "id": "cf-550b-a1",
+        "problem_id": "cf-550b",
+        "approach_name": "Subset enumeration",
+        "paradigms": [
+          "Brute Force"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "n≤15: enumerate subsets; check sum, max-min, size≥2"
+        ],
+        "editorial_summary_md": "Try all 2^n subsets of problems for the olympiad constraints."
+      }
+    ]
+  },
+  {
+    "id": "cf-327a",
+    "title": "Flipping",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/327/A",
+    "difficulty_rating": 1200,
+    "statement_md": "You are given a binary array of length $n$. You must choose one contiguous subarray and flip all bits in it (0↔1). Maximize the number of ones in the array after exactly one flip.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 100$).\n\nThe second line contains $n$ integers $a_i$ ($0$ or $1$).",
+    "output_format_md": "Print the maximum number of ones after one flip.",
+    "constraints_text": "$1 \\le n \\le 100$",
+    "sample_io": [
+      {
+        "input": "5\n1 0 0 1 0",
+        "output": "4"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-327a-a1",
+        "problem_id": "cf-327a",
+        "approach_name": "Kadane on flip gain",
+        "paradigms": [
+          "Dynamic Programming",
+          "Brute Force"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Flip one subarray of bits; maximize number of 1s = total1s + max gain"
+        ],
+        "editorial_summary_md": "Map 0→+1 and 1→-1; Kadane finds best flip segment."
+      }
+    ]
+  },
+  {
+    "id": "cf-1352c",
+    "title": "K-th Not Divisible by n",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1352/C",
+    "difficulty_rating": 1200,
+    "statement_md": "You are given positive integers $n$ and $k$. Find the $k$-th positive integer that is not divisible by $n$.",
+    "input_format_md": "The first line contains $t$ ($1 \\le t \\le 1000$).\n\nEach of the next $t$ lines contains $n$ and $k$ ($2 \\le n \\le 10^9$, $1 \\le k \\le 10^9$).",
+    "output_format_md": "For each test case print the answer on its own line.",
+    "constraints_text": "$2 \\le n \\le 10^9$, $1 \\le k \\le 10^9$",
+    "sample_io": [
+      {
+        "input": "6\n3 7\n4 12\n2 1000000000\n7 97\n1000000000 1000000000\n2 1",
+        "output": "10\n15\n1999999999\n113\n1000000001\n1"
+      }
+    ],
+    "target_complexity": "O(1)",
+    "approaches": [
+      {
+        "id": "cf-1352c-a1",
+        "problem_id": "cf-1352c",
+        "approach_name": "Closed form",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "k-th positive not divisible by n is k + floor((k-1)/(n-1))"
+        ],
+        "editorial_summary_md": "Skip every multiple of n in the positive integers with an O(1) formula."
+      }
+    ]
+  },
+  {
+    "id": "cf-1873e",
+    "title": "Building an Aquarium",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1873/E",
+    "difficulty_rating": 1300,
+    "statement_md": "There are $n$ columns of coral with heights $a_i$. You choose a water height $h$ and pour $\\sum_i \\max(0, h-a_i)$ units of water. Find the maximum $h$ such that the water used is at most $x$.",
+    "input_format_md": "The first line contains $t$ ($1 \\le t \\le 10^4$).\n\nEach test case: first line $n$ and $x$ ($1 \\le n \\le 2\\cdot 10^5$, $1 \\le x \\le 10^{18}$); second line $n$ integers $a_i$ ($1 \\le a_i \\le 10^9$). Sum of $n$ over tests $\\le 2\\cdot 10^5$.",
+    "output_format_md": "For each test case print the maximum $h$.",
+    "constraints_text": "$1 \\le \\sum n \\le 2\\cdot 10^5$, $1 \\le x \\le 10^{18}$",
+    "sample_io": [
+      {
+        "input": "5\n4 15\n1 1 4 1\n4 16\n1 1 4 1\n4 1000000000000000000\n1000000000 1000000000 1000000000 1000000000\n1 1000000000000000000\n1\n7 9\n1 2 1 2 5 2 1",
+        "output": "4\n5\n1000000000000000000\n1000000000000000001\n3"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1873e-a1",
+        "problem_id": "cf-1873e",
+        "approach_name": "Binary search height",
+        "paradigms": [
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Binary search water height; cost is sum max(0, h-a_i)"
+        ],
+        "editorial_summary_md": "Monotonic cost vs height; find max h with cost ≤ x."
+      }
+    ]
+  },
+  {
+    "id": "cf-1690d",
+    "title": "Black and White Stripe",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1690/D",
+    "difficulty_rating": 1200,
+    "statement_md": "You have a stripe of length $n$ with cells colored black (`B`) or white (`W`). In one move you may recolor any cell. What is the minimum number of recolors so that some contiguous segment of length $k$ is all black?",
+    "input_format_md": "The first line contains $t$ ($1 \\le t \\le 10^4$).\n\nEach test: first line $n$ and $k$ ($1 \\le k \\le n \\le 2\\cdot 10^5$); second line a string of length $n$ over `B`/`W`. Sum of $n$ $\\le 2\\cdot 10^5$.",
+    "output_format_md": "For each test case print the minimum number of recolors.",
+    "constraints_text": "$1 \\le \\sum n \\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "4\n5 3\nBBWBW\n5 5\nBBWBW\n1 1\nW\n3 1\nWWW",
+        "output": "1\n2\n1\n0"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1690d-a1",
+        "problem_id": "cf-1690d",
+        "approach_name": "Sliding window",
+        "paradigms": [
+          "Two Pointers",
+          "Prefix Sums"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Min recolors for a black segment of length k = whites in a window of k"
+        ],
+        "editorial_summary_md": "Count whites in each length-k window; take the minimum."
+      }
+    ]
+  },
+  {
+    "id": "cf-1324d",
+    "title": "Pair of Topics",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1324/D",
+    "difficulty_rating": 1500,
+    "statement_md": "There are $n$ topics. Teacher’s interest is $a_i$, student’s is $b_i$. A pair $(i,j)$ ($i<j$) is good if $a_i+a_j > b_i+b_j$. Count the number of good pairs.",
+    "input_format_md": "The first line contains $n$ ($2 \\le n \\le 2\\cdot 10^5$).\n\nThe second line contains $a_1\\dots a_n$ ($1 \\le a_i \\le 10^9$).\n\nThe third line contains $b_1\\dots b_n$ ($1 \\le b_i \\le 10^9$).",
+    "output_format_md": "Print the number of good pairs.",
+    "constraints_text": "$2 \\le n \\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "5\n4 8 2 6 2\n4 5 4 1 3",
+        "output": "7"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1324d-a1",
+        "problem_id": "cf-1324d",
+        "approach_name": "Transform + two pointers",
+        "paradigms": [
+          "Two Pointers"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Rewrite a_i+a_j > b_i+b_j as (a-b)_i + (a-b)_j > 0; sort and two-pointer"
+        ],
+        "editorial_summary_md": "Work with c_i=a_i-b_i; count ordered pairs with c_i+c_j>0."
+      }
+    ]
+  },
+  {
+    "id": "cf-1005c",
+    "title": "Summarize to the Power of Two",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1005/C",
+    "difficulty_rating": 1300,
+    "statement_md": "An array element may be removed if it cannot be paired with some other (possibly same-value different index) element so that their sum is a power of two. How many elements must be removed so that every remaining element has such a pair?",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 1.2\\cdot 10^5$).\n\nThe second line contains $n$ integers $a_i$ ($1 \\le a_i \\le 10^9$).",
+    "output_format_md": "Print the number of elements to remove.",
+    "constraints_text": "$1 \\le n \\le 1.2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "6\n4 7 1 5 4 9",
+        "output": "1"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1005c-a1",
+        "problem_id": "cf-1005c",
+        "approach_name": "Power-of-two pairs",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Map"
+        ],
+        "key_insights": [
+          "A value stays if some other makes a power-of-two sum; check ≤30 powers"
+        ],
+        "editorial_summary_md": "Frequency map; for each a check whether 2^k-a exists with enough multiplicity."
+      }
+    ]
+  },
+  {
+    "id": "cf-1472d",
+    "title": "Even-Odd Game",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1472/D",
+    "difficulty_rating": 1200,
+    "statement_md": "Alice and Bob play optimally on an array of $n$ integers. On a turn a player takes one remaining number: Alice scores it if even; Bob scores it if odd. They alternate, Alice first. Print “Alice”, “Bob”, or “Tie” comparing final scores.",
+    "input_format_md": "The first line contains $t$ ($1 \\le t \\le 10^4$).\n\nEach test: first line $n$ ($1 \\le n \\le 2\\cdot 10^5$); second line $n$ integers $a_i$ ($1 \\le a_i \\le 10^9$). Sum of $n$ $\\le 2\\cdot 10^5$.",
+    "output_format_md": "For each test case print Alice, Bob, or Tie.",
+    "constraints_text": "$1 \\le \\sum n \\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "4\n4\n1 2 3 4\n5\n1 2 3 4 5\n1\n1000000000\n3\n1 1 1",
+        "output": "Alice\nBob\nAlice\nTie"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1472d-a1",
+        "problem_id": "cf-1472d",
+        "approach_name": "Alternating greedy",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Sort descending; Alice takes even values as score, Bob odd"
+        ],
+        "editorial_summary_md": "Optimal play picks the globally largest remaining integer each turn."
+      }
+    ]
   }
 ]
