@@ -73,6 +73,7 @@ npm run ingest:curated-expansion
 npm run ingest:curated-batch2
 npm run ingest:curated-batch3   # fill missing/thin algorithm tags
 npm run ingest:curated-batch4
+npm run ingest:curated-batch5
 npm run generate:seed
 ```
 
