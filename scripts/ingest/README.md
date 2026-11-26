@@ -70,6 +70,7 @@ Fetch a curated gap-fill batch (CSES / AtCoder DP / classic CF):
 
 ```bash
 npm run ingest:curated-expansion
+npm run ingest:curated-batch2
 npm run generate:seed
 ```
 
