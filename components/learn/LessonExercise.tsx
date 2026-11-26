@@ -34,6 +34,8 @@ function flatten(exercises: LearnExercise[]): FlatBeat[] {
       });
     } else {
       ex.steps.forEach((step, i) => {
+        // Keep the shared setup (array/graph) visible on every step — not only the first.
+        const context_md = [ex.context_md, step.context_md].filter(Boolean).join('\n\n') || undefined;
         out.push({
           key: `${ex.id}-${i}`,
           exerciseId: ex.id,
@@ -41,7 +43,7 @@ function flatten(exercises: LearnExercise[]): FlatBeat[] {
           stepLabel: `Step ${i + 1}/${ex.steps.length}`,
           beat: {
             ...step,
-            context_md: i === 0 ? ex.context_md ?? step.context_md : step.context_md,
+            context_md,
           },
         });
       });
