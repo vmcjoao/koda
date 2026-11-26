@@ -10,6 +10,7 @@ import {
   todayIso,
   type DailySet,
 } from '@/lib/habit';
+import { isPendingCloudAttempt, mergeProfilesForSync } from '@/lib/sync';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import type {
   AttemptStatus,
@@ -205,6 +206,112 @@ export async function updateRatingBand(userId: string | null, band: number): Pro
     await supabase.from('user_profiles').update({ rating_band: clamped }).eq('user_id', userId);
   }
   return profile;
+}
+
+export type SyncResult = {
+  uploadedAttempts: number;
+  upsertedStates: number;
+  profileSynced: boolean;
+  pendingLeft: number;
+  error?: string;
+};
+
+/**
+ * Push guest/local attempts + problem state + XP into the signed-in cloud account.
+ * Safe to call repeatedly — only `local-*` / demo-user attempts are uploaded.
+ */
+export async function syncLocalProgressToCloud(userId: string): Promise<SyncResult> {
+  if (!supabase) {
+    return {
+      uploadedAttempts: 0,
+      upsertedStates: 0,
+      profileSynced: false,
+      pendingLeft: 0,
+      error: 'Supabase is not configured.',
+    };
+  }
+
+  const localAttempts = await readLocalAttempts();
+  const pending = localAttempts.filter((a) => isPendingCloudAttempt(a));
+  const kept: UserAttempt[] = localAttempts.filter((a) => !isPendingCloudAttempt(a));
+  let uploadedAttempts = 0;
+
+  for (const a of pending) {
+    const row = {
+      user_id: userId,
+      problem_id: a.problem_id,
+      timestamp: a.timestamp,
+      time_spent_sec: a.time_spent_sec,
+      selected_paradigms: a.selected_paradigms,
+      selected_algorithms: a.selected_algorithms,
+      selected_ds: a.selected_ds,
+      selected_twists: a.selected_twists,
+      guessed_complexity: a.guessed_complexity,
+      complexity_bonus: a.complexity_bonus,
+      user_twist_notes: a.user_twist_notes,
+      pseudocode_draft: a.pseudocode_draft,
+      score_accuracy: a.score_accuracy,
+      matched_approach_id: a.matched_approach_id,
+      status: a.status,
+      mistake_types: a.mistake_types,
+    };
+
+    let { error } = await supabase.from('user_attempts').insert(row);
+    if (error && a.matched_approach_id) {
+      ({ error } = await supabase
+        .from('user_attempts')
+        .insert({ ...row, matched_approach_id: null }));
+    }
+
+    if (error) {
+      kept.push(a);
+    } else {
+      uploadedAttempts += 1;
+    }
+  }
+  await writeLocalAttempts(kept);
+
+  const states = await readLocalStates();
+  let upsertedStates = 0;
+  for (const s of states) {
+    const { error } = await supabase.from('user_problem_state').upsert({
+      user_id: userId,
+      problem_id: s.problem_id,
+      is_solved: s.is_solved,
+      attempt_count: s.attempt_count,
+      best_score: s.best_score,
+      next_review_date: s.next_review_date,
+    });
+    if (!error) upsertedStates += 1;
+  }
+
+  const localProfile = await readLocalProfile();
+  const { data: remoteRow } = await supabase
+    .from('user_profiles')
+    .select('*')
+    .eq('user_id', userId)
+    .maybeSingle();
+
+  let profileSynced = false;
+  if (remoteRow) {
+    const merged = mergeProfilesForSync(localProfile, remoteRow as UserProfile);
+    const { error } = await supabase
+      .from('user_profiles')
+      .update({
+        xp: merged.xp,
+        streak: merged.streak,
+        rating_band: merged.rating_band,
+        last_active_date: merged.last_active_date,
+      })
+      .eq('user_id', userId);
+    if (!error) {
+      await writeLocalProfile({ ...merged, user_id: DEMO_USER_ID });
+      profileSynced = true;
+    }
+  }
+
+  const pendingLeft = (await readLocalAttempts()).filter((a) => isPendingCloudAttempt(a)).length;
+  return { uploadedAttempts, upsertedStates, profileSynced, pendingLeft };
 }
 
 export async function fetchProblemStates(userId: string | null): Promise<UserProblemState[]> {

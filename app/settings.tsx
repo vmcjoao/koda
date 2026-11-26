@@ -24,10 +24,11 @@ import { shareText } from '@/lib/share';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function SettingsScreen() {
-  const { user, profile, refreshProfile, demoMode, signOut } = useAuth();
+  const { user, profile, refreshProfile, demoMode, signOut, syncNow, lastSyncSummary } = useAuth();
   const [band, setBand] = useState(String(profile?.rating_band ?? 1200));
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [syncing, setSyncing] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
   const [reminders, setReminders] = useState(false);
   const [reminderHour, setReminderHourState] = useState(19);
@@ -40,6 +41,10 @@ export default function SettingsScreen() {
       setReminderHourState(await getReminderHour());
     })();
   }, []);
+
+  useEffect(() => {
+    if (profile?.rating_band != null) setBand(String(profile.rating_band));
+  }, [profile?.rating_band]);
 
   async function saveBand() {
     const n = Number(band);
@@ -193,6 +198,9 @@ export default function SettingsScreen() {
       <View style={styles.stats}>
         <Text style={styles.statLine}>Streak · {profile?.streak ?? 0}d</Text>
         <Text style={styles.statLine}>XP · {profile?.xp ?? 0}</Text>
+        {lastSyncSummary && !demoMode ? (
+          <Text style={styles.hint}>Last sync · {lastSyncSummary}</Text>
+        ) : null}
       </View>
 
       <PrimaryButton
@@ -200,6 +208,20 @@ export default function SettingsScreen() {
         variant="secondary"
         onPress={() => router.push('/history')}
       />
+
+      {!demoMode ? (
+        <PrimaryButton
+          label="Sync guest progress to cloud"
+          variant="secondary"
+          loading={syncing}
+          onPress={async () => {
+            setSyncing(true);
+            const summary = await syncNow();
+            setStatus(summary);
+            setSyncing(false);
+          }}
+        />
+      ) : null}
 
       <Text style={styles.label}>Local data</Text>
       <PrimaryButton

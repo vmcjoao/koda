@@ -109,7 +109,7 @@ export default function HomeScreen() {
 
       {demoMode ? (
         <Pressable onPress={() => router.push('/(auth)/login')}>
-          <Text style={styles.demo}>Guest mode · tap to sign in & sync</Text>
+          <Text style={styles.demo}>Guest mode · tap to sign in (uploads local progress)</Text>
         </Pressable>
       ) : null}
 

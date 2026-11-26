@@ -47,6 +47,7 @@ See [`eas.json`](eas.json). Bundle IDs: `app.koda.mobile`.
 7. **Daily reminder** — pick hour in Settings; tap notification opens Home
 8. **Backup** — export / import local training JSON
 9. **Catalog cache** — last successful Supabase catalog kept for offline use
+10. **Guest → cloud sync** — sign-in uploads local attempts, review state, and XP
 
 ## Ingest new problems
 

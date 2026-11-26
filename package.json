@@ -45,10 +45,11 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
-    "test": "npm run test:scoring && npm run test:habit && npm run test:local-data",
+    "test": "npm run test:scoring && npm run test:habit && npm run test:local-data && npm run test:sync",
     "test:scoring": "tsx scripts/test-scoring.ts",
     "test:habit": "tsx scripts/test-habit.ts",
     "test:local-data": "tsx scripts/test-local-data.ts",
+    "test:sync": "tsx scripts/test-sync.ts",
     "generate:seed": "tsx scripts/generate-seed.ts",
     "ingest:validate": "tsx scripts/ingest/validate-draft.ts",
     "ingest:import": "tsx scripts/ingest/import-draft.ts"

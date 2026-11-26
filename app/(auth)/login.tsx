@@ -39,7 +39,7 @@ export default function LoginScreen() {
     <Screen scroll>
       <BrandWordmark size="lg" />
       <Text style={styles.sub}>
-        Sign in to sync attempts across devices
+        Sign in to upload guest progress and sync attempts across devices
         {!isSupabaseConfigured ? ' (Supabase env not set — guest mode works offline).' : '.'}
       </Text>
 
