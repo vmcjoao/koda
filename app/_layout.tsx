@@ -119,6 +119,14 @@ export default function RootLayout() {
                 <Stack.Screen name="playlists/[id]" options={{ title: 'Playlist' }} />
                 <Stack.Screen name="history" options={{ title: 'History' }} />
                 <Stack.Screen name="learn/[id]" options={{ title: 'Lesson' }} />
+                <Stack.Screen
+                  name="daily-algorithm/index"
+                  options={{ title: 'Daily algorithm' }}
+                />
+                <Stack.Screen
+                  name="daily-algorithm/[date]"
+                  options={{ title: 'Daily puzzle' }}
+                />
                 <Stack.Screen name="problem/[id]/index" options={{ title: 'Encounter' }} />
                 <Stack.Screen name="problem/[id]/radar" options={{ title: 'Constraint Radar' }} />
                 <Stack.Screen
