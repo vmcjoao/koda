@@ -127,6 +127,20 @@ export const LEARN_UNITS: LearnUnit[] = [
     blurb: 'Prefixes, Z-boxes, and hashing.',
     lessonIds: ['kmp', 'z-algorithm', 'string-hashing', 'trie'],
   },
+  {
+    id: 'math-geo',
+    title: 'Unit 10 · Math & geometry',
+    blurb: 'Primes, modular arithmetic, turns, and hulls.',
+    lessonIds: [
+      'sieve',
+      'math-number-theory',
+      'matrix-expo',
+      'game-theory',
+      'geometry-basics',
+      'convex-hull',
+      'sweep-line',
+    ],
+  },
 ];
 
 /** Flattened suggested path order (continue + step labels). */
