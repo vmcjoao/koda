@@ -27,6 +27,7 @@ import {
   relatedLessons,
   STUDY_PATH_IDS,
 } from '@/lib/learn';
+import { buildExercises, lessonHasExercises } from '@/lib/learnExerciseGen';
 import { isLessonStudied, setLessonStudied } from '@/lib/learnProgress';
 import type { ProblemWithApproaches } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -71,10 +72,17 @@ export default function LearnLessonScreen() {
   const [studied, setStudied] = useState(false);
   const [justCleared, setJustCleared] = useState(false);
   const [stageIndex, setStageIndex] = useState(0);
+  const [drillSeed, setDrillSeed] = useState(() => Date.now());
+
+  const hasExercises = !!lesson && lessonHasExercises(lesson.id);
+  const drills = useMemo(
+    () => (lesson && hasExercises ? buildExercises(lesson.id, drillSeed) : []),
+    [lesson, hasExercises, drillSeed],
+  );
 
   const stages = useMemo(
-    () => buildStages(!!lesson?.visualization, (lesson?.exercises?.length ?? 0) > 0),
-    [lesson?.visualization, lesson?.exercises],
+    () => buildStages(!!lesson?.visualization, hasExercises),
+    [lesson?.visualization, hasExercises],
   );
   const stage = stages[Math.min(stageIndex, stages.length - 1)]!;
   const progress = (stageIndex + 1) / Math.max(1, stages.length);
@@ -91,6 +99,7 @@ export default function LearnLessonScreen() {
   useEffect(() => {
     setStageIndex(0);
     setJustCleared(false);
+    setDrillSeed(Date.now());
   }, [lesson?.id]);
 
   useFocusEffect(
@@ -313,10 +322,16 @@ export default function LearnLessonScreen() {
             </View>
           ) : null}
 
-          {stage.id === 'check' && current.exercises?.length ? (
+          {stage.id === 'check' && drills.length ? (
             <View style={styles.stageBody}>
               <Text style={styles.stagePrompt}>Prove you can drive it.</Text>
-              <LessonExercise exercises={current.exercises} />
+              <Text style={styles.practiceHint}>
+                Fresh instance each visit — graphs and arrays are generated for this run.
+              </Text>
+              <LessonExercise
+                exercises={drills}
+                onRetryFresh={() => setDrillSeed(Date.now())}
+              />
             </View>
           ) : null}
 

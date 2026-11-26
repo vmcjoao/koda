@@ -10,6 +10,8 @@ import { colors, radii, spacing } from '@/constants/theme';
 type Props = {
   exercises: LearnExercise[];
   onAllCleared?: () => void;
+  /** Fresh procedural / reshuffled set (new graph, new seed). */
+  onRetryFresh?: () => void;
 };
 
 type FlatBeat = {
@@ -57,7 +59,7 @@ async function haptic(ok: boolean) {
   }
 }
 
-export function LessonExercise({ exercises, onAllCleared }: Props) {
+export function LessonExercise({ exercises, onAllCleared, onRetryFresh }: Props) {
   const beats = useMemo(() => flatten(exercises), [exercises]);
   const [index, setIndex] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
@@ -116,13 +118,14 @@ export function LessonExercise({ exercises, onAllCleared }: Props) {
           </Text>
         </View>
         <PrimaryButton
-          label="Retry drills"
+          label={onRetryFresh ? 'New drills' : 'Retry drills'}
           variant="secondary"
           onPress={() => {
             setIndex(0);
             setPicked(null);
             setCorrectCount(0);
             setFinished(false);
+            onRetryFresh?.();
           }}
         />
       </View>
