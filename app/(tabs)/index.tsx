@@ -18,7 +18,7 @@ import {
   getReviewQueue,
   regenerateDailySet,
 } from '@/lib/api';
-import { lessonForDate } from '@/lib/dailyAlgorithm';
+import { beatCountForDate, dailyAlgoStreak, lessonForDate } from '@/lib/dailyAlgorithm';
 import { getClearedDailyAlgoDates } from '@/lib/dailyAlgorithmProgress';
 import { SLOT_LABELS, todayIso, type DailySet } from '@/lib/habit';
 import { areRemindersEnabled, formatReminderLabel, getReminderHour } from '@/lib/notifications';
@@ -36,8 +36,11 @@ export default function HomeScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [reminderHint, setReminderHint] = useState<string | null>(null);
   const [dailyAlgoCleared, setDailyAlgoCleared] = useState(false);
+  const [dailyAlgoStreakCount, setDailyAlgoStreakCount] = useState(0);
 
-  const todayAlgo = useMemo(() => lessonForDate(todayIso()), []);
+  const today = todayIso();
+  const todayAlgo = useMemo(() => lessonForDate(today), [today]);
+  const todayAlgoBeats = useMemo(() => beatCountForDate(today), [today]);
 
   const load = useCallback(async () => {
     await refreshProfile();
@@ -55,7 +58,9 @@ export default function HomeScreen() {
     setAttempts(a);
     setDaily(d);
     setReviewCount(review.length);
-    setDailyAlgoCleared(algoDates.has(todayIso()));
+    const day = todayIso();
+    setDailyAlgoCleared(algoDates.has(day));
+    setDailyAlgoStreakCount(dailyAlgoStreak(algoDates, day));
     if (await areRemindersEnabled()) {
       const hour = await getReminderHour();
       setReminderHint(formatReminderLabel(hour));
@@ -147,7 +152,13 @@ export default function HomeScreen() {
             <PressableScale
               haptic="medium"
               style={[styles.algoCard, dailyAlgoCleared && styles.algoCardDone]}
-              onPress={() => router.push('/daily-algorithm')}
+              onPress={() =>
+                router.push(
+                  dailyAlgoCleared
+                    ? '/daily-algorithm'
+                    : `/daily-algorithm/${today}`,
+                )
+              }
             >
               <View style={styles.algoTop}>
                 <Text style={styles.algoKicker}>DAILY ALGORITHM</Text>
@@ -158,11 +169,11 @@ export default function HomeScreen() {
               <Text style={styles.algoTitle}>{todayAlgo?.title ?? 'Skill check'}</Text>
               <Text style={styles.algoSub} numberOfLines={2}>
                 {dailyAlgoCleared
-                  ? 'Open the calendar to replay or catch up past days.'
-                  : 'One drill today — tap for the puzzle calendar.'}
+                  ? `Streak ${dailyAlgoStreakCount} · open the calendar to catch up or replay.`
+                  : `${todayAlgoBeats} beat${todayAlgoBeats === 1 ? '' : 's'} today · streak ${dailyAlgoStreakCount}.`}
               </Text>
               <Text style={styles.algoCta}>
-                {dailyAlgoCleared ? 'View calendar →' : 'Open calendar →'}
+                {dailyAlgoCleared ? 'View calendar →' : 'Solve today →'}
               </Text>
             </PressableScale>
           </FadeInUp>

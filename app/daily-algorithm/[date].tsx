@@ -7,12 +7,19 @@ import { XpChip } from '@/components/game/XpChip';
 import { LessonExercise } from '@/components/learn/LessonExercise';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { useAuth } from '@/contexts/AuthContext';
+import { awardDailyAlgorithmXp } from '@/lib/api';
 import {
+  DAILY_ALGO_XP,
+  dailyAlgoStreak,
+  formatPuzzleDate,
   isFutureDate,
+  isToday as isTodayIso,
   lessonForDate,
   seedForDate,
 } from '@/lib/dailyAlgorithm';
 import {
+  getClearedDailyAlgoDates,
   isDailyAlgoCleared,
   markDailyAlgoCleared,
 } from '@/lib/dailyAlgorithmProgress';
@@ -24,6 +31,7 @@ export default function DailyAlgorithmPuzzleScreen() {
   const { date: dateParam } = useLocalSearchParams<{ date: string }>();
   const iso = String(dateParam ?? todayIso());
   const navigation = useNavigation();
+  const { user, refreshProfile } = useAuth();
   const today = todayIso();
   const lesson = lessonForDate(iso);
   const seed = seedForDate(iso);
@@ -31,9 +39,15 @@ export default function DailyAlgorithmPuzzleScreen() {
     () => (lesson ? buildExercises(lesson.id, seed) : []),
     [lesson, seed],
   );
+  const beatCount = useMemo(
+    () => drills.reduce((n, e) => n + (e.kind === 'mcq' ? 1 : e.steps.length), 0),
+    [drills],
+  );
 
   const [cleared, setCleared] = useState(false);
   const [justCleared, setJustCleared] = useState(false);
+  const [xpAwarded, setXpAwarded] = useState(0);
+  const [streak, setStreak] = useState(0);
 
   useEffect(() => {
     navigation.setOptions({
@@ -45,14 +59,20 @@ export default function DailyAlgorithmPuzzleScreen() {
     useCallback(() => {
       let active = true;
       setJustCleared(false);
+      setXpAwarded(0);
       (async () => {
-        const done = await isDailyAlgoCleared(iso);
-        if (active) setCleared(done);
+        const [done, dates] = await Promise.all([
+          isDailyAlgoCleared(iso),
+          getClearedDailyAlgoDates(),
+        ]);
+        if (!active) return;
+        setCleared(done);
+        setStreak(dailyAlgoStreak(dates, today));
       })();
       return () => {
         active = false;
       };
-    }, [iso]),
+    }, [iso, today]),
   );
 
   if (isFutureDate(iso, today)) {
@@ -74,9 +94,22 @@ export default function DailyAlgorithmPuzzleScreen() {
   }
 
   async function onAllCleared() {
+    const first = await markDailyAlgoCleared(iso);
     setCleared(true);
     setJustCleared(true);
-    await markDailyAlgoCleared(iso);
+
+    if (first) {
+      const profile = await awardDailyAlgorithmXp(user?.id ?? null, DAILY_ALGO_XP);
+      setXpAwarded(DAILY_ALGO_XP);
+      await refreshProfile();
+      const dates = await getClearedDailyAlgoDates();
+      setStreak(dailyAlgoStreak(dates, today));
+      void profile;
+    } else {
+      const dates = await getClearedDailyAlgoDates();
+      setStreak(dailyAlgoStreak(dates, today));
+    }
+
     try {
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     } catch {
@@ -84,20 +117,34 @@ export default function DailyAlgorithmPuzzleScreen() {
     }
   }
 
-  const isToday = iso === today;
+  const isToday = isTodayIso(iso, today);
+  const isCatchUp = iso < today;
 
   return (
     <Screen scroll>
       <FadeInUp delayMs={20} waitForLaunch={false}>
         <View style={styles.hero}>
           <Text style={styles.kicker}>
-            {isToday ? 'TODAY' : iso} · {lesson.tagLabel}
+            {isToday ? 'TODAY' : isCatchUp ? 'CATCH-UP' : formatPuzzleDate(iso)} ·{' '}
+            {lesson.tagLabel}
           </Text>
+          <Text style={styles.dateLine}>{formatPuzzleDate(iso)}</Text>
           <Text style={styles.title}>{lesson.title}</Text>
           <Text style={styles.summary}>{lesson.summary}</Text>
           <View style={styles.chips}>
-            {cleared ? <XpChip label="CLEARED" tone="accent" /> : <XpChip label="OPEN" tone="xp" />}
-            <XpChip label="1 DRILL" tone="warning" delayMs={60} />
+            {cleared ? (
+              <XpChip label="CLEARED" tone="accent" />
+            ) : (
+              <XpChip label="OPEN" tone="xp" />
+            )}
+            <XpChip
+              label={`${beatCount} BEAT${beatCount === 1 ? '' : 'S'}`}
+              tone="warning"
+              delayMs={40}
+            />
+            {streak > 0 ? (
+              <XpChip label={`${streak} STREAK`} tone="accent" delayMs={80} />
+            ) : null}
           </View>
         </View>
       </FadeInUp>
@@ -107,7 +154,9 @@ export default function DailyAlgorithmPuzzleScreen() {
           <View style={styles.banner}>
             <Text style={styles.bannerKicker}>DAILY CLEARED</Text>
             <Text style={styles.bannerText}>
-              Calendar day marked — keep the streak alive tomorrow.
+              {xpAwarded > 0
+                ? `+${xpAwarded} XP · streak ${streak}. Come back tomorrow.`
+                : `Replay logged — streak sits at ${streak}.`}
             </Text>
           </View>
         </FadeInUp>
@@ -116,13 +165,22 @@ export default function DailyAlgorithmPuzzleScreen() {
       <FadeInUp delayMs={80} waitForLaunch={false}>
         <View style={styles.panel}>
           <Text style={styles.panelKicker}>SKILL CHECK</Text>
-          <Text style={styles.prompt}>Solve today&apos;s instance of this algorithm.</Text>
+          <Text style={styles.prompt}>
+            {isCatchUp
+              ? 'Catch up — same seeded instance as that calendar day.'
+              : 'Solve today’s seeded instance of this algorithm.'}
+          </Text>
           <LessonExercise exercises={drills} onAllCleared={onAllCleared} />
         </View>
       </FadeInUp>
 
       <FadeInUp delayMs={120} waitForLaunch={false}>
         <View style={styles.footer}>
+          <PrimaryButton
+            label="Open Learn lesson"
+            variant="secondary"
+            onPress={() => router.push(`/learn/${lesson.id}`)}
+          />
           {cleared ? (
             <PrimaryButton
               label="Back to calendar"
@@ -131,7 +189,7 @@ export default function DailyAlgorithmPuzzleScreen() {
           ) : (
             <PrimaryButton
               label="Calendar"
-              variant="secondary"
+              variant="ghost"
               onPress={() => router.back()}
             />
           )}
@@ -149,6 +207,12 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: '900',
     letterSpacing: 1.4,
+  },
+  dateLine: {
+    color: colors.textDim,
+    fontSize: 13,
+    fontFamily: 'SpaceMono',
+    marginTop: -4,
   },
   title: {
     color: colors.text,
