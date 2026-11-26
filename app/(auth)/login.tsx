@@ -65,16 +65,27 @@ export default function LoginScreen() {
     }
 
     if (mode === 'register') {
-      const err = await signUpWithEmail(email.trim(), password, displayName.trim() || undefined);
+      const result = await signUpWithEmail(
+        email.trim(),
+        password,
+        displayName.trim() || undefined,
+      );
       setLoading(false);
-      if (err) {
-        setError(err);
+      if (result.error) {
+        setError(result.error);
         return;
       }
-      setInfo('Account created. Check your email to confirm, then sign in.');
-      setMode('signin');
-      setPassword('');
-      setConfirm('');
+      if (result.needsEmailConfirm) {
+        setInfo(
+          'Account created. Confirm the email we sent, then come back here to sign in.',
+        );
+        setMode('signin');
+        setPassword('');
+        setConfirm('');
+        return;
+      }
+      setInfo('Welcome — you are signed in. Guest progress will sync automatically.');
+      router.back();
       return;
     }
 
@@ -82,7 +93,9 @@ export default function LoginScreen() {
     setLoading(false);
     if (err) setError(err);
     else {
-      setInfo('If that email exists, a reset link is on the way.');
+      setInfo(
+        'If that email exists, a reset link is on the way. Open it on this device to set a new password in the app.',
+      );
       setMode('signin');
     }
   }
@@ -94,8 +107,8 @@ export default function LoginScreen() {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.sub}>
           {mode === 'reset'
-            ? 'We’ll email a reset link if the account exists.'
-            : 'Sync attempts, XP, and streaks across devices'}
+            ? 'We’ll email a reset link. Open it on this device to finish in-app.'
+            : 'Sync attempts, XP, Daily Algorithm clears, and streaks across devices'}
           {!isSupabaseConfigured ? ' · Supabase env missing — guest mode still works.' : '.'}
         </Text>
       </FadeInUp>

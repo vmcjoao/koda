@@ -1,8 +1,16 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import type { Session, User } from '@supabase/supabase-js';
+import * as Linking from 'expo-linking';
+import { router } from 'expo-router';
 import { getProfile, syncLocalProgressToCloud } from '@/lib/api';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import type { UserProfile } from '@/types/database';
+
+export type SignUpResult = {
+  error: string | null;
+  /** True when Supabase created the user but did not return a session yet. */
+  needsEmailConfirm?: boolean;
+};
 
 type AuthContextValue = {
   user: User | null;
@@ -10,15 +18,18 @@ type AuthContextValue = {
   profile: UserProfile | null;
   loading: boolean;
   demoMode: boolean;
+  /** True while a password-recovery deep link session is active. */
+  passwordRecovery: boolean;
   lastSyncSummary: string | null;
   signInWithEmail: (email: string, password: string) => Promise<string | null>;
   signUpWithEmail: (
     email: string,
     password: string,
     displayName?: string,
-  ) => Promise<string | null>;
+  ) => Promise<SignUpResult>;
   requestPasswordReset: (email: string) => Promise<string | null>;
   updatePassword: (password: string) => Promise<string | null>;
+  clearPasswordRecovery: () => void;
   signOut: () => Promise<void>;
   continueAsGuest: () => void;
   refreshProfile: () => Promise<void>;
@@ -49,12 +60,17 @@ async function runSync(userId: string): Promise<string> {
   return result.pendingLeft > 0 ? `${base} · ${result.pendingLeft} still pending` : base;
 }
 
+function authRedirectTo(path: string): string {
+  return Linking.createURL(path);
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [guest, setGuest] = useState(false);
+  const [passwordRecovery, setPasswordRecovery] = useState(false);
   const [lastSyncSummary, setLastSyncSummary] = useState<string | null>(null);
 
   const refreshProfile = useCallback(async () => {
@@ -105,8 +121,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const { data: sub } = supabase.auth.onAuthStateChange(async (event, next) => {
         setSession(next);
         setUser(next?.user ?? null);
+
+        if (event === 'PASSWORD_RECOVERY') {
+          setPasswordRecovery(true);
+          setGuest(false);
+          if (next?.user) {
+            const nextProfile = await getProfile(next.user.id);
+            setProfile(nextProfile);
+          }
+          try {
+            router.push('/(auth)/reset');
+          } catch {
+            /* navigation tree may not be ready yet */
+          }
+          return;
+        }
+
         if (!next?.user) {
           setGuest(true);
+          setPasswordRecovery(false);
           const guestProfile = await getProfile(null);
           setProfile(guestProfile);
           return;
@@ -114,6 +147,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         setGuest(false);
         if (event === 'SIGNED_IN') {
+          setPasswordRecovery(false);
           const summary = await runSync(next.user.id);
           setLastSyncSummary(summary);
         }
@@ -137,22 +171,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signUpWithEmail = useCallback(
-    async (email: string, password: string, displayName?: string) => {
-      if (!supabase) return 'Supabase is not configured. Continue as guest.';
+    async (email: string, password: string, displayName?: string): Promise<SignUpResult> => {
+      if (!supabase) {
+        return { error: 'Supabase is not configured. Continue as guest.' };
+      }
       const name = displayName?.trim();
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: name ? { data: { display_name: name } } : undefined,
+        options: {
+          emailRedirectTo: authRedirectTo('(auth)/login'),
+          ...(name ? { data: { display_name: name } } : {}),
+        },
       });
-      return error?.message ?? null;
+      if (error) return { error: error.message };
+      if (!data.session) return { error: null, needsEmailConfirm: true };
+      return { error: null };
     },
     [],
   );
 
   const requestPasswordReset = useCallback(async (email: string) => {
     if (!supabase) return 'Supabase is not configured.';
-    const { error } = await supabase.auth.resetPasswordForEmail(email.trim());
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: authRedirectTo('(auth)/reset'),
+    });
     return error?.message ?? null;
   }, []);
 
@@ -160,12 +203,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!supabase) return 'Supabase is not configured.';
     if (!user) return 'Sign in to change your password.';
     const { error } = await supabase.auth.updateUser({ password });
+    if (!error) setPasswordRecovery(false);
     return error?.message ?? null;
   }, [user]);
+
+  const clearPasswordRecovery = useCallback(() => setPasswordRecovery(false), []);
 
   const signOut = useCallback(async () => {
     if (supabase) await supabase.auth.signOut();
     setGuest(true);
+    setPasswordRecovery(false);
     setUser(null);
     setSession(null);
     setLastSyncSummary(null);
@@ -184,11 +231,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       profile,
       loading,
       demoMode: guest || !isSupabaseConfigured || !user,
+      passwordRecovery,
       lastSyncSummary,
       signInWithEmail,
       signUpWithEmail,
       requestPasswordReset,
       updatePassword,
+      clearPasswordRecovery,
       signOut,
       continueAsGuest,
       refreshProfile,
@@ -200,11 +249,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       profile,
       loading,
       guest,
+      passwordRecovery,
       lastSyncSummary,
       signInWithEmail,
       signUpWithEmail,
       requestPasswordReset,
       updatePassword,
+      clearPasswordRecovery,
       signOut,
       continueAsGuest,
       refreshProfile,

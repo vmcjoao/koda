@@ -113,6 +113,10 @@ export default function RootLayout() {
                   name="(auth)/login"
                   options={{ title: 'Account', presentation: 'modal' }}
                 />
+                <Stack.Screen
+                  name="(auth)/reset"
+                  options={{ title: 'New password', presentation: 'modal' }}
+                />
                 <Stack.Screen name="settings" options={{ title: 'Profile' }} />
                 <Stack.Screen name="catalog" options={{ title: 'Catalog' }} />
                 <Stack.Screen name="playlists/index" options={{ title: 'Playlists' }} />
