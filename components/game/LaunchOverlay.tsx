@@ -43,7 +43,7 @@ export function LaunchOverlay({ onFinished }: Props) {
 
   const rootOpacity = useSharedValue(1);
   const wash = useSharedValue(0);
-  /** Staggered mitosis: top → NE → SE (each starts before the previous finishes). */
+  /** Staggered mitosis: NE → top → SE (each starts before the previous finishes). */
   const splitTop = useSharedValue(0);
   const splitNe = useSharedValue(0);
   const splitSe = useSharedValue(0);
@@ -68,8 +68,9 @@ export function LaunchOverlay({ onFinished }: Props) {
       withTiming(1, { duration: 180 }),
     );
 
-    splitTop.value = withDelay(splitStart, withSpring(1, spring));
-    splitNe.value = withDelay(splitStart + stagger, withSpring(1, spring));
+    // Order 2-1-3: top-right, then top, then bottom-right.
+    splitNe.value = withDelay(splitStart, withSpring(1, spring));
+    splitTop.value = withDelay(splitStart + stagger, withSpring(1, spring));
     splitSe.value = withDelay(splitStart + stagger * 2, withSpring(1, spring));
 
     reveal.value = withDelay(

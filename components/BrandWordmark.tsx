@@ -76,11 +76,11 @@ export function GraphK({
     cancelAnimation(centerPulse);
 
     const collapse = withTiming(0, { duration: 160, easing: Easing.in(Easing.cubic) });
-    // Hold briefly at center, then peel out top → NE → SE (overlapping).
+    // Hold briefly at center, then peel out NE → top → SE (order 2-1-3).
     const hold = 120;
 
-    splitTop.value = withSequence(collapse, withDelay(hold, withSpring(1, SPRING)));
-    splitNe.value = withSequence(
+    splitNe.value = withSequence(collapse, withDelay(hold, withSpring(1, SPRING)));
+    splitTop.value = withSequence(
       collapse,
       withDelay(hold + STAGGER, withSpring(1, SPRING)),
     );
