@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import * as Haptics from 'expo-haptics';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
@@ -50,6 +51,15 @@ export default function RevealScreen() {
     });
     setResult(savedAttempt);
     await refreshProfile();
+    try {
+      if (savedAttempt.dailyBonusXp > 0) {
+        await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      } else {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }
+    } catch {
+      /* web / unsupported */
+    }
     setSaving(false);
   }
 
@@ -124,11 +134,14 @@ export default function RevealScreen() {
       ) : (
         <View style={styles.xpCard}>
           <Text style={styles.good}>Saved · streak {result.streak}d</Text>
-          <Text style={styles.xpLine}>+{result.xpGain.total} XP</Text>
+          <Text style={styles.xpLine}>
+            +{result.xpGain.total + result.dailyBonusXp} XP
+          </Text>
           <Text style={styles.xpDetail}>
             base {result.xpGain.base}
             {result.xpGain.radarBonus ? ` · radar +${result.xpGain.radarBonus}` : ''}
             {result.xpGain.streakBonus ? ` · streak +${result.xpGain.streakBonus}` : ''}
+            {result.dailyBonusXp ? ` · daily set +${result.dailyBonusXp}` : ''}
           </Text>
           <Text style={styles.xpDetail}>
             Band {result.ratingBand}
@@ -136,6 +149,9 @@ export default function RevealScreen() {
               ? ` (${result.bandDelta > 0 ? '+' : ''}${result.bandDelta})`
               : ' (unchanged)'}
           </Text>
+          {result.dailyBonusXp > 0 ? (
+            <Text style={styles.good}>Daily Set cleared — nice work.</Text>
+          ) : null}
         </View>
       )}
 

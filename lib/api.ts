@@ -4,6 +4,7 @@ import {
   adjustRatingBand,
   buildDailySet,
   computeXpGain,
+  DAILY_SET_BONUS_XP,
   nextReviewDate,
   reviewDue,
   todayIso,
@@ -240,6 +241,7 @@ export type SaveAttemptResult = {
   streak: number;
   ratingBand: number;
   bandDelta: number;
+  dailyBonusXp: number;
 };
 
 export async function saveAttempt(input: {
@@ -299,17 +301,26 @@ export async function saveAttempt(input: {
     input.breakdown.score,
   );
   profile.rating_band = band;
-  await writeLocalProfile(profile);
 
   const forceReview = input.status === 'needs_review';
   await upsertProblemState(input.userId, input.problemId, input.breakdown.score, forceReview);
-  await markDailySlotComplete(input.problemId, input.breakdown.score);
+  const dailyBonusXp = await markDailySlotComplete(input.problemId, input.breakdown.score);
+  profile.xp += dailyBonusXp;
+  await writeLocalProfile(profile);
+
+  const resultBase = {
+    xpGain,
+    streak: profile.streak,
+    ratingBand: band,
+    bandDelta,
+    dailyBonusXp,
+  };
 
   if (!supabase || !input.userId) {
     const attempts = await readLocalAttempts();
     attempts.unshift(attempt);
     await writeLocalAttempts(attempts);
-    return { attempt, xpGain, streak: profile.streak, ratingBand: band, bandDelta };
+    return { attempt, ...resultBase };
   }
 
   const { data, error } = await supabase
@@ -337,7 +348,7 @@ export async function saveAttempt(input: {
     const attempts = await readLocalAttempts();
     attempts.unshift(attempt);
     await writeLocalAttempts(attempts);
-    return { attempt, xpGain, streak: profile.streak, ratingBand: band, bandDelta };
+    return { attempt, ...resultBase };
   }
 
   await supabase
@@ -352,10 +363,7 @@ export async function saveAttempt(input: {
 
   return {
     attempt: data as UserAttempt,
-    xpGain,
-    streak: profile.streak,
-    ratingBand: band,
-    bandDelta,
+    ...resultBase,
   };
 }
 
@@ -431,12 +439,13 @@ export async function getDailySet(
   return set;
 }
 
-async function markDailySlotComplete(problemId: string, score: number) {
+/** Marks a daily slot done. Returns bonus XP if the full set just completed. */
+async function markDailySlotComplete(problemId: string, score: number): Promise<number> {
   const raw = await AsyncStorage.getItem(LOCAL_DAILY_KEY);
-  if (!raw) return;
+  if (!raw) return 0;
   try {
     const set = JSON.parse(raw) as DailySet;
-    if (set.date !== todayIso()) return;
+    if (set.date !== todayIso()) return 0;
     let changed = false;
     for (const slot of set.slots) {
       if (slot.problemId === problemId && !slot.completed) {
@@ -445,9 +454,18 @@ async function markDailySlotComplete(problemId: string, score: number) {
         changed = true;
       }
     }
-    if (changed) await AsyncStorage.setItem(LOCAL_DAILY_KEY, JSON.stringify(set));
+    if (!changed) return 0;
+
+    let bonus = 0;
+    const allDone = set.slots.length > 0 && set.slots.every((s) => s.completed);
+    if (allDone && !set.bonusAwarded) {
+      set.bonusAwarded = true;
+      bonus = DAILY_SET_BONUS_XP;
+    }
+    await AsyncStorage.setItem(LOCAL_DAILY_KEY, JSON.stringify(set));
+    return bonus;
   } catch {
-    /* ignore */
+    return 0;
   }
 }
 

@@ -12,7 +12,10 @@ export type DailySlot = {
 export type DailySet = {
   date: string; // YYYY-MM-DD
   slots: DailySlot[];
+  bonusAwarded?: boolean;
 };
+
+export const DAILY_SET_BONUS_XP = 50;
 
 export const SLOT_LABELS: Record<DailySlotRole, string> = {
   warmup: 'Warm-up',

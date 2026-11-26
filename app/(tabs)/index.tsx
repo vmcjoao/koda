@@ -122,7 +122,10 @@ export default function HomeScreen() {
               }}
             />
           ) : (
-            <Text style={styles.good}>Daily set complete — streak XP applied on solves.</Text>
+            <Text style={styles.good}>
+              Daily set complete
+              {daily?.bonusAwarded ? ' · +50 XP bonus claimed' : ''}.
+            </Text>
           )}
 
           {reviewCount > 0 ? (
@@ -133,7 +136,12 @@ export default function HomeScreen() {
             />
           ) : null}
 
-          <Text style={styles.section}>Catalog</Text>
+          <View style={styles.sectionRow}>
+            <Text style={[styles.section, styles.sectionFlush]}>Catalog</Text>
+            <Pressable onPress={() => router.push('/catalog')}>
+              <Text style={styles.seeAll}>See all</Text>
+            </Pressable>
+          </View>
           {problems.slice(0, 6).map((p) => (
             <Pressable key={p.id} style={styles.card} onPress={() => startProblem(p)}>
               <View style={styles.cardTop}>
@@ -144,7 +152,12 @@ export default function HomeScreen() {
               <Text style={styles.meta}>{p.target_complexity}</Text>
             </Pressable>
           ))}
-          <Text style={styles.meta}>{problems.length} problems · {attempts.length} attempts</Text>
+          <PrimaryButton
+            label={`Browse full catalog (${problems.length})`}
+            variant="secondary"
+            onPress={() => router.push('/catalog')}
+          />
+          <Text style={styles.meta}>{attempts.length} attempts logged</Text>
         </>
       )}
     </Screen>
@@ -201,6 +214,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     marginTop: spacing.sm,
+  },
+  sectionRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'space-between',
+    marginTop: spacing.sm,
+  },
+  sectionFlush: {
+    marginTop: 0,
+  },
+  seeAll: {
+    color: colors.radar,
+    fontSize: 14,
+    fontWeight: '600',
   },
   sectionHint: {
     color: colors.textDim,
