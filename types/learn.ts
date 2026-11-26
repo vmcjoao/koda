@@ -26,7 +26,12 @@ export type LearnVizKind =
   | 'array-sort'
   | 'array-sieve'
   | 'geo-orient'
-  | 'geo-hull';
+  | 'geo-hull'
+  | 'string-z'
+  | 'nim-heaps'
+  | 'array-stack'
+  | 'array-queue'
+  | 'segtree-sum';
 
 export type GraphDemo = {
   nodes: { id: string; x: number; y: number; label?: string }[];
@@ -51,7 +56,11 @@ export type PointsDemo = {
   points: { x: number; y: number; label?: string }[];
 };
 
-export type LearnDemo = GraphDemo | ArrayDemo | KnapsackDemo | PointsDemo;
+export type StringDemo = {
+  text: string;
+};
+
+export type LearnDemo = GraphDemo | ArrayDemo | KnapsackDemo | PointsDemo | StringDemo;
 
 /** Single multiple-choice beat (also used as steps inside a trace). */
 export type LearnMcq = {

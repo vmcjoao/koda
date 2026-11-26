@@ -16,6 +16,10 @@ import { SortViz, sortFrameCount } from '@/components/learn/viz/SortViz';
 import { SieveViz, sieveFrameCount } from '@/components/learn/viz/SieveViz';
 import { OrientViz, orientFrameCount } from '@/components/learn/viz/OrientViz';
 import { HullViz, hullFrameCount } from '@/components/learn/viz/HullViz';
+import { StringZViz, stringZFrameCount } from '@/components/learn/viz/StringZViz';
+import { NimViz, nimFrameCount } from '@/components/learn/viz/NimViz';
+import { StackQueueViz, stackQueueFrameCount } from '@/components/learn/viz/StackQueueViz';
+import { SegtreeViz, segtreeFrameCount } from '@/components/learn/viz/SegtreeViz';
 import type {
   ArrayDemo,
   GraphDemo,
@@ -23,6 +27,7 @@ import type {
   LearnDemo,
   LearnVizKind,
   PointsDemo,
+  StringDemo,
 } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import {
@@ -42,13 +47,16 @@ function isGraph(demo: LearnDemo): demo is GraphDemo {
   return 'nodes' in demo && 'edges' in demo;
 }
 function isArray(demo: LearnDemo): demo is ArrayDemo {
-  return 'values' in demo;
+  return 'values' in demo && !('weights' in demo);
 }
 function isKnapsack(demo: LearnDemo): demo is KnapsackDemo {
   return 'weights' in demo && 'capacity' in demo;
 }
 function isPoints(demo: LearnDemo): demo is PointsDemo {
   return 'points' in demo;
+}
+function isString(demo: LearnDemo): demo is StringDemo {
+  return 'text' in demo;
 }
 
 export function VizPlayer({ kind, demo }: Props) {
@@ -97,6 +105,11 @@ export function VizPlayer({ kind, demo }: Props) {
     if (kind === 'array-sieve' && isArray(demo)) return Math.max(0, sieveFrameCount(demo) - 1);
     if (kind === 'geo-orient' && isPoints(demo)) return Math.max(0, orientFrameCount(demo) - 1);
     if (kind === 'geo-hull' && isPoints(demo)) return Math.max(0, hullFrameCount(demo) - 1);
+    if (kind === 'string-z' && isString(demo)) return Math.max(0, stringZFrameCount(demo) - 1);
+    if (kind === 'nim-heaps' && isArray(demo)) return Math.max(0, nimFrameCount(demo) - 1);
+    if ((kind === 'array-stack' || kind === 'array-queue') && isArray(demo))
+      return Math.max(0, stackQueueFrameCount(demo) - 1);
+    if (kind === 'segtree-sum' && isArray(demo)) return Math.max(0, segtreeFrameCount(demo) - 1);
     return Math.max(0, graphSteps.length - 1);
   }, [demo, graphSteps.length, kind]);
 
@@ -137,6 +150,15 @@ export function VizPlayer({ kind, demo }: Props) {
         {kind === 'array-sieve' && isArray(demo) ? <SieveViz demo={demo} step={step} /> : null}
         {kind === 'geo-orient' && isPoints(demo) ? <OrientViz demo={demo} step={step} /> : null}
         {kind === 'geo-hull' && isPoints(demo) ? <HullViz demo={demo} step={step} /> : null}
+        {kind === 'string-z' && isString(demo) ? <StringZViz demo={demo} step={step} /> : null}
+        {kind === 'nim-heaps' && isArray(demo) ? <NimViz demo={demo} step={step} /> : null}
+        {kind === 'array-stack' && isArray(demo) ? (
+          <StackQueueViz demo={demo} step={step} mode="stack" />
+        ) : null}
+        {kind === 'array-queue' && isArray(demo) ? (
+          <StackQueueViz demo={demo} step={step} mode="queue" />
+        ) : null}
+        {kind === 'segtree-sum' && isArray(demo) ? <SegtreeViz demo={demo} step={step} /> : null}
       </View>
       <Text style={styles.caption}>
         Step {step}/{maxStep}
