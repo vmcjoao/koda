@@ -40,6 +40,9 @@ yarn-error.*
 # VJudge PDF download cache (rebuilt by ingest:vjudge-pdf-extract)
 scripts/ingest/vjudge-exports/pdf-cache/
 
+# Maratona Mineira download cache (PDFs / cloned repos; rebuilt by ingest:mineira)
+scripts/ingest/mineira-cache/
+
 # generated native folders
 /ios
 /android

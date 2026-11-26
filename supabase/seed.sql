@@ -171,6 +171,264 @@ After this, there are $t$ lines, each containing integers $y$ and $x$.', 'For ea
 
 - $1 \le y,x \le 10^9$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-number-spiral-a1', 'cses-number-spiral', 'Standard approach', ARRAY['Ad-Hoc','Brute Force']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Introductory Problems: apply standard techniques for “Number Spiral”.']::text[], 'Auto-tagged from CSES section “Introductory Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-a-navalha-batal', 'Navalha Batal', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1000, 'Bibika está jogando o famoso jogo Navalha Batal.
+Para quem não conhece, o jogo é disputado entre duas pessoas e um tabuleiro comum, de tamanho $N × N$, com algumas peças (que representam Bavios) de tamanhos $1 × T$ e $T × 1$ previamente inseridas, onde o valor de $T$ é inteiro positivo menor ou igual a $N$.
+A sobreposição de peças não é possível!
+
+Após a posição das peças iniciais ser revelada, cada jogador tem alguns minutos para analisar o tabuleiro e calcular (ou chutar) a quantidade de peças $1 × T$, $T × 1$ diferentes que ainda podem ser inseridas no tabuleiro.
+Duas peças são diferentes se os espaços que elas ocupam no tabuleiro são diferentes.
+
+Segue um exemplo de um tabuleiro $3 × 3$ com as posições $\(1,2), (2,3), (3,1), (3,2)\$ previamente preenchidas.
+
+Nesse caso ainda é possível inserir nas células vazias 7 peças diferentes, como ilustrado abaixo:
+
+Após jogarem com um tabuleiro bem pequeno, Bibika gostaria de saber, dado um tabuleiro gigante e uma configuração inicial do tabuleiro, qual é a solução do jogo. Como é uma tarefa bastante complexa a olho nu, cabe a você ajudá-la!
+
+### Entrada
+
+A primeira linha contém dois inteiros $N$ e $Q$, sendo $N$ o número de linhas e colunas do tabuleiro e $Q$ a quantidade de células distintas que estão previamente preenchidas.
+As próximas $Q$ linhas possuem dois inteiros, $X_i$ e $Y_i$, indicando que a coordenada $X_i, Y_i$ do tabuleiro está preenchida.
+
+### Saída
+
+A saída deve conter uma linha com um único inteiro representando a quantidade de bavios de tamanho $1 × T$ ou $T × 1$ que ainda são possíveis de serem colocados de forma que fiquem totalmente inseridos no tabuleiro e não exista sobreposição com outros bavios.
+
+### Restrições
+
+- $1 ≤ N ≤ 10^6$
+
+- $0 ≤ Q ≤ 10^5$
+
+- $1 ≤ X_i, Y_i ≤ N$, para todo $i = 1,2,…,Q$
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^6$; 0 ≤ Q ≤ 10^5$; 1 ≤ X_i, Y_i ≤ N$, para todo $i = 1,2,…,Q$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-a-navalha-batal-a1', 'mineira-2019-a-navalha-batal', 'VIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-a-descriptografando', 'Descriptografando', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1000, 'Alice e Bob resolveram dar um tempo da criptografia.
+Enquanto estavam aproveitando as merecidas férias em uma das belas cachoeiras de Minas Gerais, eles
+conheceram um ex-competidor da Maratona Mineira de Programação, que explicou em detalhes como a competição funcionava.
+Infelizmente, Alice e Bob não são mais elegíveis para competir. Porém, eles queriam muito participar de alguma forma.
+
+Bob pensou em propor problemas para a prova, mas Alice rapidamente percebeu que não seria uma boa ideia pois os competidores
+saberiam que se trataria de um problema de criptografia assim que vissem os nomes dos autores. Então, sugeriram uma forma
+de deixar a competição ainda mais interessante. Toda vez que algum time resolver um problema, o time vai receber uma notificação
+no computador e, alguns segundos depois, o balão do problema amarrado a um peso será solto do alto em algum ponto do teto do salão
+onde a prova estiver sendo realizada. Para poderem ficar com o balão, um dos membros do time tem que conseguir pegar o balão antes
+que ele caia no chão. 
+
+Os organizadores da prova acharam a ideia muito interessante, e estão pensando em implementá-la nas próximas edições.
+Antes disso, precisam avaliar cuidadosamente todos os riscos e implicações. Por exemplo, algum competidor correndo desesperado
+para pegar um balão poderia tropeçar em um cabo de rede. Então, talvez seja melhor usar uma rede sem fio. Outra questão importante
+é o impacto na felicidade dos competidores. Os organizadores acreditam que felicidade dos competidores está ligada ao número de
+balões que eles levam pra casa. Por isso, resolveram fazer uma análise para determinar a probabilidade de um competidor conseguir
+pegar um balão.
+
+O salão da prova foi modelado como um tabuleiro $N × M$. Cada célula pode estar vazia ou conter algum obstáculo como, por exemplo, uma mesa.
+O balão é solto diretamente acima de uma célula vazia escolhida aleatoriamente com probabilidade uniforme, e leva $T$ segundos para cair. 
+O competidor se encontra na célula da linha $c_i$ e coluna $c_j$ e consegue se deslocar verticalmente ou horizontalmente para células vizinhas
+vazias. O competidor leva $1$ segundo para se mover de uma célula para outra. 
+Se o competidor chegar em uma célula ao mesmo tempo que o balão cair, ele consegue pegar o balão.
+Como os competidores são muito espertos, se existir mais de um caminho que permite que o competidor pegue o balão, ele vai escolher o menor deles.
+A organização quer saber qual é probabilidade de que o competidor consiga pegar o balão antes que ele caia. Como a
+organização estava muito ocupada crimpando cabos de rede, enchendo balões e comprando salgados, resolveram pedir para que você calcule essa probabilidade, o que deixou Bob muito feliz pois agora ele ajudou a colocar um problema na prova.
+
+### Entrada
+
+A primeira linha da entrada contém cinco inteiros separados por espaço $N$, $M$, $T$, $c_i$ e $c_j$, onde $N$ e $M$ representam respectivamente o
+número de linhas e colunas do grid, $T$ representa o tempo em segundos que o balão leva para cair, e $c_i$ e $c_j$ representam respectivamente a linha e a coluna do grid da célula onde o competidor se
+encontra. Cada uma das $N$ linhas seguintes contém $M$ caracteres representando a $i$-ésima linha do grid. O $j$-ésimo caractere da $i$-ésima dessas linhas representa a célula do grid na linha $i$ e coluna $j$.
+O caractere ''.'' é usado para representar uma célula vazia e o caractere ''#'' para representar uma célula ocupada.
+
+### Saída
+
+A saída deve conter um única linha com dois inteiros $A$ e $B$ separados por espaço, de forma que $AB$ represente a probabilidade desejada, $B > 0$ e o maior fator comum entre $A$ e $B$ seja $1$.
+
+### Restrições
+
+    
+- $1 ≤ N ≤ 1000$.
+    
+- $1 ≤ M ≤ 1000$.
+    
+- $1 ≤ T ≤ 10^6$.
+    
+- $1 ≤ c_i ≤ N$.
+    
+- $1 ≤ c_j ≤ M$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N ≤ 1000$; 1 ≤ M ≤ 1000$; 1 ≤ T ≤ 10^6$; 1 ≤ c_i ≤ N$; 1 ≤ c_j ≤ M$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-a-descriptografando-a1', 'mineira-2022-a-descriptografando', 'IX Maratona Mineira — standard', ARRAY['Graph Algorithms','Dynamic Programming','String Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-a-elemento-x', 'Elemento X', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1000, 'center
+
+	Açucar, tempero, e tudo que há de bom. Esses foram os ingredientes escolhidos pelo professor P. L. Utônio para criar a sobremessa perfeita,
+	porém ele acidentalmente adicionou um quarto ingrediente: o Elemento X! Diferentemente de um famoso desenho animado, a adição do Elemento X não deu certo,
+	e a sobremesa ficou completamente sem gosto. Como bons viajantes do tempo que somos, nossa tarefa é impedir essa catástrofe culinária.
+  
+center
+
+A organização do laboratório do professor é incrivelmente eficiente e simples: o recipiente de cada um dos quatro ingredientes (colocados em ordem - $r_1, r_2, r_3, r_4$, com distância de 1 entre eles)
+é anotado com a distância entre ele e o recipiente do Elemento X. Ao chegarmos do futuro, porém, descobrimos o motivo do acidente:
+o pote do Elemento X está com defeito, e mostra um valor maior que zero, o que não faz o menor sentido!
+Nossa tarefa é identificar qual o recipiente danificado e informar o professor antes que um desastre culinário ocorra!
+
+### Entrada
+
+A entrada é composta de uma única linha contendo quatro inteiros $r_1, r_2, r_3, r_4$, cada um representando a distância do respectivo pote para o recipiente do Elemento X.
+
+### Saída
+
+A saída deve conter um único inteiro $1 ≤ I ≤ 4$, que representa o índice do pote que contém o elemento $X$.
+
+### Restrições
+
+- $ 1 ≤ r_1, r_2, r_3, r_4 ≤ 10^5$.
+
+### Exemplos
+
+Explicação do Exemplo 1: Nesse caso, o Elemento X está na primeira posição. O valor na posição 2 então é 1 porque a distancia entre o recipiente 2 e o recipiente onde o Elemento X se encontra é 1.', 'See statement.', 'See statement.', '1 ≤ I ≤ 4$, que representa o índice do pote ; 1 ≤ r_1, r_2, r_3, r_4 ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-a-elemento-x-a1', 'mineira-2023-a-elemento-x', 'X Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-a-antissocial', 'Antissocial', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1000, 'Problema A. Antissocial
+ Hoje é dia de show! Os fãs estão ansiosos para ouvir seus músicos favoritos: Clube da Esquina.
+
+Apesar de apaixonados pela música, os N fãs que chegarão um por vez no show não gostam de
+contato entre si (são definitivamente antissociais). Devido a isso, decidiram ocupar cada uma das
+N cadeiras usando uma regra simples: “escolher a posição que maximiza a distância para o fã
+mais próximo já sentado e, em caso de empate, escolher a cadeira de menor índice” (exceto para
+o primeiro espectador, que sempre ocupará a cadeira de número 1). Note que, para este show, as
+cadeiras foram dispostas em forma de uma única fileira.
+
+Dada a quantidade N de fãs (e cadeiras), sua tarefa é determinar a ordem final dos fãs.
+
+Entrada
+A entrada é composta apenas por um número inteiro N (1 ≤ N ≤ 3 × 105 ), a quantidade de fãs.
+
+Saída
+A saída deve conter uma linha composta de N números inteiros, em que o i-ésimo valor da linha
+indica qual fã (com base na ordem de chegada) ocupa a i-ésima cadeira.
+
+Exemplos
+ Exemplo de entrada 1                             Exemplo de saída 1
+ 5                                                1 4 3 5 2
+
+Explicação do exemplo 1
+
+A primeira pessoa a chegar ocupará a cadeira 1. A segunda pessoa a chegar escolherá a cadeira
+5, pois é a mais distante da cadeira 1. A terceira pessoa escolherá a cadeira 3, já que esta está
+a uma distância 2 das cadeiras 1 e 5. A quarta pessoa escolherá a cadeira 2, uma vez que está a
+uma distância 1 das cadeiras 1 e 3 (a cadeira 4 tem a mesma menor distância, mas escolhemos a de
+menor índice). A última pessoa ocupará a cadeira 4. Desta forma, obtemos a ordem [1, 4, 3, 5, 2].
+
+ Exemplo de entrada 2                             Exemplo de saída 2
+ 8                                                1 5 6 3 7 4 8 2', 'See statement.', 'See statement.', '1 ≤ N ≤ 3 × 105 ), a quantidade de fãs', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-a-antissocial-a1', 'mineira-2025-a-antissocial', 'XII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-a-ana-viva-a-mariana', 'Ana, viva a Mariana!', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1000, 'Problema A. Ana, viva a Mariana!
+                                         Viva a Mariana!
+
+Mariana conta 1 é uma música muito usada no processo de numeramento de crianças, já que
+apresenta uma forma didática e divertida para contar. Para crianças mais velhas, a música foi
+generalizada para Mariana Conta X (sendo X um número natural), e segue da seguinte maneira:
+
+Mariana conta 1
+Mariana conta 1: é 1, é Ana
+Viva a Mariana, viva a Mariana!
+
+Mariana conta 2
+Mariana conta 2: é 1, é 2, é Ana
+Viva a Mariana, viva a Mariana!
+
+...
+
+Mariana conta X
+Mariana conta X: é 1, é 2, . . . , é X, é Ana
+Viva a Mariana, viva a Mariana!
+
+Para saber seu valor didático, imprima quantos números estão presentes na música.
+
+Entrada
+A entrada é composta por um inteiro X (1 → X → 1000).
+
+Saída
+A saída deve conter um inteiro: quantos números foram contados na música.
+
+Exemplos
+
+ Exemplo de entrada 1                            Exemplo de saída 1
+ 2                                               7
+
+Explicação do exemplo 1
+
+Mariana contou 7 números: quatro vezes o número 1 e três vezes o número 2, como pode ser visto
+nas duas primeiras estrofes do enunciado.
+
+ Exemplo de entrada 2                            Exemplo de saída 2
+ 5                                               25
+
+ Exemplo de entrada 3                            Exemplo de saída 3
+ 10                                              75
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-a-ana-viva-a-mariana-a1', 'mineira-2026-a-ana-viva-a-mariana', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-a-pao-de-queijo', 'Pão de Queijo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1000, 'Problema A. Pão de Queijo
+Em Minas Gerais, é muito comum tomar um bom café com deliciosos pães de queijo. Maria está
+organizando um café da tarde para seus amigos e quer garantir que todos recebam pelo menos dois
+pães de queijo.
+
+Escreva um programa que, dado o número de convidados e a quantidade total de pães de queijo
+disponíveis, verique se a quantidade é suciente para atender a todos com pelo menos dois pães
+de queijo cada.
+
+Entrada
+A primeira linha contém um número inteiro C (1≤ C ≤ 104 ), representando a quantidade de
+convidados.
+                                                                      4
+              A segunda linha contém um número inteiro P (0 ≤ P ≤ 10 ), representando a
+quantidade total de pães de queijo disponíveis.
+
+Saída
+A saída contém uma única linha com o número 1 se houver pães de queijo sucientes para todos os
+convidados, ou 0 caso contrário.
+
+Exemplos
+ Entrada                                          Saída
+ 5                                                1
+ 12
+
+ Entrada                                          Saída
+ 4                                                0
+ 7
+
+                                                                                              4', 'See statement.', 'See statement.', '1≤ C ≤ 104 ), representando a quantidade de; 0 ≤ P ≤ 10 ), representando a', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-a-pao-de-queijo-a1', 'minas-2025-a-pao-de-queijo', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-a-pao-de-queijo', 'Pão de Queijo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1000, 'Problema A. Pão de Queijo
+Em Minas Gerais, é muito comum tomar um bom café com deliciosos pães de queijo. Maria está
+organizando um café da tarde para seus amigos e quer garantir que todos recebam pelo menos dois
+pães de queijo.
+
+Escreva um programa que, dado o número de convidados e a quantidade total de pães de queijo
+disponíveis, verique se a quantidade é suciente para atender a todos com pelo menos dois pães
+de queijo cada.
+
+Entrada
+A primeira linha contém um número inteiro C (1≤ C ≤ 104 ), representando a quantidade de
+convidados.
+                                                                      4
+              A segunda linha contém um número inteiro P (0 ≤ P ≤ 10 ), representando a
+quantidade total de pães de queijo disponíveis.
+
+Saída
+A saída contém uma única linha com o número 1 se houver pães de queijo sucientes para todos os
+convidados, ou 0 caso contrário.
+
+Exemplos
+ Entrada                                          Saída
+ 5                                                1
+ 12
+
+ Entrada                                          Saída
+ 4                                                0
+ 7
+
+                                                                                                  4', 'See statement.', 'See statement.', '1≤ C ≤ 104 ), representando a quantidade de; 0 ≤ P ≤ 10 ), representando a', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-a-pao-de-queijo-a1', 'minas-meia-2025-a-pao-de-queijo', '1ª Meia Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-apartments', 'Apartments', 'CSES', 'https://cses.fi/problemset/task/1084', 1100, 'There are $n$ applicants and $m$ apartments. Each applicant has a desired size $a_i$, and will accept an apartment of size in $[a_i-k, a_i+k]$. Assign apartments to maximize matches.', 'The first line contains three integers $n$, $m$, and $k$.
 
 The second line contains $n$ integers $a_1,\dots,a_n$ (desired sizes).
@@ -210,6 +468,297 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 
 Each test: first line $n$ and $k$ ($1 \le n \le 2\cdot 10^5$, $1 \le k \le 10^9$); second line $h_1\dots h_n$ ($1 \le h_i \le 10^9$). Sum of $n$ $\le 2\cdot 10^5$.', 'For each test print $n$ indices (1-based) — the order monsters are killed.', '$1 \le \sum n \le 2\cdot 10^5$', '[{"input":"3\n3 5\n1 2 3\n5 1\n1 1 1 1 1\n4 2\n1 4 4 1","output":"3 2 1\n1 2 3 4 5\n2 3 1 4"}]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1849b-a1', 'cf-1849b', 'Sort by remainder', ARRAY['Greedy']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Kill order by largest (h-1)%k']::text[], 'Priority is the damage needed beyond full k-hits; sort and print indices.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-b-podando-galhos', 'Podando Galhos', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1100, 'O natal já passou. Porém, por causa da correria do dia-a-dia, a árvore de natal na casa de Graça continua montada.
+Mas a família dessa garota-prodígio decidiu fazer um mutirão no próximo fim de semana para desmontar a árvore,
+onde também ainda está a toca do coelhinho da páscoa.
+
+Como Ada, a mãe de Graça, é uma cientista da computação apaixonada pelo que faz,
+ela nunca perde uma oportunidade de introduzir a filha
+no fabuloso mundo dos algoritmos e estruturas de dados.
+Por isso, a árvore de natal da família foi realmente montada como uma árvore
+que você encontraria em um curso de algoritmos: ela possui bolas numeradas de $1$ a $N$, cada uma
+podendo ser vista como um vértice, pendurada a outra bola acima dela,
+com exceção da raiz que foi pendurada no teto.
+
+Para que o desmonte da árvore seja mais divertido, Ada propôs um desafio a Graça.
+No $i$-ésimo segundo do desmonte, Ada irá cortar o fio que originalmente mantinha a bola de número $B_i$ suspensa.
+Caso a bola ainda esteja suspensa, ela irá então cair ao chão, juntamente com todas as bolas que estavam
+penduradas nela direta ou indiretamente.
+Pode acontecer que Ada corte o fio de uma bola que já esteja no chão - neste caso, nada acontece.
+Passados $N$ segundos, com todas as bolas no chão, Ada pergunta a Graça em qual segundo cada uma das $N$
+bolas caiu.
+Caso Graça acerte todos os números, ela será recompensada com uma viagem para assistir a próxima
+edição da Maratona Mineira, onde ela poderá conhecer outras jovens mentes promissoras como a sua!
+
+Graça é muito ágil e conseguiu anotar todos os números necessários manualmente. Mas será que você
+consegue fazer um programa para ajudá-la a se preparar para o desmonte de árvore de natal do ano que vem?
+Considere que as bolas caem imediatamente ao chão quando deixam de estar presas direta ou indiretamente ao teto.
+
+### Entrada
+
+A primeira linha da entrada contém um inteiro $N$, o número de bolas da árvore de natal.
+A segunda linha contém $N$ inteiros $P_1, , P_N$ separados por espaço.
+$P_i$ indica que há um fio prendendo a bola $i$ à bola $P_i$, que está acima na árvore.
+$P_i = -1$ indica que a bola $i$ é a raiz da árvore.
+Há sempre exatamente uma bola $i$ com 
+$P_i = -1$, e é garantido que as ligações dadas descrevem uma árvore.
+A última linha contém $N$ inteiros $B_1, , B_N$ separados por espaço, indicando qual fio é
+cortado no $i$-ésimo segundo do processo de desmonte.
+Cada inteiro entre $1$ e $N$ aparece exatamente uma vez na última linha da entrada.
+
+### Saída
+
+Escreva na saída uma linha com $N$ inteiros separados por espaço.
+O $i$-ésimo desses inteiros deve indicar em qual segundo a bola $i$ cai ao chão.
+
+### Restrições
+
+- $1 ≤ N ≤ 2 × 10^5$
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N ≤ 2 × 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-b-podando-galhos-a1', 'mineira-2019-b-podando-galhos', 'VIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-b-festa-laser', 'Festa Laser', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1100, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+Maria Joaquina, ou pela alcunha Majô, é uma jovem muito criativa e interessada em ciência. Desde criança, ela aprendeu que o conhecimento racional que a humanidade adquiriu ao longo da história permitiu com que a qualidade de vida melhorasse, e que descobertas ainda maiores fossem feitas. “Coitado dos negacionistas!”, sempre diz ela.
+
+Um dos feitos mais inspiradores para Majô foi a expedição à Lua de 1969, resultado da cooperação de matemáticos, engenheiros e cientistas de várias áreas do conhecimento. Após muito trabalho, o foguete Apollo 11 da NASA levou astronautas de uma base na Terra por uma viagem de 8 dias, com partes muito críticas, como a decolagem, a aproximação e pousos lunares, a operação do módulo lunar, e a reentrada na atmosfera terrestre.
+
+Nessa viagem, os astronautas Michael Collins, Buzz Aldrin e Neil Armstrong  deixaram um arranjo de espelhos no solo lunar, capaz de refletir raios lasers emitidos a partir do planeta Terra. Quando soube disso, Majô imediatamente começou a montar o equipamento apropriado em seu quintal e chamou todos os seus vizinhos para acompanharem o experimento durante a festa que ela titulou ``AFE – Avoid Flat Earthers''''.
+
+Além de conversar sobre astronomia, Majô, amante do estoicismo, também conversará com os convidados sobre outros avanços da humanidade, como o pensamento filosófico, o método científico e as vacinas. Entretanto, para sua surpresa, ela descobriu que vários vizinhos não acreditam na chegada da humanidade à Lua ou em algum avanço da ciência, e vão só causar transtornos em sua festa laser.
+
+Para evitar a fadiga, a jovem Joaquina pediu que você escreva um programa que indica se uma pessoa deve ser cortada do evento, por ser negacionista (``Óbvio, né gente!'''', como diz Majô). Neste programa, o vizinho deve informar se ele é negacionista ou não. Se for um pessoa sensata, com certeza será convidada.
+
+### Entrada
+
+A entrada possui uma linha contendo um valor inteiro $V$, que vale $1$, quando o vizinho analisado é negacionista, e $0$ caso contrário.
+
+### Saída
+
+A saída possui uma linha com um valor inteiro $A$, que vale $1$ quando o vizinho deve ser convidado por Majô para a festa AFE, de acordo com o critério que ela adota, e $0$ caso contrário.
+
+### Restrições
+
+	
+- $0 ≤ V ≤ 1$.
+
+### Exemplos', 'See statement.', 'See statement.', '0 ≤ V ≤ 1$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-b-festa-laser-a1', 'mineira-2022-b-festa-laser', 'IX Maratona Mineira — standard', ARRAY['Dynamic Programming','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-b-contorno', 'Contorno', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1100, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+A Avenida do Contorno é uma avenida circular de Belo Horizonte. Durante sua construção, foram instalados vários estabelecimentos ao longo dela, como várias drogarias (Araújo), várias pastelarias (Rei do Pastel), etc. Por motivos logísticos, todo par de estabelecimentos do mesmo tipo deve ser conectado diretamente por uma rua (que pode passar por dentro ou por fora da Contorno).
+
+Porém, para que a Contorno continue sendo a avenida principal, não podem existir esquinas em outros lugares da cidade (cruzamento de ruas). Além disso, não haverá túneis ou viadutos na cidade.
+
+Dados os tipos de estabelecimentos que existem em ordem ao longo da Contorno, sua tarefa é determinar se é possível construir as ruas conectando todo par de estabelecimentos de mesmo tipo, sem criar esquinas (cruzamentos de ruas) extras.
+
+%
+% For input, use one of the following
+%
+
+### Entrada
+
+A primeira linha contém um inteiro $1 ≤ N ≤ 10^3$. A segunda linha contém $N$ inteiros $1 ≤ c_i ≤ N$, em que $c_i$ representa o tipo do $i$-ésimo estabelecimento em ordem na Contorno.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+Imprima  S caso seja posssível construir as estradas, e  N caso contrário.
+
+### Restrições
+
+- $1 ≤ N ≤ 10^3$.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^3$; 1 ≤ c_i ≤ N$, em que $c_i$ representa o tipo; 1 ≤ N ≤ 10^3$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-b-contorno-a1', 'mineira-2023-b-contorno', 'X Maratona Mineira — standard', ARRAY['Graph Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-b-bares', 'Bares', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1100, 'Problema B. Bares
+
+Luffy é um entusiasta de suco de laranja, porém ele já gastou toda a sua mesada e não consegue
+comprar nenhum copo. Para satisfazer sua paixão, mesmo sem dinheiro, ele foi para a Rua Sapucaí.
+
+A Rua Sapucaí é famosa por sua grande quantidade de bares, sendo composta por uma sequência
+deles de maneira que Luffy consegue ir do i-ésimo bar ao j-ésimo bar em |i−j| segundos. Os clientes
+desses bares têm a tradição de comemorar boas notícias comprando uma rodada de suco de laranja
+para todos que estão no mesmo bar naquele segundo. Luffy conhece muito bem os clientes, então
+sabe exatamente em qual bar xi e em qual segundo ti cada rodada de suco vai ocorrer.
+
+Ajude-o a calcular o número máximo de sucos de laranja que ele pode beber, se ele escolher onde
+ele vai começar e andar de maneira ótima. Luffy não precisa parar no bar para beber o suco, pois
+sabe andar e beber ao mesmo tempo.
+
+Entrada
+A primeira linha da entrada contém um inteiro N (1 ≤ N ≤ 106 ), o número de rodadas de suco. As
+próximas N linhas contêm pares de inteiros: na i-ésima delas, xi (0 ≤ xi ≤ 106 ) e ti (0 ≤ ti ≤ 106 ),
+indicando que uma rodada de suco ocorrerá no bar xi no segundo ti . É garantido que não ocorrem
+duas rodadas em um mesmo bar no mesmo segundo.
+
+Saída
+A saída deve conter um único inteiro, o número máximo de sucos de laranja que Luffy pode beber.
+
+Exemplos
+ Exemplo de entrada 1                               Exemplo de saída 1
+ 3                                                  3
+ 1 0
+ 0 1
+ 1 2
+
+ Exemplo de entrada 2                               Exemplo de saída 2
+ 4                                                  3
+ 0 1
+ 1 0
+ 2 2
+ 3 3
+
+Explicação do exemplo 2
+
+Luffy consegue participar de até 3 rodadas na ordem: (1, 0), (2, 2), (3, 3).', 'See statement.', 'See statement.', '1 ≤ N ≤ 106 ), o número de rodadas de suco; 0 ≤ xi ≤ 106 ) e ti (0 ≤ ti ≤ 106 ),', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-b-bares-a1', 'mineira-2025-b-bares', 'XII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-b-bario-world', 'Bário World', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1100, 'Problema B. Bário World
+                                          It’s-a-Me, Bário!
+
+Por conta de suas divertidas mecânicas, Super Bário World é um sucesso entre os gamers mineiros.
+No jogo, Bário se move em fases compostas por N blocos, cada um podendo ser sólido ou um buraco
+e o objetivo do jogo é chegar do início da fase (o bloco 1) até o final (o bloco N ) sem cair em nenhum
+buraco. Bário pode correr sobre os blocos sólidos e, para evitar os buracos, Bário pode pulá-los.
+
+Bário usa botas que têm uma reserva de energia, que inicialmente é 1. Ao correr ele carrega as
+botas para poder pular mais longe – cada bloco sobre o qual Bário corre adiciona uma unidade de
+carga a seu equipamento. Um pulo de carga v faz com que Bário vá do bloco b para qualquer bloco
+entre b + 1 e b + v; ao aterrissar, Bário perde energia de suas botas, retornando ao valor inicial de 1.
+
+Calcule o número mínimo de pulos para Bário chegar na posição N ou indique que é impossível.
+
+Entrada
+A primeira linha contém um inteiro T (1 → T → 5 ↑ 105 ) o número de casos de teste (é garantido
+que o somatório dos valores de N é menor que 5 ↑ 105 ).
+
+Depois disso seguem T pares de linhas. A primeira linha contém N (2 → N → 5↑105 ), o comprimento
+da fase, e a segunda contém uma string de N caracteres representando os blocos da fase, x se for
+um bloco sólido e . se for um buraco (é garantido que os blocos 1 e N são sólidos).
+
+Saída
+Imprima o número mínimo de pulos para Bário chegar no fim da fase ou ↓1 se não for possível.
+
+Exemplos
+
+ Exemplo de entrada 1                                Exemplo de saída 1
+ 2                                                   2
+ 16                                                  -1
+ xxxxxxx.xxxx.x.x
+ 3
+ x.x
+
+Explicação do exemplo 1
+
+No primeiro caso de teste, uma possível solução com apenas dois pulos envolve Bário:
+  • Correr da posição 1 até a posição 5, carregando as botas com energia 5 e dar um pulo
+    aterrisando na posição 9. Ao aterrisar suas botas voltam a ter energia 1.
+  • Correr da posição 9 até a posição 12 carregando as botas com energia 4 e pular para o fim.
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-b-bario-world-a1', 'mineira-2026-b-bario-world', 'XIII Maratona Mineira — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-b-fibo-uai-trem-so', 'Fibo UAI, TREM, SO!', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1100, 'Problema B. Fibo UAI, TREM, SO!
+O pessoal das Minas de Minas resolveu brincar com a famosa sequência de Fibonacci. Mas, como
+um bom mineiro não perde a chance de deixar tudo com a sua marca registrada, nasceu a sequência
+Fibo UAI, TREM SO!.
+
+Funciona assim: a gente começa como na sequência de Fibonacci tradicional, com 1, 1, e cada novo
+número é a soma dos dois anteriores. Até aí, nenhuma novidade. O detalhe mineiro aparece quando
+o número cresce tanto que passa a ter mais dígitos do que o número anterior. Nesse momento, em
+vez de escrever o número, a gente solta uma palavra bem mineira, seguindo este ciclo:
+
+UAI → TREM → SO → UAI → TREM → SO → · · ·
+
+Ou seja:   sempre que aumentar o número de dígitos, em vez do número aparece uma dessas
+palavrinhas, na ordem indicada, repetindo para sempre.
+
+Só que tem outro detalhe: quando a palavra aparece pela primeira vez, ela não vale a soma de
+Fibonacci. Ela passa a valer um número xo especial:
+
+      O primeiro UAI vale 10;
+
+      O primeiro TREM vale 100;
+
+      O primeiro SO vale 1000;
+
+      O segundo UAI vale 10000;
+
+      E assim por diante, sempre multiplicando por 10 a cada nova palavra do ciclo.
+
+Esses valores substituem o número de Fibonacci na sequência interna, ou seja, os próximos termos
+passam a ser calculados usando também esses valores especiais.
+
+Entrada
+                                                  3
+A entrada contém um único inteiro N (2 ≤ N ≤ 10 ), indicando a quantidade de termos a imprimir.
+
+Saída
+Os N primeiros termos da sequência, separados por um espaço.
+
+Exemplos
+ Entrada                                        Saída
+ 7                                              1 1 2 3 5 8 UAI
+
+ Entrada                                        Saída
+ 17                                             1 1 2 3 5 8 UAI 18 28 46 74 TREM 174
+                                                274 448 722 SO
+
+                                                                                                  5', 'See statement.', 'See statement.', '2 ≤ N ≤ 10 ), indicando a quantidade de term', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-b-fibo-uai-trem-so-a1', 'minas-2025-b-fibo-uai-trem-so', '1ª Maratona Minas de Minas — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-b-distancias-em-minas', 'Distâncias em Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1100, 'Problema B. Distâncias em Minas
+João é um turista que está explorando Minas Gerais e deseja conhecer várias cidades históricas, como
+Belo Horizonte, Ouro Preto, Tiradentes e Diamantina. Durante a viagem, ele anotou a distância
+percorrida em quilômetros a cada dia, já que adora registrar suas aventuras.
+
+Agora, João quer calcular a distância total percorrida para contar aos amigos o quanto rodou pelas
+estradas mineiras.
+
+Escreva um programa que, dado o número de dias da viagem e as distâncias percorridas em cada
+um deles, calcule a distância total. Além disso, João gostaria de saber se conseguiu percorrer mais
+de 500 km no total  nesse caso, ele vai considerar que fez uma "grande viagem"!
+
+Entrada
+A primeira linha contém um número inteiro N (1 ≤ N ≤ 100), representando a quantidade de dias
+da viagem. Cada uma das próximas N linhas contém um número inteiro, que representa a distância
+percorrida em cada dia (em quilômetros).
+
+Saída
+Seu programa deve imprimir duas linhas: Na primeira linha, um número inteiro representando a
+distância total percorrida durante a viagem e, na linha seguinte, a mensagem "Grande viagem" se
+o total for maior que 500 km, ou "Viagem curta" caso contrário.
+
+Exemplos
+ Entrada                                        Saída
+ 5                                              410
+ 100                                            Viagem curta
+ 120
+ 80
+ 50
+ 60
+
+ Entrada                                        Saída
+ 4                                              520
+ 200                                            Grande viagem
+ 150
+ 100
+ 70
+
+                                                                                              5', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), representando a quantidade de ', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-b-distancias-em-minas-a1', 'minas-meia-2025-b-distancias-em-minas', '1ª Meia Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1360c', 'Similar Pairs', 'Codeforces', 'https://codeforces.com/problemset/problem/1360/C', 1200, 'You are given an array of $n$ distinct integers. Pair them into $n/2$ pairs such that each pair consists of two numbers of the same parity, or two numbers differing by $1$.', 'The first line contains an integer $t$ (test cases).
 
 Each test case: an integer $n$, then a line with $n$ integers.', 'For each test case print `YES` or `NO`.', '$2 \le n \le 50$, $n$ even; $T$ test cases', '[{"input":"1\n4\n1 5 3 4","output":"YES"}]'::jsonb, 'O(N log N)');
@@ -964,6 +1513,371 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1288a-a1', 'cf-1288a', 'Unimodal min', ARRAY['Math / Number Theory','Binary Search on Answer']::text[], ARRAY['Ternary Search','Binary Search']::text[], ARRAY[]::text[], ARRAY['f(x)=x+ceil(d/(x+1)) is unimodal; ternary or check near sqrt(d)']::text[], 'Minimize days = wait + ceil(d/(wait+1)); ternary or O(√d) scan.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-217a', 'Ice Skating', 'Codeforces', 'https://codeforces.com/problemset/problem/217/A', 1200, 'Snow drifts at integer points. You can skate between drifts sharing x or y. How many new drifts to connect all?', 'n and n points.', 'Minimum new drifts.', '$n \le 100$', '[]'::jsonb, 'O(N²)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-217a-a1', 'cf-217a', 'Grid components', ARRAY['Graph Algorithms']::text[], ARRAY['Floyd-Warshall','DFS','DSU']::text[], ARRAY['2D Array']::text[], ARRAY['Snow drifts share row/col; components; answer = components−1']::text[], 'Connect drifts on same row/column; need components−1 new drifts.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-c-caca-as-flores', 'Caça às Flores', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1200, '%article
+%[utf8]inputenc
+%graphicx
+
+%flores
+
+%document
+
+%Caça às flores
+
+Damiko precisa fazer uma pesquisa sobre $T$ diferentes tipos de flores para a escola.
+ Para isso ele irá usar o jardim existente em sua casa para colher esses $T$ tipo de flores.
+ Como ele deixou para realizar a pesquisa de última hora, precisa colher as flores de forma rápida e portanto ele necessita de sua ajuda para encontrar a menor área quadrada do jardim que contém todos os tipos de flores (1 a $T$ inclusive).
+
+Sua tarefa é simples.
+Damiko irá fornecer um mapa do seu jardim no formato de uma matriz $N × M$ onde, em cada posição, há um valor inteiro representando os tipos de flores no local.
+O $i$-ésimo bit menos significativo desse inteiro é 1 se e somente se nessa posição da matriz existe a flor do tipo $i$. 
+% A interpretação desses valores funciona da seguinte forma: O resto da divisão desse número por 2 é um valor binário onde 1 (true) significa que existe a flor do tipo 1 e 0 (false) significa que não existe a flor tipo 1.
+% Para a verificação da flor do tipo 2 basta fazer o mesmo procedimento, mas agora para o resultado da divisão da operação anterior.
+% Esse ciclo segue até que o resultado da divisão seja 0.
+ Portanto se uma posição do jardim contém, por exemplo, o valor 5, isso significa que existem dois tipos de flores: o tipo 1 e o tipo 3.
+ Caso o valor seja 7 ela contém os tipos:  1, 2 e 3.
+ Caso seja 0, não existem flores no local.
+
+Segue um exemplo de mapa $3 × 4$ de um jardim com $T=5$ tipos de flores:
+
+center
+  
+center
+
+No exemplo do jardim acima a menor região que contém os 5 tipos diferentes de flores é a de área 4 destacada iniciando na posição $(1, 2)$ e finalizando na posição $(2, 3)$.
+
+### Entrada
+
+A primeira linha da entrada contém três inteiros $N$, $M$ e $T$ separados por espaço, onde $N$ e $M$ são as dimensões do jardim e $T$ é o número de tipos flores a serem colhidas. 
+Cada uma das $N$ linhas seguintes contém $M$ inteiros separados por espaço. O $j$-ésimo inteiro da $i$-ésima dessas linhas, $X_ij$, representa as flores na posição $(i - 1, j - 1)$ do jardim.
+
+### Saída
+
+Caso seja possível coletar todas as flores colhendo uma área quadrada do jardim, a primeira linha da entrada deve conter um inteiro indicando a menor área quadrada que deve ser coletada. A segunda linha deve conter dois inteiros $L$ e $C$ separados por espaço, indicando respectivamente a linha e a coluna do canto superior esquerdo do quadrado coletado. Caso haja mais de uma resposta possível, escolha uma que minimize $L$. Se, mesmo assim, ainda houver mais de uma resposta possível, escolha aquela que minimiza $C$. Caso não seja possível coletar todas as flores colhendo uma área quadrada do jardim, a saída deve conter uma linha com o inteiro $-1$.
+
+### Restrições
+
+- $1 ≤ N,M ≤ 1000$
+
+- $1 ≤ T ≤ 10$
+
+- $0 ≤ X_ij ≤ 1023$ para todo $i = 0, 1, …, N - 1$, $j = 0, 1, …, M - 1$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N,M ≤ 1000$; 1 ≤ T ≤ 10$; 0 ≤ X_ij ≤ 1023$ para todo $i = 0, 1, …, N -', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-c-caca-as-flores-a1', 'mineira-2019-c-caca-as-flores', 'VIII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY['Segment Tree']::text[], ARRAY['Fenwick Tree','Hash Map']::text[], ARRAY['VIII Maratona Mineira (2019), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-c-caindo-na-estrada', 'Caindo na estrada', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1200, 'Pedro é um artista pop que anda fazendo muito sucesso no Brasil. Suas músicas estão em todas as rádios e os cachês de seus shows estão cada vez mais altos! Ele está realmente no topo de sua carreira.
+
+Pedro está planejando uma grande turnê que irá rodar o mundo todo, porém está com dificuldade em definir os dias dos seus shows. O valor do cachê do Pedro varia diariamente (depende do dia da semana, mês, previsão do tempo do dia, etc...). Ele quer organizar os shows de modo que seu cachê seja o mais alto possível, porém ele não quer fazer shows em dias consecutivos, pois isso o deixaria muito cansado e ele não conseguiria dar o seu melhor.  Você pode ajudá-lo com isso?
+
+Dada a quantidade de dias que durará a turnê e o valor do cachê de cada dia, ajude Pedro a encontrar o maior valor possível que ele pode receber somados todos os shows, lembrando que Pedro não pode realizar shows em dias consecutivos.
+
+### Entrada
+
+A primeira linha da entrada contem um inteiro $N$, a quantidade de dias que durará a turnê. Cada uma das próximas $N$ linhas seguintes contém um inteiro $K[i]$, representando o valor do cachê de Pedro no dia $i$.
+
+### Saída
+
+A saída deve conter um único inteiro X, o valor máximo do cachê que Pedro pode receber na turnê.
+
+### Restrições
+
+- $1 ≤ N ≤ 10^5$.
+
+- $1 ≤ K[i] ≤ 10^9$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^5$; 1 ≤ K[i] ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-c-caindo-na-estrada-a1', 'mineira-2022-c-caindo-na-estrada', 'IX Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-c-dever-de-casa', 'Dever de Casa', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1200, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+Joãozinho acabou de aprender sobre divisão na escola. A professora passou o dever de casa, com $N$ divisões que Joãozinho deve fazer, e entregar o resultado. Para cada uma delas, Joãozinho deve calcular o valor de $a_i / b_i$, $a_i, b_i$ inteiros positivos e $1 ≤ i ≤ N$.
+
+Porém, Joãozinho não é muito inteligente, e ele não entendeu muito bem como fazer quando há dízimas periódicas: ele acha que, se tiver que fazer $1 / 3 = 0.333333…$, ele nunca mais vai conseguir terminar o dever! Joãozinho ficou desesperado.
+
+Entretanto, Joãozinho é muito sagaz. Ele achou um furo: notou que a professora não especificou a base numérica em que os alunos devem representar o valor da divisão.
+
+Sendo assim, ajude Joãozinho a descobrir a menor base $B ≥ 2$ tal que, se escrevermos $a_i / b_i$ na base $B$, para todo $i$, não teremos dízimas periódicas. Como a resposta pode ser muito grande, imprima o resto da divisão de $B$ por $998 244 353$.
+
+%
+% For input, use one of the following
+%
+
+### Entrada
+
+A primeira linha contém um inteiro $1 ≤ N ≤ 10^5$.
+
+As próximas $N$ linhas contém dois inteiros separados por um espaço $1 ≤ a_i, b_i ≤ 10^5$.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+Uma única linha com o menor valor da base $B ≥ 2$ tal que nenhum dos $a_i / b_i$ forma dízima periódica na base $B$, módulo $998 244 353$.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.
+
+### Restrições
+
+- $1 ≤ N ≤ 10^5$.
+
+- $1 ≤ a_i, b_i ≤ 10^5$.
+
+Explicação do Exemplo 1: Em base 2, $1/3$ é representado como $0.01010101...$. Mas, em base 3, $1/3$ é representado como $0.1$.
+
+Explicação do Exemplo 2: Em base 2 já não teremos dízimas, pois $9/3$ é representado como $11$ e $5/2$ é representado como $10.1$.', 'See statement.', 'See statement.', '1 ≤ i ≤ N$; 1 ≤ N ≤ 10^5$; 1 ≤ a_i, b_i ≤ 10^5$; 1 ≤ N ≤ 10^5$; 1 ≤ a_i, b_i ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-c-dever-de-casa-a1', 'mineira-2023-c-dever-de-casa', 'X Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-c-cartas', 'Cartas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1200, 'Problema C. Cartas
+                                           Truco, ladrão!
+
+O Truco Mineiro é o mais querido jogo de cartas do estado, entretanto, ele é notoriamente difícil
+de se jogar por conta de suas regras esquisitas. Truco é jogado com apenas um baralho (nenhuma
+carta se repete mas algumas não são usadas no jogo) contendo os tipos de 2 a 7, os áses, as damas,
+os valetes e os reis (A, Q, J, K, respectivamente). Todos os naipes de todas as cartas anteriores são
+incluídos (copas - C, espadas - E, ouros - O e paus - P). Uma carta é representada pela concatenação
+do seu tipo e seu naipe (4P é o quatro de paus).
+
+A ordem de força das cartas no jogo é a seguinte (da mais forte para a mais fraca):
+
+                      4P   7C    AE   7O   3   2   A   K    J   Q   7   6   5   4
+
+Na tabela, nas posições em que o naipe foi omitido, todos os naipes daquele tipo (exceto os citados
+anteriormente) têm a mesma força (como exemplo, 4P é a carta mais forte e 4C, 4E e 4P estão
+empatadas como as cartas mais fracas).
+
+Para ensinar seus amigos a jogar, Riverson propôs que os amigos jogassem uma rodada simplificada
+do jogo seguindo suas dicas. Depois de aprenderem o básico, os amigos de Riverson vão poder jogar
+o Truco oficial, fazendo uso de mentiras, gritos, estratégias, tapas na mesa e discórdia para ganhar!
+
+A versão simplificada de Riverson é a seguinte:
+
+   • É um jogo de duplas jogado com 4 jogadores (A, B, C, D), sendo as duplas A/C e B/D.
+   • Cada jogador começa com 3 cartas (é garantido que não terão cartas repetidas).
+   • A ordem dos jogadores em cada turno será A → B → C → D (sempre começando com A).
+   • A cada turno, cada jogador joga uma carta (o jogo dura 3 turnos).
+   • Ganha o turno a dupla que tiver jogado a carta mais forte (se houver empate entre as cartas
+     mais fortes jogadas por duplas distintas, o turno termina em empate).
+
+Dadas as regras do jogo, Riverson disse para cada jogador jogar da seguinte forma:
+
+   • Se a dupla do jogador estiver ganhando o turno ou se não for possível ganhar das cartas
+     jogadas (não existe carta na mão do jogador mais forte que a carta mais forte jogada pelos
+     oponentes): jogue sua pior carta.
+   • Caso contrário: jogue sua carta mais forte (quando não houver nenhuma carta na mesa,
+     também deve-se jogar a mais forte).
+
+Você deve imprimir, para cada turno, qual foi a dupla ganhadora ou se houve empate.
+
+Entrada
+A entrada é composta por 4 linhas representando as mãos de cada jogador (A, B, C, D, respectiva-
+mente). Cada linha tem por 3 sequências de dois caracteres cada, simbolizando a mão do jogador.
+
+Saída
+
+A saída deve conter três números, o resultado de cada um dos turnos: 1 se a dupla A/C tiver
+ganhado, 2 se a dupla B/D tiver ganhado e 0 caso o turno acabe em empate.
+
+Exemplos
+
+ Exemplo de entrada 1                          Exemplo de saída 1
+ 7O 7E AP                                      2 1 2
+ QP 2C AE
+ 7C JE 3C
+ KO 4P 5O
+
+Explicação do exemplo 1
+
+Turno 1: A - 7O / B - AE / C - 7C / D - 4P* (dupla B/D ganha)
+Turno 2: A - A / B - 2 / C - 3* / D - 5 (dupla A/C ganha)
+Turno 3: A - 7 / B - Q / C - J / D - K* (dupla B/D ganha)
+
+ Exemplo de entrada 2                          Exemplo de saída 2
+ JC KP KO                                      0 2 2
+ AC 6O 5P
+ 2P KC 3E
+ 3P 3O 3C
+
+Explicação do exemplo 2
+
+Turno 1: A - K / B - A / C - 3* / D - 3* (empate)
+Turno 2: A - K / B - 5 / C - 2 / D - 3* (dupla C/D ganha)
+Turno 3: A - J / B - 6 / C - K / D - 3* (dupla C/D ganha)
+
+ Exemplo de entrada 3                          Exemplo de saída 3
+ AE 3C QP                                      2 1 0
+ 3P QE 7E
+ JC 3E JO
+ 6E 7C 2P
+
+Explicação do exemplo 3
+
+Turno 1: A - AE / B - 7 / C - J / D - 7C* (dupla B/D ganha)
+Turno 2: A - 3* / B - Q / C - J / D - 6 (dupla A/C ganha)
+Turno 3: A - Q / B - 3* / C - 3* / D - 2 (empate)', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-c-cartas-a1', 'mineira-2025-c-cartas', 'XII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-c-cartas', 'Cartas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1200, 'Problema C. Cartas
+
+Certo dia, Rened decidiu convidar seus amigos para um jogo de cartas. O jogo consiste em uma
+sequência de N cartas numeradas colocadas sobre uma mesa, inicialmente vazia. Os jogadores, em
+turnos, vão adicionando novas cartas ao final dessa sequência, sendo que o i-ésimo jogador irá jogar
+a carta de valor Ci .
+
+A regra principal é simples: não pode haver cartas com números repetidos sobre a mesa.
+
+Sempre que um jogador joga uma carta cujo número ainda não apareceu na sequência atual, ela é
+apenas adicionada ao final, aumentando a sequência normalmente.
+
+Porém, se um jogador jogar uma carta de mesmo valor que outra já presente na mesa, ocorre uma
+eliminação: todas as cartas desde o início da sequência até a carta com este número (inclusive a
+carta de número repetido) são removidas. Em seguida, a nova carta jogada passa a ocupar a posição
+final da mesa. Note que após este processo não restam mais valores repetidos na mesa e
+que a sequência nunca fica vazia.
+
+Para deixar o jogo mais rápido, Rened solicitou que você e sua equipe desenvolvam um sistema que
+acompanhe o estado do jogo, informando, ao final de cada jogada, a carta de maior valor presente
+na mesa e o índice do jogador que a jogou.
+
+Entrada
+A entrada tem duas linhas. Na primeira é dado o valor de N (1 → N → 2 ↑ 105 ), representando a
+quantidade de jogadores. Na segunda, são informados os valores Ci (1 → Ci → N ) das cartas.
+
+Saída
+A saída deve conter N linhas, cada uma contendo dois valores separados por um espaço. O valor C
+da maior carta ainda presente na mesa e o índice i do jogador que jogou esta carta.
+
+Exemplos
+
+ Exemplo de entrada 1                              Exemplo de saída 1
+ 6                                                 3 1
+ 3 1 4 1 6 6                                       3 1
+                                                   4 3
+                                                   4 3
+                                                   6 5
+                                                   6 6
+
+Explicação do exemplo 1
+
+XIII 
+
+ 1ª jogada:                   3ª jogada:                     5ª jogada:
+ Jogador 1 joga 3             Jogador 3 joga 4               Jogador 5 joga 6
+ Cartas na mesa: [3]          Cartas na mesa: [3, 1, 4]      Cartas na mesa: [4, 1, 6]
+ Maior carta: 3 (jogador 1)   Maior carta: 4 (jogador 3)     Maior carta: 6 (jogador 5)
+
+ 2ª jogada:                   4ª jogada:                     6ª jogada:
+ Jogador 2 joga 1             Jogador 4 joga 1               Jogador 6 joga 6
+ Cartas na mesa: [3, 1]       Elimina-se o prefixo até o 1   Cartas na mesa: [6]
+ Maior carta: 3 (jogador 1)   anterior                       Maior carta: 6 (jogador 6)
+                              Cartas na mesa: [4, 1]
+                              Maior carta: 4 (jogador 3)
+
+ Exemplo de entrada 2                             Exemplo de saída 2
+ 12                                               1 1
+ 1 1 4 6 5 8 4 6 8 2 5 2                          1 2
+                                                  4 3
+                                                  6 4
+                                                  6 4
+                                                  8 6
+                                                  8 6
+                                                  8 6
+                                                  8 9
+                                                  8 9
+                                                  8 9
+                                                  5 11
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-c-cartas-a1', 'mineira-2026-c-cartas', 'XIII Maratona Mineira — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-c-corrida-do-pao-de-queijo', 'Corrida do Pão de Queijo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1200, 'Problema C. Corrida do Pão de Queijo
+Durante o feriado de Tiradentes, Luana, estudante de Ciência da Computação, decidiu organizar
+uma competição inusitada: a   Corrida do Pão de Queijo !
+Nessa corrida, as competidoras são as capivaras, conhecidas por sua habilidade incomparável em
+mastigar sem parar.   Mas ao contrário de uma corrida comum, aqui elas participam como uma
+grande equipe: o objetivo não é ver qual delas come mais rápido, e sim alcançar juntas a meta de
+devorar pelo menos G pães de queijo no menor tempo possível.
+
+Cada capivara possui seu próprio ritmo.    A capivara        i precisa de exatamente Ci minutos para
+terminar um pão de queijo, e assim que acaba um, começa outro imediatamente, sem descanso.
+
+O problema é que, com tantas capivaras mastigando em ritmos diferentes, cou difícil prever em
+quanto tempo a equipe alcançará a meta. Por isso, elas precisam de você: escreva um programa que
+calcule o menor tempo inteiro T (em minutos) necessário para que, somando os esforços de todas,
+elas consigam comer pelo menos G pães de queijo.
+
+Entrada
+                                                     5
+A primeira linha contém um inteiro N (1 ≤ N ≤ 10 ), o número de capivaras competidoras.
+
+                                                         9
+A segunda linha contém um inteiro G (1 ≤ G ≤ 10 ), a quantidade total de pães de queijo que
+precisa ser comida.
+
+A terceira linha contém N inteiros Ci (1 ≤ Ci    ≤ 109 ), onde cada valor representa o tempo em
+minutos que a capivara i leva para comer um pão de queijo.
+
+Saída
+Imprima um único inteiro representando o menor tempo T (em minutos) necessário para comer pelo
+menos G pães de queijo.
+
+Exemplos
+ Entrada                                        Saída
+ 3 20                                           20
+ 3 2 5
+
+                                                                                                  6', 'See statement.', 'See statement.', '1 ≤ N ≤ 10 ), o número de capivaras competid; 1 ≤ G ≤ 10 ), a quantidade total de pães de ; 1 ≤ Ci    ≤ 109 ), onde cada valor represent', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-c-corrida-do-pao-de-queijo-a1', 'minas-2025-c-corrida-do-pao-de-queijo', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-c-fibo-uai-trem-so', 'Fibo UAI, TREM, SO!', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1200, 'Problema C. Fibo UAI, TREM, SO!
+O pessoal das Minas de Minas resolveu brincar com a famosa sequência de Fibonacci. Mas, como
+um bom mineiro não perde a chance de deixar tudo com a sua marca registrada, nasceu a sequência
+Fibo UAI, TREM SO!.
+
+Funciona assim: a gente começa como na sequência de Fibonacci tradicional, com 1, 1, e cada novo
+número é a soma dos dois anteriores. Até aí, nenhuma novidade. O detalhe mineiro aparece quando
+o número cresce tanto que passa a ter mais dígitos do que o número anterior. Nesse momento, em
+vez de escrever o número, a gente solta uma palavra bem mineira, seguindo este ciclo:
+
+UAI → TREM → SO → UAI → TREM → SO → · · ·
+
+Ou seja:   sempre que aumentar o número de dígitos, em vez do número aparece uma dessas
+palavrinhas, na ordem indicada, repetindo para sempre.
+
+Só que tem outro detalhe: quando a palavra aparece pela primeira vez, ela não vale a soma de
+Fibonacci. Ela passa a valer um número xo especial:
+
+      O primeiro UAI vale 10;
+
+      O primeiro TREM vale 100;
+
+      O primeiro SO vale 1000;
+
+      O segundo UAI vale 10000;
+
+      E assim por diante, sempre multiplicando por 10 a cada nova palavra do ciclo.
+
+Esses valores substituem o número de Fibonacci na sequência interna, ou seja, os próximos termos
+passam a ser calculados usando também esses valores especiais.
+
+Entrada
+                                                  3
+A entrada contém um único inteiro N (2 ≤ N ≤ 10 ), indicando a quantidade de termos a imprimir.
+
+Saída
+Os N primeiros termos da sequência, separados por um espaço.
+
+Exemplos
+ Entrada                                        Saída
+ 7                                              1 1 2 3 5 8 UAI
+
+ Entrada                                        Saída
+ 17                                             1 1 2 3 5 8 UAI 18 28 46 74 TREM 174
+                                                274 448 722 SO
+
+                                                                                                  6', 'See statement.', 'See statement.', '2 ≤ N ≤ 10 ), indicando a quantidade de term', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-c-fibo-uai-trem-so-a1', 'minas-meia-2025-c-fibo-uai-trem-so', '1ª Meia Maratona Minas de Minas — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-collecting-numbers', 'Collecting Numbers', 'CSES', 'https://cses.fi/problemset/task/2216', 1300, 'You have an array that is a permutation of $1..n$. In one round you collect numbers in increasing order from left to right. How many rounds to collect all?', 'The first line contains an integer $n$.
 
 The second line contains a permutation of $1\dots n$.', 'Print the number of rounds needed to collect the numbers in order.', '$1 \le n \le 2 \times 10^5$', '[{"input":"5\n4 2 1 5 3","output":"3"}]'::jsonb, 'O(N)');
@@ -1266,6 +2180,284 @@ The next line has $n$ integers $x_1,x_2,\ldots,x_n$: the number of sticks in eac
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-nim-game-ii-a1', 'cses-nim-game-ii', 'Nim variant', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Misère-like / xor with heap cap 1..m variant on CSES']::text[], 'Each heap limited; still XOR after mapping heap sizes.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-572b', 'Order Book', 'Codeforces', 'https://codeforces.com/problemset/problem/572/B', 1300, 'Process buy/sell orders; print the s best sell and buy price levels with aggregated volumes.', 'n s and n orders.', 'Sell then buy levels.', '$n \le 1000$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-572b-a1', 'cf-572b', 'Order book', ARRAY['Greedy']::text[], ARRAY['Sorting','LIS']::text[], ARRAY['Ordered Set','Hash Map']::text[], ARRAY['Aggregate orders by price; take best s buy/sell levels']::text[], 'Map prices to volumes; print top s sell and buy levels.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-d-premios-da-mineira', 'Prêmios da Mineira', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1300, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+A Maratona Mineira de Programação é um evento de muita consagração e sucesso. Há oito anos, a Maratona Mineira vem incentivando jovens estudantes a praticar programação competitiva, ajudando alunos de toda Minas Gerais a desenvolver habilidades lógicas e técnicas.
+
+Em 2012, a primeira Maratona Mineira de Programação foi realizada em Uberlândia, e os primeiros colocados receberam prêmios muito legais! A organização deu o prêmio mais caro para o primeiro lugar, o segundo mais caro para o segundo lugar e assim por diante. Porém, dinheiro não é tudo nessa vida e Gabriel Prosa sabe disso. O time dele ficou em primeiro lugar e recebeu o prêmio mais caro. Porém, para ele, o prêmio mais legal de todos foi o dado ao $K$-ésimo time mais bem colocado.
+
+Na Maratona de Programação temos $N$ times competindo, cada time $i$ resolveu $P_i$ problemas com uma penalidade de $T_i$ minutos. O ranking final é feito ordenando os times por ordem decrescente de problemas resolvidos, caso haja dois times com mesmo número de problemas resolvidos, o time com menor penalidade de tempo fica acima no ranking. É garantido que não temos dois times com o mesmo número de problemas e com a mesma penalidade.
+
+Dado o número de problemas e a penalidade de cada time, qual será o time que ganhou o prêmio mais legal da competição, segundo Gabriel Prosa?
+
+### Entrada
+
+A primeira linha da entrada é composta por dois inteiros $N$ e $K$, representando o número de times que participaram da competição, e a posição do time que ganhou o prêmio mais legal, respectivamente. Logo após, teremos $N$ linhas.
+A $i$-ésima dessas linhas é composta por três inteiros, $ID_i$, $P_i$ e $T_i$, representando o identificador único do $i$-ésimo time, o número de problemas que o time resolveu, e a penalidade.
+
+### Saída
+
+A saída deverá ser composta por somente um inteiro, o identificador do $K$-ésimo time mais bem colocado.
+
+### Restrições
+
+- $1 ≤ N ≤ 100$
+
+- $1 ≤ K ≤ N$
+
+- $1 ≤ ID_i ≤ N$
+
+- $1 ≤ P_i ≤ 13$
+
+- $1 ≤ T_i ≤ 2000$
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N ≤ 100$; 1 ≤ K ≤ N$; 1 ≤ ID_i ≤ N$; 1 ≤ P_i ≤ 13$; 1 ≤ T_i ≤ 2000$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-d-premios-da-mineira-a1', 'mineira-2019-d-premios-da-mineira', 'VIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-d-crise-da-chuva', 'Crise da Chuva', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1300, 'Bibika trabalha no centro nacional de meteorologia onde sua função é estudar dados passados referentes a períodos chuvosos em diversas cidades a
+fim de entender como cidades em estados de emergência afetam para o crescimento do país.
+
+Para fins didáticos, iremos considerar que um país é uma grade retangular de tamanho $N$x$M$ onde cada posição desse retângulo representa uma cidade.
+Após anos de estudos, Bibika está quase certa de que um país entra em colapso, por conta dos problemas em longos períodos de chuva, sempre que todas
+as cidades contidas em um quadrado de lado $K$ declaram estado de emergência.
+
+Querendo confirmar sua teoria, Bibika conta com sua ajuda para analisar mais alguns períodos chuvosos da história e descobrir qual foi o primeiro momento
+em que o país entrou em colapso, dada a definição de colapso descrita anteriormente.
+
+É válido destacar que uma cidade nunca entra em estado de emergência mais de uma vez e, uma vez em estado de emergência, ela permanece nesse estado para sempre.
+
+### Entrada
+
+A primeira linha da entrada contém quatro inteiros $N$, $M$, $K$, $Q$, representando, respectivamente, a quantidade de linhas e colunas do país,
+o tamanho do lado do quadrado e a quantidade de dados de cidades que declararam estado de emergência.
+Cada uma das próximas $Q$ linhas contém três inteiros $A$, $B$, $D$ significando que no momento $D$ no tempo a cidade da posição $(A,B)$ declarou estado
+de emergência.
+
+### Saída
+
+A saída deve conter um único inteiro: o primeiro instante em que seria possível dizer que o país entrou em colapso.
+Caso ele não tenha entrado em colapso em nenhum momento, exiba $-1$.
+
+### Restrições
+
+- $1 ≤ N, M ≤ 400$.
+
+- $1 ≤ K ≤ min(N, M)$.
+
+- $1 ≤ Q ≤ N × M$.
+
+- $1 ≤ A ≤ N$.
+
+- $1 ≤ B ≤ M$.
+
+- $1 ≤ D ≤ 10^9$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 400$; 1 ≤ K ≤ min(N, M)$; 1 ≤ Q ≤ N × M$; 1 ≤ A ≤ N$; 1 ≤ B ≤ M$; 1 ≤ D ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-d-crise-da-chuva-a1', 'mineira-2022-d-crise-da-chuva', 'IX Maratona Mineira — standard', ARRAY['Graph Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-d-adedanha', 'Adedanha', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1300, 'Enquanto Alan e seus amigos estavam brincando, uma senhora os pediu para capinar seu lote. As crianças preferem brincar, mas, como são educadas, decidiram escolher uma das crianças para capinar o lote enquanto as outras se divertem. Para escolher quem capinará, jogarão adedanha.
+
+Adedanha funciona da seguinte forma: todas as crianças esticam alguns dedos e o número de dedos esticados (um número de $0$ a $20$, dedos do pé também são dedos!) de cada criança são somados para um valor $S$. Depois disso conta-se circularmente as $N$ crianças que são numeradas de $0$ (Alan) a $N - 1$. Logo a contagem se dá na seguinte ordem: $0, 1, …, N - 2, N - 1, 0, 1, …$. Depois de contarmos $S$ crianças, a criança em que a contagem parou será escolhida para a árdua tarefa de capinar o lote.
+
+Alan é muito esperto e decidiu trapacear: ele só vai decidir o número de dedos que vai esticar logo depois de ver o número que cada uma das outras crianças esticou (Alan consegue contar dedos muito rápido, as outras crianças nem percebem sua trapaça!).
+
+Dada a sua informação privilegiada, Alan quer saber, para cada criança (incluindo ele próprio), se ele consegue escolher algum número de dedos para esticar de forma que esta criança capine. Se vários números de dedos esticados forem possíveis para fazer certa criança capinar, imprima o menor deles, ou caso seja impossível, -1.
+
+### Entrada
+
+A primeira linha da entrada contém um inteiro $N$ ($1 ≤ N ≤ 10^5$), o número de crianças participando da adedanha (incluindo Alan).
+
+Depois disso temos $N - 1$ linhas com inteiros de $0$ a $20$. A $i$-ésima linha contém o número de dedos que a criança $1,…,N - 1$ esticou (todas as crianças menos Alan). 
+
+### Saída
+
+A saída deve conter $N$ linhas com números $d_0, d_1, …, d_N - 1$. O número $d_i$ deve ser o menor número de dedos que Alan deve esticar para que a criança $i$ capine o lote e $-1$ caso seja impossível que $i$ capine.
+
+### Restrições
+
+- $1 ≤ N ≤ 10^5$.', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^5$), o número de crianças partici; 1 ≤ N ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-d-adedanha-a1', 'mineira-2023-d-adedanha', 'X Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-d-dados', 'Dados', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1300, 'Problema D. Dados
+
+Eis que você e seus amigos acabam de pedir uma porção de torresmo mineiro em um boteco. Para
+ser justo, a quantidade de torresmo que cada um vai comer vai ser decidida pela sorte!
+
+Um de seus amigos, por acaso, tinha 3 dados de 6 lados (com valores de 1 a 6) no bolso. Assim,
+para decidir quantos pedaços de torresmo cada um vai comer, serão jogados os 3 dados, e o valor
+sorteado será a soma dos valores dos dados.
+
+Você então se pergunta: qual é a probabilidade da soma dos 3 dados ser igual a K?
+
+Entrada
+
+A entrada é composta apenas por um inteiro K (3 ≤ K ≤ 18).
+
+Saída
+
+A saída deve conter apenas um número decimal: a probabilidade da soma dos 3 dados ser igual a
+K. A saída será considerada correta se estiver com um erro absoluto ou relativo menor que 10−3
+em relação à saída do juiz.
+
+Exemplos
+
+ Exemplo de entrada 1                            Exemplo de saída 1
+ 3                                               0.0046296296
+
+Explicação do exemplo 1
+
+Neste caso, há apenas uma forma em que a soma é 3: se todos os dados forem 1. Dessa forma, a
+probabilidade é 6·6·6
+                  1
+                      ≈ 0.00463.
+
+ Exemplo de entrada 2                            Exemplo de saída 2
+ 10                                              0.125
+
+Observações
+
+Para especificar o número de casas decimais na saída, você pode usar:
+
+     • printf("%.12lf\n", val) em C.
+     • cout << fixed << setprecision(12) << val em C++.
+     • print("%.12f" % val) em Python.
+     • System.out.printf("%.12f", val) em Java.', 'See statement.', 'See statement.', '3 ≤ K ≤ 18)', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-d-dados-a1', 'mineira-2025-d-dados', 'XII Maratona Mineira — standard', ARRAY['Geometry']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-d-datas-incertas', 'Datas incertas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1300, 'Problema D. Datas incertas
+
+A NeoSpace é uma startup inovadora que utiliza modelos avançados de Inteligência Artificial para
+processar volumes massivos de informações corporativas. Nos corredores da empresa, é comum
+ouvir uma piada clássica entre os engenheiros: apesar de serem especialistas em lidar com Big Data,
+o maior pesadelo do sistema ainda são as pequenas datas inseridas incorretamente pelos usuários.
+
+Recentemente, a plataforma começou a integrar dados de novos clientes internacionais. Durante
+a ingestão de dados, a equipe notou um problema grave na interface: enquanto o sistema espera
+o padrão brasileiro de Dia/Mês (DD/MM), muitos usuários estrangeiros estão preenchendo os
+formulários no formato Mês/Dia (MM/DD).
+
+Para garantir a qualidade do modelo de IA, o pipeline deve identificar quando uma entrada pode
+causar confusão. Por exemplo, o valor 1/6 é problemático, pois pode ser interpretado como 1º de
+Junho ou 6 de Janeiro. Já o valor 28/2 é seguro, pois não existe um mês 28 no calendário.
+
+Sua tarefa é criar um algoritmo que analise a entrada fornecida pelo usuário e determine se os
+números informados podem gerar essa dupla interpretação.
+
+Entrada
+A entrada é composta por uma única linha contendo dois números inteiros D e M (1 → D → 28, 1 →
+M → 12) representando, respectivamente, o dia e o mês do evento.
+
+Saída
+Imprima DATA INCERTA se a data pode ser interpretada no formato Mês/Dia como uma outra data
+válida e DATA SEGURA caso contrário.
+
+Exemplos
+
+ Exemplo de entrada 1                             Exemplo de saída 1
+ 28 2                                             DATA SEGURA
+
+ Exemplo de entrada 2                             Exemplo de saída 2
+ 1 6                                              DATA INCERTA
+
+ Exemplo de entrada 3                             Exemplo de saída 3
+ 9 9                                              DATA SEGURA
+
+Explicação do exemplo 3
+
+A data pode ser interpretada apenas como 9 de Setembro.
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-d-datas-incertas-a1', 'mineira-2026-d-datas-incertas', 'XIII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-d-bandeja-de-pao-de-queijos', 'Bandeja de Pão de Queijos', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1300, 'Problema D. Bandeja de Pão de Queijos
+Em Minas Gerais, o pão de queijo não pode faltar. Dona Maria, uma quitandeira de mão cheia da
+cidade de Uberaba, sabe fazer pão de queijo como ninguém. Todos os dias, ela recebe pedidos de
+diversos clientes, cada um solicitando uma quantidade diferente de pães de queijo.
+
+Para atender a todos os clientes e otimizar a produção, Dona Maria sempre organiza os pães de queijo
+em fôrmas com exatamente seis unidades, para levá-los ao forno. Antes de começar a produção, ela
+precisa saber a quantidade mínima de fôrmas completas que deve montar para conseguir entregar
+todos os pedidos.   Ela também precisa saber quantos pães de queijo sobrarão, depois de montar
+todas as bandejas das entregas. Ajude Dona Maria a calcular essas quantidades para que ela possa
+atender seus clientes com eciência.
+
+Entrada
+                                                                    5
+A primeira linha de entrada contém um único inteiro N (1 ≤ N ≤ 10 ), que representa a quantidade
+                                                                               4
+de clientes. A próxima linha possui exatamente N valores inteiros (1 ≤ ai ≤ 10 ) separados por um
+espaço, onde o i-ésimo valor representa a quantidade de pães de queijo pedido pelo cliente i.
+
+Saída
+A saída é composta por uma única linha, com dois valores inteiros F e P , separados por um espaço
+em branco, sendo F o número mínimo de formas completas que serão assadas e P o número de pães
+que sobrarão.
+
+Exemplos
+ Entrada                                        Saída
+ 1                                              2 2
+ 10
+
+ Entrada                                        Saída
+ 2                                              4 4
+ 10 10
+
+ Entrada                                        Saída
+ 10                                             10 5
+ 1 2 3 4 5 6 7 8 9 10
+
+                                                                                                     7', 'See statement.', 'See statement.', '1 ≤ N ≤ 10 ), que representa a quantidade; 1 ≤ ai ≤ 10 ) separados por um', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-d-bandeja-de-pao-de-queijos-a1', 'minas-2025-d-bandeja-de-pao-de-queijos', '1ª Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-d-o-trem-de-minas', 'O Trem de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1300, 'Problema D. O Trem de Minas
+Em Minas Gerais, o trem é muito mais que um meio de transporte: ele cruza montanhas, corta
+cidades históricas e carrega histórias de trabalhadores, estudantes e famílias inteiras.
+
+Miguel é responsável por anotar com quantos passageiros o trem saiu da cidade de origem. Infelizmente,
+Miguel esqueceu de recolher essa informação.      Por outro lado, felizmente o maquinista sempre
+mantém registros da movimentação dos passageiros nas estações.         Esses dados serão úteis para
+recuperar parte dessa informação.
+
+Após sair da cidade de origem, o trem passa por N estações e depois para em uma cidade nal.
+Quando o trem para na i-ésima estação, primeiro ai passageiros descem do trem e logo após bi
+passageiros embarcam no trem para seguir viagem. O maquinista possui o registro desses números
+para as N estações na ordem que o trem passa por elas, porém não sabe quantas pessoas entraram
+inicialmente na cidade de origem e nem quantas pessoas desembarcaram na cidade nal.
+
+Miguel pediu sua ajuda para descobrir o menor número possível de pessoas que entraram no trem na
+cidade de origem sabendo apenas dos dados anotados pelo maquinista. Por exemplo, se na primeira
+estação descem 10 pessoas, então já é possível deduzir que no mínimo 10 pessoas entraram no trem
+na cidade de origem.
+
+Entrada
+A primeira linha contém um inteiro N (1 ≤ N ≤ 100), representando o número de estações de trem.
+Em seguida, são dadas N linhas, cada uma contendo dois inteiros ai e bi (0 ≤ ai , bi ≤ 100) que
+representam respectivamente o número de passageiros que desceram do trem na estação e o número
+de passageiros que subiram no trem na estação. As estações são dadas na ordem que o trem passa
+por elas.
+
+Saída
+Imprima um inteiro indicando o número mínimo de passageiros que entraram no trem na cidade de
+origem para que seja possível os dados que o maquinista anotou
+
+Exemplos
+ Entrada                                          Saída
+ 1                                                10
+ 10 5
+
+ Entrada                                          Saída
+ 2                                                20
+ 10 5
+ 15 0
+
+ Entrada                                          Saída
+ 4                                                2
+ 1 3
+ 2 3
+ 2 1
+ 4 0
+
+                                                                                                     7', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), representando o número de esta; 0 ≤ ai , bi ≤ 100) que', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-d-o-trem-de-minas-a1', 'minas-meia-2025-d-o-trem-de-minas', '1ª Meia Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-playlist', 'Playlist', 'CSES', 'https://cses.fi/problemset/task/1141', 1400, 'You are given a playlist of $n$ songs. Find the longest contiguous segment of songs where each song appears at most once.', 'The first line contains an integer $n$.
 
 The second line contains $n$ integers: the song ids.', 'Print the maximum length of a contiguous segment with distinct songs.', '$1 \le n \le 2 \times 10^5$', '[{"input":"8\n1 2 1 3 2 7 4 2","output":"5"}]'::jsonb, 'O(N)');
@@ -2638,6 +3830,403 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('atc-abc70-d-a1', 'atc-abc70-d', 'Tree via hub', ARRAY['Graph Algorithms']::text[], ARRAY['Floyd-Warshall','DFS','Dijkstra']::text[], ARRAY['Adjacency List']::text[], ARRAY['Tree: fix hub K; answer dist(a,K)+dist(b,K) via one DFS']::text[], 'DFS/BFS distances from K; each query is sum of two distances.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-727c-b', 'Guess the Array (practice)', 'Codeforces', 'https://codeforces.com/problemset/problem/727/C', 1400, 'Interactive recovery of an array from pairwise sums.', 'n then `?` queries.', '`!` array.', '$n \le 5000$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-727c-b-a1', 'cf-727c-b', 'Sum queries', ARRAY['Interactive']::text[], ARRAY[]::text[], ARRAY['1D Array']::text[], ARRAY['Pair-sum queries recover the hidden array']::text[], 'Three equations for first three elements; then query with index 1.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-e-jantar-das-capivaras', 'Jantar das Capivaras', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1400, 'Há vários anos, Bacon -- o Bravo -- saiu vitorioso das disputas de sucessão do reino das capivaras.
+Infelizmente, Bacon já está com 16 anos, uma idade avançada para uma capivara.
+Como todo bom rei absolutista, Bacon -- o Bravo -- também gostaria de ser conhecido como fundador
+da maior dinastia já vista por sua espécie, e almeja colocar no trono sua filha mais velha,
+Bacon -- a Ambiciosa.
+
+Para evitar um novo conflito entre seus vassalos, o monarca convocou todos os nobres de seu reino
+para um jantar onde será decidido o futuro monarca das capivaras, onde os convidados serão dispostos em uma
+grande mesa retangular com a família real ocupando as duas cabeceiras.
+Para deixar os nobres mais confortáveis, e assim aumentar suas chances de realizar seus sonhos,
+Bacon -- o Bravo -- quer dividir as nobre capivaras nas duas laterais da mesa tal que cada capivara tenha,
+no máximo, um de seus aliádos políticos do outro lado.
+Infelizmente, ou felizmente para nosso monarca, as richas entre os nobres ainda estão muito fortes e evidentes,
+e com isso cada nobre tem não mais do que três aliados.
+Os lados da mesa não precisam ter o mesmo número de ocupantes, mas cada um deve ter pelo menos uma capivara.
+
+Ajude o rei a determinar se é possível ou não dividir os nobres dessa forma e seja imortalizado nas 
+Crônicas das Capivaras como Humana/Humano -- a/o Ajudante!
+
+### Entrada
+
+A primeira linha da entrada contém dois inteiros separados por espaços, $N$ e $M$, o número de nobres e o número
+de aliaças políticas existentes entre eles.
+Seguem $M$ linhas, cada uma com dois inteiros $u_i$ e $v_i$, indicando que a capivara $u_i$ aliada à capivara $v_i$.
+Estamos falando de um reino, então não existem capivaras isoladas politicamente: sempre é possível chegar de uma capivara
+a outra apenas seguindo os elos de lealdade.
+
+### Saída
+
+A primeira linha da saída deve conter um único inteiro $R$, que deve ser $0$ caso seja impossível realizar a divisão,
+ou $1$, casa seja possível.
+Se $R = 0$, não há mais linhas na saída.
+Se $R = 1$, a segunda linha contem um único inteiro $S_1$, o número de capivaras do lado esquerdo da mesa.
+Seguem então $S_1$ inteiros na terceira linha, separados por espaço, cada um representando o número de uma capivara que está do lado esquerdo.
+A quarta linha contém com um único inteiro $S_2$, o número de capivaras do lado direito da mesa.
+Seguem então $S_2$ inteiros na quinta linha, separados por espaço, cada um representando o número de uma capivara que está do lado direito.
+
+### Restrições
+
+  
+- $2 ≤ N ≤ 10^6$
+  
+- $1 ≤ M ≤ (3N)/(2)$
+  
+- $1 ≤ u_i, v_i ≤ N$
+
+### Exemplos', 'See statement.', 'See statement.', '2 ≤ N ≤ 10^6$; 1 ≤ M ≤ (3N)/(2)$; 1 ≤ u_i, v_i ≤ N$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-e-jantar-das-capivaras-a1', 'mineira-2019-e-jantar-das-capivaras', 'VIII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-e-drawdown', 'Drawdown', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1400, 'Investir na bolsa de valores pode ser uma grande oportunidade para obter bons rendimentos. Um tipo importante de investidor que vem ganhando
+cada vez mais destaque nos últimos anos são os chamados fundos quantitativos ou sistemáticos, como a Alphabot. Nesses fundos,  os investimentos
+são realizados de forma 100% automatizada, fazendo uso de grandes bases de dados, modelagens matemáticas, simulações estatísticas,
+algoritmos de aprendizado de máquina, otimização e implementações computacionais de alta performance para identificar, validar, desenvolver
+e executar estratégias de investimento automatizadas que não seriam possíveis de serem criadas e operacionalizadas manualmente por humanos.
+
+Como qualquer investimento na bolsa, os riscos, assim como os retornos, podem ser altos. Isso torna essencial um rigoroso gerenciamento de risco,
+em especial nos fundos quantitativos, devido ao alto volume financeiro e frequência de suas negociações. Pensando nisso, a Alphabot utiliza dezenas
+de métricas de risco para analisar e gerenciar seu portfólio de estratégias quantitativas, dentre as quais destacam-se o drawdown e o
+drawdown percentual.
+
+Seja $P_1, P_2, …, P_N$ a sequência de preços de um ativo em $N$ instantes de tempo.
+O drawdown entre os instantes $i$ $(1 ≤ i ≤ N)$ e $j$ $(i ≤ j ≤ N)$ é definido como a queda de preço do instante $i$ para o instante
+$j$ e pode ser calculado pela seguinte fórmula:
+equation*
+    drawdown(i, j) = cases
+        P_i - P_j,  se  P_j < P_i 
+
+        0,  caso contrário.
+    cases
+equation*
+
+O drawdown percentual entre dois instantes de tempo $i$ $(1 ≤ i ≤ N)$ e $j$ $(i ≤ j ≤ N)$ é definido como a razão entre o
+drawdown entre $i$ e $j$ e o preço do ativo no instante $i$. Isto é
+equation*
+    drawdown_percentual(i, j) = drawdown(i, j)P_i. 
+equation*
+
+Por exemplo, considere um ativo com o seguinte histórico de preços:
+equation*
+P_1 = 100, P_2 = 120, P_3 = 80, P_4 =  60, P_5 = 70.
+equation*
+O drawdown e o drawdown percentual entre os instantes $2$ e $4$ são $60$ e $50%$, respectivamente.
+
+O drawndown percentual entre os instantes $i$ e $j$ representa qual porcentagem do capital investido teria sido perdido caso o ativo tivesse
+sido comprado no instante $i$ e vendido no instante $j$. No exemplo acima, um investidor que tivesse comprado $10$ unidades do ativo no instante $2$
+por um preço total de $1200$ e vendido no instante $4$ por um preço total de $600$, teria perdido $600$. Ou seja, teria perdido $50%$ dos $1200$
+investidos inicialmente.
+
+
+Uma forma de avaliar o risco de um ativo em um intervalo de tempo entre os instantes $a$ $(1 ≤ a ≤ N)$ e $b$ $(a ≤ b ≤ N)$ é calcular
+os maiores valores de drawdown e drawdown percentual nesse intervalo de tempo. Mais precisamente, temos que:
+
+equation*
+    max_drawdown(a, b) = \drawdown(i, j) : a ≤ i ≤ j ≤ b\
+equation*
+
+equation*
+    max_drawdown_percentual(a, b) = \drawdown_percentual(i, j) : a ≤ i ≤ j ≤ b\
+equation*
+
+Dada a sequência de preços de um ativo investido pela Alphabot e vários intervalos de tempo, calcule o drawdown máximo e o
+drawdown percentual máximo para cada intervalo.
+
+
+### Entrada
+
+
+
+A primeira linha da entrada contém um inteiro $N$, que representa o número de instantes de tempo na sequência de preços.
+A segunda linha da entrada contém $N$ inteiros positivos $P_1, P_2, …, P_N$, onde $P_i$ representa o preço do ativo no $i$-ésimo instante de tempo.
+A terceira linha da entrada contém um inteiro $Q$, representando o número de intervalos de tempo para os quais o drawdown máximo e o
+drawdown percentual máximo  devem ser calculados.
+A $j-$ésima das $Q$ linhas seguintes contém dois inteiros $a_j$ e $b_j$ separados por espaço, representado o intervalo de tempo entre os instantes
+$a_j$ e $b_j$, inclusive. 
+
+### Saída
+
+
+
+A saída deve conter exatamente $Q$ linhas. A $j-$ésima linha da saída deve conter três inteiros não-negativos separados por espaço
+$D$, $R$ e $S$, onde $D$ e $RS$ representam o drawdown máximo e o drawdown percentual máximo entre $a_j$ e $b_j$, respectivamente.
+Também é preciso garantir que o maior divisor comum entre $R$ e $S$ seja $1$. 
+
+
+### Restrições
+
+
+
+
+
+    
+- $1 ≤ N ≤ 5×10^5$.
+    
+- $1 ≤ P_i ≤ 10^9$ para todo $1 ≤ i ≤ N$.
+    
+- $1 ≤ Q ≤ 5×10^5$.
+    
+- $1 ≤ a_j ≤ b_j ≤ N$ para todo $1 ≤ j ≤ Q$.
+
+
+
+
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ i ≤ N)$ e $j$ $(i ≤ j ≤ N)$ é definido c; 1 ≤ i ≤ N)$ e $j$ $(i ≤ j ≤ N)$ é definido c; 1 ≤ a ≤ N)$ e $b$ $(a ≤ b ≤ N)$ é calcular; 1 ≤ N ≤ 5×10^5$; 1 ≤ P_i ≤ 10^9$ para todo $1 ≤ i ≤ N$; 1 ≤ Q ≤ 5×10^5$; 1 ≤ a_j ≤ b_j ≤ N$ para todo $1 ≤ j ≤ Q$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-e-drawdown-a1', 'mineira-2022-e-drawdown', 'IX Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-e-problema-de-sapo', 'Problema de Sapo', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1400, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+Um sapo está no pântano, na frente de um rio. No rio há $N$ vitórias-régias, organizadas em uma sequência, da esquerda para a direita. O sapo sabe que, ao pular da vitória-régia $A$ para a vitória-régia $B$, a $A$ afunda para sempre no rio. Além disso, da $i$-ésima vitória-régia o sapo gasta $x_i$ de energia para pular para a esquerda (independente do tamanho do pulo), ou $y_i$ para a direita.
+
+O sapo, então, por diversão, irá escolher uma das vitórias-régias, pular nela, e depois pular para todas as outras antes de sair do rio, decidindo em cada momento pular para a esquerda ou direita. Como ele tem medo de cair no rio, em cada pulo, ele sempre pula para a vitória-régia mais próxima na direção escolhida que ainda não afundou. O sapo quer afundar todas as vitórias-régia dessa maneira, e, depois, pular para fora do rio. Se o caminho do sapo termina na posição $i$, o custo de pular dessa última vitória-régia para fora do rio é o mínimo entre $x_i$ e $y_i$.
+
+Ajude o sapo a descobrir alguma sequência de vitórias-régia que minimiza a energia total gasta.
+
+%
+% For input, use one of the following
+%
+
+### Entrada
+
+A primeira linha da entrada contém um inteiro $1 ≤ N ≤ 10^5$, a quantidade de vitórias-régia no lago. As próximas $N$ linhas possuem dois inteiros $1 ≤ x_i, y_i ≤ 10^9$, o quanto de energia que o sapo gasta para pular da $i$-ésima vitória-régia para a esquerda ou direita, respectivamente.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+Imprima uma sequência de índices que descreve uma sequência de pulos que minimiza a energia total gasta pelo sapo. Se houver várias soluções, imprima qualquer uma delas.
+
+### Restrições
+
+- $ 1 ≤ N ≤ 10^5$.
+
+- $1 ≤ x_i, y_i ≤ 10^9$.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^5$, a quantidade de vitórias-régi; 1 ≤ x_i, y_i ≤ 10^9$, o quanto de energia qu; 1 ≤ N ≤ 10^5$; 1 ≤ x_i, y_i ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-e-problema-de-sapo-a1', 'mineira-2023-e-problema-de-sapo', 'X Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-e-emparelhamento', 'Emparelhamento', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1400, 'Problema E. Emparelhamento
+                                  Qual doce vencerá este ano?
+
+O Ultimate Battle de Açúcares (UBA) é um torneio realizado entre regiões de Minas Gerais para a
+disputa do melhor doce. Neste ano, o doce escolhido é o “Queijo com Goiabada” (também conhecido
+como Romeu e Julieta). Cada doce é composto por duas peças emparelhadas: uma de queijo e uma
+de goiabada. Cada uma das N regiões trouxe exatamente um doce, identificado por sua região.
+
+Sabendo disso, um grupo de integrantes de uma associação anônima decidiu sabotar os doces,
+impedindo a realização do torneio. Para isso, eles trocaram peças (de queijo ou goiabada) entre
+pares de doces, deixando-os completamente misturados.
+
+Para evitar esta tragédia, você foi convocado a ajudar na tarefa de emparelhar os pares de queijo
+com goiabada da mesma região antes que o torneio iniciasse. Para emparelhar os doces, podem
+ser feitas diversas operações, sendo cada operação composta de uma troca de uma peça (queijo ou
+goiabada) de um doce com outra peça (queijo ou goiabada) de outro doce.
+
+Dadas as peças presentes em cada doce após a sabotagem, determine o menor número de operações
+necessárias para remontar os doces. Note que não é necessário deixar os doces em ordem,
+mas apenas remontá-los da forma correta conforme suas regiões.
+
+Entrada
+A primeira linha da entrada contém um inteiro N (1 ≤ N ≤ 2 × 105 ) que representa o número
+de doces. Em cada uma das próximas N linhas são dados inteiros A e B (1 ≤ A, B ≤ N ) que
+representam, respectivamente, as regiões de origem de cada uma das peças presentes no doce.
+
+É garantido que cada número inteiro de 1 a N aparece exatamente duas vezes na descrição dos
+doces após a sabotagem.
+
+Saída
+A saída deve conter uma linha com um único inteiro, o menor número de operações necessárias para
+remontar os doces corretamente.
+
+Exemplos
+
+ Exemplo de entrada 1                            Exemplo de saída 1
+ 4                                               2
+ 1 2
+ 3 4
+ 1 2
+ 3 4
+
+Explicação do exemplo 1
+
+Neste exemplo, podemos trocar a primeira peça do doce 1 com a segunda peça do doce 3, fazendo
+com que ambos os doces sejam formados por peças da mesma região. Da mesma forma, trocamos a
+segunda peça do doce 2 com a primeira peça do doce 4, também fazendo com que ambos os doces
+sejam formados por peças da mesma região. Portanto, são necessárias (no mínimo) 2 operações.
+
+ Exemplo de entrada 2                              Exemplo de saída 2
+ 4                                                 0
+ 2 2
+ 1 1
+ 3 3
+ 4 4
+
+Explicação do exemplo 2
+
+Todos os doces já estão formados por peças da mesma região, portanto não é necessário fazer trocas.', 'See statement.', 'See statement.', '1 ≤ N ≤ 2 × 105 ) que representa o número; 1 ≤ A, B ≤ N ) que', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-e-emparelhamento-a1', 'mineira-2025-e-emparelhamento', 'XII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-e-explorando-o-terreno', 'Explorando o terreno', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1400, 'Problema E. Explorando o terreno
+
+Giovana e Arthur acabaram de ser contratados pela ArcelorMittal Sistemas para desenvolver
+tecnologia de ponta na extração mineral. Como projeto inicial, ambos implementaram algoritmos e
+heurísticas para criar um plano de exploração de uma perfuratriz, máquina muito comum nas lavras
+minerais, objetivando maximizar o minério extraído após T minutos de operação da perfuratriz.
+A lavra sobre a qual Giovana e Arthur estão trabalhando é representada por uma matriz N ↑ M ,
+onde cada célula contém o valor adquirido caso a posição seja escavada pela perfuratriz. Cada plano
+de exploração é composto por T pares de coordenadas (i1 , j1 ), . . . , (iT , jT ) sendo (it , jt ) a linha e
+coluna onde a perfuratriz estará no momento t.
+
+Muito satisfeitos com as projeções dos algoritmos de Giovana e Arthur, os diretores da empresa
+decidiram que ambos os planos de exploração serão executados simultaneamente, cada um com sua
+própria perfuratriz. O problema é que os planos de exploração de Giovana e Arthur não foram
+feitos levando em consideração a presença da outra perfuratriz, o que poderia causar conflitos na
+extração do minério!
+
+Felizmente, o software de controle desenvolvido pela ArcelorMittal Sistemas é bastante sofisticado, e
+consegue lidar com esse tipo de situação! Além do controle mecânico das perfuratrizes, ele estabelece
+uma rede de comunicação entre os equipamentos, o que impede que as perfuratrizes explorem a
+mesma posição simultaneamente. Desta forma, estando na posição (i, j), a perfuratriz é capaz de
+extrair minério da célula (i, j) e das células (i ↓ 1, j), (i, j ↓ 1), (i, j + 1), (i + 1, j), mas só o faz se a
+outra perfuratriz não fará a extração naquela célula naquele momento. A extração é 100% eficiente,
+ou seja, após ter seu minério extraído, uma célula passa a ter zero unidades de minério. No exemplo
+da figura abaixo, se no instante t a perfuratriz de Giovana estiver na posição (1, 1) e a de Arthur na
+posição (1, 3), nenhuma das perfuratrizes extrairá minério da célula (1, 2), deixando todo
+o minério que lá havia intacto. Por outro lado, todas as outras células de interesse de cada
+perfuratriz terão seu minério extraído.
+
+Representação visual do Exemplo 1. À esquerda, a matriz com as quantidades de minério em cada célula. Ao centro,
+as células exploradas por cada perfuratriz no instante t = 1; em quadrados vermelhos as células exploradas por
+Giovana e em diamantes azul as células exploradas por Arthur. À direita, as células exploradas por cada perfuratriz
+no instante t = 2;
+
+Curiosos em saber como seus planos irão performar, Giovana e Arthur pediram sua ajuda. Escreva
+um programa que, dada a matriz que representa a lavra e os planos de exploração de cada um,
+imprima o total de minério extraído pela perfuratriz de cada um. É garantido que ambos os planos
+de exploração têm a mesma duração T .
+
+XIII 
+
+Entrada
+A primeira linha contém três inteiros, N , M e T , (1 → N, M → 500, 1 → T → N ↑ M ), o número de
+linhas e colunas da matriz e a duração dos planos de exploração, respectivamente.
+
+As próximas N linhas contêm M inteiros cada, (1 → v1 , . . . , vM → 1000). O j-ésimo número da
+i-ésima linha contém o valor de cada minério presente na posição (i, j).
+
+As próximas T linhas contém dois inteiros cada. A t-ésima dessas linhas contém (it , jt )G (1 → i → N ,
+1 → j → M ) a posição onde a perfuratriz de Giovana estará no instante t.
+
+Por fim, as últimas T linhas contém dois inteiros cada. A t-ésima dessas linhas contém (it , jt )A
+(1 → i → N , 1 → j → M ) a posição onde a perfuratriz de Arthur estará no instante t.
+
+Saída
+Imprima dois números G e A separados por espaço – a soma total dos valores extraídos por Giovana
+e Arthur, respectivamente.
+
+Exemplos
+
+ Exemplo de entrada 1                               Exemplo de saída 1
+ 2 3 2                                              14 6
+ 3 1 4
+ 5 6 2
+ 1 1
+ 1 2
+ 1 3
+ 1 3
+
+ Exemplo de entrada 2                               Exemplo de saída 2
+ 3 1 3                                              0 20
+ 10
+ 1
+ 10
+ 2 1
+ 3 1
+ 1 1
+ 2 1
+ 2 1
+ 2 1
+
+ Exemplo de entrada 3                               Exemplo de saída 3
+ 1 2 2                                              0 0
+ 6 7
+ 1 2
+ 1 1
+ 1 1
+ 1 2
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-e-explorando-o-terreno-a1', 'mineira-2026-e-explorando-o-terreno', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-e-a-nova-geracao-de-minas', 'A nova geração de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1400, 'Problema E. A nova geração de Minas
+As programadoras de Minas, motivadas em incentivar novas gerações de meninas a desenvolverem
+suas habilidades, propuseram um jogo de contagem para treinar raciocínio matemático e pensamento
+algorítmico.
+
+O desao é o seguinte: dados três inteiros I , F e P , com I ≤ F , considere a sequência de inteiros de
+I até F . Em seguida, remova todos os números que sejam divisíveis por qualquer um dos primeiros
+P números primos (começando em 2). Note que, nesse processo, tanto os próprios primos entre os
+primeiros P quanto todos os seus múltiplos são eliminados. Se P = 0, nenhum número é removido.
+
+Após essa ltragem, deve-se calcular e imprimir a soma dos números que permaneceram na sequência.
+
+Entrada
+A entrada consiste em uma única linha contendo três inteiros separados por um espaço em branco:
+I (1 ≤ I ≤ 105 ), F (I ≤ F ≤ 105 ) e P (0 ≤ P ≤ 100).
+
+Saída
+A saída contém um único inteiro representando a soma dos elementos que permaneceram na
+sequência após as remoções.
+
+Exemplos
+ Entrada                                          Saída
+ 1 20 2                                           73
+
+ Entrada                                          Saída
+ 1 20 3                                           68
+
+ Entrada                                          Saída
+ 1 20 0                                           210
+
+                                                                                                8', 'See statement.', 'See statement.', '1 ≤ I ≤ 105 ), F (I ≤ F ≤ 105 ) e P (0 ≤ P ≤', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-e-a-nova-geracao-de-minas-a1', 'minas-2025-e-a-nova-geracao-de-minas', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-e-a-nova-geracao-de-minas', 'A nova geração de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1400, 'Problema E. A nova geração de Minas
+As programadoras de Minas, motivadas em incentivar novas gerações de meninas a desenvolverem
+suas habilidades, propuseram um jogo de contagem para treinar raciocínio matemático e pensamento
+algorítmico.
+
+O desao é o seguinte: dados três inteiros I , F e P , com I ≤ F , considere a sequência de inteiros de
+I até F . Em seguida, remova todos os números que sejam divisíveis por qualquer um dos primeiros
+P números primos (começando em 2). Note que, nesse processo, tanto os próprios primos entre os
+primeiros P quanto todos os seus múltiplos são eliminados. Se P = 0, nenhum número é removido.
+
+Após essa ltragem, deve-se calcular e imprimir a soma dos números que permaneceram na sequência.
+
+Entrada
+A entrada consiste em uma única linha contendo três inteiros separados por um espaço em branco:
+I (1 ≤ I ≤ 105 ), F (I ≤ F ≤ 105 ) e P (0 ≤ P ≤ 100).
+
+Saída
+A saída contém um único inteiro representando a soma dos elementos que permaneceram na
+sequência após as remoções.
+
+Exemplos
+ Entrada                                          Saída
+ 1 20 2                                           73
+
+ Entrada                                          Saída
+ 1 20 3                                           68
+
+ Entrada                                          Saída
+ 1 20 0                                           210
+
+                                                                                                 8', 'See statement.', 'See statement.', '1 ≤ I ≤ 105 ), F (I ≤ F ≤ 105 ) e P (0 ≤ P ≤', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-e-a-nova-geracao-de-minas-a1', 'minas-meia-2025-e-a-nova-geracao-de-minas', '1ª Meia Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-shortest-routes-i', 'Shortest Routes I', 'CSES', 'https://cses.fi/problemset/task/1671', 1500, 'A weighted directed graph with $n$ nodes and $m$ edges. Find the shortest path lengths from node $1$ to every node.', 'The first line contains two integers $n$ and $m$.
 
 Then $m$ lines follow with directed flights $a\ b\ c$.', 'Print $n$ integers: distances from city $1$ to cities $1\dots n$.', '$1 \le n \le 10^5$, $1 \le m \le 2 \times 10^5$, weights positive', '[{"input":"3 4\n1 2 6\n1 3 2\n3 2 3\n1 3 4","output":"0 5 2"}]'::jsonb, 'O(N log N)');
@@ -10088,6 +11677,368 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-182d-a1', 'cf-182d', 'Period check', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY['KMP','String Hashing']::text[], ARRAY[]::text[], ARRAY['Common divisors of lengths; check if prefix repeats via KMP border / hashing']::text[], 'A string is generated by period p if n%|p|==0 and s=p*(n/|p|).');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('spoj-highways', 'Highways', 'SPOJ', 'https://www.spoj.com/problems/HIGHWAYS/', 1500, 'Find shortest route between two cities in an undirected weighted graph.', 'Tests with n m start end and edges.', 'Distance or `NONE`.', 'SPOJ typical', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('spoj-highways-a1', 'spoj-highways', 'SSSP highways', ARRAY['Graph Algorithms']::text[], ARRAY['Bellman-Ford','Dijkstra']::text[], ARRAY['Priority Queue']::text[], ARRAY['Shortest path between two cities on undirected roads']::text[], 'Dijkstra from source; BF also correct on nonnegative weights.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-f-quem-e-o-mentiroso', 'Quem é o mentiroso?', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1500, 'Todo fim de ano, Marcos vai para Furnas comemorar o Natal junto com seus amigos.
+Eles tem a tradição de sempre jogar Amigo Oculto (também conhecido como 
+Amigo Secreto) nas vésperas de natal. Para quem não sabe, Amigo Oculto
+é uma brincadeira na qual é sorteado para cada participante um outro participante
+o qual ele deve dar um presente, de forma que cada um deles também receba um presente e que ninguém tenha que dar presente para si mesmo. 
+
+Os amigos de Marcos inovaram e esse ano irão fazer uma surpresa para ele. Eles decidiram
+que um deles irá mentir sobre quem sorteou. Marcos não participará do sorteio mas
+deverá descobrir quem é o mentiroso! Se Marcos acertar ele ficará com os
+presentes de todos eles. Se errar deverá dar um presente para cada um! 
+
+Com muito medo de errar, Marcos pediu para que fizesse um programa que dado quem
+cada participante diz ter tirado, diga quem é o mentiroso. Se isso não for possível,
+diga quais participantes podem estar mentindo, pois afinal, qualquer dica será
+muito preciosa para Marcos!
+
+### Entrada
+
+A entrada contém um número inteiro $N$ que representa o número de pessoas que estão
+participando do Amigo Oculto. A $i$-ésima das próximas $N$ linhas contém dois nomes separados por espaço, $a_i$ e $b_i$,
+indicando que a pessoa $a_i$ sorteou a pessoa $b_i$.
+Nenhum nome é muito esquisito, tendo no máximo 10 letras.
+
+### Saída
+
+A primeira linha da saída deve conter um inteiro $M$ representando o número de possíveis mentirosos. Cada uma das próximas $M$ linhas deve
+conter o nome de um deles. Apresente os nomes em ordem alfabética.
+
+### Restrições
+
+- $2 ≤ N ≤ 10^5$.
+
+- $1 ≤ |a_i|, |b_i| ≤ 10$, para todo $i=1,2,…,N$.
+
+- Nomes contém apenas letras minúsculas. 
+
+- Os nomes dos $N$ participantes são distintos.
+
+### Exemplos', 'See statement.', 'See statement.', '2 ≤ N ≤ 10^5$; 1 ≤ |a_i|, |b_i| ≤ 10$, para todo $i=1,2,…,N', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-f-quem-e-o-mentiroso-a1', 'mineira-2019-f-quem-e-o-mentiroso', 'VIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-f-caindo-de-paraquedas', 'Caindo de Paraquedas', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1500, 'Ernesto é um grande paraquedista que já acumula mais de 5000 saltos em sua carreira. Ele já se jogou de diferentes aviões, helicópteros, balões, já pousou no deserto, na praia, na floresta e em uma variedade de outros locais.
+
+Ultimamente ele está com uma mania um tanto quanto diferente, antes de se jogar do avião ele decide que irá fazer apenas curvas de $G$ graus, seja para esquerda ou para direita, enquanto estiver navegando seu paraquedas.
+
+Dado o valor $G$ e as direções das curvas (`E'' = esquerda, `D'' = direita) feitas por Ernesto, deve-se assumir que seu paraquedas não muda de direção (a não ser que ele faça propositalmente uma curva) e ele está sempre olhando fixamente para frente.
+
+É possível dizer que Ernesto teve uma visão completa ao seu redor (360 graus) durante sua navegação?
+
+### Entrada
+
+A primeira linha contém um inteiro $G$ e a segunda linha uma string de tamanho $S$ (composta apenas pelos caracteres `D'' ou `E'') representando a sequência de curvas feitas por Ernesto.
+
+### Saída
+
+Exiba o caractere `S'' caso Ernesto tenha tido uma visão completa ao seu redor durante sua navegação ou `N'' caso contrário.
+
+### Restrições
+
+- $1 ≤ G ≤ 360$.
+
+- $1 ≤ |S| ≤ 10^5$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ G ≤ 360$; 1 ≤ |S| ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-f-caindo-de-paraquedas-a1', 'mineira-2022-f-caindo-de-paraquedas', 'IX Maratona Mineira — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-f-14-bis', '14-bis', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1500, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+
+center
+Após inventar o avião, o grande mineiro Alberto Santos-Dumont precisava testar sua invenção.
+center
+
+Para melhorar as chances de decolar sua lendária aeronave, o 14-bis, Santos-Dumont precisava de uma pista de decolagem que fosse bastante reta e o mais comprida possível. Uma pista de decolagem é descrita como uma sequência de números (representando a altura de cada trecho da pista), que é considerada reta se a diferença em valor absoluto entre duas posições adjacentes nessa sequência não é maior que um (não queremos estragar o trem de pouso da nossa querida aeronave de papel com terrenos acidentados!).
+
+Dado um mapa topográfico da área, descrito como uma matriz $N× M$ (em que cada valor da matriz guarda a altura da posição), imprima o tamanho da maior pista de decolagem possível, sendo que as pistas de decolagem podem ser no sentido norte-sul (intervalo de uma coluna da matriz) ou leste-oeste (intervalo de uma linha da matriz).
+
+%
+% For input, use one of the following
+%
+
+### Entrada
+
+A primeira linha conterá dois números $N$ e $M$ (tais que $N × M ≤ 2× 10^5$) que representam o número de linhas e colunas da matriz, respectivamente.
+
+Depois disso teremos $N$ linhas. Na i-ésima delas teremos $M$ números $a_i, 1, …, a_i, M$ onde $a_i, j$ representa o altura do terreno na linha $i$ e coluna $j$ da matriz e $0 ≤ a_i, j ≤ 10^9$.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+Imprima um número que representa o tamanho da maior pista de pouso para o 14-bis.
+
+### Restrições
+
+  
+- $1 ≤ N × M ≤ 2× 10^5$.
+  
+- $0 ≤ a_i, j ≤ 10^9$.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.', 'See statement.', 'See statement.', '0 ≤ a_i, j ≤ 10^9$; 1 ≤ N × M ≤ 2× 10^5$; 0 ≤ a_i, j ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-f-14-bis-a1', 'mineira-2023-f-14-bis', 'X Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Hash Map']::text[], ARRAY['X Maratona Mineira (2023), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-f-fome-de-queijo', 'Fome de Queijo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1500, 'Problema F. Fome de Queijo
+
+Cientistas de uma universidade mineira estão estudando o comportamento de um rato quando
+exposto a um labirinto com alguns pedaços de queijo minas, com o interesse de avaliar a capacidade
+do rato de encontrar o queijo mais próximo.
+
+O labirinto pode ser representado por uma grade de dimensões N × M . A posição do rato está
+marcada pelo caractere R. Em algumas posições, representadas pelo caractere #, foram colocadas
+barreiras que impedem a passagem do rato, e outras contêm queijo minas, representadas pelo
+caractere Q. Todas as outras posições (representadas pelo caractere .) estão vazias.
+
+Os cientistas posicionarão outros K pedaços de queijo no labirinto, mas ainda não decidiram em
+quais posições esses pedaços ficarão. O rato, que é muito esperto e tem muita fome, já está interes-
+sado em descobrir quantos movimentos serão necessários para chegar no queijo mais próximo. Em
+um movimento, o rato pode se mover para cima, para baixo, para a esquerda ou para a direita. O
+rato não pode passar por barreiras.
+
+Descubra o valor esperado da distância do rato até o queijo mais próximo, considerando que a
+escolha do local dos K pedaços de queijo é feita de maneira uniformemente aleatória entre todas as
+escolhas possíveis.
+
+Entrada
+
+A primeira linha da entrada contém os inteiros N , M e K (2 ≤ N, M ≤ 1000 e 1 ≤ K ≤ N M − 1).
+
+As N linhas seguintes contêm M caracteres cada, representando a grade. Cada linha contém apenas
+os caracteres R, Q, . e #.
+
+Em todos os casos, haverá exatamente uma posição com o caractere R e o rato será capaz de alcançar
+todas as posições vazias (e com queijo) da grade através de um ou mais movimentos. Além disso,
+haverá pelo menos K posições vazias.
+
+Saída
+
+A saída deve conter somente um único inteiro: a distância esperada do rato até o queijo mais
+próximo, módulo 998244353.
+
+Formalmente, seja M = 998244353. É possível provar que a resposta exata pode ser expressa como
+uma fração irredutível pq , em que p e q são inteiros e q ̸≡ 0 (mod M ). Imprima o inteiro igual a
+p · q −1 (mod M ). Ou seja, imprima o inteiro x tal que 0 ≤ x < M e x · q ≡ p (mod M ).
+
+Exemplos
+
+ Exemplo de entrada 1                            Exemplo de saída 1
+ 3 3 1                                           3
+ R..
+ ##.
+ Q..
+
+Explicação do exemplo 1
+
+Neste caso, temos 5 células livres, e um queijo será adicionado. A distância até o queijo mais
+próximo será, então, 1, 2, 3, 4 ou 5, cada valor com probabilidade 51 . Dessa forma, a distância
+esperada é 51 × (1 + 2 + 3 + 4 + 5) = 51 × 15 = 3.
+
+ Exemplo de entrada 2                            Exemplo de saída 2
+ 2 2 2                                           1
+ R.
+ ..
+
+Explicação do exemplo 2
+
+Nese caso, 2 queijos serão adicionados. Independente de qual forma, podemos notar que o rato
+sempre estará a distância 1 de um queijo, portanto a resposta é 1.
+
+ Exemplo de entrada 3                            Exemplo de saída 3
+ 4 4 1                                           427819011
+ ##.#
+ #..R
+ Q#.#
+ ...Q
+
+Explicação do exemplo 3
+
+Neste caso, o valor esperado é 18
+                               7 . A resposta é 427819011, uma vez que 427819011 × 7 ≡ 18
+(mod 998244353).', 'See statement.', 'See statement.', '2 ≤ N, M ≤ 1000 e 1 ≤ K ≤ N M − 1); 0 ≤ x < M e x · q ≡ p (mod M )', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-f-fome-de-queijo-a1', 'mineira-2025-f-fome-de-queijo', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-f-fechando-estradas', 'Fechando estradas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1500, 'Problema F. Fechando estradas
+
+Dentre as várias delícias de Minas, queijo e doce de leite são as mais famosas. Apesar de serem
+feitas da mesma matéria-prima, o leite, seus processos de produção e armazenamento são bastante
+diferentes. Em particular, todo o queijo do estado é produzido na cidade A1 e armazenado na cidade
+A2 , enquanto todo o doce de leite é produzido na cidade B1 e armazenado na cidade B2 . Para levar
+os estoques de uma cidade a outra, cada produto é transportado em uma das M estradas de mão
+dupla, cada uma delas ligando exatamente duas das N cidades mineiras.
+
+Além de sua importância culinária, o queijo e o doce de leite são fundamentais para a estabilidade
+política e social no estado: a falta de ambas as iguarias por um curto período já é capaz de
+transformar nossa característica hospitalidade em animosidade profunda. Preocupado com essa
+possibilidade, o Movimento Mineiro Pacifista (MMP) precisa saber: qual a menor quantidade de
+estradas que, se fechadas, impediriam o transporte do queijo de A1 para A2 e do doce de leite de
+B1 para B2 ? Escreva um programa para ajudar o MMP a encontrar essa resposta.
+
+Entrada
+A primeira linha da entrada contém dois inteiros N e M (4 → N → 2000, 0 → M → 2000), indicando
+o número de cidades e estradas de Minas, respectivamente.
+
+Cada uma das M linhas seguintes contém dois inteiros u e v (1 → u, v → N , u ↔= v), indicando que
+existe uma estrada entre as cidades u e v. É garantido que não há mais de uma estrada entre o
+mesmo par de cidades.
+
+Após essas M linhas, há uma última linha contendo quatro inteiros distintos A1 , A2 , B1 e B2 ,
+indicando as cidades de produção e armazenamento do queijo e do doce de leite, respectivamente.
+
+Saída
+A saída deve conter um único inteiro, indicando o menor tamanho de um conjunto de estradas que,
+após fechadas, impedem que nossas delícias mineiras sejam transportadas.
+
+Exemplos
+
+ Exemplo de entrada 1                              Exemplo de saída 1
+ 6 5                                               1
+ 1 3
+ 2 3
+ 3 4
+ 4 5
+ 4 6
+ 1 5 2 6
+
+Explicação do exemplo 1
+
+Neste exemplo, se a estrada que liga as cidades 3 e 4 for interditada, não haverá mais caminho entre
+as cidades 1 e 5, nem entre 2 e 6.
+
+XIII 
+
+ Exemplo de entrada 2                              Exemplo de saída 2
+ 6 4                                               2
+ 1 2
+ 2 3
+ 4 5
+ 5 6
+ 1 3 4 6
+
+Explicação do exemplo 2
+
+Neste exemplo, se as estradas entre 1 e 2, e entre 4 e 5 forem interditadas, isso impediria tanto a
+existência de um caminho entre 1 e 3 quanto de 4 para 6. É possível provar que essa é a quantidade
+mínima de estradas fechadas para que isso aconteça.
+
+ Exemplo de entrada 3                              Exemplo de saída 3
+ 5 4                                               1
+ 1 3
+ 3 4
+ 3 5
+ 1 5
+ 1 2 4 5
+
+Explicação do exemplo 3
+
+Neste exemplo, já é impossível ir da cidade 1 até a cidade 2. Portanto, se a estrada de 3 para 4 for
+interditada, fica impossível tanto ir de 1 para 2 quanto de 4 para 5.
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-f-fechando-estradas-a1', 'mineira-2026-f-fechando-estradas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XIII Maratona Mineira (2026), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-f-cafe-da-tarde', 'Café da Tarde', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1500, 'Problema F. Café da Tarde
+Ariel está programando sua primeira viagem a Minas Gerais e não quer deixar de aproveitar um
+de nossos maiores patrimônios: a culinária! Ela ouviu falar muito bem do restaurante Monte de
+Minas e separou T minutos de sua viagem para passar no restaurante, provando alguns de nossos
+N melhores pratos e sobremesas. Como Ariel é ótima em fazer projeções, ela sabe que conseguirá
+comer no máximo G gramas durante seu tempo no restaurante. Ela então se encontra em um dilema
+terrível: qual a maior quantidade de pratos diferentes que nossa viajante consegue comer? O Monte
+de Minas é amplamente conhecido por seu cardápio online, que informa, para cada prato i, o tempo
+ti (em minutos) que ele precisa para ser consumido e seu peso pi (em gramas).
+
+Ajude Ariel a aproveitar o que temos de melhor!
+
+Entrada
+A primeira linha contém os inteiros N (1 ≤ N ≤ 100), T (1 ≤ T ≤ 100), e G (1 ≤ G ≤ 1000). Em
+seguida temos N linhas. Na i-ésima dessas linhas, encontram-se dois inteiros ti (1 ≤ ti ≤ T ) e pi
+(1 ≤ pi ≤ G), que representam o tempo de consumo e o peso do prato i, respectivamente.
+
+Saída
+Imprima um único inteiro R, que deve ser igual ao maior número de pratos diferentes que Ariel
+consegue provar no restaurante.
+
+Exemplos
+ Entrada                                       Saída
+ 3 5 5                                         2
+ 3 2
+ 2 4
+ 1 1
+
+ Entrada                                       Saída
+ 5 10 100                                      3
+ 2 50
+ 8 10
+ 3 30
+ 5 20
+ 6 15
+
+                                                                                                   9', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), T (1 ≤ T ≤ 100), e G (1 ≤ G ≤ ; 1 ≤ ti ≤ T ) e pi; 1 ≤ pi ≤ G), que representam o tempo de cons', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-f-cafe-da-tarde-a1', 'minas-2025-f-cafe-da-tarde', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-f-mineiridade-de-um-texto', 'Mineiridade de Um texto', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1500, 'Problema F. Mineiridade de Um texto
+Durante o período de férias de julho, Jéssica, estudante do segundo período do curso de Sistemas
+de Informação na Universidade do Mineiro, decidiu se dedicar a um desao divertido:        medir a
+mineiridade de textos escritos em português.
+
+A mineiridade é denida como a soma da pontuação das palavras presentes em um texto, de
+acordo com um vocabulário típico de Minas Gerais.        Cada palavra desse vocabulário possui um
+valor associado, que representa o quanto ela contribui para a identidade mineira do texto para cada
+uma de suas ocorrências.
+
+No entanto, se uma palavra do texto analisado não estiver presente no vocabulário, ela deve ser
+considerada como possuindo valor igual a zero, ou seja, não inuencia a pontuação nal.
+
+Como a quantidade de palavras em um texto pode ser grande, e como o vocabulário mineiro é
+extenso e variado, Jéssica percebeu que precisava de um programa eciente para automatizar esse
+cálculo. Sua tarefa é ajudar Jéssica a implementar esse programa que calcule, de maneira correta e
+eciente, a mineiridade de um texto a partir do vocabulário fornecido.
+
+Entrada
+A entrada do programa é composta por três partes. A primeira linha contém um inteiro N (1 ≤
+N ≤ 10000), que indica a quantidade de palavras presentes no vocabulário mineiro. Em seguida, são
+fornecidas N linhas, cada uma contendo uma palavra escrita em letras minúsculas, (com no máximo
+20 caracteres) e um número inteiro P (0 ≤ P ≤ 10000), que representa a pontuação associada a
+essa palavra para o cálculo da mineiridade do texto.
+
+Finalmente, o texto a ser avaliado é lido. Este texto possui tamanho máximo de 10000 palavras
+(com no máximo 20 caracteres cada) e a sua leitura deve ser encerrada quando um ponto nal (.)
+for lido, simbolizando o m da entrada. Vale destacar que o texto já passou por um processamento
+inicial, que converteu todas as letras para minúsculas e removeu todos os caracteres especiais (com
+exceção do ponto nal ao m do texto).
+
+Saída
+Imprima um inteiro, simbolizando a pontuação da mineiridade do texto lido.
+
+Exemplos
+ Entrada                                         Saída
+ 5                                               36
+ uai 20
+ nuuh 22
+ trem 35
+ bao 15
+ dimais 7
+ nuuh mas ta frio dimais da conta ate
+ pra quem ta acostumado com frio dimais .
+
+                                                  9
+
+Entrada                                   Saída
+7                                         0
+nooh 10000
+arreda 3000
+cafezin 75000
+ce 500
+uai 4500
+soh 20000
+paia 34000
+nossa voce pode ate gostar de um
+cafezinho no tempo frio mas se estiver
+em minas gerais voce precisa de um pao de
+queijo e um bolo de fuba para acompanhar
+tambem .', 'See statement.', 'See statement.', '1 ≤; 0 ≤ P ≤ 10000), que representa a pontuação a', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-f-mineiridade-de-um-texto-a1', 'minas-meia-2025-f-mineiridade-de-um-texto', '1ª Meia Maratona Minas de Minas — standard', ARRAY['String Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-edit-distance', 'Edit Distance', 'CSES', 'https://cses.fi/problemset/task/1639', 1600, 'Compute the minimum number of operations (insert, delete, replace) to transform string $s$ into string $t$.', 'The first line contains string $s$.
 
 The second line contains string $t$.', 'Print the edit distance between $s$ and $t$.', '$1 \le |s|,|t| \le 5000$', '[{"input":"LOVE\nMOVIE","output":"2"}]'::jsonb, 'O(N²)');
@@ -16305,6 +18256,310 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('uva-10496-a1', 'uva-10496', 'TSP bit DP', ARRAY['Dynamic Programming','Bitmask / Bit DP']::text[], ARRAY['Floyd-Warshall']::text[], ARRAY['2D Array']::text[], ARRAY['FW/manhattan distances then TSP bit DP on beepers']::text[], 'Collect all beepers and return; classic Held-Karp on ≤10 points.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1157e', 'Minimum Array', 'Codeforces', 'https://codeforces.com/problemset/problem/1157/E', 1600, 'Permute b to minimize lexicographic (a_i+b_p_i) mod n.', 'n, a, b.', 'Optimal c.', '$n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1157e-a1', 'cf-1157e', 'Multiset complements', ARRAY['Greedy']::text[], ARRAY['LIS','Sorting']::text[], ARRAY['Ordered Set']::text[], ARRAY['Ordered multiset of b; pick best (a_i+b)%n partner']::text[], 'For each a_i take lower_bound of (n-a_i) in remaining b values.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-g-brincando-com-a-formiga', 'Brincando com a formiga', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1600, 'Júlia gosta muito de animais domésticos.
+ Ela tem vários cachorros, gatos, papagaios, mas seu animal preferido mesmo é sua formiga, que recebeu o nome de Fininha.
+
+Aproveitando suas aulas de carpintaria, Júlia está construindo um brinquedo para Fininha.
+
+Ela começou pegando dois pedaços de madeira de 1 metro cada um e construindo um degrau,
+como mostra a figura abaixo:
+
+Fininha sempre começa do ponto mais baixo do degrau, e sobe pelos segmentos do brinquedo até chegar ao topo.
+ Mas ela não para por aí: ao chegar ao topo, Fininha começa a descer, depois sobe novamente, e assim segue, até ter fome.
+ Nesse momento, a formiga fica sem energia e precisa se alimentar.
+ Júlia, como boa dona, pega então alguns grãos de açúcar e leva até a boca de seu animal de estimação.
+
+Para que o brinquedo fique menos monótono, Júlia decidiu transformar cada segmento do degrau em dois com metade do tamanho.
+ Ela repetiu esse procedimento $K$ vezes.
+ Cada vez que Júlia faz isso, o número de degraus do brinquedo dobra, e o tamanho de cada um dos novos segmentos fica exatamente metade do tamanho dos segmentos anteriormente.
+ Na figura abaixo, você pode ver como o brinquedo ficou depois de uma, duas e três repetições desse procedimento.
+
+Júlia notou que sua formiga demora 2 segundos para subir um segmento qualquer, independente do seu tamanho.
+ Ela leva 1 segundo para percorrer um segmento horizontal, e apenas meio segundo para descer um segmento, qualquer que seja o seu tamanho.
+ A formiga já está brincando há $N$ segundos, e é hora de dar comida para ela.
+ Mas Júlia está sem óculos, e precisa de você para alimentar Fininha.
+ Você pode dizer exatamente onde está a formiga agora?
+
+### Entrada
+
+A entrada contém apenas uma linha com os dois inteiros $K$ e $N$, separados por espaço, representando o número de transformações feitas por Júlia no brinquedo e há quantos segundos Fininha já está brincando.
+
+### Saída
+
+A primeira linha da saída deve conter dois números racionais separados por espaço,  representando as coordenadas $x$ e $y$ da posição de Fininha no segundo $N$.
+ Considere que o ponto mais baixo do brinquedo
+posicionado está na origem (ponto $(0, 0)$), e que o brinquedo termina na posição $(1, 1)$, onde Fininha começa a descer.
+
+Essas posições não mudam com as transformações feitas.
+ As coordenadas inteiras devem ser escritas como inteiros, enquanto as não inteiras devem ser escritas como uma fração irredutível da forma $a/b$.
+
+### Restrições
+
+- $0 ≤ K ≤ 40$
+
+- $0 ≤ N ≤ 10^18$
+
+### Exemplos', 'See statement.', 'See statement.', '0 ≤ K ≤ 40$; 0 ≤ N ≤ 10^18$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-g-brincando-com-a-formiga-a1', 'mineira-2019-g-brincando-com-a-formiga', 'VIII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-g-bario', 'Bário', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1600, 'Tudo começou com uma grande explosão cósmica. Surgiram os quarks, os planetas, as nebulosas, as galáxias, e a Maratona Mineira de Programação.
+Para a edição de 2022, os organizadores pensaram bastante em como fazer uma super edição do evento para comemorar o seu retorno. Uma das ideias mais
+ousadas era o desenvolvimento de um jogo de plataforma de um dos personagens mais icônicos do mundo: o Bário.
+
+Nesse novo lançamento, Bário se moveria em fases compostas por $N$ blocos. Cada bloco pode ser sólido ou um buraco, e o objetivo do jogo é chegar do início da fase (o bloco $1$) até o final (o bloco $N$) sem cair em nenhum buraco.
+Para evitar os buracos, Bário pode pulá-los.
+
+Além disso, ele tem o poder de carregar suas botas de energia para pular buracos muito grandes. Cada bloco sobre o qual Bário corre adiciona uma unidade de carga a seu equipamento. Um pulo de carga $v$ faz com que Bário vá do bloco $b$ para o primeiro bloco sólido entre as posições $b+1$ e $b+v+1$;
+ao aterrissar, Bário perde toda a energia de suas botinhas, retornando ao valor inicial de $1$.
+
+O bloco onde Bário aterrissa e o primeiro bloco da fase não adicionam carga às suas botas.
+
+Como vocês devem ter reparado, não há um novo jogo para vocês se divertirem, só esse problema, que é quase tão legal. O comitê de prova se rebelou e não quis implementar as fases, pois achou muito difícil determinar se uma fase era completável.
+Resolvam esse problema e talvez, quem sabe, podemos ter uma edição especial de Bário para Mineira de 2023.
+
+### Entrada
+
+A primeira linha da entrada contem um único inteiro $N$, que representa o número de blocos na fase.
+A segunda linha contém $N$ caracteres. Caracteres $x$ representam blocos sólidos, enquanto caracteres $.$ representam buracos na fase. É garantido que o último bloco da fase é sólido.
+
+### Saída
+
+A saída contem um único inteiro $P$, o menor número de pulos que Bário precisa dar para completar a fase, ou $-1$ caso seja impossível completar a fase.
+
+### Restrições
+
+- $2 ≤ N ≤ 5 × 10^5$.
+
+### Exemplos', 'See statement.', 'See statement.', '2 ≤ N ≤ 5 × 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-g-bario-a1', 'mineira-2022-g-bario', 'IX Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-g-jogo-dos-copos', 'Jogo dos Copos', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1600, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+
+Um famoso (e antigo) desafio jogado nas ruas consiste em esconder uma bolinha em um dentre três copos virados para baixo e dizer onde a bolinha ficou após o desafiante trocar os copos de posição.
+
+Para garantir a vitória, os desafiantes costumam fazer movimentos muito rápidos. Entretanto, como você é esperto, você conseguiu ver todos os movimentos de ``troca'''' dos copos. 
+
+Dado que as posições dos copos vão de $1$ a $3$ e a bolinha começa no copo do meio (copo de posição $2$), imprima qual é a posição final da bolinha após $N$ movimentos de troca de copos.
+
+%
+% For input, use one of the following
+%
+
+### Entrada
+
+A primeira linha da entrada consiste em um inteiro $N$ tal que $1 ≤ N ≤ 210^5$. Depois seguem $N$ linhas, cada uma contendo dois inteiros $A, B$ ($1 ≤ A, B ≤ 3, A  B$), que indica que o copo na posição $A$ foi trocado com o copo na posição $B$.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+A saída deve consistir de um número de $1$ a $3$: qual foi a posição final da bolinha.
+
+### Restrições
+
+- $1 ≤ N ≤ 2× 10^5$.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ N ≤ 210^5$; 1 ≤ A, B ≤ 3, A  B$), que indica que o copo ; 1 ≤ N ≤ 2× 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-g-jogo-dos-copos-a1', 'mineira-2023-g-jogo-dos-copos', 'X Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-g-gps', 'GPS', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1600, 'Problema G. GPS
+  Nú, vei, não acredito que o motorista vai ter que dar essa volta toda. Eu poderia só andar um
+                             quarteirão que seria muito mais rápido!
+
+Você se encontra em uma cidade, que pode ser representada por um conjunto de N esquinas (vérti-
+ces) conectados por dois tipos de aresta: C ruas de mão única percorridas por um carro em tempo
+ci e P calçadas de pedestre percorridas a pé em ambas as direções em tempo pi . Você está no
+vértice 1 e quer ir para o vértice N .
+
+Você quer chamar um UBERaba (aplicativo de transporte usado em Minas Gerais) para chegar
+ao seu destino. Porém, para chegar mais rápido, você está disposto a caminhar no início e no fim
+da viagem, da seguinte forma: você está disposto a caminhar até alguma esquina x (pode ser que
+x = 1), depois o UBERaba vai te levar da esquina x até uma esquina y (pode ser que x = y), e
+por fim você vai caminhar para chegar no destino (pode ser que y = N ). Como ele usa GPS, o
+UBERaba sempre vai tomar a rota mínima de x a y. Considere que você consegue sincronizar tudo
+perfeitamente, de forma que você pode encontrar o UBERaba na esquina x imediatamente.
+
+Dentre todas as possibilidades de rota, calcule o tempo mínimo para sair do vértice 1 e chegar no
+vértice N , dadas as restrições.
+
+Entrada
+
+A primeira linha da entrada contêm três inteiros N , C e P (2 ≤ N ≤ 5 × 105 , 0 ≤ C, P ≤ 5 × 105 ).
+
+As próximas C linhas contém 3 inteiros cada, ai , bi , ci , indicando que existe uma rua de mão única
+da esquina ai para a esquina bi (1 ≤ ai , bi ≤ N , ai ̸= bi ) percorrida por um carro em tempo ci
+(1 ≤ ci ≤ 109 ).
+
+As próximas P linhas contêm 3 inteiros cada, ai , bi , pi , indicando que existe uma calçada da esquina
+ai para a esquina bi (1 ≤ ai , bi ≤ N , ai ̸= bi ) percorrida a pé em ambas as direções em tempo pi
+(1 ≤ pi ≤ 109 ).
+
+É garantido que não existe aresta de um vértice para ele mesmo ou arestas repetidas. É garantido
+também que a entrada é tal que existe pelo menos uma forma de sair do vértice 1 e chegar no vértice
+N.
+
+Saída
+
+A saída deve conter um único inteiro: o menor tempo possível para sair do vértice 1 e chegar no
+vértice N .
+
+Exemplos
+
+ Exemplo de entrada 1                              Exemplo de saída 1
+ 5 6 4                                             6
+ 1 3 5
+ 2 3 1
+ 3 4 1
+ 3 5 7
+ 4 3 8
+ 4 5 5
+ 2 1 2
+ 2 4 5
+ 3 5 7
+ 4 5 2
+
+Explicação do exemplo 1
+
+Neste caso, uma solução ótima é fazer o trajeto da seguinte forma:
+         2
+   • 1−
+      → 2 a pé, em 2 minutos;
+      1   1
+   • 2−
+      →3− → 4 de carro, em 1 + 1 = 2 minutos;
+      2
+   • 4−
+      → 5 a pé, em 2 minutos.
+
+O trajeto completo é feito em 2 + 2 + 2 = 6 minutos.
+
+ Exemplo de entrada 2                              Exemplo de saída 2
+ 3 2 2                                             2
+ 1 2 1
+ 2 3 1
+ 1 2 5
+ 2 3 5
+
+Explicação do exemplo 2
+
+Neste caso, o tempo mínimo é atingido ao se fazer o trajeto inteiro de carro, em 1 + 1 = 2 minutos.
+
+ Exemplo de entrada 3                              Exemplo de saída 3
+ 3 0 2                                             2
+ 1 2 1
+ 2 3 1
+
+Explicação do exemplo 3
+
+Neste caso, a única possibilidade é fazer o trajeto inteiro a pé, em 1 + 1 = 2 minutos.', 'See statement.', 'See statement.', '2 ≤ N ≤ 5 × 105 , 0 ≤ C, P ≤ 5 × 105 ); 1 ≤ ai , bi ≤ N , ai ̸= bi ) percorrida por ; 1 ≤ ci ≤ 109 ); 1 ≤ ai , bi ≤ N , ai ̸= bi ) percorrida a pé; 1 ≤ pi ≤ 109 )', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-g-gps-a1', 'mineira-2025-g-gps', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','Dynamic Programming','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XII Maratona Mineira (2025), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-g-grupos-de-camisas', 'Grupos de camisas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1600, 'Problema G. Grupos de camisas
+Após cada maratona, cabe a nós contemplar tudo aquilo que vivemos: problemas passados, balões
+conquistados, as amizades que fizemos pelo caminho, e as camisas usadas durante a competição.
+
+        Na figura acima, temos quatro camisas, usando sete pregadores, formando três grupos de camisas.
+
+Para pregar uma camisa no varal, devemos usar dois pregadores (um em cada ponta da camisa).
+Por outro lado, com duas camisas, podemos usar apenas três pregadores, pregando as pontas de
+duas camisas consecutivas com um mesmo pregador. Quando isso acontece, dizemos que foi formado
+um grupo de camisas e que as camisas pregadas por um pregador pertencem ao mesmo grupo. Estar
+em um grupo é uma propriedade transitiva, ou seja, se a camisa A pertence ao mesmo grupo da
+camisa B, e a camisa B pertence ao mesmo grupo da camisa C, então as camisas A e C também
+pertencem ao mesmo grupo.
+
+Dilson quer pregar N camisas no varal e ao mesmo tempo quer que sejam formados exatamente G
+grupos de camisas. Qual a menor quantidade de pregadores que Dilson precisa utilizar para alcançar
+seu objetivo?
+
+Entrada
+A única linha de entrada contém dois inteiros N (1 → N → 106 ) e G (1 → G → N ), o número de
+camisas que Dilson quer pregar e o número de grupos que ele quer formar, respectivamente.
+
+Saída
+A saída deve conter um único inteiro, que o número de pregadores que Dilson precisa utilizar para
+pregar N camisas em G grupos.
+
+Exemplos
+
+ Exemplo de entrada 1                                   Exemplo de saída 1
+ 4 3                                                    7
+
+Explicação do exemplo 1
+
+Como na figura, Dilson deve usar sete pregadores para formar três grupos.
+
+ Exemplo de entrada 2                                   Exemplo de saída 2
+ 2 1                                                    3
+
+Explicação do exemplo 2
+
+Dilson deve usar três pregadores: um na ponta da primeira camiseta, um pregando a outra ponta
+da primeira camiseta e uma ponta da segunda camiseta, e um na outra ponta da segunda camiseta.
+Assim, as duas camisetas ficam pregadas por um mesmo pregador, formando um grupo de camisas.
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-g-grupos-de-camisas-a1', 'mineira-2026-g-grupos-de-camisas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-g-jogo-do-pre-xo', 'Jogo do prexo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1600, 'Problema G. Jogo do prexo
+Alice e Beto inventaram um jogo com a lousa de sua sala de aula. Para começar, escrevem na lousa
+uma palavra com N letras minúsculas e para cada letra também se escreve um inteiro positivo ou
+negativo para indicar a pontuação de cada uma das letras.
+
+O jogo é jogado em turnos alternados e Alice começa.      A cada turno, um jogador pode escolher
+apagar de 1 até K letras do começo da palavra, ganhando a soma dos pontos dessas letras, porém
+só é permitido fazer isso se apagar todas as letras ou se a palavra restante for prexo da palavra
+anterior à jogada.
+
+Por exemplo, se a palavra for uaiuai, pode se apagar as primeiras 3 letras já que uai é um prexo
+de uaiuai". O jogo acaba quando não há mais jogadas possíveis. Ao nal do jogo, Alice e Beto
+somam as pontuações das letras que cada um apagou e quem tiver mais pontos ganha a partida.
+
+Alice e Beto querem sua ajuda para calcular quantos pontos cada um vai obter se os dois jogarem
+esse jogo de maneira ótima tentando maximizar seus próprios pontos.
+
+Entrada
+                                                    5
+A primeira linha contém um inteiro N (1 ≤ N ≤ 10 ), o número de letras, seguido de um inteiro K
+(1 ≤ K ≤ N ), o número de letras máximo que se pode apagar por jogada.
+
+A segunda linha contém uma palavra de N letras minúsculas que indica as letras iniciais na lousa
+antes do jogo começar.
+
+A terceira linha comtém N inteiros Pi (−1000 ≤ Ci ≤ 1000) indicando a pontuação de cada uma
+das N letras, em ordem.
+
+Saída
+Imprima dois inteiros, separados por espaço, indicando respectivamente o número de pontos de
+Alice e Beto se jogarem o jogo de maneira ótima.
+
+Exemplos
+ Entrada                                         Saída
+ 12 2                                            0 0
+ uaiuaiuaiuai
+ 1 2 3 4 5 6 7 8 9 10 11 12
+
+ Entrada                                         Saída
+ 12 3                                            30 48
+ uaiuaiuaiuai
+ 1 2 3 4 5 6 7 8 9 10 11 12
+
+ Entrada                                         Saída
+ 12 6                                            39 39
+ uaiuaiuaiuai
+ 1 2 3 4 5 6 7 8 9 10 11 12
+
+                                  10
+
+Entrada                   Saída
+10 10                     6 -4
+tremsotrem
+1 1 1 1 1 1 -1 -1 -1 -1
+
+                                                                                                11', 'See statement.', 'See statement.', '1 ≤ N ≤ 10 ), o número de letras, seguido de; 1 ≤ K ≤ N ), o número de letras máximo que s; 1000 ≤ Ci ≤ 1000) indicando a pontuação de cada', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-g-jogo-do-pre-xo-a1', 'minas-2025-g-jogo-do-pre-xo', '1ª Maratona Minas de Minas — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem G. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-flight-discount', 'Flight Discount', 'CSES', 'https://cses.fi/problemset/task/1195', 1700, 'Find the cheapest flight from $1$ to $n$ when you may halve the cost of **at most one** edge (rounded down).', 'The first line contains two integers $n$ and $m$.
 
 Then $m$ lines follow with flights $a\ b\ c$.', 'Print the minimum price from $1$ to $n$ when you may halve the cost of at most one flight.', '$2 \le n \le 10^5$, $1 \le m \le 2 \times 10^5$', '[{"input":"3 4\n1 2 3\n2 3 1\n1 3 7\n2 1 5","output":"2"}]'::jsonb, 'O(N log N)');
@@ -17917,6 +20172,373 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1282c-a1', 'cf-1282c', 'Exam sweep', ARRAY['Greedy','Binary Search on Answer']::text[], ARRAY['Ternary Search','Sorting']::text[], ARRAY[]::text[], ARRAY['Sort problems by time; decide how many hard/easy before exam']::text[], 'Try finishing just before each problem deadline; greedy fill remaining time.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('lightoj-1074', 'Extended Traffic', 'LightOJ', 'https://lightoj.com/problem/extended-traffic', 1700, 'Cities with busyness; edge cost (b_v−b_u)³. Answer shortest path queries from city 1, printing `?` if unreachable or −∞.', 'T cases with n, busyness, edges, queries.', 'Case headers and answers.', '$n \le 200$', '[]'::jsonb, 'O(N · M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('lightoj-1074-a1', 'lightoj-1074', 'BF traffic', ARRAY['Graph Algorithms']::text[], ARRAY['Bellman-Ford']::text[], ARRAY['Adjacency List']::text[], ARRAY['Cubic busyness differences as edge weights; BF + neg-cycle flood']::text[], 'Same pattern as UVA Traffic: mark nodes reachable from negative cycles.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-h-comunicacao-trocada', 'Comunicação Trocada', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1700, 'Luci visitou recentemente o Museu da História da Computação, onde teve a oportunidade de apreciar várias exposições.
+Em uma delas, conheceu várias calculadoras antigas como a Step Reckoner, criada por volta de 1672.
+ Em outra, viu supercomputadores do passado, como os famosos Cray.
+ Também conheceu várias maneiras de programar computadores antigos, como cartões perfurados e painéis de tomadas.
+
+Um painel de tomadas em particular chamou a atenção de Luci.
+ Nele, há dois blocos com $N$ tomadas cada.
+ Em cada bloco, as tomadas são numeradas de $1$ a $N$, da esquerda para a direita.
+ Usando uma tecnologia peculiar de cabos, o operador conectava as tomadas de um dos blocos às tomadas do outro bloco.
+ Veja o exemplo com $4$ tomadas em cada bloco na figura abaixo.
+
+Em cada ciclo do computador ao qual esse painel pertence, cada tomada tem  um sinal elétrico que representa um bit.
+ O propósito desse painel é trocar a ordem dos bits.
+ Por isso, cada tomada de cada bloco deve ser conectada a exatamente uma tomada do outro bloco.
+ Cada conexão deve ser feita com um segmento de cabo ligando as duas tomadas em linha reta.
+ Por restrições físicas relacionadas à tecnologia peculiar dos cabos, sempre que dois cabos se cruzam o bit transmitido em ambos os cabos muda de valor.
+ Ou seja, se o bit 1 estava sendo transmitido por um cabo, este cabo agora passa a transmitir o bit 0.
+ No exemplo da figura acima, o cabo conectando a tomada $1$ do bloco superior à tomada $3$ do bloco inferior intercepta dois cabos.
+ Dessa forma, o bit transmitido por ele será invertido duas vezes, fazendo com que o bit na tomada $1$ do bloco superior seja o mesmo que o na tomada $3$ do bloco inferior.
+
+Como o objetivo do painel é trocar a ordem dos bits, maneiras de conectar as tomadas que fazem com que o bits em duas tomadas conectadas sejam diferentes não são válidas.
+ Ao perceber isso, Luci começou a tentar descobrir de quantas formas era possível conectar as tomadas de maneira válida.
+ Ao perceber que o museu tinha vários painéis desses e que, em alguns deles, algumas conexões já haviam sido feitas, ela achou melhor aproveitar o restante da visita ao museu e deixou a pergunta para você: de quantas formas válidas é possível conectar as tomadas, preservando as conexões já existentes?
+Lembrando que uma forma é válida se cada tomada estiver conectada a exatamente uma tomada do bloco oposto e se o bit em tomadas conectadas for o mesmo.
+
+### Observações
+
+- Se mais de dois cabos se cruzarem em um mesmo ponto, todos os cruzamentos par a par devem ser considerados.
+
+### Entrada
+
+A primeira linha da entrada contém dois inteiros $N$ e $M$, representando o número de tomadas em cada bloco e o número de conexões já existentes respectivamente.
+
+Seguem $M$ linhas, cada uma contendo dois inteiros $a_i$ e $b_i$, indicando que a tomada $a_i$ do bloco superior está conectada à tomada $b_i$ do bloco inferior.
+
+### Saída
+
+Se $X$ é o número de formas válidas de conectar as tomadas preservando as conexões já existentes, a saída deve conter um único inteiro representado o resto da divisão de $X$ por $1000000007$ ($10^9 + 7$).
+
+ 
+
+### Restrições
+
+- $1 ≤ N ≤ 10^6$
+
+- $0 ≤ M ≤ 10^6$
+
+- $1 ≤ a_i ≤ N$, para todo $i=1,2,…,M$.
+
+- $1 ≤ b_i ≤ N$, para todo $i=1,2,…,M$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^6$; 0 ≤ M ≤ 10^6$; 1 ≤ a_i ≤ N$, para todo $i=1,2,…,M$; 1 ≤ b_i ≤ N$, para todo $i=1,2,…,M$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-h-comunicacao-trocada-a1', 'mineira-2019-h-comunicacao-trocada', 'VIII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY['Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['VIII Maratona Mineira (2019), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-h-bagunca-da-madalena', 'Bagunça da Madalena', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1700, 'Madalena é uma cachorrinha que adora fazer bagunça e andar em círculos. Sempre que seu dono, Dâmiko, chega em casa, encontra vários brinquedos espalhados pela casa e a cachorrinha Madalena girando e girando pelos cômodos.
+Dâmiko adora encontrar padrões e descobriu que os brinquedos não ficam espalhados de forma aleatória:
+
+  
+- Um brinquedo fica sempre em cima de um azulejo e Madalena brinca apenas com os brinquedos do azulejo que ela está no momento.
+  
+- Quando Madalena começa a brincar, ela pega o máximo possível de brinquedos do azulejo em que está e distribui de forma igualitária para os azulejos adjacentes. Por exemplo, se existem 20 brinquedos no azulejo atual e 8 azulejos adjacentes, 2 brinquedos irão para cada um deles e 4 continuarão no azulejo atual.
+  
+- Após distribuir os brinquedos, Madalena se move para um azulejo adjacente. Ela escolhe aquele que tem mais brinquedos (porque assim é muito mais divertido) e recomeça o processo de distribuí-los. Se existe mais de um possível próximo azulejo com o mesmo número de brinquedos, ela escolhe o primeiro do sentido horário que encontrar (iniciando pelo azulejo à sua esquerda).
+
+A brincadeira acaba quando Madalena brinca em $L + C + 1$ azulejos.
+
+Dado o azulejo inicial onde Madalena se encontra, Dâmiko deseja saber a maior quantidade de brinquedos em um único azulejo ao final da brincadeira.
+
+### Entrada
+
+A primeira linha da entrada contém dois valores inteiros $L$ e $C$ que representam as quantidade de linhas e colunas de azulejos. Em seguida, $L$ linhas conterão os elementos de uma matriz $M$ de dimensão $L × C$ com elementos inteiros representando a quantidade de brinquedos em cada um dos azulejos.
+Por fim, será dada uma última linha contendo dois valores inteiros $A$ e $B$ que representam a linha e a coluna, respectivamente, onde Madalena inicia sua brincadeira.
+
+### Saída
+
+A saída deve conter o maior número de brinquedos em um único azulejo ao final da brincadeira.
+
+### Restrições
+
+- $1 ≤ L, C ≤ 500$.
+
+- $0 ≤ M_ij ≤ 10^6$.
+
+- $1 ≤ A ≤ L$.
+
+- $1 ≤ B ≤ C$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ L, C ≤ 500$; 0 ≤ M_ij ≤ 10^6$; 1 ≤ A ≤ L$; 1 ≤ B ≤ C$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-h-bagunca-da-madalena-a1', 'mineira-2022-h-bagunca-da-madalena', 'IX Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-h-tenet', 'Tenet', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1700, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+Emanuel estava estudando Programação Competitiva, resolvendo problemas sobre palíndromos. Um palíndromo é uma string que permanece igual quando lida de trás para frente, como  arara e  tenet. Além disso, Emanuel sabe que uma substring de uma string $T$ é uma string que pode ser obtida apagando-se zero ou mais caracteres do início e/ou fim de $T$. Por exemplo,  ara,  ar e  arara são substrings de  arara.
+
+Ao se deparar com o problema clássico de computar quantas substrings de uma string $S$ são palíndromos, Emanuel se perguntou como que esse problema poderia ser resolvido se pudessemos reordenar cada substring. Ou seja, dada uma string $S$, quantas substrings de $S$ (contando repetições) podem ser reordenadas para formar um palíndromo.
+
+Cansado após implementar o problema clássico, Emanuel pede sua ajuda para implementar a variação descrita acima para ele. Para simplificar o problema para você, ele garante que a string nunca conterá vogais ( a,  e,  i,  o,  u,  y).
+
+%
+% For input, use one of the following
+%
+
+### Entrada
+
+A primeira linha contém um inteiro $N$ onde $1 ≤ N ≤ 10^6$.
+
+A segunda linha contém uma string $S$ com $N$ caracteres. $S$ é composta por letras minúsculas e não possui os caracteres  a,  e,  i,  o,  u,  y.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+Imprima um único inteiro: o número de substrings de $S$ que podem ser re-ordenadas para formar um palíndromo.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.
+
+### Restrições
+
+- $1 ≤ N ≤ 10^6$.
+
+Explicação do Exemplo 1: As 12 substrings são:
+
+% eennt
+multicols2
+enumerate
+	
+-  f
+	
+-  f
+	
+-  g
+	
+-  g
+	
+-  h
+	
+-  ff
+	
+-  gg
+	
+-  ffg
+	
+-  fgg
+	
+-  ggh
+	
+-  ffgg
+	
+-  ffggh
+enumerate
+multicols', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^6$; 1 ≤ N ≤ 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-h-tenet-a1', 'mineira-2023-h-tenet', 'X Maratona Mineira — standard', ARRAY['Dynamic Programming','String Algorithms','Math / Number Theory','Greedy','Brute Force']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-h-horoscopo', 'Horóscopo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1700, 'Problema H. Horóscopo
+
+Tobias é o organizador do Torneio Mineiro de Totó, o Totórneio Mineiro. O Totórneio é composto
+por 2N times (identificados por inteiros 1, . . . , 2N ) e é jogado no formato “mata-mata” (logo, o
+campeonato tem N rodadas):
+
+   • Ao perder, o time é eliminado do campeonato.
+   • Cada rodada é composta por uma lista dos times restantes e, seguindo essa lista, o time na
+     primeira posição joga com o na segunda posição, o na terceira posição joga com o na quarta
+     posição e assim sucessivamente.
+   • A ordem relativa dos ganhadores em uma rodada é mantida para a rodada seguinte.
+
+O ritmo acelerado e altamente técnico faz do totó um jogo extremamente determinístico, de forma tal
+que é sempre possível saber o vencedor da partida. Quando dois times i, j ∈ {1, . . . , 2N } competem,
+é garantido que i vence j se e somente se i < j. Segue o exemplo de um campeonato (note que,
+como o jogo é determinístico, o chaveamento inicial define os resultados):
+
+João, o amigo astrólogo de Tobias, acabou de montar um serviço de Horóscopos por SMS e mandou
+para os assinantes sua previsão para o Totórneio. A previsão é surpreendentemente detalhada e diz,
+para cada time, em qual rodada r (um número de 1 a N ) ele será eliminado ou 0 caso seja previsto
+que o time será campeão.
+
+Para ajudar seu amigo, Tobias decidiu abrir mão de sua integridade profissional e vai montar o
+chaveamento inicial para que as previsões de João se concretizem. Sua tarefa é gerar um chaveamento
+compatível com as previsões ou detectar que é impossível.
+
+Entrada
+A primeira linha da entrada é composta pelo inteiro N (1 ≤ N ≤ 18), o número de rodadas do
+campeonato (consequentemente, o campeonato terá 2N times).
+
+A segunda linha é composta por 2N inteiros ri (1 ≤ ri ≤ N ) sendo ri a rodada que o astrológo
+João previu em que o i-ésimo time sairia do campeonato ou 0 caso tenha previsto que o time será
+
+ganhador. É garantido que o número de times eliminados será consistente com o proposto pelo
+campeonato (apenas um campeão, exatamente metade dos times eliminados na primeira rodada,
+um quarto dos times eliminados na segunda e assim sucessivamente).
+
+Saída
+
+Caso seja possível montar um chaveamento inicial tal que as previsões de João se concretizem, a
+saída deve conter o número dos times t1 , . . . , t2N em uma ordem do chaveamento compatível com
+as previsões de João. Se houver mais de uma ordem possível, qualquer uma será aceita.
+
+Caso seja impossível montar tal chaveamento, imprima −1.
+
+Exemplos
+
+ Exemplo de entrada 1                             Exemplo de saída 1
+ 2                                                1 2 3 4
+ 0 1 2 1
+
+Explicação do exemplo 1
+
+Utilizando a ordem [1, 2, 3, 4], temos dois embates na primeira rodada: o time 1 joga contra o time
+2 (1 sai como vencedor) e o time 3 joga contra o time 4 (3 sai como vencedor). Na final temos o
+embate entre time 1 e time 3, com o time 1 saindo vencedor.
+
+Desta forma, como previsto por João, temos que o time 1 foi o vencedor, os times 2 e 4 foram
+eliminados na primeira rodada e o time 3 foi eliminado na segunda rodada.
+
+ Exemplo de entrada 2                             Exemplo de saída 2
+ 1                                                -1
+ 1 0
+
+Explicação do exemplo 2
+
+Nesse caso é esperado que o time 1 seja eliminado na primeira rodada e que o time 2 seja o campeão,
+o que é impossível dado que o time 1 sempre vence o time 2.
+
+ Exemplo de entrada 3                             Exemplo de saída 3
+ 3                                                3 4 1 7 6 8 5 2
+ 0 3 2 1 1 2 1 1', 'See statement.', 'See statement.', '1 ≤ N ≤ 18), o número de rodadas do; 1 ≤ ri ≤ N ) sendo ri a rodada que o astroló', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-h-horoscopo-a1', 'mineira-2025-h-horoscopo', 'XII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-h-heranca-cultural', 'Herança cultural', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1700, 'Problema H. Herança cultural
+
+A equipe da Maratona Mineira está organizando uma caça ao tesouro. O tesouro serão dois baús do
+mais delicioso doce de leite do mundo, herança cultural de Minas Gerais, que serão escondidos no
+mapa do jogo.
+
+O mapa é composto por N vértices, numerados de 1 a N , e por N ↓ 1 arestas, de modo que é
+possível ir de qualquer vértice a qualquer outro. Em outras palavras, o mapa forma uma árvore. A
+distância entre dois vértices é definida como o número de arestas no único caminho simples entre
+eles.
+
+A equipe já possui o mapa, mas ainda precisa escolher em quais vértices esconder os dois baús.
+Uma escolha é considerada válida se os baús forem colocados em vértices distintos e se o número de
+vértices mais próximos do primeiro baú for igual ao número de vértices mais próximos do segundo
+baú. Vértices que estejam à mesma distância de ambos os baús não contam para nenhum dos dois.
+
+                                       2          3
+
+                                             1          4          7
+
+                                                             5           6
+
+A figura acima mostra uma escolha válida para o exemplo 1. Os baús foram colocados nos vértices 1 e 7. Dessa
+maneira, os vértices 1, 2 e 3 (círculos vermelhos) estão mais próximos do baú que está no vértice 1, enquanto os
+vértices 5, 6 e 7 (losângulos azuis) estão mais próximos do baú no vértice 7. O vértice 4 (estrela amarela) está à
+mesma distância de ambos os baús.
+
+Determine o número de maneiras válidas de escolher as posições dos baús. Duas maneiras são
+consideradas distintas se o conjunto de vértices onde um baú foi colocado é diferente.
+
+Entrada
+A primeira linha da entrada contém um inteiro N (2 → N → 2 ↑ 105 ), o número de vértices do mapa.
+
+Cada uma das próximas N ↓ 1 linhas contém dois inteiros ui e vi (1 → ui , vi → N , ui ↔= vi ), indicando
+que existe uma aresta entre os vértices ui e vi . É garantido que as arestas formam uma árvore.
+
+Saída
+Imprima um único inteiro: o número de maneiras válidas distintas de escolher as posições dos dois
+baús.
+
+XIII 
+
+Exemplos
+
+ Exemplo de entrada 1                               Exemplo de saída 1
+ 7                                                  4
+ 1 2
+ 1 3
+ 3 4
+ 4 5
+ 5 6
+ 5 7
+
+Explicação do exemplo 1
+
+As 4 escolhas válidas, representadas pelas posições dos baús, são: {1, 7}, {1, 6}, {3, 5} e {6, 7}.
+
+ Exemplo de entrada 2                               Exemplo de saída 2
+ 7                                                  0
+ 1 2
+ 1 3
+ 3 4
+ 1 5
+ 5 6
+ 6 7
+
+Explicação do exemplo 2
+
+Neste exemplo não existem escolhas válidas para as posições dos baús.
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-h-heranca-cultural-a1', 'mineira-2026-h-heranca-cultural', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','String Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set','Hash Map']::text[], ARRAY['XIII Maratona Mineira (2026), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-h-mineiridade-de-um-texto', 'Mineiridade de um texto', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1700, 'Problema H. Mineiridade de um texto
+Durante o período de férias de julho, Jéssica, estudante do segundo período do curso de Sistemas
+de Informação na Universidade do Mineiro, decidiu se dedicar a um desao divertido:        medir a
+mineiridade de textos escritos em português.
+
+A mineiridade é denida como a soma da pontuação das palavras presentes em um texto, de
+acordo com um vocabulário típico de Minas Gerais.        Cada palavra desse vocabulário possui um
+valor associado, que representa o quanto ela contribui para a identidade mineira do texto para cada
+uma de suas ocorrências.
+
+No entanto, se uma palavra do texto analisado não estiver presente no vocabulário, ela deve ser
+considerada como possuindo valor igual a zero, ou seja, não inuencia a pontuação nal.
+
+Como a quantidade de palavras em um texto pode ser grande, e como o vocabulário mineiro é
+extenso e variado, Jéssica percebeu que precisava de um programa eciente para automatizar esse
+cálculo. Sua tarefa é ajudar Jéssica a implementar esse programa que calcule, de maneira correta e
+eciente, a mineiridade de um texto a partir do vocabulário fornecido.
+
+Entrada
+A entrada do programa é composta por três partes. A primeira linha contém um inteiro N (1 ≤
+N ≤ 10000), que indica a quantidade de palavras presentes no vocabulário mineiro. Em seguida, são
+fornecidas N linhas, cada uma contendo uma palavra escrita em letras minúsculas, (com no máximo
+20 caracteres) e um número inteiro P (0 ≤ P ≤ 10000), que representa a pontuação associada a
+essa palavra para o cálculo da mineiridade do texto.
+
+Finalmente, o texto a ser avaliado é lido. Este texto possui tamanho máximo de 10000 palavras
+(com no máximo 20 caracteres cada) e a sua leitura deve ser encerrada quando um ponto nal (.)
+for lido, simbolizando o m da entrada. Vale destacar que o texto já passou por um processamento
+inicial, que converteu todas as letras para minúsculas e removeu todos os caracteres especiais (com
+exceção do ponto nal ao m do texto).
+
+Saída
+Imprima um inteiro, simbolizando a pontuação da mineiridade do texto lido.
+
+Exemplos
+ Entrada                                         Saída
+ 5                                               36
+ uai 20
+ nuuh 22
+ trem 35
+ bao 15
+ dimais 7
+ nuuh mas ta frio dimais da conta ate
+ pra quem ta acostumado com frio dimais .
+
+                                                  12
+
+Entrada                                   Saída
+7                                         0
+nooh 10000
+arreda 3000
+cafezin 75000
+ce 500
+uai 4500
+soh 20000
+paia 34000
+nossa voce pode ate gostar de um
+cafezinho no tempo frio mas se estiver
+em minas gerais voce precisa de um pao de
+queijo e um bolo de fuba para acompanhar
+tambem .
+
+                                                                                                     13', 'See statement.', 'See statement.', '1 ≤; 0 ≤ P ≤ 10000), que representa a pontuação a', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-h-mineiridade-de-um-texto-a1', 'minas-2025-h-mineiridade-de-um-texto', '1ª Maratona Minas de Minas — standard', ARRAY['String Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem H. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-high-score', 'High Score', 'CSES', 'https://cses.fi/problemset/task/1673', 1800, 'A game has $n$ rooms and $m$ tunnels. Each tunnel gives a score. Starting in room $1$, what is the maximum score you can achieve when reaching room $n$? If the score can be arbitrarily large, print $-1$.', 'The first line contains two integers $n$ and $m$.
 
 Then $m$ lines follow with tunnels $a\ b\ x$ (from, to, score).', 'Print the maximum score when going from $1$ to $n$, or $-1$ if the score can be arbitrarily large.', '$1 \le n \le 2500$, $1 \le m \le 5000$', '[{"input":"4 5\n1 2 3\n2 4 -1\n1 3 1\n3 4 1\n1 4 2","output":"2"}]'::jsonb, 'O(N · M)');
@@ -19827,6 +22449,307 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1625c-a1', 'cf-1625c', 'Remove signs DP', ARRAY['Dynamic Programming']::text[], ARRAY['Knapsack']::text[], ARRAY['2D Array']::text[], ARRAY['DP: remove ≤k signs; cost = length × speed of last kept sign']::text[], 'dp[i][used]=min time to reach sign i having removed `used` prior signs.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('atc-abc184-f2', 'Programming Contest (MITM)', 'AtCoder', 'https://atcoder.jp/contests/abc184/tasks/abc184_f', 1800, 'n≤40 problem times; maximize total time without exceeding T.', 'n T and times.', 'Maximum sum ≤T.', '$n \le 40$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('atc-abc184-f2-a1', 'atc-abc184-f2', 'MITM knapsack', ARRAY['Divide & Conquer','Brute Force']::text[], ARRAY['Meet in the Middle','Sorting','Binary Search']::text[], ARRAY['1D Array']::text[], ARRAY['Half subset sums; upper_bound for remaining capacity']::text[], 'Split n≤40; maximize sum ≤T.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-i-correndo-em-circulos', 'Correndo em Círculos', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1800, 'A Associação de Competições Maratonísticas (ACM) entrou em contato com a organização da Maratona Mineira de Programação para registrar uma reclamação:
+por ter ``Maratona'''' no nome, a competição estava recebendo muitas inscrições de corredores profissionais internacionais, em busca de pontos no
+ranking mundial de corridas. Porém, no dia anterior à competição,
+ao descobrirem que balões da Maratona Mineira não contam pontos no ranking da ACM, esses corredores se frustraram, retiraram
+sua inscrição e voltaram para casa.
+Para evitar esse mal entendido sem desperdiçar o potencial que a Maratona Mineira tem para cobrir outras modalidades,
+a ACM e a organização da Mineira chegaram
+a um acordo: a próxima edição da Mineira contará com uma corrida de 42km que somará pontos no ranking mundial da ACM!
+
+Contudo, há um problema. Montar um bom circuito para uma Maratona é muito custoso, e a data da Mineira poderá colidir
+com outros eventos na cidade. Sendo assim, a organização decidiu realizar a corrida em uma praça circular. Afinal, a distância que
+pode ser percorrida dando voltas na praça é limitada apenas pela preparação do corredor!
+
+Porém, pelas regras da ACM para minimizar lesões em corridas de longa distância, o circuito de corrida deve ser composto
+unicamente por segmentos de reta.
+As praças sendo consideradas pela organização possuem uma área interna, também circular, onde há um chafariz, e não é possível que o circuito
+passe por aí. O chafariz e a praça compartilham o mesmo centro.
+A praça tem raio $A$, e a área interna do chafariz tem raio $B$. Um circuito válido é um polígono que passa apenas pela área interna
+da praça externa ao chafariz, e que contém a área do chafariz.
+
+A organização da Maratona Mineira está interessada em saber qual é o menor número de segmentos de reta necessários para se formar um circuito
+válido em cada uma das praças que possivelmente serão escolhidas. Você pode ajudar?
+
+### Entrada
+
+A entrada contém apenas uma linha com dois inteiros $A$ e $B$, separados por espaço, representando o raio da praça e da região do chafariz, respectivamente.
+
+### Saída
+
+Escreva na saída uma linha contendo um único inteiro $N$, o menor número de segmentos de reta necessários para formar um circuito válido na praça
+dada.
+
+### Restrições
+
+- $1 ≤ B < A ≤ 10^9$
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ B < A ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-i-correndo-em-circulos-a1', 'mineira-2019-i-correndo-em-circulos', 'VIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Geometry']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-i-bloomhaven', 'Bloomhaven', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1800, 'Cirila adora jogos de tabuleiro, tanto pelas noites de diversão que eles proporcionam para seu grupo de amigos quanto pelos quebra cabeças que ela tem de resolver para jogar de forma mais eficiente possível e vencer.
+
+Sua paixão por eles é tão grande que ela resolveu criar o próprio jogo: Bloomhaven. Rapidamente, ela descobriu que garantir o equilíbrio entre os diferentes componentes é muito difícil, e que resolver vários casos de teste na mão é cansativo e demanda muito tempo.
+
+A última mecânica de jogo que ela precisa implementar é o sistema de feitiços, e Cirila decidiu fazer ele bem diferente de todos os outros que já viu.
+Ele funciona da seguinte forma:
+
+   
+- Cada personagem possui um disco com $N$ símbolos, e entre dois símbolos consecutivos está um encantamento com um determinado poder.
+   
+- Para realizar uma magia, é preciso escolher um subconjunto não vazio de encantamentos, cada encantamento escolhido ativa os dois símbolos adjacentes a ele.
+   
+- Para que a magia seja considerada válida, é preciso que: enumerate
+      
+- Cada símbolo seja ativado por no máximo um dos encantamos escolhidos.
+      
+- Os símbolos ativos formem uma sequência contígua no disco.
+    enumerate
+    
+- O poder de uma magia é soma dos poderes dos encantamentos escolhidos para realizá-la.
+ 
+
+Cirila gostaria de saber qual a magia mais poderosa que pode ser usada pelo personagem, mas não quer gastar mais tempo que o necessário fazendo essas contas.
+
+Escreva um programa que ajude Cirila a resolver esse problema e, quem sabe, terá seu nome no livro de regras com um agradecimento especial!
+
+### Entrada
+
+A primeira linha da entrada contém um único inteiro $N$ o número de símbolos no disco do personagem.
+A segunda linha contém $N$ inteiros, o $i$-ésimo deles, $X_i$, representa o poder do encantamento entre os símbolos $i$ e $(i  N) + 1$.
+
+### Saída
+
+A saída contem um único inteiro $M$, o poder máximo do feitiço que pode ser utilizado pelo personagem.
+
+### Restrições
+
+- $3 ≤ N ≤ 10^6$.
+
+- $-10^5 ≤ X_i ≤ 10^5$.
+
+### Exemplos', 'See statement.', 'See statement.', '3 ≤ N ≤ 10^6$; 5 ≤ X_i ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-i-bloomhaven-a1', 'mineira-2022-i-bloomhaven', 'IX Maratona Mineira — standard', ARRAY['Math / Number Theory','Brute Force']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['IX Maratona Mineira (2022), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-i-o-andar-do-trebado', 'O Andar do Trêbado', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1800, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+center
+“O andar do bêbado” é um problema muito conhecido na matemática. Nesse problema temos um bêbado iniciando na origem $(0, 0)$ do plano 2D e, a cada momento, ele escolhe aleatóriamente uma direção, norte (N), sul (S), leste (L) ou oeste (O), e anda um metro nesta direção. Apesar do andar caótico, nesta versão original do problema é matemáticamente garantido que depois de infinitos movimentos o bêbado sempre volta para a origem pelo menos uma vez!
+center
+
+Apresentamos aqui um problema ligeiramente diferente, o bêbado pode fazer os movimentos:
+
+    
+- Norte (N): anda um metro para cima.
+    
+- Sul (S): anda um metro para baixo.
+    
+- Leste (E): anda um metro para a direita.
+    
+- Oeste (O): anda um metro para a esquerda.
+    
+- Nordeste (NE): anda um metro para cima e um metro para a direita.
+    
+- Sudeste (SE): anda um metro para baixo e um metro para a direita.
+    
+- Noroeste (NO): anda um metro para cima e um metro para a esqueda.
+    
+- Sudoeste (SO): anda um metro para baixo e um metro para a esquerda.
+
+Dado que o bêbado inicia na origem $(0, 0)$, imprima de quantas formas ele pode fazer exatamente $ K$ movimentos de tal forma que após esses $K$ movimentos ele esteja novamente em sua casa, a origem. Como o resultado pode ser grande, imprima a resposta módulo $P$, sendo $P$ um primo entre $10^8$ e $10^9$ dado na entrada.
+
+% For input, use one of the following
+%
+
+### Entrada
+
+A entrada é composta por dois inteiros $K$ ($1 ≤ K ≤ 5000$) e $P$ primo ($10^8 ≤ P ≤ 10^9$).
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+A saída deve ser composta por um único número: o número de formas que o bêbado pode voltar para a origem depois de $K$ movimentos módulo $P$.
+
+### Restrições
+
+- $ 1 ≤ K ≤ 5000$.
+
+- $10^8 ≤ P ≤ 10^9$.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ K ≤ 5000$) e $P$ primo ($10^8 ≤ P ≤ 10^9; 1 ≤ K ≤ 5000$; 8 ≤ P ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-i-o-andar-do-trebado-a1', 'mineira-2023-i-o-andar-do-trebado', 'X Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-i-interativo', 'Interativo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1800, 'Problema I. Interativo
+                                     Uai, que trem diferente, sô!
+
+Este problema é interativo.
+
+O sistema de iluminação do local de prova da Maratona Mineira é muito tecnológico. Foram
+instaladas N 2 lâmpadas de LED, dispostas em uma grade de N linhas, com N colunas de lâmpadas
+cada. As lâmpadas são controladas por um sistema de controle remoto, que aceita dois tipos de
+instruções:
+
+     • A instrução L i troca o estado de todas as lâmpadas da linha i, ou seja, se a lâmpada estava
+       acesa, ela passa a estar apagada e vice-versa. Ao executar essa instrução, o sistema exibe na
+       tela o número de lâmpadas acesas na linha i após a operação.
+     • A instrução C j troca o estado de todas as lâmpadas da coluna j, ou seja, se a lâmpada estava
+       acesa, ela passa a estar apagada e vice-versa. Ao executar essa instrução, o sistema exibe na
+       tela o número de lâmpadas acesas na coluna j após a operação.
+
+A equipe de iluminação precisa da sua ajuda! A prova está prestes a começar, e todas as lâmpadas
+do local de prova estavam acesas, mas alguém invadiu o sistema de controle e realizou uma série de
+instruções arbitrárias, deixando as lâmpadas em uma configuração desconhecida.
+
+Faça todas as lâmpadas ficarem acesas usando no máximo 5N instruções. É garantido que é
+possível acender todas as lâmpadas da grade a partir da configuração inicial.
+
+Interação
+
+Inicialmente, está disponível para a leitura um único inteiro N (1 ≤ N ≤ 100). Após sua leitura,
+você pode fazer no máximo 5N instruções, que são da forma “L i” (sem aspas) para trocar o estado
+da linha i (1 ≤ i ≤ N ), ou “C j” (sem aspas) para trocar o estado da coluna j (1 ≤ j ≤ N ). Após
+cada pergunta, ficará disponível para a leitura o número de lâmpadas acesas na linha ou coluna
+especificada após a operação. Quando souber que todas as lâmpadas estão acesas, imprima FIM e
+termine o programa.
+
+Exemplos
+
+ Leitura                            Exemplo de interação 1                                Escrita
+ 2
+
+                                           L 1
+
+ 0
+
+                                         C 1
+
+ 2
+
+                                         C 2
+
+ 2
+
+                                         FIM
+
+Explicação do exemplo 1
+
+Inicialmente só as lâmpadas da primeira linha estão acesas. Após as duas últimas instruções,
+podemos ter certeza de que todas as lâmpadas estão acesas.
+
+Observações
+
+O interador não é adaptativo, ou seja, o estado do problema não muda durante a interação.
+
+Após uma escrita, não se esqueça de dar flush no buffer de saída. Caso contrário, você receberá o
+veredito TIME LIMIT EXCEEDED. Para fazer isso, use:
+
+     • fflush(stdout) em C.
+     • cout.flush() em C++.
+     • sys.stdout.flush() em Python.
+     • System.out.flush() em Java.', 'See statement.', 'See statement.', '1 ≤ N ≤ 100); 1 ≤ i ≤ N ), ou “C j” (sem aspas) para troca; 1 ≤ j ≤ N )', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-i-interativo-a1', 'mineira-2025-i-interativo', 'XII Maratona Mineira — standard', ARRAY['Interactive','Dynamic Programming','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-i-idiomas', 'Idiomas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1800, 'Problema I. Idiomas
+   Durante eras, as criaturas desenvolveram suas próprias formas de falar, cada idioma vinha
+ carregado de toda cultura e estilo de vida das raças. Os Elfos criaram o élfico, uma língua mais
+suave e elegante, os dragões criaram o dracônico que representava sua dominância e ferocidade e,
+        aos poucos, todas as outras raças criaram suas próprias línguas ao seu bel prazer.
+
+Uma grande reunião entre diplomatas de N raças será realizada para discutir o futuro do continente.
+O evento conta com um total de M línguas catalogadas. O problema é que nem todos os diplomatas
+compartilham uma língua em comum. Para que a mensagem chegue de um ponto a outro, pode ser
+necessário o uso de intermediários.
+
+Contudo, cada vez que a mensagem precisa ser traduzida de uma língua para outra (quando um
+intermediário ouve em uma língua e fala em outra), ocorre uma troca de língua. Para minimizar
+desentendimentos, a organização do conclave precisa descobrir o número mínimo de trocas necessárias
+para que dois diplomatas consigam se entender.
+
+Dados os conjuntos de línguas faladas por cada um dos N diplomatas e Q consultas (a, b), determine
+o número mínimo de trocas de língua para que os diplomatas a e b se comuniquem. Se a comunicação
+for impossível, imprima ↓1.
+
+Entrada
+A primeira linha contém três inteiros N , M e Q (2 → N → 104 , 1 → M → 30, 1 → Q → 2 ↑ 105 ), o
+número de diplomatas, o número total de línguas e quantas consultas, respectivamente.
+
+Em seguida temos N linhas, cada uma composta primeiramente pelo inteiro mi (1 → mi → M ) –
+quantas línguas o i-ésimo diplomata fala, seguido por mi valores distintos ω1 , . . . , ωmi (1 → ω → M ) –
+as línguas faladas pelo diplomata.
+
+Por fim, a entrada contém mais Q linhas cada uma contendo dois inteiros a e b (1 → a, b → N, a ↔= b)
+o diplomata inicial e final na consulta.
+
+Saída
+A saída deve conter Q linhas, cada uma respondendo quantas trocas de língua são necessárias para
+a e b se comunicarem; se não for possível, imprima ↓1.
+
+XIII 
+
+Exemplos
+
+ Exemplo de entrada 1                           Exemplo de saída 1
+ 6 7 3                                          2
+ 2 3 6                                          0
+ 3 3 2 7                                        -1
+ 2 1 2
+ 2 1 5
+ 1 4
+ 1 1
+ 4 1
+ 2 3
+ 2 5
+
+Explicação do exemplo 1
+
+  • Na primeira consulta uma possível forma de transmitir a mensagem é:
+        língua 1  língua 1 língua 2  língua 3
+     4 ↓↓↓↓↓↗ 6 ↓↓↓↓↓↗ 3 ↓↓↓↓↓↗ 2 ↓↓↓↓↓↗ 1 – tendo duas trocas de língua, 1/2 e 2/3.
+                                                                                  língua 2
+  • Na segunda consulta a mensagem pode ser transmitida sem trocas de língua 2 ↓↓↓↓↓↗ 3.
+  • Na terceira consulta, o representante 5 fala somente a língua de número 4, que não é falada
+    por mais ninguém, logo não é possível transmitir a mensagem para ele.
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-i-idiomas-a1', 'mineira-2026-i-idiomas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XIII Maratona Mineira (2026), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-i-princesa-nikita', 'Princesa Nikita', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1800, 'Problema I. Princesa Nikita
+A princesa das capivaras e futura soberana dos corpos d''água de Minas  Nikita I  cansou de ser
+mantida como refém pela feiticeira malvada e decidiu escapar por conta própria de seu cativeiro! O
+covil da feiticeira onde se encontra Nikita I tem N
+                                                       2 quartos dispostos em um formato retangular
+
+N × N , sendo que há corredores ligando um quarto aos quartos imediatamente acima, abaixo, à
+esquerda, e à direta dele. Como nossa heróina está lidando com uma mestre da mágia profunda,
+cada um dos quartos tem uma maldição que impede que ela saia do quarto, mas não impede que ela
+entre. Felizmente para Nikita I, a cada ti,j minutos, o feitiço no quarto i, j enfraquece e ela consegue
+sair dele. Dada a descrição do covil e os períodos de enfraquecimento do feitiço em cada quarto,
+quanto tempo Nikita I precisa para fugir de sua prisão? Considere que Nikita I sempre começa no
+quarto 1, 1 e que, assim que ela chegar no quarto N, N , ela escapa. Além disso, considere que todos
+os quartos começam com o feitiço enfraquecido e que o tempo de travessia entre um quarto e outro
+é de um minuto.
+
+Entrada
+A primeira linha contém um único inteiro N (2 ≤ N         ≤ 500). Em seguida temos N linhas, cada
+uma com N inteiros. O j -ésimo inteiro da i-ésima linha representa o tempo ti,j (2 ≤ ti,j ≤ 106 )
+respectivamente.
+
+Saída
+Imprima um único inteiro T , que representa o minuto no qual Nikita escapa do covíl.
+
+Exemplos
+ Entrada                                          Saída
+ 3                                                25
+ 2 15 10
+ 2 50 8
+ 2 50 2
+
+                                                                                                 14', 'See statement.', 'See statement.', '2 ≤ N         ≤ 500); 2 ≤ ti,j ≤ 106 )', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-i-princesa-nikita-a1', 'minas-2025-i-princesa-nikita', '1ª Maratona Minas de Minas — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem I. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('atc-dp-subtree', 'Subtree', 'AtCoder', 'https://atcoder.jp/contests/dp/tasks/dp_v', 1900, 'Score : 100 points
 
 Problem Statement
@@ -20647,6 +23570,338 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1092f-a1', 'cf-1092f', 'Reroot tree DP', ARRAY['Graph Algorithms','Dynamic Programming']::text[], ARRAY['DFS','MST']::text[], ARRAY['Adjacency List']::text[], ARRAY['Rerooting: sum of dist×value; transfer when moving root']::text[], 'Compute for root 1 then reroot to maximize Σ a_v·dist(root,v).');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-208e', 'Blood Cousins', 'Codeforces', 'https://codeforces.com/problemset/problem/208/E', 1900, 'Forest of rooted trees. For each query (v,p) count vertices that share the p-th ancestor with v (cousins).', 'n, parents, q queries.', 'Answer per query.', '$n,q \le 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-208e-a1', 'cf-208e', 'K-th ancestor queries', ARRAY['Graph Algorithms']::text[], ARRAY['LCA','DFS']::text[], ARRAY['Adjacency List','Hash Map']::text[], ARRAY['Binary lift to k-th ancestor; count vertices with same depth in subtree via DFS times']::text[], 'For query v p find p-th ancestor and count depth peers in its subtree minus 1.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-j-wasserman-rei-das-aguas', 'Wasserman, Rei das Águas', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1900, 'Em sua última visita a Furnas, Wasserman o Rei das Águas, ficou bastante confuso com o 
+dialeto mineirês que os peixes falavam. Bagri, o peixe poliglota, foi convocado para ajudar 
+Wasserman a entender esse novo idioma. Bagri passou muitos anos estudando o dialeto, e 
+conhecia todas as palavras e frases mais comuns do Peixe-mineirês de Furnas. Fez então uma 
+lista com todas elas e a deu à Wasserman. Aqui podemos ver um trecho desta lista:
+
+align*
+blohblo:&  aos competidores
+
+bloh:&  ajuda
+
+blobla:&  aos artistas da
+
+ubl:&  Peça
+
+blaubl:&  da Maratona Mineira
+
+align*
+
+Então Bagri advertiu:
+- Sempre espere um peixe terminar sua frase, pois nem sempre uma palavra é o que parece!
+No peixe-mineirês quando há mais do que uma possível tradução, o correto é aquela em que 
+as primeiras palavras são as maiores possíveis!
+
+Wasserman, confuso, perguntou:
+- Quem poderá me ajudar a traduzir tal idioma?
+
+Bagri, em peixe-mineirês, respondeu:
+- ublblohbloblaubl
+
+Wasserman pensou, pensou, pensou até que disse:
+- A tradução para isso é Peça ajuda aos artistas da Peça ? Que Peça?
+
+Bagri lamentando-se, disse:
+- Você está ficando velho Wasserman, não está entendendo muita coisa. Você traduziu como:
+
+align*
+ubl + bloh + blobla + ubl: Peça + ajuda + aos artistas da + Peça
+align*
+
+- Porém o correto é:
+
+align*
+ubl + blohblo + blaubl: Peça + aos competidores + da Maratona Mineira
+align*
+
+- Pois em ambas traduções a primeira palavra tem o mesmo tamanho, porém na segunda tradução, a segunda
+palavra blohblo é maior do que a segunda palavra da primeira tradução bloh. Logo o
+correto é Peça aos competidores da Maratona Mineira!!!
+
+Wasserman então pediu para que você faça um programa que traduza o peixe-mineirês.
+
+### Entrada
+
+A primeira linha da entrada contém o inteiro $N$, representando o número de palavras de peixe-mineirês consideradas.
+As $2N$ linhas seguintes contém as palavras e suas traduções. A $(2i - 1)$-ésima dessas linhas contém a $i$-ésima palavra em peixe-mineirês $n_i$, enquanto a $2i$-ésima delas contém a tradução $t_i$ da palavra $n_i$. Uma tradução é uma sequência de uma ou mais palavras separadas por espaço. Em seguida, a entrada contém mais uma linha apenas com letras (sem espaços) representando a sentença $S$ a ser traduzida.
+
+### Saída
+
+A saída deve conter uma única linha com a tradução de $S$. A tradução deve ser uma sequência de palavras separadas por espaço.
+
+### Restrições
+
+- $1 ≤ N ≤ 5 × 10^4$.
+
+- $1 ≤ |n_i| ≤ 50$ para todo $i = 1, 2, …, n$.
+
+- $1 ≤ |t_i| ≤ 100$ para todo $i = 1, 2, …, n$.
+
+- $1 ≤ |S| ≤ 10^6$.
+
+- Todas as palavras $n_i$ são distintas.
+
+- $S$ contem apenas letras e possuí uma tradução válida.
+
+- As palavras na entrada são formadas apenas por letras a-z ou A-Z.', 'See statement.', 'See statement.', '1 ≤ N ≤ 5 × 10^4$; 1 ≤ |n_i| ≤ 50$ para todo $i = 1, 2, …, n$; 1 ≤ |t_i| ≤ 100$ para todo $i = 1, 2, …, n$; 1 ≤ |S| ≤ 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-j-wasserman-rei-das-aguas-a1', 'mineira-2019-j-wasserman-rei-das-aguas', 'VIII Maratona Mineira — standard', ARRAY['String Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-j-um-dia-no-museu', 'Um dia no museu', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 1900, 'Foi construído um museu de arte moderna na cidade de Timóteo. Com o intuito de garantir a segurança das obras
+de arte ali presentes, câmeras com visão $360 ^$ foram instaladas pelo museu.
+Devido ao corte de custos, apenas uma câmera foi instalada por sala.
+
+A empresa que realizou a instalação não certificou se todas as paredes eram completamente visíveis pela câmera e agora ela precisa de sua ajuda.
+
+Dado a planta baixa de uma sala do museu e a posição da câmera, você deve indicar se todas as paredes são visíveis por ela ou não.
+
+Uma parede é considerada vigiada pela câmera se todos os pontos sobre ela podem ser vistos pela câmera, ou seja, não são bloqueados por outra parede.
+Uma parede colinear com a câmera também não é considerada como vigiada.
+
+### Entrada
+
+A entrada é composta pela descrição de uma sala do museu e da posição da câmera, sendo que a sala é
+representada por um polígono simples.
+A primeira linha contêm um inteiro $N$, que representa a quantidade de paredes da sala.
+Em seguida, temos $N$ linhas. A $i$-ésima linha contêm $2$ inteiros $X_i$, $Y_i$ que são as coordenadas do $i$-ésimo ponto.
+Uma parede é formada pela ligação do ponto $i$ com o ponto $i+1$. O $N$-ésimo ponto da entrada com o primeiro ponto formam a última parede.
+Por fim, temos mais uma linha com dois inteiros $C_x, C_y$, que representam as coordenadas da câmera.
+
+### Saída
+
+A saída deve conter uma linha com o caractere S caso todas as paredes sejam completamente vigiadas pela câmera e N caso contrário.
+
+### Restrições
+
+    
+- $3 ≤ N ≤ 10^5$.
+    
+- $-10^5 ≤ X_i, Y_i, C_x, C_y ≤ 10^5$.
+
+É garantido que as coordenadas geram um polígono simples e que as coordenadas da câmera se encontram dentro desse polígono.
+
+### Exemplos', 'See statement.', 'See statement.', '3 ≤ N ≤ 10^5$; 5 ≤ X_i, Y_i, C_x, C_y ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-j-um-dia-no-museu-a1', 'mineira-2022-j-um-dia-no-museu', 'IX Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-j-o-desfile-das-k-peias', 'O Desfile das K-peias', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 1900, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+
+center
+
+  A fauna de Minas Gerais é muito diversa. Além dos animais mais conhecidos, tamanduás-bandeira, tatus, lobos guará e onças-pintadas, em Minas Gerais também se pode encontrar centopeias. 
+  
+center
+  
+  Ao andar pelo cerrado olhando atentamente para seus insetos, Elisa percebeu que a fauna de Minas é ainda mais diversa que o esperado, as ``peias'''' aqui não se limitam a centopeias ($100$-peias). Aqui temos $k$-peias: bichos com $k$ pés!
+    
+  Percebendo essa maravilha da natureza, Elisa decidiu fazer um desfile de $k$-peias para mostrar ao mundo o quão majestosas elas são.   Apesar de mais numerosos, os pés de $k$-peias são semelhantes aos pés humanos:
+
+  
+- É garantido que o número $k$ de pés é par.
+  
+- Toda $k$-peia tem um tamanho de sapato $t$ que é o mesmo para todos os pés.
+  
+- Metade dos pés de uma $k$-peia são esquerdos e, a outra metade, direitos.
+
+Para deixá-las ainda mais belas, Elisa decidiu que apenas participarão dos desfiles as $k$-peias que tiverem sapatos em todos os seus $k$ pés. Embora Elisa tenha uma vasta coleção de sapatos de $k$-peias, talvez não haja sapatos suficientes ou nos tamanhos corretos, para calçar todas as $k$-peias que ela encontrou.
+  
+  
+
+Dada que toda $k$-peia possui um número de ``majestosidade'''' (quão majestosa essa $k$-peia fica depois de calçada), ajude Elisa a distribuir seus sapatos de tal forma que a soma da majestosidade das $k$-peias calçadas seja maximizada. Para se evitar chulé nos sapatos, um mesmo sapato não poderá ser utilizado por duas $k$-peias durante o desfile.
+
+% For input, use one of the following
+%
+
+### Entrada
+
+A primeira linha possui dois números $1 ≤ N ≤ 500$ e $1 ≤ T ≤ 500$, que representam o número de $k$-peias encontradas por Elisa e o tamanho máximo de seus sapatos, respectivamente.
+
+Depois temos $N$ linhas descrevendo as $k$-peias. Na $i$-ésima delas temos três números $k_i$ ($2 ≤ k_i ≤ 100$), $t_i$ ($1 ≤ t_i ≤ T$) e $m_i$ ($1 ≤ m_i ≤ 10^9$): o número de pés da $i$-ésima $k$-peia, o tamanho dos seus pés e sua majestosidade, respectivamente. 
+
+Por fim, teremos $T$ linhas sendo que a $j$-ésima delas contém números $e_j$ e $d_j$ ($0 ≤ e_j, d_j ≤ 50000$): quantos sapatos esquerdos e direitos de tamanho $j$ Elisa possui.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+Imprima uma única linha contendo a maior soma das majestosidades das $k$-peias se Elisa distribuir seus sapatos de forma ótima.
+
+### Restrições
+
+- $ 1 ≤ N, T ≤ 500$.
+
+- $2 ≤ k_i ≤ 100$.
+
+- $1 ≤ t_i ≤ T$.
+
+- $1 ≤ m_i ≤ 10^9$.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ N ≤ 500$ e $1 ≤ T ≤ 500$, que representa; 2 ≤ k_i ≤ 100$), $t_i$ ($1 ≤ t_i ≤ T$) e $m_; 1 ≤ m_i ≤ 10^9$): o número de pés da $i$-ési; 0 ≤ e_j, d_j ≤ 50000$): quantos sapatos esqu; 1 ≤ N, T ≤ 500$; 2 ≤ k_i ≤ 100$; 1 ≤ t_i ≤ T$; 1 ≤ m_i ≤ 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-j-o-desfile-das-k-peias-a1', 'mineira-2023-j-o-desfile-das-k-peias', 'X Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-j-jeito-de-falar', 'Jeito de Falar', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 1900, 'Problema J. Jeito de Falar
+             Sinto a fúria em suas palavras, mas não entendo nada do que você diz.
+
+                                     – William Shakespeare
+
+Bira viajou para o interior de Minas, e agora precisa pegar um trem. Ao chegar na estação, ele
+pergunta ao funcionário qual é o número da estação, para verificar se está na estação certa.
+
+Porém, os moradores locais têm um costume diferente: eles falam números da maneira codificada!
+Por exemplo, para falar o número 2020 eles poderiam dizer 220 (duas vezes o número 20), e o
+número 205555 poderia ser codificado como 12045 (uma vez o número 20, seguido de quatro cópias
+do número 5).
+
+Formalmente, uma codificação válida de um número X consiste em um número N , cujos dígitos
+podem ser particionados em 2k partes (k ≥ 1): P1 V1 P2 V2 . . . Pk Vk , de maneira que X pode ser
+representado pela concatenação de P1 cópias do número V1 , seguida de P2 cópias do número V2 ,
+e assim por diante. Isto é, algumas partes do número dito podem ser consideradas como período
+(número de vezes a repetir), e irão repetir alguns dígitos seguintes. Um período Pi nunca pode
+começar com o dígito 0.
+
+Ao perguntar o número da estação, o funcionário falou o número codificado N . Bira vai decodificar
+o número, porém podem existir muitas formas de decodificar. O número 321, por exemplo, pode
+ser decodificado como 212121 ou 11111111111111111111111111111111. Bira não lembra o número
+exato de sua estação, mas lembra que ele tinha M dígitos.
+
+Ajude Bira escrevendo um programa que, dado o número N falado pelo funcionário, calcula quantas
+formas existem de decodificar o número para que tenha M dígitos. Duas formas são consideradas
+distintas se possuírem número diferente de partes, ou alguma das partes for diferente.
+
+Entrada
+
+A primeira linha contém o número N (2 ≤ |N | ≤ 2000), onde |N | representa o número de dígitos
+de N . É garantido que o primeiro dígito de N não é 0.
+
+A segunda linha contém o número M (1 ≤ M ≤ 2000).
+
+Saída
+
+Imprima o número de formas de decodificar N com M dígitos. Como esse valor pode ser muito
+grande, imprima o resto de sua divisão por 998244353.
+
+Exemplos
+
+ Exemplo de entrada 1                              Exemplo de saída 1
+ 23225                                             2
+ 6
+
+Explicação do exemplo 1
+
+Neste exemplo, existem duas formas de decodificar 23225 com 6 dígitos: 323255 e 332525.
+
+ Exemplo de entrada 2                              Exemplo de saída 2
+ 321                                               0
+ 3
+
+ Exemplo de entrada 3                              Exemplo de saída 3
+ 10                                                1
+ 1
+
+ Exemplo de entrada 4                              Exemplo de saída 4
+ 2001                                              1
+ 6
+
+Explicação do exemplo 4
+
+A única decodificação de 2001 é 001001. Note que o número decodificado pode conter zeros à
+esquerda.
+
+ Exemplo de entrada 5                              Exemplo de saída 5
+ 111111                                            3
+ 4
+
+Explicação do exemplo 5
+
+Neste exemplo, há 3 maneiras de decodificar, e todas resultam no número final 1111. Representando
+o período entre colchetes e a parte repetida entre parênteses, as decodificações são [1](1)[1](111),
+[1](11)[1](11) e [1](111)[1](1).
+
+ Exemplo de entrada 6                              Exemplo de saída 6
+ 16956758163750637                                 41
+ 114', 'See statement.', 'See statement.', '2 ≤ |N | ≤ 2000), onde |N | representa o núm; 1 ≤ M ≤ 2000)', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-j-jeito-de-falar-a1', 'mineira-2025-j-jeito-de-falar', 'XII Maratona Mineira — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-j-jogo-do-beta', 'Jogo do beta', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 1900, 'Problema J. Jogo do beta
+
+Um grupo de N amigos vai participar de um jogo no qual cada jogador escolhe um número inteiro
+Pi . Em seguida, deveria ser sorteado um número inteiro X maior que 1, mas Pedro descobriu uma
+forma de trapacear e pode escolher esse valor.
+
+A pontuação de cada jogador é dada por Pi mod X, ou seja, o resto da divisão de Pi por X.
+
+Cada jogador que tenha sua pontuação igual a 0 é chamado de beta, pois não sobra nada da divisão.
+
+Ajude Pedro a escolher um valor de X que maximize a quantidade de jogadores beta.
+
+Entrada
+A primeira linha da entrada contém um único inteiro N (1 → N → 105 ), representando o número de
+jogadores.
+
+A segunda linha contém N inteiros Pi (2 → Pi → 106 ), representando o valor escolhido pelo i-ésimo
+jogador.
+
+Saída
+Imprima um único inteiro X (2 → X → 106 ) que maximize o número de jogadores beta.
+
+Em caso de múltiplos valores de X que produzam a mesma quantidade máxima de jogadores beta,
+imprima qualquer um deles.
+
+Exemplos
+
+ Exemplo de entrada 1                             Exemplo de saída 1
+ 5                                                2
+ 2 5 4 5 3
+
+ Exemplo de entrada 2                             Exemplo de saída 2
+ 2                                                19
+ 19 20
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-j-jogo-do-beta-a1', 'mineira-2026-j-jogo-do-beta', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-j-distancias-em-minas', 'Distâncias em Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 1900, 'Problema J. Distâncias em Minas
+João é um turista que está explorando Minas Gerais e deseja conhecer várias cidades históricas, como
+Belo Horizonte, Ouro Preto, Tiradentes e Diamantina. Durante a viagem, ele anotou a distância
+percorrida em quilômetros a cada dia, já que adora registrar suas aventuras.
+
+Agora, João quer calcular a distância total percorrida para contar aos amigos o quanto rodou pelas
+estradas mineiras.
+
+Escreva um programa que, dado o número de dias da viagem e as distâncias percorridas em cada
+um deles, calcule a distância total. Além disso, João gostaria de saber se conseguiu percorrer mais
+de 500 km no total  nesse caso, ele vai considerar que fez uma "grande viagem"!
+
+Entrada
+A primeira linha contém um número inteiro N (1 ≤ N ≤ 100), representando a quantidade de dias
+da viagem. Cada uma das próximas N linhas contém um número inteiro, que representa a distância
+percorrida em cada dia (em quilômetros).
+
+Saída
+Seu programa deve imprimir duas linhas: Na primeira linha, um número inteiro representando a
+distância total percorrida durante a viagem e, na linha seguinte, a mensagem "Grande viagem" se
+o total for maior que 500 km, ou "Viagem curta" caso contrário.
+
+Exemplos
+ Entrada                                        Saída
+ 5                                              410
+ 100                                            Viagem curta
+ 120
+ 80
+ 50
+ 60
+
+ Entrada                                        Saída
+ 4                                              520
+ 200                                            Grande viagem
+ 150
+ 100
+ 70
+
+                                                                                                 15', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), representando a quantidade de ', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-j-distancias-em-minas-a1', 'minas-2025-j-distancias-em-minas', '1ª Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem J. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1201d', 'Treasure Hunting', 'Codeforces', 'https://codeforces.com/problemset/problem/1201/D', 2000, 'You are on an $n \times m$ grid. Some cells contain treasures. You may only move right, left, or up, and you can only change rows using special safe columns. Collect all treasures with minimum moves (starting at $(1,1)$).', 'The first line contains four integers $n$, $m$, $k$, $q$.
 
 Then $k$ lines with treasure coordinates.
@@ -21017,6 +24272,299 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1487e-a1', 'cf-1487e', 'Multi-layer cheapest', ARRAY['Greedy']::text[], ARRAY['Dijkstra','Sorting']::text[], ARRAY['Priority Queue','Ordered Set']::text[], ARRAY['Cheapest combination of 4 courses avoiding forbidden pairs via sorted sets']::text[], 'Sort each meal layer; skip forbidden edges with sets / priority queue.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1363e', 'Tree Shuffling', 'Codeforces', 'https://codeforces.com/problemset/problem/1363/E', 2000, 'Tree rooted at 1; each node has cost a_i and bits b_i,c_i. Flip bits paying a_i (affects subtree). Match b to c minimizing cost.', 'n, triples a b c, edges.', 'Minimum cost.', '$n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1363e-a1', 'cf-1363e', 'Tree flip greedy', ARRAY['Graph Algorithms','Greedy']::text[], ARRAY['DFS','Topological Sort']::text[], ARRAY['Adjacency List']::text[], ARRAY['Push needed flips down the tree; pay at cheapest ancestor']::text[], 'DFS returns excess 0/1 needing flip; resolve at minimum a_i on path.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-k-cobra-de-dominos', 'Cobra de Dominós', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 2000, 'O menino Araújo, filho de biólogos, sempre foi fascinado pelas espécies de cobras que eram criadas no cativeiro da casa.
+ Hoje pela manhã ele ganhou um dominó no bingo da escola e, já em casa, formulou o jogo ``A Maior Cobra Legal de Dominós''''.
+
+Uma peça de dominó é um par não ordenado de inteiros $(i,j)$ tal que $0 ≤ i, j ≤ N$.
+Um jogo completo de dominó com $N$ valores é composto por todas as peças de dominós possíveis que tem valores entre $0$ e $N$.
+Uma cobra de dominó é uma sequência de peças $(i_1, j_1)(i_2, j_2)…(i_m, j_m)$ tal que $j_k = i_k+1$ para todo $k$ válido.
+O objetivo do jogo de nosso jovem protagonista é bem simples: formar a maior cobra de dominós possível usando peças de um jogo completo.
+ Por exemplo, se seu jogo de dominó tem peças com valores de $0$ até 3, uma possível maior cobra de se formar teria 9 peças com a seguinte configuração:
+
+center
+  $( 0,0 )( 0,1 )( 1,1 )( 1,2 )( 2,2 )( 2,0 )( 0,3 )( 3,3 )( 3,1 )$
+center
+
+Observe que a peça 2-3 (ou 3-2, a peça é a mesma) não foi possível de ser usada.
+Por outro lado, se o valor de uma lado de suas peças vai até 4, uma possível maior cobra de se formar teria 15 peças com a seguinte configuração:
+
+center
+ $( 0,0 )( 0,1 )( 1,1 )( 1,2 )( 2,2 )( 2,0 )( 0,3 )( 3,3 )( 3,1 )( 1,4 )( 4,4 )( 4,2 )( 2,3 )( 3,4 )( 4,0 )$
+center
+
+Curioso que é, o menino Araújo solicitou a ajuda dos programadores da Maratona Mineira para criar um programa com a seguinte missão: dado o valor máximo que pode aparecer em uma peça de dominó, informe qual é o tamanho da maior cobra legal de dominós.
+
+center
+  
+center
+
+### Entrada
+
+A entrada consiste de uma única linha contendo único inteiro $N$, o valor máximo que pode existir em uma peça de dominó.
+
+### Saída
+
+A saída deve conter um único inteiro, que representa o tamanho da maior cobra de dominó que pode ser formada.
+
+### Restrições
+
+  
+- $0 ≤ N ≤ 5000$
+
+### Exemplos', 'See statement.', 'See statement.', '0 ≤ i, j ≤ N$; 0 ≤ N ≤ 5000$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-k-cobra-de-dominos-a1', 'mineira-2019-k-cobra-de-dominos', 'VIII Maratona Mineira — standard', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-k-bacon-e-o-tesouro', 'Bacon e o tesouro', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 2000, 'Sim, isso está acontecendo de novo.
+
+Pela terceira maratona seguida teremos um problema envolvendo a dinastia fundada por Bacon -- o Grande.
+Desta vez, o protagonista de nossa história é o neto mais novo de Bacon -- o Bravo -- filho de Bacon -- a Ambiciosa -- e o rei mais improvável já registrado como monarca de todas as capivaras.
+
+Esta passagem das Crônicas das Capivaras narra os primeiros momentos do reinado de Bacon -- o Grafo -- que, ao invés de se tornar um monarca absolutista como seus antecessores, repartiu o poder entre vários ministros para poder se dedicar a sua verdadeira paixão: a combinatória.
+Ele voltou suas atenções para a abertura de um antigo baú adquirido por sua mãe após uma dura campanha de inverno contra insurgentes e que tem frustrado os mais renomados pensadores do reino.
+
+A fechadura do baú é composta por um tabuleiro quadriculado de dimensões $N$ por $M$ em que cada umas das $N × M$ posições tem uma joia encrustada que pode mudar para uma de $3$ possíveis cores.
+Uma joia na posição $(a,b)$ do tabuleiro é adjacente a todas as joias $(x,y)$ que satisfazem $|a - x| + |b - y| = 1$.
+As joias tem propriedades mágicas, de tal forma que duas joias em posições adjacentes no tabuleiro entram em ressonância se e somente se elas tem a mesma cor.
+Esse efeito é transitivo, ou seja, se $(a,b)$ está em ressonância com $(c,d)$ e $(c,d)$ está em ressonância com $(x,y)$, então $(a,b)$ também está em ressonância com $(x,y)$.
+As joias, porém, não são muito resistentes e se uma joia está em ressonância com pelo menos outras $K$ joias, ela se desintegra instantaneamente.
+O tabuleiro do baú também é especial, e permite que seu usuário troque a cor de uma única joia por vez.
+
+O mecanismo de segurança é simples: o tesouro é destrancado se e somente se todas as joias no tabuleiro se desintegram no mesmo instante de tempo.
+
+Exausto após tantas tentativas mal sucedidas, nosso herói caminhou para uma necessária noite de sono; ele não sabia nem se era possível abrir o tesouro e as dúvidas o deixaram cada vez mais desesperançoso.
+Mas por quê necessária?
+Bom, está escrito nas Crônicas que Bacon -- o Grafo -- recebeu, durante o sonho, a resposta de três entidades místicas que se auto intitulavam "maratonistas".
+
+Claramente, vocês são essas entidades. Salvem nosso monarca favorito lhe dizendo se o tesouro pode ou não ser aberto e, caso possa, qual o menor número de joias que devem ter a cor trocadas para tal.
+
+### Entrada
+
+A primeira linha da entrada contém os inteiros $N, M$ e $K$, separados por espaço, que representam, respectivamente, o número de linhas e colunas do tabuleiro e o limite de resistência das joias.
+Em seguida, existem $N$ linhas, cada uma com $M$ inteiros, separados por espaço, representando as cores das joias na respectiva linha.
+É garantido que nenhuma joia está em ressonância com $K$ outras joias.
+
+### Saída
+
+A saída contem um único inteiro $M$, o menor número de recolorações que devem ser feitas para abrir o baú.
+Caso isso seja impossível, imprima $-1$.
+
+### Restrições
+
+- $1 ≤ N, M ≤ 5 × 10^6$.
+
+- $1 ≤ N × M ≤ 5 × 10^6$.
+
+- $1 ≤ K ≤ 5 × 10^6$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N, M ≤ 5 × 10^6$; 1 ≤ N × M ≤ 5 × 10^6$; 1 ≤ K ≤ 5 × 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-k-bacon-e-o-tesouro-a1', 'mineira-2022-k-bacon-e-o-tesouro', 'IX Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-k-baloes-da-maratona', 'Balões da Maratona', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 2000, 'Chegou o dia da Maratona Mineira e a organização já tem as cores definidas para quase todos os problemas, faltando apenas um!
+Para facilitar a visualização do placar e do ambiente de prova, diminuindo a chance de confusões com balões de cores muito similares,
+a organização resolveu escolher esta última cor de forma que ela seja muito diferente das outras já selecionadas. As cores são codificadas
+no sistema RGB, através de triplas de inteiros que representam as quantidades de vermelho, verde e azul, respectivamente,
+na codificação da cor.
+
+Dadas duas cores, $(r_1,g_1,b_1)$ e $(r_2,g_2,b_2)$, calculamos a distância entre elas como $d = |r_1-r_2| + |g_1-g_2| + |b_1-b_2|$.
+Sua tarefa é encontrar qual seria a nova cor que maximiza a menor distância entre ela e aquelas já existentes. Caso mais de uma solução exista,
+aquela que minimiza a primeira coordenada da codificação deve ser escolhida. Persistindo o empate, deve ser escolhida aquela que minimiza
+a segunda coordenada. Caso mais de uma solução ainda exista aplicando estes critérios, deve ser escolhida aquela que minimiza a terceira coordenada. Em outras palavras, queremos a menor solução de forma lexicográfica.
+
+### Entrada
+
+A primeira linha da entrada contém um inteiro $1 ≤ N ≤ 20$. Em seguida são dadas $N$ linhas, de forma que a $i$-ésima linha, contém 3 números
+entre 0 e 255 (inclusive), correspondendo ao código RGB da $i$-ésima cor já selecionada.
+
+### Saída
+
+A saída contém três inteiros $R, G, B$, que correspondem ao código da cor que maximiza a distância para as demais cores.
+
+### Restrições
+
+- $1 ≤ N ≤ 20$.
+
+- $0 ≤ R, G, B ≤ 255$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N ≤ 20$; 1 ≤ N ≤ 20$; 0 ≤ R, G, B ≤ 255$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-k-baloes-da-maratona-a1', 'mineira-2023-k-baloes-da-maratona', 'X Maratona Mineira — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-k-kubitschek', 'Kubitschek', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2000, 'Problema K. Kubitschek
+ Meta 27: O programa de implantação da indústria automobilística exigirá um esfôrço financeiro
+ que se estima em 38 bilhões de cruzeiros, incluído, nesta cifra, o equivalente a 263 milhões de
+                                            dólares.
+
+                    – Programa de Metas do Presidente Juscelino Kubitschek
+
+JK, em seu ambicioso plano de crescer a indústria automobilística do país decidiu destruir locomo-
+tivas antigas em um trilho para reduzir a competição com o transporte rodoviário.
+
+No trilho em questão pode passar qualquer uma dentre N diferentes locomotivas, cada uma descrita
+por uma posição inicial p e uma velocidade v. A locomotiva está na posição p no tempo 0 e, a cada
+instante de tempo, ela se move v (para a direita no trilho se v for positivo e para a esquerda se v
+for negativo).
+
+Como JK não sabe qual locomotiva vai passar, ele decidiu instalar dinamite em algumas posições
+dos trilhos. Cada dinamite tem uma posição no trilho e será ativada por JK em um tempo específico
+(JK não consegue apertar mais de um detonador no mesmo instante, logo cada dinamite deve ser
+estourada em um tempo distinto). Formalmente, as dinamites são um conjunto de pares (xi , ti )
+(com ti distintos), de forma que a dinamite i explode qualquer locomotiva que estiver exatamente
+na posição xi no instante ti .
+
+Retorne uma lista de dinamites instaladas por JK de forma a garantir que, independente da loco-
+motiva que passar no trilho, ela será destruída. É garantido que essa lista sempre existe. Não é
+necessário minimizar a quantidade de dinamites.
+
+Entrada
+
+A primeira linha da entrada é composta por um inteiro N (1 ≤ N ≤ 1000), o número de locomotivas.
+
+Seguem N linhas, cada uma composta por dois inteiros pi e vi (0 ≤ |pi |, |vi | ≤ 1000) a posição e
+velocidade da i-ésima locomotiva, respectivamente.
+
+Saída
+
+A primeira linha da saída deve conter um inteiro 1 ≤ M ≤ 2000, o número de dinamites que
+se decidiu instalar. As M linhas seguintes devem conter dois inteiros xi , ti (0 ≤ |xi | ≤ 2 × 106 ,
+0 ≤ ti ≤ 2000) em cada uma: a posição da dinamite e o momento em que ela será explodida,
+respectivamente. É obrigatório que todos os ti da resposta sejam distintos.
+
+Se houver mais de uma resposta possível, qualquer uma será aceita. Não é necessário minimizar M .
+
+Exemplos
+
+ Exemplo de entrada 1                             Exemplo de saída 1
+ 2                                                1
+ 1 -1                                             0 1
+ -1 1
+
+Explicação do exemplo 1
+
+Tanto a primeira quanto a segunda locomotiva estão na posição 0 no instante 1, logo explodir uma
+dinamite na posição 0 no instante 1 é suficiente para explodir as locomotivas.
+
+ Exemplo de entrada 2                             Exemplo de saída 2
+ 3                                                4
+ 0 1                                              3 1
+ 0 2                                              8 4
+ 0 3                                              3 3
+                                                  4 2
+
+Explicação do exemplo 2
+
+A primeira locomotiva é destruída no instante 3, a segunda locomotiva nos instantes 2 (ou 4) e a
+terceira locomotiva no instante 1.
+ Exemplo de entrada 3                             Exemplo de saída 3
+ 3                                                1
+ 0 1                                              0 0
+ 0 2
+ 0 3
+
+Explicação do exemplo 3
+
+Outra solução viável para o caso anterior: aqui todos as locomotivas são destruídas no instante 0.', 'See statement.', 'See statement.', '1 ≤ N ≤ 1000), o número de locomotivas; 0 ≤ |pi |, |vi | ≤ 1000) a posição e; 1 ≤ M ≤ 2000, o número de dinamites que; 0 ≤ |xi | ≤ 2 × 106 ,; 0 ≤ ti ≤ 2000) em cada uma: a posição da din', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-k-kubitschek-a1', 'mineira-2025-k-kubitschek', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XII Maratona Mineira (2025), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-k-kampo-minado', 'Kampo Minado', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2000, 'Problema K. Kampo Minado
+
+A Universidade do Heptágono Mineiro está criando um novo sistema operacional, o “Janelas OS”
+que virá instalado com o famoso jogo Campo Minado. Para fugir de problemas legais decidiu-se fazer
+o Campo Minado 1-D, uma versão diferente o suficiente para acalmar os advogados da concorrência.
+O jogo funciona da seguinte maneira:
+
+   • O campo minado tem N posições e cada posição pode ser vazia ou ter uma mina.
+   • Cada posição pode estar revelada ou secreta – inicialmente todas são secretas.
+   • A cada rodada o jogador escolhe uma posição secreta e clica nela:
+       – Se a posição tiver uma mina, o jogador perde.
+       – Se a posição for vazia, ela e todas as casas à esquerda e à direita do clique são reveladas
+          até chegar no fim do campo ou em uma mina (que também é revelada).
+   • Se em algum momento todas as posições vazias forem reveladas o jogador ganha.
+
+Na figura acima, temos dois exemplos de partida dado um campo minado. A da esquerda termina em vitória pois
+todas as casas vazias são encontradas e a da direita termina em derrota pois o jogador clica em uma mina.
+
+Para ajudar a universidade a entender por quanto tempo o jogo pode entreter os usuários, dado
+N , imprima quantas partidas diferentes podem ser jogadas em um campo de tamanho N . Duas
+partidas são consideradas diferentes se o campo minado é diferente ou se alguma das jogadas foi
+diferente em ordem ou posição. Como o número de partidas pode ser muito grande, imprima a
+resposta módulo P – ou seja, o resto da divisão por P .
+
+Entrada
+A entrada contém dois inteiros N (1 → N → 3000) e P primo (5 ↑ 108 → P → 109 ), o tamanho do
+campo e o módulo em que a resposta deve ser impressa, respectivamente.
+
+Saída
+A saída deve conter um inteiro, o número de partidas possíveis módulo P .
+
+XIII 
+
+Exemplos
+
+ Exemplo de entrada 1                            Exemplo de saída 1
+ 2 500000003                                     7
+
+Explicação do exemplo 1
+
+As partidas possíveis são:
+
+  • Campo BB - 1 partida possível, o jogador já começa ganhando.
+  • Campo B. - 2 partidas possíveis, o jogador clica na posição da esquerda e perde, ou na da
+    direita e ganha.
+  • Campo .B - 2 partidas possíveis, o jogador clica na posição da esquerda e ganha, ou na da
+    direita e perde.
+  • Campo .. - 2 partidas possíveis, o jogador clica na posição da esquerda ou da direita e ganha.
+
+ Exemplo de entrada 2                            Exemplo de saída 2
+ 5 500000003                                     205
+
+ Exemplo de entrada 3                            Exemplo de saída 3
+ 3000 999999733                                  842327137
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-k-kampo-minado-a1', 'mineira-2026-k-kampo-minado', 'XIII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory','Two Pointers']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-2025-k-o-trem-de-minas', 'O Trem de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-maratona.pdf', 2000, 'Problema K. O Trem de Minas
+Em Minas Gerais, o trem é muito mais que um meio de transporte: ele cruza montanhas, corta
+cidades históricas e carrega histórias de trabalhadores, estudantes e famílias inteiras.
+
+Miguel é responsável por anotar com quantos passageiros o trem saiu da cidade de origem. Infelizmente,
+Miguel esqueceu de recolher essa informação.      Por outro lado, felizmente o maquinista sempre
+mantém registros da movimentação dos passageiros nas estações.         Esses dados serão úteis para
+recuperar parte dessa informação.
+
+Após sair da cidade de origem, o trem passa por N estações e depois para em uma cidade nal.
+Quando o trem para na i-ésima estação, primeiro ai passageiros descem do trem e logo após bi
+passageiros embarcam no trem para seguir viagem. O maquinista possui o registro desses números
+para as N estações na ordem que o trem passa por elas, porém não sabe quantas pessoas entraram
+inicialmente na cidade de origem e nem quantas pessoas desembarcaram na cidade nal.
+
+Miguel pediu sua ajuda para descobrir o menor número possível de pessoas que entraram no trem na
+cidade de origem sabendo apenas dos dados anotados pelo maquinista. Por exemplo, se na primeira
+estação descem 10 pessoas, então já é possível deduzir que no mínimo 10 pessoas entraram no trem
+na cidade de origem.
+
+Entrada
+A primeira linha contém um inteiro N (1 ≤ N ≤ 100), representando o número de estações de trem.
+Em seguida, são dadas N linhas, cada uma contendo dois inteiros ai e bi (0 ≤ ai , bi ≤ 100) que
+representam respectivamente o número de passageiros que desceram do trem na estação e o número
+de passageiros que subiram no trem na estação. As estações são dadas na ordem que o trem passa
+por elas.
+
+Saída
+Imprima um inteiro indicando o número mínimo de passageiros que entraram no trem na cidade de
+origem para que seja possível os dados que o maquinista anotou
+
+Exemplos
+ Entrada                                          Saída
+ 1                                                10
+ 10 5
+
+ Entrada                                          Saída
+ 2                                                20
+ 10 5
+ 15 0
+
+ Entrada                                          Saída
+ 4                                                2
+ 1 3
+ 2 3
+ 2 1
+ 4 0', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), representando o número de esta; 0 ≤ ai , bi ≤ 100) que', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-k-o-trem-de-minas-a1', 'minas-2025-k-o-trem-de-minas', '1ª Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem K. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1c', 'Ancient Berland Circus', 'Codeforces', 'https://codeforces.com/problemset/problem/1/C', 2100, 'Three points on the plane are vertices of a regular $n$-gon for some $n\ge 3$. Find the smallest possible area of such a regular polygon.', 'Three lines with coordinates of the points (absolute values $\le 100$).', 'Print the minimum area with high precision.', 'Points are not collinear', '[{"input":"0.000000000000 0.000000000000\n1.000000000000 1.000000000000\n0.000000000000 1.000000000000","output":"1.000000000"}]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1c-a1', 'cf-1c', 'Regular polygon fit', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Circumcenter + angle steps; n from almost-integer multiples of central angles']::text[], 'Recover the circumcircle and the smallest n whose chordal steps match the points.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-514c', 'Watto and Mechanism', 'Codeforces', 'https://codeforces.com/problemset/problem/514/C', 2100, 'You are given $n$ memory strings and $m$ queries. A query string matches if it differs in exactly one character from some memory string. Answer YES/NO for each query.', 'The first line contains $n$ and $m$ ($1 \le n,m \le 3\cdot 10^5$).
@@ -21087,6 +24635,239 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-372c-a1', 'cf-372c', 'Deque DP', ARRAY['Dynamic Programming']::text[], ARRAY['Ternary Search']::text[], ARRAY['Deque']::text[], ARRAY['DP with sliding window maximum over reachable positions between fireworks']::text[], 'For each firework time, update happiness with deque of prior positions.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1101d', 'GCD Counting', 'Codeforces', 'https://codeforces.com/problemset/problem/1101/D', 2100, 'Tree with values a_v. Longest simple path where gcd of values on the path is >1.', 'n, array a, edges.', 'Maximum length (edges) or 0.', '$n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1101d-a1', 'cf-1101d', 'Prime tree DP', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY['DFS','Sieve']::text[], ARRAY['Adjacency List']::text[], ARRAY['Tree DP per prime factor: longest path where gcd of vertex values >1']::text[], 'For each prime, consider subgraph of multiples; tree diameter style DP.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-l-historia-de-pescador', 'História de Pescador', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 2100, 'Senhor Figueiredo é um pescador famoso nos botecos da cidade de Lavras por causa das histórias duvidosas que ele conta sobre as aventuras dele no Rio Grande.
+Certa vez o jovem Ceconelli, vizinho do senhor Figueiredo, resolveu investigar a veracidade dos causos.
+Depois de muita insistência de Ceconelli, o senhor Figueiredo finalmente deixou que o jovem o acompanhasse, desde que carregasse os mantimentos e sua vara de pesca.
+Durante a pesca, Ceconelli acabou descobrindo o segredo do senhor Figueiredo sobre as histórias do pescador; o senhor Figueiredo multiplica a quantia fisgada por um fator fixo!
+Dados o fator multiplicativo usado pelo senhor Figueiredo e a quantidade real de peixes pescados, qual será a quantidade de peixes que o velho pescador irá contar para seus amigos no bar?
+
+### Entrada
+
+A entrada contem uma única linha com os inteiros $N$ e $K$, separados por espaço, que representam, respectivamente, a quantidade de peixes pescados e o fator usado pelo senhor Figueiredo nas histórias.
+
+### Saída
+
+A saída contem um único inteiro $M$, a quantidade de peixes que o senhor Figueiredo dirá que pescou.
+
+### Restrições
+
+- $1 ≤ N,K ≤ 1000$
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N,K ≤ 1000$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2019-l-historia-de-pescador-a1', 'mineira-2019-l-historia-de-pescador', 'VIII Maratona Mineira — standard', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['VIII Maratona Mineira (2019), problem L. Auto-tagged from statement; refine after solving.']::text[], 'From VIII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-l-se-liga-na-cifra', 'Se liga na cifra', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 2100, 'A cifra de transposição Rail Fence é um clássico algoritmo de criptografia. A ideia é cifrar uma mensagem escrevendo cada caractere diagonalmente
+para baixo e para cima em sucessivos trilhos de uma cerca imaginária.
+Um verdadeiro zig-zag!
+Depois, basta obter a sequência horizontal de caracteres, da esquerda para a direita, de cima para baixo, para formar a mensagem cifrada, sempre
+ignorando espaços e pontuação.
+Por exemplo, para criptografar a mensagem: “QUEM TE CONHECE NAO ESQUECE JAMAIS” em 3 trilhos, escreva o texto como:
+
+%center
+%
+%verb 
+%Q . . . T . . . N . . . E . . . E . . . E . . . A . . . S
+%verb 
+%verb
+%. U . M . E . O . H . C . N . O . S . U . C . J . M . I . 
+%verb 
+%verb
+%. . E . . . C . . . E . . . A . . . Q . . . E . . . A . . 
+%verb
+%center
+
+center
+
+verb 
+Q  .  .  .  T  .  .  .  N  .  .  .  E  .  .  .  E  .  .  .  E  .  .  .  A  .  .  .  S
+verb 
+verb
+.  U  .  M  .  E  .  O  .  H  .  C  .  N  .  O  .  S  .  U  .  C  .  J  .  M  .  I  . 
+verb 
+verb
+.  .  E  .  .  .  C  .  .  .  E  .  .  .  A  .  .  .  Q  .  .  .  E  .  .  .  A  .  . 
+verb
+center
+
+Então, leia o texto horizontalmente, da esquerda para direita, de cima para baixo, ignorando espaços e pontuação. O resultado é o seguinte texto cifrado:
+
+verbatim
+QTNEEEASUMEOHCNOSUCJMIECEAQEA
+verbatim
+
+Sua missão é escrever uma solução para obter a mensagem original, ignorando espaços e pontuação, a partir da mensagem cifrada $C$ e do número de trilhos
+$N$ utilizados para codificá-la.
+
+### Entrada
+
+A primeira linha da entrada contém uma única string, $C$, que representa a mensagem que deve ser decodificada. 
+A segunda linha da entrada contém um único inteiro, $N$, que é o número de trilhos que devem ser usados para decodificar a mensagem.
+
+### Saída
+
+A saída deve conter uma única string $M$, representando a mensagem decodificada.
+
+### Restrições
+
+- $1 ≤ |C| ≤ 2000$.
+
+- $1 ≤ N ≤ |C|$.
+
+É garantido que $C$ contém apenas letras maiúsculas.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ |C| ≤ 2000$; 1 ≤ N ≤ |C|$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-l-se-liga-na-cifra-a1', 'mineira-2022-l-se-liga-na-cifra', 'IX Maratona Mineira — standard', ARRAY['Graph Algorithms','String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['IX Maratona Mineira (2022), problem L. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-l-bacon-e-a-arvore-magica', 'Bacon e a Árvore Mágica', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 2100, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+center
+Bacon, O Próspero, é reverenciado no reino das capivaras por seu glorioso reinado de paz e progresso, fruto de sua inabalável devoção ao Deboísmo,
+religião que hoje é seguida por mais de 90% dos habitantes da Bacônia. O Deboismo prega que todos seus seguidores devem ficar o máximo possível
+de boa na lagoa, evitando assim os estresses e aflições que diminuem a qualidade de vida e geram o caos social. Além disso, ele patrocina várias festas
+populares e, certamente, as Festas da Cheia (para celebrar as chuvas de fim de ano) e suas árvores mágicas são as mais incríveis de todas.
+center
+
+Árvores mágicas possuem luz própria, são enraizadas, e funcionam da seguinte forma:
+
+	
+- A árvore é um grafo conexo sem ciclos.
+	
+- A árvore inicia-se com todos os vértices apagados.
+	
+- Uma sub-árvore inteira pode se acender ou se apagar.
+	
+- Um vértice interno da árvore está aceso se e somente se todos os seus filhos estão acesos.
+
+Além da magia da luz própria, a quarta propriedade também é bem misteriosa. Note que, se a sub-árvore enraizada em $v$ é desligada,
+todos os ancestrais de $v$ ligados também devem ser desligados; por outro lado, se a sub-árvore de $v$ é ligada, pode ser que tenhamos de ligar o pai de $v$,
+se todos seus filhos agora estiverem ligados, e assim sucessivamente.
+
+Na 13ª Festa da Cheia de seu reinado, Bacon, O Próspero, levou seu bisneto, que viria a ser o rei Bacon, O Grafo, para ver a árvore mágica plantada
+no palácio. Como todo bom amante da combinátoria, a pequena capivara perguntava incessantemente ao bisavô quantos vértices de uma dada sub-árvore estavam acesos.
+Infelizmente, nosso herói não é lá muito bom nessa área, e pediu a você, Grande Maratonista, para o ajudar a responder as perguntas do futuro monarca!
+
+%
+% For input, use one of the following
+%
+
+### Entrada
+
+A primeira linha contém um inteiro $1 ≤ N ≤ 10^5$, o número de vértices da árvore.
+As próximas $N-1$ linhas contém as arestas $1 ≤ a_i, b_i ≤ N$ da árvore. É garantido que as arestas descrevem uma árvore, e a raiz é
+o vértice de número $1$.
+
+A próxima linha contém um inteiro $1 ≤ Q ≤ 10^5$ que representa o número de eventos presenciados por Bacon, O Próspero.
+As próximas $Q$ linhas contém 2 inteiros cada, $t_i, v_i$, em que $t_i  \1, 2, 3\$ define o $i$-ésimo evento e $1 ≤ v_i ≤ N$ o vértice que enraiza a sub-árvore em questão.
+
+- Se $t_i = 1$, então a sub-árvore enraizada em $v_i$ se acende.
+
+- Se $t_i = 2$, a sub-árvore enraizada em $v_i$ se apaga.
+
+- Se $t_i = 3$, o pequeno Bacon perguntou a seu bisavô quantos vértices na sub-árvore enraizada em $v_i$ (inclusive $v_i$) estavam acesos.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+Para cada evento do tipo $3$, imprima o número de vértices acesos na sub-árvore enraizada no vértice correspondente.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.
+
+### Restrições
+
+- $1 ≤ N, Q ≤ 10^5$.', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^5$, o número de vértices da árvor; 1 ≤ a_i, b_i ≤ N$ da árvore; 1 ≤ Q ≤ 10^5$ que representa o número de eve; 1 ≤ v_i ≤ N$ o vértice que enraiza a sub-árv; 1 ≤ N, Q ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-l-bacon-e-a-arvore-magica-a1', 'mineira-2023-l-bacon-e-a-arvore-magica', 'X Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem L. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-l-lucro', 'Lucro', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2100, 'Problema L. Lucro
+
+Um mercado é dito eficiente quando os produtos são corretamente precificados, de forma tal que não
+é possível lucrar fazendo trocas dentro do mercado. Para testar a Hipótese do Mercado Eficiente,
+você foi a uma casa de câmbio e olhou os valores para trocas de três moedas:
+
+   • A: a taxa de conversão euro → real (quantos reais um euro vale)
+   • B: a taxa de conversão real → yuan chinês (quantos yuans chineses um real vale)
+   • C: a taxa de conversão euro → yuan chinês (quantos yuans chineses um euro vale)
+
+Todas as conversões diretas são simétricas, significando que a mesma troca pode ser feita no sentido
+oposto (se um euro pode ser trocado por A reais, A reais podem ser trocados por um euro).
+
+Como exemplo, seguindo as definições acima, o mercado com taxas de conversão A = 2, B = 2 e
+C = 2 não seria eficiente pois se pode fazer as conversões: 1 euro → 2 reais → 4 yuans chineses →
+2 euros, conseguindo lucro somente convertendo as moedas.
+
+Como um funcionário da Bovmesb (Bolsa de Valores Minas - Espírito Santo - Brasília), você deve
+responder se o mercado é eficiente, dadas as taxas de conversão.
+
+Entrada
+
+A entrada é composta por uma única linha contendo três números inteiros A, B, C (1 ≤ A, B, C ≤
+104 ) as taxas de conversão como descritas no enunciado.
+
+Saída
+
+Imprima S se o mercado for eficiente e N se o mercado não for eficiente.
+
+Exemplos
+
+ Exemplo de entrada 1                              Exemplo de saída 1
+ 2 3 6                                             S
+
+ Exemplo de entrada 2                              Exemplo de saída 2
+ 1 2 4                                             N
+
+ Exemplo de entrada 3                              Exemplo de saída 3
+ 2 2 2                                             N', 'See statement.', 'See statement.', '1 ≤ A, B, C ≤', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-l-lucro-a1', 'mineira-2025-l-lucro', 'XII Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem L. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-l-lavando-a-louca', 'Lavando a louça', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2100, 'Problema L. Lavando a louça
+Após um excelente café com pão de queijo em família, Beto ficou encarregado de lavar a louça.
+Após ensaboar tudo, Beto se lembrou o quão chato é colocar os copos no escorredor linear de sua
+casa, em particular, a trabalheira que é colocar um copo entre dois outros que já estão secando. Ele
+estimou que o esforço para colocar um copo em uma determinada posição no escorredor é igual à
+soma do número de copos consecutivos à esquerda e à direita da posição.
+
+Na figura acima, temos o estado final de uma solução para o Exemplo 1 – 4 copos em um escorredor de 6 posições.
+
+Dado o tamanho N do escorredor e a quantidade C de copos, calcule qual o esforço total mínimo
+que Beto deve fazer para colocar todos os copos no escorredor e dê uma sequência de inserções que
+atinja esse esforço mínimo; as posições do escorredor são numeradas de 1 a N . Se houver mais de
+uma maneira de atingir o esforço mínimo, imprima qualquer uma delas.
+
+Entrada
+A única linha da entrada contém dois inteiros N (2 → N → 106 ) e C (1 → C → N ), o tamanho do
+escorredor e a quantidade de copos, respectivamente.
+
+Saída
+A primeira linha da saída deve conter um único inteiro, o esforço total mínimo que Beto deve fazer
+para colocar todos os copos no escorredor.
+
+A segunda linha da saída deve conter C inteiros separados por espaço, onde o i-ésimo inteiro
+representa a posição do escorredor onde o i-ésimo copo deve ser colocado.
+
+Exemplos
+ Exemplo de entrada 1                                   Exemplo de saída 1
+ 6 4                                                    1
+                                                        3 4 1 6
+
+ Exemplo de entrada 2                                   Exemplo de saída 2
+ 7 5                                                    2
+                                                        1 2 4 6 7
+
+Explicação do exemplo 2
+
+Uma maneira de colocar os copos é [1 2 ↓ 3 ↓ 4 5]. Os copos 1, 3, e 4 possuem custo 0 de
+colocação, já os copos 2 e 5 possuem custo 1, totalizando um esforço de 2.
+
+ Exemplo de entrada 3                                   Exemplo de saída 3
+ 15 14                                                  20
+                                                        1 3 2 5 7 6 4 9 11 10 13 15 14 12
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-l-lavando-a-louca-a1', 'mineira-2026-l-lavando-a-louca', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem L. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1070c', 'Cloud Computing', 'Codeforces', 'https://codeforces.com/problemset/problem/1070/C', 2200, 'You need $k$ CPU cores on each of $n$ days. Offers $(l,r,c,p)$ provide $c$ cores on days $l..r$ at price $p$ each. Minimize total cost (or $-1$).', 'First line $n,k,m$. Then $m$ offers.', 'Print the minimum cost or $-1$.', '$1 \le n \le 10^6$, $1 \le m \le 2\cdot 10^5$', '[{"input":"4 2 2\n1 4 1 1\n1 4 1 1","output":"8"}]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1070c-a1', 'cf-1070c', 'Sweep + segtree', ARRAY['Greedy','Binary Search on Answer']::text[], ARRAY['Segment Tree','Sorting']::text[], ARRAY['Priority Queue','Fenwick Tree']::text[], ARRAY['Sweep days with a segtree of offers sorted by price']::text[], 'Process offers by day coverage; always take cheapest available cores.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1473e', 'Minimum Path', 'Codeforces', 'https://codeforces.com/problemset/problem/1473/E', 2200, 'Find a path from 1 to each node minimizing $\sum w - \max w + \min w$ (you may “skip” the max edge cost once and “double-count” the min once).', 'n m and m weighted undirected edges.', 'Print n−1 distances from 1 to 2..n.', '$2 \le n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N log N)');
@@ -21105,6 +24886,245 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1471e-a1', 'cf-1471e', 'Interactive peak', ARRAY['Interactive','Binary Search on Answer']::text[], ARRAY['Binary Search']::text[], ARRAY[]::text[], ARRAY['Interactive rotating array; find 1 then binary search neighbors']::text[], 'Find position of 1 with sparse queries then locate k via comparisons.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1534e', 'Lost Array', 'Codeforces', 'https://codeforces.com/problemset/problem/1534/E', 2200, 'Interactive: hidden array. Query any k distinct indices; receive XOR of those values. Find the whole array with limited queries.', 'n k then interactive queries.', '`!` and the array.', '$n \le 500$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1534e-a1', 'cf-1534e', 'Interactive XOR BFS', ARRAY['Interactive','Graph Algorithms']::text[], ARRAY['BFS']::text[], ARRAY['Queue']::text[], ARRAY['Interactive: query k indices; model XOR of answers; shortest path in state graph']::text[], 'BFS on number of known elements; reconstruct query sequence.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-m-jogo-do-gato', 'Jogo do Gato', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 2200, 'Um dos principais passatempos nas escolas da Bacônia moderna é o estudo da teoria dos números. O que poucos sabem é
+que toda essa popularidade se deve aos esforços de Bacon -- o Grafo -- de promover o conhecimento e o avanço
+científico durante seu reinado, principalmente na matemática e sua paixão pessoal, a combinatória.
+
+A mais nova febre entre as jovens capivaras é o Jogo do Gato, que rapidamente tem ocupado espaço na Bacônia devido a sua
+natureza competitiva.
+Seu crescimento tem sido tão rápido que já há uma maratona planejada para o próximo ano, que promete desafiar até as capivaras
+mais bem preparadas do reino. O jogo é disputado entre duas capivaras, e funciona em três fases.
+Na primeira fase, uma capivara é designada como a numeróloga e a outra como o gato.
+Na segunda fase, a numeróloga escolhe um número $N$ enquanto, ao mesmo tempo, o gato constrói uma lista $P$ de números primos.
+No início da terceira e última fase, as capivaras revelam suas escolhas e começa a disputa.
+Mas como ela funciona? O objetivo de cada capivara é encontrar uma forma de dividir $N$ em uma sequência de partes
+de tal forma que cada parte é divisível por pelo menos um elemento de $P$. Uma parte é uma sequência contígua de dígitos de $N$.
+Alguns minutos após o início da terceira fase, o juiz apita e as competidoras devem mostrar suas sequências, ou declarar que é impossível
+formar uma sequência.
+É declarada a vencedora do desafio a capivara que tiver a menor sequência em ordem lexicográfica; em caso de empate,
+inicia-se uma nova rodada a partir da primeira fase.
+
+Para tudo ficar mais claro, vamos a um exemplo com $N = 227$ e $P = \2, 3, 7\$. As três formas de partir $N$, ordenadas lexicograficamente,
+são $\\2,2,7\, \2,27\, \22,7\\$. Dessa forma, se uma capivara escolheu $\2, 2, 7\$ e a outra escolheu $\2, 27\$, a primeira é declarada
+a vencedora.
+
+Os juízes da competição estão cansados de ter de resolver os casos esdrúxulos dos competidores manualmente a cada rodada, e pediram para você
+escrever um programa que, dados $N$ e $P$, retorne a primeira sequência da ordem lexicográfica. No nosso exemplo, o seu programa deve retornar
+$\2, 2, 7\$.
+
+### Entrada
+
+A linha da entrada contem dois inteiros, $N$ e $K$, onde $K$ é o comprimento do conjunto de primos $P$.
+A segunda linha da entrada contém $K$ inteiros $p_1, …, p_K$, separados por espaços, que correspondem aos elementos de $P$.
+
+### Saída
+
+Caso seja impossível construir uma sequência, a única linha da saída deve conter o inteiro $-1$.
+Caso contrário, a primeira linha da saída deve conter um único inteiro $M$: o tamanho da primeira sequência da ordem lexicográfica.
+A segunda linha deve conter $M$ inteiros, separados por espaços, que correspondem às partes da sequência.
+ 
+
+### Restrições
+
+    
+- $1 ≤ N ≤ 10^1000 - 1$.
+    
+- $1 ≤ K ≤ 50$.
+    
+- $2 ≤ p_i ≤ 10^6$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N ≤ 10^1000 - 1$; 1 ≤ K ≤ 50$; 2 ≤ p_i ≤ 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-m-jogo-do-gato-a1', 'mineira-2022-m-jogo-do-gato', 'IX Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY['Ordered Set']::text[], ARRAY['IX Maratona Mineira (2022), problem M. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-m-tres-quatro-cinco', 'Três, Quatro, Cinco', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 2200, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+Felipe Mota é especialista no enem. Ele notou que, no enem, sempre aparece o triângulo com lados 3, 4 e 5 nas questôes. Ele se deparou com a seguinte questão do enem: dado uma circunferência de raio $R$, um triângulo semelhante ao com lados 3, 4 e 5 é colocado de tal forma que o lado proporcional ao 4 coincide com o diâmetro da circunferência. Qual é a área de interseção das figuras?
+
+Ajude Felipe a resolver a questão.
+
+%
+% For input, use one of the following
+%
+
+### Entrada
+
+A entrada contém um único inteiro com o valor do raio $1 ≤ R ≤ 100$.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+A saída deve ser a área de interseção das figuras. A saída será considerada correta se a diferença absoluta em relação à solução do juiz for no máximo $10^-2$.
+
+### Restrições
+
+- $ 1 ≤ R ≤ 100.$
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.', 'See statement.', 'See statement.', '1 ≤ R ≤ 100$; 1 ≤ R ≤ 100', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-m-tres-quatro-cinco-a1', 'mineira-2023-m-tres-quatro-cinco', 'X Maratona Mineira — standard', ARRAY['Geometry']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem M. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-m-mar-de-morros', 'Mar de Morros', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2200, 'Problema M. Mar de Morros
+                                  Tô passando mal, tô passando mal!
+
+Minas Gerais é um estado de muitos morros (ou, como muitos falam, um mar de morros). Fernanda
+deseja fazer uma viagem por Minas, porém ela sempre tem problemas com altitude e pode passar
+mal com a falta de oxigênio. O estado mineiro pode ser descrito como N cidades, conectadas por M
+estradas que podem ser percorridas em ambas as direções. Além disso, a cidade i tem uma altitude
+de hi metros. Fernanda vai sair da cidade 1 e deseja chegar na cidade N .
+
+A aclimatação acontece da seguinte forma: o corpo se adapta à altitude quando se dorme em uma
+cidade. Mais especificamente, ao se dormir em uma cidade i com altitude hi , no dia seguinte
+Fernanda só pode visitar cidades com altitude em [hi , hi + H], em que H é um valor fixo (dessa
+forma, ela sabe que não vai passar mal). Note que ela pode visitar várias cidades no mesmo dia.
+
+Dada essa restrição, calcule o número mínimo de dias que Fernanda precisa para chegar na cidade
+N , ou imprima −1 se isso não é possível.
+
+Entrada
+
+A primeira linha da entrada contém três inteiros N, M, H (2 ≤ N ≤ 105 , 1 ≤ M ≤ 105 , 1 ≤ H ≤
+109 ). A segunda linha da entrada contém N inteiros: o i-ésimo deles representa o valor da altitude
+hi (1 ≤ hi ≤ 109 ). As próximas M linhas representam as estradas. A i-ésima delas contém dois
+inteiros ai , bi (1 ≤ ai , bi ≤ N , ai ̸= bi ), representando uma estrada conectando as cidades ai e bi .
+É garantido que não há estradas que conectam o mesmo par de cidades duas vezes na entrada, e
+também não há estradas que conectam uma cidade a ela mesma.
+
+Saída
+
+A saída deve conter um único inteiro: o número mínimo de dias necessários para sair do vértice 1 e
+chegar no vértice N , ou −1 se isso não é possível.
+
+Exemplos
+
+ Exemplo de entrada 1                             Exemplo de saída 1
+ 8 10 4                                           3
+ 1 6 6 7 3 3 5 8
+ 1 4
+ 1 6
+ 2 5
+ 6 4
+ 4 2
+ 4 5
+ 7 5
+ 1 8
+ 5 8
+ 7 8
+
+Explicação do exemplo 1
+
+Neste caso, Fernanda pode fazer os seguintes passos em cada dia:
+
+  1. 1 → 6;
+
+  2. 6 → 4 → 5 → 7;
+
+  3. 7 → 8.
+
+ Exemplo de entrada 2                             Exemplo de saída 2
+ 2 1 1                                            1
+ 1 1
+ 1 2
+
+Explicação do exemplo 2
+
+Neste caso, Fernanda pode ir direto no primeiro dia.
+
+ Exemplo de entrada 3                             Exemplo de saída 3
+ 3 2 3                                            -1
+ 1 2 8
+ 1 2
+ 2 3', 'See statement.', 'See statement.', '2 ≤ N ≤ 105 , 1 ≤ M ≤ 105 , 1 ≤ H ≤; 1 ≤ hi ≤ 109 ); 1 ≤ ai , bi ≤ N , ai ̸= bi ), representando ', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-m-mar-de-morros-a1', 'mineira-2025-m-mar-de-morros', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem M. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-m-movendo-varetas', 'Movendo varetas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2200, 'Problema M. Movendo varetas
+
+Os renomados criadores do pega-varetas acabam de lançar o quebra-cabeça desliza-varetas. O
+quebra-cabeça consiste em N ↓ 1 varetas conectadas a N pinos dispostos no plano em posição
+convexa, formando uma árvore planar, isto é, uma estrutura conexa e sem cruzamentos.
+
+O quebra-cabeça vem montado em uma configuração inicial T , e o objetivo é transformá-lo na
+configuração final T → ilustrada na caixa do jogo.
+
+No entanto, há uma limitação mecânica importante: uma vareta não pode ser movida livremente.
+O único movimento válido é chamado de deslize e funciona da seguinte forma:
+
+  • Considere duas varetas ab e bc. É permitido soltar a extremidade comum em b da vareta ab e
+    movê-la ao longo da vareta bc, até conectá-la a c.
+  • Ao fim do movimento, não é permitido que duas varetas se cruzem.
+
+                              Exemplo: deslize da aresta 12 pela aresta 32.
+
+Dizemos que duas varetas se cruzam se seus segmentos têm um ponto em comum que não seja
+uma extremidade compartilhada; veja a explicação do segundo exemplo abaixo.
+
+Como você tem um jantar se aproximando e está com pouco tempo, resolveu adicionar uma restrição
+extra: seu objetivo é encontrar uma sequência de no máximo 2N deslizes que transforme T em T → .
+
+Entrada
+A primeira linha da entrada contém um inteiro N (3 → N → 105 ), indicando o número de pinos.
+
+Cada uma das próximas N linhas contém dois inteiros xi e yi (↓109 → xi , yi → 109 ), as coordenadas
+dos pinos no plano. Os pinos são fornecidos em ordem anti-horária ao longo do fecho convexo.
+
+Depois, seguem N ↓ 1 linhas, cada uma contendo inteiros a e b (1 → a, b → N, a ↔= b), indicando as
+varetas da configuração inicial T .
+
+Por fim, as próximas N ↓ 1 linhas contêm inteiros a→ e b→ (1 → a→ , b→ → N, a→ ↔= b→ ), indicando as
+varetas da configuração final T → .
+
+É garantido que os pinos estão em posição convexa, isto é, não há três pinos colineares e, na ordem
+em que são dados, formam um polígono convexo (logo, nenhum ponto está no interior desse polígono).
+Além disso, as configurações T e T → são árvores planares, ou seja, não possuem cruzamentos.
+
+XIII 
+
+Saída
+Imprima um inteiro M (0 → M → 2N ), representando o número de deslizes. Não é preciso
+minimizar o número de deslizes; é possível provar que sempre há solução com até 2N deslizes.
+
+Nas próximas M linhas, imprima três inteiros a, b e c, indicando um deslize no qual a aresta ab é
+modificada ao soltar a extremidade em b e deslizá-la ao longo da aresta bc, resultando na aresta ac.
+
+Exemplos
+
+ Exemplo de entrada 1                              Exemplo de saída 1
+ 3                                                 2
+ 0 0                                               3 2 1
+ 1 0                                               2 1 3
+ 0 1
+ 1 2
+ 2 3
+ 1 3
+ 2 3
+
+ Exemplo de entrada 2                              Exemplo de saída 2
+ 4                                                 2
+ 0 0                                               4 2 1
+ 1 0                                               3 2 1
+ 1 1
+ 0 1
+ 1 2
+ 2 3
+ 2 4
+ 1 2
+ 1 3
+ 1 4
+
+Explicação do exemplo 2
+
+A figura abaixo mostra a sequência de operações do estado inicial ao final do exemplo 2. Note que
+existe mais de uma solução.
+
+A figura abaixo mostra um deslize inválido. Na configuração T , o deslize da aresta 32 pela aresta 21
+é inválido, pois gera um cruzamento entre as varetas 31 e 42.
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-m-movendo-varetas-a1', 'mineira-2026-m-movendo-varetas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem M. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-321e', 'Ciel and Gondolas', 'Codeforces', 'https://codeforces.com/problemset/problem/321/E', 2300, 'Partition $n$ people in a line into $k$ contiguous gondola groups minimizing the sum of pairwise familiarity costs inside groups.', 'First line $n,k$. Then an $n\times n$ familiarity matrix.', 'Print the minimum total cost.', '$1 \le k \le \min(n,800)$, $1 \le n \le 4000$', '[]'::jsonb, 'O(N²)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-321e-a1', 'cf-321e', 'D&C DP', ARRAY['Dynamic Programming','Divide & Conquer']::text[], ARRAY[]::text[], ARRAY['Deque']::text[], ARRAY['D&C DP optimization on grouping people into k contiguous teams']::text[], 'dp[k][j]=min i dp[k-1][i]+cost(i+1,j) with monotone opt.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1709e', 'XOR Tree', 'Codeforces', 'https://codeforces.com/problemset/problem/1709/E', 2300, 'A tree with edge XOR weights. You may change any number of edge values. Minimize changes so every simple path has a distinct XOR.', 'Tree with n vertices and edge XOR values.', 'Print the minimum number of edge changes.', '$1 \le n \le 10^5$', '[]'::jsonb, 'O(N log N)');
@@ -21117,6 +25137,262 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-715b-a1', 'cf-715b', 'Erase edges carefully', ARRAY['Graph Algorithms']::text[], ARRAY['Dijkstra','Bellman-Ford']::text[], ARRAY['Priority Queue']::text[], ARRAY['Assign weights to zero-edges so shortest s–t equals L via two Dijkstras']::text[], 'Binary-search / constructive assignment of erased edge weights.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1517e', 'Rubik''s Cube Coloring', 'Codeforces', 'https://codeforces.com/problemset/problem/1517/E', 2300, 'Count ways to assign ± to array elements under median/sum constraints (see statement).', 'Tests with n and array a.', 'Answer modulo 998244353.', '$\sum n \le 10^5$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1517e-a1', 'cf-1517e', 'Sign patterns', ARRAY['Divide & Conquer','Two Pointers']::text[], ARRAY['Meet in the Middle','Binary Search','Prefix Sums']::text[], ARRAY['1D Array']::text[], ARRAY['Casework on pattern of +/− assignment; two pointers / MITM on prefix sums']::text[], 'Count assignments of ± with p1=− and constraints via prefix techniques.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2022-n-maratonando', 'Maratonando', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2022', 2300, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+Pedro é professor de uma instituição que nunca participou de competições de algoritmos e programação. Ao tomar conhecimento deste tipo de competição,
+ele percebeu uma oportunidade incrível para incentivar o aprendizado de seus estudantes. Assim, ele começou as atividades de divulgação e recrutamento
+para atrair estudantes para a próxima Maratona Mineira.
+
+Ele notou que em várias destas competições as equipes são formadas por equipes de três competidores. Como sua instituição ainda não tem uma tradição
+na competição, o número de alunos interessados em participar dos treinamentos foi pequeno. Por conta disso, ele resolveu criar equipes de dois
+competidores, para que o número de equipes fosse maior e, com isso, pudesse desenvolver uma competitividade maior entre seus estudantes.
+Cada equipe deve ser formada por um aluno que já cursou todas as disciplinas de algoritmos e por um aluno novato, que ainda as está cursando.
+
+Pedro notou que alguns de seus estudantes não se sentiam confortáveis em formar duplas com quaisquer outros estudantes. Por conta disso, ele pediu
+para cada estudante novato elaborar uma lista de potenciais parceiros, isto é, uma lista de estudantes experientes com os quais eles gostariam
+de formar duplas.
+Naturalmente, nem sempre é possível formar duplas com todos os alunos satisfazendo tais listas, então Pedro decidiu analisá-las de modo a determinar
+qual seria o maior número de duplas que poderia ser formado.
+Infelizmente, ele sabia que os alunos que estivessem em duplas que não gostassem ou que não pertencessem a alguma dupla acabariam desmotivados e
+desistiriam dos treinamentos, assim, ele formou apenas duplas entre potenciais parceiros.
+
+Uma outra observação de Pedro é que alunos que possuem potenciais parceiros em outras duplas acabam interagindo com eles após as competições.
+Isto é bem interessante, porque, além de trocar conhecimento com seu colega de equipe, estudantes de diferentes duplas trocam experiências entre si.
+Assim, o conhecimento acaba se disseminando entre as diversas duplas e todos evoluem juntos. Mas, por conta da natureza das relações de potenciais
+parceiros, Pedro notou que nem sempre o conhecimento alcançava todos os estudantes.
+
+Pedro deseja selecionar um conjunto de duplas que ele entenda como sendo o mais promissor. Para isso, ele deseja selecionar o maior número possível
+de duplas de forma que (a) se dois estudantes formam uma dupla, eles se consideram potenciais parceiros e que (b) seja possível que o conhecimento
+possa ser passado entre quaisquer duas duplas, direta ou indiretamente. Como Pedro ainda não está familiarizado com todos os algoritmos de programação
+competitiva, ele pediu sua ajuda para determinar quais duplas formar.
+
+### Entrada
+
+A primeira linha da entrada dois inteiros $N$ e $E$, correspondente ao número de estudantes novatos e estudantes experientes, respectivamente.
+Em seguida, serão fornecidas $N$ linhas, onde a $i$-ésima destas linhas conterá um inteiro $N_i$, o número de potenciais parceiros do $i$-ésimo
+estudante novato, seguido de $N_i$ inteiros, $p_i1, …, p_iN_i$, separados por espaço, contendo os potenciais parceiros do $i$-ésimo novato.
+Os identificadores dos estudantes são organizados de tal forma que alunos novatos são numerados de $1$ a $N$ e os experientes de $N + 1$ a $N + E$.
+
+### Saída
+
+A primeira linha da saída deverá conter um inteiro $M$, correspondente ao número máximo de duplas que podem ser formadas satisfazendo as restrições
+impostas por Pedro. Cada uma das $M$ linhas seguintes conterá um par de inteiros $A$ e $B$, indicando que os alunos $A$ e $B$ formarão uma dupla. 
+
+Caso haja mais de uma solução, qualquer uma delas pode ser impressa. As duplas podem ser impressas em qualquer ordem. 
+
+### Restrições
+
+    
+- $1 ≤ N,E ≤ 10^3$.
+    
+- $0 ≤ N_i ≤ E$.
+    
+- $N+1 ≤ p_ij ≤ N+E$.
+
+### Exemplos', 'See statement.', 'See statement.', '1 ≤ N,E ≤ 10^3$; 0 ≤ N_i ≤ E$; 1 ≤ p_ij ≤ N+E$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2022-n-maratonando-a1', 'mineira-2022-n-maratonando', 'IX Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['IX Maratona Mineira (2022), problem N. Auto-tagged from statement; refine after solving.']::text[], 'From IX Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2023-n-trapaca-na-pastelaria', 'Trapaça na Pastelaria', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2023', 2300, '% To add an image or include a .tex file you need to add
+% 
+% to the relative (to the main document) path.
+%
+% Example:
+% 
+
+O Jogo possui 3 tabuleiros retangulares, divididos de forma regular em posições quadradas. Em cada tabuleiro, há uma peça e obstáculos. A peça inicialmente está na posição superior esquerda. Em um movimento, um jogador escolhe um dos 3 tabuleiros e move a peça uma quantidade não-nula de espaços para baixo ou para a direita de tal forma que ela não atravesse nem pare em um obstáculo. Jogam dois jogadores alternadamente e, na vez de um jogador, se não houver movimento válido a ser feito, aquele jogador perde.
+
+Você vai jogar O Jogo contra seu amigo. Ele vai começar, mas, logo antes, ele vai passar numa pastelaria para comer um pastel. Você, obviamente, vai trapacear (não que você seja desonesto, você apenas gosta de oferecer partidas desafiadoras para seu amigo). Você vai fazer até um movimento em cada tabuleiro antes dele voltar (seu amigo é esperto, se você fizer mais de um movimento em um tabuleiro, ele vai notar).
+
+De quantas formas você pode fazer até um movimento em cada tabuleiro, de tal forma que, quando seu amigo voltar, ele começa a jogar O Jogo e, se ambos jogarem de forma ótima, você ganha?
+
+%
+% For input, use one of the following
+%
+
+### Entrada
+
+A entrada consiste na descrição dos três tabuleiros. Cada tabuleiro é representado por uma linha com as dimensões $N$ e $M$ do tabuleiro ($1 ≤ N× M ≤ 10^5$). Em seguida há $N$ linhas, cada uma com $M$ caracteres: o caracter  . representa uma posição vazia e  x um obstáculo. É garantido que nunca haverá um obstáculo na posição superior esquerda de um tabuleiro.
+
+%
+% For output, use one of the following
+%
+
+### Saída
+
+Um único inteiro: o número de formas de se fazer até um movimento em cada um dos três tabuleiros de forma que você ganha O Jogo.
+
+% will look for files named sample-n.in and sample-n.sol (where n is 1, 2, 3...)
+%in the documents directory and include them as samples.
+
+### Restrições
+
+- $1 ≤ N× M ≤ 10^5$.
+
+Explicação do Exemplo 1: Podemos fazer um dos dois movimentos possíveis no segundo tabuleiro; dessa forma, apenas o primeiro tabuleiro tem jogadas possíveis, e podemos ver que o primeiro jogador ganha. Outra possibilidade é fazer um dos dois movimentos no primeiro tabuleiro. Pode ser provado que no arranjo inicial o segundo jogador ganha.', 'See statement.', 'See statement.', '1 ≤ N× M ≤ 10^5$); 1 ≤ N× M ≤ 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2023-n-trapaca-na-pastelaria-a1', 'mineira-2023-n-trapaca-na-pastelaria', 'X Maratona Mineira — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['X Maratona Mineira (2023), problem N. Auto-tagged from statement; refine after solving.']::text[], 'From X Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2025-n-nome-minimo', 'Nome Mínimo', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2025/06/contest.rbx_.pdf', 2300, 'Problema N. Nome Mínimo
+
+Você é prefeito de um município mineiro, cujo nome é S. Sua primeira ação após ser eleito é
+possivelmente modificar o nome do município para que ele fique mais alto na lista de municípios de
+Minas, que sempre é dada em ordem alfabética (lexicográfica), sem modificá-lo demais.
+
+Dessa forma, você quer fazer no máximo uma operação de escolher um intervalo do nome e
+reverter esse intervalo. Por exemplo, revertendo o intervalo [2, 3] de abaete, que representa ba,
+obtemos aabete.
+
+Dado o nome S, calcule o menor nome possível em ordem lexicográfica, após realizar no máximo
+uma operação de reverter um intervalo de S.
+
+Entrada
+
+A entrada consiste em apenas uma linha, contendo o nome S do município (1 ≤ |S| ≤ 106 ). O
+nome consiste apenas de letras minúsculas de a a z.
+
+Saída
+
+A saída consiste em uma única linha com o lexicograficamente menor nome possível.
+
+Exemplos
+
+ Exemplo de entrada 1                             Exemplo de saída 1
+ abaete                                           aabete
+
+ Exemplo de entrada 2                             Exemplo de saída 2
+ uberaba                                          abarebu
+
+Explicação do exemplo 2
+
+Neste caso, o menor nome é obtido ao reverter o nome inteiro.
+
+ Exemplo de entrada 3                             Exemplo de saída 3
+ luz                                              luz
+
+Explicação do exemplo 3
+
+Neste caso, S já é o menor nome possível.', 'See statement.', 'See statement.', '1 ≤ |S| ≤ 106 )', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2025-n-nome-minimo-a1', 'mineira-2025-n-nome-minimo', 'XII Maratona Mineira — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XII Maratona Mineira (2025), problem N. Auto-tagged from statement; refine after solving.']::text[], 'From XII Maratona Mineira. Review tags and write a proper editorial after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-n-n-amas', 'N-amas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2300, 'Problema N. N-amas
+ Poucos sabem disso, mas o nome ‘damas’ é na verdade uma corrupção linguística de ‘dez-amas’,
+                             um subconjunto do lendário n-amas.
+
+O tabuleiro de n-amas é um grid n ↑ n com casas alternando entre branco e preto, sendo branca a
+casa no canto superior esquerdo. Uma casa pode estar vazia ou, caso seja preta, conter uma peça.
+
+Em sua rodada, o jogador deve escolher uma de suas peças para movimentar. A peça escolhida
+pode capturar uma peça adversária se esta estiver em uma casa diagonalmente adjacente e a casa
+seguinte (na mesma direção diagonal) estiver vazia. Neste caso a peça escolhida “pula” a peça
+adversária, assumindo a posição vazia imediatamente seguinte e removendo a peça adversária do
+tabuleiro. Após uma captura o jogador pode continuar a jogada com a mesma peça escolhida.
+
+Nas regras oficiais de n-amas existe a lei da maioria: se em seu turno um jogador tiver a oportuni-
+dade de capturar peças adversárias, ele deve obrigatoriamente realizar uma sequência de
+movimentos que resulte no maior número possível de peças capturadas.
+
+Durante a final do Torneio Mineiro de n-amas uma disputa surgiu entre os finalistas. Alice, jogando
+com as peças pretas, acusou Bob, jogando com as brancas, de ter realizado um movimento ilegal.
+Bob afirma que capturou o máximo que podia, mas Alice diz que havia um caminho maior. Escreva
+um programa que determine qual o número máximo de peças que Bob pode capturar.
+
+Entrada
+A primeira linha contém um único número inteiro n (4 → n → 14), a dimensão do tabuleiro.
+
+Depois seguem n linhas de n caracteres, representando o tabuleiro. Cada linha contém apenas os
+caracteres ‘B’,‘P’ e ‘.’ representando peças brancas, peças pretas e casas vazias, respectivamente.
+
+O tabuleiro conterá pelo menos uma peça de cada cor e nenhuma peça estará em casas brancas.
+
+Saída
+Imprima o número máximo de peças que Bob pode capturar.
+
+Exemplos
+
+ Exemplo de entrada 1                             Exemplo de saída 1
+ 8                                                2
+ .P.P.P.P
+ P.P.P.P.
+ .P.....P
+ ..P.P...
+ .....B..
+ B.B...B.
+ .B.B.B.B
+ B.B.B.B.
+
+XIII 
+
+Explicação do exemplo 1
+
+        8
+          0Z0Z0Z0Z
+        7
+          Z0Z0Z0Z0
+        6
+          0Z0Z0Z0Z
+        5
+          Z0Z0Z0Z0                          O movimento que deve ser feito, onde uma peça de Bob
+        4
+          0Z0Z0Z0Z                          captura duas peças de Alice.
+        3
+          Z0Z0Z0Z0
+        2
+          0Z0Z0Z0Z
+        1
+          Z0Z0Z0Z0
+            a   b   c   d   e   f   g   h
+
+ Exemplo de entrada 2                               Exemplo de saída 2
+ 8                                                  6
+ ........
+ ..P.P.P.
+ ........
+ ..P.P.P.
+ .......B
+ ....P...
+ ...B....
+ ........
+
+Explicação do exemplo 2
+
+        8
+          0Z0Z0Z0Z
+        7
+          Z0Z0Z0Z0
+        6
+          0Z0Z0Z0Z
+        5
+          Z0Z0Z0Z0                          Um dos possíveis movimentos que devem ser feitos,
+        4
+          0Z0Z0Z0Z                          onde uma peça de Bob captura seis peças de Alice.
+        3
+          Z0Z0Z0Z0
+        2
+          0Z0Z0Z0Z
+        1
+          Z0Z0Z0Z0
+            a   b   c   d   e   f   g   h
+
+ Exemplo de entrada 3                               Exemplo de saída 3
+ 14                                                 12
+ .B.P.B.B.P.B.P
+ B...B...B...B.
+ .P.B.P.P.B.P.B
+ ..B...B...B...
+ .B.P.B.B.P.B.P
+ B...B...B...B.
+ .P.B.P.P.B.P.B
+ ..B...B...B...
+ .P.B.P.P.B.P.B
+ B...B.B.B...B.
+ .B.P.B.B.P.B.P
+ ..B...B...B...
+ .P.B.P.P.B.P.B
+ B...B.B.B...B.
+
+XIII', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-n-n-amas-a1', 'mineira-2026-n-n-amas', 'XIII Maratona Mineira — standard', ARRAY['Graph Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['XIII Maratona Mineira (2026), problem N. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-873f', 'Forbidden Indices', 'Codeforces', 'https://codeforces.com/problemset/problem/873/F', 2400, 'Given a string and a binary mask of forbidden starting indices, maximize (substring length) × (number of occurrences that start at allowed indices).', 'n, string s, binary string of length n.', 'Print the maximum value.', '$1 \le n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-873f-a1', 'cf-873f', 'Suffix automaton', ARRAY['String Algorithms']::text[], ARRAY['String Hashing']::text[], ARRAY['Trie']::text[], ARRAY['Suffix automaton / SA counts forbidden-letter substrings maximizing length*occ']::text[], 'Build SAM on the string with banned positions; maximize len * endpos size.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-912e', 'Prime Gift', 'Codeforces', 'https://codeforces.com/problemset/problem/912/E', 2400, 'Lucky numbers are products of a given set of primes (with replacement). Find the $k$-th lucky number.', 'n, n primes, then k.', 'Print the k-th lucky number.', '$n \le 16$', '[]'::jsonb, 'O(N log N)');
@@ -21139,3 +25415,54 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-986c-a1', 'cf-986c', 'Bitmask components', ARRAY['Graph Algorithms','Bitmask / Bit DP']::text[], ARRAY['DFS','BFS','Meet in the Middle']::text[], ARRAY['Queue']::text[], ARRAY['Complement graph on bitmasks; DFS components of given numbers and reachable complements']::text[], 'Traverse using subset edges of XOR complement; count components.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-626e', 'Group of Students', 'Codeforces', 'https://codeforces.com/problemset/problem/626/E', 2400, 'Choose an odd-sized multiset from the array maximizing (mean − median). Print the subset.', 'n and array a.', 'Size then elements.', '$n \le 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-626e-a1', 'cf-626e', 'Ternary on take size', ARRAY['Binary Search on Answer','Math / Number Theory']::text[], ARRAY['Ternary Search','Sorting','Prefix Sums']::text[], ARRAY[]::text[], ARRAY['Sort; for each median ternary/binary search how many to take from ends to max mean−median']::text[], 'For fixed median index, the optimal number of paired extremes is unimodal.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2026-o-operacoes-matematicas', 'Operações matemáticas', 'Maratona Mineira', 'https://mineira.sbc.org.br/wp-content/uploads/2026/06/MMP2026-Prova.pdf', 2400, 'Problema O. Operações matemáticas
+
+Durante a aula de matemática, os alunos do fundão fizeram a maior algazarra. Irritada com a
+situação, a professora não deixou barato e decidiu aplicar uma tarefa desafiadora como punição.
+
+A tarefa consiste em uma lista, inicialmente vazia, de operações matemáticas contendo soma e
+multiplicação. Também são dadas N instruções. Cada instrução tem um dos seguintes formatos:
+
+  • + x: Adicionar no final da lista de operações, uma soma com o valor x
+  • * y: Adicionar no final da lista de operações, uma multiplicação por y
+  • ? z: Partindo do valor z, aplicar a lista de operações em ordem, e apresentar o resultado
+    módulo 109 + 7 – o resto da divisão inteira por 109 + 7.
+
+Dada a lista de instruções, ajude os alunos com a tarefa solicitada.
+
+Entrada
+A entrada consiste em diversas linhas. A primeira linha da entrada contém o valor de N (2 → N →
+5 ↑ 105 ).
+
+Em cada uma das próximas N linhas da entrada são informadas instruções conforme descrito no
+enunciado – um caracter (+, * ou ?) seguido por um número 1 → x, y, z → 109 . É garantido que a
+última instrução é do tipo ‘?’ e que antes da primeira instrução do tipo ‘?’ há pelo menos uma
+instrução do tipo ‘+’ ou ‘*’.
+
+Saída
+A saída consiste em várias linhas. Cada linha deve conter um número inteiro representando a
+resposta para cada uma das instruções do tipo “? X”. Imprima a resposta módulo 109 + 7.
+
+Exemplos
+
+ Exemplo de entrada 1                              Exemplo de saída 1
+ 4                                                 11
+ + 1
+ * 3
+ + 2
+ ? 2
+
+Explicação do exemplo 1
+                                                           +1          +2
+A primeira consulta consiste da sequência de operações 2 ↓↓↗ 3 ↓↓↗ 9 ↓↓↗ 11.
+                                                                 ↑3
+
+ Exemplo de entrada 2                              Exemplo de saída 2
+ 6                                                 1000000006
+ * 1000000000                                      0
+ + 6                                               12289585
+ ? 1
+ + 1
+ ? 1
+ ? 998244353', 'See statement.', 'See statement.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('mineira-2026-o-operacoes-matematicas-a1', 'mineira-2026-o-operacoes-matematicas', 'XIII Maratona Mineira — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['XIII Maratona Mineira (2026), problem O. Auto-tagged from statement; refine after solving.']::text[], 'From XIII Maratona Mineira. Review tags and write a proper editorial after solving.');

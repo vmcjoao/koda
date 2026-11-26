@@ -76,6 +76,7 @@ npm run ingest:curated-batch4
 npm run ingest:curated-batch5
 npm run ingest:curated-batch6   # grow catalog to ≥550
 npm run ingest:curated-batch7   # fill thin TAG_CATALOG slices
+npm run ingest:mineira          # Maratona Mineira (+ Minas de Minas) archives
 npm run generate:seed
 ```
 
