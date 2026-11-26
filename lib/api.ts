@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getAllLocalProblems, getLocalProblem } from '@/lib/catalog';
+import { getAllLocalProblems, getLocalProblem, withIoFormats } from '@/lib/catalog';
 import {
   adjustRatingBand,
   buildDailySet,
@@ -30,13 +30,31 @@ const LOCAL_STATE_KEY = 'koda.problem_state';
 const LOCAL_DAILY_KEY = 'koda.daily_set';
 const DEMO_USER_ID = 'demo-user';
 
+function preferFilled(a: string | undefined, b: string | undefined): string {
+  return a?.trim() || b?.trim() || '';
+}
+
 function mergeCatalog(
   primary: ProblemWithApproaches[],
   secondary: ProblemWithApproaches[],
 ): ProblemWithApproaches[] {
   const byId = new Map<string, ProblemWithApproaches>();
-  for (const p of secondary) byId.set(p.id, p);
-  for (const p of primary) byId.set(p.id, p);
+  for (const p of secondary) byId.set(p.id, withIoFormats(p));
+  for (const p of primary) {
+    const prev = byId.get(p.id);
+    const next = withIoFormats(p);
+    if (!prev) {
+      byId.set(p.id, next);
+      continue;
+    }
+    // Remote/primary wins identity, but keep non-empty I/O from local overlay/extras.
+    byId.set(p.id, {
+      ...next,
+      input_format_md: preferFilled(next.input_format_md, prev.input_format_md),
+      output_format_md: preferFilled(next.output_format_md, prev.output_format_md),
+      approaches: next.approaches?.length ? next.approaches : prev.approaches,
+    });
+  }
   return [...byId.values()].sort((a, b) => a.difficulty_rating - b.difficulty_rating);
 }
 
@@ -157,13 +175,22 @@ export async function fetchProblem(id: string): Promise<ProblemWithApproaches | 
   if (error || !problem) {
     const cached = await readCatalogCache();
     const fromCache = cached?.find((p) => p.id === id);
-    return fromCache ?? getLocalProblem(id) ?? null;
+    const fallback = fromCache ?? getLocalProblem(id) ?? null;
+    return fallback ? withIoFormats(fallback) : null;
   }
   const { data: approaches } = await supabase
     .from('solution_approaches')
     .select('*')
     .eq('problem_id', id);
-  return mapProblemRow(problem, approaches ?? []);
+  const mapped = mapProblemRow(problem, approaches ?? []);
+  const local = getLocalProblem(id);
+  // Prefer non-empty curated I/O when remote row left those columns blank.
+  return withIoFormats({
+    ...mapped,
+    input_format_md: preferFilled(mapped.input_format_md, local?.input_format_md),
+    output_format_md: preferFilled(mapped.output_format_md, local?.output_format_md),
+    approaches: mapped.approaches?.length ? mapped.approaches : local?.approaches ?? [],
+  });
 }
 
 export async function getProfile(userId: string | null): Promise<UserProfile> {

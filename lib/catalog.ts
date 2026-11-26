@@ -16,7 +16,8 @@ function isProblem(value: unknown): value is ProblemWithApproaches {
   );
 }
 
-function withIoFormats(p: ProblemWithApproaches): ProblemWithApproaches {
+/** Fill empty I/O format fields from the curated overlay. */
+export function withIoFormats(p: ProblemWithApproaches): ProblemWithApproaches {
   const overlay = (ioFormats as Record<string, IoOverlay>)[p.id];
   return {
     ...p,

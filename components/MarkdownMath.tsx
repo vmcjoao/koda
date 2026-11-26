@@ -30,6 +30,8 @@ export function MarkdownMath({ markdown, minHeight = 160, embedded = false }: Pr
   const fallback = useMemo(() => plainStatement(markdown), [markdown]);
   const [useFallback, setUseFallback] = useState(false);
   const tall = statementHasFigures(markdown);
+  // Explicit height (not only minHeight) — nested WebViews in ScrollView
+  // often collapse to 0 when relying on flex/minHeight alone.
   const height = Math.max(minHeight, tall ? 280 : minHeight);
 
   if (useFallback) {
@@ -39,7 +41,7 @@ export function MarkdownMath({ markdown, minHeight = 160, embedded = false }: Pr
           styles.wrap,
           styles.fallbackBox,
           embedded ? styles.embedded : { width: width - 32 },
-          { minHeight: height },
+          { height },
         ]}
       >
         <Text style={styles.fallbackText}>{fallback}</Text>
@@ -55,13 +57,13 @@ export function MarkdownMath({ markdown, minHeight = 160, embedded = false }: Pr
       style={[
         styles.wrap,
         embedded ? styles.embedded : { width: width - 32 },
-        { minHeight: height },
+        { height },
       ]}
     >
       <WebView
         originWhitelist={['*']}
         source={{ html }}
-        style={[styles.web, { minHeight: height, backgroundColor: colors.surface }]}
+        style={[styles.web, { height, backgroundColor: colors.surface }]}
         scrollEnabled
         nestedScrollEnabled
         setSupportMultipleWindows={false}
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
   },
   web: {
     backgroundColor: colors.surface,
-    flex: 1,
+    width: '100%',
   },
   fallbackBox: {
     padding: spacing.md,
