@@ -402,6 +402,11 @@ int knapsack_unbounded(const vector<int>& w, const vector<int>& v, int W) {
       time: 'O(N log log N)',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-prefix',
+      demo: { values: [0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1] },
+    },
+    relatedIds: ['math-number-theory', 'segment-tree', 'prefix-sums'],
     implementation: {
       language: 'cpp',
       code: `vector<int> sieve_primes(int n) {
@@ -838,6 +843,11 @@ int ternary_int(int lo, int hi, auto f) {
       extraMemory: 'O(2^{N/2})',
       notes_md: 'C++17 structured bindings in the snippet; otherwise use `equal_range` iterators.',
     },
+    visualization: {
+      kind: 'array-binary-search',
+      demo: { values: [0, 1, 3, 4, 7, 8, 10, 12], target: 7 },
+    },
+    relatedIds: ['brute-force', 'knapsack', 'binary-search'],
     implementation: {
       language: 'cpp',
       code: `// count subsets with sum == target (includes empty subset once)

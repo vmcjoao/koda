@@ -17,6 +17,11 @@ export const LESSONS_MORE: LearnLesson[] = [
       extraMemory: 'O(N)',
       notes_md: 'Sorting usually dominates. Exact bound depends on the selection step.',
     },
+    visualization: {
+      kind: 'array-sort',
+      demo: { values: [4, 1, 3, 2, 5] },
+    },
+    relatedIds: ['sorting', 'mst', 'binary-search-answer'],
     implementation: {
       language: 'cpp',
       code: `// classic: max number of non-overlapping intervals
@@ -213,6 +218,11 @@ double min_feasible_real(double lo, double hi, auto ok) {
       time: 'O(states · transitions)',
       extraMemory: 'O(states)',
     },
+    visualization: {
+      kind: 'dp-knapsack',
+      demo: { weights: [2, 3, 4], values: [3, 4, 5], capacity: 5 },
+    },
+    relatedIds: ['knapsack', 'bitmask-dp', 'lis'],
     implementation: {
       language: 'cpp',
       code: `// coin change: min coins to make sum S (unbounded)
