@@ -9,11 +9,19 @@ import {
 } from 'react-native';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
+import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
 import { getFavorites, toggleFavorite } from '@/lib/favorites';
 import { relativeDifficulty } from '@/lib/habit';
+import { addProblemToPlaylistFlow } from '@/lib/playlistPicker';
+import {
+  addProblemToPlaylist,
+  getPlaylist,
+  removeProblemFromPlaylist,
+  type Playlist,
+} from '@/lib/playlists';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -22,13 +30,17 @@ type DiffFilter = 'All' | '≤1200' | '1200–1600' | '1600+';
 type StatusFilter = 'All' | 'Unattempted' | 'Needs work' | 'Favorites';
 
 export default function CatalogScreen() {
-  const { topic: topicParam } = useLocalSearchParams<{ topic?: string }>();
+  const { topic: topicParam, addTo } = useLocalSearchParams<{
+    topic?: string;
+    addTo?: string;
+  }>();
   const { user, profile } = useAuth();
   const { beginProblem } = useAttempt();
   const band = profile?.rating_band ?? 1200;
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [targetPlaylist, setTargetPlaylist] = useState<Playlist | null>(null);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState('');
   const [source, setSource] = useState<SourceFilter>('All');
@@ -42,21 +54,23 @@ export default function CatalogScreen() {
       setTopic(topicParam ?? null);
       (async () => {
         setLoading(true);
-        const [p, a, favs] = await Promise.all([
+        const [p, a, favs, pl] = await Promise.all([
           fetchProblems(),
           fetchAttempts(user?.id ?? null),
           getFavorites(user?.id ?? null),
+          addTo ? getPlaylist(addTo) : Promise.resolve(null),
         ]);
         if (!active) return;
         setProblems(p);
         setAttempts(a);
         setFavorites(favs);
+        setTargetPlaylist(pl);
         setLoading(false);
       })();
       return () => {
         active = false;
       };
-    }, [user?.id, topicParam]),
+    }, [user?.id, topicParam, addTo]),
   );
 
   const sources = useMemo(() => {
@@ -115,6 +129,15 @@ export default function CatalogScreen() {
     setFavorites(next);
   }
 
+  async function onTogglePlaylistMembership(problemId: string) {
+    if (!targetPlaylist) return;
+    const inList = targetPlaylist.problemIds.includes(problemId);
+    const next = inList
+      ? await removeProblemFromPlaylist(targetPlaylist.id, problemId)
+      : await addProblemToPlaylist(targetPlaylist.id, problemId);
+    if (next) setTargetPlaylist(next);
+  }
+
   return (
     <Screen scroll>
       <Text style={styles.title}>Catalog</Text>
@@ -122,6 +145,23 @@ export default function CatalogScreen() {
         {filtered.length} of {problems.length} problems
         {topic ? ` · ${topic}` : ''}
       </Text>
+
+      <PrimaryButton
+        label="Playlists"
+        variant="secondary"
+        onPress={() => router.push('/playlists')}
+      />
+
+      {targetPlaylist ? (
+        <Pressable
+          style={styles.topicBanner}
+          onPress={() => router.push(`/playlists/${targetPlaylist.id}`)}
+        >
+          <Text style={styles.topicBannerText}>
+            Adding to “{targetPlaylist.name}” · tap a card to toggle · open playlist ▸
+          </Text>
+        </Pressable>
+      ) : null}
 
       <TextInput
         style={styles.search}
@@ -206,11 +246,33 @@ export default function CatalogScreen() {
       {filtered.map((p) => {
         const best = bestByProblem.get(p.id);
         const fav = favorites.includes(p.id);
+        const inTarget = !!targetPlaylist?.problemIds.includes(p.id);
         return (
-          <Pressable key={p.id} style={styles.card} onPress={() => start(p)}>
+          <Pressable
+            key={p.id}
+            style={[styles.card, inTarget && styles.cardInPlaylist]}
+            onPress={() => {
+              if (targetPlaylist) {
+                onTogglePlaylistMembership(p.id);
+                return;
+              }
+              start(p);
+            }}
+          >
             <View style={styles.cardTop}>
               <Text style={styles.source}>{p.source}</Text>
               <View style={styles.cardTopRight}>
+                {!targetPlaylist ? (
+                  <Pressable
+                    hitSlop={12}
+                    onPress={(e) => {
+                      e.stopPropagation?.();
+                      addProblemToPlaylistFlow(p.id, p.title);
+                    }}
+                  >
+                    <Text style={styles.addPl}>＋</Text>
+                  </Pressable>
+                ) : null}
                 <Pressable
                   hitSlop={12}
                   onPress={(e) => {
@@ -227,6 +289,7 @@ export default function CatalogScreen() {
             <Text style={styles.meta}>
               {p.target_complexity} · {relativeDifficulty(p.difficulty_rating, band)}
               {best != null ? ` · best ${best}%` : ''}
+              {inTarget ? ' · in playlist' : ''}
             </Text>
             <Text style={styles.topics} numberOfLines={1}>
               {[...new Set(p.approaches.flatMap((a) => a.paradigms))].join(' · ')}
@@ -308,6 +371,16 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     padding: spacing.md,
     gap: 4,
+  },
+  cardInPlaylist: {
+    borderColor: colors.accent,
+    backgroundColor: colors.chipSelected,
+  },
+  addPl: {
+    color: colors.radar,
+    fontSize: 18,
+    fontWeight: '700',
+    paddingHorizontal: 4,
   },
   cardTop: {
     flexDirection: 'row',

@@ -8,6 +8,7 @@ import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchProblem } from '@/lib/api';
 import { getFavorites, toggleFavorite } from '@/lib/favorites';
 import { relativeDifficulty } from '@/lib/habit';
+import { addProblemToPlaylistFlow } from '@/lib/playlistPicker';
 import { useAuth } from '@/contexts/AuthContext';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -117,6 +118,12 @@ export default function EncounterScreen() {
           <Text style={styles.mono}>{s.output}</Text>
         </View>
       ))}
+
+      <PrimaryButton
+        label="Add to playlist"
+        variant="secondary"
+        onPress={() => addProblemToPlaylistFlow(problem.id, problem.title)}
+      />
 
       <PrimaryButton
         label="Constraint Radar"

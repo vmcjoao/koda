@@ -132,7 +132,7 @@ export default function SettingsScreen() {
   function confirmClear() {
     Alert.alert(
       'Clear local data?',
-      'Deletes guest attempts, daily set, favorites, reminders pref, and onboarding on this device. Cloud data (if signed in) is not wiped from Supabase.',
+      'Deletes guest attempts, daily set, favorites, playlists, reminders pref, and onboarding on this device. Cloud data (if signed in) is not wiped from Supabase.',
       [
         { text: 'Cancel', style: 'cancel' },
         {

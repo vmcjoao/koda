@@ -32,7 +32,7 @@ See [`eas.json`](eas.json). Bundle IDs: `app.koda.mobile`.
 ## Supabase setup
 
 1. Create a project and enable Email auth.
-2. Run migrations in order: `001_initial.sql`, `002_grants.sql`, `003_favorites.sql`.
+2. Run migrations in order: `001_initial.sql`, `002_grants.sql`, `003_favorites.sql`, `004_playlists.sql`.
 3. Run [`supabase/seed.sql`](supabase/seed.sql) (regenerate with `npm run generate:seed`).
 
 ## Features
@@ -48,6 +48,7 @@ See [`eas.json`](eas.json). Bundle IDs: `app.koda.mobile`.
 9. **Offline catalog** — SQLite on device (AsyncStorage fallback on web); migrates legacy cache
 10. **Guest → cloud sync** — sign-in uploads attempts, review state, favorites, and XP
 11. **History filters** — strong/weak, status, radar bonus
+12. **Playlists** — custom problem sets (by source or theme); sync + backup included
 
 ## Ingest new problems
 

@@ -182,6 +182,12 @@ export default function HomeScreen() {
             />
           ) : null}
 
+          <PrimaryButton
+            label="Playlists"
+            variant="secondary"
+            onPress={() => router.push('/playlists')}
+          />
+
           <View style={styles.sectionRow}>
             <Text style={[styles.section, styles.sectionFlush]}>Catalog</Text>
             <Pressable onPress={() => router.push('/catalog')}>

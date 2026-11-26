@@ -12,6 +12,7 @@ import {
 } from '@/lib/habit';
 import { syncFavoritesToCloud } from '@/lib/favorites';
 import { readCatalogCache, writeCatalogCache } from '@/lib/offlineDb';
+import { syncPlaylistsToCloud } from '@/lib/playlists';
 import { isPendingCloudAttempt, mergeProfilesForSync } from '@/lib/sync';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import type {
@@ -198,6 +199,7 @@ export type SyncResult = {
   uploadedAttempts: number;
   upsertedStates: number;
   uploadedFavorites: number;
+  uploadedPlaylists: number;
   profileSynced: boolean;
   pendingLeft: number;
   error?: string;
@@ -213,6 +215,7 @@ export async function syncLocalProgressToCloud(userId: string): Promise<SyncResu
       uploadedAttempts: 0,
       upsertedStates: 0,
       uploadedFavorites: 0,
+      uploadedPlaylists: 0,
       profileSynced: false,
       pendingLeft: 0,
       error: 'Supabase is not configured.',
@@ -299,9 +302,17 @@ export async function syncLocalProgressToCloud(userId: string): Promise<SyncResu
   }
 
   const uploadedFavorites = await syncFavoritesToCloud(userId);
+  const uploadedPlaylists = await syncPlaylistsToCloud(userId);
 
   const pendingLeft = (await readLocalAttempts()).filter((a) => isPendingCloudAttempt(a)).length;
-  return { uploadedAttempts, upsertedStates, uploadedFavorites, profileSynced, pendingLeft };
+  return {
+    uploadedAttempts,
+    upsertedStates,
+    uploadedFavorites,
+    uploadedPlaylists,
+    profileSynced,
+    pendingLeft,
+  };
 }
 
 export async function fetchProblemStates(userId: string | null): Promise<UserProblemState[]> {

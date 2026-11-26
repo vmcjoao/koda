@@ -7,6 +7,7 @@ export const LOCAL_KEYS = [
   'koda.problem_state',
   'koda.daily_set',
   'koda.favorites',
+  'koda.playlists',
   'koda.onboarding.v1',
   'koda.reminders.enabled',
   'koda.reminders.hour',
