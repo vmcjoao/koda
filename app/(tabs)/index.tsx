@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
+import { BrandWordmark } from '@/components/BrandWordmark';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
@@ -63,7 +64,7 @@ export default function HomeScreen() {
   return (
     <Screen scroll>
       <View style={styles.hero}>
-        <Text style={styles.brand}>Koda</Text>
+        <BrandWordmark size="hero" />
         <Text style={styles.tagline}>Codeless competitive programming drills</Text>
       </View>
 
@@ -161,12 +162,6 @@ const styles = StyleSheet.create({
   hero: {
     gap: spacing.xs,
     marginBottom: spacing.sm,
-  },
-  brand: {
-    color: colors.accent,
-    fontSize: 40,
-    fontWeight: '800',
-    letterSpacing: 1.5,
   },
   tagline: {
     color: colors.textMuted,

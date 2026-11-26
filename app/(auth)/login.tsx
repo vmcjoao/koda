@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { router } from 'expo-router';
+import { BrandWordmark } from '@/components/BrandWordmark';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
@@ -36,7 +37,7 @@ export default function LoginScreen() {
 
   return (
     <Screen scroll>
-      <Text style={styles.title}>Koda</Text>
+      <BrandWordmark size="lg" />
       <Text style={styles.sub}>
         Sign in to sync attempts across devices
         {!isSupabaseConfigured ? ' (Supabase env not set — guest mode works offline).' : '.'}
@@ -77,12 +78,6 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    color: colors.accent,
-    fontSize: 36,
-    fontWeight: '800',
-    letterSpacing: 1,
-  },
   sub: {
     color: colors.textMuted,
     fontSize: 15,
