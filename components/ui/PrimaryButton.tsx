@@ -1,5 +1,6 @@
 import React from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, ViewStyle } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, type ViewStyle } from 'react-native';
+import { PressableScale } from '@/components/game/PressableScale';
 import { colors, radii, spacing } from '@/constants/theme';
 
 type Props = {
@@ -23,16 +24,16 @@ export function PrimaryButton({
   const isGhost = variant === 'ghost';
 
   return (
-    <Pressable
+    <PressableScale
       onPress={onPress}
       disabled={disabled || loading}
-      style={({ pressed }) => [
+      haptic={isPrimary ? 'medium' : 'light'}
+      style={[
         styles.base,
         isPrimary && styles.primary,
         variant === 'secondary' && styles.secondary,
         isGhost && styles.ghost,
         (disabled || loading) && styles.disabled,
-        pressed && !disabled && styles.pressed,
         style,
       ]}
     >
@@ -49,7 +50,7 @@ export function PrimaryButton({
           {label}
         </Text>
       )}
-    </Pressable>
+    </PressableScale>
   );
 }
 
@@ -75,9 +76,6 @@ const styles = StyleSheet.create({
   },
   disabled: {
     opacity: 0.45,
-  },
-  pressed: {
-    opacity: 0.85,
   },
   label: {
     fontSize: 16,

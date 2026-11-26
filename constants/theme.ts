@@ -14,6 +14,12 @@ export const colors = {
   chipSelected: '#1F4D3A',
   chipSelectedBorder: '#3DDC97',
   radar: '#5B8CFF',
+  /** Daily run track / inactive nodes */
+  runTrack: '#2C3530',
+  /** XP / reward accent */
+  xp: '#F0C14B',
+  atmosphere: 'rgba(61, 220, 151, 0.07)',
+  atmosphereBoss: 'rgba(245, 166, 35, 0.08)',
 } as const;
 
 export const spacing = {

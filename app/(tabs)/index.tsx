@@ -3,6 +3,9 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-nati
 import { router, useFocusEffect } from 'expo-router';
 import { BrandWordmark } from '@/components/BrandWordmark';
 import { OnboardingTips } from '@/components/OnboardingTips';
+import { DailyPath } from '@/components/game/DailyPath';
+import { PlayerStrip } from '@/components/game/PlayerStrip';
+import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
@@ -14,7 +17,7 @@ import {
   getReviewQueue,
   regenerateDailySet,
 } from '@/lib/api';
-import { relativeDifficulty, SLOT_LABELS, type DailySet } from '@/lib/habit';
+import { SLOT_LABELS, type DailySet } from '@/lib/habit';
 import { areRemindersEnabled, formatReminderLabel, getReminderHour } from '@/lib/notifications';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -85,6 +88,7 @@ export default function HomeScreen() {
   const dailyDone = daily?.slots.filter((s) => s.completed).length ?? 0;
   const dailyTotal = daily?.slots.length ?? 0;
   const nextDaily = daily?.slots.find((s) => !s.completed);
+  const runComplete = dailyTotal > 0 && dailyDone >= dailyTotal;
 
   function startProblem(problem: ProblemWithApproaches) {
     beginProblem(problem);
@@ -96,16 +100,15 @@ export default function HomeScreen() {
       <OnboardingTips />
       <View style={styles.hero}>
         <BrandWordmark size="hero" />
-        <Text style={styles.tagline}>Codeless competitive programming drills</Text>
+        <Text style={styles.tagline}>Clear Warm-up → Target → Boss</Text>
       </View>
 
-      <View style={styles.stats}>
-        <Stat label="Streak" value={`${profile?.streak ?? 0}d`} />
-        <Stat label="XP" value={`${profile?.xp ?? 0}`} />
-        <Pressable style={{ flex: 1 }} onPress={() => router.push('/settings')}>
-          <Stat label="Band ✎" value={`${profile?.rating_band ?? 1200}`} />
-        </Pressable>
-      </View>
+      <PlayerStrip
+        streak={profile?.streak ?? 0}
+        xp={profile?.xp ?? 0}
+        band={profile?.rating_band ?? 1200}
+        onBandPress={() => router.push('/settings')}
+      />
 
       {demoMode ? (
         <Pressable onPress={() => router.push('/(auth)/login')}>
@@ -123,55 +126,40 @@ export default function HomeScreen() {
         <ActivityIndicator color={colors.accent} />
       ) : (
         <>
-          <Text style={styles.section}>Daily Set · {dailyDone}/{dailyTotal}</Text>
-          <Text style={styles.sectionHint}>Warm-up → Target → Boss</Text>
+          <View style={styles.runHeader}>
+            <Text style={styles.runTitle}>Today&apos;s run</Text>
+            <Text style={styles.runProgress}>
+              {dailyDone}/{dailyTotal}
+            </Text>
+          </View>
 
-          {daily?.slots.map((slot) => {
-            const p = problemMap.get(slot.problemId);
-            if (!p) return null;
-            return (
-              <Pressable
-                key={slot.role}
-                style={[styles.card, slot.completed && styles.cardDone]}
-                onPress={() => startProblem(p)}
-              >
-                <View style={styles.cardTop}>
-                  <Text style={styles.slotBadge}>{SLOT_LABELS[slot.role]}</Text>
-                  <Text style={styles.rating}>
-                    {slot.completed ? `${slot.score}%` : p.difficulty_rating}
-                  </Text>
-                </View>
-                <Text style={styles.cardTitle}>{p.title}</Text>
-                <Text style={styles.meta}>
-                  {p.source} · {p.target_complexity} ·{' '}
-                  {relativeDifficulty(p.difficulty_rating, profile?.rating_band ?? 1200)}
-                  {slot.completed ? ' · done' : ''}
-                </Text>
-              </Pressable>
-            );
-          })}
+          {daily ? (
+            <DailyPath daily={daily} problemMap={problemMap} onSelect={startProblem} />
+          ) : null}
 
           {nextDaily ? (
             <PrimaryButton
-              label={`Continue daily: ${SLOT_LABELS[nextDaily.role]}`}
+              label={
+                dailyDone === 0
+                  ? `Start run · ${SLOT_LABELS[nextDaily.role]}`
+                  : `Continue run · ${SLOT_LABELS[nextDaily.role]}`
+              }
               onPress={() => {
                 const p = problemMap.get(nextDaily.problemId);
                 if (p) startProblem(p);
               }}
             />
           ) : (
-            <Text style={styles.good}>
-              Daily set complete
-              {daily?.bonusAwarded ? ' · +50 XP bonus claimed' : ''}.
-            </Text>
+            <View style={styles.cleared}>
+              <Text style={styles.clearedTitle}>Run cleared</Text>
+              <Text style={styles.good}>
+                {daily?.bonusAwarded ? '+50 XP daily bonus claimed' : 'All three slots done'}
+              </Text>
+            </View>
           )}
 
-          {dailyDone < dailyTotal ? (
-            <PrimaryButton
-              label="Shuffle daily set"
-              variant="ghost"
-              onPress={onRegenerateDaily}
-            />
+          {!runComplete ? (
+            <PrimaryButton label="Shuffle run" variant="ghost" onPress={onRegenerateDaily} />
           ) : null}
 
           {reviewCount > 0 ? (
@@ -188,74 +176,53 @@ export default function HomeScreen() {
             onPress={() => router.push('/playlists')}
           />
 
-          <View style={styles.sectionRow}>
-            <Text style={[styles.section, styles.sectionFlush]}>Catalog</Text>
-            <Pressable onPress={() => router.push('/catalog')}>
-              <Text style={styles.seeAll}>See all</Text>
-            </Pressable>
+          <View style={styles.secondaryBlock}>
+            <View style={styles.sectionRow}>
+              <Text style={styles.secondaryTitle}>Catalog</Text>
+              <Pressable onPress={() => router.push('/catalog')}>
+                <Text style={styles.seeAll}>See all</Text>
+              </Pressable>
+            </View>
+            <Text style={styles.secondaryHint}>
+              {problems.length} problems · {attempts.length} attempts logged
+            </Text>
+            {problems.slice(0, 3).map((p) => (
+              <PressableScale
+                key={p.id}
+                style={styles.quietCard}
+                onPress={() => startProblem(p)}
+              >
+                <View style={styles.cardTop}>
+                  <Text style={styles.source}>{p.source}</Text>
+                  <Text style={styles.rating}>{p.difficulty_rating}</Text>
+                </View>
+                <Text style={styles.cardTitle} numberOfLines={1}>
+                  {p.title}
+                </Text>
+              </PressableScale>
+            ))}
+            <PrimaryButton
+              label="Browse catalog"
+              variant="ghost"
+              onPress={() => router.push('/catalog')}
+            />
           </View>
-          {problems.slice(0, 6).map((p) => (
-            <Pressable key={p.id} style={styles.card} onPress={() => startProblem(p)}>
-              <View style={styles.cardTop}>
-                <Text style={styles.source}>{p.source}</Text>
-                <Text style={styles.rating}>{p.difficulty_rating}</Text>
-              </View>
-              <Text style={styles.cardTitle}>{p.title}</Text>
-              <Text style={styles.meta}>{p.target_complexity}</Text>
-            </Pressable>
-          ))}
-          <PrimaryButton
-            label={`Browse full catalog (${problems.length})`}
-            variant="secondary"
-            onPress={() => router.push('/catalog')}
-          />
-          <Text style={styles.meta}>{attempts.length} attempts logged</Text>
         </>
       )}
     </Screen>
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <View style={styles.stat}>
-      <Text style={styles.statValue}>{value}</Text>
-      <Text style={styles.statLabel}>{label}</Text>
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   hero: {
     gap: spacing.xs,
-    marginBottom: spacing.sm,
+    marginBottom: spacing.xs,
   },
   tagline: {
     color: colors.textMuted,
     fontSize: 15,
-  },
-  stats: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-  },
-  stat: {
-    flex: 1,
-    backgroundColor: colors.surface,
-    borderRadius: radii.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.md,
-    alignItems: 'center',
-  },
-  statValue: {
-    color: colors.text,
-    fontSize: 20,
-    fontWeight: '700',
-  },
-  statLabel: {
-    color: colors.textDim,
-    fontSize: 12,
-    marginTop: 2,
+    fontWeight: '600',
+    letterSpacing: 0.2,
   },
   demo: {
     color: colors.radar,
@@ -265,75 +232,94 @@ const styles = StyleSheet.create({
     color: colors.textDim,
     fontSize: 12,
   },
-  section: {
+  runHeader: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'space-between',
+    marginTop: spacing.xs,
+  },
+  runTitle: {
     color: colors.text,
+    fontSize: 20,
+    fontWeight: '800',
+  },
+  runProgress: {
+    color: colors.accent,
+    fontSize: 16,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
+  cleared: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.accentDim,
+    padding: spacing.md,
+    gap: 4,
+  },
+  clearedTitle: {
+    color: colors.accent,
     fontSize: 18,
-    fontWeight: '700',
-    marginTop: spacing.sm,
+    fontWeight: '800',
+  },
+  good: {
+    color: colors.accent,
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  secondaryBlock: {
+    marginTop: spacing.md,
+    paddingTop: spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+    gap: spacing.sm,
   },
   sectionRow: {
     flexDirection: 'row',
     alignItems: 'baseline',
     justifyContent: 'space-between',
-    marginTop: spacing.sm,
   },
-  sectionFlush: {
-    marginTop: 0,
+  secondaryTitle: {
+    color: colors.textMuted,
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  secondaryHint: {
+    color: colors.textDim,
+    fontSize: 12,
+    marginTop: -4,
   },
   seeAll: {
     color: colors.radar,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
   },
-  sectionHint: {
-    color: colors.textDim,
-    fontSize: 13,
-    marginTop: -8,
-  },
-  card: {
+  quietCard: {
     backgroundColor: colors.surface,
-    borderRadius: radii.md,
+    borderRadius: radii.sm,
     borderWidth: 1,
     borderColor: colors.border,
-    padding: spacing.md,
-    gap: 4,
-  },
-  cardDone: {
-    borderColor: colors.accentDim,
-    opacity: 0.85,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.md,
+    gap: 2,
   },
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   source: {
-    color: colors.accent,
-    fontSize: 12,
+    color: colors.textDim,
+    fontSize: 11,
     fontWeight: '700',
-    textTransform: 'uppercase',
-  },
-  slotBadge: {
-    color: colors.radar,
-    fontSize: 12,
-    fontWeight: '800',
     textTransform: 'uppercase',
   },
   rating: {
     color: colors.textDim,
-    fontSize: 12,
+    fontSize: 11,
     fontFamily: 'SpaceMono',
   },
   cardTitle: {
-    color: colors.text,
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  meta: {
     color: colors.textMuted,
-    fontSize: 13,
-  },
-  good: {
-    color: colors.accent,
     fontSize: 14,
     fontWeight: '600',
   },

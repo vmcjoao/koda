@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 import { router, useLocalSearchParams } from 'expo-router';
+import { AnimatedNumber } from '@/components/game/AnimatedNumber';
+import { XpChip } from '@/components/game/XpChip';
+import { scoreRank } from '@/components/game/scoreRank';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { MarkdownMath } from '@/components/MarkdownMath';
@@ -18,9 +28,23 @@ export default function RevealScreen() {
   const [saving, setSaving] = useState(false);
   const [result, setResult] = useState<SaveAttemptResult | null>(null);
 
+  const scoreScale = useSharedValue(0.92);
+
   useEffect(() => {
     if (!breakdown) finalizeScore();
   }, [breakdown, finalizeScore]);
+
+  useEffect(() => {
+    if (!breakdown) return;
+    scoreScale.value = withSequence(
+      withTiming(1.06, { duration: 220 }),
+      withSpring(1, { damping: 10, stiffness: 180 }),
+    );
+  }, [breakdown, scoreScale]);
+
+  const scoreAnimStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scoreScale.value }],
+  }));
 
   if (!problem || !draft || problem.id !== id || !breakdown) {
     return (
@@ -32,6 +56,7 @@ export default function RevealScreen() {
 
   const approach = breakdown.matchedApproach;
   const saved = !!result;
+  const rank = scoreRank(breakdown.score);
 
   async function persist(status: 'drafted' | 'needs_review') {
     setSaving(true);
@@ -69,13 +94,21 @@ export default function RevealScreen() {
     router.replace('/(tabs)');
   }
 
+  const totalXp = result ? result.xpGain.total + result.dailyBonusXp : 0;
+
   return (
     <Screen scroll>
-      <Text style={styles.score}>{breakdown.score}%</Text>
-      <Text style={styles.sub}>
-        Best match{approach ? `: ${approach.approach_name}` : ''}
-        {breakdown.complexityBonus ? ' · radar bonus unlocked' : ''}
-      </Text>
+      <View style={styles.scoreBlock}>
+        <Text style={styles.rankLabel}>{rank.label}</Text>
+        <Animated.View style={scoreAnimStyle}>
+          <AnimatedNumber value={breakdown.score} suffix="%" style={styles.score} />
+        </Animated.View>
+        <Text style={styles.rankBlurb}>{rank.blurb}</Text>
+        <Text style={styles.sub}>
+          Best match{approach ? `: ${approach.approach_name}` : ''}
+          {breakdown.complexityBonus ? ' · radar bonus unlocked' : ''}
+        </Text>
+      </View>
 
       <View style={styles.bars}>
         <Bar label="Paradigm" value={breakdown.paradigmScore} />
@@ -134,10 +167,14 @@ export default function RevealScreen() {
         </>
       ) : (
         <View style={styles.xpCard}>
-          <Text style={styles.good}>Saved · streak {result.streak}d</Text>
-          <Text style={styles.xpLine}>
-            +{result.xpGain.total + result.dailyBonusXp} XP
-          </Text>
+          <Text style={styles.payoffTitle}>Round saved</Text>
+          <View style={styles.chipRow}>
+            <XpChip label={`+${totalXp} XP`} tone="xp" delayMs={0} />
+            <XpChip label={`${result.streak}d streak`} tone="warning" delayMs={80} />
+            {result.dailyBonusXp > 0 ? (
+              <XpChip label={`Daily +${result.dailyBonusXp}`} tone="accent" delayMs={160} />
+            ) : null}
+          </View>
           <Text style={styles.xpDetail}>
             base {result.xpGain.base}
             {result.xpGain.radarBonus ? ` · radar +${result.xpGain.radarBonus}` : ''}
@@ -151,7 +188,7 @@ export default function RevealScreen() {
               : ' (unchanged)'}
           </Text>
           {result.dailyBonusXp > 0 ? (
-            <Text style={styles.good}>Daily Set cleared — nice work.</Text>
+            <Text style={styles.good}>Daily run cleared — nice work.</Text>
           ) : null}
           <PrimaryButton
             label="Share result"
@@ -175,7 +212,11 @@ export default function RevealScreen() {
         </View>
       )}
 
-      <PrimaryButton label="Back to Home" variant={saved ? 'primary' : 'ghost'} onPress={goHome} />
+      <PrimaryButton
+        label={saved ? 'Back to run' : 'Back to Home'}
+        variant={saved ? 'primary' : 'ghost'}
+        onPress={goHome}
+      />
     </Screen>
   );
 }
@@ -194,10 +235,27 @@ function Bar({ label, value }: { label: string; value: number }) {
 }
 
 const styles = StyleSheet.create({
+  scoreBlock: {
+    alignItems: 'flex-start',
+    gap: 4,
+  },
+  rankLabel: {
+    color: colors.xp,
+    fontSize: 13,
+    fontWeight: '900',
+    letterSpacing: 2,
+    textTransform: 'uppercase',
+  },
   score: {
     color: colors.accent,
-    fontSize: 48,
+    fontSize: 56,
     fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
+  rankBlurb: {
+    color: colors.text,
+    fontSize: 16,
+    fontWeight: '600',
   },
   sub: {
     color: colors.textMuted,
@@ -273,12 +331,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.accentDim,
     padding: spacing.md,
-    gap: 4,
+    gap: spacing.sm,
   },
-  xpLine: {
+  payoffTitle: {
     color: colors.text,
-    fontSize: 28,
+    fontSize: 18,
     fontWeight: '800',
+  },
+  chipRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
   },
   xpDetail: {
     color: colors.textMuted,
