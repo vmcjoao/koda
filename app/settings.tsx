@@ -6,7 +6,12 @@ import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { BrandWordmark } from '@/components/BrandWordmark';
 import { useAuth } from '@/contexts/AuthContext';
 import { updateRatingBand } from '@/lib/api';
-import { clearLocalTrainingData, resetOnboardingTips } from '@/lib/localData';
+import {
+  clearLocalTrainingData,
+  exportLocalTrainingJson,
+  resetOnboardingTips,
+} from '@/lib/localData';
+import { shareText } from '@/lib/share';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function SettingsScreen() {
@@ -89,6 +94,15 @@ export default function SettingsScreen() {
       />
 
       <Text style={styles.label}>Local data</Text>
+      <PrimaryButton
+        label="Export backup JSON"
+        variant="secondary"
+        onPress={async () => {
+          const json = await exportLocalTrainingJson();
+          await shareText('Koda backup', json);
+          setStatus('Backup shared.');
+        }}
+      />
       <PrimaryButton
         label="Show onboarding tips again"
         variant="secondary"

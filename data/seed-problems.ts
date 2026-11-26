@@ -565,6 +565,159 @@ export const SEED_PROBLEMS: ProblemWithApproaches[] = [
       },
     ],
   },
+  {
+    id: 'cses-maximum-subarray-sum',
+    title: 'Maximum Subarray Sum',
+    source: 'CSES',
+    url: 'https://cses.fi/problemset/task/1643',
+    difficulty_rating: 1200,
+    statement_md:
+      'Given an array of $n$ integers, find a contiguous subarray with the maximum possible sum.',
+    constraints_text: '$1 \\le n \\le 2 \\times 10^5$',
+    sample_io: [{ input: '8\n-1 3 -2 5 3 -5 2 2', output: '9' }],
+    target_complexity: 'O(N)',
+    approaches: [
+      {
+        id: 'cses-maximum-subarray-sum-a1',
+        problem_id: 'cses-maximum-subarray-sum',
+        approach_name: 'Kadane',
+        paradigms: ['Dynamic Programming', 'Greedy'],
+        algorithms: ['Prefix Sums'],
+        data_structures: ['1D Array'],
+        key_insights: [
+          'Track best ending here vs restart',
+          'Handle all-negative arrays carefully',
+        ],
+        editorial_summary_md:
+          'Kadane: maintain current sum, reset when negative (or keep running max for the all-negative case).',
+      },
+    ],
+  },
+  {
+    id: 'cses-building-teams',
+    title: 'Building Teams',
+    source: 'CSES',
+    url: 'https://cses.fi/problemset/task/1668',
+    difficulty_rating: 1400,
+    statement_md:
+      'There are $n$ pupils and $m$ friendships. Assign each pupil to team 1 or 2 so that friends are always on different teams, or report impossibility.',
+    constraints_text: '$1 \\le n \\le 10^5$, $1 \\le m \\le 2 \\times 10^5$',
+    sample_io: [
+      {
+        input: '5 3\n1 2\n1 3\n4 5',
+        output: '1 2 2 1 2',
+      },
+    ],
+    target_complexity: 'O(N)',
+    approaches: [
+      {
+        id: 'cses-building-teams-a1',
+        problem_id: 'cses-building-teams',
+        approach_name: 'Bipartite coloring BFS/DFS',
+        paradigms: ['Graph Algorithms'],
+        algorithms: ['BFS', 'DFS'],
+        data_structures: ['Adjacency List', 'Queue'],
+        key_insights: [
+          'Color connected components with 2 colors',
+          'Odd cycle ⇒ impossible',
+        ],
+        editorial_summary_md:
+          'Check bipartiteness of the friendship graph; assign teams by the two color classes.',
+      },
+    ],
+  },
+  {
+    id: 'cses-stick-lengths',
+    title: 'Stick Lengths',
+    source: 'CSES',
+    url: 'https://cses.fi/problemset/task/1074',
+    difficulty_rating: 1200,
+    statement_md:
+      'You have $n$ sticks with lengths $p_i$. Change any stick to any positive length; cost is the absolute difference. Minimize total cost to make all sticks equal.',
+    constraints_text: '$1 \\le n \\le 2 \\times 10^5$',
+    sample_io: [{ input: '5\n2 3 1 5 2', output: '5' }],
+    target_complexity: 'O(N log N)',
+    approaches: [
+      {
+        id: 'cses-stick-lengths-a1',
+        problem_id: 'cses-stick-lengths',
+        approach_name: 'Median target',
+        paradigms: ['Greedy', 'Math / Number Theory'],
+        algorithms: ['Sorting'],
+        data_structures: ['1D Array'],
+        key_insights: [
+          'Optimal equal length is the median',
+          'Mean is wrong for L1 absolute cost',
+        ],
+        editorial_summary_md:
+          'Sort and set every stick to the median length; sum absolute deviations.',
+      },
+    ],
+  },
+  {
+    id: 'cf-550a',
+    title: 'Two Substrings',
+    source: 'Codeforces',
+    url: 'https://codeforces.com/problemset/problem/550/A',
+    difficulty_rating: 1300,
+    statement_md:
+      'You are given a string $s$. Check whether it contains two non-overlapping substrings "AB" and "BA" (in either order).',
+    constraints_text: '$1 \\le |s| \\le 10^5$',
+    sample_io: [
+      { input: 'ABA', output: 'NO' },
+      { input: 'BACFAB', output: 'YES' },
+    ],
+    target_complexity: 'O(N)',
+    approaches: [
+      {
+        id: 'cf-550a-a1',
+        problem_id: 'cf-550a',
+        approach_name: 'First AB then BA (and swap)',
+        paradigms: ['String Algorithms', 'Greedy'],
+        algorithms: ['Sorting'],
+        data_structures: ['1D Array'],
+        key_insights: [
+          'Find first AB then search BA after it',
+          'Also try first BA then AB — overlap traps like ABA',
+        ],
+        editorial_summary_md:
+          'Scan for AB then BA after that index; repeat with roles reversed. Overlaps like ABA fail both orders.',
+      },
+    ],
+  },
+  {
+    id: 'cses-counting-rooms',
+    title: 'Counting Rooms',
+    source: 'CSES',
+    url: 'https://cses.fi/problemset/task/1192',
+    difficulty_rating: 1300,
+    statement_md:
+      'You are given an $n \\times m$ map of floor (`.`) and wall (`#`). Count the number of rooms (4-connected floor components).',
+    constraints_text: '$1 \\le n,m \\le 1000$',
+    sample_io: [
+      {
+        input: '5 8\n########\n#..#...#\n####.#.#\n#..#...#\n########',
+        output: '3',
+      },
+    ],
+    target_complexity: 'O(N²)',
+    approaches: [
+      {
+        id: 'cses-counting-rooms-a1',
+        problem_id: 'cses-counting-rooms',
+        approach_name: 'Grid flood fill',
+        paradigms: ['Graph Algorithms'],
+        algorithms: ['DFS', 'BFS'],
+        data_structures: ['2D Array', 'Queue'],
+        key_insights: [
+          'Each unvisited floor cell starts a new room',
+          'Flood fill marks the whole component',
+        ],
+        editorial_summary_md:
+          'Iterate cells; on each unmarked `.`, increment the answer and DFS/BFS the component.',
+      },
+    ],
+  },
 ];
 
 export function getSeedProblem(id: string): ProblemWithApproaches | undefined {

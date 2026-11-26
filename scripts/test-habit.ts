@@ -6,6 +6,7 @@ import {
   computeXpGain,
   computePipeline,
   nextReviewDate,
+  relativeDifficulty,
   reviewDue,
 } from '../lib/habit';
 import type { UserAttempt, UserProblemState } from '../types/database';
@@ -67,5 +68,9 @@ assert.ok(down.delta < 0);
 
 const pipe = computePipeline(attempts);
 assert.strictEqual(pipe.diagnosed, 1);
+
+assert.strictEqual(relativeDifficulty(1000, 1200), 'easier');
+assert.strictEqual(relativeDifficulty(1200, 1200), 'at band');
+assert.strictEqual(relativeDifficulty(1500, 1200), 'harder');
 
 console.log('habit tests passed');

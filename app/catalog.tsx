@@ -13,6 +13,7 @@ import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
 import { getFavorites, toggleFavorite } from '@/lib/favorites';
+import { relativeDifficulty } from '@/lib/habit';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -22,8 +23,9 @@ type StatusFilter = 'All' | 'Unattempted' | 'Needs work' | 'Favorites';
 
 export default function CatalogScreen() {
   const { topic: topicParam } = useLocalSearchParams<{ topic?: string }>();
-  const { user } = useAuth();
+  const { user, profile } = useAuth();
   const { beginProblem } = useAttempt();
+  const band = profile?.rating_band ?? 1200;
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -223,7 +225,7 @@ export default function CatalogScreen() {
             </View>
             <Text style={styles.cardTitle}>{p.title}</Text>
             <Text style={styles.meta}>
-              {p.target_complexity}
+              {p.target_complexity} · {relativeDifficulty(p.difficulty_rating, band)}
               {best != null ? ` · best ${best}%` : ''}
             </Text>
             <Text style={styles.topics} numberOfLines={1}>

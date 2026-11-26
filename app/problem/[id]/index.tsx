@@ -7,10 +7,13 @@ import { MarkdownMath } from '@/components/MarkdownMath';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchProblem } from '@/lib/api';
 import { getFavorites, toggleFavorite } from '@/lib/favorites';
+import { relativeDifficulty } from '@/lib/habit';
+import { useAuth } from '@/contexts/AuthContext';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function EncounterScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { profile } = useAuth();
   const { problem, draft, beginProblem, tickTime } = useAttempt();
   const [loading, setLoading] = useState(!problem || problem.id !== id);
   const [error, setError] = useState<string | null>(null);
@@ -95,6 +98,9 @@ export default function EncounterScreen() {
         </View>
       </View>
       <Text style={styles.title}>{problem.title}</Text>
+      <Text style={styles.rel}>
+        {relativeDifficulty(problem.difficulty_rating, profile?.rating_band ?? 1200)} vs your band
+      </Text>
 
       <Text style={styles.label}>Statement</Text>
       <MarkdownMath markdown={problem.statement_md} minHeight={220} />
@@ -153,6 +159,11 @@ const styles = StyleSheet.create({
     color: colors.text,
     fontSize: 24,
     fontWeight: '800',
+  },
+  rel: {
+    color: colors.textMuted,
+    fontSize: 13,
+    marginTop: -4,
   },
   label: {
     color: colors.textMuted,

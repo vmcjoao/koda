@@ -14,7 +14,7 @@ import {
   getReviewQueue,
   regenerateDailySet,
 } from '@/lib/api';
-import { SLOT_LABELS, type DailySet } from '@/lib/habit';
+import { relativeDifficulty, SLOT_LABELS, type DailySet } from '@/lib/habit';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -129,7 +129,8 @@ export default function HomeScreen() {
                 </View>
                 <Text style={styles.cardTitle}>{p.title}</Text>
                 <Text style={styles.meta}>
-                  {p.source} · {p.target_complexity}
+                  {p.source} · {p.target_complexity} ·{' '}
+                  {relativeDifficulty(p.difficulty_rating, profile?.rating_band ?? 1200)}
                   {slot.completed ? ' · done' : ''}
                 </Text>
               </Pressable>

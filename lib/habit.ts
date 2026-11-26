@@ -185,6 +185,19 @@ export function adjustRatingBand(
   return { band, delta: band - current };
 }
 
+export type RelativeDifficulty = 'easier' | 'at band' | 'harder';
+
+/** Label a problem vs the user's rating band (±150 ≈ at band). */
+export function relativeDifficulty(
+  problemDifficulty: number,
+  ratingBand: number,
+): RelativeDifficulty {
+  const delta = problemDifficulty - ratingBand;
+  if (delta <= -150) return 'easier';
+  if (delta >= 150) return 'harder';
+  return 'at band';
+}
+
 export type TopicStat = {
   topic: string;
   avg: number | null;
