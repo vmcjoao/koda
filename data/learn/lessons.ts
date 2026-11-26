@@ -1,4 +1,6 @@
 import type { LearnLesson } from '@/types/learn';
+import { LESSONS_MORE } from '@/data/learn/lessons-more';
+import { LESSONS_EXTRA } from '@/data/learn/lessons-extra';
 
 const DEMO_GRAPH = {
   nodes: [
@@ -21,7 +23,7 @@ const DEMO_GRAPH = {
   start: '0',
 };
 
-export const LESSONS: LearnLesson[] = [
+const LESSONS_CORE: LearnLesson[] = [
   {
     id: 'bfs',
     tagLabel: 'BFS',
@@ -52,7 +54,7 @@ export const LESSONS: LearnLesson[] = [
   }
   return dist;
 }`,
-      notes_md: 'Adjacency list undirected/directed. `dist[v] < 0` doubles as visited.',
+      notes_md: 'Adjacency list (directed or undirected). `dist[v] < 0` doubles as visited — mark when **enqueueing**.',
     },
   },
   {
@@ -62,11 +64,11 @@ export const LESSONS: LearnLesson[] = [
     family: 'graphs',
     summary: 'Go deep first — components, cycles, recursion on graphs/trees.',
     usage_md:
-      'DFS is the default “walk the graph” tool: connected components, cycle detection, topological order (via finish times), flood fill, tree DP.\n\n**Pitfall:** recursion depth on large N — prefer explicit stack or raise limits carefully.',
+      'DFS is the default “walk the graph” tool: connected components, cycle detection, topological order (via finish times), flood fill, tree DP.\n\n**Pitfall:** recursion depth on large $N$ — prefer an explicit stack, or raise the stack limit carefully on judges that allow it.',
     complexity: {
       time: 'O(N + M)',
       extraMemory: 'O(N)',
-      notes_md: 'Color/visited array; recursion stack can be O(N).',
+      notes_md: 'Visited/color array; recursion stack can be $O(N)$ on a line graph.',
     },
     visualization: { kind: 'graph-dfs', demo: DEMO_GRAPH },
     implementation: {
@@ -76,7 +78,6 @@ export const LESSONS: LearnLesson[] = [
   for (int v : g[u]) if (!vis[v]) dfs(v, g, vis);
 }
 
-// components
 int components(int n, vector<vector<int>>& g) {
   vector<int> vis(n);
   int c = 0;
@@ -86,6 +87,7 @@ int components(int n, vector<vector<int>>& g) {
   }
   return c;
 }`,
+      notes_md: 'For directed cycle detection use 3-colors (white/gray/black), not a single visited bit.',
     },
   },
   {
@@ -114,7 +116,7 @@ vector<ll> dijkstra(int n, vector<vector<pair<int,ll>>>& g, int s) {
   pq.push({0, s});
   while (!pq.empty()) {
     auto [d, u] = pq.top(); pq.pop();
-    if (d != dist[u]) continue;
+    if (d != dist[u]) continue; // stale heap entry
     for (auto [v, w] : g[u]) if (dist[v] > d + w) {
       dist[v] = d + w;
       pq.push({dist[v], v});
@@ -122,6 +124,7 @@ vector<ll> dijkstra(int n, vector<vector<pair<int,ll>>>& g, int s) {
   }
   return dist;
 }`,
+      notes_md: 'No decrease-key: push a new pair and skip outdated ones with `d != dist[u]`.',
     },
   },
   {
@@ -135,6 +138,7 @@ vector<ll> dijkstra(int n, vector<vector<pair<int,ll>>>& g, int s) {
     complexity: {
       time: 'O(N + M)',
       extraMemory: 'O(N)',
+      notes_md: 'Kahn (indegree + queue) and DFS-finish order are both fine; Kahn makes cycles obvious.',
     },
     visualization: {
       kind: 'graph-topo',
@@ -172,6 +176,7 @@ vector<ll> dijkstra(int n, vector<vector<pair<int,ll>>>& g, int s) {
   if ((int)order.size() != n) return {}; // cycle
   return order;
 }`,
+      notes_md: 'Empty return means a cycle — not a valid topological order.',
     },
   },
   {
@@ -308,7 +313,7 @@ int max_feasible(int lo, int hi, auto ok) {
     family: 'structures',
     summary: 'Precompute running sums for O(1) range queries.',
     usage_md:
-      'Range sum on a static array, 2D grids (inclusion-exclusion), difference arrays for range updates then prefix to materialize.\n\n**Pitfall:** off-by-one on inclusive/exclusive bounds; overflow — use 64-bit.',
+      'Range sum on a static array, 2D grids (inclusion-exclusion), and **difference arrays** (range add then prefix to materialize).\n\n**Pitfall:** off-by-one on inclusive vs exclusive bounds; sum overflow — prefer 64-bit accumulators.',
     complexity: {
       time: 'O(N) build, O(1) query',
       extraMemory: 'O(N)',
@@ -321,15 +326,16 @@ int max_feasible(int lo, int hi, auto ok) {
       language: 'cpp',
       code: `// pref[i] = sum of a[0..i)
 vector<long long> build_pref(vector<int>& a) {
-  int n = a.size();
+  int n = (int)a.size();
   vector<long long> pref(n + 1);
   for (int i = 0; i < n; i++) pref[i + 1] = pref[i] + a[i];
   return pref;
 }
-// sum a[l..r) 
+// sum a[l..r)
 long long range_sum(vector<long long>& pref, int l, int r) {
   return pref[r] - pref[l];
 }`,
+      notes_md: 'Half-open $[l,r)$. For inclusive $[L,R]$ use `pref[R+1] - pref[L]`.',
     },
   },
   {
@@ -344,6 +350,10 @@ long long range_sum(vector<long long>& pref, int l, int r) {
       time: 'O(N · W)',
       extraMemory: 'O(W)',
       notes_md: 'N items, capacity W. Meet-in-the-middle if W is huge but N≤40.',
+    },
+    visualization: {
+      kind: 'dp-knapsack',
+      demo: { weights: [2, 3, 4, 5], values: [3, 4, 5, 6], capacity: 8 },
     },
     implementation: {
       language: 'cpp',
@@ -409,7 +419,7 @@ vector<int> build_spf(int n) {
     },
     implementation: {
       language: 'cpp',
-      code: `// Kosaraju
+      code: `// Kosaraju — pass G and its transpose GT
 void dfs1(int u, vector<vector<int>>& g, vector<int>& vis, vector<int>& order) {
   vis[u] = 1;
   for (int v : g[u]) if (!vis[v]) dfs1(v, g, vis, order);
@@ -426,8 +436,9 @@ int scc(int n, vector<vector<int>>& g, vector<vector<int>>& gt, vector<int>& com
   int cid = 0;
   for (int i = n - 1; i >= 0; i--) if (comp[order[i]] < 0)
     dfs2(order[i], gt, comp, cid++);
-  return cid;
+  return cid; // number of components; comp[u] in [0, cid)
 }`,
+      notes_md: 'Build `gt[v].push_back(u)` for each edge $u\\to v$. Condensation DAG: edge between different `comp` ids.',
     },
   },
   {
@@ -437,7 +448,7 @@ int scc(int n, vector<vector<int>>& g, vector<vector<int>>& gt, vector<int>& com
     family: 'graphs',
     summary: 'Edges/vertices whose removal increases connected components.',
     usage_md:
-      'Critical roads/cities, bridge-tree (2-edge-CC condensation), cactus graphs.\n\nDFS with discovery time `tin` and `low`: bridge when `low[v] > tin[u]`; articulation when root has ≥2 children or `low[child] ≥ tin[u]`.\n\n**Pitfall:** multiple edges — handle edge ids so a parallel edge is not a bridge.',
+      'Critical roads/cities, bridge-tree (2-edge-CC condensation), cactus graphs.\n\nDFS with discovery time `tin` and `low`:\n- **bridge** $(u,v)$ when `low[v] > tin[u]`\n- **articulation** $u$ when root has $\\ge 2$ DFS children, or a non-root has a child with `low[child] \\ge tin[u]`\n\n**Pitfall:** parallel edges — store edge ids and ignore the parent *edge*, not just the parent vertex, or a double edge looks like a bridge.',
     complexity: {
       time: 'O(N + M)',
       extraMemory: 'O(N + M)',
@@ -447,9 +458,11 @@ int scc(int n, vector<vector<int>>& g, vector<vector<int>>& gt, vector<int>& com
       code: `int timer;
 vector<int> tin, low;
 vector<pair<int,int>> bridges;
+vector<char> is_art;
 
 void dfs(int u, int p, vector<vector<int>>& g) {
   tin[u] = low[u] = ++timer;
+  int children = 0;
   for (int v : g[u]) {
     if (v == p) continue;
     if (tin[v]) low[u] = min(low[u], tin[v]);
@@ -457,16 +470,21 @@ void dfs(int u, int p, vector<vector<int>>& g) {
       dfs(v, u, g);
       low[u] = min(low[u], low[v]);
       if (low[v] > tin[u]) bridges.push_back({u, v});
+      if (p != -1 && low[v] >= tin[u]) is_art[u] = 1;
+      children++;
     }
   }
+  if (p == -1 && children > 1) is_art[u] = 1;
 }
 
-void find_bridges(int n, vector<vector<int>>& g) {
+void find_bridges_arts(int n, vector<vector<int>>& g) {
   timer = 0;
   tin.assign(n, 0); low.assign(n, 0);
+  is_art.assign(n, 0);
   bridges.clear();
   for (int i = 0; i < n; i++) if (!tin[i]) dfs(i, -1, g);
 }`,
+      notes_md: 'For multigraphs, build `g` as edge-id adjacency and skip the parent edge id instead of `v == p`.',
     },
   },
   {
@@ -476,11 +494,11 @@ void find_bridges(int n, vector<vector<int>>& g) {
     family: 'graphs',
     summary: 'Maximum s–t flow equals minimum cut — Dinic with level graph + DFS.',
     usage_md:
-      'Assignment with capacities, edge-disjoint paths, project selection (min-cut), bipartite matching via unit network.\n\nDinic: BFS levels, then blocking flow via DFS. Great default for contest graphs.\n\n**Pitfall:** forgetting residual reverse edges; overflow on long long capacities.',
+      'Assignment with capacities, edge-disjoint paths, project selection (min-cut), bipartite matching via unit network.\n\nDinic: BFS builds a level graph, then DFS pushes a blocking flow. Solid default for contest max-flow.\n\n**Pitfall:** forgetting residual reverse edges (`cap` on the reverse edge); using `int` when capacities sum past $2^{31}$.',
     complexity: {
-      time: 'O(N² · M) worst; faster in practice',
+      time: 'O(N² · M)',
       extraMemory: 'O(N + M)',
-      notes_md: 'Unit networks / bipartite matching are much faster.',
+      notes_md: 'Worst-case bound; unit-capacity / bipartite matching instances are much faster in practice.',
     },
     implementation: {
       language: 'cpp',
@@ -531,32 +549,36 @@ void find_bridges(int n, vector<vector<int>>& g) {
     family: 'graphs',
     summary: 'Maximum pairs in a bipartite graph — Kuhn or flow.',
     usage_md:
-      'Jobs↔workers, rows↔columns covers (König), gophers↔holes. Kuhn DFS augmenting paths is short; Hopcroft–Karp / Dinic for large sparse graphs.\n\n**Pitfall:** building the wrong bipartition; forgetting unmatched left nodes still need tries each round.',
+      'Jobs↔workers, rows↔columns covers (König), gophers↔holes. Kuhn DFS augmenting paths is short; Hopcroft–Karp / Dinic for large sparse graphs.\n\n**Pitfall:** building the wrong bipartition; reusing a stale `vis` mark across left nodes in the same round (use a timer or clear each attempt).',
     complexity: {
       time: 'O(V · E) Kuhn; O(E √V) Hopcroft',
       extraMemory: 'O(V + E)',
+      notes_md: 'For huge sparse graphs prefer Hopcroft–Karp or Dinic on a unit network.',
     },
     implementation: {
       language: 'cpp',
-      code: `// Kuhn: left 0..nL-1, right 0..nR-1
-vector<vector<int>> g; // left → right
+      code: `// Kuhn: left 0..nL-1, right 0..nR-1; g[u] = right neighbors
 vector<int> matchR, vis;
 int timer;
+vector<vector<int>>* adj;
 
 bool try_aug(int u) {
   if (vis[u] == timer) return false;
   vis[u] = timer;
-  for (int v : g[u]) {
+  for (int v : (*adj)[u]) {
     if (matchR[v] < 0 || try_aug(matchR[v])) {
-      matchR[v] = u; return true;
+      matchR[v] = u;
+      return true;
     }
   }
   return false;
 }
 
-int bpm(int nL, int nR) {
+int bpm(int nL, int nR, vector<vector<int>>& g) {
+  adj = &g;
   matchR.assign(nR, -1);
-  vis.assign(nL, 0); timer = 0;
+  vis.assign(nL, 0);
+  timer = 0;
   int ans = 0;
   for (int u = 0; u < nL; u++) {
     timer++;
@@ -564,6 +586,7 @@ int bpm(int nL, int nR) {
   }
   return ans;
 }`,
+      notes_md: '`matchR[v]` = left node matched to right $v$, or $-1$. Read the matching from `matchR` after `bpm`.',
     },
   },
   {
@@ -573,29 +596,44 @@ int bpm(int nL, int nR) {
     family: 'graphs',
     summary: 'Shortest paths with negative weights; detect negative cycles.',
     usage_md:
-      'When Dijkstra is illegal (negative edges). Also currency exchange / wormhole “can I go back in time?” via negative-cycle detection.\n\nRelax all edges |V|−1 times; one more pass finds nodes affected by a negative cycle.\n\n**Pitfall:** only reporting a cycle that is reachable from the source when the statement requires it.',
+      'When Dijkstra is illegal (negative edges). Also currency exchange / wormhole “can I go back in time?” via negative-cycle detection.\n\nRelax all edges $|V|-1$ times; one more pass marks edges that still relax. Flood along outgoing edges so every node reachable from a negative cycle is flagged.\n\n**Pitfall:** reporting a negative cycle that is not reachable from the source when the statement only cares about paths from $s$.',
     complexity: {
       time: 'O(N · M)',
       extraMemory: 'O(N)',
+      notes_md: 'SPFA is a queue optimization — still $O(NM)$ worst case; fine for many contests, risky against anti-SPFA tests.',
     },
     implementation: {
       language: 'cpp',
       code: `using ll = long long;
 const ll INF = 4e18;
 
-// returns dist; neg_cycle[v]=true if v reachable from a neg cycle
+// dist from s; neg[v]=true if v can be made arbitrarily small via a neg cycle
 vector<ll> bellman(int n, vector<array<ll,3>>& edges, int s, vector<char>& neg) {
-  vector<ll> dist(n, INF); dist[s] = 0;
+  vector<ll> dist(n, INF);
+  dist[s] = 0;
   for (int i = 0; i < n - 1; i++)
-    for (auto [u, v, w] : edges) if (dist[u] < INF)
-      dist[v] = min(dist[v], dist[u] + w);
+    for (auto [u, v, w] : edges)
+      if (dist[u] < INF) dist[v] = min(dist[v], dist[u] + w);
+
   neg.assign(n, 0);
-  for (auto [u, v, w] : edges) if (dist[u] < INF && dist[v] > dist[u] + w) {
-    dist[v] = dist[u] + w; neg[v] = 1;
+  queue<int> q;
+  for (auto [u, v, w] : edges)
+    if (dist[u] < INF && dist[v] > dist[u] + w && !neg[v]) {
+      neg[v] = 1;
+      q.push(v);
+    }
+  vector<vector<int>> g(n);
+  for (auto [u, v, w] : edges) g[u].push_back(v);
+  while (!q.empty()) {
+    int u = q.front(); q.pop();
+    for (int v : g[u]) if (!neg[v]) {
+      neg[v] = 1;
+      q.push(v);
+    }
   }
-  // flood neg marks along edges if needed
   return dist;
 }`,
+      notes_md: 'Edges are `{u, v, w}` directed. After the flood, treat `neg[v]` queries as −∞ / unreachable per statement.',
     },
   },
   {
@@ -605,7 +643,7 @@ vector<ll> bellman(int n, vector<array<ll,3>>& edges, int s, vector<char>& neg) 
     family: 'graphs',
     summary: 'All-pairs shortest paths via DP on intermediate nodes.',
     usage_md:
-      'Dense graphs with N ≲ 400–500, APSP, closure / reachability with min/or. Easy to implement.\n\n**Pitfall:** N³ time and N² memory — too slow for N≥1000; negative cycles on diagonal.',
+      'Dense graphs with $N \\lesssim 400$–$500$, all-pairs distances, transitive closure (swap `min`+`+` for `or`+`and`). Tiny code, hard constraints.\n\nInitialize `d[i][i] = 0`, missing edges to `INF`, then run the triple loop.\n\n**Pitfall:** $N^3$ time / $N^2$ memory — too slow for $N \\ge 1000$. After Floyd, `d[i][i] < 0` means a negative cycle touches $i$.',
     complexity: {
       time: 'O(N³)',
       extraMemory: 'O(N²)',
@@ -615,13 +653,21 @@ vector<ll> bellman(int n, vector<array<ll,3>>& edges, int s, vector<char>& neg) 
       code: `using ll = long long;
 const ll INF = 4e18;
 
+// Fill d with INF, set d[i][i]=0 and d[u][v]=w for each edge (keep min on multis).
 void floyd(vector<vector<ll>>& d) {
   int n = d.size();
   for (int k = 0; k < n; k++)
     for (int i = 0; i < n; i++) if (d[i][k] < INF)
       for (int j = 0; j < n; j++) if (d[k][j] < INF)
         d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+}
+
+bool has_neg_cycle(vector<vector<ll>>& d) {
+  int n = d.size();
+  for (int i = 0; i < n; i++) if (d[i][i] < 0) return true;
+  return false;
 }`,
+      notes_md: 'Guard `d[i][k] + d[k][j]` against overflow if you use a smaller INF, or keep the `< INF` checks as above.',
     },
   },
   {
@@ -631,7 +677,7 @@ void floyd(vector<vector<ll>>& d) {
     family: 'graphs',
     summary: 'Deepest node that is ancestor of both u and v — binary lifting.',
     usage_md:
-      'Tree path queries (dist = depth[u]+depth[v]−2·depth[lca]), subtree checks, virtual trees.\n\nBinary lifting: `up[k][v]` = 2ᵏ-th parent. Also Euler tour + RMQ.\n\n**Pitfall:** rooting the tree wrong; querying before `dfs` init.',
+      'Tree path queries ($\\mathrm{dist}(u,v) = \\mathrm{depth}[u]+\\mathrm{depth}[v]-2\\cdot\\mathrm{depth}[\\mathrm{lca}]$), subtree checks, virtual trees.\n\nBinary lifting: `up[k][v]` = $2^k$-th parent. Alternative: Euler tour + RMQ/sparse table.\n\n**Pitfall:** calling `lca` before `dfs`; using 1-based nodes with a `MAXN` array sized too small (`LOG` must satisfy $2^{\\mathrm{LOG}} \\ge N$).',
     complexity: {
       time: 'O(N log N) build, O(log N) query',
       extraMemory: 'O(N log N)',
@@ -639,14 +685,15 @@ void floyd(vector<vector<ll>>& d) {
     implementation: {
       language: 'cpp',
       code: `const int LOG = 20;
-int n, up[LOG][200001], depth[200001];
+int up[LOG][200001], depth[200001];
 vector<int> g[200001];
 
 void dfs(int u, int p) {
   up[0][u] = p;
-  for (int k = 1; k < LOG; k++) up[k][u] = up[k-1][up[k-1][u]];
+  for (int k = 1; k < LOG; k++) up[k][u] = up[k - 1][up[k - 1][u]];
   for (int v : g[u]) if (v != p) {
-    depth[v] = depth[u] + 1; dfs(v, u);
+    depth[v] = depth[u] + 1;
+    dfs(v, u);
   }
 }
 int lca(int a, int b) {
@@ -658,6 +705,7 @@ int lca(int a, int b) {
     a = up[k][a], b = up[k][b];
   return up[0][a];
 }`,
+      notes_md: '0-based nodes; call `dfs(root, root)` (or `dfs(root, 0)` with a dummy parent). Size `up`/`g` for your $N$.',
     },
   },
 
@@ -742,33 +790,34 @@ int ternary_int(int lo, int hi, auto f) {
     family: 'search',
     summary: 'Split N≈40 into two halves — enumerate and match.',
     usage_md:
-      'Subset sum / knapsack when N≤40 but 2ⁿ is too big: enumerate 2^{n/2} on each half, sort/hash one side, probe the other.\n\n**Pitfall:** double-counting the empty subset; overflow when summing.',
+      'Subset sum / knapsack when $N \\le 40$ but $2^N$ is too big: split into halves of size $\\approx N/2$, enumerate all $2^{N/2}$ subset sums on each side, sort one side, and probe with `equal_range` / hash map.\n\nSame idea works for XOR, weighted pairs, and some knapsack reconstructions.\n\n**Pitfall:** overflow when summing into `int`; off-by-one on half sizes when $N$ is odd.',
     complexity: {
       time: 'O(2^{N/2} · N)',
       extraMemory: 'O(2^{N/2})',
+      notes_md: 'C++17 structured bindings in the snippet; otherwise use `equal_range` iterators.',
     },
     implementation: {
       language: 'cpp',
-      code: `// count subsets with sum == target
+      code: `// count subsets with sum == target (includes empty subset once)
 long long meet_in_middle(vector<int>& a, long long target) {
-  int n = a.size(), mid = n / 2;
+  int n = (int)a.size(), mid = n / 2;
   vector<long long> L, R;
   for (int m = 0; m < (1 << mid); m++) {
     long long s = 0;
     for (int i = 0; i < mid; i++) if (m >> i & 1) s += a[i];
     L.push_back(s);
   }
-  int r = n - mid;
-  for (int m = 0; m < (1 << r); m++) {
+  int rlen = n - mid;
+  for (int m = 0; m < (1 << rlen); m++) {
     long long s = 0;
-    for (int i = 0; i < r; i++) if (m >> i & 1) s += a[mid + i];
+    for (int i = 0; i < rlen; i++) if (m >> i & 1) s += a[mid + i];
     R.push_back(s);
   }
   sort(R.begin(), R.end());
   long long ans = 0;
   for (long long s : L) {
-    auto [lo, hi] = equal_range(R.begin(), R.end(), target - s);
-    ans += hi - lo;
+    auto range = equal_range(R.begin(), R.end(), target - s);
+    ans += range.second - range.first;
   }
   return ans;
 }`,
@@ -781,12 +830,13 @@ long long meet_in_middle(vector<int>& a, long long target) {
     tagLabel: 'Segment Tree',
     title: 'Segment Tree',
     family: 'structures',
-    summary: 'Range queries + point/range updates in O(log N).',
+    summary: 'Range queries with point updates in O(log N) — extend with lazy for range updates.',
     usage_md:
-      'Range sum/min/gcd, lazy range add + range min, offline offline tricks. Default when Fenwick is not enough (non-invertible ops, lazy).\n\n**Pitfall:** wrong `push`/`pull` order with lazy; off-by-one on half-open intervals.',
+      'Range sum / min / gcd with point updates. Prefer a Fenwick tree when you only need invertible prefix ops; use a segtree for non-invertible combines or when you will add **lazy** range updates.\n\nThe snippet below is the classic point-update range-sum tree (inclusive indices).\n\n**Pitfall:** wrong `push`/`pull` order once you add lazy tags; mixing inclusive and half-open index conventions.',
     complexity: {
       time: 'O(N) build, O(log N) op',
       extraMemory: 'O(N)',
+      notes_md: 'Allocate `4N` nodes. Lazy range-add is the usual next upgrade.',
     },
     implementation: {
       language: 'cpp',
@@ -796,24 +846,26 @@ long long meet_in_middle(vector<int>& a, long long target) {
   void build(vector<long long>& a, int v, int tl, int tr) {
     if (tl == tr) { t[v] = a[tl]; return; }
     int tm = (tl + tr) / 2;
-    build(a, 2*v, tl, tm); build(a, 2*v+1, tm+1, tr);
-    t[v] = t[2*v] + t[2*v+1];
+    build(a, 2 * v, tl, tm);
+    build(a, 2 * v + 1, tm + 1, tr);
+    t[v] = t[2 * v] + t[2 * v + 1];
   }
   void upd(int v, int tl, int tr, int pos, long long val) {
     if (tl == tr) { t[v] = val; return; }
     int tm = (tl + tr) / 2;
-    if (pos <= tm) upd(2*v, tl, tm, pos, val);
-    else upd(2*v+1, tm+1, tr, pos, val);
-    t[v] = t[2*v] + t[2*v+1];
+    if (pos <= tm) upd(2 * v, tl, tm, pos, val);
+    else upd(2 * v + 1, tm + 1, tr, pos, val);
+    t[v] = t[2 * v] + t[2 * v + 1];
   }
   long long qry(int v, int tl, int tr, int l, int r) {
     if (l > r) return 0;
     if (l == tl && r == tr) return t[v];
     int tm = (tl + tr) / 2;
-    return qry(2*v, tl, tm, l, min(r, tm))
-         + qry(2*v+1, tm+1, tr, max(l, tm+1), r);
+    return qry(2 * v, tl, tm, l, min(r, tm))
+         + qry(2 * v + 1, tm + 1, tr, max(l, tm + 1), r);
   }
 };`,
+      notes_md: 'Call `build(a, 1, 0, n-1)`, `upd(1, 0, n-1, i, x)`, `qry(1, 0, n-1, l, r)` on $0..n-1$.',
     },
   },
   {
@@ -823,30 +875,38 @@ long long meet_in_middle(vector<int>& a, long long target) {
     family: 'structures',
     summary: 'Offline range queries by sorting into √N blocks.',
     usage_md:
-      'Distinct count, frequency powers, xor-pair counts — anything with add/remove that updates an answer in O(1) or O(log N).\n\nSort queries by `(block(l), r)`; move `[cl,cr]` to each query.\n\n**Pitfall:** add/remove order when expanding/shrinking; Hilbert-order optional micro-opt.',
+      'Distinct count, frequency powers, xor-pair counts — anything where you can `add`/`remove` an index and update the answer in $O(1)$ or $O(\\log N)$.\n\nSort queries by `(block(l), r)` (odd blocks reverse $r$ for fewer moves). Start from an empty window `[1,0]` and expand/shrink to each query.\n\n**Pitfall:** add/remove order when both ends move; assuming online queries (Mo is offline). Hilbert-order is an optional micro-opt.',
     complexity: {
       time: 'O((N + Q) · √N · F)',
       extraMemory: 'O(N + Q)',
-      notes_md: 'F = cost of add/remove.',
+      notes_md: '$F$ = cost of one add/remove. Example below uses 0-based inclusive $[l,r]$.',
     },
     implementation: {
       language: 'cpp',
-      code: `struct Query { int l, r, idx; };
-int BLOCK;
+      code: `struct Query { int l, r, idx; }; // inclusive
 
-long long run_mo(vector<int>& a, vector<Query> qs) {
-  int n = a.size(); BLOCK = max(1, (int)sqrt(n));
-  sort(qs.begin(), qs.end(), [](auto& A, auto& B) {
-    int ba = A.l / BLOCK, bb = B.l / BLOCK;
+vector<int> mo_distinct(vector<int> a, vector<Query> qs) {
+  int n = a.size(), B = max(1, (int)sqrt(n));
+  // compress values
+  vector<int> vals = a;
+  sort(vals.begin(), vals.end());
+  vals.erase(unique(vals.begin(), vals.end()), vals.end());
+  for (int& x : a) x = lower_bound(vals.begin(), vals.end(), x) - vals.begin();
+
+  sort(qs.begin(), qs.end(), [&](auto& A, auto& B) {
+    int ba = A.l / B, bb = B.l / B;
     if (ba != bb) return ba < bb;
     return (ba & 1) ? A.r > B.r : A.r < B.r;
   });
-  vector<int> freq(/* domain */ 0);
-  long long cur = 0; // maintain answer
-  auto add = [&](int i) { /* freq[a[i]]++; update cur */ };
-  auto del = [&](int i) { /* update cur; freq[a[i]]--; */ };
-  int cl = 0, cr = -1;
-  vector<long long> ans(qs.size());
+
+  vector<int> freq(vals.size()), ans(qs.size());
+  int cl = 0, cr = -1, cur = 0;
+  auto add = [&](int i) {
+    if (freq[a[i]]++ == 0) cur++;
+  };
+  auto del = [&](int i) {
+    if (--freq[a[i]] == 0) cur--;
+  };
   for (auto& q : qs) {
     while (cl > q.l) add(--cl);
     while (cr < q.r) add(++cr);
@@ -854,8 +914,9 @@ long long run_mo(vector<int>& a, vector<Query> qs) {
     while (cr > q.r) del(cr--);
     ans[q.idx] = cur;
   }
-  return ans.empty() ? 0 : ans[0];
+  return ans;
 }`,
+      notes_md: 'Swap the `add`/`del` bodies for other aggregates (e.g. $\\sum \\mathrm{freq}[x]^2 \\cdot x$).',
     },
   },
 
@@ -865,9 +926,9 @@ long long run_mo(vector<int>& a, vector<Query> qs) {
     tagLabel: 'LIS',
     title: 'Longest Increasing Subsequence',
     family: 'dp',
-    summary: 'Patience sorting — length in O(N log N), recover sequence with parents.',
+    summary: 'Patience sorting — LIS length in O(N log N).',
     usage_md:
-      'Classic DP warm-up; dilworth / chains; reduce other problems to LIS via compression.\n\nMaintain `tails[len] =` smallest tail of all increasing subsequences with that length.\n\n**Pitfall:** strictly vs non-decreasing (`lower_bound` vs `upper_bound`).',
+      'Classic DP warm-up; Dilworth / chain covers; many problems reduce to LIS after coordinate tricks.\n\nMaintain `tails[len] =` the smallest tail value among all increasing subsequences of that length. The length of `tails` is the LIS length (the array itself is **not** the LIS).\n\nTo reconstruct one LIS, also store `prev` indices while updating.\n\n**Pitfall:** strict vs non-decreasing — use `lower_bound` for strict, `upper_bound` for non-decreasing.',
     complexity: {
       time: 'O(N log N)',
       extraMemory: 'O(N)',
@@ -881,8 +942,9 @@ long long run_mo(vector<int>& a, vector<Query> qs) {
     if (it == tails.end()) tails.push_back(x);
     else *it = x;
   }
-  return tails.size();
+  return (int)tails.size();
 }`,
+      notes_md: '`tails` is an auxiliary structure — do not print it as the subsequence.',
     },
   },
 
@@ -1024,17 +1086,18 @@ vector<int> kmp_match(string& text, string& pat) {
     },
     implementation: {
       language: 'cpp',
-      code: `vector<int> z_function(string& s) {
-  int n = s.size();
+      code: `vector<int> z_function(const string& s) {
+  int n = (int)s.size();
   vector<int> z(n);
   for (int i = 1, l = 0, r = 0; i < n; i++) {
     if (i < r) z[i] = min(r - i, z[i - l]);
     while (i + z[i] < n && s[z[i]] == s[i + z[i]]) z[i]++;
     if (i + z[i] > r) l = i, r = i + z[i];
   }
-  z[0] = n;
+  z[0] = n; // conventional; some codes leave z[0]=0
   return z;
 }`,
+      notes_md: 'Pattern match: build Z on `pat + "#" + text`; hits when `z[i] == |pat|`.',
     },
   },
   {
@@ -1042,9 +1105,9 @@ vector<int> kmp_match(string& text, string& pat) {
     tagLabel: 'String Hashing',
     title: 'Polynomial String Hashing',
     family: 'strings',
-    summary: 'Rolling hashes for O(1) substring equality (mod primes).',
+    summary: 'Rolling hashes for O(1) substring equality checks.',
     usage_md:
-      'Compare substrings, find repeats, binary-search LCP, dictionary of seen strings. Prefer two mods or 64-bit splitmix-style to cut collisions.\n\n**Pitfall:** single small mod → anti-hash hacks; mixing `unsigned`/`long long` overflow rules.',
+      'Compare substrings, find repeats, binary-search LCP, keep a set of seen strings. The snippet uses natural overflow mod $2^{64}$ via `unsigned long long` (fast, usually fine). For adversarial tests, use **two** moduli or a stronger 64-bit mix.\n\n**Pitfall:** a single small prime modulus is easy to anti-hash; mixing signed overflow UB with `long long` multiplies.',
     complexity: {
       time: 'O(N) build, O(1) get',
       extraMemory: 'O(N)',
@@ -1053,20 +1116,22 @@ vector<int> kmp_match(string& text, string& pat) {
       language: 'cpp',
       code: `using ull = unsigned long long;
 struct Hasher {
-  vector<ull> p, h; ull BASE = 911382323;
-  Hasher(string& s) {
-    int n = s.size();
+  vector<ull> p, h;
+  ull BASE = 911382323ULL;
+  Hasher(const string& s) {
+    int n = (int)s.size();
     p.resize(n + 1); h.resize(n + 1);
     p[0] = 1;
     for (int i = 0; i < n; i++) {
       p[i + 1] = p[i] * BASE;
-      h[i + 1] = h[i] * BASE + (ull)(s[i] + 1);
+      h[i + 1] = h[i] * BASE + ull(s[i] + 1);
     }
   }
-  ull get(int l, int r) { // [l, r)
+  ull get(int l, int r) { // half-open [l, r)
     return h[r] - h[l] * p[r - l];
   }
 };`,
+      notes_md: 'Compare `get(l1,r1) == get(l2,r2)` only when lengths match. Collision probability is small but nonzero.',
     },
   },
 
@@ -1078,7 +1143,7 @@ struct Hasher {
     family: 'geometry',
     summary: 'Smallest convex polygon covering all points — monotone chain.',
     usage_md:
-      'Farthest pair (rotating calipers), diameter, onion peeling, “is B inside hull(A)?”.\n\nAndrew monotone chain: sort by (x,y), build lower then upper with cross ≤ 0 pops.\n\n**Pitfall:** duplicate points; collinear edges — decide whether to keep or drop.',
+      'Farthest pair (rotating calipers), diameter, onion peeling, “is B inside hull(A)?”.\n\nAndrew monotone chain: sort by $(x,y)$, build lower then upper hull; pop while the turn is not strictly left (`cross <= 0` drops colinear points).\n\n**Pitfall:** forgetting to dedupe identical points; using `int` cross products that overflow — prefer 64-bit coordinates/cross.',
     complexity: {
       time: 'O(N log N)',
       extraMemory: 'O(N)',
@@ -1110,8 +1175,9 @@ vector<Pt> convex_hull(vector<Pt> a) {
   }
   lo.pop_back(); hi.pop_back();
   lo.insert(lo.end(), hi.begin(), hi.end());
-  return lo;
+  return lo; // CCW, no repeated start vertex
 }`,
+      notes_md: 'Use `< 0` instead of `<= 0` if the statement wants colinear boundary points kept.',
     },
   },
   {
@@ -1121,32 +1187,35 @@ vector<Pt> convex_hull(vector<Pt> a) {
     family: 'geometry',
     summary: 'Process events left→right — segments, coverage, closest pair.',
     usage_md:
-      'Coverage histogram on the line, rectangle unions, closest pair of points, intersection counting with a balanced set of active segments.\n\nSort events; maintain active set ordered by y (or a fenwick of counts).\n\n**Pitfall:** event order ties (start before end at same x); floating precision — prefer integers.',
+      'Coverage histograms on the number line, rectangle unions, closest pair of points, segment intersections with an active $y$-set.\n\nSort events; maintain an active structure (counter, fenwick, or ordered set). The snippet accumulates how many integer points are covered by exactly $k$ segments.\n\n**Pitfall:** event ties at the same $x$ — using half-open $[l, r+1)$ avoids “start vs end” ordering bugs; prefer integers over floats when you can.',
     complexity: {
-      time: 'O(N log N) typical',
+      time: 'O(N log N)',
       extraMemory: 'O(N)',
     },
     implementation: {
       language: 'cpp',
-      code: `// coverage lengths: how many points covered by exactly k segments
+      code: `// ans[k] = # integer points covered by exactly k segments (inclusive [l,r])
 vector<long long> coverage_by_k(vector<pair<long long,long long>>& segs) {
   vector<pair<long long,int>> ev;
   for (auto [l, r] : segs) {
     ev.push_back({l, +1});
-    ev.push_back({r + 1, -1}); // inclusive r
+    ev.push_back({r + 1, -1});
   }
   sort(ev.begin(), ev.end());
   vector<long long> ans(segs.size() + 1);
-  long long cur = 0, prev = ev.empty() ? 0 : ev[0].first;
-  int i = 0, n = ev.size();
-  while (i < n) {
+  long long cur = 0;
+  long long prevx = ev.empty() ? 0 : ev[0].first;
+  for (int i = 0; i < (int)ev.size(); ) {
     long long x = ev[i].first;
-    if (cur >= 0 && cur < (int)ans.size()) ans[cur] += x - prev;
-    while (i < n && ev[i].first == x) cur += ev[i++].second;
-    prev = x;
+    if (x > prevx && cur >= 0 && cur < (int)ans.size()) ans[cur] += x - prevx;
+    while (i < (int)ev.size() && ev[i].first == x) cur += ev[i++].second;
+    prevx = x;
   }
   return ans;
 }`,
+      notes_md: '`ans[0]` is usually unused (points with coverage 0 outside all segments are not counted here).',
     },
   },
 ];
+
+export const LESSONS: LearnLesson[] = [...LESSONS_CORE, ...LESSONS_MORE, ...LESSONS_EXTRA];

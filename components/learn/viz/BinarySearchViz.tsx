@@ -39,8 +39,8 @@ export function BinarySearchViz({ demo, step }: { demo: ArrayDemo; step: number 
                 isMid && styles.mid,
               ]}
             >
-              <Text style={styles.idx}>{i}</Text>
-              <Text style={styles.val}>{v}</Text>
+              <Text style={[styles.idx, isMid && styles.onMid]}>{i}</Text>
+              <Text style={[styles.val, isMid && styles.onMid]}>{v}</Text>
             </View>
           );
         })}
@@ -70,5 +70,6 @@ const styles = StyleSheet.create({
   mid: { backgroundColor: colors.accent, borderColor: colors.accent },
   idx: { color: colors.textDim, fontSize: 9 },
   val: { color: colors.text, fontWeight: '800', fontFamily: 'SpaceMono' },
+  onMid: { color: colors.background },
   meta: { color: colors.textMuted, fontSize: 12, fontFamily: 'SpaceMono' },
 });

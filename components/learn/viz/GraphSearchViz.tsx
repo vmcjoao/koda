@@ -51,8 +51,11 @@ export function GraphSearchViz({ demo, step }: { demo: GraphDemo; step?: GraphSt
           );
         })}
         {demo.nodes.map((n) => {
-          const fill = nodeColor(nodeState[n.id]);
+          const st = nodeState[n.id];
+          const fill = nodeColor(st);
           const dist = step?.dist?.[n.id];
+          const labelFill =
+            !st || st === 'idle' ? colors.text : colors.background;
           return (
             <React.Fragment key={n.id}>
               <Circle
@@ -66,7 +69,7 @@ export function GraphSearchViz({ demo, step }: { demo: GraphDemo; step?: GraphSt
               <SvgText
                 x={n.x}
                 y={n.y + 5}
-                fill={colors.background}
+                fill={labelFill}
                 fontSize="14"
                 fontWeight="700"
                 textAnchor="middle"

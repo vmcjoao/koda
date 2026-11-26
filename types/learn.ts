@@ -5,7 +5,10 @@ export type LearnFamily =
   | 'dp'
   | 'math'
   | 'strings'
-  | 'geometry';
+  | 'geometry'
+  | 'techniques';
+
+export type LearnTagKind = 'algorithm' | 'paradigm' | 'data_structure';
 
 export type LearnVizKind =
   | 'graph-bfs'
@@ -15,7 +18,9 @@ export type LearnVizKind =
   | 'graph-mst'
   | 'array-binary-search'
   | 'dsu-merge'
-  | 'array-prefix';
+  | 'array-prefix'
+  | 'dp-knapsack'
+  | 'mono-stack';
 
 export type GraphDemo = {
   nodes: { id: string; x: number; y: number; label?: string }[];
@@ -29,9 +34,20 @@ export type ArrayDemo = {
   target?: number;
 };
 
+export type KnapsackDemo = {
+  weights: number[];
+  values: number[];
+  capacity: number;
+};
+
+export type LearnDemo = GraphDemo | ArrayDemo | KnapsackDemo;
+
 export type LearnLesson = {
   id: string;
+  /** Exact TAG_CATALOG label used for practice matching. */
   tagLabel: string;
+  /** Which catalog kind `tagLabel` belongs to (default: algorithm). */
+  tagKind?: LearnTagKind;
   title: string;
   family: LearnFamily;
   summary: string;
@@ -43,7 +59,7 @@ export type LearnLesson = {
   };
   visualization?: {
     kind: LearnVizKind;
-    demo: GraphDemo | ArrayDemo;
+    demo: LearnDemo;
   };
   implementation: {
     language: 'cpp' | 'python' | 'java';
@@ -61,4 +77,5 @@ export const LEARN_FAMILY_LABELS: Record<LearnFamily, string> = {
   math: 'Math',
   strings: 'Strings',
   geometry: 'Geometry',
+  techniques: 'Techniques',
 };

@@ -12,12 +12,14 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { AnimatedNumber } from '@/components/game/AnimatedNumber';
 import { XpChip } from '@/components/game/XpChip';
 import { scoreRank } from '@/components/game/scoreRank';
+import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { ProseCard } from '@/components/ProseCard';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { saveAttempt, type SaveAttemptResult } from '@/lib/api';
+import { lessonLinksForTags } from '@/lib/learn';
 import { formatScoreShare, shareText } from '@/lib/share';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -57,6 +59,13 @@ export default function RevealScreen() {
   const approach = breakdown.matchedApproach;
   const saved = !!result;
   const rank = scoreRank(breakdown.score);
+  const learnLinks = approach
+    ? lessonLinksForTags({
+        paradigms: approach.paradigms,
+        algorithms: approach.algorithms,
+        data_structures: approach.data_structures,
+      })
+    : [];
 
   async function persist(status: 'drafted' | 'needs_review') {
     setSaving(true);
@@ -138,6 +147,22 @@ export default function RevealScreen() {
           <Text style={styles.tags}>
             {[...approach.paradigms, ...approach.algorithms, ...approach.data_structures].join(' · ')}
           </Text>
+          {learnLinks.length ? (
+            <>
+              <Text style={styles.label}>Learn these</Text>
+              <View style={styles.learnRow}>
+                {learnLinks.map((link) => (
+                  <PressableScale
+                    key={link.lesson.id}
+                    style={styles.learnChip}
+                    onPress={() => router.push(`/learn/${link.lesson.id}`)}
+                  >
+                    <Text style={styles.learnChipText}>{link.lesson.title}</Text>
+                  </PressableScale>
+                ))}
+              </View>
+            </>
+          ) : null}
           {approach.key_insights.length ? (
             <>
               <Text style={styles.label}>Key insights</Text>
@@ -320,6 +345,24 @@ const styles = StyleSheet.create({
   tags: {
     color: colors.text,
     fontSize: 14,
+  },
+  learnRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
+  },
+  learnChip: {
+    backgroundColor: colors.chipSelected,
+    borderWidth: 1,
+    borderColor: colors.accent,
+    borderRadius: radii.sm,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  learnChipText: {
+    color: colors.accent,
+    fontSize: 13,
+    fontWeight: '700',
   },
   insight: {
     color: colors.text,

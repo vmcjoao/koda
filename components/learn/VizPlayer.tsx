@@ -1,11 +1,13 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { GraphSearchViz, type GraphStep } from '@/components/learn/viz/GraphSearchViz';
 import { BinarySearchViz } from '@/components/learn/viz/BinarySearchViz';
 import { DsuViz } from '@/components/learn/viz/DsuViz';
 import { PrefixViz } from '@/components/learn/viz/PrefixViz';
-import type { ArrayDemo, GraphDemo, LearnVizKind } from '@/types/learn';
+import { KnapsackViz, knapsackFrameCount } from '@/components/learn/viz/KnapsackViz';
+import { MonoStackViz, monoStackFrameCount } from '@/components/learn/viz/MonoStackViz';
+import type { ArrayDemo, GraphDemo, KnapsackDemo, LearnDemo, LearnVizKind } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import {
   buildBfsSteps,
@@ -17,12 +19,22 @@ import {
 
 type Props = {
   kind: LearnVizKind;
-  demo: GraphDemo | ArrayDemo;
+  demo: LearnDemo;
 };
+
+function isGraph(demo: LearnDemo): demo is GraphDemo {
+  return 'nodes' in demo;
+}
+function isArray(demo: LearnDemo): demo is ArrayDemo {
+  return 'values' in demo;
+}
+function isKnapsack(demo: LearnDemo): demo is KnapsackDemo {
+  return 'weights' in demo && 'capacity' in demo;
+}
 
 export function VizPlayer({ kind, demo }: Props) {
   const graphSteps = useMemo(() => {
-    if (!('nodes' in demo)) return [] as GraphStep[];
+    if (!isGraph(demo)) return [] as GraphStep[];
     switch (kind) {
       case 'graph-bfs':
         return buildBfsSteps(demo);
@@ -40,38 +52,61 @@ export function VizPlayer({ kind, demo }: Props) {
   }, [demo, kind]);
 
   const maxStep = useMemo(() => {
-    if (kind === 'array-binary-search' && 'values' in demo) {
-      // lo/hi frames ≈ 2 + ~log2(n) iterations
-      return Math.max(2, Math.ceil(Math.log2(demo.values.length + 1)) + 3);
+    if (kind === 'array-binary-search' && isArray(demo)) {
+      let lo = 0;
+      let hi = demo.values.length;
+      const target = demo.target ?? demo.values[Math.floor(demo.values.length / 2)];
+      let frames = 1;
+      let guard = 0;
+      while (lo < hi && guard++ < 20) {
+        const mid = lo + Math.floor((hi - lo) / 2);
+        frames += 1;
+        if (demo.values[mid] < target) lo = mid + 1;
+        else hi = mid;
+      }
+      frames += 1;
+      return Math.max(0, frames - 1);
     }
-    if (kind === 'array-prefix' && 'values' in demo) return demo.values.length;
+    if (kind === 'array-prefix' && isArray(demo)) return demo.values.length;
     if (kind === 'dsu-merge') return 4;
+    if (kind === 'dp-knapsack' && isKnapsack(demo)) return knapsackFrameCount(demo);
+    if (kind === 'mono-stack' && isArray(demo)) return monoStackFrameCount(demo) - 1;
     return Math.max(0, graphSteps.length - 1);
   }, [demo, graphSteps.length, kind]);
 
   const [step, setStep] = useState(0);
+  useEffect(() => setStep(0), [kind, demo]);
 
   const reset = useCallback(() => setStep(0), []);
   const next = useCallback(() => setStep((s) => Math.min(maxStep, s + 1)), [maxStep]);
   const prev = useCallback(() => setStep((s) => Math.max(0, s - 1)), []);
 
+  const captionExtra =
+    kind.startsWith('graph-') && graphSteps[step]?.label
+      ? ` · ${graphSteps[step].label}`
+      : '';
+
   return (
     <View style={styles.wrap}>
       <View style={styles.stage}>
-        {kind.startsWith('graph-') && 'nodes' in demo ? (
+        {kind.startsWith('graph-') && isGraph(demo) ? (
           <GraphSearchViz demo={demo} step={graphSteps[Math.min(step, graphSteps.length - 1)]} />
         ) : null}
-        {kind === 'array-binary-search' && 'values' in demo ? (
+        {kind === 'array-binary-search' && isArray(demo) ? (
           <BinarySearchViz demo={demo} step={step} />
         ) : null}
-        {kind === 'dsu-merge' && 'nodes' in demo ? <DsuViz demo={demo} step={step} /> : null}
-        {kind === 'array-prefix' && 'values' in demo ? (
-          <PrefixViz demo={demo} step={step} />
+        {kind === 'dsu-merge' && isGraph(demo) ? <DsuViz demo={demo} step={step} /> : null}
+        {kind === 'array-prefix' && isArray(demo) ? <PrefixViz demo={demo} step={step} /> : null}
+        {kind === 'dp-knapsack' && isKnapsack(demo) ? (
+          <KnapsackViz demo={demo} step={step} />
+        ) : null}
+        {kind === 'mono-stack' && isArray(demo) ? (
+          <MonoStackViz demo={demo} step={step} />
         ) : null}
       </View>
       <Text style={styles.caption}>
         Step {step}/{maxStep}
-        {graphSteps[step]?.label ? ` · ${graphSteps[step].label}` : ''}
+        {captionExtra}
       </Text>
       <View style={styles.controls}>
         <PrimaryButton label="Reset" variant="ghost" onPress={reset} style={styles.btn} />
