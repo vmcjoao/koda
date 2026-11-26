@@ -40,7 +40,10 @@
   "devDependencies": {
     "@types/highlight.js": "^9.12.4",
     "@types/katex": "^0.16.8",
+    "@types/pg": "^8.23.1",
     "@types/react": "~19.3.0",
+    "dotenv": "^18.0.10",
+    "pg": "^8.23.1",
     "tsx": "^4.20.5",
     "typescript": "~5.9.3"
   },
@@ -58,6 +61,7 @@
     "test:statement": "tsx scripts/test-statement-render.ts",
     "test:playlists": "tsx scripts/test-playlists.ts",
     "generate:seed": "tsx scripts/generate-seed.ts",
+    "db:seed": "tsx scripts/apply-seed.ts",
     "ingest:validate": "tsx scripts/ingest/validate-draft.ts",
     "ingest:validate-batch": "tsx scripts/ingest/validate-batch.ts",
     "ingest:import": "tsx scripts/ingest/import-draft.ts",
