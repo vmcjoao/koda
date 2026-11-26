@@ -1,8 +1,9 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs, usePathname } from 'expo-router';
+import { Tabs, router, usePathname } from 'expo-router';
 import {
   Platform,
+  Pressable,
   StyleSheet,
   Text,
   View,
@@ -12,8 +13,10 @@ import {
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
+import { PlayerAvatar } from '@/components/game/PlayerAvatar';
 import { PressableScale } from '@/components/game/PressableScale';
-import { colors } from '@/constants/theme';
+import { useAuth } from '@/contexts/AuthContext';
+import { colors, spacing } from '@/constants/theme';
 
 /** Near-black bolt on the green selected orb. */
 const RUN_ICON_ON = '#0B1210';
@@ -80,12 +83,32 @@ function RunTabButton({ onPress, accessibilityState, style }: RunTabButtonProps)
   );
 }
 
+function ProfileHeaderButton() {
+  const { profile } = useAuth();
+  return (
+    <Pressable
+      onPress={() => router.push('/settings')}
+      hitSlop={8}
+      accessibilityRole="button"
+      accessibilityLabel="Open profile"
+      style={styles.profileBtn}
+    >
+      <PlayerAvatar
+        avatarId={profile?.avatar_id}
+        displayName={profile?.display_name}
+        size="sm"
+      />
+    </Pressable>
+  );
+}
+
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
         headerStyle: { backgroundColor: colors.surface },
         headerTintColor: colors.text,
+        headerRight: () => <ProfileHeaderButton />,
         tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.textMuted,
@@ -142,6 +165,9 @@ export default function TabLayout() {
 const ORB = 64;
 
 const styles = StyleSheet.create({
+  profileBtn: {
+    marginRight: spacing.md,
+  },
   tabBar: {
     backgroundColor: colors.surface,
     borderTopColor: colors.border,

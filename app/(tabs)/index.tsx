@@ -5,7 +5,6 @@ import { BrandWordmark } from '@/components/BrandWordmark';
 import { OnboardingTips } from '@/components/OnboardingTips';
 import { DailyPath } from '@/components/game/DailyPath';
 import { FadeInUp } from '@/components/game/FadeInUp';
-import { PlayerAvatar } from '@/components/game/PlayerAvatar';
 import { PlayerStrip } from '@/components/game/PlayerStrip';
 import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
