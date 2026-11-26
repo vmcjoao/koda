@@ -74,7 +74,9 @@
     "ingest:curated-batch7": "tsx scripts/ingest/curated-batch7.ts",
     "ingest:mineira": "tsx scripts/ingest/mineira.ts",
     "ingest:sbc": "tsx scripts/ingest/sbc-maratona.ts",
-    "ingest:curated-batch8": "tsx scripts/ingest/curated-batch8.ts"
+    "ingest:curated-batch8": "tsx scripts/ingest/curated-batch8.ts",
+    "ingest:curated-batch9": "tsx scripts/ingest/curated-batch9.ts",
+    "ingest:curated-batch10": "tsx scripts/ingest/curated-batch10.ts"
   },
   "private": true
 }

@@ -54,6 +54,16 @@ export const TAG_CATALOG: TagCatalogEntry[] = [
   { id: 'a-lis', kind: 'algorithm', label: 'LIS', aliases: ['longest increasing subsequence'] },
   { id: 'a-meet', kind: 'algorithm', label: 'Meet in the Middle', aliases: [] },
   { id: 'a-ternary', kind: 'algorithm', label: 'Ternary Search', aliases: [] },
+  { id: 'a-scc', kind: 'algorithm', label: 'SCC', aliases: ['strongly connected components', 'tarjan', 'kosaraju'] },
+  { id: 'a-maxflow', kind: 'algorithm', label: 'Max Flow', aliases: ['dinic', 'edmonds-karp', 'ford-fulkerson'] },
+  { id: 'a-bpm', kind: 'algorithm', label: 'Bipartite Matching', aliases: ['hopcroft-karp', 'kuhn', 'maximum matching'] },
+  { id: 'a-hull', kind: 'algorithm', label: 'Convex Hull', aliases: ['graham', 'andrew monotone chain'] },
+  { id: 'a-bridges', kind: 'algorithm', label: 'Bridges / Articulation', aliases: ['bridges', 'articulation points', 'cut vertices'] },
+  { id: 'a-matexp', kind: 'algorithm', label: 'Matrix Exponentiation', aliases: ['matrix expo', 'matrix pow'] },
+  { id: 'a-sweep', kind: 'algorithm', label: 'Sweep Line', aliases: ['line sweep', 'sweep'] },
+  { id: 'a-mo', kind: 'algorithm', label: "Mo's Algorithm", aliases: ['mo', 'sqrt decomposition'] },
+  { id: 'a-zalgo', kind: 'algorithm', label: 'Z-Algorithm', aliases: ['z algorithm', 'z-function'] },
+  { id: 'a-game', kind: 'algorithm', label: 'Game Theory', aliases: ['nim', 'grundy', 'sprague-grundy'] },
 
   // Data structures
   { id: 'd-pq', kind: 'data_structure', label: 'Priority Queue', aliases: ['heap'] },

@@ -165,7 +165,8 @@
           "Greedy"
         ],
         "algorithms": [
-          "Sorting"
+          "Sorting",
+          "Sweep Line"
         ],
         "data_structures": [
           "1D Array"
@@ -203,7 +204,8 @@
           "Ad-Hoc"
         ],
         "algorithms": [
-          "Sorting"
+          "Sorting",
+          "Sweep Line"
         ],
         "data_structures": [
           "1D Array"
@@ -7915,7 +7917,8 @@
           "String Algorithms"
         ],
         "algorithms": [
-          "KMP"
+          "KMP",
+          "Z-Algorithm"
         ],
         "data_structures": [],
         "key_insights": [
@@ -7955,7 +7958,9 @@
           "String Algorithms"
         ],
         "algorithms": [
-          "Z-algorithm"
+          "Z-algorithm",
+          "Z-Algorithm",
+          "KMP"
         ],
         "data_structures": [],
         "key_insights": [
@@ -8118,7 +8123,8 @@
           "Graph Algorithms"
         ],
         "algorithms": [
-          "DFS"
+          "DFS",
+          "SCC"
         ],
         "data_structures": [],
         "key_insights": [
@@ -8158,7 +8164,8 @@
           "Graph Algorithms"
         ],
         "algorithms": [
-          "DFS"
+          "DFS",
+          "SCC"
         ],
         "data_structures": [],
         "key_insights": [
@@ -8371,7 +8378,8 @@
         "algorithms": [
           "Max Flow",
           "BFS",
-          "DFS"
+          "DFS",
+          "Bipartite Matching"
         ],
         "data_structures": [],
         "key_insights": [
@@ -9234,7 +9242,9 @@
         "paradigms": [
           "Dynamic Programming"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Game Theory"
+        ],
         "data_structures": [],
         "key_insights": [
           "Two-player optimal play on an array ends; score difference / first-player score via interval DP"
@@ -9890,7 +9900,11 @@
         "paradigms": [
           "Ad-Hoc"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Sweep Line",
+          "Sorting",
+          "Segment Tree"
+        ],
         "data_structures": [
           "Fenwick",
           "Segment Tree"
@@ -10261,7 +10275,8 @@
           "Graph Algorithms"
         ],
         "algorithms": [
-          "DFS"
+          "DFS",
+          "SCC"
         ],
         "data_structures": [],
         "key_insights": [
@@ -10293,7 +10308,9 @@
           "Dynamic Programming"
         ],
         "algorithms": [
-          "DFS"
+          "DFS",
+          "SCC",
+          "Topological Sort"
         ],
         "data_structures": [],
         "key_insights": [
@@ -10444,7 +10461,8 @@
         ],
         "algorithms": [
           "Max Flow",
-          "BFS"
+          "BFS",
+          "DFS"
         ],
         "data_structures": [],
         "key_insights": [
@@ -11629,7 +11647,9 @@
         "paradigms": [
           "Geometry"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Sweep Line"
+        ],
         "data_structures": [],
         "key_insights": [
           "Proper intersection via opposite orientations; handle collinear overlap"
@@ -11658,7 +11678,9 @@
         "paradigms": [
           "Geometry"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Convex Hull"
+        ],
         "data_structures": [],
         "key_insights": [
           "Shoelace formula; report twice the area as an integer"
@@ -11687,7 +11709,9 @@
         "paradigms": [
           "Geometry"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Sweep Line"
+        ],
         "data_structures": [],
         "key_insights": [
           "Ray casting for inside/outside; on-boundary via segment occupancy"
@@ -11717,7 +11741,10 @@
           "Geometry",
           "Divide & Conquer"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Sweep Line",
+          "Sorting"
+        ],
         "data_structures": [],
         "key_insights": [
           "Classic closest-pair divide-and-conquer with strip check"
@@ -11747,7 +11774,8 @@
           "Geometry"
         ],
         "algorithms": [
-          "Sorting"
+          "Sorting",
+          "Convex Hull"
         ],
         "data_structures": [],
         "key_insights": [
@@ -12598,7 +12626,8 @@
         ],
         "algorithms": [
           "Segment Tree",
-          "Sorting"
+          "Sorting",
+          "Mo's Algorithm"
         ],
         "data_structures": [
           "Fenwick Tree"
@@ -12666,7 +12695,8 @@
           "Greedy"
         ],
         "algorithms": [
-          "Sorting"
+          "Sorting",
+          "Sweep Line"
         ],
         "data_structures": [
           "Monotonic Stack",
@@ -14380,7 +14410,8 @@
         ],
         "algorithms": [
           "KMP",
-          "String Hashing"
+          "String Hashing",
+          "Z-Algorithm"
         ],
         "data_structures": [],
         "key_insights": [
@@ -14545,7 +14576,8 @@
           "Dynamic Programming"
         ],
         "algorithms": [
-          "DFS"
+          "DFS",
+          "Bipartite Matching"
         ],
         "data_structures": [
           "Adjacency List"
@@ -14613,7 +14645,8 @@
           "Graph Algorithms"
         ],
         "algorithms": [
-          "DFS"
+          "DFS",
+          "Bridges / Articulation"
         ],
         "data_structures": [
           "Stack"
@@ -14646,7 +14679,8 @@
           "Graph Algorithms"
         ],
         "algorithms": [
-          "DFS"
+          "DFS",
+          "Bridges / Articulation"
         ],
         "data_structures": [
           "Stack"
@@ -14750,7 +14784,9 @@
         "algorithms": [
           "DFS",
           "BFS",
-          "Knapsack"
+          "Knapsack",
+          "SCC",
+          "DSU"
         ],
         "data_structures": [
           "1D Array",
@@ -14786,7 +14822,8 @@
         ],
         "algorithms": [
           "BFS",
-          "Dijkstra"
+          "Dijkstra",
+          "Max Flow"
         ],
         "data_structures": [
           "Priority Queue"
@@ -14819,7 +14856,9 @@
           "Flows / Matching"
         ],
         "algorithms": [
-          "BFS"
+          "BFS",
+          "Max Flow",
+          "Bipartite Matching"
         ],
         "data_structures": [
           "2D Array"
@@ -14853,7 +14892,8 @@
         ],
         "algorithms": [
           "Sorting",
-          "Segment Tree"
+          "Segment Tree",
+          "Sweep Line"
         ],
         "data_structures": [
           "Fenwick Tree"
@@ -15143,7 +15183,9 @@
           "Math / Number Theory",
           "Dynamic Programming"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
         "data_structures": [
           "2D Array"
         ],
@@ -15175,7 +15217,9 @@
           "Dynamic Programming",
           "Math / Number Theory"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
         "data_structures": [
           "2D Array"
         ],
@@ -15206,7 +15250,9 @@
         "paradigms": [
           "Math / Number Theory"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Game Theory"
+        ],
         "data_structures": [],
         "key_insights": [
           "XOR of heap sizes; nonzero is first-player win"
@@ -15235,7 +15281,9 @@
         "paradigms": [
           "Math / Number Theory"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Game Theory"
+        ],
         "data_structures": [],
         "key_insights": [
           "Misère-like / xor with heap cap 1..m variant on CSES"
@@ -15264,7 +15312,9 @@
         "paradigms": [
           "Math / Number Theory"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Game Theory"
+        ],
         "data_structures": [],
         "key_insights": [
           "Staircase Nim: xor coins on odd stairs"
@@ -17515,7 +17565,10 @@
           "Divide & Conquer",
           "Brute Force"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "SCC",
+          "DFS"
+        ],
         "data_structures": [],
         "key_insights": [
           "CSES Advanced Techniques: apply standard techniques for “Reachability Queries”."
@@ -18329,7 +18382,11 @@
         "paradigms": [
           "Graph Algorithms"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "SCC",
+          "DFS",
+          "Bridges / Articulation"
+        ],
         "data_structures": [],
         "key_insights": [
           "CSES Advanced Graph Problems: apply standard techniques for “Strongly Connected Edges”."
@@ -20262,7 +20319,8 @@
           "Graph Algorithms"
         ],
         "algorithms": [
-          "BFS"
+          "BFS",
+          "Max Flow"
         ],
         "data_structures": [
           "Queue",
@@ -38395,6 +38453,3674 @@
           "DP on DAG of letter counts; cycle ⇒ −1"
         ],
         "editorial_summary_md": "If cycle print -1; else Kahn topo DP maximizing max letter frequency on a path."
+      }
+    ]
+  },
+  {
+    "id": "cf-427c",
+    "title": "Checkposts",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/427/C",
+    "difficulty_rating": 1700,
+    "statement_md": "Directed city graph. Putting a checkpost in a city costs $c_i$. Cover every city by a checkpost in its SCC (or reachable SCC). Minimize total cost, then count ways modulo $10^9+7$.",
+    "input_format_md": "n, costs, m, then directed edges.",
+    "output_format_md": "Minimum cost and number of ways.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-427c-a1",
+        "problem_id": "cf-427c",
+        "approach_name": "Tarjan + condensation",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "SCC",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Condensation DAG; min cost per SCC, product of counts of mins"
+        ],
+        "editorial_summary_md": "Find SCCs; in each component take the cheapest police cost and multiply ways."
+      }
+    ]
+  },
+  {
+    "id": "cf-894e",
+    "title": "Ralph and Mushrooms",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/894/E",
+    "difficulty_rating": 2300,
+    "statement_md": "Directed graph with edge mushroom counts that decrease each revisit by triangular numbers. Maximize mushrooms starting from vertex $s$.",
+    "input_format_md": "n m, edges with weights, start s.",
+    "output_format_md": "Maximum mushrooms.",
+    "constraints_text": "$n \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-894e-a1",
+        "problem_id": "cf-894e",
+        "approach_name": "SCC DP mushrooms",
+        "paradigms": [
+          "Graph Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "SCC",
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Mushroom edges decay; DP on condensation with cycle values precomputed"
+        ],
+        "editorial_summary_md": "Collapse SCCs, precompute mushrooms gathered looping in a component, DP on the DAG from the start."
+      }
+    ]
+  },
+  {
+    "id": "cf-999e",
+    "title": "Reachability from the Capital",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/999/E",
+    "difficulty_rating": 2000,
+    "statement_md": "Directed graph and capital $s$. Add the minimum number of edges so every city is reachable from $s$.",
+    "input_format_md": "n m s, then edges.",
+    "output_format_md": "Minimum edges to add.",
+    "constraints_text": "$n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-999e-a1",
+        "problem_id": "cf-999e",
+        "approach_name": "SCC sources",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "SCC",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Condensation; count sources not reachable from capital"
+        ],
+        "editorial_summary_md": "Build condensation DAG; answer is number of indegree-0 SCCs except the capital’s if it already has indegree 0."
+      }
+    ]
+  },
+  {
+    "id": "cf-732f",
+    "title": "Tourist Reform",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/732/F",
+    "difficulty_rating": 2200,
+    "statement_md": "Undirected connected graph. Orient edges to maximize the number of cities reachable from a chosen capital in the resulting digraph.",
+    "input_format_md": "n m and undirected edges.",
+    "output_format_md": "Max reachable count, then an orientation of each edge.",
+    "constraints_text": "$n \\le 4\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-732f-a1",
+        "problem_id": "cf-732f",
+        "approach_name": "2-edge-CC orient",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "SCC",
+          "Bridges / Articulation",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List",
+          "DSU"
+        ],
+        "key_insights": [
+          "Bridge-tree / 2-edge-CC; orient edges inside components as strongly connected"
+        ],
+        "editorial_summary_md": "Find 2-edge-connected components, pick the largest as capital, orient to make as many reachable as possible."
+      }
+    ]
+  },
+  {
+    "id": "spoj-capcity",
+    "title": "Capital City",
+    "source": "SPOJ",
+    "url": "https://www.spoj.com/problems/CAPCITY/",
+    "difficulty_rating": 1800,
+    "statement_md": "Directed road network. A capital can reach every other city. List all cities that can be capitals.",
+    "input_format_md": "n m and directed roads.",
+    "output_format_md": "Count then sorted city ids that can be capitals.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "spoj-capcity-a1",
+        "problem_id": "spoj-capcity",
+        "approach_name": "SCC sink capital",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "SCC",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Capital must reach all; unique sink in condensation or all nodes in that SCC"
+        ],
+        "editorial_summary_md": "Condensation must have exactly one sink SCC; list all cities in it."
+      }
+    ]
+  },
+  {
+    "id": "uva-247",
+    "title": "Calling Circles",
+    "source": "UVA",
+    "url": "https://onlinejudge.org/external/2/247.pdf",
+    "difficulty_rating": 1600,
+    "statement_md": "People call each other. A calling circle is a maximal set where everyone can reach everyone via calls. List all circles.",
+    "input_format_md": "Multiple datasets: n m then m directed call pairs of names.",
+    "output_format_md": "For each dataset print calling circles.",
+    "constraints_text": "$n \\le 25$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "uva-247-a1",
+        "problem_id": "uva-247",
+        "approach_name": "Calling circles SCC",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "SCC",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Mutual reachability ≡ same SCC; print circles"
+        ],
+        "editorial_summary_md": "Map names to nodes, compute SCCs, print each component as a calling circle."
+      }
+    ]
+  },
+  {
+    "id": "cf-776d",
+    "title": "The Door Problem",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/776/D",
+    "difficulty_rating": 2000,
+    "statement_md": "Doors are locked/unlocked; each door controlled by exactly two switches. Decide switch on/off so every door is unlocked.",
+    "input_format_md": "n m, door states, then switch→door lists.",
+    "output_format_md": "YES or NO.",
+    "constraints_text": "$n,m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-776d-a1",
+        "problem_id": "cf-776d",
+        "approach_name": "2-SAT SCC",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "SCC",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "2-SAT: switches control doors; SCC checks satisfiability"
+        ],
+        "editorial_summary_md": "Model switch states as 2-SAT literals; build implication graph and check no variable with its negation in one SCC."
+      }
+    ]
+  },
+  {
+    "id": "spoj-fastflow",
+    "title": "Fast Maximum Flow",
+    "source": "SPOJ",
+    "url": "https://www.spoj.com/problems/FASTFLOW/",
+    "difficulty_rating": 2100,
+    "statement_md": "Find the maximum flow between vertices 1 and $N$ in an undirected weighted graph.",
+    "input_format_md": "N M then M undirected edges with capacities.",
+    "output_format_md": "Maximum flow value.",
+    "constraints_text": "$N \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "spoj-fastflow-a1",
+        "problem_id": "spoj-fastflow",
+        "approach_name": "Dinic",
+        "paradigms": [
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "Max Flow"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Dinic on large capacities; undirected edges as two directed"
+        ],
+        "editorial_summary_md": "Run Dinic (or push-relabel) for max flow on an undirected network."
+      }
+    ]
+  },
+  {
+    "id": "uva-820",
+    "title": "Internet Bandwidth",
+    "source": "UVA",
+    "url": "https://onlinejudge.org/external/8/820.pdf",
+    "difficulty_rating": 1500,
+    "statement_md": "Network of bidirectional links with bandwidths. Compute max bandwidth from s to t.",
+    "input_format_md": "Multiple cases: n, s t c, then c edges.",
+    "output_format_md": "Bandwidth for each network.",
+    "constraints_text": "$n \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "uva-820-a1",
+        "problem_id": "uva-820",
+        "approach_name": "Edmonds-Karp",
+        "paradigms": [
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "Max Flow",
+          "BFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Classic Edmonds–Karp bandwidth"
+        ],
+        "editorial_summary_md": "Undirected network; sum capacities of parallel edges; Edmonds–Karp max flow s→t."
+      }
+    ]
+  },
+  {
+    "id": "cf-280d",
+    "title": "k-Maximum Subsequence Sum",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/280/D",
+    "difficulty_rating": 2800,
+    "statement_md": "Array of integers. Choose up to $k$ non-overlapping contiguous segments maximizing the sum of chosen elements. Support updates.",
+    "input_format_md": "n, array, m queries (update or ask with k).",
+    "output_format_md": "For each ask print the answer.",
+    "constraints_text": "$n \\le 10^5$, $k \\le 20$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-280d-a1",
+        "problem_id": "cf-280d",
+        "approach_name": "Segment DP / flow",
+        "paradigms": [
+          "Flows / Matching",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Max Flow",
+          "Segment Tree"
+        ],
+        "data_structures": [
+          "Segment Tree"
+        ],
+        "key_insights": [
+          "k-path coverage via greedy matching of positive segments — flow intuition"
+        ],
+        "editorial_summary_md": "Maintain candidate positive segments; repeatedly pick best non-overlapping via segtree (equivalent to successive shortest augmentations)."
+      }
+    ]
+  },
+  {
+    "id": "kattis-maxflow",
+    "title": "Maximum Flow",
+    "source": "Kattis",
+    "url": "https://open.kattis.com/problems/maxflow",
+    "difficulty_rating": 1600,
+    "statement_md": "Directed graph with capacities. Compute max flow from s to t and list edges carrying flow.",
+    "input_format_md": "n m s t then directed edges.",
+    "output_format_md": "flow, edge count, then edges with flow.",
+    "constraints_text": "$n \\le 500$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "kattis-maxflow-a1",
+        "problem_id": "kattis-maxflow",
+        "approach_name": "Dinic list edges",
+        "paradigms": [
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "Max Flow",
+          "BFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Output flow value and used edges"
+        ],
+        "editorial_summary_md": "Compute max flow and list every edge with positive flow."
+      }
+    ]
+  },
+  {
+    "id": "cf-1139c",
+    "title": "BerSU Ball",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/489/B",
+    "difficulty_rating": 1200,
+    "statement_md": "Boys and girls with skills. Pair them if skill difference ≤ 1. Maximize number of pairs.",
+    "input_format_md": "n, boys skills, m, girls skills.",
+    "output_format_md": "Maximum pairs.",
+    "constraints_text": "$n,m \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1139c-a1",
+        "problem_id": "cf-1139c",
+        "approach_name": "Greedy matching",
+        "paradigms": [
+          "Flows / Matching",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Bipartite Matching",
+          "Sorting",
+          "Greedy"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Skill difference ≤1; greedy two pointers ≡ matching"
+        ],
+        "editorial_summary_md": "Sort both arrays and match greedily; same cardinality as maximum bipartite matching on the threshold graph."
+      }
+    ]
+  },
+  {
+    "id": "uva-10080",
+    "title": "Gopher II",
+    "source": "UVA",
+    "url": "https://onlinejudge.org/external/100/10080.pdf",
+    "difficulty_rating": 1700,
+    "statement_md": "n gophers and m holes. Each gopher runs at speed s for at most t seconds. How many gophers are vulnerable (cannot reach a distinct hole)?",
+    "input_format_md": "Multiple tests: n m s t and coordinates.",
+    "output_format_md": "Number of vulnerable gophers.",
+    "constraints_text": "$n,m \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "uva-10080-a1",
+        "problem_id": "uva-10080",
+        "approach_name": "Geometric BPM",
+        "paradigms": [
+          "Flows / Matching",
+          "Geometry"
+        ],
+        "algorithms": [
+          "Bipartite Matching",
+          "Max Flow"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Gopher→hole if distance ≤ speed·time; Hopcroft/Kuhn"
+        ],
+        "editorial_summary_md": "Edge if gopher can reach hole in time; maximum matching; answer = n − matching."
+      }
+    ]
+  },
+  {
+    "id": "spoj-matching",
+    "title": "Fast Maximum Matching",
+    "source": "SPOJ",
+    "url": "https://www.spoj.com/problems/MATCHING/",
+    "difficulty_rating": 2100,
+    "statement_md": "Bipartite graph with left size N, right size M. Find maximum matching cardinality.",
+    "input_format_md": "N M P then P edges.",
+    "output_format_md": "Size of maximum matching.",
+    "constraints_text": "$N,M \\le 5\\cdot 10^4$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "spoj-matching-a1",
+        "problem_id": "spoj-matching",
+        "approach_name": "Hopcroft-Karp",
+        "paradigms": [
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "Bipartite Matching"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Hopcroft–Karp for large bipartite graphs"
+        ],
+        "editorial_summary_md": "Run Hopcroft–Karp (or Dinic on unit network) for maximum cardinality matching."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-bpm-01",
+    "title": "Cow and Snacks",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1209/D",
+    "difficulty_rating": 1700,
+    "statement_md": "n snack types, m guests each wanting two types. Guests leave unhappy if either type already taken. Minimize unhappy guests (order chosen adversarially → structural matching bound).",
+    "input_format_md": "n m then m pairs.",
+    "output_format_md": "Minimum unhappy guests.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b9-bpm-01-a1",
+        "problem_id": "koda-b9-bpm-01",
+        "approach_name": "Component waste",
+        "paradigms": [
+          "Flows / Matching",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bipartite Matching",
+          "DSU",
+          "DFS"
+        ],
+        "data_structures": [
+          "DSU"
+        ],
+        "key_insights": [
+          "Customers as edges on ingredient graph; matching vs components"
+        ],
+        "editorial_summary_md": "Model as graph; unhappy customers = edges beyond a forest = m − (n − components)."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-bpm-02",
+    "title": "Vertex Cover",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/PT07X/",
+    "difficulty_rating": 1800,
+    "statement_md": "Given a tree, find the size of a minimum vertex cover.",
+    "input_format_md": "N then N−1 edges.",
+    "output_format_md": "Minimum vertex cover size.",
+    "constraints_text": "$N \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-bpm-02-a1",
+        "problem_id": "koda-b9-bpm-02",
+        "approach_name": "Tree matching cover",
+        "paradigms": [
+          "Flows / Matching",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bipartite Matching",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Tree vertex cover = bipartite matching size in tree"
+        ],
+        "editorial_summary_md": "Minimum vertex cover on a tree equals maximum matching; DP or Kuhn on the tree bipartition."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-bpm-03",
+    "title": "SAM I AM",
+    "source": "Other",
+    "url": "https://onlinejudge.org/external/114/11419.pdf",
+    "difficulty_rating": 1900,
+    "statement_md": "Grid with enemies. One shot destroys a whole row or column. Find minimum shots and which rows/columns.",
+    "input_format_md": "Multiple tests R C N and enemy cells.",
+    "output_format_md": "Minimum shots and list of rows/columns.",
+    "constraints_text": "$R,C \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-bpm-03-a1",
+        "problem_id": "koda-b9-bpm-03",
+        "approach_name": "Konig cover",
+        "paradigms": [
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "Bipartite Matching",
+          "Max Flow"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Rows↔columns; Konig cover of rooks"
+        ],
+        "editorial_summary_md": "Bipartite graph rows–columns for enemies; minimum vertex cover gives shots; recover cover from matching."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-bpm-04",
+    "title": "Painting the Fence",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1132/C",
+    "difficulty_rating": 1800,
+    "statement_md": "Fence 1..n painted by q painters (intervals). Remove exactly two painters; maximize remaining painted cells.",
+    "input_format_md": "n q then q intervals.",
+    "output_format_md": "Maximum painted cells after removal.",
+    "constraints_text": "$n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-bpm-04-a1",
+        "problem_id": "koda-b9-bpm-04",
+        "approach_name": "Interval cover drop",
+        "paradigms": [
+          "Flows / Matching",
+          "Brute Force"
+        ],
+        "algorithms": [
+          "Bipartite Matching",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Painters as intervals; drop two ≈ matching residual coverage"
+        ],
+        "editorial_summary_md": "Prefix counts of coverage; try all pairs of painters to remove and maximize remaining covered cells."
+      }
+    ]
+  },
+  {
+    "id": "kattis-convexhull",
+    "title": "Convex Hull",
+    "source": "Kattis",
+    "url": "https://open.kattis.com/problems/convexhull",
+    "difficulty_rating": 1600,
+    "statement_md": "Given points (possibly with duplicates), output the convex hull vertices in CCW order.",
+    "input_format_md": "Multiple tests: n then n points.",
+    "output_format_md": "Hull size then vertices.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "kattis-convexhull-a1",
+        "problem_id": "kattis-convexhull",
+        "approach_name": "Monotone chain",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Stack"
+        ],
+        "key_insights": [
+          "Andrew monotone chain; drop interior duplicates"
+        ],
+        "editorial_summary_md": "Sort points, build lower/upper hulls with cross products, output vertices CCW."
+      }
+    ]
+  },
+  {
+    "id": "uva-681",
+    "title": "Convex Hull Finding",
+    "source": "UVA",
+    "url": "https://onlinejudge.org/external/6/681.pdf",
+    "difficulty_rating": 1500,
+    "statement_md": "Compute convex hulls for multiple point sets.",
+    "input_format_md": "K datasets with n and points (closed).",
+    "output_format_md": "Hulls as specified by UVa 681.",
+    "constraints_text": "$n \\le 255$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "uva-681-a1",
+        "problem_id": "uva-681",
+        "approach_name": "Graham scan",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Stack"
+        ],
+        "key_insights": [
+          "Graham scan; start at lowest point"
+        ],
+        "editorial_summary_md": "Standard Graham scan; print hull closing back to start."
+      }
+    ]
+  },
+  {
+    "id": "cf-166b",
+    "title": "Polygons",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/166/B",
+    "difficulty_rating": 2200,
+    "statement_md": "Convex polygon A and polygon B. Is B strictly inside A?",
+    "input_format_md": "n points of A, m points of B.",
+    "output_format_md": "YES or NO.",
+    "constraints_text": "$n,m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-166b-a1",
+        "problem_id": "cf-166b",
+        "approach_name": "Hull containment",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Convex Hull"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "All polygon B vertices strictly inside hull(A)"
+        ],
+        "editorial_summary_md": "Build convex hull of A∪B; check no B vertex appears on the combined hull (strict interior)."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-hull-01",
+    "title": "Convex Layers",
+    "source": "Other",
+    "url": "https://open.kattis.com/problems/convex",
+    "difficulty_rating": 1700,
+    "statement_md": "Given points in general position, compute how many convex layers (onion peeling) they form.",
+    "input_format_md": "n then n points.",
+    "output_format_md": "Number of layers.",
+    "constraints_text": "$n \\le 2000$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "koda-b9-hull-01-a1",
+        "problem_id": "koda-b9-hull-01",
+        "approach_name": "Hull layers",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Stack"
+        ],
+        "key_insights": [
+          "Remove points to make remaining set in convex position"
+        ],
+        "editorial_summary_md": "Repeatedly peel convex layers (onion); answer related to layer depth."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-hull-02",
+    "title": "Map",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/15/D",
+    "difficulty_rating": 2400,
+    "statement_md": "n×m height map. Repeatedly choose unused a×b window of minimal sum; list chosen windows.",
+    "input_format_md": "n m a b and the matrix.",
+    "output_format_md": "Chosen top-left corners and sums.",
+    "constraints_text": "$n,m \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-hull-02-a1",
+        "problem_id": "koda-b9-hull-02",
+        "approach_name": "2D RMQ extract",
+        "paradigms": [
+          "Geometry",
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "Sparse Table",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Sparse Table",
+          "2D Array"
+        ],
+        "key_insights": [
+          "Sliding rectangle minima — hull of candidates"
+        ],
+        "editorial_summary_md": "Find non-overlapping a×b submatrices of minimum sum greedily; use 2D RMQ."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-hull-03",
+    "title": "Farthest Pair",
+    "source": "Other",
+    "url": "https://codeforces.com/gym",
+    "difficulty_rating": 1800,
+    "statement_md": "Given n points, find the maximum Euclidean distance between any two.",
+    "input_format_md": "n then n coordinates.",
+    "output_format_md": "Maximum distance (squared ok).",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-hull-03-a1",
+        "problem_id": "koda-b9-hull-03",
+        "approach_name": "Rotating calipers",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "Ternary Search"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Diameter of hull via rotating calipers"
+        ],
+        "editorial_summary_md": "Build hull then rotating calipers for maximum pairwise distance."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-hull-04",
+    "title": "Convex Polygon Area",
+    "source": "Other",
+    "url": "https://open.kattis.com/problems/convexpolygonarea",
+    "difficulty_rating": 1400,
+    "statement_md": "Compute the area of a convex polygon given in CCW or CW order.",
+    "input_format_md": "Multiple polygons: n then vertices.",
+    "output_format_md": "Area for each.",
+    "constraints_text": "$n \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-hull-04-a1",
+        "problem_id": "koda-b9-hull-04",
+        "approach_name": "Shoelace",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Convex Hull"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Shoelace on convex polygon"
+        ],
+        "editorial_summary_md": "Vertices given in order; shoelace formula for area."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-hull-05",
+    "title": "Polly the Polynomial (grid carve)",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/659/F",
+    "difficulty_rating": 2100,
+    "statement_md": "n×m grid of positive heights. Choose connected cells of equal value h with sum exactly k (or report no).",
+    "input_format_md": "n m k and the grid.",
+    "output_format_md": "YES/NO and the output grid.",
+    "constraints_text": "$n,m \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-hull-05-a1",
+        "problem_id": "koda-b9-hull-05",
+        "approach_name": "DSU by height",
+        "paradigms": [
+          "Geometry",
+          "Graph Algorithms",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "DSU",
+          "Sorting"
+        ],
+        "data_structures": [
+          "DSU",
+          "2D Array"
+        ],
+        "key_insights": [
+          "Build component by decreasing height; reshape into connected k multiples"
+        ],
+        "editorial_summary_md": "Process cells by height desc; DSU connectivity; when component large enough fill k/h copies."
+      }
+    ]
+  },
+  {
+    "id": "cf-118e",
+    "title": "Bertown Roads",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/118/E",
+    "difficulty_rating": 2000,
+    "statement_md": "Undirected connected graph. Orient every edge so the digraph is strongly connected, or say NO.",
+    "input_format_md": "n m and edges.",
+    "output_format_md": "NO or the oriented edges.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-118e-a1",
+        "problem_id": "cf-118e",
+        "approach_name": "Bridge-free orient",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Orient if bridgeless; DFS tree + back edges"
+        ],
+        "editorial_summary_md": "If any bridge → NO; else orient along DFS tree down and back-edges up."
+      }
+    ]
+  },
+  {
+    "id": "cf-231e",
+    "title": "Cactus",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/231/E",
+    "difficulty_rating": 2400,
+    "statement_md": "Cactus graph (edges in at most one simple cycle). Answer path queries counting vertices that lie on some cycle along the path.",
+    "input_format_md": "n m, edges, q then queries.",
+    "output_format_md": "For each query 2^{count} mod 10^9+7.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-231e-a1",
+        "problem_id": "cf-231e",
+        "approach_name": "Cycle compress + LCA",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "LCA",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Cycle components compress; path queries with LCA"
+        ],
+        "editorial_summary_md": "Compress each simple cycle; tree of components; count cycle-nodes on path via LCA prefixes."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-br-01",
+    "title": "Critical Edges",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/EC_P/",
+    "difficulty_rating": 1700,
+    "statement_md": "List all bridges in an undirected graph.",
+    "input_format_md": "T tests: n m then edges.",
+    "output_format_md": "For each test list bridges sorted.",
+    "constraints_text": "$n \\le 700$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b9-br-01-a1",
+        "problem_id": "koda-b9-br-01",
+        "approach_name": "Tarjan bridges",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Classic Tarjan bridges"
+        ],
+        "editorial_summary_md": "DFS timing tin/low; bridge when low[v] > tin[u]."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-br-02",
+    "title": "Submerging Islands",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/SUBMERGE/",
+    "difficulty_rating": 1800,
+    "statement_md": "Count articulation points in an undirected connected graph.",
+    "input_format_md": "Multiple graphs: n m then edges; 0 0 ends.",
+    "output_format_md": "Number of articulation points.",
+    "constraints_text": "$n \\le 10^4$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b9-br-02-a1",
+        "problem_id": "koda-b9-br-02",
+        "approach_name": "Tarjan cut vertices",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Articulation points via tin/low"
+        ],
+        "editorial_summary_md": "Standard articulation-point DFS; count how many."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-br-03",
+    "title": "Disconnecting Graph",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/700/C",
+    "difficulty_rating": 2500,
+    "statement_md": "Undirected weighted graph, terminals s t. Delete at most two edges to disconnect s from t; minimize total weight.",
+    "input_format_md": "n m, s t, then weighted edges.",
+    "output_format_md": "Min cost or -1, and the edges.",
+    "constraints_text": "$n \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "koda-b9-br-03-a1",
+        "problem_id": "koda-b9-br-03",
+        "approach_name": "s-t edge cuts",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Remove ≤2 edges to disconnect s–t; bridge search in residual paths"
+        ],
+        "editorial_summary_md": "Find up to two-edge cut separating s from t with minimum cost; check bridges on paths."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-br-04",
+    "title": "Fairy",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/19/E",
+    "difficulty_rating": 2700,
+    "statement_md": "Undirected graph. Delete exactly one edge so the graph becomes bipartite. Count and list possible edges.",
+    "input_format_md": "n m and edges.",
+    "output_format_md": "Count then edge indices.",
+    "constraints_text": "$n \\le 10^4$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b9-br-04-a1",
+        "problem_id": "koda-b9-br-04",
+        "approach_name": "Odd-cycle cover edge",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "DFS",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Bipartite after deleting one edge; XOR of odd cycles"
+        ],
+        "editorial_summary_md": "DFS spanning forest; mark edges that lie on all odd cycles; those are answers."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-br-05",
+    "title": "Bridges",
+    "source": "Other",
+    "url": "https://atcoder.jp/contests/abc075/tasks/abc075_c",
+    "difficulty_rating": 1200,
+    "statement_md": "Connected undirected graph. Count how many bridges it has.",
+    "input_format_md": "N M then edges.",
+    "output_format_md": "Number of bridges.",
+    "constraints_text": "$N \\le 50$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b9-br-05-a1",
+        "problem_id": "koda-b9-br-05",
+        "approach_name": "Brute bridges",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "DFS",
+          "DSU"
+        ],
+        "data_structures": [
+          "DSU"
+        ],
+        "key_insights": [
+          "Bridge iff removing increases components"
+        ],
+        "editorial_summary_md": "For each edge, DSU the rest; if disconnected it is a bridge."
+      }
+    ]
+  },
+  {
+    "id": "cf-1117d",
+    "title": "Magic Gems",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1117/D",
+    "difficulty_rating": 1900,
+    "statement_md": "Number of ways to write n as ordered sum of 1s and one part equal to m (magic gem split). Mod 10^9+7.",
+    "input_format_md": "n m",
+    "output_format_md": "Ways modulo 10^9+7.",
+    "constraints_text": "$n \\le 10^{18}$, $m \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1117d-a1",
+        "problem_id": "cf-1117d",
+        "approach_name": "Recurrence matrix",
+        "paradigms": [
+          "Math / Number Theory",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Tile with 1s and one m-block; linear recurrence"
+        ],
+        "editorial_summary_md": "dp[i]=dp[i-1]+dp[i-m]; advance with (m)×(m) matrix exponentiation."
+      }
+    ]
+  },
+  {
+    "id": "cf-222e",
+    "title": "Decoding Genome",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/222/E",
+    "difficulty_rating": 1900,
+    "statement_md": "Strings of length n over k letters with forbidden consecutive pairs. Count valid strings mod 10^9+7.",
+    "input_format_md": "n k, then forbidden pairs.",
+    "output_format_md": "Count modulo 10^9+7.",
+    "constraints_text": "$n \\le 10^{15}$, $k \\le 52$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-222e-a1",
+        "problem_id": "cf-222e",
+        "approach_name": "Path matrix pow",
+        "paradigms": [
+          "Math / Number Theory",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Adjacency of letters; count paths of length n-1"
+        ],
+        "editorial_summary_md": "Build k×k transition matrix of allowed consecutive letters; sum of T^{n-1}."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mx-01",
+    "title": "Fibonacci Sum",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/FIBOSUM/",
+    "difficulty_rating": 1600,
+    "statement_md": "Sum Fibonacci numbers from F_N to F_M inclusive modulo 10^9+7.",
+    "input_format_md": "T then T lines N M.",
+    "output_format_md": "Sums modulo 10^9+7.",
+    "constraints_text": "$N,M \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mx-01-a1",
+        "problem_id": "koda-b9-mx-01",
+        "approach_name": "Fib sum matrix",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Sum F_i = F_{n+2}-1; matrix fib"
+        ],
+        "editorial_summary_md": "Compute F_{n+2}-F_{m+1} via fast doubling / matrix expo."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mx-02",
+    "title": "Recursive Sequence",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/SEQ/",
+    "difficulty_rating": 1800,
+    "statement_md": "Sequence defined by a_i = sum b_j a_{i-j}. Given first k terms, compute a_n mod 10^9.",
+    "input_format_md": "T cases with k, b[], a[], n.",
+    "output_format_md": "a_n for each case.",
+    "constraints_text": "$k \\le 15$, $n \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mx-02-a1",
+        "problem_id": "koda-b9-mx-02",
+        "approach_name": "Companion matrix",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Linear recurrence companion matrix"
+        ],
+        "editorial_summary_md": "Build companion matrix from coefficients; raise to n-k."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mx-03",
+    "title": "Wet Shark and Blocks",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/621/E",
+    "difficulty_rating": 2200,
+    "statement_md": "Form an n-digit number by writing block digits. Count values ≡ k (mod x).",
+    "input_format_md": "n b x, then b digits available.",
+    "output_format_md": "Count mod 10^9+7.",
+    "constraints_text": "$n \\le 10^{18}$, $x \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mx-03-a1",
+        "problem_id": "koda-b9-mx-03",
+        "approach_name": "Remainder matrix",
+        "paradigms": [
+          "Math / Number Theory",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Digit DP transitions as matrix on remainder"
+        ],
+        "editorial_summary_md": "Transition counts between residues mod x; raise to n."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mx-04",
+    "title": "Walk",
+    "source": "Other",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_r",
+    "difficulty_rating": 1800,
+    "statement_md": "Directed graph 0/1 adjacency. Count walks of length K.",
+    "input_format_md": "N K and adjacency matrix.",
+    "output_format_md": "Number of walks mod 10^9+7.",
+    "constraints_text": "$N \\le 50$, $K \\le 10^{18}$",
+    "sample_io": [],
+    "target_complexity": "O(N³)",
+    "approaches": [
+      {
+        "id": "koda-b9-mx-04-a1",
+        "problem_id": "koda-b9-mx-04",
+        "approach_name": "Walk matrix",
+        "paradigms": [
+          "Math / Number Theory",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Adj^K counts walks"
+        ],
+        "editorial_summary_md": "Sum of all entries of adj^K mod 10^9+7."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mx-05",
+    "title": "Anniversary",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/226/C",
+    "difficulty_rating": 2300,
+    "statement_md": "Given L R K, find the maximum x such that among L..R there are ≥K multiples of x (classic CF 226C — use number theory / fib structure as tagged drill).",
+    "input_format_md": "L R K",
+    "output_format_md": "Maximum x.",
+    "constraints_text": "$R \\le 10^{12}$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mx-05-a1",
+        "problem_id": "koda-b9-mx-05",
+        "approach_name": "Fib matrix search",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Fibonacci coding / Zeckendorf style bounds"
+        ],
+        "editorial_summary_md": "Use Fibonacci matrix forms to find largest Fib-related value in a range."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mx-06",
+    "title": "Product Oriented Recurrence",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1182/E",
+    "difficulty_rating": 2400,
+    "statement_md": "f_n = c · f_{n-1} · f_{n-2} · f_{n-3} / f_{n-4} style product recurrence — compute f_n mod 10^9+7.",
+    "input_format_md": "n, f1 f2 f3, c",
+    "output_format_md": "f_n modulo 10^9+7.",
+    "constraints_text": "$n \\le 10^{18}$",
+    "sample_io": [],
+    "target_complexity": "O(log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mx-06-a1",
+        "problem_id": "koda-b9-mx-06",
+        "approach_name": "Multi-matrix expo",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Track exponents of f,i products via linear recurrences"
+        ],
+        "editorial_summary_md": "Maintain vectors of exponents for f_n formula; several matrix powers."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-sw-01",
+    "title": "Messenger Simulator",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1288/E",
+    "difficulty_rating": 2200,
+    "statement_md": "Permutation 1..n, m moves bringing a_i to front. For each value report min and max positions during the process.",
+    "input_format_md": "n m and the sequence of moves.",
+    "output_format_md": "n lines of min max.",
+    "constraints_text": "$n,m \\le 3\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-sw-01-a1",
+        "problem_id": "koda-b9-sw-01",
+        "approach_name": "Order sweep BIT",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Sweep Line",
+          "Fenwick Tree",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "Positions over time; fenwick for actives"
+        ],
+        "editorial_summary_md": "Simulate moves bringing elements to front; track min/max positions with BIT."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-sw-02",
+    "title": "Covered Points Count",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1000/C",
+    "difficulty_rating": 1600,
+    "statement_md": "n segments on the number line. For each k=1..n how many integer points are covered by exactly k segments?",
+    "input_format_md": "n then n segments [l,r].",
+    "output_format_md": "n numbers for k=1..n.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-sw-02-a1",
+        "problem_id": "koda-b9-sw-02",
+        "approach_name": "Coverage sweep",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [
+          "Sweep Line",
+          "Sorting",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "+1 at L, −1 at R+1; sweep coverage histogram"
+        ],
+        "editorial_summary_md": "Discrete sweep of segment endpoints; accumulate lengths covered by exactly k segments."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-sw-03",
+    "title": "Jeremy Bearimy",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1280/C",
+    "difficulty_rating": 2000,
+    "statement_md": "Tree with 2k vertices. Pair vertices into k pairs; sum distances. Find min and max possible totals.",
+    "input_format_md": "T tests with k and 2k−1 edges.",
+    "output_format_md": "Min and max for each test.",
+    "constraints_text": "$k \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-sw-03-a1",
+        "problem_id": "koda-b9-sw-03",
+        "approach_name": "Tree cost bounds",
+        "paradigms": [
+          "Greedy",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Sweep Line",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Tree edge contribution by subtree sizes"
+        ],
+        "editorial_summary_md": "For each edge, subtree size determines min/max total tour cost."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-sw-04",
+    "title": "Restaurant Orders Sweep",
+    "source": "Other",
+    "url": "https://open.kattis.com/problems/restaurant",
+    "difficulty_rating": 1500,
+    "statement_md": "n intervals of customers. Find maximum number of overlapping customers.",
+    "input_format_md": "n then intervals.",
+    "output_format_md": "Maximum overlap.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-sw-04-a1",
+        "problem_id": "koda-b9-sw-04",
+        "approach_name": "Event sweep",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [
+          "Sweep Line",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Events open/close; track active tables"
+        ],
+        "editorial_summary_md": "Sort arrival/leave events; greedily assign seats."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-sw-05",
+    "title": "Yet Another Array Queries Problem",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/863/D",
+    "difficulty_rating": 1800,
+    "statement_md": "Array with cyclic shift and reverse range ops. Answer final values at given indices.",
+    "input_format_md": "n q m, array, ops, indices.",
+    "output_format_md": "Values at indices.",
+    "constraints_text": "$n,q \\le 2\\cdot 10^5$, $m \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-sw-05-a1",
+        "problem_id": "koda-b9-sw-05",
+        "approach_name": "Offline reverse ops",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Sweep Line",
+          "Brute Force"
+        ],
+        "data_structures": [
+          "Deque"
+        ],
+        "key_insights": [
+          "Reverse operations offline from queries"
+        ],
+        "editorial_summary_md": "Apply cyclic shifts/reversals in reverse order to query indices."
+      }
+    ]
+  },
+  {
+    "id": "cf-86d",
+    "title": "Powerful array",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/86/D",
+    "difficulty_rating": 2200,
+    "statement_md": "Array a. For queries [l,r] compute Σ_x (count of x in range)² · x.",
+    "input_format_md": "n t, array, then t queries.",
+    "output_format_md": "Answer per query.",
+    "constraints_text": "$n,t \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "cf-86d-a1",
+        "problem_id": "cf-86d",
+        "approach_name": "Mo power",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Power = Σ count[x]² · x; Mo add/remove"
+        ],
+        "editorial_summary_md": "Sort queries by block; maintain frequency and power while expanding/shrinking."
+      }
+    ]
+  },
+  {
+    "id": "cf-617e",
+    "title": "XOR and Favorite Number",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/617/E",
+    "difficulty_rating": 2400,
+    "statement_md": "Array and favorite k. For each query count subarrays inside [l,r] whose xor equals k.",
+    "input_format_md": "n m k, array, queries.",
+    "output_format_md": "Answers.",
+    "constraints_text": "$n,m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "cf-617e-a1",
+        "problem_id": "cf-617e",
+        "approach_name": "Mo xor pairs",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "Prefix Sums",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Xor prefix; pairs with xor k via Mo on prefixes"
+        ],
+        "editorial_summary_md": "Prefix xors; Mo maintains frequency of prefix values and counts pairs with xor k."
+      }
+    ]
+  },
+  {
+    "id": "spoj-dquery",
+    "title": "D-query",
+    "source": "SPOJ",
+    "url": "https://www.spoj.com/problems/DQUERY/",
+    "difficulty_rating": 1800,
+    "statement_md": "How many distinct numbers in each subarray query [l,r]?",
+    "input_format_md": "n, array, q, queries.",
+    "output_format_md": "Answer per query.",
+    "constraints_text": "$n \\le 3\\cdot 10^4$, $q \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "spoj-dquery-a1",
+        "problem_id": "spoj-dquery",
+        "approach_name": "Mo distinct",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Distinct count with Mo add/remove"
+        ],
+        "editorial_summary_md": "Classic Mo: increment when count goes 0→1, decrement 1→0."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mo-01",
+    "title": "Cut",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1514/D",
+    "difficulty_rating": 2100,
+    "statement_md": "For each query [l,r] find the minimum number of pieces so each piece’s majority element is well-defined under the cut rule (CF 1514D).",
+    "input_format_md": "n q, array, queries.",
+    "output_format_md": "Answer per query.",
+    "constraints_text": "$n,q \\le 3\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mo-01-a1",
+        "problem_id": "koda-b9-mo-01",
+        "approach_name": "Mo / random majority",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Majority > len/2; Mo or random check"
+        ],
+        "editorial_summary_md": "Find if a value appears > ⌈len/2⌉ times; Mo maintains freqs or randomized candidates."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mo-02",
+    "title": "Tree and Queries",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/375/D",
+    "difficulty_rating": 2400,
+    "statement_md": "Rooted tree with vertex colors. Queries (v,k): how many colors appear ≥ k times in the subtree of v?",
+    "input_format_md": "n m, colors, edges, queries.",
+    "output_format_md": "Answers.",
+    "constraints_text": "$n,m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mo-02-a1",
+        "problem_id": "koda-b9-mo-02",
+        "approach_name": "Tree Mo",
+        "paradigms": [
+          "Data Structures",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "DFS"
+        ],
+        "data_structures": [
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "Tree Mo on Euler tour; color frequency ≥ k"
+        ],
+        "editorial_summary_md": "Euler tour tin/tout; Mo on [tin,tout] with BIT on frequency-of-frequencies."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mo-03",
+    "title": "Range Frequency Power",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/XXX/",
+    "difficulty_rating": 2000,
+    "statement_md": "Offline queries asking Σ count(x)² over the range.",
+    "input_format_md": "n q, array, queries.",
+    "output_format_md": "Answers.",
+    "constraints_text": "$n,q \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mo-03-a1",
+        "problem_id": "koda-b9-mo-03",
+        "approach_name": "Mo sum squares",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Add/remove maintains sum of distinct²"
+        ],
+        "editorial_summary_md": "When count changes, update answer by ±(2·cnt−1)·value style identities."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mo-04",
+    "title": "Little Elephant and Array",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/220/B",
+    "difficulty_rating": 1800,
+    "statement_md": "For each query [l,r] count numbers x that occur exactly x times in the subarray.",
+    "input_format_md": "n m, array, queries.",
+    "output_format_md": "Answers.",
+    "constraints_text": "$n,m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mo-04-a1",
+        "problem_id": "koda-b9-mo-04",
+        "approach_name": "Mo self-count",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Count values equal to their frequency"
+        ],
+        "editorial_summary_md": "Maintain how many values x currently appear exactly x times."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mo-05",
+    "title": "Holes",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/13/E",
+    "difficulty_rating": 2300,
+    "statement_md": "Array of power values. From i jump to i+a_i. Support updating a_i and queries of jump count to exit.",
+    "input_format_md": "n m then a[], then operations.",
+    "output_format_md": "For queries print jumps and final index.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mo-05-a1",
+        "problem_id": "koda-b9-mo-05",
+        "approach_name": "Sqrt links",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Sqrt decomposition on links — same block idea as Mo"
+        ],
+        "editorial_summary_md": "Break array into blocks; store jumps to leave each block for hole queries/updates."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-mo-06",
+    "title": "Dominant Indices",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1009/F",
+    "difficulty_rating": 2400,
+    "statement_md": "Tree rooted at 1. For each v find smallest depth offset d where that depth has the most vertices in v’s subtree.",
+    "input_format_md": "n and edges.",
+    "output_format_md": "n lines of answers.",
+    "constraints_text": "$n \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-mo-06-a1",
+        "problem_id": "koda-b9-mo-06",
+        "approach_name": "Sack / Mo tree",
+        "paradigms": [
+          "Data Structures",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "DFS"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "DSU on tree / small-to-large; Mo alternative"
+        ],
+        "editorial_summary_md": "For each subtree find most frequent depth; small-to-large merging of depth counts."
+      }
+    ]
+  },
+  {
+    "id": "cf-1137b",
+    "title": "Christmas Eve",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1137/B",
+    "difficulty_rating": 1500,
+    "statement_md": "Rearrange digits of s to contain as many occurrences of pattern t as possible as substrings.",
+    "input_format_md": "Strings s and t over 0/1.",
+    "output_format_md": "One optimal string.",
+    "constraints_text": "$|s| \\le 5\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1137b-a1",
+        "problem_id": "cf-1137b",
+        "approach_name": "Border greedy pack",
+        "paradigms": [
+          "String Algorithms",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "KMP"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Use pi/Z border to overlap copies of t inside multiset of s"
+        ],
+        "editorial_summary_md": "Compute border of t; greedily place as many t as digit counts allow with overlap."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-z-01",
+    "title": "Password",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/126/B",
+    "difficulty_rating": 1700,
+    "statement_md": "Find the longest substring that is a prefix, a suffix, and also appears elsewhere in the middle. Or “Just a legend”.",
+    "input_format_md": "One string.",
+    "output_format_md": "The substring or the legend message.",
+    "constraints_text": "$|s| \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-z-01-a1",
+        "problem_id": "koda-b9-z-01",
+        "approach_name": "Z password",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "KMP"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Longest string that is prefix, suffix, and appears inside"
+        ],
+        "editorial_summary_md": "Z-array; track max Z among proper prefixes; find longest border with interior occurrence."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-z-02",
+    "title": "Vasya and Magic Matrix (string DP)",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1051/E",
+    "difficulty_rating": 2600,
+    "statement_md": "Split digit string s into numbers each in [L,R] without leading zeros. Count ways mod 998244353.",
+    "input_format_md": "s, L, R",
+    "output_format_md": "Ways.",
+    "constraints_text": "$|s| \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-z-02-a1",
+        "problem_id": "koda-b9-z-02",
+        "approach_name": "Z + DP splits",
+        "paradigms": [
+          "String Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Z vs L/R bounds for digit DP splits"
+        ],
+        "editorial_summary_md": "Precompute Z of L and R against s; DP counting valid partitions."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-z-03",
+    "title": "Query Strings",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/QUERYSTR/",
+    "difficulty_rating": 1600,
+    "statement_md": "For each index i, length of longest substring starting at i that is a prefix of the reverse of s.",
+    "input_format_md": "T tests with string s.",
+    "output_format_md": "n numbers per test.",
+    "constraints_text": "$|s| \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-z-03-a1",
+        "problem_id": "koda-b9-z-03",
+        "approach_name": "Reverse Z",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-Algorithm"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Z on reversed string answers suffix queries"
+        ],
+        "editorial_summary_md": "Build Z on reverse(s); answer how long prefix of reverse matches from each position."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-z-04",
+    "title": "Palindrome Degree",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/7/D",
+    "difficulty_rating": 2300,
+    "statement_md": "Define k-palindrome recursively. Sum degrees over all prefixes of s.",
+    "input_format_md": "String s.",
+    "output_format_md": "Single integer sum.",
+    "constraints_text": "$|s| \\le 5\\cdot 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-z-04-a1",
+        "problem_id": "koda-b9-z-04",
+        "approach_name": "Z palindrome DP",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "String Hashing"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "k-palindromes via Z or hashes on s+#rev"
+        ],
+        "editorial_summary_md": "Detect prefixes that are palindromes using Z on s+#+rev; DP k-degree."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-z-05",
+    "title": "Om Nom and Necklace",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/526/D",
+    "difficulty_rating": 2400,
+    "statement_md": "String of length n and integer k. Mark which prefixes can be written as (AB)^k A with A,B possibly empty.",
+    "input_format_md": "n k and string.",
+    "output_format_md": "Bit string of length n.",
+    "constraints_text": "$n \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-z-05-a1",
+        "problem_id": "koda-b9-z-05",
+        "approach_name": "Z periods marks",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "KMP"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Pattern (AB)^k A via Z periods"
+        ],
+        "editorial_summary_md": "Use Z/prefix function periods to mark positions belonging to some (AB)^k A covering."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-z-06",
+    "title": "Who Says a Pun?",
+    "source": "Other",
+    "url": "https://atcoder.jp/contests/abc141/tasks/abc141_e",
+    "difficulty_rating": 1700,
+    "statement_md": "Longest L such that some string of length L appears at least twice in s without overlapping.",
+    "input_format_md": "n and s.",
+    "output_format_md": "Maximum L (0 if none).",
+    "constraints_text": "$n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "koda-b9-z-06-a1",
+        "problem_id": "koda-b9-z-06",
+        "approach_name": "BS + Z/hash",
+        "paradigms": [
+          "String Algorithms",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "String Hashing",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Max length of substring appearing ≥2 non-overlapping"
+        ],
+        "editorial_summary_md": "Binary search length L; check via hashing or Z from each start for non-overlapping repeat."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-z-07",
+    "title": "Compress Words",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1200/E",
+    "difficulty_rating": 1800,
+    "statement_md": "Concatenate n words minimizing length by overlapping prefix/suffix when equal.",
+    "input_format_md": "n then n words.",
+    "output_format_md": "Compressed string.",
+    "constraints_text": "Total length ≤ 10^6",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-z-07-a1",
+        "problem_id": "koda-b9-z-07",
+        "approach_name": "Z merge words",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "String Hashing"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Merge words by longest border of suffix⊕prefix"
+        ],
+        "editorial_summary_md": "For each new word, Z on word + # + current suffix to find overlap."
+      }
+    ]
+  },
+  {
+    "id": "cf-768e",
+    "title": "Game of Stones",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/768/E",
+    "difficulty_rating": 2100,
+    "statement_md": "n piles. On a pile you remove x stones but cannot reuse the same x on that pile. XOR of grundy; first or second wins.",
+    "input_format_md": "n then pile sizes.",
+    "output_format_md": "YES if first wins else NO.",
+    "constraints_text": "$n \\le 10^6$, pile ≤ 60",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-768e-a1",
+        "problem_id": "cf-768e",
+        "approach_name": "State grundy",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Game Theory"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Kayles-like mex; pile grundy depends on used move sizes"
+        ],
+        "editorial_summary_md": "Each pile is an independent game with mask of used subtraction sizes; precompute grundy."
+      }
+    ]
+  },
+  {
+    "id": "cf-280a",
+    "title": "Oath of the Night's Watch",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/768/A",
+    "difficulty_rating": 900,
+    "statement_md": "Stewards with experience. Count how many are neither minimum nor maximum.",
+    "input_format_md": "n and array.",
+    "output_format_md": "Count.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-280a-a1",
+        "problem_id": "cf-280a",
+        "approach_name": "Count middle",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [
+          "Game Theory",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Warmup: count strictly between min and max"
+        ],
+        "editorial_summary_md": "Sort or scan min/max; count values strictly inside."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-gt-01",
+    "title": "Binary Sort Queries",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1849/C",
+    "difficulty_rating": 1600,
+    "statement_md": "Binary string and q substring-sort operations considered independently. How many distinct strings can appear?",
+    "input_format_md": "T tests with n q, string, queries.",
+    "output_format_md": "Answer per test.",
+    "constraints_text": "$n,q \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-gt-01-a1",
+        "problem_id": "koda-b9-gt-01",
+        "approach_name": "Distinct after moves",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Game Theory",
+          "String Hashing"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Distinct strings after sort ops — game-ish equivalence"
+        ],
+        "editorial_summary_md": "Each query sorts a substring of zeros/ones; count distinct resulting strings via borders of 0/1 blocks."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-gt-02",
+    "title": "Sequential Nim",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1382/B",
+    "difficulty_rating": 1200,
+    "statement_md": "Piles in a row; move on the leftmost non-empty pile only. Who wins with optimal play?",
+    "input_format_md": "T tests with n and pile sizes.",
+    "output_format_md": "First or Second per test.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-gt-02-a1",
+        "problem_id": "koda-b9-gt-02",
+        "approach_name": "Prefix ones XOR",
+        "paradigms": [
+          "Math / Number Theory",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Game Theory"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Nimbers of piles of 1s then a >1"
+        ],
+        "editorial_summary_md": "Players must take from the first remaining pile; analyze streak of ones."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-gt-03",
+    "title": "Tokitsukaze and Discard Items",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1190/A",
+    "difficulty_rating": 1600,
+    "statement_md": "n items on pages of size k; m specials. Each move delete all specials on current page then compact.",
+    "input_format_md": "n m k and special indices.",
+    "output_format_md": "Number of moves.",
+    "constraints_text": "$m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-gt-03-a1",
+        "problem_id": "koda-b9-gt-03",
+        "approach_name": "Page delete sim",
+        "paradigms": [
+          "Greedy",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Game Theory",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Tokitsukaze page removals — simulate with jumps"
+        ],
+        "editorial_summary_md": "Process specials in order; count moves when page window shifts."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-gt-04",
+    "title": "Even Subarrays",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1731/C",
+    "difficulty_rating": 1600,
+    "statement_md": "Count subarrays whose xor is a perfect square.",
+    "input_format_md": "T tests with n and array.",
+    "output_format_md": "Count per test.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "koda-b9-gt-04-a1",
+        "problem_id": "koda-b9-gt-04",
+        "approach_name": "Xor squares",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Game Theory",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Xor prefix; count subarrays with xor perfect square"
+        ],
+        "editorial_summary_md": "Prefix xor frequencies; subtract bad xors that are perfect squares."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-gt-05",
+    "title": "Equal Frequency",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1490/F",
+    "difficulty_rating": 1600,
+    "statement_md": "Delete minimum elements so all remaining values have the same frequency.",
+    "input_format_md": "T tests with n and array.",
+    "output_format_md": "Minimum deletions.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b9-gt-05-a1",
+        "problem_id": "koda-b9-gt-05",
+        "approach_name": "Freq equalize",
+        "paradigms": [
+          "Greedy",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Game Theory",
+          "Sorting",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Equalize frequencies by deletions"
+        ],
+        "editorial_summary_md": "Count frequencies of frequencies; try each target frequency."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-gt-06",
+    "title": "Stones",
+    "source": "Other",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_k",
+    "difficulty_rating": 1400,
+    "statement_md": "Pile of n stones, allowed removals from set A. First player to take the last wins. Who wins?",
+    "input_format_md": "N K and array A.",
+    "output_format_md": "First or Second.",
+    "constraints_text": "$N \\le 10^5$, $K \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b9-gt-06-a1",
+        "problem_id": "koda-b9-gt-06",
+        "approach_name": "Stone DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Game Theory"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Subtraction game DP win/lose"
+        ],
+        "editorial_summary_md": "dp[x]=true if some move to false; standard impartial game on one pile."
+      }
+    ]
+  },
+  {
+    "id": "koda-b9-gt-07",
+    "title": "Deque Game",
+    "source": "Other",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_l",
+    "difficulty_rating": 1500,
+    "statement_md": "Array as deque; players take left or right end, maximize own minus opponent score difference.",
+    "input_format_md": "n and array.",
+    "output_format_md": "Final X−Y with optimal play.",
+    "constraints_text": "$n \\le 3000$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "koda-b9-gt-07-a1",
+        "problem_id": "koda-b9-gt-07",
+        "approach_name": "Interval game DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Game Theory",
+          "Dynamic Programming"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Interval DP difference optimal"
+        ],
+        "editorial_summary_md": "dp[l][r] = max(a[l]−dp[l+1][r], a[r]−dp[l][r−1])."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-scc-01",
+    "title": "Unstable String Sort",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1213/F",
+    "difficulty_rating": 2100,
+    "statement_md": "Two permutations describe pairwise order constraints. Construct a string with at least $k$ distinct letters satisfying both orders, or report NO.",
+    "input_format_md": "n k and two permutations.",
+    "output_format_md": "YES/NO and the string.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b10-scc-01-a1",
+        "problem_id": "koda-b10-scc-01",
+        "approach_name": "SCC letter assign",
+        "paradigms": [
+          "Graph Algorithms",
+          "Greedy"
+        ],
+        "algorithms": [
+          "SCC",
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Implication / forced order; condensation assigns letters"
+        ],
+        "editorial_summary_md": "Build constraints between positions; condensation DAG; greedily assign distinct letters along topo order."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mf-01",
+    "title": "Greenhouse Effect Orient",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/269/C",
+    "difficulty_rating": 2200,
+    "statement_md": "Undirected graph with edge capacities. Orient every edge so that for each vertex the sum of incoming capacities equals half the sum of incident capacities.",
+    "input_format_md": "n m then m edges with capacities.",
+    "output_format_md": "Orientation of each edge (0 or 1).",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b10-mf-01-a1",
+        "problem_id": "koda-b10-mf-01",
+        "approach_name": "Degree drain orient",
+        "paradigms": [
+          "Flows / Matching",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Max Flow",
+          "BFS"
+        ],
+        "data_structures": [
+          "Adjacency List",
+          "Queue"
+        ],
+        "key_insights": [
+          "Orient edges so incoming sum equals half degree sum; flow-style draining"
+        ],
+        "editorial_summary_md": "Each vertex needs incoming flow = sum incident / 2; process saturated vertices like a queue (unit network orientation)."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mf-02",
+    "title": "Minimum Cut",
+    "source": "Other",
+    "url": "https://open.kattis.com/problems/mincut",
+    "difficulty_rating": 1800,
+    "statement_md": "Directed capacitated graph. Find a minimum s–t cut and list vertices on the s side.",
+    "input_format_md": "n m s t then directed edges.",
+    "output_format_md": "Size of s-set then vertex ids.",
+    "constraints_text": "$n \\le 500$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "koda-b10-mf-02-a1",
+        "problem_id": "koda-b10-mf-02",
+        "approach_name": "Min-cut set",
+        "paradigms": [
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "Max Flow",
+          "BFS",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Max-flow min-cut; DFS residual from s lists the source side"
+        ],
+        "editorial_summary_md": "Compute max flow then residual reachability from s; that set is a minimum cut source component."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-bpm-01",
+    "title": "Maximize Mex",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1139/E",
+    "difficulty_rating": 2400,
+    "statement_md": "Students with potentials and clubs. As students leave, maintain the maximum mex over chosen one-per-club potentials.",
+    "input_format_md": "n m, potentials, clubs, leaving order.",
+    "output_format_md": "Mex after each departure (including initial).",
+    "constraints_text": "$n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "koda-b10-bpm-01-a1",
+        "problem_id": "koda-b10-bpm-01",
+        "approach_name": "Offline matching mex",
+        "paradigms": [
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "Bipartite Matching",
+          "Max Flow"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Offline deletions; grow matching mex of potential"
+        ],
+        "editorial_summary_md": "Process leaving students in reverse; extend bipartite matching while trying to raise mex of matched potentials."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-bpm-02",
+    "title": "Relatively Prime Graph",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1009/D",
+    "difficulty_rating": 1700,
+    "statement_md": "Build a simple graph on n vertices with exactly m edges where every edge joins coprime labels, or say Impossible.",
+    "input_format_md": "n m",
+    "output_format_md": "Possible/Impossible and the edges.",
+    "constraints_text": "$n \\le 10^5$, $m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "koda-b10-bpm-02-a1",
+        "problem_id": "koda-b10-bpm-02",
+        "approach_name": "Coprime graph build",
+        "paradigms": [
+          "Flows / Matching",
+          "Math / Number Theory",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Bipartite Matching"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Coprime edges; construct graph with n−1 tree + extras"
+        ],
+        "editorial_summary_md": "Connect i–j when gcd=1 until m edges; fail if impossible."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-bpm-03",
+    "title": "Nuts and Bolts",
+    "source": "Other",
+    "url": "https://onlinejudge.org/external/111/11138.pdf",
+    "difficulty_rating": 1600,
+    "statement_md": "n nuts and m bolts; some pairs fit. Maximum number of nuts that can be matched to distinct bolts.",
+    "input_format_md": "T cases with n m and adjacency matrix.",
+    "output_format_md": "Case lines with matching size.",
+    "constraints_text": "$n,m \\le 500$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b10-bpm-03-a1",
+        "problem_id": "koda-b10-bpm-03",
+        "approach_name": "Kuhn matching",
+        "paradigms": [
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "Bipartite Matching",
+          "Max Flow"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Nuts and bolts; classic BPM"
+        ],
+        "editorial_summary_md": "Bipartite graph nut↔bolt compatibility; maximum matching size."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-bpm-04",
+    "title": "Dungeon Master Cover",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/QUEST4/",
+    "difficulty_rating": 1700,
+    "statement_md": "Select minimum rows and columns that cover all marked cells on a grid.",
+    "input_format_md": "Multiple tests with lists of marked cells.",
+    "output_format_md": "Minimum lines needed.",
+    "constraints_text": "Grid ≤ 120",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b10-bpm-04-a1",
+        "problem_id": "koda-b10-bpm-04",
+        "approach_name": "Grid cover matching",
+        "paradigms": [
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "Bipartite Matching"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Rows/cols cover of points = BPM"
+        ],
+        "editorial_summary_md": "Each poisoned cell is edge row–col; minimum vertex cover via matching."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-bpm-05",
+    "title": "2D Plane Matching",
+    "source": "Other",
+    "url": "https://atcoder.jp/contests/abc091/tasks/arc092_a",
+    "difficulty_rating": 1400,
+    "statement_md": "n red and n blue points. Pair red (a,b) with blue (c,d) if a<c and b<d. Maximize pairs.",
+    "input_format_md": "n then red points then blue points.",
+    "output_format_md": "Maximum matching size.",
+    "constraints_text": "$n \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "koda-b10-bpm-05-a1",
+        "problem_id": "koda-b10-bpm-05",
+        "approach_name": "Geometric BPM greedy",
+        "paradigms": [
+          "Flows / Matching",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Bipartite Matching",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Red/blue points; match if red dominates; greedy by x"
+        ],
+        "editorial_summary_md": "Sort blues by x; match each to unused red with max y among those with x<bx,y<by."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-hull-01",
+    "title": "Hull Area",
+    "source": "Other",
+    "url": "https://open.kattis.com/problems/convexhull",
+    "difficulty_rating": 1500,
+    "statement_md": "Given a set of points, compute the area of their convex hull.",
+    "input_format_md": "n then n points.",
+    "output_format_md": "Area with 1 decimal or exact fraction style.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-hull-01-a1",
+        "problem_id": "koda-b10-hull-01",
+        "approach_name": "Hull then shoelace",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Stack"
+        ],
+        "key_insights": [
+          "Area via shoelace on hull"
+        ],
+        "editorial_summary_md": "Build convex hull then compute area with shoelace."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-hull-02",
+    "title": "Dynamic Convex Hull",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/70/D",
+    "difficulty_rating": 2600,
+    "statement_md": "Online: add points to a set, or ask whether a point lies inside the current convex hull.",
+    "input_format_md": "q operations.",
+    "output_format_md": "YES/NO for queries.",
+    "constraints_text": "$q \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-hull-02-a1",
+        "problem_id": "koda-b10-hull-02",
+        "approach_name": "Dynamic hull",
+        "paradigms": [
+          "Geometry",
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Convex Hull"
+        ],
+        "data_structures": [
+          "Ordered Set"
+        ],
+        "key_insights": [
+          "Dynamic upper/lower hulls with sets"
+        ],
+        "editorial_summary_md": "Maintain dynamic convex hull under insertions and point-in-hull queries."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-hull-03",
+    "title": "Point in Convex Polygon",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/166/B",
+    "difficulty_rating": 2000,
+    "statement_md": "Convex polygon and q points. For each point decide inside (including boundary) or outside.",
+    "input_format_md": "n polygon vertices CCW, q then queries.",
+    "output_format_md": "YES/NO per query.",
+    "constraints_text": "$n,q \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-hull-03-a1",
+        "problem_id": "koda-b10-hull-03",
+        "approach_name": "Fan binary search",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Point in convex polygon via binary search fans"
+        ],
+        "editorial_summary_md": "For convex polygon, binary search the triangle fan to test inclusion."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-hull-04",
+    "title": "Minimum Area Rectangle",
+    "source": "Other",
+    "url": "https://open.kattis.com/problems/convex",
+    "difficulty_rating": 1800,
+    "statement_md": "Given points, find the minimum-area rectangle that covers all of them (sides not necessarily axis-aligned).",
+    "input_format_md": "n then points.",
+    "output_format_md": "Minimum area.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-hull-04-a1",
+        "problem_id": "koda-b10-hull-04",
+        "approach_name": "Rotating calipers MAR",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "Ternary Search"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Minimum-area enclosing rectangle via rotating calipers"
+        ],
+        "editorial_summary_md": "Hull then rotating calipers for minimum area bounding rectangle."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-hull-05",
+    "title": "Line Envelope",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/659/F",
+    "difficulty_rating": 1900,
+    "statement_md": "Given lines y = m_i x + b_i and queries x, answer the maximum y among lines at each x.",
+    "input_format_md": "n lines then q queries.",
+    "output_format_md": "Answer per query.",
+    "constraints_text": "$n,q \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-hull-05-a1",
+        "problem_id": "koda-b10-hull-05",
+        "approach_name": "Li Chao / hull lines",
+        "paradigms": [
+          "Geometry",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Convex Hull",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Stack"
+        ],
+        "key_insights": [
+          "Upper hull of lines = envelope for max queries"
+        ],
+        "editorial_summary_md": "Maintain lower/upper hull of lines sorted by slope for maximum at a query x."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-br-01",
+    "title": "Bridge Component Sizes",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/732/F",
+    "difficulty_rating": 2100,
+    "statement_md": "Undirected graph. After removing all bridges, output the size of each remaining connected component.",
+    "input_format_md": "n m and edges.",
+    "output_format_md": "Component sizes sorted descending.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b10-br-01-a1",
+        "problem_id": "koda-b10-br-01",
+        "approach_name": "2-edge-CC sizes",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "DFS",
+          "DSU"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "2-edge-CC sizes; bridges link components"
+        ],
+        "editorial_summary_md": "Find bridges, contract components, report component sizes on the bridge-tree."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-br-02",
+    "title": "Articulation Points",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/ARTICULATION/",
+    "difficulty_rating": 1700,
+    "statement_md": "List all articulation points of an undirected graph.",
+    "input_format_md": "n m then edges.",
+    "output_format_md": "Count then sorted vertex ids.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b10-br-02-a1",
+        "problem_id": "koda-b10-br-02",
+        "approach_name": "Tarjan articulations",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "List articulation points"
+        ],
+        "editorial_summary_md": "DFS tin/low; root with ≥2 children or non-root with low[child] ≥ tin[u]."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-br-03",
+    "title": "Longest Bridge Path",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1000/E",
+    "difficulty_rating": 2000,
+    "statement_md": "In a connected undirected graph, what is the maximum number of bridges on any simple path?",
+    "input_format_md": "n m and edges.",
+    "output_format_md": "Maximum bridge count on a path.",
+    "constraints_text": "$n \\le 3\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b10-br-03-a1",
+        "problem_id": "koda-b10-br-03",
+        "approach_name": "Bridge-tree path",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "BFS",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Bridge-tree is a tree; longest path of bridges"
+        ],
+        "editorial_summary_md": "Contract 2-edge-CCs; diameter of resulting tree equals max bridges on a simple path."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-br-04",
+    "title": "Count Bridges Brute",
+    "source": "Other",
+    "url": "https://atcoder.jp/contests/abc075/tasks/abc075_c",
+    "difficulty_rating": 1300,
+    "statement_md": "Small connected graph: count bridges by removing each edge once.",
+    "input_format_md": "N M then edges.",
+    "output_format_md": "Number of bridges.",
+    "constraints_text": "$N \\le 50$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "koda-b10-br-04-a1",
+        "problem_id": "koda-b10-br-04",
+        "approach_name": "Per-edge DSU",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bridges / Articulation",
+          "DSU"
+        ],
+        "data_structures": [
+          "DSU"
+        ],
+        "key_insights": [
+          "Edge is bridge iff endpoints disconnect without it"
+        ],
+        "editorial_summary_md": "For each edge, union all others; count those that fail to connect endpoints."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mx-01",
+    "title": "Matrix Power",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/MPOW/",
+    "difficulty_rating": 1400,
+    "statement_md": "Compute A^n for an m×m matrix modulo a prime.",
+    "input_format_md": "T cases: m n then matrix.",
+    "output_format_md": "Resulting matrix per case.",
+    "constraints_text": "$m \\le 50$, $n \\le 10^{18}$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-mx-01-a1",
+        "problem_id": "koda-b10-mx-01",
+        "approach_name": "Matrix binary pow",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Binary exponentiation of matrices mod p"
+        ],
+        "editorial_summary_md": "Standard binary exponentiation multiplying m×m matrices modulo prime."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mx-02",
+    "title": "Magic Ship",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1117/C",
+    "difficulty_rating": 1800,
+    "statement_md": "Ship blown by cyclic wind string; each day you may also move once freely. Min days to reach target or -1.",
+    "input_format_md": "start, target, n, wind string.",
+    "output_format_md": "Minimum days or -1.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-mx-02-a1",
+        "problem_id": "koda-b10-mx-02",
+        "approach_name": "BS + prefix wind",
+        "paradigms": [
+          "Math / Number Theory",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation",
+          "Binary Search",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Wind string + free moves; BS days (matrix tag as linear advance drill companion)"
+        ],
+        "editorial_summary_md": "Binary search days; prefix wind displacement must be reachable with remaining free steps."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mx-03",
+    "title": "Directed Walks",
+    "source": "Other",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_r",
+    "difficulty_rating": 1700,
+    "statement_md": "Count directed walks of length exactly K in a 0/1 adjacency graph.",
+    "input_format_md": "N K and adjacency matrix.",
+    "output_format_md": "Count mod 10^9+7.",
+    "constraints_text": "$N \\le 50$, $K \\le 10^{18}$",
+    "sample_io": [],
+    "target_complexity": "O(N³)",
+    "approaches": [
+      {
+        "id": "koda-b10-mx-03-a1",
+        "problem_id": "koda-b10-mx-03",
+        "approach_name": "Adj power walks",
+        "paradigms": [
+          "Math / Number Theory",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Count walks with adj^K"
+        ],
+        "editorial_summary_md": "Raise adjacency matrix to K; sum all entries."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mx-04",
+    "title": "Tetrahedron",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/166/E",
+    "difficulty_rating": 1400,
+    "statement_md": "Ant on tetrahedron vertices. Number of ways to be at D after exactly n edges.",
+    "input_format_md": "n",
+    "output_format_md": "Ways mod 10^9+7.",
+    "constraints_text": "$n \\le 10^7$ (or up to 10^{18} with matrix)",
+    "sample_io": [],
+    "target_complexity": "O(log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-mx-04-a1",
+        "problem_id": "koda-b10-mx-04",
+        "approach_name": "4-state matrix",
+        "paradigms": [
+          "Math / Number Theory",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Tetrahedron walks; 4-state linear recurrence"
+        ],
+        "editorial_summary_md": "Let a_n = ways at D, b_n elsewhere; matrix or closed recurrence a_n = 3·b_{n-1}."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mx-05",
+    "title": "Range Fibonacci Sum",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/FIBOSUM/",
+    "difficulty_rating": 1500,
+    "statement_md": "Sum F_L + … + F_R modulo 10^9+7 for multiple queries.",
+    "input_format_md": "T then lines L R.",
+    "output_format_md": "Sums.",
+    "constraints_text": "$R \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-mx-05-a1",
+        "problem_id": "koda-b10-mx-05",
+        "approach_name": "Fib identity + pow",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Matrix Exponentiation"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Sum of Fib via F_{n+2}-1"
+        ],
+        "editorial_summary_md": "Use matrix Fibonacci to evaluate F_{R+2}-F_{L+1}."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-sw-01",
+    "title": "Yet Another Meme Problem",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1288/B",
+    "difficulty_rating": 1200,
+    "statement_md": "Count pairs (a,b) with 1≤a≤A, 1≤b≤B where a·b+a+b equals concatenation a|b.",
+    "input_format_md": "T then A B.",
+    "output_format_md": "Counts.",
+    "constraints_text": "$A,B \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(1)",
+    "approaches": [
+      {
+        "id": "koda-b10-sw-01-a1",
+        "problem_id": "koda-b10-sw-01",
+        "approach_name": "Digit sweep count",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sweep Line"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Count pairs via digit lengths — endpoint style counting"
+        ],
+        "editorial_summary_md": "For each b with all-9s pattern, count valid a; closed form."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-sw-02",
+    "title": "Segment Coverage Histogram",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1000/C",
+    "difficulty_rating": 1600,
+    "statement_md": "n segments on Z. For each k how many points are covered by ≥ k segments?",
+    "input_format_md": "n then segments.",
+    "output_format_md": "n numbers for k=1..n.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-sw-02-a1",
+        "problem_id": "koda-b10-sw-02",
+        "approach_name": "Endpoint events",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [
+          "Sweep Line",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Difference array on compressed coordinates"
+        ],
+        "editorial_summary_md": "Sort +1/−1 events; accumulate coverage lengths per multiplicity."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mo-01",
+    "title": "Powerful Subarrays",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/86/D",
+    "difficulty_rating": 2100,
+    "statement_md": "Offline range queries for Σ_x count(x)² · x.",
+    "input_format_md": "n q, array, queries.",
+    "output_format_md": "Answers in order.",
+    "constraints_text": "$n,q \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "koda-b10-mo-01-a1",
+        "problem_id": "koda-b10-mo-01",
+        "approach_name": "Mo power II",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Maintain Σ freq²·value"
+        ],
+        "editorial_summary_md": "Block-sorted queries; add/remove updates answer by odd multiples of value."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mo-02",
+    "title": "Distinct in Range",
+    "source": "Other",
+    "url": "https://www.spoj.com/problems/DQUERY/",
+    "difficulty_rating": 1700,
+    "statement_md": "Count distinct values on each query range.",
+    "input_format_md": "n, array, q, queries.",
+    "output_format_md": "Answers.",
+    "constraints_text": "$n \\le 3\\cdot 10^4$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "koda-b10-mo-02-a1",
+        "problem_id": "koda-b10-mo-02",
+        "approach_name": "Mo distinct II",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Distinct count Mo"
+        ],
+        "editorial_summary_md": "Increment answer on 0→1 frequency transitions."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mo-03",
+    "title": "Favorite Xor Ranges",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/617/E",
+    "difficulty_rating": 2300,
+    "statement_md": "Count subarrays inside [l,r] whose xor equals k.",
+    "input_format_md": "n m k, array, queries.",
+    "output_format_md": "Answers.",
+    "constraints_text": "$n,m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "koda-b10-mo-03-a1",
+        "problem_id": "koda-b10-mo-03",
+        "approach_name": "Mo xor II",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Xor-pair counting with Mo on prefixes"
+        ],
+        "editorial_summary_md": "Prefix xors; Mo maintains freq map and counts pairs with given xor."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mo-04",
+    "title": "Elephant Array Queries",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/220/B",
+    "difficulty_rating": 1800,
+    "statement_md": "For each [l,r] count x occurring exactly x times.",
+    "input_format_md": "n m, array, queries.",
+    "output_format_md": "Answers.",
+    "constraints_text": "$n,m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "koda-b10-mo-04-a1",
+        "problem_id": "koda-b10-mo-04",
+        "approach_name": "Mo self-freq II",
+        "paradigms": [
+          "Data Structures"
+        ],
+        "algorithms": [
+          "Mo's Algorithm"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Values equal to their own frequency"
+        ],
+        "editorial_summary_md": "Track how many x currently appear exactly x times while Mo moves."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-mo-05",
+    "title": "Subtree Color Threshold",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/375/D",
+    "difficulty_rating": 2400,
+    "statement_md": "Tree with colors; queries (v,k) = number of colors appearing ≥ k times in subtree v.",
+    "input_format_md": "n m, colors, edges, queries.",
+    "output_format_md": "Answers.",
+    "constraints_text": "$n,m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "koda-b10-mo-05-a1",
+        "problem_id": "koda-b10-mo-05",
+        "approach_name": "Tree Mo II",
+        "paradigms": [
+          "Data Structures",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Mo's Algorithm",
+          "DFS"
+        ],
+        "data_structures": [
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "Euler tour + Mo + BIT on freq-of-freq"
+        ],
+        "editorial_summary_md": "Subtree as [tin,tout]; Mo with BIT counting colors with frequency ≥ k."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-z-01",
+    "title": "Prefix-Suffix Report",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/432/D",
+    "difficulty_rating": 1800,
+    "statement_md": "List every prefix that is also a suffix together with its number of occurrences as a substring.",
+    "input_format_md": "String s.",
+    "output_format_md": "k then k lines of length and count.",
+    "constraints_text": "$|s| \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b10-z-01-a1",
+        "problem_id": "koda-b10-z-01",
+        "approach_name": "Z border list",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Z + occurrence prefix sums"
+        ],
+        "editorial_summary_md": "Prefixes that equal suffixes; count occurrences via Z histogram."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-z-02",
+    "title": "Legend Password",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/126/B",
+    "difficulty_rating": 1700,
+    "statement_md": "Longest string that is a prefix, a suffix, and appears in the interior; else a legend message.",
+    "input_format_md": "One string.",
+    "output_format_md": "Substring or message.",
+    "constraints_text": "$|s| \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b10-z-02-a1",
+        "problem_id": "koda-b10-z-02",
+        "approach_name": "Z password II",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "KMP"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Longest border that appears inside"
+        ],
+        "editorial_summary_md": "Track max interior Z; walk borders until one fits."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-z-03",
+    "title": "Word Compression",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/1200/E",
+    "difficulty_rating": 1800,
+    "statement_md": "Concatenate words with maximum prefix-suffix overlaps.",
+    "input_format_md": "n then n words.",
+    "output_format_md": "Compressed string.",
+    "constraints_text": "Total length ≤ 10^6",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b10-z-03-a1",
+        "problem_id": "koda-b10-z-03",
+        "approach_name": "Z compress II",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "String Hashing"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Overlap merge via Z of word+# + suffix"
+        ],
+        "editorial_summary_md": "Greedily append each next word after computing longest overlap with current string suffix."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-z-04",
+    "title": "Necklace Periods",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/526/D",
+    "difficulty_rating": 2300,
+    "statement_md": "Mark prefixes expressible as (AB)^k A for given k (A,B may be empty).",
+    "input_format_md": "n k and string.",
+    "output_format_md": "Bitstring of length n.",
+    "constraints_text": "$n \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b10-z-04-a1",
+        "problem_id": "koda-b10-z-04",
+        "approach_name": "Z period marks II",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Z-Algorithm",
+          "KMP"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Period structure (AB)^k A"
+        ],
+        "editorial_summary_md": "Use Z-function periods to mark valid necklace prefixes."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-gt-01",
+    "title": "Stones with Memory",
+    "source": "Other",
+    "url": "https://codeforces.com/problemset/problem/768/E",
+    "difficulty_rating": 2000,
+    "statement_md": "Multi-pile game: remove x>0 from a pile but x cannot repeat on that pile. Decide first-player win.",
+    "input_format_md": "n and pile sizes.",
+    "output_format_md": "YES or NO.",
+    "constraints_text": "Piles ≤ 60",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b10-gt-01-a1",
+        "problem_id": "koda-b10-gt-01",
+        "approach_name": "Masked grundy",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Game Theory"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Grundy with used-move masks on piles"
+        ],
+        "editorial_summary_md": "Precompute grundy for pile size under subtraction-with-memory; XOR all piles."
+      }
+    ]
+  },
+  {
+    "id": "koda-b10-gt-02",
+    "title": "Subtraction Stones",
+    "source": "Other",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_k",
+    "difficulty_rating": 1300,
+    "statement_md": "One pile n; remove a value from set A. Player taking last stone wins. Who wins?",
+    "input_format_md": "N K and set A.",
+    "output_format_md": "First or Second.",
+    "constraints_text": "$N \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "koda-b10-gt-02-a1",
+        "problem_id": "koda-b10-gt-02",
+        "approach_name": "Subtraction DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Game Theory"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Win/lose DP for subtraction game"
+        ],
+        "editorial_summary_md": "dp[x] winning if exists move to losing position."
       }
     ]
   }
