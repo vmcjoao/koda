@@ -90,6 +90,11 @@ export default function HypothesisScreen() {
         onPress={() => router.push(`/problem/${id}/reveal`)}
         disabled={!canContinue}
       />
+      <PrimaryButton
+        label="Stuck? Hint path"
+        variant="ghost"
+        onPress={() => router.push(`/problem/${id}/stuck`)}
+      />
     </Screen>
   );
 }

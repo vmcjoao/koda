@@ -25,7 +25,8 @@ import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function RevealScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, from } = useLocalSearchParams<{ id: string; from?: string }>();
+  const fromStuck = from === 'stuck';
   const { user, profile, refreshProfile } = useAuth();
   const { problem, draft, breakdown, finalizeScore, reset, beginProblem } = useAttempt();
   const [saving, setSaving] = useState(false);
@@ -135,6 +136,14 @@ export default function RevealScreen() {
 
   return (
     <Screen scroll>
+      {fromStuck ? (
+        <View style={styles.stuckBanner}>
+          <Text style={styles.stuckBannerTitle}>Revealed from stuck path</Text>
+          <Text style={styles.stuckBannerBody}>
+            Score reflects an empty hypothesis — use the editorial and Drill next to recover.
+          </Text>
+        </View>
+      ) : null}
       <View style={styles.scoreBlock}>
         <Text style={styles.rankLabel}>{rank.label}</Text>
         <Animated.View style={scoreAnimStyle}>
@@ -236,15 +245,15 @@ export default function RevealScreen() {
       {!saved ? (
         <>
           <PrimaryButton
-            label="Add to Implement Queue"
+            label={fromStuck ? 'Mark for review (SRS)' : 'Add to Implement Queue'}
             loading={saving}
-            onPress={() => persist('drafted')}
+            onPress={() => persist(fromStuck ? 'needs_review' : 'drafted')}
           />
           <PrimaryButton
-            label="Mark for review (SRS)"
+            label={fromStuck ? 'Add to Implement Queue' : 'Mark for review (SRS)'}
             variant="secondary"
             disabled={saving}
-            onPress={() => persist('needs_review')}
+            onPress={() => persist(fromStuck ? 'drafted' : 'needs_review')}
           />
         </>
       ) : (
@@ -317,6 +326,27 @@ function Bar({ label, value }: { label: string; value: number }) {
 }
 
 const styles = StyleSheet.create({
+  stuckBanner: {
+    backgroundColor: colors.atmosphereBoss,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.warning,
+    padding: spacing.md,
+    gap: 4,
+    marginBottom: spacing.sm,
+  },
+  stuckBannerTitle: {
+    color: colors.warning,
+    fontSize: 13,
+    fontWeight: '800',
+    letterSpacing: 0.4,
+    textTransform: 'uppercase',
+  },
+  stuckBannerBody: {
+    color: colors.textMuted,
+    fontSize: 13,
+    lineHeight: 18,
+  },
   scoreBlock: {
     alignItems: 'flex-start',
     gap: 4,

@@ -134,14 +134,18 @@ export default function EncounterScreen() {
       ))}
 
       <PrimaryButton
-        label="Add to playlist"
-        variant="secondary"
-        onPress={() => addProblemToPlaylistFlow(problem.id, problem.title)}
-      />
-
-      <PrimaryButton
         label="Constraint Radar"
         onPress={() => router.push(`/problem/${problem.id}/radar`)}
+      />
+      <PrimaryButton
+        label="Stuck? Hint path"
+        variant="secondary"
+        onPress={() => router.push(`/problem/${problem.id}/stuck`)}
+      />
+      <PrimaryButton
+        label="Add to playlist"
+        variant="ghost"
+        onPress={() => addProblemToPlaylistFlow(problem.id, problem.title)}
       />
     </Screen>
   );

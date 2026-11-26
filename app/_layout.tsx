@@ -139,6 +139,10 @@ export default function RootLayout() {
                 />
                 <Stack.Screen name="problem/[id]/blueprint" options={{ title: 'Blueprint' }} />
                 <Stack.Screen
+                  name="problem/[id]/stuck"
+                  options={{ title: 'Stuck path' }}
+                />
+                <Stack.Screen
                   name="problem/[id]/reveal"
                   options={{ title: 'Reveal', headerBackVisible: false, animation: 'fade' }}
                 />

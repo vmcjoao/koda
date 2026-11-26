@@ -62,6 +62,11 @@ export default function RadarScreen() {
         label={selected.length ? 'Lock guess & continue' : 'Skip radar'}
         onPress={continueNext}
       />
+      <PrimaryButton
+        label="Stuck? Hint path"
+        variant="ghost"
+        onPress={() => router.push(`/problem/${id}/stuck`)}
+      />
     </Screen>
   );
 }
