@@ -1,72 +1,206 @@
-# Koda
+<p align="center">
+  <img src="assets/images/icon.png" alt="Koda" width="96" height="96" />
+</p>
 
-Mobile app for studying competitive programming without writing syntax on a phone. Diagnose paradigms, algorithms, data structures, and key twists — then blueprint for later PC implementation.
+<h1 align="center">Koda</h1>
 
-## Stack
+<p align="center">
+  <strong>Read. Diagnose. Blueprint.</strong><br/>
+  Competitive programming training built for a phone — without writing syntax on glass.
+</p>
 
-- **Expo** (React Native + Expo Router), dark mode by default
-- **Supabase** (Auth + Postgres) with **offline guest mode** using a local catalog (seeded + extras via SQLite/remote cache)
+<p align="center">
+  <img alt="Expo" src="https://img.shields.io/badge/Expo-58-000?style=flat-square&logo=expo&logoColor=3DDC97" />
+  <img alt="React Native" src="https://img.shields.io/badge/React%20Native-0.88-61DAFB?style=flat-square&logo=react&logoColor=white" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white" />
+  <img alt="UI" src="https://img.shields.io/badge/UI-dark%20%2B%20mint-3DDC97?style=flat-square" />
+</p>
 
-## Quick start
+<p align="center">
+  <em>Clear Warm-up → Target → Boss. Build judgment first. Code later on a real keyboard.</em>
+</p>
+
+---
+
+> **📸 Media checklist** — capture shots listed in [`docs/media/SHOTLIST.md`](docs/media/SHOTLIST.md) and drop them into `docs/media/` with those exact filenames. The gallery below lights up as files land.
+
+---
+
+## Launch
+
+The brand opens as a graph: one node mitoses into a **K**, then **oda** slides in.
+
+<p align="center">
+  <img src="docs/media/01-launch.gif" alt="Koda launch — graph-K mitosis" width="280" />
+</p>
+
+<p align="center">
+  <sub>Prefer MP4? Use <code>01-launch.mp4</code> — GitHub embeds both.</sub>
+</p>
+
+---
+
+## The Run tab
+
+Home is a single composition: wordmark, streak / XP / band, today’s algorithm, and the daily path.
+
+<p align="center">
+  <img src="docs/media/02-home-run.png" alt="Koda Home — Run tab with Daily Path" width="280" />
+  &nbsp;
+  <img src="docs/media/04-daily-path-boss.png" alt="Daily Path with Boss ready" width="280" />
+</p>
+
+| Piece | Why it hits |
+| --- | --- |
+| **Graph-K wordmark** | Tap to replay the mitosis in place |
+| **PlayerStrip** | Streak ◆ · XP gold count-up · Band ◎ |
+| **Daily Path** | Warm-up → Target → Boss, Clash-style progress |
+| **Raised Run orb** | Center tab bolt — mint when you’re on Home |
+
+<p align="center">
+  <img src="docs/media/03-tab-bar.png" alt="Tab bar with raised Run orb" width="360" />
+</p>
+
+---
+
+## Daily Algorithm
+
+One seeded skill-check a day. Calendar like a habit game — streak, catch-up, +XP on first clear.
+
+<p align="center">
+  <img src="docs/media/05-daily-algo-calendar.png" alt="Daily Algorithm calendar" width="280" />
+  &nbsp;
+  <img src="docs/media/06-daily-algo-puzzle.png" alt="Daily Algorithm puzzle" width="280" />
+</p>
+
+---
+
+## Learn — Algorithm Dojo
+
+Curriculum as a path. Units, zigzag nodes, Check drills, and **Live Replay** visualizations — watch the algorithm move before you tag it.
+
+<p align="center">
+  <img src="docs/media/07-learn-path.png" alt="Learn path — Algorithm Dojo" width="280" />
+  &nbsp;
+  <img src="docs/media/08-learn-viz.gif" alt="Live Replay visualization" width="280" />
+</p>
+
+BFS · DFS · Dijkstra · knapsack · LIS · segtree · hull · and more.
+
+---
+
+## Encounter → Reveal
+
+The core loop is diagnosis, not typing:
+
+```text
+Encounter  →  Radar  →  Hypothesis  →  Blueprint  →  Reveal
+```
+
+Read the statement (KaTeX, grids, samples). Tag complexity. Name paradigm, algorithm, structures, twists. Sketch a blueprint for later PC work. Then see how sharp your read was.
+
+<p align="center">
+  <img src="docs/media/09-encounter.png" alt="Problem encounter with statement" width="220" />
+  &nbsp;
+  <img src="docs/media/10-hypothesis.png" alt="Hypothesis chip wall" width="220" />
+  &nbsp;
+  <img src="docs/media/11-reveal-score.png" alt="Reveal score breakdown" width="220" />
+</p>
+
+Stuck? Progressive hints — coaching layers, not instant spoilers.
+
+<p align="center">
+  <img src="docs/media/12-stuck-hints.png" alt="Stuck path progressive hints" width="280" />
+</p>
+
+---
+
+## Review · Implement · Stats
+
+| Review | Implement | Stats |
+| :---: | :---: | :---: |
+| Spaced reps for misses | Copy blueprints · open OJ · mark AC | Band, heatmap, blind spots, funnel |
+| <img src="docs/media/20-review.png" alt="Review deck" width="200" /> | <img src="docs/media/14-implement-queue.png" alt="Implement queue" width="200" /> | <img src="docs/media/13-stats.png" alt="Stats heatmap" width="200" /> |
+
+Catalog, playlists, history filters, offline SQLite catalog, guest → cloud sync when you want it.
+
+<p align="center">
+  <img src="docs/media/15-catalog.png" alt="Problem catalog" width="280" />
+  &nbsp;
+  <img src="docs/media/16-profile.png" alt="Profile and avatars" width="280" />
+</p>
+
+---
+
+## Brand
+
+<p align="center">
+  <img src="docs/media/17-wordmark.png" alt="Koda graph-K wordmark" width="320" />
+</p>
+
+| | |
+| --- | --- |
+| **Mint** `#3DDC97` | Accents, Run orb, wordmark |
+| **Gold** `#F0C14B` | XP |
+| **Amber** `#F5A623` | Streak · Boss · Daily Algo |
+| **Radar blue** `#5B8CFF` | Band · Constraint Radar |
+| **Void** `#121212` | Stage |
+
+---
+
+## Why Koda
+
+Most CP apps shove an editor onto a phone. Koda flips it:
+
+1. **Train recognition** — paradigms and twists under time pressure  
+2. **Keep implementation for a keyboard** — blueprints land in the Implement queue  
+3. **Feel like a run** — daily set, streaks, bands, haptics, motion with purpose  
+
+Built with **Expo · React Native · Expo Router · Reanimated · Supabase** (optional) · local-first guest mode.
+
+---
+
+## Try it
+
+Android preview builds ship as installable APKs via [EAS](https://expo.dev) (internal distribution).  
+Repo stays private while the product is yours — share the build link, not the source.
 
 ```bash
 npm install
 npx expo start
 ```
 
-Guest mode works with no backend. To enable sync:
+Guest mode works with no backend. Optional sync: copy `.env.example` → `.env` and set Supabase keys.
 
-```bash
-cp .env.example .env
-# fill EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY
-```
+<details>
+<summary><strong>Dev notes</strong> (setup, scripts, ingest)</summary>
 
-Native builds (when you leave Expo Go):
+### Stack
+- Expo (RN + Router), dark by default  
+- Supabase Auth + Postgres, offline guest via SQLite / cache  
 
-```bash
-npx eas-cli@latest build --profile preview
-```
+### Supabase
+1. Enable Email auth  
+2. Run migrations `001` … `005_io_formats.sql`  
+3. Seed with `supabase/seed.sql` (`npm run generate:seed`)  
+4. Redirect URLs: `koda://(auth)/reset`, `koda://(auth)/login`  
 
-See [`eas.json`](eas.json). Bundle IDs: `app.koda.mobile`.
-
-## Supabase setup
-
-1. Create a project and enable Email auth.
-2. Run migrations in order: `001` … `005_io_formats.sql` (favorites, playlists, I/O format columns).
-3. Run [`supabase/seed.sql`](supabase/seed.sql) (regenerate with `npm run generate:seed`).
-4. Under **Authentication → URL configuration**, allow redirect URLs for password reset / email confirm:
-   - `koda://(auth)/reset` and `koda://(auth)/login` (native scheme)
-   - your Expo Go / dev URLs from `npx uri-scheme` / `Linking.createURL` while developing
-
-## Features
-
-1. **Encounter → Radar → Hypothesis → Blueprint → Reveal** (statements support KaTeX, monospace grids, SVG/images)
-2. **Daily Set** — warm-up / target / boss from your rating **band**
-3. **Daily Algorithm** — Duolingo-style month calendar; one seeded skill-check per day, streak + catch-up, +XP on first clear
-4. **Learn path** — curriculum units with Check drills and Live Replay viz (no lesson locks)
-5. **Review deck** — spaced repetition for misses
-6. **Implement queue** — copy blueprints, open OJ links, mark AC (`npm run web` as PC companion)
-7. **Analytics** — topic mastery, 12-week activity heatmap, blind spots, pipeline funnel, mistakes
-8. **Band auto-adjust** (+ manual edit in Settings / Profile)
-9. **Daily reminder** — pick hour in Profile; tap opens the Daily Algorithm calendar
-10. **Backup** — export / import local training JSON
-11. **Offline catalog** — SQLite on device (AsyncStorage fallback on web); migrates legacy cache
-12. **Guest → cloud sync** — sign-in uploads attempts, review state, favorites, playlists, and XP
-13. **History filters** — strong/weak, status, radar bonus
-14. **Playlists** — custom problem sets (by source or theme); sync + backup included
-15. **Auth** — email sign-in / register / in-app password recovery deep link (`koda://…`)
-
-## Ingest new problems
-
-See [`scripts/ingest/README.md`](scripts/ingest/README.md): LLM draft → validate → import → regenerate seed.
-
-## Scripts
+### Scripts
 
 | Command | Purpose |
-|---|---|
+| --- | --- |
 | `npm start` | Expo dev server |
 | `npm run typecheck` | TypeScript |
-| `npm test` | Scoring + habit + local-data checks |
-| `npm run generate:seed` | Rebuild `supabase/seed.sql` |
-| `npm run ingest:validate -- <file>` | Validate a problem draft |
-| `npm run ingest:import -- <file>` | Merge draft into `data/extra-problems.json` |
+| `npm test` | Scoring + habit + local-data |
+| `npm run generate:seed` | Rebuild seed SQL |
+| `npx eas-cli build --profile preview -p android` | Preview APK |
+
+Ingest pipeline: [`scripts/ingest/README.md`](scripts/ingest/README.md).
+
+</details>
+
+---
+
+<p align="center">
+  <sub>Designed & built by <strong>João</strong> · graph-K brand · mint on void</sub>
+</p>
