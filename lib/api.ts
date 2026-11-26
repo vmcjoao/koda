@@ -242,6 +242,36 @@ export async function updateDisplayName(
   return profile;
 }
 
+/** First clear of a Daily Algorithm day — local XP (+ cloud when signed in). */
+export async function awardDailyAlgorithmXp(
+  userId: string | null,
+  amount: number,
+): Promise<UserProfile> {
+  const profile = await readLocalProfile();
+  profile.xp += Math.max(0, amount);
+  const today = todayIso();
+  if (profile.last_active_date !== today) {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const y = yesterday.toISOString().slice(0, 10);
+    profile.streak = profile.last_active_date === y ? profile.streak + 1 : 1;
+    profile.last_active_date = today;
+  }
+  await writeLocalProfile(profile);
+
+  if (supabase && userId) {
+    await supabase
+      .from('user_profiles')
+      .update({
+        xp: profile.xp,
+        streak: profile.streak,
+        last_active_date: profile.last_active_date,
+      })
+      .eq('user_id', userId);
+  }
+  return profile;
+}
+
 export type SyncResult = {
   uploadedAttempts: number;
   upsertedStates: number;

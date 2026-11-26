@@ -1,5 +1,5 @@
 import { getLesson } from '@/lib/learn';
-import { lessonHasExercises } from '@/lib/learnExerciseGen';
+import { buildExercises, lessonHasExercises } from '@/lib/learnExerciseGen';
 import { todayIso } from '@/lib/habit';
 import type { LearnLesson } from '@/types/learn';
 
@@ -30,11 +30,15 @@ const GENERATIVE_DAILY = [
   'hash-map',
 ] as const;
 
+/** XP granted the first time a calendar day is cleared. */
+export const DAILY_ALGO_XP = 15;
+
 /** Lessons eligible for the daily algorithm puzzle. */
 export function dailyAlgorithmPool(): string[] {
   const generative = GENERATIVE_DAILY.filter(lessonHasExercises);
-  return generative.length ? [...generative] : GENERATIVE_DAILY.filter(() => true);
+  return generative.length ? [...generative] : [...GENERATIVE_DAILY];
 }
+
 /** FNV-1a style hash → uint32. */
 export function hashIso(iso: string): number {
   let h = 2166136261;
@@ -57,6 +61,13 @@ export function seedForDate(iso: string): number {
 
 export function lessonForDate(iso: string): LearnLesson | undefined {
   return getLesson(lessonIdForDate(iso));
+}
+
+/** Flattened skill-check beats for that day's seeded instance. */
+export function beatCountForDate(iso: string): number {
+  const id = lessonIdForDate(iso);
+  const drills = buildExercises(id, seedForDate(iso));
+  return drills.reduce((n, e) => n + (e.kind === 'mcq' ? 1 : e.steps.length), 0);
 }
 
 export function parseIso(iso: string): Date {
@@ -85,11 +96,27 @@ export function isToday(iso: string, today = todayIso()): boolean {
   return iso === today;
 }
 
-/** Consecutive completed days ending at `today` (0 if today not done). */
+/** Past day that was never cleared (catch-up target). */
+export function isMissedDate(
+  iso: string,
+  cleared: Set<string>,
+  today = todayIso(),
+): boolean {
+  return iso < today && !cleared.has(iso);
+}
+
+export function formatPuzzleDate(iso: string): string {
+  return parseIso(iso).toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
+/** Consecutive completed days ending at `today` (or yesterday if today still open). */
 export function dailyAlgoStreak(completed: Set<string>, today = todayIso()): number {
   let streak = 0;
   let cursor = today;
-  // If today isn't cleared, streak is consecutive days ending yesterday.
   if (!completed.has(today)) {
     cursor = addDaysIso(today, -1);
   }
@@ -98,6 +125,38 @@ export function dailyAlgoStreak(completed: Set<string>, today = todayIso()): num
     cursor = addDaysIso(cursor, -1);
   }
   return streak;
+}
+
+/** Longest consecutive run in the cleared set. */
+export function dailyAlgoBestStreak(completed: Set<string>): number {
+  if (!completed.size) return 0;
+  const sorted = [...completed].sort();
+  let best = 1;
+  let cur = 1;
+  for (let i = 1; i < sorted.length; i++) {
+    if (addDaysIso(sorted[i - 1]!, 1) === sorted[i]) cur += 1;
+    else cur = 1;
+    if (cur > best) best = cur;
+  }
+  return best;
+}
+
+export function monthClearedStats(
+  year: number,
+  monthIndex: number,
+  cleared: Set<string>,
+  today = todayIso(),
+): { cleared: number; available: number } {
+  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+  let available = 0;
+  let done = 0;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const iso = toIso(new Date(year, monthIndex, d));
+    if (iso > today) continue;
+    available += 1;
+    if (cleared.has(iso)) done += 1;
+  }
+  return { cleared: done, available };
 }
 
 export function monthMatrix(year: number, monthIndex: number): (string | null)[][] {

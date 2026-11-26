@@ -26,12 +26,13 @@ export async function isDailyAlgoCleared(iso: string): Promise<boolean> {
   return dates.includes(iso);
 }
 
-export async function markDailyAlgoCleared(iso: string): Promise<void> {
+/** Marks the day cleared. Returns true if this was the first clear. */
+export async function markDailyAlgoCleared(iso: string): Promise<boolean> {
   const dates = await readDates();
-  if (!dates.includes(iso)) {
-    dates.push(iso);
-    await writeDates(dates);
-  }
+  if (dates.includes(iso)) return false;
+  dates.push(iso);
+  await writeDates(dates);
+  return true;
 }
 
 export async function unmarkDailyAlgoCleared(iso: string): Promise<void> {
