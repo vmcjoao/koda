@@ -962,6 +962,11 @@ vector<int> mo_distinct(vector<int> a, vector<Query> qs) {
       time: 'O(N log N)',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-lis',
+      demo: { values: [3, 1, 2, 4, 3, 5] },
+    },
+    relatedIds: ['dynamic-programming', 'binary-search', 'fenwick'],
     implementation: {
       language: 'cpp',
       code: `int lis_length(vector<int>& a) {

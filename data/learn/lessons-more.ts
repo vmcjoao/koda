@@ -271,6 +271,11 @@ long long assign_min(vector<vector<int>>& cost) {
       time: 'O(log N) per op',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-prefix',
+      demo: { values: [1, 2, 3, 4, 5, 6] },
+    },
+    relatedIds: ['prefix-sums', 'segment-tree', 'difference-array'],
     implementation: {
       language: 'cpp',
       code: `struct Fenwick {

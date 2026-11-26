@@ -21,7 +21,8 @@ export type LearnVizKind =
   | 'array-prefix'
   | 'dp-knapsack'
   | 'mono-stack'
-  | 'array-two-pointers';
+  | 'array-two-pointers'
+  | 'array-lis';
 
 export type GraphDemo = {
   nodes: { id: string; x: number; y: number; label?: string }[];

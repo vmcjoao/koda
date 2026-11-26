@@ -11,6 +11,7 @@ import {
   TwoPointersViz,
   twoPointersFrameCount,
 } from '@/components/learn/viz/TwoPointersViz';
+import { LisViz, lisFrameCount } from '@/components/learn/viz/LisViz';
 import type { ArrayDemo, GraphDemo, KnapsackDemo, LearnDemo, LearnVizKind } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import {
@@ -77,6 +78,7 @@ export function VizPlayer({ kind, demo }: Props) {
     if (kind === 'mono-stack' && isArray(demo)) return monoStackFrameCount(demo) - 1;
     if (kind === 'array-two-pointers' && isArray(demo))
       return Math.max(0, twoPointersFrameCount(demo) - 1);
+    if (kind === 'array-lis' && isArray(demo)) return Math.max(0, lisFrameCount(demo) - 1);
     return Math.max(0, graphSteps.length - 1);
   }, [demo, graphSteps.length, kind]);
 
@@ -112,6 +114,7 @@ export function VizPlayer({ kind, demo }: Props) {
         {kind === 'array-two-pointers' && isArray(demo) ? (
           <TwoPointersViz demo={demo} step={step} />
         ) : null}
+        {kind === 'array-lis' && isArray(demo) ? <LisViz demo={demo} step={step} /> : null}
       </View>
       <Text style={styles.caption}>
         Step {step}/{maxStep}
