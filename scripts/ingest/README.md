@@ -1,10 +1,28 @@
-# Problem ingestion (Phase 3)
+# Problem ingestion
 
-Pipeline sketch for later:
+Human-reviewed pipeline — never auto-publish unreviewed approaches.
 
-1. Feed a problem URL or raw statement into an LLM prompt that emits `Problem` + `Solution_Approaches` JSON matching `types/database.ts`.
-2. Human-review the tags and editorial summary.
-3. Append to `data/seed-problems.ts` and run `npm run generate:seed`.
-4. Apply `supabase/seed.sql` (or upsert rows) in your Supabase project.
+## Flow
 
-Do not auto-publish unreviewed approaches into production.
+1. Paste a statement into an LLM with [`prompt.md`](prompt.md).
+2. Save the JSON draft under `scripts/ingest/inbox/<id>.json`.
+3. Validate:
+
+```bash
+npm run ingest:validate -- scripts/ingest/inbox/my-problem.json
+```
+
+4. Import into the local catalog (`data/extra-problems.json`):
+
+```bash
+npm run ingest:import -- scripts/ingest/inbox/my-problem.json
+```
+
+5. Regenerate SQL seed and apply in Supabase if needed:
+
+```bash
+npm run generate:seed
+# then run supabase/seed.sql in the SQL editor
+```
+
+The app merges `SEED_PROBLEMS` + `extra-problems.json` offline, and prefers Supabase when the remote catalog is available.

@@ -36,6 +36,7 @@ export default function RevealScreen() {
     const savedAttempt = await saveAttempt({
       userId: user?.id ?? null,
       problemId: problem!.id,
+      problemDifficulty: problem!.difficulty_rating,
       timeSpentSec: draft!.timeSpentSec,
       paradigms: draft!.paradigms,
       algorithms: draft!.algorithms,
@@ -128,6 +129,12 @@ export default function RevealScreen() {
             base {result.xpGain.base}
             {result.xpGain.radarBonus ? ` · radar +${result.xpGain.radarBonus}` : ''}
             {result.xpGain.streakBonus ? ` · streak +${result.xpGain.streakBonus}` : ''}
+          </Text>
+          <Text style={styles.xpDetail}>
+            Band {result.ratingBand}
+            {result.bandDelta !== 0
+              ? ` (${result.bandDelta > 0 ? '+' : ''}${result.bandDelta})`
+              : ' (unchanged)'}
           </Text>
         </View>
       )}

@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SEED_PROBLEMS, getSeedProblem } from '@/data/seed-problems';
+import { getAllLocalProblems, getLocalProblem } from '@/lib/catalog';
 import {
+  adjustRatingBand,
   buildDailySet,
   computeXpGain,
   nextReviewDate,
@@ -104,7 +105,8 @@ function mapProblemRow(
 }
 
 export async function fetchProblems(): Promise<ProblemWithApproaches[]> {
-  if (!supabase) return SEED_PROBLEMS;
+  const local = getAllLocalProblems();
+  if (!supabase) return local;
 
   const { data: problems, error } = await supabase
     .from('problems')
@@ -113,7 +115,7 @@ export async function fetchProblems(): Promise<ProblemWithApproaches[]> {
 
   if (error || !problems?.length) {
     console.warn('Falling back to local seed:', error?.message);
-    return SEED_PROBLEMS;
+    return local;
   }
 
   const { data: approaches } = await supabase.from('solution_approaches').select('*');
@@ -128,11 +130,11 @@ export async function fetchProblems(): Promise<ProblemWithApproaches[]> {
 }
 
 export async function fetchProblem(id: string): Promise<ProblemWithApproaches | null> {
-  if (!supabase) return getSeedProblem(id) ?? null;
+  if (!supabase) return getLocalProblem(id) ?? null;
 
   const { data: problem, error } = await supabase.from('problems').select('*').eq('id', id).maybeSingle();
   if (error || !problem) {
-    return getSeedProblem(id) ?? null;
+    return getLocalProblem(id) ?? null;
   }
   const { data: approaches } = await supabase
     .from('solution_approaches')
@@ -224,11 +226,14 @@ export type SaveAttemptResult = {
   attempt: UserAttempt;
   xpGain: ReturnType<typeof computeXpGain>;
   streak: number;
+  ratingBand: number;
+  bandDelta: number;
 };
 
 export async function saveAttempt(input: {
   userId: string | null;
   problemId: string;
+  problemDifficulty: number;
   timeSpentSec: number;
   paradigms: string[];
   algorithms: string[];
@@ -276,6 +281,12 @@ export async function saveAttempt(input: {
     profile.streak,
   );
   profile.xp += xpGain.total;
+  const { band, delta: bandDelta } = adjustRatingBand(
+    profile.rating_band,
+    input.problemDifficulty,
+    input.breakdown.score,
+  );
+  profile.rating_band = band;
   await writeLocalProfile(profile);
 
   const forceReview = input.status === 'needs_review';
@@ -286,7 +297,7 @@ export async function saveAttempt(input: {
     const attempts = await readLocalAttempts();
     attempts.unshift(attempt);
     await writeLocalAttempts(attempts);
-    return { attempt, xpGain, streak: profile.streak };
+    return { attempt, xpGain, streak: profile.streak, ratingBand: band, bandDelta };
   }
 
   const { data, error } = await supabase
@@ -314,7 +325,7 @@ export async function saveAttempt(input: {
     const attempts = await readLocalAttempts();
     attempts.unshift(attempt);
     await writeLocalAttempts(attempts);
-    return { attempt, xpGain, streak: profile.streak };
+    return { attempt, xpGain, streak: profile.streak, ratingBand: band, bandDelta };
   }
 
   await supabase
@@ -322,11 +333,18 @@ export async function saveAttempt(input: {
     .update({
       xp: profile.xp,
       streak: profile.streak,
+      rating_band: profile.rating_band,
       last_active_date: profile.last_active_date,
     })
     .eq('user_id', input.userId);
 
-  return { attempt: data as UserAttempt, xpGain, streak: profile.streak };
+  return {
+    attempt: data as UserAttempt,
+    xpGain,
+    streak: profile.streak,
+    ratingBand: band,
+    bandDelta,
+  };
 }
 
 export async function fetchAttempts(userId: string | null): Promise<UserAttempt[]> {

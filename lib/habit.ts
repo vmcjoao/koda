@@ -161,3 +161,72 @@ export function computeXpGain(score: number, complexityBonus: boolean, streak: n
   const streakBonus = streak >= 3 ? Math.min(20, streak * 2) : 0;
   return { total: base + radarBonus + streakBonus, base, radarBonus, streakBonus };
 }
+
+/**
+ * Nudge rating band after a solve: crush harder problems → up; miss easier → down.
+ * Clamped to [800, 2400].
+ */
+export function adjustRatingBand(
+  current: number,
+  problemDifficulty: number,
+  score: number,
+): { band: number; delta: number } {
+  const relative = problemDifficulty - current;
+  let delta = 0;
+  if (score >= 85) delta = Math.round(15 + Math.max(0, relative) * 0.04);
+  else if (score >= 70) delta = Math.round(6 + Math.max(0, relative) * 0.02);
+  else if (score < 40) delta = Math.round(-12 + Math.min(0, relative) * 0.03);
+  else if (score < 60) delta = -5;
+
+  const band = Math.max(800, Math.min(2400, current + delta));
+  return { band, delta: band - current };
+}
+
+export type TopicStat = {
+  topic: string;
+  avg: number | null;
+  n: number;
+  avgTimeSec: number | null;
+  blindSpot: boolean;
+};
+
+export function computeTopicStats(
+  attempts: UserAttempt[],
+  problems: ProblemWithApproaches[],
+  categories: string[],
+): TopicStat[] {
+  return categories.map((topic) => {
+    const related = attempts.filter((a) => {
+      const p = problems.find((x) => x.id === a.problem_id);
+      return p?.approaches.some((ap) => ap.paradigms.includes(topic));
+    });
+    if (!related.length) {
+      return { topic, avg: null, n: 0, avgTimeSec: null, blindSpot: false };
+    }
+    const avg = Math.round(related.reduce((s, a) => s + a.score_accuracy, 0) / related.length);
+    const avgTimeSec = Math.round(
+      related.reduce((s, a) => s + a.time_spent_sec, 0) / related.length,
+    );
+    return {
+      topic,
+      avg,
+      n: related.length,
+      avgTimeSec,
+      blindSpot: related.length >= 2 && avg < 55,
+    };
+  });
+}
+
+export function computePipeline(attempts: UserAttempt[]) {
+  const diagnosed = attempts.length;
+  const blueprinted = attempts.filter((a) => !!a.pseudocode_draft?.trim()).length;
+  const implemented = attempts.filter((a) => a.status === 'implemented_ac').length;
+  const pct = (n: number) => (diagnosed ? Math.round((n / diagnosed) * 100) : 0);
+  return {
+    diagnosed,
+    blueprinted,
+    implemented,
+    blueprintRate: pct(blueprinted),
+    implementRate: pct(implemented),
+  };
+}

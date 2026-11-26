@@ -1,6 +1,13 @@
 import assert from 'assert';
 import { SEED_PROBLEMS } from '../data/seed-problems';
-import { buildDailySet, computeXpGain, nextReviewDate, reviewDue } from '../lib/habit';
+import {
+  adjustRatingBand,
+  buildDailySet,
+  computeXpGain,
+  computePipeline,
+  nextReviewDate,
+  reviewDue,
+} from '../lib/habit';
 import type { UserAttempt, UserProblemState } from '../types/database';
 
 const set = buildDailySet(SEED_PROBLEMS, [], 1200);
@@ -52,5 +59,13 @@ const states: UserProblemState[] = [
   },
 ];
 assert.ok(reviewDue(states, attempts).includes(SEED_PROBLEMS[0].id));
+
+const up = adjustRatingBand(1200, 1600, 90);
+assert.ok(up.delta > 0);
+const down = adjustRatingBand(1200, 900, 30);
+assert.ok(down.delta < 0);
+
+const pipe = computePipeline(attempts);
+assert.strictEqual(pipe.diagnosed, 1);
 
 console.log('habit tests passed');
