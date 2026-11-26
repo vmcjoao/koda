@@ -226,6 +226,14 @@ export const LESSON_EXERCISES_DEEPEN: Record<string, LearnExercise[]> = {
         },
       ],
     },
+    {
+      id: 'bf-passes',
+      kind: 'mcq',
+      prompt: 'On N nodes, how many full edge-relax passes before the neg-cycle check?',
+      choices: ['1', 'N−1', 'N', 'M'],
+      answer: 1,
+      explain_md: 'Shortest simple paths use ≤ N−1 edges.',
+    },
   ],
 
   'floyd-warshall': [
@@ -254,6 +262,19 @@ export const LESSON_EXERCISES_DEEPEN: Record<string, LearnExercise[]> = {
       ],
       answer: 1,
       explain_md: 'Negative self-distance ⇒ cycle through i.',
+    },
+    {
+      id: 'fw-order',
+      kind: 'mcq',
+      prompt: 'In Floyd, the outer loop variable k is…',
+      choices: [
+        'Source',
+        'Allowed intermediate node',
+        'Edge weight',
+        'BFS layer',
+      ],
+      answer: 1,
+      explain_md: 'DP over “paths may use nodes 0…k as intermediates”.',
     },
   ],
 
@@ -723,6 +744,292 @@ export const LESSON_EXERCISES_DEEPEN: Record<string, LearnExercise[]> = {
       ],
       answer: 1,
       explain_md: 'Maintain decreasing values in the deque.',
+    },
+    {
+      id: 'dq-expire',
+      kind: 'mcq',
+      prompt: 'Window of length K ends at i. When is the front index expired?',
+      choices: [
+        'front > i',
+        'front ≤ i − K',
+        'front == i',
+        'Never',
+      ],
+      answer: 1,
+      explain_md: 'Indices ≤ i−K fall outside the window → pop front.',
+    },
+  ],
+  sorting: [
+    {
+      id: 'sort-stable',
+      kind: 'mcq',
+      prompt: 'Need equal keys to keep input order. Prefer…',
+      choices: ['std::sort', 'std::stable_sort', 'nth_element', 'partial_sort'],
+      answer: 1,
+      explain_md: '`stable_sort` preserves relative order of equals.',
+    },
+  ],
+  mergesort: [
+    {
+      id: 'merge-stable',
+      kind: 'mcq',
+      prompt: 'Merging equals from left vs right — keep stable with…',
+      choices: ['Always take right first', 'Take left when a[i] ≤ a[j]', 'Random', 'Skip equals'],
+      answer: 1,
+      explain_md: '`≤` prefers the left half so equals keep original order.',
+    },
+  ],
+  quicksort: [
+    {
+      id: 'qs-partition',
+      kind: 'trace',
+      title: 'Lomuto partition',
+      context_md: '`a = [4, 7, 2, 9, 1]`, pivot = last (`1`).',
+      steps: [
+        {
+          prompt: 'After partition, pivot index?',
+          choices: ['0', '1', '2', '4'],
+          answer: 0,
+          explain_md: 'Only values ≤ 1 stay left; `1` ends at index **0**.',
+        },
+        {
+          prompt: 'Recurse next on…',
+          choices: ['Empty left + right [7,2,9,4]', 'Full array again', 'Only odds', 'Nothing'],
+          answer: 0,
+          explain_md: 'Left of pivot empty; sort the right side.',
+        },
+      ],
+    },
+  ],
+  'counting-sort': [
+    {
+      id: 'count-stable',
+      kind: 'mcq',
+      prompt: 'Stable counting sort fills the output by scanning input…',
+      choices: ['Left→right', 'Right→left', 'Random', 'By hash'],
+      answer: 1,
+      explain_md: 'Walk **right→left** so earlier equals land at lower slots first.',
+    },
+  ],
+  'coordinate-compression': [
+    {
+      id: 'cc-rank',
+      kind: 'mcq',
+      prompt: 'After unique sort `b`, rank of x is…',
+      choices: [
+        'upper_bound(b,x)−begin',
+        'lower_bound(b,x)−begin',
+        'x % b.size()',
+        'find(b,x) always fails',
+      ],
+      answer: 1,
+      explain_md: '`lower_bound` gives the dense 0-based rank.',
+    },
+  ],
+  'two-pointers': [
+    {
+      id: 'tp-shrink',
+      kind: 'trace',
+      title: 'Shortest window sum ≥ S',
+      context_md: '`a = [2, 1, 3, 2]`, S = 5. Expand right, shrink left.',
+      steps: [
+        {
+          prompt: 'First time sum ≥ 5, window is…',
+          choices: ['[2]', '[2,1]', '[2,1,3]', '[1,3,2]'],
+          answer: 2,
+          explain_md: '2+1+3 = 6 ≥ 5 → window `[2,1,3]`.',
+        },
+        {
+          prompt: 'After processing the whole array, shortest valid length?',
+          choices: ['1', '2', '3', '4'],
+          answer: 1,
+          explain_md: 'Later window `[3,2]` sums to 5 → best length **2**.',
+        },
+      ],
+    },
+  ],
+  'stack-ds': [
+    {
+      id: 'st-paren',
+      kind: 'mcq',
+      prompt: 'Valid parentheses with a stack: on `)` you…',
+      choices: [
+        'Push )',
+        'Pop a matching ( or fail',
+        'Clear the stack',
+        'Ignore',
+      ],
+      answer: 1,
+      explain_md: 'Need a pending `(` on top; else invalid.',
+    },
+    {
+      id: 'st-trace',
+      kind: 'trace',
+      title: 'Next greater',
+      context_md: '`a = [2, 1, 3]`. Monotonic decreasing stack of indices.',
+      steps: [
+        {
+          prompt: 'When 3 arrives, who gets next-greater = 3?',
+          choices: ['Only 2', '1 then 2', 'Nobody', 'Only 1'],
+          answer: 1,
+          explain_md: 'Pop 1 then 2 (both < 3).',
+        },
+      ],
+    },
+  ],
+  'queue-ds': [
+    {
+      id: 'q-bfs',
+      kind: 'mcq',
+      prompt: 'BFS uses a queue because…',
+      choices: [
+        'LIFO explores layers',
+        'FIFO expands nodes in discovery order (layers)',
+        'Random pops',
+        'Stacks are illegal',
+      ],
+      answer: 1,
+      explain_md: 'FIFO = level order = shortest unweighted paths.',
+    },
+  ],
+  'hash-map': [
+    {
+      id: 'hm-freq',
+      kind: 'mcq',
+      prompt: 'Two-sum with a hash map stores…',
+      choices: [
+        'Only sorted pairs',
+        'Value → index seen so far',
+        'All prefixes',
+        'DFS colors',
+      ],
+      answer: 1,
+      explain_md: 'For each x look up `target−x`, then insert x.',
+    },
+  ],
+  'ordered-set': [
+    {
+      id: 'os-order',
+      kind: 'mcq',
+      prompt: '`order_of_key(x)` typically returns…',
+      choices: [
+        'x itself',
+        'Count of elements strictly < x',
+        'Max element',
+        'Tree height',
+      ],
+      answer: 1,
+      explain_md: 'Policy-based / fenwick rank = how many keys < x.',
+    },
+  ],
+  'segment-tree-lazy': [
+    {
+      id: 'lazy-push',
+      kind: 'mcq',
+      prompt: 'Before reading children you must…',
+      choices: [
+        'Rebuild the tree',
+        'Push pending lazy tags down',
+        'Clear the root',
+        'Sort indices',
+      ],
+      answer: 1,
+      explain_md: 'Stale tags on a node lie to child queries until `push`.',
+    },
+  ],
+  'mst-prim': [
+    {
+      id: 'prim-pick',
+      kind: 'mcq',
+      prompt: 'Prim grows the tree by repeatedly…',
+      choices: [
+        'Adding any edge',
+        'Adding the lightest edge out of the cut',
+        'Running DFS',
+        'Sorting all edges once only (that’s Kruskal)',
+      ],
+      answer: 1,
+      explain_md: 'Like Dijkstra on the cut — PQ of fringe edges.',
+    },
+  ],
+  'ad-hoc': [
+    {
+      id: 'adhoc-read',
+      kind: 'mcq',
+      prompt: 'Best first move on a weird statement?',
+      choices: [
+        'Copy a random template',
+        'Hand-simulate tiny samples and invent invariants',
+        'Assume it’s always DP',
+        'Skip the input format',
+      ],
+      answer: 1,
+      explain_md: 'Ad-hoc = find the hidden structure by playing with examples.',
+    },
+  ],
+  'geometry-basics': [
+    {
+      id: 'geo-cross',
+      kind: 'mcq',
+      prompt: 'Cross product (B−A)×(C−A) > 0 means C is…',
+      choices: [
+        'Collinear',
+        'Left of directed line AB (CCW)',
+        'Right of AB',
+        'Closer to A',
+      ],
+      answer: 1,
+      explain_md: 'Sign of the 2D cross = orientation / turn direction.',
+    },
+  ],
+  interactive: [
+    {
+      id: 'inter-limit',
+      kind: 'mcq',
+      prompt: 'Interactive binary search on [1,N] needs about… queries',
+      choices: ['N', 'log₂ N', 'N²', '1'],
+      answer: 1,
+      explain_md: 'Halve the range each ask — classic interactive pattern.',
+    },
+  ],
+  'flows-matching': [
+    {
+      id: 'fm-cut',
+      kind: 'mcq',
+      prompt: 'Max flow equals…',
+      choices: [
+        'Number of nodes',
+        'Min cut capacity',
+        'MST weight',
+        'Chromatic number',
+      ],
+      answer: 1,
+      explain_md: 'Max-flow min-cut theorem.',
+    },
+  ],
+  'convex-hull': [
+    {
+      id: 'ch-turn',
+      kind: 'mcq',
+      prompt: 'Andrew’s monotone chain pops while the turn is not…',
+      choices: ['A left turn (CCW)', 'A right turn', 'Collinear only', 'Ascending x'],
+      answer: 0,
+      explain_md: 'Keep the lower/upper hull convex — pop non-left turns.',
+    },
+  ],
+  'sweep-line': [
+    {
+      id: 'sweep-events',
+      kind: 'mcq',
+      prompt: 'Typical sweep processes events sorted by…',
+      choices: [
+        'Random hash',
+        'X-coordinate (then type tie-break)',
+        'DFS order',
+        'Edge weight only',
+      ],
+      answer: 1,
+      explain_md: 'Vertical line moves left→right over sorted event x.',
     },
   ],
 };
