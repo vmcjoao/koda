@@ -20,7 +20,8 @@ export type LearnVizKind =
   | 'dsu-merge'
   | 'array-prefix'
   | 'dp-knapsack'
-  | 'mono-stack';
+  | 'mono-stack'
+  | 'array-two-pointers';
 
 export type GraphDemo = {
   nodes: { id: string; x: number; y: number; label?: string }[];

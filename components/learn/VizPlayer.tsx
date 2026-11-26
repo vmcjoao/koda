@@ -7,6 +7,10 @@ import { DsuViz } from '@/components/learn/viz/DsuViz';
 import { PrefixViz } from '@/components/learn/viz/PrefixViz';
 import { KnapsackViz, knapsackFrameCount } from '@/components/learn/viz/KnapsackViz';
 import { MonoStackViz, monoStackFrameCount } from '@/components/learn/viz/MonoStackViz';
+import {
+  TwoPointersViz,
+  twoPointersFrameCount,
+} from '@/components/learn/viz/TwoPointersViz';
 import type { ArrayDemo, GraphDemo, KnapsackDemo, LearnDemo, LearnVizKind } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import {
@@ -71,6 +75,8 @@ export function VizPlayer({ kind, demo }: Props) {
     if (kind === 'dsu-merge') return 4;
     if (kind === 'dp-knapsack' && isKnapsack(demo)) return knapsackFrameCount(demo);
     if (kind === 'mono-stack' && isArray(demo)) return monoStackFrameCount(demo) - 1;
+    if (kind === 'array-two-pointers' && isArray(demo))
+      return Math.max(0, twoPointersFrameCount(demo) - 1);
     return Math.max(0, graphSteps.length - 1);
   }, [demo, graphSteps.length, kind]);
 
@@ -102,6 +108,9 @@ export function VizPlayer({ kind, demo }: Props) {
         ) : null}
         {kind === 'mono-stack' && isArray(demo) ? (
           <MonoStackViz demo={demo} step={step} />
+        ) : null}
+        {kind === 'array-two-pointers' && isArray(demo) ? (
+          <TwoPointersViz demo={demo} step={step} />
         ) : null}
       </View>
       <Text style={styles.caption}>
