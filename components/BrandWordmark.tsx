@@ -75,27 +75,31 @@ export function GraphK({
     cancelAnimation(splitSe);
     cancelAnimation(centerPulse);
 
-    // Collapse into the center, then peel out top → NE → SE.
-    splitTop.value = withTiming(0, { duration: 160, easing: Easing.in(Easing.cubic) });
-    splitNe.value = withTiming(0, { duration: 160, easing: Easing.in(Easing.cubic) });
-    splitSe.value = withTiming(0, { duration: 160, easing: Easing.in(Easing.cubic) });
+    const collapse = withTiming(0, { duration: 160, easing: Easing.in(Easing.cubic) });
+    // Hold briefly at center, then peel out top → NE → SE (overlapping).
+    const hold = 120;
+
+    splitTop.value = withSequence(collapse, withDelay(hold, withSpring(1, SPRING)));
+    splitNe.value = withSequence(
+      collapse,
+      withDelay(hold + STAGGER, withSpring(1, SPRING)),
+    );
+    splitSe.value = withSequence(
+      collapse,
+      withDelay(
+        hold + STAGGER * 2,
+        withSpring(1, SPRING, (done) => {
+          if (done) busy.value = 0;
+        }),
+      ),
+    );
 
     centerPulse.value = withDelay(
-      120,
+      80,
       withSequence(
         withTiming(1.28, { duration: 200, easing: Easing.out(Easing.quad) }),
         withTiming(1, { duration: 160 }),
       ),
-    );
-
-    const expandAt = 280;
-    splitTop.value = withDelay(expandAt, withSpring(1, SPRING));
-    splitNe.value = withDelay(expandAt + STAGGER, withSpring(1, SPRING));
-    splitSe.value = withDelay(
-      expandAt + STAGGER * 2,
-      withSpring(1, SPRING, (done) => {
-        if (done) busy.value = 0;
-      }),
     );
   }, [animateOnPress, busy, centerPulse, splitNe, splitSe, splitTop]);
 
