@@ -43,6 +43,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="review"
+        options={{
+          title: 'Review',
+          tabBarIcon: ({ color }) => <TabIcon name="refresh" color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="queue"
         options={{
           title: 'Implement',

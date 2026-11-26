@@ -1,16 +1,27 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SEED_PROBLEMS, getSeedProblem } from '@/data/seed-problems';
+import {
+  buildDailySet,
+  computeXpGain,
+  nextReviewDate,
+  reviewDue,
+  todayIso,
+  type DailySet,
+} from '@/lib/habit';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import type {
   AttemptStatus,
   ProblemWithApproaches,
   ScoreBreakdown,
   UserAttempt,
+  UserProblemState,
   UserProfile,
 } from '@/types/database';
 
 const LOCAL_ATTEMPTS_KEY = 'koda.attempts';
 const LOCAL_PROFILE_KEY = 'koda.profile';
+const LOCAL_STATE_KEY = 'koda.problem_state';
+const LOCAL_DAILY_KEY = 'koda.daily_set';
 const DEMO_USER_ID = 'demo-user';
 
 async function readLocalAttempts(): Promise<UserAttempt[]> {
@@ -48,6 +59,20 @@ async function readLocalProfile(): Promise<UserProfile> {
 
 async function writeLocalProfile(profile: UserProfile) {
   await AsyncStorage.setItem(LOCAL_PROFILE_KEY, JSON.stringify(profile));
+}
+
+async function readLocalStates(): Promise<UserProblemState[]> {
+  const raw = await AsyncStorage.getItem(LOCAL_STATE_KEY);
+  if (!raw) return [];
+  try {
+    return JSON.parse(raw) as UserProblemState[];
+  } catch {
+    return [];
+  }
+}
+
+async function writeLocalStates(states: UserProblemState[]) {
+  await AsyncStorage.setItem(LOCAL_STATE_KEY, JSON.stringify(states));
 }
 
 function mapProblemRow(
@@ -126,8 +151,80 @@ export async function getProfile(userId: string | null): Promise<UserProfile> {
     .maybeSingle();
 
   if (error || !data) return readLocalProfile();
-  return data as UserProfile;
+  // Keep local XP as source of truth when remote is stale zeroes after guest play
+  const local = await readLocalProfile();
+  const remote = data as UserProfile;
+  if (local.xp > remote.xp) {
+    return { ...remote, xp: local.xp, streak: Math.max(local.streak, remote.streak), last_active_date: local.last_active_date ?? remote.last_active_date };
+  }
+  return remote;
 }
+
+export async function fetchProblemStates(userId: string | null): Promise<UserProblemState[]> {
+  const local = await readLocalStates();
+  if (!supabase || !userId) return local;
+
+  const { data, error } = await supabase.from('user_problem_state').select('*').eq('user_id', userId);
+  if (error || !data) return local;
+
+  const byId = new Map<string, UserProblemState>();
+  for (const s of local) byId.set(s.problem_id, s);
+  for (const s of data as UserProblemState[]) {
+    const prev = byId.get(s.problem_id);
+    if (!prev || s.best_score >= prev.best_score) byId.set(s.problem_id, s);
+  }
+  return [...byId.values()];
+}
+
+async function upsertProblemState(
+  userId: string | null,
+  problemId: string,
+  score: number,
+  forceReview: boolean,
+): Promise<UserProblemState> {
+  const states = await readLocalStates();
+  const existing = states.find((s) => s.problem_id === problemId);
+  const solved = score >= 70 && !forceReview;
+  const review = forceReview || score < 70 ? nextReviewDate(forceReview ? Math.min(score, 49) : score) : nextReviewDate(score);
+
+  const next: UserProblemState = {
+    user_id: userId ?? DEMO_USER_ID,
+    problem_id: problemId,
+    is_solved: solved || (existing?.is_solved ?? false),
+    attempt_count: (existing?.attempt_count ?? 0) + 1,
+    best_score: Math.max(existing?.best_score ?? 0, score),
+    next_review_date: solved && !forceReview ? null : review,
+  };
+
+  if (solved && !forceReview) {
+    next.is_solved = true;
+    next.next_review_date = null;
+  }
+
+  const idx = states.findIndex((s) => s.problem_id === problemId);
+  if (idx >= 0) states[idx] = next;
+  else states.push(next);
+  await writeLocalStates(states);
+
+  if (supabase && userId) {
+    await supabase.from('user_problem_state').upsert({
+      user_id: userId,
+      problem_id: problemId,
+      is_solved: next.is_solved,
+      attempt_count: next.attempt_count,
+      best_score: next.best_score,
+      next_review_date: next.next_review_date,
+    });
+  }
+
+  return next;
+}
+
+export type SaveAttemptResult = {
+  attempt: UserAttempt;
+  xpGain: ReturnType<typeof computeXpGain>;
+  streak: number;
+};
 
 export async function saveAttempt(input: {
   userId: string | null;
@@ -142,7 +239,7 @@ export async function saveAttempt(input: {
   pseudocode: string;
   breakdown: ScoreBreakdown;
   status: AttemptStatus;
-}): Promise<UserAttempt> {
+}): Promise<SaveAttemptResult> {
   const attempt: UserAttempt = {
     id: `local-${Date.now()}`,
     user_id: input.userId ?? DEMO_USER_ID,
@@ -163,11 +260,8 @@ export async function saveAttempt(input: {
     mistake_types: input.breakdown.mistakeTypes,
   };
 
-  // Update local profile XP / streak
   const profile = await readLocalProfile();
-  const today = new Date().toISOString().slice(0, 10);
-  const xpGain = input.breakdown.score + (input.breakdown.complexityBonus ? 10 : 0);
-  profile.xp += xpGain;
+  const today = todayIso();
   if (profile.last_active_date !== today) {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
@@ -175,13 +269,24 @@ export async function saveAttempt(input: {
     profile.streak = profile.last_active_date === y ? profile.streak + 1 : 1;
     profile.last_active_date = today;
   }
+
+  const xpGain = computeXpGain(
+    input.breakdown.score,
+    input.breakdown.complexityBonus,
+    profile.streak,
+  );
+  profile.xp += xpGain.total;
   await writeLocalProfile(profile);
+
+  const forceReview = input.status === 'needs_review';
+  await upsertProblemState(input.userId, input.problemId, input.breakdown.score, forceReview);
+  await markDailySlotComplete(input.problemId, input.breakdown.score);
 
   if (!supabase || !input.userId) {
     const attempts = await readLocalAttempts();
     attempts.unshift(attempt);
     await writeLocalAttempts(attempts);
-    return attempt;
+    return { attempt, xpGain, streak: profile.streak };
   }
 
   const { data, error } = await supabase
@@ -209,21 +314,8 @@ export async function saveAttempt(input: {
     const attempts = await readLocalAttempts();
     attempts.unshift(attempt);
     await writeLocalAttempts(attempts);
-    return attempt;
+    return { attempt, xpGain, streak: profile.streak };
   }
-
-  // Upsert problem state + bump profile
-  const solved = input.breakdown.score >= 70;
-  await supabase.from('user_problem_state').upsert({
-    user_id: input.userId,
-    problem_id: input.problemId,
-    is_solved: solved,
-    attempt_count: 1,
-    best_score: input.breakdown.score,
-    next_review_date: solved
-      ? null
-      : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-  });
 
   await supabase
     .from('user_profiles')
@@ -234,7 +326,7 @@ export async function saveAttempt(input: {
     })
     .eq('user_id', input.userId);
 
-  return data as UserAttempt;
+  return { attempt: data as UserAttempt, xpGain, streak: profile.streak };
 }
 
 export async function fetchAttempts(userId: string | null): Promise<UserAttempt[]> {
@@ -248,7 +340,6 @@ export async function fetchAttempts(userId: string | null): Promise<UserAttempt[
     .order('timestamp', { ascending: false });
 
   if (error || !data) return local;
-  // Merge remote + local demos without dupes
   const ids = new Set(data.map((a) => a.id));
   return [...(data as UserAttempt[]), ...local.filter((a) => !ids.has(a.id))];
 }
@@ -283,6 +374,63 @@ export function pickNextProblem(
     (a, b) => Math.abs(a.difficulty_rating - ratingBand) - Math.abs(b.difficulty_rating - ratingBand),
   );
   return sorted[0] ?? null;
+}
+
+export async function getDailySet(
+  problems: ProblemWithApproaches[],
+  attempts: UserAttempt[],
+  ratingBand: number,
+): Promise<DailySet> {
+  const raw = await AsyncStorage.getItem(LOCAL_DAILY_KEY);
+  const today = todayIso();
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw) as DailySet;
+      if (parsed.date === today && parsed.slots?.length) {
+        // Drop slots whose problems disappeared
+        const ids = new Set(problems.map((p) => p.id));
+        if (parsed.slots.every((s) => ids.has(s.problemId))) return parsed;
+      }
+    } catch {
+      /* rebuild */
+    }
+  }
+
+  const set = buildDailySet(problems, attempts, ratingBand);
+  await AsyncStorage.setItem(LOCAL_DAILY_KEY, JSON.stringify(set));
+  return set;
+}
+
+async function markDailySlotComplete(problemId: string, score: number) {
+  const raw = await AsyncStorage.getItem(LOCAL_DAILY_KEY);
+  if (!raw) return;
+  try {
+    const set = JSON.parse(raw) as DailySet;
+    if (set.date !== todayIso()) return;
+    let changed = false;
+    for (const slot of set.slots) {
+      if (slot.problemId === problemId && !slot.completed) {
+        slot.completed = true;
+        slot.score = score;
+        changed = true;
+      }
+    }
+    if (changed) await AsyncStorage.setItem(LOCAL_DAILY_KEY, JSON.stringify(set));
+  } catch {
+    /* ignore */
+  }
+}
+
+export async function getReviewQueue(
+  userId: string | null,
+  problems: ProblemWithApproaches[],
+  attempts: UserAttempt[],
+): Promise<ProblemWithApproaches[]> {
+  const states = await fetchProblemStates(userId);
+  const dueIds = reviewDue(states, attempts);
+  return dueIds
+    .map((id) => problems.find((p) => p.id === id))
+    .filter((p): p is ProblemWithApproaches => !!p);
 }
 
 export { isSupabaseConfigured };

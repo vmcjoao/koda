@@ -1,11 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAttempt } from '@/contexts/AttemptContext';
-import { fetchAttempts, fetchProblems, pickNextProblem } from '@/lib/api';
+import { fetchAttempts, fetchProblems, getDailySet, getReviewQueue } from '@/lib/api';
+import { SLOT_LABELS, type DailySet } from '@/lib/habit';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -14,6 +15,8 @@ export default function HomeScreen() {
   const { beginProblem } = useAttempt();
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
+  const [daily, setDaily] = useState<DailySet | null>(null);
+  const [reviewCount, setReviewCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useFocusEffect(
@@ -24,18 +27,33 @@ export default function HomeScreen() {
         await refreshProfile();
         const [p, a] = await Promise.all([fetchProblems(), fetchAttempts(user?.id ?? null)]);
         if (!active) return;
+        const band = profile?.rating_band ?? 1200;
+        const [d, review] = await Promise.all([
+          getDailySet(p, a, band),
+          getReviewQueue(user?.id ?? null, p, a),
+        ]);
+        if (!active) return;
         setProblems(p);
         setAttempts(a);
+        setDaily(d);
+        setReviewCount(review.length);
         setLoading(false);
       })();
       return () => {
         active = false;
       };
-    }, [user?.id, refreshProfile]),
+    }, [user?.id, refreshProfile, profile?.rating_band]),
   );
 
-  const next = pickNextProblem(problems, attempts, profile?.rating_band ?? 1200);
-  const lastDraft = attempts.find((a) => a.status === 'drafted' && a.pseudocode_draft);
+  const problemMap = useMemo(() => {
+    const m = new Map<string, ProblemWithApproaches>();
+    for (const p of problems) m.set(p.id, p);
+    return m;
+  }, [problems]);
+
+  const dailyDone = daily?.slots.filter((s) => s.completed).length ?? 0;
+  const dailyTotal = daily?.slots.length ?? 0;
+  const nextDaily = daily?.slots.find((s) => !s.completed);
 
   function startProblem(problem: ProblemWithApproaches) {
     beginProblem(problem);
@@ -65,25 +83,55 @@ export default function HomeScreen() {
         <ActivityIndicator color={colors.accent} />
       ) : (
         <>
-          <PrimaryButton
-            label={next ? `Start: ${next.title}` : 'No problems available'}
-            onPress={() => next && startProblem(next)}
-            disabled={!next}
-          />
+          <Text style={styles.section}>Daily Set · {dailyDone}/{dailyTotal}</Text>
+          <Text style={styles.sectionHint}>Warm-up → Target → Boss</Text>
 
-          {lastDraft ? (
+          {daily?.slots.map((slot) => {
+            const p = problemMap.get(slot.problemId);
+            if (!p) return null;
+            return (
+              <Pressable
+                key={slot.role}
+                style={[styles.card, slot.completed && styles.cardDone]}
+                onPress={() => startProblem(p)}
+              >
+                <View style={styles.cardTop}>
+                  <Text style={styles.slotBadge}>{SLOT_LABELS[slot.role]}</Text>
+                  <Text style={styles.rating}>
+                    {slot.completed ? `${slot.score}%` : p.difficulty_rating}
+                  </Text>
+                </View>
+                <Text style={styles.cardTitle}>{p.title}</Text>
+                <Text style={styles.meta}>
+                  {p.source} · {p.target_complexity}
+                  {slot.completed ? ' · done' : ''}
+                </Text>
+              </Pressable>
+            );
+          })}
+
+          {nextDaily ? (
             <PrimaryButton
-              label="Continue last blueprint"
-              variant="secondary"
+              label={`Continue daily: ${SLOT_LABELS[nextDaily.role]}`}
               onPress={() => {
-                const p = problems.find((x) => x.id === lastDraft.problem_id);
+                const p = problemMap.get(nextDaily.problemId);
                 if (p) startProblem(p);
               }}
             />
+          ) : (
+            <Text style={styles.good}>Daily set complete — streak XP applied on solves.</Text>
+          )}
+
+          {reviewCount > 0 ? (
+            <PrimaryButton
+              label={`Review deck (${reviewCount})`}
+              variant="secondary"
+              onPress={() => router.push('/(tabs)/review')}
+            />
           ) : null}
 
-          <Text style={styles.section}>Browse catalog</Text>
-          {problems.slice(0, 8).map((p) => (
+          <Text style={styles.section}>Catalog</Text>
+          {problems.slice(0, 6).map((p) => (
             <Pressable key={p.id} style={styles.card} onPress={() => startProblem(p)}>
               <View style={styles.cardTop}>
                 <Text style={styles.source}>{p.source}</Text>
@@ -93,7 +141,7 @@ export default function HomeScreen() {
               <Text style={styles.meta}>{p.target_complexity}</Text>
             </Pressable>
           ))}
-          <Text style={styles.meta}>{problems.length} problems loaded</Text>
+          <Text style={styles.meta}>{problems.length} problems · {attempts.length} attempts</Text>
         </>
       )}
     </Screen>
@@ -157,6 +205,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginTop: spacing.sm,
   },
+  sectionHint: {
+    color: colors.textDim,
+    fontSize: 13,
+    marginTop: -8,
+  },
   card: {
     backgroundColor: colors.surface,
     borderRadius: radii.md,
@@ -164,6 +217,10 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     padding: spacing.md,
     gap: 4,
+  },
+  cardDone: {
+    borderColor: colors.accentDim,
+    opacity: 0.85,
   },
   cardTop: {
     flexDirection: 'row',
@@ -173,6 +230,12 @@ const styles = StyleSheet.create({
     color: colors.accent,
     fontSize: 12,
     fontWeight: '700',
+    textTransform: 'uppercase',
+  },
+  slotBadge: {
+    color: colors.radar,
+    fontSize: 12,
+    fontWeight: '800',
     textTransform: 'uppercase',
   },
   rating: {
@@ -188,5 +251,10 @@ const styles = StyleSheet.create({
   meta: {
     color: colors.textMuted,
     fontSize: 13,
+  },
+  good: {
+    color: colors.accent,
+    fontSize: 14,
+    fontWeight: '600',
   },
 });

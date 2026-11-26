@@ -6,7 +6,7 @@ import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { MarkdownMath } from '@/components/MarkdownMath';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
-import { saveAttempt } from '@/lib/api';
+import { saveAttempt, type SaveAttemptResult } from '@/lib/api';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function RevealScreen() {
@@ -14,7 +14,7 @@ export default function RevealScreen() {
   const { user, refreshProfile } = useAuth();
   const { problem, draft, breakdown, finalizeScore, reset } = useAttempt();
   const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [result, setResult] = useState<SaveAttemptResult | null>(null);
 
   useEffect(() => {
     if (!breakdown) finalizeScore();
@@ -29,10 +29,11 @@ export default function RevealScreen() {
   }
 
   const approach = breakdown.matchedApproach;
+  const saved = !!result;
 
   async function persist(status: 'drafted' | 'needs_review') {
     setSaving(true);
-    await saveAttempt({
+    const savedAttempt = await saveAttempt({
       userId: user?.id ?? null,
       problemId: problem!.id,
       timeSpentSec: draft!.timeSpentSec,
@@ -46,9 +47,9 @@ export default function RevealScreen() {
       breakdown: breakdown!,
       status,
     });
+    setResult(savedAttempt);
     await refreshProfile();
     setSaving(false);
-    setSaved(true);
   }
 
   function goHome() {
@@ -61,7 +62,7 @@ export default function RevealScreen() {
       <Text style={styles.score}>{breakdown.score}%</Text>
       <Text style={styles.sub}>
         Best match{approach ? `: ${approach.approach_name}` : ''}
-        {breakdown.complexityBonus ? ' · +complexity bonus' : ''}
+        {breakdown.complexityBonus ? ' · radar bonus unlocked' : ''}
       </Text>
 
       <View style={styles.bars}>
@@ -120,7 +121,15 @@ export default function RevealScreen() {
           />
         </>
       ) : (
-        <Text style={styles.good}>Saved to your pipeline.</Text>
+        <View style={styles.xpCard}>
+          <Text style={styles.good}>Saved · streak {result.streak}d</Text>
+          <Text style={styles.xpLine}>+{result.xpGain.total} XP</Text>
+          <Text style={styles.xpDetail}>
+            base {result.xpGain.base}
+            {result.xpGain.radarBonus ? ` · radar +${result.xpGain.radarBonus}` : ''}
+            {result.xpGain.streakBonus ? ` · streak +${result.xpGain.streakBonus}` : ''}
+          </Text>
+        </View>
       )}
 
       <PrimaryButton label="Back to Home" variant={saved ? 'primary' : 'ghost'} onPress={goHome} />
@@ -214,5 +223,22 @@ const styles = StyleSheet.create({
   insight: {
     color: colors.text,
     fontSize: 14,
+  },
+  xpCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.accentDim,
+    padding: spacing.md,
+    gap: 4,
+  },
+  xpLine: {
+    color: colors.text,
+    fontSize: 28,
+    fontWeight: '800',
+  },
+  xpDetail: {
+    color: colors.textMuted,
+    fontSize: 13,
   },
 });
