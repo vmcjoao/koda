@@ -74,9 +74,9 @@ export async function scheduleDailyReminder(): Promise<void> {
   await Notifications.cancelAllScheduledNotificationsAsync();
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: 'Koda · Daily Set',
-      body: 'Warm-up, Target, Boss — keep the streak. Check Review if anything is due.',
-      data: { url: '/(tabs)' },
+      title: 'Koda · Daily training',
+      body: 'Clear today’s algorithm puzzle, then Warm-up → Target → Boss. Review if due.',
+      data: { url: '/daily-algorithm' },
     },
     trigger: {
       type: Notifications.SchedulableTriggerInputTypes.DAILY,
