@@ -53,6 +53,11 @@ int max_intervals(vector<pair<int,int>> a) {
       extraMemory: 'O(depth)',
       notes_md: 'Typical contest limits: $2^{20}$, $9!$, or heavily pruned DFS.',
     },
+    visualization: {
+      kind: 'array-sort',
+      demo: { values: [3, 1, 4, 1, 5] },
+    },
+    relatedIds: ['bitmask-dp', 'meet-in-middle', 'divide-conquer'],
     implementation: {
       language: 'cpp',
       code: `// enumerate all subsets (n <= 20); body sees mask + subset sum
@@ -81,6 +86,11 @@ void for_each_subset(vector<int>& a, auto body) {
       extraMemory: 'O(N)',
       notes_md: 'Mergesort is the template: $O(N \\log N)$ when merge is linear.',
     },
+    visualization: {
+      kind: 'array-sort',
+      demo: { values: [4, 1, 3, 2, 5] },
+    },
+    relatedIds: ['mergesort', 'binary-search', 'dynamic-programming'],
     implementation: {
       language: 'cpp',
       code: `// count inversions while sorting a[l..r)
@@ -251,6 +261,11 @@ int min_coins(vector<int>& coins, int S) {
       extraMemory: 'O(2^N · N)',
       notes_md: 'Submask enumeration is $O(3^N)$ — use when combining two halves of a mask.',
     },
+    visualization: {
+      kind: 'dp-knapsack',
+      demo: { weights: [2, 3, 4], values: [3, 4, 5], capacity: 5 },
+    },
+    relatedIds: ['brute-force', 'meet-in-middle', 'dynamic-programming'],
     implementation: {
       language: 'cpp',
       code: `// assignment: min cost matching n jobs to n workers; cost[i][j]
@@ -323,6 +338,11 @@ long long assign_min(vector<vector<int>>& cost) {
       time: 'O(N log N) build, O(1) query',
       extraMemory: 'O(N log N)',
     },
+    visualization: {
+      kind: 'array-prefix',
+      demo: { values: [4, 2, 3, 7, 1, 5] },
+    },
+    relatedIds: ['segment-tree', 'fenwick', 'prefix-sums'],
     implementation: {
       language: 'cpp',
       code: `struct SparseMin {
@@ -358,6 +378,11 @@ long long assign_min(vector<vector<int>>& cost) {
       time: 'O(L) per insert/query',
       extraMemory: 'O(total characters)',
     },
+    visualization: {
+      kind: 'string-z',
+      demo: { text: 'abaabc' },
+    },
+    relatedIds: ['kmp', 'string-hashing', 'z-algorithm'],
     implementation: {
       language: 'cpp',
       code: `struct Trie {
@@ -436,6 +461,11 @@ vector<int> next_greater(vector<int>& a) {
       time: 'O(log N) push/pop',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-sort',
+      demo: { values: [5, 1, 8, 3, 2] },
+    },
+    relatedIds: ['dijkstra', 'sorting', 'greedy'],
     implementation: {
       language: 'cpp',
       code: `// min-heap of pairs (priority, id)
@@ -525,6 +555,11 @@ vector<int> window_max(vector<int>& a, int k) {
       time: 'O(log N) per op',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'segtree-sum',
+      demo: { values: [2, 1, 4, 3, 5, 6] },
+    },
+    relatedIds: ['segment-tree', 'fenwick', 'sparse-table'],
     implementation: {
       language: 'cpp',
       code: `struct LazySeg {

@@ -198,6 +198,11 @@ int find_hidden(int lo, int hi) {
       time: 'Avg O(1); worst O(N)',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-prefix',
+      demo: { values: [1, 2, 1, 3, 2, 1] },
+    },
+    relatedIds: ['string-hashing', 'sorting', 'coordinate-compression'],
     implementation: {
       language: 'cpp',
       code: `unordered_map<long long, int> freq;
@@ -233,6 +238,11 @@ unordered_map<long long, int, CustomHash> safe;`,
       time: 'O(1) push/pop',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-stack',
+      demo: { values: [3, 1, 4, 1, 5] },
+    },
+    relatedIds: ['monotonic-stack', 'dfs', 'queue-ds'],
     implementation: {
       language: 'cpp',
       code: `bool valid_brackets(const string& s) {
@@ -264,6 +274,11 @@ unordered_map<long long, int, CustomHash> safe;`,
       time: 'O(1) push/pop',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-queue',
+      demo: { values: [2, 7, 1, 8, 3] },
+    },
+    relatedIds: ['bfs', 'stack-ds', 'topo-sort'],
     implementation: {
       language: 'cpp',
       code: `vector<int> bfs_order(int n, vector<vector<int>>& g, int s) {

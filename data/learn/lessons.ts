@@ -443,6 +443,8 @@ vector<int> build_spf(int n) {
       time: 'O(N + M)',
       extraMemory: 'O(N + M)',
     },
+    visualization: { kind: 'graph-dfs', demo: DEMO_GRAPH },
+    relatedIds: ['dfs', 'bridges', 'topo-sort'],
     implementation: {
       language: 'cpp',
       code: `// Kosaraju — pass G and its transpose GT
@@ -479,6 +481,8 @@ int scc(int n, vector<vector<int>>& g, vector<vector<int>>& gt, vector<int>& com
       time: 'O(N + M)',
       extraMemory: 'O(N + M)',
     },
+    visualization: { kind: 'graph-dfs', demo: DEMO_GRAPH },
+    relatedIds: ['dfs', 'scc', 'dsu'],
     implementation: {
       language: 'cpp',
       code: `int timer;
@@ -712,6 +716,8 @@ bool has_neg_cycle(vector<vector<ll>>& d) {
       time: 'O(N log N) build, O(log N) query',
       extraMemory: 'O(N log N)',
     },
+    visualization: { kind: 'graph-dfs', demo: DEMO_GRAPH },
+    relatedIds: ['dfs', 'sparse-table', 'binary-search'],
     implementation: {
       language: 'cpp',
       code: `const int LOG = 20;
@@ -890,6 +896,11 @@ long long meet_in_middle(vector<int>& a, long long target) {
       extraMemory: 'O(N)',
       notes_md: 'Allocate `4N` nodes. Lazy range-add is the usual next upgrade.',
     },
+    visualization: {
+      kind: 'segtree-sum',
+      demo: { values: [1, 3, 5, 7, 9, 11] },
+    },
+    relatedIds: ['fenwick', 'sparse-table', 'segment-tree-lazy'],
     implementation: {
       language: 'cpp',
       code: `struct SegTree {
@@ -933,6 +944,11 @@ long long meet_in_middle(vector<int>& a, long long target) {
       extraMemory: 'O(N + Q)',
       notes_md: '$F$ = cost of one add/remove. Example below uses 0-based inclusive $[l,r]$.',
     },
+    visualization: {
+      kind: 'array-two-pointers',
+      demo: { values: [1, 2, 1, 3, 2, 1, 4] },
+    },
+    relatedIds: ['prefix-sums', 'segment-tree', 'two-pointers'],
     implementation: {
       language: 'cpp',
       code: `struct Query { int l, r, idx; }; // inclusive
@@ -1063,6 +1079,11 @@ ll fib(ll n) {
       time: 'O(states · transitions)',
       extraMemory: 'O(states)',
     },
+    visualization: {
+      kind: 'nim-heaps',
+      demo: { values: [3, 4, 5] },
+    },
+    relatedIds: ['math-number-theory', 'brute-force', 'bitmask-dp'],
     implementation: {
       language: 'cpp',
       code: `int mex(vector<int> s) {
@@ -1104,6 +1125,11 @@ bool first_wins(vector<int>& piles, vector<int>& g) {
       time: 'O(N)',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'string-z',
+      demo: { text: 'aabxaab' },
+    },
+    relatedIds: ['z-algorithm', 'string-hashing', 'trie'],
     implementation: {
       language: 'cpp',
       code: `vector<int> prefix_function(string& s) {
@@ -1141,6 +1167,11 @@ vector<int> kmp_match(string& text, string& pat) {
       time: 'O(N)',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'string-z',
+      demo: { text: 'ababab' },
+    },
+    relatedIds: ['kmp', 'string-hashing', 'trie'],
     implementation: {
       language: 'cpp',
       code: `vector<int> z_function(const string& s) {
@@ -1169,6 +1200,11 @@ vector<int> kmp_match(string& text, string& pat) {
       time: 'O(N) build, O(1) get',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-prefix',
+      demo: { values: [1, 2, 3, 1, 2, 3] },
+    },
+    relatedIds: ['prefix-sums', 'kmp', 'z-algorithm'],
     implementation: {
       language: 'cpp',
       code: `using ull = unsigned long long;
