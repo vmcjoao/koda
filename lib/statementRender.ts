@@ -1,20 +1,31 @@
+// CJS build — Metro/Expo resolve `katex` to .mjs which can break renderToString.
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const katex = require('katex') as typeof import('katex');
 import { figureDataUri, getFigure, isRemoteOrDataUrl } from '@/lib/figures';
 import { colors } from '@/constants/theme';
+import { KATEX_CSS } from '@/lib/vendor/katexCss';
 
 function escapeHtml(s: string) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderTex(tex: string, displayMode: boolean): string {
+  try {
+    return katex.renderToString(tex.trim(), {
+      displayMode,
+      throwOnError: false,
+      strict: 'ignore',
+    });
+  } catch {
+    return `<code class="tex-fallback">${escapeHtml(tex.trim())}</code>`;
+  }
 }
 
 type Slot = { html: string };
 
 /**
  * Convert Koda statement markdown into HTML for the math WebView.
- * Supports:
- * - `$...$` / `$$...$$` KaTeX (via auto-render delimiters)
- * - fenced ` ``` ` / ` ```text ` / ` ```grid ` → monospace <pre> (matrices / ASCII art)
- * - fenced ` ```svg ` → inline SVG
- * - `![alt](asset:id)` bundled figures, or http(s)/data URLs
- * - `[[figure:id]]` shorthand for bundled SVG figures
+ * Math is pre-rendered with KaTeX (no CDN) so it works offline.
  */
 export function statementToHtml(markdown: string): string {
   const slots: Slot[] = [];
@@ -66,15 +77,26 @@ export function statementToHtml(markdown: string): string {
     return park(`<p class="missing">[missing figure: ${escapeHtml(url)}]</p>`);
   });
 
+  // Math BEFORE escaping — Codeforces $$$...$$$, $$...$$, $...$
+  src = src.replace(/\$\$\$([^$]+)\$\$\$/g, (_m, tex: string) =>
+    park(`<span class="math">${renderTex(tex, false)}</span>`),
+  );
+  src = src.replace(/\$\$([^$]+)\$\$/g, (_m, tex: string) =>
+    park(`<div class="math">${renderTex(tex, true)}</div>`),
+  );
+  src = src.replace(/\$([^$\n]+)\$/g, (_m, tex: string) =>
+    park(`<span class="math">${renderTex(tex, false)}</span>`),
+  );
+
+  // Inline `code` (after math so $n$ isn’t eaten)
+  src = src.replace(/`([^`]+)`/g, (_m, code: string) =>
+    park(`<code class="inline">${escapeHtml(code)}</code>`),
+  );
+
   let body = escapeHtml(src);
+  body = body.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   body = body.replace(/\n\n+/g, '</p><p>');
   body = body.replace(/\n/g, '<br/>');
-  body = body.replace(/\$\$([^$]+)\$\$/g, (_m, tex: string) => {
-    return `<div class="math">\\[${tex.trim()}\\]</div>`;
-  });
-  body = body.replace(/\$([^$\n]+)\$/g, (_m, tex: string) => {
-    return `<span class="math">\\(${tex.trim()}\\)</span>`;
-  });
 
   body = body.replace(/%%KODA_SLOT_(\d+)%%/g, (_m, idx: string) => {
     return slots[Number(idx)]?.html ?? '';
@@ -85,11 +107,8 @@ export function statementToHtml(markdown: string): string {
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-  onload="renderMathInElement(document.body,{delimiters:[{left:'\\\\(',right:'\\\\)',display:false},{left:'\\\\[',right:'\\\\]',display:true}],throwOnError:false})"></script>
 <style>
+${KATEX_CSS}
   html, body {
     margin: 0;
     padding: 0;
@@ -102,7 +121,18 @@ export function statementToHtml(markdown: string): string {
   body { padding: 12px; }
   p { margin: 0 0 12px 0; }
   .math { color: ${colors.text}; }
+  .katex { color: ${colors.text}; font-size: 1.05em; }
+  .katex-display { margin: 0.6em 0; overflow-x: auto; overflow-y: hidden; }
   a { color: ${colors.accent}; }
+  code.inline, code.tex-fallback {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.92em;
+    background: ${colors.surfaceElevated};
+    border: 1px solid ${colors.border};
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: ${colors.accent};
+  }
   pre.grid {
     background: ${colors.surfaceElevated};
     border: 1px solid ${colors.border};
@@ -127,6 +157,7 @@ export function statementToHtml(markdown: string): string {
   .figure svg { max-width: 100%; height: auto; }
   .figure img { max-width: 100%; height: auto; border-radius: 6px; }
   .missing { color: ${colors.warning}; font-size: 13px; }
+  strong { font-weight: 700; color: ${colors.text}; }
 </style>
 </head>
 <body><p>${body}</p></body>
@@ -146,6 +177,7 @@ export function plainStatement(markdown: string): string {
       const fig = getFigure(src);
       return `[figure: ${alt || fig?.alt || src}]`;
     })
+    .replace(/\$\$\$([^$]+)\$\$\$/g, (_, tex: string) => tex.trim())
     .replace(/\$\$([^$]+)\$\$/g, (_, tex: string) => tex.trim())
     .replace(/\$([^$\n]+)\$/g, (_, tex: string) => tex.trim())
     .replace(/\\\\/g, '\\')

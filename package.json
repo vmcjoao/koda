@@ -23,6 +23,8 @@
     "expo-status-bar": "~58.0.5",
     "expo-symbols": "~58.0.5",
     "expo-web-browser": "~58.1.0",
+    "highlight.js": "^11.12.0",
+    "katex": "^0.16.11",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-native": "0.88.1",
@@ -36,6 +38,8 @@
     "react-native-worklets": "0.13.0"
   },
   "devDependencies": {
+    "@types/highlight.js": "^9.12.4",
+    "@types/katex": "^0.16.8",
     "@types/react": "~19.3.0",
     "tsx": "^4.20.5",
     "typescript": "~5.9.3"

@@ -11,6 +11,12 @@ import {
 type Props = {
   markdown: string;
   minHeight?: number;
+  /**
+   * Fit a parent card (lessons): 100% width, no extra border.
+   * Keeps KaTeX WebView with inner scroll — does not auto-resize height
+   * (that path blanked content on some devices).
+   */
+  embedded?: boolean;
 };
 
 /** @deprecated use plainStatement — kept for call sites / tests */
@@ -18,7 +24,7 @@ export function plainMath(markdown: string): string {
   return plainStatement(markdown);
 }
 
-export function MarkdownMath({ markdown, minHeight = 160 }: Props) {
+export function MarkdownMath({ markdown, minHeight = 160, embedded = false }: Props) {
   const { width } = useWindowDimensions();
   const html = useMemo(() => statementToHtml(markdown), [markdown]);
   const fallback = useMemo(() => plainStatement(markdown), [markdown]);
@@ -28,7 +34,14 @@ export function MarkdownMath({ markdown, minHeight = 160 }: Props) {
 
   if (useFallback) {
     return (
-      <View style={[styles.wrap, styles.fallbackBox, { width: width - 32, minHeight: height }]}>
+      <View
+        style={[
+          styles.wrap,
+          styles.fallbackBox,
+          embedded ? styles.embedded : { width: width - 32 },
+          { minHeight: height },
+        ]}
+      >
         <Text style={styles.fallbackText}>{fallback}</Text>
         <Pressable onPress={() => setUseFallback(false)}>
           <Text style={styles.toggle}>Try rich view again</Text>
@@ -38,11 +51,17 @@ export function MarkdownMath({ markdown, minHeight = 160 }: Props) {
   }
 
   return (
-    <View style={[styles.wrap, { width: width - 32, minHeight: height }]}>
+    <View
+      style={[
+        styles.wrap,
+        embedded ? styles.embedded : { width: width - 32 },
+        { minHeight: height },
+      ]}
+    >
       <WebView
         originWhitelist={['*']}
         source={{ html }}
-        style={[styles.web, { minHeight: height }]}
+        style={[styles.web, { minHeight: height, backgroundColor: colors.surface }]}
         scrollEnabled
         nestedScrollEnabled
         setSupportMultipleWindows={false}
@@ -50,9 +69,11 @@ export function MarkdownMath({ markdown, minHeight = 160 }: Props) {
         onError={() => setUseFallback(true)}
         onHttpError={() => setUseFallback(true)}
       />
-      <Pressable onPress={() => setUseFallback(true)} style={styles.fallbackLink}>
-        <Text style={styles.toggle}>Plain text (offline)</Text>
-      </Pressable>
+      {!embedded ? (
+        <Pressable onPress={() => setUseFallback(true)} style={styles.fallbackLink}>
+          <Text style={styles.toggle}>Plain text (offline)</Text>
+        </Pressable>
+      ) : null}
     </View>
   );
 }
@@ -64,6 +85,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
+  },
+  embedded: {
+    alignSelf: 'stretch',
+    width: '100%',
+    borderWidth: 0,
+    borderRadius: 0,
   },
   web: {
     backgroundColor: colors.surface,
