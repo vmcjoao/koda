@@ -51,6 +51,11 @@ long long simulate(vector<int>& a) {
       time: 'O(log N) gcd / pow',
       extraMemory: 'O(1)',
     },
+    visualization: {
+      kind: 'array-binary-search',
+      demo: { values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15], target: 6 },
+    },
+    relatedIds: ['sieve', 'matrix-expo', 'binary-search'],
     implementation: {
       language: 'cpp',
       code: `using ll = long long;
@@ -87,6 +92,17 @@ ll lcmll(ll a, ll b) { return a / gcdll(a, b) * b; }`,
       time: 'O(1) primitives',
       extraMemory: 'O(1)',
     },
+    visualization: {
+      kind: 'geo-orient',
+      demo: {
+        points: [
+          { x: 50, y: 140, label: 'A' },
+          { x: 150, y: 40, label: 'B' },
+          { x: 230, y: 130, label: 'C' },
+        ],
+      },
+    },
+    relatedIds: ['convex-hull', 'sweep-line', 'divide-conquer'],
     implementation: {
       language: 'cpp',
       code: `struct Pt { long long x, y; };

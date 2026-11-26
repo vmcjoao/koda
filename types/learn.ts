@@ -23,7 +23,10 @@ export type LearnVizKind =
   | 'mono-stack'
   | 'array-two-pointers'
   | 'array-lis'
-  | 'array-sort';
+  | 'array-sort'
+  | 'array-sieve'
+  | 'geo-orient'
+  | 'geo-hull';
 
 export type GraphDemo = {
   nodes: { id: string; x: number; y: number; label?: string }[];
@@ -33,7 +36,7 @@ export type GraphDemo = {
 
 export type ArrayDemo = {
   values: number[];
-  /** binary search target, etc. */
+  /** binary search target, sieve N, etc. */
   target?: number;
 };
 
@@ -43,7 +46,12 @@ export type KnapsackDemo = {
   capacity: number;
 };
 
-export type LearnDemo = GraphDemo | ArrayDemo | KnapsackDemo;
+/** Plane points for orientation / convex hull replays (canvas coords). */
+export type PointsDemo = {
+  points: { x: number; y: number; label?: string }[];
+};
+
+export type LearnDemo = GraphDemo | ArrayDemo | KnapsackDemo | PointsDemo;
 
 /** Single multiple-choice beat (also used as steps inside a trace). */
 export type LearnMcq = {

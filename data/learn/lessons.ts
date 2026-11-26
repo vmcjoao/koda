@@ -403,8 +403,8 @@ int knapsack_unbounded(const vector<int>& w, const vector<int>& v, int W) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'array-prefix',
-      demo: { values: [0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1] },
+      kind: 'array-sieve',
+      demo: { values: [24], target: 24 },
     },
     relatedIds: ['math-number-theory', 'segment-tree', 'prefix-sums'],
     implementation: {
@@ -1205,6 +1205,21 @@ struct Hasher {
       time: 'O(N log N)',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'geo-hull',
+      demo: {
+        points: [
+          { x: 30, y: 140, label: '0' },
+          { x: 70, y: 80, label: '1' },
+          { x: 110, y: 150, label: '2' },
+          { x: 150, y: 50, label: '3' },
+          { x: 190, y: 120, label: '4' },
+          { x: 230, y: 90, label: '5' },
+          { x: 250, y: 160, label: '6' },
+        ],
+      },
+    },
+    relatedIds: ['geometry-basics', 'sweep-line', 'divide-conquer'],
     implementation: {
       language: 'cpp',
       code: `struct Pt { long long x, y; };
@@ -1249,6 +1264,11 @@ vector<Pt> convex_hull(vector<Pt> a) {
       time: 'O(N log N)',
       extraMemory: 'O(N)',
     },
+    visualization: {
+      kind: 'array-prefix',
+      demo: { values: [1, 0, 1, -1, 0, -1, 1, -1] },
+    },
+    relatedIds: ['geometry-basics', 'difference-array', 'convex-hull'],
     implementation: {
       language: 'cpp',
       code: `// ans[k] = # integer points covered by exactly k segments (inclusive [l,r])

@@ -13,7 +13,17 @@ import {
 } from '@/components/learn/viz/TwoPointersViz';
 import { LisViz, lisFrameCount } from '@/components/learn/viz/LisViz';
 import { SortViz, sortFrameCount } from '@/components/learn/viz/SortViz';
-import type { ArrayDemo, GraphDemo, KnapsackDemo, LearnDemo, LearnVizKind } from '@/types/learn';
+import { SieveViz, sieveFrameCount } from '@/components/learn/viz/SieveViz';
+import { OrientViz, orientFrameCount } from '@/components/learn/viz/OrientViz';
+import { HullViz, hullFrameCount } from '@/components/learn/viz/HullViz';
+import type {
+  ArrayDemo,
+  GraphDemo,
+  KnapsackDemo,
+  LearnDemo,
+  LearnVizKind,
+  PointsDemo,
+} from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import {
   buildBfsSteps,
@@ -29,13 +39,16 @@ type Props = {
 };
 
 function isGraph(demo: LearnDemo): demo is GraphDemo {
-  return 'nodes' in demo;
+  return 'nodes' in demo && 'edges' in demo;
 }
 function isArray(demo: LearnDemo): demo is ArrayDemo {
   return 'values' in demo;
 }
 function isKnapsack(demo: LearnDemo): demo is KnapsackDemo {
   return 'weights' in demo && 'capacity' in demo;
+}
+function isPoints(demo: LearnDemo): demo is PointsDemo {
+  return 'points' in demo;
 }
 
 export function VizPlayer({ kind, demo }: Props) {
@@ -81,6 +94,9 @@ export function VizPlayer({ kind, demo }: Props) {
       return Math.max(0, twoPointersFrameCount(demo) - 1);
     if (kind === 'array-lis' && isArray(demo)) return Math.max(0, lisFrameCount(demo) - 1);
     if (kind === 'array-sort' && isArray(demo)) return Math.max(0, sortFrameCount(demo) - 1);
+    if (kind === 'array-sieve' && isArray(demo)) return Math.max(0, sieveFrameCount(demo) - 1);
+    if (kind === 'geo-orient' && isPoints(demo)) return Math.max(0, orientFrameCount(demo) - 1);
+    if (kind === 'geo-hull' && isPoints(demo)) return Math.max(0, hullFrameCount(demo) - 1);
     return Math.max(0, graphSteps.length - 1);
   }, [demo, graphSteps.length, kind]);
 
@@ -118,6 +134,9 @@ export function VizPlayer({ kind, demo }: Props) {
         ) : null}
         {kind === 'array-lis' && isArray(demo) ? <LisViz demo={demo} step={step} /> : null}
         {kind === 'array-sort' && isArray(demo) ? <SortViz demo={demo} step={step} /> : null}
+        {kind === 'array-sieve' && isArray(demo) ? <SieveViz demo={demo} step={step} /> : null}
+        {kind === 'geo-orient' && isPoints(demo) ? <OrientViz demo={demo} step={step} /> : null}
+        {kind === 'geo-hull' && isPoints(demo) ? <HullViz demo={demo} step={step} /> : null}
       </View>
       <Text style={styles.caption}>
         Step {step}/{maxStep}
