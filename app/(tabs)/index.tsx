@@ -18,7 +18,9 @@ import {
   getReviewQueue,
   regenerateDailySet,
 } from '@/lib/api';
-import { SLOT_LABELS, type DailySet } from '@/lib/habit';
+import { lessonForDate } from '@/lib/dailyAlgorithm';
+import { getClearedDailyAlgoDates } from '@/lib/dailyAlgorithmProgress';
+import { SLOT_LABELS, todayIso, type DailySet } from '@/lib/habit';
 import { areRemindersEnabled, formatReminderLabel, getReminderHour } from '@/lib/notifications';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -33,10 +35,17 @@ export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [reminderHint, setReminderHint] = useState<string | null>(null);
+  const [dailyAlgoCleared, setDailyAlgoCleared] = useState(false);
+
+  const todayAlgo = useMemo(() => lessonForDate(todayIso()), []);
 
   const load = useCallback(async () => {
     await refreshProfile();
-    const [p, a] = await Promise.all([fetchProblems(), fetchAttempts(user?.id ?? null)]);
+    const [p, a, algoDates] = await Promise.all([
+      fetchProblems(),
+      fetchAttempts(user?.id ?? null),
+      getClearedDailyAlgoDates(),
+    ]);
     const band = profile?.rating_band ?? 1200;
     const [d, review] = await Promise.all([
       getDailySet(p, a, band),
@@ -46,6 +55,7 @@ export default function HomeScreen() {
     setAttempts(a);
     setDaily(d);
     setReviewCount(review.length);
+    setDailyAlgoCleared(algoDates.has(todayIso()));
     if (await areRemindersEnabled()) {
       const hour = await getReminderHour();
       setReminderHint(formatReminderLabel(hour));
@@ -133,7 +143,31 @@ export default function HomeScreen() {
         <ActivityIndicator color={colors.accent} />
       ) : (
         <>
-          <FadeInUp delayMs={200}>
+          <FadeInUp delayMs={180}>
+            <PressableScale
+              haptic="medium"
+              style={[styles.algoCard, dailyAlgoCleared && styles.algoCardDone]}
+              onPress={() => router.push('/daily-algorithm')}
+            >
+              <View style={styles.algoTop}>
+                <Text style={styles.algoKicker}>DAILY ALGORITHM</Text>
+                <Text style={styles.algoStatus}>
+                  {dailyAlgoCleared ? 'CLEARED' : 'OPEN'}
+                </Text>
+              </View>
+              <Text style={styles.algoTitle}>{todayAlgo?.title ?? 'Skill check'}</Text>
+              <Text style={styles.algoSub} numberOfLines={2}>
+                {dailyAlgoCleared
+                  ? 'Open the calendar to replay or catch up past days.'
+                  : 'One drill today — tap for the puzzle calendar.'}
+              </Text>
+              <Text style={styles.algoCta}>
+                {dailyAlgoCleared ? 'View calendar →' : 'Open calendar →'}
+              </Text>
+            </PressableScale>
+          </FadeInUp>
+
+          <FadeInUp delayMs={220}>
             <View style={styles.runHeader}>
               <Text style={styles.runTitle}>Today&apos;s run</Text>
               <Text style={styles.runProgress}>
@@ -249,11 +283,57 @@ const styles = StyleSheet.create({
     color: colors.textDim,
     fontSize: 12,
   },
+  algoCard: {
+    marginTop: spacing.sm,
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.warning,
+    padding: spacing.md,
+    gap: 4,
+  },
+  algoCardDone: {
+    borderColor: colors.accentDim,
+    backgroundColor: colors.chipSelected,
+  },
+  algoTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  algoKicker: {
+    color: colors.warning,
+    fontSize: 11,
+    fontWeight: '900',
+    letterSpacing: 1.2,
+  },
+  algoStatus: {
+    color: colors.accent,
+    fontSize: 11,
+    fontWeight: '900',
+    letterSpacing: 1,
+    fontFamily: 'SpaceMono',
+  },
+  algoTitle: {
+    color: colors.text,
+    fontSize: 18,
+    fontWeight: '800',
+  },
+  algoSub: {
+    color: colors.textMuted,
+    fontSize: 13,
+  },
+  algoCta: {
+    color: colors.radar,
+    fontSize: 13,
+    fontWeight: '800',
+    marginTop: 2,
+  },
   runHeader: {
     flexDirection: 'row',
     alignItems: 'baseline',
     justifyContent: 'space-between',
-    marginTop: spacing.xs,
+    marginTop: spacing.sm,
   },
   runTitle: {
     color: colors.text,
