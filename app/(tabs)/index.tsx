@@ -15,6 +15,7 @@ import {
   regenerateDailySet,
 } from '@/lib/api';
 import { relativeDifficulty, SLOT_LABELS, type DailySet } from '@/lib/habit';
+import { areRemindersEnabled, formatReminderLabel, getReminderHour } from '@/lib/notifications';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -27,6 +28,7 @@ export default function HomeScreen() {
   const [reviewCount, setReviewCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [reminderHint, setReminderHint] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     await refreshProfile();
@@ -40,6 +42,12 @@ export default function HomeScreen() {
     setAttempts(a);
     setDaily(d);
     setReviewCount(review.length);
+    if (await areRemindersEnabled()) {
+      const hour = await getReminderHour();
+      setReminderHint(formatReminderLabel(hour));
+    } else {
+      setReminderHint(null);
+    }
   }, [user?.id, refreshProfile, profile?.rating_band]);
 
   useFocusEffect(
@@ -102,6 +110,12 @@ export default function HomeScreen() {
       {demoMode ? (
         <Pressable onPress={() => router.push('/(auth)/login')}>
           <Text style={styles.demo}>Guest mode · tap to sign in & sync</Text>
+        </Pressable>
+      ) : null}
+
+      {reminderHint ? (
+        <Pressable onPress={() => router.push('/settings')}>
+          <Text style={styles.reminderHint}>Reminder on · {reminderHint}</Text>
         </Pressable>
       ) : null}
 
@@ -240,6 +254,10 @@ const styles = StyleSheet.create({
   demo: {
     color: colors.radar,
     fontSize: 13,
+  },
+  reminderHint: {
+    color: colors.textDim,
+    fontSize: 12,
   },
   section: {
     color: colors.text,

@@ -9,7 +9,10 @@ export const LOCAL_KEYS = [
   'koda.favorites',
   'koda.onboarding.v1',
   'koda.reminders.enabled',
+  'koda.reminders.hour',
 ] as const;
+
+const KEY_SET = new Set<string>(LOCAL_KEYS);
 
 export async function clearLocalTrainingData(): Promise<void> {
   await AsyncStorage.multiRemove([...LOCAL_KEYS]);
@@ -38,4 +41,42 @@ export async function exportLocalTrainingJson(): Promise<string> {
     }
   }
   return JSON.stringify(payload, null, 2);
+}
+
+export type ImportResult =
+  | { ok: true; restored: number }
+  | { ok: false; error: string };
+
+/** Restore a previously exported Koda backup (overwrites matching local keys). */
+export async function importLocalTrainingJson(raw: string): Promise<ImportResult> {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return { ok: false, error: 'Invalid JSON.' };
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return { ok: false, error: 'Backup must be a JSON object.' };
+  }
+  const obj = parsed as Record<string, unknown>;
+  if (obj.app != null && obj.app !== 'koda') {
+    return { ok: false, error: 'Not a Koda backup (app field mismatch).' };
+  }
+
+  const writes: [string, string][] = [];
+  for (const key of KEY_SET) {
+    if (!(key in obj) || obj[key] == null) continue;
+    const value = obj[key];
+    writes.push([
+      key,
+      typeof value === 'string' ? value : JSON.stringify(value),
+    ]);
+  }
+
+  if (!writes.length) {
+    return { ok: false, error: 'No recognizable Koda keys in backup.' };
+  }
+
+  await AsyncStorage.multiSet(writes);
+  return { ok: true, restored: writes.length };
 }

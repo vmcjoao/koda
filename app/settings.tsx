@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Platform, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 import { router } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
@@ -9,11 +10,14 @@ import { updateRatingBand } from '@/lib/api';
 import {
   clearLocalTrainingData,
   exportLocalTrainingJson,
+  importLocalTrainingJson,
   resetOnboardingTips,
 } from '@/lib/localData';
 import {
   areRemindersEnabled,
-  REMINDER_LABEL,
+  formatReminderLabel,
+  getReminderHour,
+  setReminderHour,
   setRemindersEnabled,
 } from '@/lib/notifications';
 import { shareText } from '@/lib/share';
@@ -26,10 +30,15 @@ export default function SettingsScreen() {
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
   const [reminders, setReminders] = useState(false);
+  const [reminderHour, setReminderHourState] = useState(19);
   const [reminderBusy, setReminderBusy] = useState(false);
+  const [importText, setImportText] = useState('');
 
   useEffect(() => {
-    areRemindersEnabled().then(setReminders);
+    (async () => {
+      setReminders(await areRemindersEnabled());
+      setReminderHourState(await getReminderHour());
+    })();
   }, []);
 
   async function saveBand() {
@@ -50,6 +59,16 @@ export default function SettingsScreen() {
     setBand(String(next));
   }
 
+  async function nudgeHour(delta: number) {
+    const next = await setReminderHour(reminderHour + delta);
+    setReminderHourState(next);
+    setStatus(
+      reminders
+        ? `Reminder rescheduled · ${formatReminderLabel(next)}`
+        : `Reminder time set · ${formatReminderLabel(next)} (enable to schedule)`,
+    );
+  }
+
   async function onToggleReminders(next: boolean) {
     if (Platform.OS === 'web') {
       setStatus('Reminders need a native build / Expo Go on a phone.');
@@ -62,10 +81,47 @@ export default function SettingsScreen() {
     if (next && !ok) {
       setStatus('Notification permission denied.');
     } else if (next) {
-      setStatus(`Reminder on · ${REMINDER_LABEL}`);
+      setStatus(`Reminder on · ${formatReminderLabel(reminderHour)}`);
     } else {
       setStatus('Reminder off.');
     }
+  }
+
+  async function onImport() {
+    const raw = importText.trim() || (await Clipboard.getStringAsync());
+    if (!raw.trim()) {
+      setStatus('Paste a backup JSON first (or copy it to clipboard).');
+      return;
+    }
+    Alert.alert(
+      'Restore backup?',
+      'This overwrites local attempts, profile, favorites, and related keys on this device.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Restore',
+          style: 'destructive',
+          onPress: async () => {
+            const result = await importLocalTrainingJson(raw);
+            if (!result.ok) {
+              setStatus(result.error);
+              return;
+            }
+            const enabled = await areRemindersEnabled();
+            const hour = await getReminderHour();
+            setReminders(enabled);
+            setReminderHourState(hour);
+            if (enabled) await setRemindersEnabled(true);
+            const { getProfile } = await import('@/lib/api');
+            const profileAfter = await getProfile(user?.id ?? null);
+            setBand(String(profileAfter.rating_band ?? 1200));
+            await refreshProfile();
+            setImportText('');
+            setStatus(`Restored ${result.restored} local keys.`);
+          },
+        },
+      ],
+    );
   }
 
   function confirmClear() {
@@ -81,6 +137,7 @@ export default function SettingsScreen() {
             await clearLocalTrainingData();
             await setRemindersEnabled(false);
             setReminders(false);
+            setReminderHourState(19);
             await refreshProfile();
             setBand('1200');
             setStatus('Local training data cleared.');
@@ -116,7 +173,7 @@ export default function SettingsScreen() {
       <Text style={styles.label}>Reminders</Text>
       <View style={styles.reminderRow}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.statLine}>{REMINDER_LABEL}</Text>
+          <Text style={styles.statLine}>{formatReminderLabel(reminderHour)}</Text>
           <Text style={styles.hint}>Nudges Daily Set + Review habit.</Text>
         </View>
         <Switch
@@ -126,6 +183,11 @@ export default function SettingsScreen() {
           trackColor={{ false: colors.border, true: colors.accentDim }}
           thumbColor={reminders ? colors.accent : colors.textDim}
         />
+      </View>
+      <View style={styles.bandRow}>
+        <PrimaryButton label="−1h" variant="secondary" onPress={() => nudgeHour(-1)} style={styles.nudge} />
+        <Text style={styles.hourReadout}>{String(reminderHour).padStart(2, '0')}:00</Text>
+        <PrimaryButton label="+1h" variant="secondary" onPress={() => nudgeHour(1)} style={styles.nudge} />
       </View>
 
       <View style={styles.stats}>
@@ -149,6 +211,18 @@ export default function SettingsScreen() {
           setStatus('Backup shared.');
         }}
       />
+      <Text style={styles.hint}>Paste a backup below, or leave empty to import from clipboard.</Text>
+      <TextInput
+        style={styles.importBox}
+        multiline
+        value={importText}
+        onChangeText={setImportText}
+        placeholder='{ "app": "koda", ... }'
+        placeholderTextColor={colors.textDim}
+        autoCorrect={false}
+        autoCapitalize="none"
+      />
+      <PrimaryButton label="Import backup" variant="secondary" onPress={onImport} />
       <PrimaryButton
         label="Show onboarding tips again"
         variant="secondary"
@@ -218,6 +292,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: spacing.md,
   },
+  hourReadout: {
+    flex: 1,
+    textAlign: 'center',
+    color: colors.text,
+    fontFamily: 'SpaceMono',
+    fontSize: 22,
+    fontWeight: '700',
+  },
   reminderRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -239,6 +321,18 @@ const styles = StyleSheet.create({
   statLine: {
     color: colors.textMuted,
     fontSize: 14,
+  },
+  importBox: {
+    minHeight: 100,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radii.md,
+    color: colors.text,
+    fontFamily: 'SpaceMono',
+    fontSize: 11,
+    padding: spacing.md,
+    textAlignVertical: 'top',
   },
   status: {
     color: colors.accent,
