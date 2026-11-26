@@ -76,10 +76,10 @@
           "title": "D",
           "vjudgeKey": "CSES-1194",
           "originUrl": "https://vjudge.net/problem/CSES-1194",
-          "proposedId": "cses-1194",
+          "proposedId": "cses-monsters",
           "proposedSource": "CSES",
           "proposedUrl": "https://cses.fi/problemset/task/1194",
-          "catalogId": "cses-1194",
+          "catalogId": "cses-monsters",
           "status": "in_catalog"
         },
         {
@@ -87,10 +87,10 @@
           "title": "E",
           "vjudgeKey": "CSES-1681",
           "originUrl": "https://vjudge.net/problem/CSES-1681",
-          "proposedId": "cses-1681",
+          "proposedId": "cses-game-routes",
           "proposedSource": "CSES",
           "proposedUrl": "https://cses.fi/problemset/task/1681",
-          "catalogId": "cses-1681",
+          "catalogId": "cses-game-routes",
           "status": "in_catalog"
         }
       ]
@@ -208,10 +208,10 @@
           "title": "Trilhas de capivara",
           "vjudgeKey": "CSES-1666",
           "originUrl": "https://vjudge.net/problem/CSES-1666",
-          "proposedId": "cses-1666",
+          "proposedId": "cses-building-roads",
           "proposedSource": "CSES",
           "proposedUrl": "https://cses.fi/problemset/task/1666",
-          "catalogId": "cses-1666",
+          "catalogId": "cses-building-roads",
           "status": "in_catalog"
         },
         {
@@ -252,10 +252,10 @@
           "title": "Jacares",
           "vjudgeKey": "CSES-1194",
           "originUrl": "https://vjudge.net/problem/CSES-1194",
-          "proposedId": "cses-1194",
+          "proposedId": "cses-monsters",
           "proposedSource": "CSES",
           "proposedUrl": "https://cses.fi/problemset/task/1194",
-          "catalogId": "cses-1194",
+          "catalogId": "cses-monsters",
           "status": "in_catalog"
         },
         {
@@ -263,10 +263,10 @@
           "title": "Jogo da CCP",
           "vjudgeKey": "CSES-1681",
           "originUrl": "https://vjudge.net/problem/CSES-1681",
-          "proposedId": "cses-1681",
+          "proposedId": "cses-game-routes",
           "proposedSource": "CSES",
           "proposedUrl": "https://cses.fi/problemset/task/1681",
-          "catalogId": "cses-1681",
+          "catalogId": "cses-game-routes",
           "status": "in_catalog"
         },
         {
@@ -2793,10 +2793,10 @@
           "title": "Cidades e mais cidades",
           "vjudgeKey": "CSES-1680",
           "originUrl": "https://vjudge.net/problem/CSES-1680",
-          "proposedId": "cses-1680",
+          "proposedId": "cses-longest-flight-route",
           "proposedSource": "CSES",
           "proposedUrl": "https://cses.fi/problemset/task/1680",
-          "catalogId": "cses-1680",
+          "catalogId": "cses-longest-flight-route",
           "status": "in_catalog"
         },
         {

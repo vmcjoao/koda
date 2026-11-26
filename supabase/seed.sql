@@ -446,37 +446,6 @@ Exemplos
 
                                                                                               4', 'See statement.', 'See statement.', '1≤ C ≤ 104 ), representando a quantidade de; 0 ≤ P ≤ 10 ), representando a', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-a-pao-de-queijo-a1', 'minas-2025-a-pao-de-queijo', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-a-pao-de-queijo', 'Pão de Queijo', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1000, 'Problema A. Pão de Queijo
-Em Minas Gerais, é muito comum tomar um bom café com deliciosos pães de queijo. Maria está
-organizando um café da tarde para seus amigos e quer garantir que todos recebam pelo menos dois
-pães de queijo.
-
-Escreva um programa que, dado o número de convidados e a quantidade total de pães de queijo
-disponíveis, verique se a quantidade é suciente para atender a todos com pelo menos dois pães
-de queijo cada.
-
-Entrada
-A primeira linha contém um número inteiro C (1≤ C ≤ 104 ), representando a quantidade de
-convidados.
-                                                                      4
-              A segunda linha contém um número inteiro P (0 ≤ P ≤ 10 ), representando a
-quantidade total de pães de queijo disponíveis.
-
-Saída
-A saída contém uma única linha com o número 1 se houver pães de queijo sucientes para todos os
-convidados, ou 0 caso contrário.
-
-Exemplos
- Entrada                                          Saída
- 5                                                1
- 12
-
- Entrada                                          Saída
- 4                                                0
- 7
-
-                                                                                                  4', 'See statement.', 'See statement.', '1≤ C ≤ 104 ), representando a quantidade de; 0 ≤ P ≤ 10 ), representando a', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-a-pao-de-queijo-a1', 'minas-meia-2025-a-pao-de-queijo', '1ª Meia Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem A. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2025-f0-b-busca-periodica', 'Busca Periódica', 'SBC Maratona', 'https://scorelatam.naquadah.com.br/fzero-2025/contest.br.pdf', 1000, 'Problema B
                                     Busca Periódica
                          Tempo limite: 0,5 s     Limite de memória: 1 GiB
@@ -846,46 +815,6 @@ Exemplos
 
                                                                                                   5', 'See statement.', 'See statement.', '2 ≤ N ≤ 10 ), indicando a quantidade de term', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-b-fibo-uai-trem-so-a1', 'minas-2025-b-fibo-uai-trem-so', '1ª Maratona Minas de Minas — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-b-distancias-em-minas', 'Distâncias em Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1100, 'Problema B. Distâncias em Minas
-João é um turista que está explorando Minas Gerais e deseja conhecer várias cidades históricas, como
-Belo Horizonte, Ouro Preto, Tiradentes e Diamantina. Durante a viagem, ele anotou a distância
-percorrida em quilômetros a cada dia, já que adora registrar suas aventuras.
-
-Agora, João quer calcular a distância total percorrida para contar aos amigos o quanto rodou pelas
-estradas mineiras.
-
-Escreva um programa que, dado o número de dias da viagem e as distâncias percorridas em cada
-um deles, calcule a distância total. Além disso, João gostaria de saber se conseguiu percorrer mais
-de 500 km no total  nesse caso, ele vai considerar que fez uma "grande viagem"!
-
-Entrada
-A primeira linha contém um número inteiro N (1 ≤ N ≤ 100), representando a quantidade de dias
-da viagem. Cada uma das próximas N linhas contém um número inteiro, que representa a distância
-percorrida em cada dia (em quilômetros).
-
-Saída
-Seu programa deve imprimir duas linhas: Na primeira linha, um número inteiro representando a
-distância total percorrida durante a viagem e, na linha seguinte, a mensagem "Grande viagem" se
-o total for maior que 500 km, ou "Viagem curta" caso contrário.
-
-Exemplos
- Entrada                                        Saída
- 5                                              410
- 100                                            Viagem curta
- 120
- 80
- 50
- 60
-
- Entrada                                        Saída
- 4                                              520
- 200                                            Grande viagem
- 150
- 100
- 70
-
-                                                                                              5', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), representando a quantidade de ', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-b-distancias-em-minas-a1', 'minas-meia-2025-b-distancias-em-minas', '1ª Meia Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem B. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-a-jogo-do-bicho', 'Jogo do Bicho', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1100, 'Problema A
                                     Jogo do Bicho
               Arquivo fonte: bicho.c, bicho.cpp, bicho.java ou bicho.pas
@@ -1932,10 +1861,8 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 
 Each test case: an integer $n$, then a line with $n$ integers.', 'For each test case print `YES` or `NO`.', '$2 \le n \le 50$, $n$ even; $T$ test cases', '[{"input":"1\n4\n1 5 3 4","output":"YES"}]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1360c-a1', 'cf-1360c', 'Parity counts + adjacent check', ARRAY['Greedy','Ad-Hoc','Math / Number Theory']::text[], ARRAY['Sorting']::text[], ARRAY['1D Array']::text[], ARRAY['Even counts of odd and even → always yes','Otherwise need one pair with difference 1']::text[], 'If both parity counts are even, pair within parity. Else sort and check for a consecutive pair with difference 1.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-489b', 'BerSU Ball', 'Codeforces', 'https://codeforces.com/problemset/problem/489/B', 1200, 'Pair boys and girls so that skill difference is at most $1$. Maximize the number of pairs.', 'The first line contains $n$, then a line with $n$ boy skills.
-
-Then $m$, then a line with $m$ girl skills.', 'Print the maximum number of pairs.', '$1 \le n,m \le 100$', '[{"input":"4\n1 4 6 2\n5\n5 1 5 7 9","output":"3"}]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-489b-a1', 'cf-489b', 'Sort + greedy two pointers', ARRAY['Greedy','Two Pointers']::text[], ARRAY['Sorting']::text[], ARRAY['1D Array']::text[], ARRAY['Sort both skill arrays','Greedily match closest feasible partners']::text[], 'Sort both arrays and scan with two pointers, pairing when $|a-b|\le 1$.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-489b', 'BerSU Ball', 'Codeforces', 'https://codeforces.com/problemset/problem/489/B', 1200, 'Boys and girls with skills. Pair them if skill difference ≤ 1. Maximize number of pairs.', 'n, boys skills, m, girls skills.', 'Maximum pairs.', '$n,m \le 100$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-489b-a1', 'cf-489b', 'Greedy matching', ARRAY['Flows / Matching','Greedy']::text[], ARRAY['Bipartite Matching','Sorting','Greedy']::text[], ARRAY['1D Array']::text[], ARRAY['Skill difference ≤1; greedy two pointers ≡ matching']::text[], 'Sort both arrays and match greedily; same cardinality as maximum bipartite matching on the threshold graph.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-maximum-subarray-sum', 'Maximum Subarray Sum', 'CSES', 'https://cses.fi/problemset/task/1643', 1200, 'Given an array of $n$ integers, find a contiguous subarray with the maximum possible sum.', 'The first line contains an integer $n$.
 
 The second line contains $n$ integers $a_1,\dots,a_n$.', 'Print the maximum subarray sum.', '$1 \le n \le 2 \times 10^5$', '[{"input":"8\n-1 3 -2 5 3 -5 2 2","output":"9"}]'::jsonb, 'O(N)');
@@ -2999,54 +2926,6 @@ Exemplos
 
                                                                                                   6', 'See statement.', 'See statement.', '1 ≤ N ≤ 10 ), o número de capivaras competid; 1 ≤ G ≤ 10 ), a quantidade total de pães de ; 1 ≤ Ci    ≤ 109 ), onde cada valor represent', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-c-corrida-do-pao-de-queijo-a1', 'minas-2025-c-corrida-do-pao-de-queijo', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-c-fibo-uai-trem-so', 'Fibo UAI, TREM, SO!', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1200, 'Problema C. Fibo UAI, TREM, SO!
-O pessoal das Minas de Minas resolveu brincar com a famosa sequência de Fibonacci. Mas, como
-um bom mineiro não perde a chance de deixar tudo com a sua marca registrada, nasceu a sequência
-Fibo UAI, TREM SO!.
-
-Funciona assim: a gente começa como na sequência de Fibonacci tradicional, com 1, 1, e cada novo
-número é a soma dos dois anteriores. Até aí, nenhuma novidade. O detalhe mineiro aparece quando
-o número cresce tanto que passa a ter mais dígitos do que o número anterior. Nesse momento, em
-vez de escrever o número, a gente solta uma palavra bem mineira, seguindo este ciclo:
-
-UAI → TREM → SO → UAI → TREM → SO → · · ·
-
-Ou seja:   sempre que aumentar o número de dígitos, em vez do número aparece uma dessas
-palavrinhas, na ordem indicada, repetindo para sempre.
-
-Só que tem outro detalhe: quando a palavra aparece pela primeira vez, ela não vale a soma de
-Fibonacci. Ela passa a valer um número xo especial:
-
-      O primeiro UAI vale 10;
-
-      O primeiro TREM vale 100;
-
-      O primeiro SO vale 1000;
-
-      O segundo UAI vale 10000;
-
-      E assim por diante, sempre multiplicando por 10 a cada nova palavra do ciclo.
-
-Esses valores substituem o número de Fibonacci na sequência interna, ou seja, os próximos termos
-passam a ser calculados usando também esses valores especiais.
-
-Entrada
-                                                  3
-A entrada contém um único inteiro N (2 ≤ N ≤ 10 ), indicando a quantidade de termos a imprimir.
-
-Saída
-Os N primeiros termos da sequência, separados por um espaço.
-
-Exemplos
- Entrada                                        Saída
- 7                                              1 1 2 3 5 8 UAI
-
- Entrada                                        Saída
- 17                                             1 1 2 3 5 8 UAI 18 28 46 74 TREM 174
-                                                274 448 722 SO
-
-                                                                                                  6', 'See statement.', 'See statement.', '2 ≤ N ≤ 10 ), indicando a quantidade de term', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-c-fibo-uai-trem-so-a1', 'minas-meia-2025-c-fibo-uai-trem-so', '1ª Meia Maratona Minas de Minas — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem C. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-b-curso-universitario', 'Curso Universitário', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1200, 'Problema B
                                   Curso Universitário
               Arquivo fonte: curso.c, curso.cpp, curso.java ou curso.pas
@@ -4219,8 +4098,6 @@ decimais.
 
 Maratona SBC de Programação  Fase Zero  2025                                                   12', 'See statement.', 'See statement.', '10 ≤ N ≤ 10 ) indicando o número de qubits do computado', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-f0-d-decoerencia-quantica-a1', 'sbc-2025-f0-d-decoerencia-quantica', 'SBC 2025 — Fase Zero — standard', ARRAY['String Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — Fase Zero, problem D. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Fase Zero. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1139c', 'BerSU Ball', 'Codeforces', 'https://codeforces.com/problemset/problem/489/B', 1200, 'Boys and girls with skills. Pair them if skill difference ≤ 1. Maximize number of pairs.', 'n, boys skills, m, girls skills.', 'Maximum pairs.', '$n,m \le 100$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1139c-a1', 'cf-1139c', 'Greedy matching', ARRAY['Flows / Matching','Greedy']::text[], ARRAY['Bipartite Matching','Sorting','Greedy']::text[], ARRAY['1D Array']::text[], ARRAY['Skill difference ≤1; greedy two pointers ≡ matching']::text[], 'Sort both arrays and match greedily; same cardinality as maximum bipartite matching on the threshold graph.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-br-05', 'Bridges', 'Other', 'https://atcoder.jp/contests/abc075/tasks/abc075_c', 1200, 'Connected undirected graph. Count how many bridges it has.', 'N M then edges.', 'Number of bridges.', '$N \le 50$', '[]'::jsonb, 'O(N + M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-br-05-a1', 'koda-b9-br-05', 'Brute bridges', ARRAY['Graph Algorithms']::text[], ARRAY['Bridges / Articulation','DFS','DSU']::text[], ARRAY['DSU']::text[], ARRAY['Bridge iff removing increases components']::text[], 'For each edge, DSU the rest; if disconnected it is a bridge.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-gt-02', 'Sequential Nim', 'Other', 'https://codeforces.com/problemset/problem/1382/B', 1200, 'Piles in a row; move on the leftmost non-empty pile only. Who wins with optimal play?', 'T tests with n and pile sizes.', 'First or Second per test.', '$n \le 10^5$', '[]'::jsonb, 'O(N)');
@@ -4757,56 +4634,6 @@ Exemplos
 
                                                                                                      7', 'See statement.', 'See statement.', '1 ≤ N ≤ 10 ), que representa a quantidade; 1 ≤ ai ≤ 10 ) separados por um', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-d-bandeja-de-pao-de-queijos-a1', 'minas-2025-d-bandeja-de-pao-de-queijos', '1ª Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-d-o-trem-de-minas', 'O Trem de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1300, 'Problema D. O Trem de Minas
-Em Minas Gerais, o trem é muito mais que um meio de transporte: ele cruza montanhas, corta
-cidades históricas e carrega histórias de trabalhadores, estudantes e famílias inteiras.
-
-Miguel é responsável por anotar com quantos passageiros o trem saiu da cidade de origem. Infelizmente,
-Miguel esqueceu de recolher essa informação.      Por outro lado, felizmente o maquinista sempre
-mantém registros da movimentação dos passageiros nas estações.         Esses dados serão úteis para
-recuperar parte dessa informação.
-
-Após sair da cidade de origem, o trem passa por N estações e depois para em uma cidade nal.
-Quando o trem para na i-ésima estação, primeiro ai passageiros descem do trem e logo após bi
-passageiros embarcam no trem para seguir viagem. O maquinista possui o registro desses números
-para as N estações na ordem que o trem passa por elas, porém não sabe quantas pessoas entraram
-inicialmente na cidade de origem e nem quantas pessoas desembarcaram na cidade nal.
-
-Miguel pediu sua ajuda para descobrir o menor número possível de pessoas que entraram no trem na
-cidade de origem sabendo apenas dos dados anotados pelo maquinista. Por exemplo, se na primeira
-estação descem 10 pessoas, então já é possível deduzir que no mínimo 10 pessoas entraram no trem
-na cidade de origem.
-
-Entrada
-A primeira linha contém um inteiro N (1 ≤ N ≤ 100), representando o número de estações de trem.
-Em seguida, são dadas N linhas, cada uma contendo dois inteiros ai e bi (0 ≤ ai , bi ≤ 100) que
-representam respectivamente o número de passageiros que desceram do trem na estação e o número
-de passageiros que subiram no trem na estação. As estações são dadas na ordem que o trem passa
-por elas.
-
-Saída
-Imprima um inteiro indicando o número mínimo de passageiros que entraram no trem na cidade de
-origem para que seja possível os dados que o maquinista anotou
-
-Exemplos
- Entrada                                          Saída
- 1                                                10
- 10 5
-
- Entrada                                          Saída
- 2                                                20
- 10 5
- 15 0
-
- Entrada                                          Saída
- 4                                                2
- 1 3
- 2 3
- 2 1
- 4 0
-
-                                                                                                     7', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), representando o número de esta; 0 ≤ ai , bi ≤ 100) que', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-d-o-trem-de-minas-a1', 'minas-meia-2025-d-o-trem-de-minas', '1ª Meia Maratona Minas de Minas — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem D. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-c-reducao-de-pena', 'Redução de Pena', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1300, 'Problema C
                                    Redução de Pena
                 Arquivo fonte: pena.c, pena.cpp, pena.java ou pena.pas
@@ -6057,10 +5884,6 @@ acima.
 
 Maratona SBC de Programação  Fase Zero  2025                                                 13', 'See statement.', 'See statement.', '1 ≤ Y     ≤ 109 ) e K (1 ≤ K ≤ 109 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-f0-e-energizacao-de-particulas-a1', 'sbc-2025-f0-e-energizacao-de-particulas', 'SBC 2025 — Fase Zero — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — Fase Zero, problem E. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Fase Zero. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-br-04', 'Count Bridges Brute', 'Other', 'https://atcoder.jp/contests/abc075/tasks/abc075_c', 1300, 'Small connected graph: count bridges by removing each edge once.', 'N M then edges.', 'Number of bridges.', '$N \le 50$', '[]'::jsonb, 'O(N + M)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-br-04-a1', 'koda-b10-br-04', 'Per-edge DSU', ARRAY['Graph Algorithms']::text[], ARRAY['Bridges / Articulation','DSU']::text[], ARRAY['DSU']::text[], ARRAY['Edge is bridge iff endpoints disconnect without it']::text[], 'For each edge, union all others; count those that fail to connect endpoints.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-gt-02', 'Subtraction Stones', 'Other', 'https://atcoder.jp/contests/dp/tasks/dp_k', 1300, 'One pile n; remove a value from set A. Player taking last stone wins. Who wins?', 'N K and set A.', 'First or Second.', '$N \le 10^5$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-gt-02-a1', 'koda-b10-gt-02', 'Subtraction DP', ARRAY['Dynamic Programming']::text[], ARRAY['Game Theory']::text[], ARRAY['1D Array']::text[], ARRAY['Win/lose DP for subtraction game']::text[], 'dp[x] winning if exists move to losing position.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-playlist', 'Playlist', 'CSES', 'https://cses.fi/problemset/task/1141', 1400, 'You are given a playlist of $n$ songs. Find the longest contiguous segment of songs where each song appears at most once.', 'The first line contains an integer $n$.
 
 The second line contains $n$ integers: the song ids.', 'Print the maximum length of a contiguous segment with distinct songs.', '$1 \le n \le 2 \times 10^5$', '[{"input":"8\n1 2 1 3 2 7 4 2","output":"5"}]'::jsonb, 'O(N)');
@@ -6111,114 +5934,6 @@ For each Willi number ($< 10^5$), print Maja''s coordinates.
 
 Sample: $1 \mapsto (0,0)$, $2 \mapsto (0,1)$, $3 \mapsto (-1,1)$, $4 \mapsto (-1,0)$, $5 \mapsto (0,-1)$.', 'Input contains one or more integers (Willi''s honeycomb numbers), each on its own line.', 'For each number print the corresponding Maja coordinates $x\ y$ on its own line.', 'Each query $< 10^5$', '[{"input":"1\n2\n3\n4\n5","output":"0 0\n0 1\n-1 1\n-1 0\n0 -1"}]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('demo-maja-a1', 'demo-maja', 'Hex spiral walk', ARRAY['Math / Number Theory','Ad-Hoc']::text[], ARRAY[]::text[], ARRAY['1D Array']::text[], ARRAY['Hex grid has 6 directions; ring $r$ has $6r$ cells','Simulate spiral from center or closed-form ring + offset','Match the sample orientation carefully (clockwise vs CCW)']::text[], 'Find which ring contains Willi''s id, then walk the six sides of that hex ring to recover axial $(x,y)$.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-1194', 'D', 'CSES', 'https://cses.fi/problemset/task/1194', 1400, 'You and some monsters are in a labyrinth. When taking a step to some direction in the labyrinth, each monster may simultaneously take one as well. Your goal is to reach one of the boundary squares without ever sharing a square with a monster.
-
-Your task is to find out if your goal is possible, and if it is, print a path that you can follow. Your plan has to work in any situation; even if the monsters know your path beforehand.
-
-Input
-
-The first input line has two integers $ n $ and $ m $: the height and width of the map.
-
-After this there are $ n $ lines of $ m $ characters describing the map. Each character is . (floor), # (wall), A (start), or M (monster). There is exactly one A in the input.
-
-Output
-
-First print "YES" if your goal is possible, and "NO" otherwise.
-
-If your goal is possible, also print an example of a valid path (the length of the path and its description using characters D, U, L, and R). You can print any path, as long as its length is at most $ n \cdot m $ steps.
-
-Constraints
-
-- $ 1 \le n,m \le 1000 $
-
-Example
-
-    Input
-    Output
-
-    5 8
-########
-#M..A..#
-#.#.M#.#
-#M#..#..
-#.######
-
-    YES
-5
-RRDDR', 'See statement.', 'See statement.', '- $ 1 \le n,m \le 1000 $', '[{"input":"The first input line has two integers $ n $ and $ m $: the height and width of the map.\n\nAfter this there are $ n $ lines of $ m $ characters describing the map. Each character is . (floor), # (wall), A (start), or M (monster). There is exactly one A in the input.","output":"First print \"YES\" if your goal is possible, and \"NO\" otherwise."}]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-1194-a1', 'cses-1194', 'Pending editorial review', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Auto-imported from VJudge — replace this approach after you solve / read an editorial','Origin: CSES-1194']::text[], 'Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-1681', 'E', 'CSES', 'https://cses.fi/problemset/task/1681', 1400, 'A game has $ n $ levels, connected by $ m $ teleporters, and your task is to get from level $ 1 $ to level $ n $. The game has been designed so that there are no directed cycles in the underlying graph. In how many ways can you complete the game?
-
-Input
-
-The first input line has two integers $ n $ and $ m $: the number of levels and teleporters. The levels are numbered $ 1,2,\dots,n $.
-
-After this, there are $ m $ lines describing the teleporters. Each line has two integers $ a $ and $ b $: there is a teleporter from level $ a $ to level $ b $.
-
-Output
-
-Print one integer: the number of ways you can complete the game. Since the result may be large, print it modulo $ 10^9+7 $.
-
-Constraints
-
-- $ 1 \le n \le 10^5 $
-
-- $ 1 \le m \le 2 \cdot 10^5 $
-
-- $ 1 \le a,b \le n $
-
-Example
-
-    Input
-    Output
-
-    4 5
-1 2
-2 4
-1 3
-3 4
-1 4
-
-    3', 'See statement.', 'See statement.', '- $ 1 \le n \le 10^5 $', '[{"input":"The first input line has two integers $ n $ and $ m $: the number of levels and teleporters. The levels are numbered $ 1,2,\\dots,n $.\n\nAfter this, there are $ m $ lines describing the teleporters. Each line has two integers $ a $ and $ b $: there is a teleporter from level $ a $ to level $ b $.","output":"Print one integer: the number of ways you can complete the game. Since the result may be large, print it modulo $ 10^9+7 $."}]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-1681-a1', 'cses-1681', 'Pending editorial review', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Auto-imported from VJudge — replace this approach after you solve / read an editorial','Origin: CSES-1681']::text[], 'Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-1666', 'Trilhas de capivara', 'CSES', 'https://cses.fi/problemset/task/1666', 1400, 'Byteland has $ n $ cities, and $ m $ roads between them. The goal is to construct new roads so that there is a route between any two cities.
-
-Your task is to find out the minimum number of roads required, and also determine which roads should be built.
-
-Input
-
-The first input line has two integers $ n $ and $ m $: the number of cities and roads. The cities are numbered $ 1,2,\dots,n $.
-
-After that, there are $ m $ lines describing the roads. Each line has two integers $ a $ and $ b $: there is a road between those cities.
-
-A road always connects two different cities, and there is at most one road between any two cities.
-
-Output
-
-First print an integer $ k $: the number of required roads.
-
-Then, print $ k $ lines that describe the new roads. You can print any valid solution.
-
-Constraints
-
-- $ 1 \le n \le 10^5 $
-
-- $ 1 \le m \le 2 \cdot 10^5 $
-
-- $ 1 \le a,b \le n $
-
-Example
-
-    Input
-    Output
-
-    4 2
-1 2
-3 4
-
-    1
-2 3', 'See statement.', 'See statement.', '- $ 1 \le n \le 10^5 $', '[{"input":"The first input line has two integers $ n $ and $ m $: the number of cities and roads. The cities are numbered $ 1,2,\\dots,n $.\n\nAfter that, there are $ m $ lines describing the roads. Each line has two integers $ a $ and $ b $: there is a road between those cities.\n\nA road always connects two different cities, and there is at most one road between any two cities.","output":"First print an integer $ k $: the number of required roads."}]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-1666-a1', 'cses-1666', 'Pending editorial review', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Auto-imported from VJudge — replace this approach after you solve / read an editorial','Origin: CSES-1666']::text[], 'Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-1623', 'Apple Division', 'CSES', 'https://cses.fi/problemset/task/1623', 1400, 'There are $ n $ apples with known weights. Your task is to divide the apples into two groups so that the difference between the weights of the groups is minimal.
 
 Input
@@ -6292,45 +6007,6 @@ caaba
 cabaa
 cbaaa', 'See statement.', 'See statement.', '- $ 1 \le n \le 8 $', '[{"input":"The only input line has a string of length $ n $. Each character is between a–z.","output":"First print an integer $ k $: the number of strings. Then print $ k $ lines: the strings in alphabetical order."}]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-1622-a1', 'cses-1622', 'Pending editorial review', ARRAY['String Algorithms','Brute Force','Bitmask / Bit DP']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['Auto-imported from VJudge — replace this approach after you solve / read an editorial','Origin: CSES-1622']::text[], 'Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-1680', 'Cidades e mais cidades', 'CSES', 'https://cses.fi/problemset/task/1680', 1400, 'Uolevi has won a contest, and the prize is a free flight trip that can consist of one or more flights through cities. Of course, Uolevi wants to choose a trip that has as many cities as possible.
-
-Uolevi wants to fly from Syrjälä to Lehmälä so that he visits the maximum number of cities. You are given the list of possible flights, and you know that there are no directed cycles in the flight network.
-
-Input
-
-The first input line has two integers $ n $ and $ m $: the number of cities and flights. The cities are numbered $ 1,2,\dots,n $. City $ 1 $ is Syrjälä, and city $ n $ is Lehmälä.
-
-After this, there are $ m $ lines describing the flights. Each line has two integers $ a $ and $ b $: there is a flight from city $ a $ to city $ b $. Each flight is a one-way flight.
-
-Output
-
-First print the maximum number of cities on the route. After this, print the cities in the order they will be visited. You can print any valid solution.
-
-If there are no solutions, print "IMPOSSIBLE".
-
-Constraints
-
-- $ 2 \le n \le 10^5 $
-
-- $ 1 \le m \le 2 \cdot 10^5 $
-
-- $ 1 \le a,b \le n $
-
-Example
-
-    Input
-    Output
-
-    5 5
-1 2
-2 5
-1 3
-3 4
-4 5
-
-    4
-1 3 4 5', 'See statement.', 'See statement.', '- $ 2 \le n \le 10^5 $', '[{"input":"The first input line has two integers $ n $ and $ m $: the number of cities and flights. The cities are numbered $ 1,2,\\dots,n $. City $ 1 $ is Syrjälä, and city $ n $ is Lehmälä.\n\nAfter this, there are $ m $ lines describing the flights. Each line has two integers $ a $ and $ b $: there is a flight from city $ a $ to city $ b $. Each flight is a one-way flight.","output":"First print the maximum number of cities on the route. After this, print the cities in the order they will be visited. You can print any valid solution."}]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-1680-a1', 'cses-1680', 'Pending editorial review', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Auto-imported from VJudge — replace this approach after you solve / read an editorial','Origin: CSES-1680']::text[], 'Stub approach from bulk VJudge import. Statement is present; tags and complexity are heuristics. Review before relying on scoring.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-increasing-subsequence', 'Increasing Subsequence', 'CSES', 'https://cses.fi/problemset/task/1145', 1400, 'You are given an array containing $n$ integers. Your task is to determine the longest increasing subsequence in the array, i.e., the longest subsequence where every element is larger than the previous one.
 
 A subsequence is a sequence that can be derived from the array by deleting some elements without changing the order of the remaining elements.
@@ -7431,8 +7107,6 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('atc-abc012-d-a1', 'atc-abc012-d', 'Minimax FW', ARRAY['Graph Algorithms']::text[], ARRAY['Floyd-Warshall']::text[], ARRAY['2D Array']::text[], ARRAY['FW all-pairs; choose bus stop minimizing the maximum distance to any other']::text[], 'Compute APSP; pick vertex with minimum eccentricity.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('atc-abc70-d', 'Transit Tree Path', 'AtCoder', 'https://atcoder.jp/contests/abc070/tasks/abc070_d', 1400, 'Weighted tree. Queries ask shortest path a→b that must pass through vertex K.', 'N, edges, K, Q, then queries.', 'Distance per query.', '$N \le 10^5$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('atc-abc70-d-a1', 'atc-abc70-d', 'Tree via hub', ARRAY['Graph Algorithms']::text[], ARRAY['Floyd-Warshall','DFS','Dijkstra']::text[], ARRAY['Adjacency List']::text[], ARRAY['Tree: fix hub K; answer dist(a,K)+dist(b,K) via one DFS']::text[], 'DFS/BFS distances from K; each query is sum of two distances.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-727c-b', 'Guess the Array (practice)', 'Codeforces', 'https://codeforces.com/problemset/problem/727/C', 1400, 'Interactive recovery of an array from pairwise sums.', 'n then `?` queries.', '`!` array.', '$n \le 5000$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-727c-b-a1', 'cf-727c-b', 'Sum queries', ARRAY['Interactive']::text[], ARRAY[]::text[], ARRAY['1D Array']::text[], ARRAY['Pair-sum queries recover the hidden array']::text[], 'Three equations for first three elements; then query with index 1.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-e-jantar-das-capivaras', 'Jantar das Capivaras', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1400, 'Há vários anos, Bacon -- o Bravo -- saiu vitorioso das disputas de sucessão do reino das capivaras.
 Infelizmente, Bacon já está com 16 anos, uma idade avançada para uma capivara.
 Como todo bom rei absolutista, Bacon -- o Bravo -- também gostaria de ser conhecido como fundador
@@ -7798,38 +7472,6 @@ Exemplos
 
                                                                                                 8', 'See statement.', 'See statement.', '1 ≤ I ≤ 105 ), F (I ≤ F ≤ 105 ) e P (0 ≤ P ≤', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-e-a-nova-geracao-de-minas-a1', 'minas-2025-e-a-nova-geracao-de-minas', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-e-a-nova-geracao-de-minas', 'A nova geração de Minas', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1400, 'Problema E. A nova geração de Minas
-As programadoras de Minas, motivadas em incentivar novas gerações de meninas a desenvolverem
-suas habilidades, propuseram um jogo de contagem para treinar raciocínio matemático e pensamento
-algorítmico.
-
-O desao é o seguinte: dados três inteiros I , F e P , com I ≤ F , considere a sequência de inteiros de
-I até F . Em seguida, remova todos os números que sejam divisíveis por qualquer um dos primeiros
-P números primos (começando em 2). Note que, nesse processo, tanto os próprios primos entre os
-primeiros P quanto todos os seus múltiplos são eliminados. Se P = 0, nenhum número é removido.
-
-Após essa ltragem, deve-se calcular e imprimir a soma dos números que permaneceram na sequência.
-
-Entrada
-A entrada consiste em uma única linha contendo três inteiros separados por um espaço em branco:
-I (1 ≤ I ≤ 105 ), F (I ≤ F ≤ 105 ) e P (0 ≤ P ≤ 100).
-
-Saída
-A saída contém um único inteiro representando a soma dos elementos que permaneceram na
-sequência após as remoções.
-
-Exemplos
- Entrada                                          Saída
- 1 20 2                                           73
-
- Entrada                                          Saída
- 1 20 3                                           68
-
- Entrada                                          Saída
- 1 20 0                                           210
-
-                                                                                                 8', 'See statement.', 'See statement.', '1 ≤ I ≤ 105 ), F (I ≤ F ≤ 105 ) e P (0 ≤ P ≤', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-e-a-nova-geracao-de-minas-a1', 'minas-meia-2025-e-a-nova-geracao-de-minas', '1ª Meia Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem E. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-d-cubos-coloridos', 'Cubos Coloridos', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1400, 'Problema D
                                     Cubos Coloridos
               Arquivo fonte: cubos.c, cubos.cpp, cubos.java ou cubos.pas
@@ -9953,14 +9595,10 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('spoj-pt07z-a1', 'spoj-pt07z', 'Tree diameter', ARRAY['Graph Algorithms']::text[], ARRAY['MST','BFS','DFS']::text[], ARRAY['Adjacency List','Queue']::text[], ARRAY['Tree diameter via two BFS; related to MST path bottlenecks on trees']::text[], 'BFS from arbitrary node to farthest, then BFS again for diameter length.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-hull-04', 'Convex Polygon Area', 'Other', 'https://open.kattis.com/problems/convexpolygonarea', 1400, 'Compute the area of a convex polygon given in CCW or CW order.', 'Multiple polygons: n then vertices.', 'Area for each.', '$n \le 100$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-hull-04-a1', 'koda-b9-hull-04', 'Shoelace', ARRAY['Geometry']::text[], ARRAY['Convex Hull']::text[], ARRAY['1D Array']::text[], ARRAY['Shoelace on convex polygon']::text[], 'Vertices given in order; shoelace formula for area.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-gt-06', 'Stones', 'Other', 'https://atcoder.jp/contests/dp/tasks/dp_k', 1400, 'Pile of n stones, allowed removals from set A. First player to take the last wins. Who wins?', 'N K and array A.', 'First or Second.', '$N \le 10^5$, $K \le 100$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-gt-06-a1', 'koda-b9-gt-06', 'Stone DP', ARRAY['Dynamic Programming']::text[], ARRAY['Game Theory']::text[], ARRAY['1D Array']::text[], ARRAY['Subtraction game DP win/lose']::text[], 'dp[x]=true if some move to false; standard impartial game on one pile.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-bpm-05', '2D Plane Matching', 'Other', 'https://atcoder.jp/contests/abc091/tasks/arc092_a', 1400, 'n red and n blue points. Pair red (a,b) with blue (c,d) if a<c and b<d. Maximize pairs.', 'n then red points then blue points.', 'Maximum matching size.', '$n \le 100$', '[]'::jsonb, 'O(N²)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-bpm-05-a1', 'koda-b10-bpm-05', 'Geometric BPM greedy', ARRAY['Flows / Matching','Greedy']::text[], ARRAY['Bipartite Matching','Sorting']::text[], ARRAY['1D Array']::text[], ARRAY['Red/blue points; match if red dominates; greedy by x']::text[], 'Sort blues by x; match each to unused red with max y among those with x<bx,y<by.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mx-01', 'Matrix Power', 'Other', 'https://www.spoj.com/problems/MPOW/', 1400, 'Compute A^n for an m×m matrix modulo a prime.', 'T cases: m n then matrix.', 'Resulting matrix per case.', '$m \le 50$, $n \le 10^{18}$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mx-01-a1', 'koda-b10-mx-01', 'Matrix binary pow', ARRAY['Math / Number Theory']::text[], ARRAY['Matrix Exponentiation']::text[], ARRAY['2D Array']::text[], ARRAY['Binary exponentiation of matrices mod p']::text[], 'Standard binary exponentiation multiplying m×m matrices modulo prime.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mx-04', 'Tetrahedron', 'Other', 'https://codeforces.com/problemset/problem/166/E', 1400, 'Ant on tetrahedron vertices. Number of ways to be at D after exactly n edges.', 'n', 'Ways mod 10^9+7.', '$n \le 10^7$ (or up to 10^{18} with matrix)', '[]'::jsonb, 'O(log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mx-04-a1', 'koda-b10-mx-04', '4-state matrix', ARRAY['Math / Number Theory','Dynamic Programming']::text[], ARRAY['Matrix Exponentiation']::text[], ARRAY['2D Array']::text[], ARRAY['Tetrahedron walks; 4-state linear recurrence']::text[], 'Let a_n = ways at D, b_n elsewhere; matrix or closed recurrence a_n = 3·b_{n-1}.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-shortest-routes-i', 'Shortest Routes I', 'CSES', 'https://cses.fi/problemset/task/1671', 1500, 'A weighted directed graph with $n$ nodes and $m$ edges. Find the shortest path lengths from node $1$ to every node.', 'The first line contains two integers $n$ and $m$.
 
 Then $m$ lines follow with directed flights $a\ b\ c$.', 'Print $n$ integers: distances from city $1$ to cities $1\dots n$.', '$1 \le n \le 10^5$, $1 \le m \le 2 \times 10^5$, weights positive', '[{"input":"3 4\n1 2 6\n1 3 2\n3 2 3\n1 3 4","output":"0 5 2"}]'::jsonb, 'O(N log N)');
@@ -17711,68 +17349,6 @@ Exemplos
 
                                                                                                    9', 'See statement.', 'See statement.', '1 ≤ N ≤ 100), T (1 ≤ T ≤ 100), e G (1 ≤ G ≤ ; 1 ≤ ti ≤ T ) e pi; 1 ≤ pi ≤ G), que representam o tempo de cons', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-2025-f-cafe-da-tarde-a1', 'minas-2025-f-cafe-da-tarde', '1ª Maratona Minas de Minas — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Maratona Minas de Minas (2025), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('minas-meia-2025-f-mineiridade-de-um-texto', 'Mineiridade de Um texto', 'Minas de Minas', 'https://mineira.sbc.org.br/wp-content/uploads/2026/11/m3-2025-caderno-meia-maratona.pdf', 1500, 'Problema F. Mineiridade de Um texto
-Durante o período de férias de julho, Jéssica, estudante do segundo período do curso de Sistemas
-de Informação na Universidade do Mineiro, decidiu se dedicar a um desao divertido:        medir a
-mineiridade de textos escritos em português.
-
-A mineiridade é denida como a soma da pontuação das palavras presentes em um texto, de
-acordo com um vocabulário típico de Minas Gerais.        Cada palavra desse vocabulário possui um
-valor associado, que representa o quanto ela contribui para a identidade mineira do texto para cada
-uma de suas ocorrências.
-
-No entanto, se uma palavra do texto analisado não estiver presente no vocabulário, ela deve ser
-considerada como possuindo valor igual a zero, ou seja, não inuencia a pontuação nal.
-
-Como a quantidade de palavras em um texto pode ser grande, e como o vocabulário mineiro é
-extenso e variado, Jéssica percebeu que precisava de um programa eciente para automatizar esse
-cálculo. Sua tarefa é ajudar Jéssica a implementar esse programa que calcule, de maneira correta e
-eciente, a mineiridade de um texto a partir do vocabulário fornecido.
-
-Entrada
-A entrada do programa é composta por três partes. A primeira linha contém um inteiro N (1 ≤
-N ≤ 10000), que indica a quantidade de palavras presentes no vocabulário mineiro. Em seguida, são
-fornecidas N linhas, cada uma contendo uma palavra escrita em letras minúsculas, (com no máximo
-20 caracteres) e um número inteiro P (0 ≤ P ≤ 10000), que representa a pontuação associada a
-essa palavra para o cálculo da mineiridade do texto.
-
-Finalmente, o texto a ser avaliado é lido. Este texto possui tamanho máximo de 10000 palavras
-(com no máximo 20 caracteres cada) e a sua leitura deve ser encerrada quando um ponto nal (.)
-for lido, simbolizando o m da entrada. Vale destacar que o texto já passou por um processamento
-inicial, que converteu todas as letras para minúsculas e removeu todos os caracteres especiais (com
-exceção do ponto nal ao m do texto).
-
-Saída
-Imprima um inteiro, simbolizando a pontuação da mineiridade do texto lido.
-
-Exemplos
- Entrada                                         Saída
- 5                                               36
- uai 20
- nuuh 22
- trem 35
- bao 15
- dimais 7
- nuuh mas ta frio dimais da conta ate
- pra quem ta acostumado com frio dimais .
-
-                                                  9
-
-Entrada                                   Saída
-7                                         0
-nooh 10000
-arreda 3000
-cafezin 75000
-ce 500
-uai 4500
-soh 20000
-paia 34000
-nossa voce pode ate gostar de um
-cafezinho no tempo frio mas se estiver
-em minas gerais voce precisa de um pao de
-queijo e um bolo de fuba para acompanhar
-tambem .', 'See statement.', 'See statement.', '1 ≤; 0 ≤ P ≤ 10000), que representa a pontuação a', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('minas-meia-2025-f-mineiridade-de-um-texto-a1', 'minas-meia-2025-f-mineiridade-de-um-texto', '1ª Meia Maratona Minas de Minas — standard', ARRAY['String Algorithms','Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['1ª Meia Maratona Minas de Minas (2025), problem F. Auto-tagged from statement; refine after solving.']::text[], 'From 1ª Meia Maratona Minas de Minas. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2005-p1-e-gerente-de-espaco', 'Gerente de Espaço', 'SBC Maratona', 'https://maratona.sbc.org.br/hist/2005/primeira-fase/problem_set2005.pdf', 1500, 'Problema E
                                  Gerente de Espaço
            Arquivo fonte: espaco.c, espaco.cpp, espaco.java ou espaco.pas
@@ -19868,8 +19444,6 @@ Maratona SBC de Programação  Fase Zero  2025                     16
 
 Maratona SBC de Programação  Fase Zero  2025                                                  17', 'See statement.', 'See statement.', '1 ≤ vi ≤ 5; 1 ≤ x ≤ 5; 1 ≤ N ≤ 5·10 ), a quantidade de vértices da ár-; 1 ≤ Mi ≤ 5), seguidos de; 1 ≤ U, V ≤ N ) indicando uma aresta da árvore; 1 ≤ P ≤ 5), indicando a quantidade; 1 ≤ Xi , Yi ≤ N ), indicando os caminhos especiais', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-f0-g-grover-e-seus-caminhos-especiais-a1', 'sbc-2025-f0-g-grover-e-seus-caminhos-especiais', 'SBC 2025 — Fase Zero — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2025 — Fase Zero, problem G. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Fase Zero. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1486c1-b', 'Guessing the Greatest (easy version)', 'Codeforces', 'https://codeforces.com/problemset/problem/1486/C1', 1500, 'Interactive: hidden permutation. Query `? l r` returns index of second maximum on [l,r]. Find the maximum’s index in ≤20 queries.', 'First line n; then interactive queries.', 'Print `! i` when found.', '$2 \le n \le 10^5$', '[]'::jsonb, 'O(log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1486c1-b-a1', 'cf-1486c1-b', 'Interactive ternary', ARRAY['Interactive','Binary Search on Answer']::text[], ARRAY['Ternary Search','Binary Search']::text[], ARRAY[]::text[], ARRAY['Second-max queries; ternary/binary search the side containing the maximum']::text[], 'Locate second maximum then binary/ternary search the segment with the max.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-839c', 'Journey', 'Codeforces', 'https://codeforces.com/problemset/problem/839/C', 1500, 'A tree rooted at 1. Starting at 1, at each non-leaf move to a random child uniformly. What is the expected length of the journey until a leaf?', 'n and n−1 edges.', 'Expected length with absolute/relative error 1e-6.', '$n \le 10^5$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-839c-a1', 'cf-839c', 'Tree expectation', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY['Topological Sort','DFS','BFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Expected path length on a tree; DFS/topo-style aggregation of probabilities']::text[], 'From root, expected remaining length = 1 + avg over children.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('uva-820', 'Internet Bandwidth', 'UVA', 'https://onlinejudge.org/external/8/820.pdf', 1500, 'Network of bidirectional links with bandwidths. Compute max bandwidth from s to t.', 'Multiple cases: n, s t c, then c edges.', 'Bandwidth for each network.', '$n \le 100$', '[]'::jsonb, 'O(N)');
@@ -19880,12 +19454,6 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-sw-04-a1', 'koda-b9-sw-04', 'Event sweep', ARRAY['Greedy']::text[], ARRAY['Sweep Line','Sorting']::text[], ARRAY['Priority Queue']::text[], ARRAY['Events open/close; track active tables']::text[], 'Sort arrival/leave events; greedily assign seats.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1137b', 'Christmas Eve', 'Codeforces', 'https://codeforces.com/problemset/problem/1137/B', 1500, 'Rearrange digits of s to contain as many occurrences of pattern t as possible as substrings.', 'Strings s and t over 0/1.', 'One optimal string.', '$|s| \le 5\cdot 10^5$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1137b-a1', 'cf-1137b', 'Border greedy pack', ARRAY['String Algorithms','Greedy']::text[], ARRAY['Z-Algorithm','KMP']::text[], ARRAY['1D Array']::text[], ARRAY['Use pi/Z border to overlap copies of t inside multiset of s']::text[], 'Compute border of t; greedily place as many t as digit counts allow with overlap.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-gt-07', 'Deque Game', 'Other', 'https://atcoder.jp/contests/dp/tasks/dp_l', 1500, 'Array as deque; players take left or right end, maximize own minus opponent score difference.', 'n and array.', 'Final X−Y with optimal play.', '$n \le 3000$', '[]'::jsonb, 'O(N²)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-gt-07-a1', 'koda-b9-gt-07', 'Interval game DP', ARRAY['Dynamic Programming']::text[], ARRAY['Game Theory','Dynamic Programming']::text[], ARRAY['2D Array']::text[], ARRAY['Interval DP difference optimal']::text[], 'dp[l][r] = max(a[l]−dp[l+1][r], a[r]−dp[l][r−1]).');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-hull-01', 'Hull Area', 'Other', 'https://open.kattis.com/problems/convexhull', 1500, 'Given a set of points, compute the area of their convex hull.', 'n then n points.', 'Area with 1 decimal or exact fraction style.', '$n \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-hull-01-a1', 'koda-b10-hull-01', 'Hull then shoelace', ARRAY['Geometry']::text[], ARRAY['Convex Hull','Sorting']::text[], ARRAY['Stack']::text[], ARRAY['Area via shoelace on hull']::text[], 'Build convex hull then compute area with shoelace.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mx-05', 'Range Fibonacci Sum', 'Other', 'https://www.spoj.com/problems/FIBOSUM/', 1500, 'Sum F_L + … + F_R modulo 10^9+7 for multiple queries.', 'T then lines L R.', 'Sums.', '$R \le 10^9$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mx-05-a1', 'koda-b10-mx-05', 'Fib identity + pow', ARRAY['Math / Number Theory']::text[], ARRAY['Matrix Exponentiation']::text[], ARRAY['2D Array']::text[], ARRAY['Sum of Fib via F_{n+2}-1']::text[], 'Use matrix Fibonacci to evaluate F_{R+2}-F_{L+1}.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-edit-distance', 'Edit Distance', 'CSES', 'https://cses.fi/problemset/task/1639', 1600, 'Compute the minimum number of operations (insert, delete, replace) to transform string $s$ into string $t$.', 'The first line contains string $s$.
 
 The second line contains string $t$.', 'Print the edit distance between $s$ and $t$.', '$1 \le |s|,|t| \le 5000$', '[{"input":"LOVE\nMOVIE","output":"2"}]'::jsonb, 'O(N²)');
@@ -26093,8 +25661,6 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-510c-a1', 'cf-510c', 'Alphabet topo', ARRAY['Graph Algorithms','String Algorithms']::text[], ARRAY['Topological Sort','DFS']::text[], ARRAY['Adjacency List','Queue']::text[], ARRAY['Compare adjacent names to add alphabet inequality edges; topo order = alphabet']::text[], 'Build 26-node graph from consecutive string comparisons; Kahn/DFS cycle detect.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1209d', 'Cow and Snacks', 'Codeforces', 'https://codeforces.com/problemset/problem/1209/D', 1600, 'k guests each want two snacks. Serve guests in some order; a guest is sad if either snack is already taken. Minimize sad guests.', 'n k and k pairs.', 'Minimum number of sad guests.', '$n,k \le 10^5$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1209d-a1', 'cf-1209d', 'DSU components', ARRAY['Graph Algorithms']::text[], ARRAY['DSU','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Each edge is a satisfied guest; components of size s give s−1 useful edges']::text[], 'Build graph of ingredients; answer = k − sum (comp_size−1).');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('uva-558-b', 'Wormholes (SPFA practice)', 'UVA', 'https://onlinejudge.org/external/5/558.pdf', 1600, 'Detect whether a system of wormholes admits a negative cycle using SPFA visit counting.', 'Multiple tests with n m wormholes.', '`possible` / `not possible`.', '$n \le 1000$', '[]'::jsonb, 'O(N · M)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('uva-558-b-a1', 'uva-558-b', 'SPFA cycle', ARRAY['Graph Algorithms']::text[], ARRAY['Bellman-Ford']::text[], ARRAY['Adjacency List']::text[], ARRAY['Same wormhole setting; practice SPFA / BF cycle detection variants']::text[], 'Queue-based Bellman-Ford with visit counters detects negative cycles.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1257d', 'Yet Another Monster Killing Problem', 'Codeforces', 'https://codeforces.com/problemset/problem/1257/D', 1600, 'Monsters with powers; heroes with (power, endurance). Minimum days to kill all monsters in order (each day one hero fights a prefix).', 'Tests with monsters and heroes.', 'Minimum days or -1.', '$\sum n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1257d-a1', 'cf-1257d', 'Hero coverage', ARRAY['Binary Search on Answer','Greedy']::text[], ARRAY['Ternary Search','Binary Search','Sorting']::text[], ARRAY['Sparse Table']::text[], ARRAY['For each endurance, max power; greedy cover monsters with best hero']::text[], 'Sparse table / suffix max of hero power by endurance; greedy days.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1006e', 'Military Problem', 'Codeforces', 'https://codeforces.com/problemset/problem/1006/E', 1600, 'Rooted tree. For queries (u,k) print the k-th vertex in DFS order of u’s subtree (or -1).', 'n q, parents, queries.', 'Answer per query.', '$n,q \le 2\cdot 10^5$', '[]'::jsonb, 'O(N)');
@@ -28712,12 +28278,8 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-gt-03-a1', 'koda-b9-gt-03', 'Page delete sim', ARRAY['Greedy','Math / Number Theory']::text[], ARRAY['Game Theory','Binary Search']::text[], ARRAY['1D Array']::text[], ARRAY['Tokitsukaze page removals — simulate with jumps']::text[], 'Process specials in order; count moves when page window shifts.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-gt-04', 'Even Subarrays', 'Other', 'https://codeforces.com/problemset/problem/1731/C', 1600, 'Count subarrays whose xor is a perfect square.', 'T tests with n and array.', 'Count per test.', '$n \le 10^5$', '[]'::jsonb, 'O(N √N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-gt-04-a1', 'koda-b9-gt-04', 'Xor squares', ARRAY['Math / Number Theory']::text[], ARRAY['Game Theory','Prefix Sums']::text[], ARRAY['Hash Map']::text[], ARRAY['Xor prefix; count subarrays with xor perfect square']::text[], 'Prefix xor frequencies; subtract bad xors that are perfect squares.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-gt-05', 'Equal Frequency', 'Other', 'https://codeforces.com/problemset/problem/1490/F', 1600, 'Delete minimum elements so all remaining values have the same frequency.', 'T tests with n and array.', 'Minimum deletions.', '$n \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-gt-05-a1', 'koda-b9-gt-05', 'Freq equalize', ARRAY['Greedy','Math / Number Theory']::text[], ARRAY['Game Theory','Sorting','Prefix Sums']::text[], ARRAY['Hash Map']::text[], ARRAY['Equalize frequencies by deletions']::text[], 'Count frequencies of frequencies; try each target frequency.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-bpm-03', 'Nuts and Bolts', 'Other', 'https://onlinejudge.org/external/111/11138.pdf', 1600, 'n nuts and m bolts; some pairs fit. Maximum number of nuts that can be matched to distinct bolts.', 'T cases with n m and adjacency matrix.', 'Case lines with matching size.', '$n,m \le 500$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-bpm-03-a1', 'koda-b10-bpm-03', 'Kuhn matching', ARRAY['Flows / Matching']::text[], ARRAY['Bipartite Matching','Max Flow']::text[], ARRAY['Adjacency List']::text[], ARRAY['Nuts and bolts; classic BPM']::text[], 'Bipartite graph nut↔bolt compatibility; maximum matching size.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-sw-02', 'Segment Coverage Histogram', 'Other', 'https://codeforces.com/problemset/problem/1000/C', 1600, 'n segments on Z. For each k how many points are covered by ≥ k segments?', 'n then segments.', 'n numbers for k=1..n.', '$n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-sw-02-a1', 'koda-b10-sw-02', 'Endpoint events', ARRAY['Greedy']::text[], ARRAY['Sweep Line','Sorting']::text[], ARRAY['1D Array']::text[], ARRAY['Difference array on compressed coordinates']::text[], 'Sort +1/−1 events; accumulate coverage lengths per multiplicity.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-flight-discount', 'Flight Discount', 'CSES', 'https://cses.fi/problemset/task/1195', 1700, 'Find the cheapest flight from $1$ to $n$ when you may halve the cost of **at most one** edge (rounded down).', 'The first line contains two integers $n$ and $m$.
 
 Then $m$ lines follow with flights $a\ b\ c$.', 'Print the minimum price from $1$ to $n$ when you may halve the cost of at most one flight.', '$2 \le n \le 10^5$, $1 \le m \le 2 \times 10^5$', '[{"input":"3 4\n1 2 3\n2 3 1\n1 3 7\n2 1 5","output":"2"}]'::jsonb, 'O(N log N)');
@@ -32833,14 +32395,10 @@ Maratona SBC de Programação  Fase Zero  2025                    19
 
 Maratona SBC de Programação  Fase Zero  2025                                                 20', 'See statement.', 'See statement.', '1 ≤ N           ≤ 5 · 103 ) e T (1 ≤ T ≤ 100) represen; 1 ≤ c(i, j) ≤ 5 · 107 ); 1 ≤ L ≤ U ≤ T ) representando o mínimo e o máximo', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-f0-i-inspecionando-o-emaranhamento-a1', 'sbc-2025-f0-i-inspecionando-o-emaranhamento', 'SBC 2025 — Fase Zero — standard', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2025 — Fase Zero, problem I. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Fase Zero. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-439d-b', 'Devu and his Brother', 'Codeforces', 'https://codeforces.com/problemset/problem/439/D', 1700, 'Arrays a and b. Increment a_i or decrement b_j by 1 per move. Make every a_i ≤ every b_j with minimum moves.', 'n m, array a, array b.', 'Minimum moves.', '$n,m \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-439d-b-a1', 'cf-439d-b', 'Ternary threshold', ARRAY['Binary Search on Answer','Greedy']::text[], ARRAY['Ternary Search','Sorting']::text[], ARRAY[]::text[], ARRAY['Cost to force max(a)≤min(b) is unimodal in the threshold t']::text[], 'Ternary/binary search t; cost = Σ max(0,t−a_i)+max(0,b_j−t).');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-427c', 'Checkposts', 'Codeforces', 'https://codeforces.com/problemset/problem/427/C', 1700, 'Directed city graph. Putting a checkpost in a city costs $c_i$. Cover every city by a checkpost in its SCC (or reachable SCC). Minimize total cost, then count ways modulo $10^9+7$.', 'n, costs, m, then directed edges.', 'Minimum cost and number of ways.', '$n \le 10^5$', '[]'::jsonb, 'O(N + M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-427c-a1', 'cf-427c', 'Tarjan + condensation', ARRAY['Graph Algorithms']::text[], ARRAY['SCC','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Condensation DAG; min cost per SCC, product of counts of mins']::text[], 'Find SCCs; in each component take the cheapest police cost and multiply ways.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('uva-10080', 'Gopher II', 'UVA', 'https://onlinejudge.org/external/100/10080.pdf', 1700, 'n gophers and m holes. Each gopher runs at speed s for at most t seconds. How many gophers are vulnerable (cannot reach a distinct hole)?', 'Multiple tests: n m s t and coordinates.', 'Number of vulnerable gophers.', '$n,m \le 100$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('uva-10080-a1', 'uva-10080', 'Geometric BPM', ARRAY['Flows / Matching','Geometry']::text[], ARRAY['Bipartite Matching','Max Flow']::text[], ARRAY['Adjacency List']::text[], ARRAY['Gopher→hole if distance ≤ speed·time; Hopcroft/Kuhn']::text[], 'Edge if gopher can reach hole in time; maximum matching; answer = n − matching.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-bpm-01', 'Cow and Snacks', 'Other', 'https://codeforces.com/problemset/problem/1209/D', 1700, 'n snack types, m guests each wanting two types. Guests leave unhappy if either type already taken. Minimize unhappy guests (order chosen adversarially → structural matching bound).', 'n m then m pairs.', 'Minimum unhappy guests.', '$n \le 10^5$', '[]'::jsonb, 'O(N + M)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-bpm-01-a1', 'koda-b9-bpm-01', 'Component waste', ARRAY['Flows / Matching','Graph Algorithms']::text[], ARRAY['Bipartite Matching','DSU','DFS']::text[], ARRAY['DSU']::text[], ARRAY['Customers as edges on ingredient graph; matching vs components']::text[], 'Model as graph; unhappy customers = edges beyond a forest = m − (n − components).');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-hull-01', 'Convex Layers', 'Other', 'https://open.kattis.com/problems/convex', 1700, 'Given points in general position, compute how many convex layers (onion peeling) they form.', 'n then n points.', 'Number of layers.', '$n \le 2000$', '[]'::jsonb, 'O(N²)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-hull-01-a1', 'koda-b9-hull-01', 'Hull layers', ARRAY['Geometry']::text[], ARRAY['Convex Hull','Sorting']::text[], ARRAY['Stack']::text[], ARRAY['Remove points to make remaining set in convex position']::text[], 'Repeatedly peel convex layers (onion); answer related to layer depth.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-br-01', 'Critical Edges', 'Other', 'https://www.spoj.com/problems/EC_P/', 1700, 'List all bridges in an undirected graph.', 'T tests: n m then edges.', 'For each test list bridges sorted.', '$n \le 700$', '[]'::jsonb, 'O(N + M)');
@@ -32855,12 +32413,6 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-bpm-04-a1', 'koda-b10-bpm-04', 'Grid cover matching', ARRAY['Flows / Matching']::text[], ARRAY['Bipartite Matching']::text[], ARRAY['Adjacency List']::text[], ARRAY['Rows/cols cover of points = BPM']::text[], 'Each poisoned cell is edge row–col; minimum vertex cover via matching.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-br-02', 'Articulation Points', 'Other', 'https://www.spoj.com/problems/ARTICULATION/', 1700, 'List all articulation points of an undirected graph.', 'n m then edges.', 'Count then sorted vertex ids.', '$n \le 10^5$', '[]'::jsonb, 'O(N + M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-br-02-a1', 'koda-b10-br-02', 'Tarjan articulations', ARRAY['Graph Algorithms']::text[], ARRAY['Bridges / Articulation','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['List articulation points']::text[], 'DFS tin/low; root with ≥2 children or non-root with low[child] ≥ tin[u].');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mx-03', 'Directed Walks', 'Other', 'https://atcoder.jp/contests/dp/tasks/dp_r', 1700, 'Count directed walks of length exactly K in a 0/1 adjacency graph.', 'N K and adjacency matrix.', 'Count mod 10^9+7.', '$N \le 50$, $K \le 10^{18}$', '[]'::jsonb, 'O(N³)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mx-03-a1', 'koda-b10-mx-03', 'Adj power walks', ARRAY['Math / Number Theory','Graph Algorithms']::text[], ARRAY['Matrix Exponentiation']::text[], ARRAY['2D Array']::text[], ARRAY['Count walks with adj^K']::text[], 'Raise adjacency matrix to K; sum all entries.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mo-02', 'Distinct in Range', 'Other', 'https://www.spoj.com/problems/DQUERY/', 1700, 'Count distinct values on each query range.', 'n, array, q, queries.', 'Answers.', '$n \le 3\cdot 10^4$', '[]'::jsonb, 'O(N √N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mo-02-a1', 'koda-b10-mo-02', 'Mo distinct II', ARRAY['Data Structures']::text[], ARRAY['Mo''s Algorithm','Sorting']::text[], ARRAY['1D Array']::text[], ARRAY['Distinct count Mo']::text[], 'Increment answer on 0→1 frequency transitions.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-z-02', 'Legend Password', 'Other', 'https://codeforces.com/problemset/problem/126/B', 1700, 'Longest string that is a prefix, a suffix, and appears in the interior; else a legend message.', 'One string.', 'Substring or message.', '$|s| \le 10^6$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-z-02-a1', 'koda-b10-z-02', 'Z password II', ARRAY['String Algorithms']::text[], ARRAY['Z-Algorithm','KMP']::text[], ARRAY['1D Array']::text[], ARRAY['Longest border that appears inside']::text[], 'Track max interior Z; walk borders until one fits.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-high-score', 'High Score', 'CSES', 'https://cses.fi/problemset/task/1673', 1800, 'A game has $n$ rooms and $m$ tunnels. Each tunnel gives a score. Starting in room $1$, what is the maximum score you can achieve when reaching room $n$? If the score can be arbitrarily large, print $-1$.', 'The first line contains two integers $n$ and $m$.
 
 Then $m$ lines follow with tunnels $a\ b\ x$ (from, to, score).', 'Print the maximum score when going from $1$ to $n$, or $-1$ if the score can be arbitrarily large.', '$1 \le n \le 2500$, $1 \le m \le 5000$', '[{"input":"4 5\n1 2 3\n2 4 -1\n1 3 1\n3 4 1\n1 4 2","output":"2"}]'::jsonb, 'O(N · M)');
@@ -34769,8 +34321,6 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-864e-a1', 'cf-864e', 'Deadline knapsack', ARRAY['Dynamic Programming']::text[], ARRAY['Knapsack']::text[], ARRAY['2D Array']::text[], ARRAY['0/1 knapsack with deadline: items sorted by burn time; DP over time']::text[], 'Sort by d_i; dp[t]=max value rescued by time t without exceeding deadlines.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1625c', 'Road Optimization', 'Codeforces', 'https://codeforces.com/problemset/problem/1625/C', 1800, 'Road of length L with speed-limit signs. Remove ≤k signs to minimize travel time.', 'n L k, positions, speed limits.', 'Minimum time.', '$n \le 500$', '[]'::jsonb, 'O(N²)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1625c-a1', 'cf-1625c', 'Remove signs DP', ARRAY['Dynamic Programming']::text[], ARRAY['Knapsack']::text[], ARRAY['2D Array']::text[], ARRAY['DP: remove ≤k signs; cost = length × speed of last kept sign']::text[], 'dp[i][used]=min time to reach sign i having removed `used` prior signs.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('atc-abc184-f2', 'Programming Contest (MITM)', 'AtCoder', 'https://atcoder.jp/contests/abc184/tasks/abc184_f', 1800, 'n≤40 problem times; maximize total time without exceeding T.', 'n T and times.', 'Maximum sum ≤T.', '$n \le 40$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('atc-abc184-f2-a1', 'atc-abc184-f2', 'MITM knapsack', ARRAY['Divide & Conquer','Brute Force']::text[], ARRAY['Meet in the Middle','Sorting','Binary Search']::text[], ARRAY['1D Array']::text[], ARRAY['Half subset sums; upper_bound for remaining capacity']::text[], 'Split n≤40; maximize sum ≤T.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('mineira-2019-i-correndo-em-circulos', 'Correndo em Círculos', 'Maratona Mineira', 'https://github.com/gcmgomes/mineira2019', 1800, 'A Associação de Competições Maratonísticas (ACM) entrou em contato com a organização da Maratona Mineira de Programação para registrar uma reclamação:
 por ter ``Maratona'''' no nome, a competição estava recebendo muitas inscrições de corredores profissionais internacionais, em busca de pontos no
 ranking mundial de corridas. Porém, no dia anterior à competição,
@@ -37251,48 +36801,24 @@ Imprima uma linha contendo N inteiros B1 , B2 , . . . , BN .
 
 Maratona SBC de Programação  Fase Zero  2025                                                    21', 'See statement.', 'See statement.', '1 ≤ Bi ≤ N ) é a posição do ltro que parou a partícul; 1 ≤ N ≤ 2 · 10 ) e K (1 ≤ K ≤ 10 ); 9 ≤ A ≤ 109 )', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-f0-j-jornada-das-particulas-a1', 'sbc-2025-f0-j-jornada-das-particulas', 'SBC 2025 — Fase Zero — standard', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['SBC 2025 — Fase Zero, problem J. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Fase Zero. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1245d-b', 'Shichikuji and Power Grid', 'Codeforces', 'https://codeforces.com/problemset/problem/1245/D', 1800, 'Connect n cities with power stations and wires. Station in i costs c_i; wire i–j costs $(k_i+k_j)\cdot(|x_i-x_j|+|y_i-y_j|)$. Minimize total cost.', 'n, coordinates, c array, k array.', 'Cost, list of stations, list of wires.', '$n \le 2000$', '[]'::jsonb, 'O(N²)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1245d-b-a1', 'cf-1245d-b', 'Virtual-node MST', ARRAY['Graph Algorithms']::text[], ARRAY['MST','DSU','Sorting']::text[], ARRAY['Priority Queue']::text[], ARRAY['Virtual node 0 for stations; Kruskal/Prim on cities + wires']::text[], 'Edge 0–i cost c_i; edge i–j cost (k_i+k_j)·Manhattan. Recover stations/wires.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-578c-b', 'Weakness and Poorness', 'Codeforces', 'https://codeforces.com/problemset/problem/578/C', 1800, 'Choose real x; let b_i=a_i−x. Weakness is max |sum| over contiguous subarrays of b. Minimize weakness.', 'n and array a.', 'Minimum weakness (absolute/relative error 1e-6).', '$n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-578c-b-a1', 'cf-578c-b', 'Ternary on shift', ARRAY['Binary Search on Answer','Math / Number Theory']::text[], ARRAY['Ternary Search']::text[], ARRAY[]::text[], ARRAY['f(x)=max prefix − min prefix of a_i−x is unimodal; ternary search x']::text[], 'Ternary search real x minimizing the maximum |subarray sum| of a−x.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-25c-b', 'Roads in Berland', 'Codeforces', 'https://codeforces.com/problemset/problem/25/C', 1800, 'Complete graph distances among n cities. After each new bidirectional road, print the sum of pairwise shortest paths.', 'n, matrix, k updates (a b c).', 'k sums.', '$n \le 300$', '[]'::jsonb, 'O(N²)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-25c-b-a1', 'cf-25c-b', 'Online FW', ARRAY['Graph Algorithms']::text[], ARRAY['Floyd-Warshall']::text[], ARRAY['2D Array']::text[], ARRAY['Incremental FW: new edge updates all pairs through its endpoints']::text[], 'After each new road, relax i→a→b→j and i→b→a→j for all i,j; print sum of pairs.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-919d-b', 'Substring', 'Codeforces', 'https://codeforces.com/problemset/problem/919/D', 1800, 'Directed graph with a letter on each vertex. Maximize occurrences of the most frequent letter on any path (or −1 if infinite).', 'n m, string of labels, then edges.', 'Maximum value or -1.', '$n \le 3\cdot 10^5$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-919d-b-a1', 'cf-919d-b', 'Topo DP letters', ARRAY['Graph Algorithms','Dynamic Programming']::text[], ARRAY['Topological Sort','DFS']::text[], ARRAY['Adjacency List','Queue']::text[], ARRAY['DP on DAG of letter counts; cycle ⇒ −1']::text[], 'If cycle print -1; else Kahn topo DP maximizing max letter frequency on a path.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('spoj-capcity', 'Capital City', 'SPOJ', 'https://www.spoj.com/problems/CAPCITY/', 1800, 'Directed road network. A capital can reach every other city. List all cities that can be capitals.', 'n m and directed roads.', 'Count then sorted city ids that can be capitals.', '$n \le 10^5$', '[]'::jsonb, 'O(N + M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('spoj-capcity-a1', 'spoj-capcity', 'SCC sink capital', ARRAY['Graph Algorithms']::text[], ARRAY['SCC','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Capital must reach all; unique sink in condensation or all nodes in that SCC']::text[], 'Condensation must have exactly one sink SCC; list all cities in it.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-bpm-02', 'Vertex Cover', 'Other', 'https://www.spoj.com/problems/PT07X/', 1800, 'Given a tree, find the size of a minimum vertex cover.', 'N then N−1 edges.', 'Minimum vertex cover size.', '$N \le 10^5$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-bpm-02-a1', 'koda-b9-bpm-02', 'Tree matching cover', ARRAY['Flows / Matching','Graph Algorithms']::text[], ARRAY['Bipartite Matching','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Tree vertex cover = bipartite matching size in tree']::text[], 'Minimum vertex cover on a tree equals maximum matching; DP or Kuhn on the tree bipartition.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-bpm-04', 'Painting the Fence', 'Other', 'https://codeforces.com/problemset/problem/1132/C', 1800, 'Fence 1..n painted by q painters (intervals). Remove exactly two painters; maximize remaining painted cells.', 'n q then q intervals.', 'Maximum painted cells after removal.', '$n \le 5000$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-bpm-04-a1', 'koda-b9-bpm-04', 'Interval cover drop', ARRAY['Flows / Matching','Brute Force']::text[], ARRAY['Bipartite Matching','Prefix Sums']::text[], ARRAY['1D Array']::text[], ARRAY['Painters as intervals; drop two ≈ matching residual coverage']::text[], 'Prefix counts of coverage; try all pairs of painters to remove and maximize remaining covered cells.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-hull-03', 'Farthest Pair', 'Other', 'https://codeforces.com/gym', 1800, 'Given n points, find the maximum Euclidean distance between any two.', 'n then n coordinates.', 'Maximum distance (squared ok).', '$n \le 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-hull-03-a1', 'koda-b9-hull-03', 'Rotating calipers', ARRAY['Geometry']::text[], ARRAY['Convex Hull','Ternary Search']::text[], ARRAY['1D Array']::text[], ARRAY['Diameter of hull via rotating calipers']::text[], 'Build hull then rotating calipers for maximum pairwise distance.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-br-02', 'Submerging Islands', 'Other', 'https://www.spoj.com/problems/SUBMERGE/', 1800, 'Count articulation points in an undirected connected graph.', 'Multiple graphs: n m then edges; 0 0 ends.', 'Number of articulation points.', '$n \le 10^4$', '[]'::jsonb, 'O(N + M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-br-02-a1', 'koda-b9-br-02', 'Tarjan cut vertices', ARRAY['Graph Algorithms']::text[], ARRAY['Bridges / Articulation','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Articulation points via tin/low']::text[], 'Standard articulation-point DFS; count how many.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-mx-02', 'Recursive Sequence', 'Other', 'https://www.spoj.com/problems/SEQ/', 1800, 'Sequence defined by a_i = sum b_j a_{i-j}. Given first k terms, compute a_n mod 10^9.', 'T cases with k, b[], a[], n.', 'a_n for each case.', '$k \le 15$, $n \le 10^9$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-mx-02-a1', 'koda-b9-mx-02', 'Companion matrix', ARRAY['Math / Number Theory']::text[], ARRAY['Matrix Exponentiation']::text[], ARRAY['2D Array']::text[], ARRAY['Linear recurrence companion matrix']::text[], 'Build companion matrix from coefficients; raise to n-k.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-mx-04', 'Walk', 'Other', 'https://atcoder.jp/contests/dp/tasks/dp_r', 1800, 'Directed graph 0/1 adjacency. Count walks of length K.', 'N K and adjacency matrix.', 'Number of walks mod 10^9+7.', '$N \le 50$, $K \le 10^{18}$', '[]'::jsonb, 'O(N³)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-mx-04-a1', 'koda-b9-mx-04', 'Walk matrix', ARRAY['Math / Number Theory','Graph Algorithms']::text[], ARRAY['Matrix Exponentiation']::text[], ARRAY['2D Array']::text[], ARRAY['Adj^K counts walks']::text[], 'Sum of all entries of adj^K mod 10^9+7.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-sw-05', 'Yet Another Array Queries Problem', 'Other', 'https://codeforces.com/problemset/problem/863/D', 1800, 'Array with cyclic shift and reverse range ops. Answer final values at given indices.', 'n q m, array, ops, indices.', 'Values at indices.', '$n,q \le 2\cdot 10^5$, $m \le 100$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-sw-05-a1', 'koda-b9-sw-05', 'Offline reverse ops', ARRAY['Data Structures']::text[], ARRAY['Sweep Line','Brute Force']::text[], ARRAY['Deque']::text[], ARRAY['Reverse operations offline from queries']::text[], 'Apply cyclic shifts/reversals in reverse order to query indices.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('spoj-dquery', 'D-query', 'SPOJ', 'https://www.spoj.com/problems/DQUERY/', 1800, 'How many distinct numbers in each subarray query [l,r]?', 'n, array, q, queries.', 'Answer per query.', '$n \le 3\cdot 10^4$, $q \le 2\cdot 10^5$', '[]'::jsonb, 'O(N √N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('spoj-dquery-a1', 'spoj-dquery', 'Mo distinct', ARRAY['Data Structures']::text[], ARRAY['Mo''s Algorithm','Sorting']::text[], ARRAY['1D Array']::text[], ARRAY['Distinct count with Mo add/remove']::text[], 'Classic Mo: increment when count goes 0→1, decrement 1→0.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-mo-04', 'Little Elephant and Array', 'Other', 'https://codeforces.com/problemset/problem/220/B', 1800, 'For each query [l,r] count numbers x that occur exactly x times in the subarray.', 'n m, array, queries.', 'Answers.', '$n,m \le 10^5$', '[]'::jsonb, 'O(N √N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-mo-04-a1', 'koda-b9-mo-04', 'Mo self-count', ARRAY['Data Structures']::text[], ARRAY['Mo''s Algorithm','Sorting']::text[], ARRAY['Hash Map']::text[], ARRAY['Count values equal to their frequency']::text[], 'Maintain how many values x currently appear exactly x times.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-z-07', 'Compress Words', 'Other', 'https://codeforces.com/problemset/problem/1200/E', 1800, 'Concatenate n words minimizing length by overlapping prefix/suffix when equal.', 'n then n words.', 'Compressed string.', 'Total length ≤ 10^6', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-z-07-a1', 'koda-b9-z-07', 'Z merge words', ARRAY['String Algorithms']::text[], ARRAY['Z-Algorithm','String Hashing']::text[], ARRAY['1D Array']::text[], ARRAY['Merge words by longest border of suffix⊕prefix']::text[], 'For each new word, Z on word + # + current suffix to find overlap.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mf-02', 'Minimum Cut', 'Other', 'https://open.kattis.com/problems/mincut', 1800, 'Directed capacitated graph. Find a minimum s–t cut and list vertices on the s side.', 'n m s t then directed edges.', 'Size of s-set then vertex ids.', '$n \le 500$', '[]'::jsonb, 'O(N²)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mf-02-a1', 'koda-b10-mf-02', 'Min-cut set', ARRAY['Flows / Matching']::text[], ARRAY['Max Flow','BFS','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Max-flow min-cut; DFS residual from s lists the source side']::text[], 'Compute max flow then residual reachability from s; that set is a minimum cut source component.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-hull-04', 'Minimum Area Rectangle', 'Other', 'https://open.kattis.com/problems/convex', 1800, 'Given points, find the minimum-area rectangle that covers all of them (sides not necessarily axis-aligned).', 'n then points.', 'Minimum area.', '$n \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-hull-04-a1', 'koda-b10-hull-04', 'Rotating calipers MAR', ARRAY['Geometry']::text[], ARRAY['Convex Hull','Ternary Search']::text[], ARRAY['1D Array']::text[], ARRAY['Minimum-area enclosing rectangle via rotating calipers']::text[], 'Hull then rotating calipers for minimum area bounding rectangle.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mx-02', 'Magic Ship', 'Other', 'https://codeforces.com/problemset/problem/1117/C', 1800, 'Ship blown by cyclic wind string; each day you may also move once freely. Min days to reach target or -1.', 'start, target, n, wind string.', 'Minimum days or -1.', '$n \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mx-02-a1', 'koda-b10-mx-02', 'BS + prefix wind', ARRAY['Math / Number Theory','Binary Search on Answer']::text[], ARRAY['Matrix Exponentiation','Binary Search','Prefix Sums']::text[], ARRAY['1D Array']::text[], ARRAY['Wind string + free moves; BS days (matrix tag as linear advance drill companion)']::text[], 'Binary search days; prefix wind displacement must be reachable with remaining free steps.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mo-04', 'Elephant Array Queries', 'Other', 'https://codeforces.com/problemset/problem/220/B', 1800, 'For each [l,r] count x occurring exactly x times.', 'n m, array, queries.', 'Answers.', '$n,m \le 10^5$', '[]'::jsonb, 'O(N √N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mo-04-a1', 'koda-b10-mo-04', 'Mo self-freq II', ARRAY['Data Structures']::text[], ARRAY['Mo''s Algorithm']::text[], ARRAY['Hash Map']::text[], ARRAY['Values equal to their own frequency']::text[], 'Track how many x currently appear exactly x times while Mo moves.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-z-01', 'Prefix-Suffix Report', 'Other', 'https://codeforces.com/problemset/problem/432/D', 1800, 'List every prefix that is also a suffix together with its number of occurrences as a substring.', 'String s.', 'k then k lines of length and count.', '$|s| \le 10^5$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-z-01-a1', 'koda-b10-z-01', 'Z border list', ARRAY['String Algorithms']::text[], ARRAY['Z-Algorithm','Prefix Sums']::text[], ARRAY['1D Array']::text[], ARRAY['Z + occurrence prefix sums']::text[], 'Prefixes that equal suffixes; count occurrences via Z histogram.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-z-03', 'Word Compression', 'Other', 'https://codeforces.com/problemset/problem/1200/E', 1800, 'Concatenate words with maximum prefix-suffix overlaps.', 'n then n words.', 'Compressed string.', 'Total length ≤ 10^6', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-z-03-a1', 'koda-b10-z-03', 'Z compress II', ARRAY['String Algorithms']::text[], ARRAY['Z-Algorithm','String Hashing']::text[], ARRAY['1D Array']::text[], ARRAY['Overlap merge via Z of word+# + suffix']::text[], 'Greedily append each next word after computing longest overlap with current string suffix.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('atc-dp-subtree', 'Subtree', 'AtCoder', 'https://atcoder.jp/contests/dp/tasks/dp_v', 1900, 'Score : 100 points
 
 Problem Statement
@@ -40455,20 +39981,12 @@ Maratona SBC de Programação  Fase Zero  2025                                
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-f0-k-k-elementos-perdidos-a1', 'sbc-2025-f0-k-k-elementos-perdidos', 'SBC 2025 — Fase Zero — standard', ARRAY['Graph Algorithms','Math / Number Theory','Greedy']::text[], ARRAY['Sorting']::text[], ARRAY[]::text[], ARRAY['SBC 2025 — Fase Zero, problem K. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Fase Zero. Review tags and write a proper editorial after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-229b', 'Planes', 'Codeforces', 'https://codeforces.com/problemset/problem/229/B', 1900, 'Undirected weighted graph. At some vertices you cannot depart at certain integer times. Find earliest arrival at n from 1.', 'n m edges, then for each vertex the list of forbidden times.', 'Earliest time at n (or if unreachable still print the Dijkstra result convention of the statement).', '$n \le 10^5$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-229b-a1', 'cf-229b', 'Timed SSSP', ARRAY['Graph Algorithms']::text[], ARRAY['Bellman-Ford','Dijkstra']::text[], ARRAY['Priority Queue','Ordered Set']::text[], ARRAY['Shortest paths with forbidden arrival times; Dijkstra with next-free-time jumps']::text[], 'At each node skip busy times; relax like Dijkstra (BF works on nonnegative too).');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-938d-b', 'Buy a Ticket', 'Codeforces', 'https://codeforces.com/problemset/problem/938/D', 1900, 'Undirected graph of cities. Concert in city i costs a_i; traveling an edge of weight w costs 2w. For each city print the minimum cost to attend some concert (possibly local).', 'n m, m edges, then array a.', 'n numbers — answers for each city.', '$n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-938d-b-a1', 'cf-938d-b', 'Super-source SSSP', ARRAY['Graph Algorithms']::text[], ARRAY['Bellman-Ford','Dijkstra']::text[], ARRAY['Priority Queue']::text[], ARRAY['Add super-source to all cities with edge cost a_i; Dijkstra = min concert+travel']::text[], 'Model buy-ticket-at-i then travel as distances from a virtual source.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-295b-b', 'Greg and Graph', 'Codeforces', 'https://codeforces.com/problemset/problem/295/B', 1900, 'Directed complete weighted graph. Vertices deleted one by one; before each deletion print sum of pairwise shortest paths among remaining vertices.', 'n, matrix, deletion order.', 'n sums.', '$n \le 500$', '[]'::jsonb, 'O(N³)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-295b-b-a1', 'cf-295b-b', 'Reverse FW', ARRAY['Graph Algorithms']::text[], ARRAY['Floyd-Warshall']::text[], ARRAY['2D Array']::text[], ARRAY['Add vertices in reverse deletion order; FW only through the added set']::text[], 'Insert vertices backwards updating distances; record sum of pairs among remaining.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-486e-b', 'LIS of Sequence', 'Codeforces', 'https://codeforces.com/problemset/problem/486/E', 1900, 'For each element of an array print whether it belongs to no LIS, some but not all LIS, or every LIS.', 'n and the array.', 'A string of digits 1/2/3 of length n.', '$n \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-486e-b-a1', 'cf-486e-b', 'LIS classify', ARRAY['Dynamic Programming']::text[], ARRAY['LIS','Binary Search','Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['Forward/backward LIS lengths; classify positions vs global LIS']::text[], 'lis_left + lis_right; mark 1/2/3 based on uniqueness in some LIS.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-bpm-03', 'SAM I AM', 'Other', 'https://onlinejudge.org/external/114/11419.pdf', 1900, 'Grid with enemies. One shot destroys a whole row or column. Find minimum shots and which rows/columns.', 'Multiple tests R C N and enemy cells.', 'Minimum shots and list of rows/columns.', '$R,C \le 1000$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-bpm-03-a1', 'koda-b9-bpm-03', 'Konig cover', ARRAY['Flows / Matching']::text[], ARRAY['Bipartite Matching','Max Flow']::text[], ARRAY['Adjacency List']::text[], ARRAY['Rows↔columns; Konig cover of rooks']::text[], 'Bipartite graph rows–columns for enemies; minimum vertex cover gives shots; recover cover from matching.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1117d', 'Magic Gems', 'Codeforces', 'https://codeforces.com/problemset/problem/1117/D', 1900, 'Number of ways to write n as ordered sum of 1s and one part equal to m (magic gem split). Mod 10^9+7.', 'n m', 'Ways modulo 10^9+7.', '$n \le 10^{18}$, $m \le 100$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1117d-a1', 'cf-1117d', 'Recurrence matrix', ARRAY['Math / Number Theory','Dynamic Programming']::text[], ARRAY['Matrix Exponentiation']::text[], ARRAY['2D Array']::text[], ARRAY['Tile with 1s and one m-block; linear recurrence']::text[], 'dp[i]=dp[i-1]+dp[i-m]; advance with (m)×(m) matrix exponentiation.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-222e', 'Decoding Genome', 'Codeforces', 'https://codeforces.com/problemset/problem/222/E', 1900, 'Strings of length n over k letters with forbidden consecutive pairs. Count valid strings mod 10^9+7.', 'n k, then forbidden pairs.', 'Count modulo 10^9+7.', '$n \le 10^{15}$, $k \le 52$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-222e-a1', 'cf-222e', 'Path matrix pow', ARRAY['Math / Number Theory','Dynamic Programming']::text[], ARRAY['Matrix Exponentiation']::text[], ARRAY['2D Array']::text[], ARRAY['Adjacency of letters; count paths of length n-1']::text[], 'Build k×k transition matrix of allowed consecutive letters; sum of T^{n-1}.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-hull-05', 'Line Envelope', 'Other', 'https://codeforces.com/problemset/problem/659/F', 1900, 'Given lines y = m_i x + b_i and queries x, answer the maximum y among lines at each x.', 'n lines then q queries.', 'Answer per query.', '$n,q \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-hull-05-a1', 'koda-b10-hull-05', 'Li Chao / hull lines', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY['Convex Hull','Sorting']::text[], ARRAY['Stack']::text[], ARRAY['Upper hull of lines = envelope for max queries']::text[], 'Maintain lower/upper hull of lines sorted by slope for maximum at a query x.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1201d', 'Treasure Hunting', 'Codeforces', 'https://codeforces.com/problemset/problem/1201/D', 2000, 'You are on an $n \times m$ grid. Some cells contain treasures. You may only move right, left, or up, and you can only change rows using special safe columns. Collect all treasures with minimum moves (starting at $(1,1)$).', 'The first line contains four integers $n$, $m$, $k$, $q$.
 
 Then $k$ lines with treasure coordinates.
@@ -43262,12 +42780,6 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-sw-03-a1', 'koda-b9-sw-03', 'Tree cost bounds', ARRAY['Greedy','Graph Algorithms']::text[], ARRAY['Sweep Line','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Tree edge contribution by subtree sizes']::text[], 'For each edge, subtree size determines min/max total tour cost.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-mo-03', 'Range Frequency Power', 'Other', 'https://www.spoj.com/problems/XXX/', 2000, 'Offline queries asking Σ count(x)² over the range.', 'n q, array, queries.', 'Answers.', '$n,q \le 10^5$', '[]'::jsonb, 'O(N √N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-mo-03-a1', 'koda-b9-mo-03', 'Mo sum squares', ARRAY['Data Structures']::text[], ARRAY['Mo''s Algorithm','Sorting']::text[], ARRAY['1D Array']::text[], ARRAY['Add/remove maintains sum of distinct²']::text[], 'When count changes, update answer by ±(2·cnt−1)·value style identities.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-hull-03', 'Point in Convex Polygon', 'Other', 'https://codeforces.com/problemset/problem/166/B', 2000, 'Convex polygon and q points. For each point decide inside (including boundary) or outside.', 'n polygon vertices CCW, q then queries.', 'YES/NO per query.', '$n,q \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-hull-03-a1', 'koda-b10-hull-03', 'Fan binary search', ARRAY['Geometry']::text[], ARRAY['Convex Hull','Binary Search']::text[], ARRAY['1D Array']::text[], ARRAY['Point in convex polygon via binary search fans']::text[], 'For convex polygon, binary search the triangle fan to test inclusion.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-br-03', 'Longest Bridge Path', 'Other', 'https://codeforces.com/problemset/problem/1000/E', 2000, 'In a connected undirected graph, what is the maximum number of bridges on any simple path?', 'n m and edges.', 'Maximum bridge count on a path.', '$n \le 3\cdot 10^5$', '[]'::jsonb, 'O(N + M)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-br-03-a1', 'koda-b10-br-03', 'Bridge-tree path', ARRAY['Graph Algorithms']::text[], ARRAY['Bridges / Articulation','BFS','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Bridge-tree is a tree; longest path of bridges']::text[], 'Contract 2-edge-CCs; diameter of resulting tree equals max bridges on a simple path.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-gt-01', 'Stones with Memory', 'Other', 'https://codeforces.com/problemset/problem/768/E', 2000, 'Multi-pile game: remove x>0 from a pile but x cannot repeat on that pile. Decide first-player win.', 'n and pile sizes.', 'YES or NO.', 'Piles ≤ 60', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-gt-01-a1', 'koda-b10-gt-01', 'Masked grundy', ARRAY['Math / Number Theory']::text[], ARRAY['Game Theory']::text[], ARRAY['Hash Map']::text[], ARRAY['Grundy with used-move masks on piles']::text[], 'Precompute grundy for pile size under subtraction-with-memory; XOR all piles.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1c', 'Ancient Berland Circus', 'Codeforces', 'https://codeforces.com/problemset/problem/1/C', 2100, 'Three points on the plane are vertices of a regular $n$-gon for some $n\ge 3$. Find the smallest possible area of such a regular polygon.', 'Three lines with coordinates of the points (absolute values $\le 100$).', 'Print the minimum area with high precision.', 'Points are not collinear', '[{"input":"0.000000000000 0.000000000000\n1.000000000000 1.000000000000\n0.000000000000 1.000000000000","output":"1.000000000"}]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1c-a1', 'cf-1c', 'Regular polygon fit', ARRAY['Geometry','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Circumcenter + angle steps; n from almost-integer multiples of central angles']::text[], 'Recover the circumcircle and the smallest n whose chordal steps match the points.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-514c', 'Watto and Mechanism', 'Codeforces', 'https://codeforces.com/problemset/problem/514/C', 2100, 'You are given $n$ memory strings and $m$ queries. A query string matches if it differs in exactly one character from some memory string. Answer YES/NO for each query.', 'The first line contains $n$ and $m$ ($1 \le n,m \le 3\cdot 10^5$).
@@ -45401,10 +44913,6 @@ Explicação do exemplo 2 :
 Após a operação 2     1 25 a sequência de coecientes passa a ser (25, 29, 15). Antes da operação do
 tipo 2, a sequência de coecientes era (18, 29, 15).', 'See statement.', 'See statement.', '1 ≤ i ≤ N ) do campo quântico possui um coeciente Ai ; 1 ≤ N ≤ 10 ), a quantidade de posições do campo; 1 ≤ Ai ≤ 10 ); 1 ≤ Q ≤ 10 ), a quantidade de consultas; 1 ≤ T ≤ 2); 1 ≤ I ≤ N ) e X ; 1 ≤ X ≤ 10 ', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('sbc-2025-f0-m-movimentacao-assustadora-a-distancia-a1', 'sbc-2025-f0-m-movimentacao-assustadora-a-distancia', 'SBC 2025 — Fase Zero — standard', ARRAY['Graph Algorithms','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['Ordered Set']::text[], ARRAY['SBC 2025 — Fase Zero, problem M. Auto-tagged from statement; refine after solving.']::text[], 'From SBC 2025 — Fase Zero. Review tags and write a proper editorial after solving.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-888g-b', 'Xor Paths (practice)', 'Codeforces', 'https://codeforces.com/problemset/problem/1006/F', 2100, 'Count right/down paths from $(1,1)$ to $(n,m)$ whose XOR equals $k$ ($n+m\le 40$).', 'n m k and the grid.', 'Number of paths.', '$n+m \le 40$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-888g-b-a1', 'cf-888g-b', 'Grid path MITM', ARRAY['Divide & Conquer','Brute Force','Graph Algorithms']::text[], ARRAY['Meet in the Middle','DFS']::text[], ARRAY['Hash Map','2D Array']::text[], ARRAY['Half-paths from opposite corners meet on the anti-diagonal of the grid']::text[], 'DFS half-length paths storing XOR→count; match from the other corner.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-160d-b', 'Edges in MST (practice)', 'Codeforces', 'https://codeforces.com/problemset/problem/160/D', 2100, 'For each edge say if it appears in every MST, some MST, or no MST of the undirected weighted graph.', 'n m weighted edges.', 'm lines: `any`, `at least one`, or `none`.', '$m \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-160d-b-a1', 'cf-160d-b', 'MST edge classify', ARRAY['Graph Algorithms']::text[], ARRAY['MST','DSU','DFS','Sorting']::text[], ARRAY['Adjacency List']::text[], ARRAY['Kruskal by weight; within equal-weight edges classify via bridges in component graph']::text[], 'Process weight groups; meta-graph bridges decide any/at least one/none.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('spoj-fastflow', 'Fast Maximum Flow', 'SPOJ', 'https://www.spoj.com/problems/FASTFLOW/', 2100, 'Find the maximum flow between vertices 1 and $N$ in an undirected weighted graph.', 'N M then M undirected edges with capacities.', 'Maximum flow value.', '$N \le 5000$', '[]'::jsonb, 'O(N²)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('spoj-fastflow-a1', 'spoj-fastflow', 'Dinic', ARRAY['Flows / Matching']::text[], ARRAY['Max Flow']::text[], ARRAY['Adjacency List']::text[], ARRAY['Dinic on large capacities; undirected edges as two directed']::text[], 'Run Dinic (or push-relabel) for max flow on an undirected network.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('spoj-matching', 'Fast Maximum Matching', 'SPOJ', 'https://www.spoj.com/problems/MATCHING/', 2100, 'Bipartite graph with left size N, right size M. Find maximum matching cardinality.', 'N M P then P edges.', 'Size of maximum matching.', '$N,M \le 5\cdot 10^4$', '[]'::jsonb, 'O(N √N)');
@@ -45417,10 +44925,6 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-768e-a1', 'cf-768e', 'State grundy', ARRAY['Math / Number Theory']::text[], ARRAY['Game Theory']::text[], ARRAY['Hash Map']::text[], ARRAY['Kayles-like mex; pile grundy depends on used move sizes']::text[], 'Each pile is an independent game with mask of used subtraction sizes; precompute grundy.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-scc-01', 'Unstable String Sort', 'Other', 'https://codeforces.com/problemset/problem/1213/F', 2100, 'Two permutations describe pairwise order constraints. Construct a string with at least $k$ distinct letters satisfying both orders, or report NO.', 'n k and two permutations.', 'YES/NO and the string.', '$n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N + M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-scc-01-a1', 'koda-b10-scc-01', 'SCC letter assign', ARRAY['Graph Algorithms','Greedy']::text[], ARRAY['SCC','Topological Sort','DFS']::text[], ARRAY['Adjacency List']::text[], ARRAY['Implication / forced order; condensation assigns letters']::text[], 'Build constraints between positions; condensation DAG; greedily assign distinct letters along topo order.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-br-01', 'Bridge Component Sizes', 'Other', 'https://codeforces.com/problemset/problem/732/F', 2100, 'Undirected graph. After removing all bridges, output the size of each remaining connected component.', 'n m and edges.', 'Component sizes sorted descending.', '$n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N + M)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-br-01-a1', 'koda-b10-br-01', '2-edge-CC sizes', ARRAY['Graph Algorithms']::text[], ARRAY['Bridges / Articulation','DFS','DSU']::text[], ARRAY['Adjacency List']::text[], ARRAY['2-edge-CC sizes; bridges link components']::text[], 'Find bridges, contract components, report component sizes on the bridge-tree.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mo-01', 'Powerful Subarrays', 'Other', 'https://codeforces.com/problemset/problem/86/D', 2100, 'Offline range queries for Σ_x count(x)² · x.', 'n q, array, queries.', 'Answers in order.', '$n,q \le 2\cdot 10^5$', '[]'::jsonb, 'O(N √N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mo-01-a1', 'koda-b10-mo-01', 'Mo power II', ARRAY['Data Structures']::text[], ARRAY['Mo''s Algorithm','Sorting']::text[], ARRAY['1D Array']::text[], ARRAY['Maintain Σ freq²·value']::text[], 'Block-sorted queries; add/remove updates answer by odd multiples of value.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1070c', 'Cloud Computing', 'Codeforces', 'https://codeforces.com/problemset/problem/1070/C', 2200, 'You need $k$ CPU cores on each of $n$ days. Offers $(l,r,c,p)$ provide $c$ cores on days $l..r$ at price $p$ each. Minimize total cost (or $-1$).', 'First line $n,k,m$. Then $m$ offers.', 'Print the minimum cost or $-1$.', '$1 \le n \le 10^6$, $1 \le m \le 2\cdot 10^5$', '[{"input":"4 2 2\n1 4 1 1\n1 4 1 1","output":"8"}]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1070c-a1', 'cf-1070c', 'Sweep + segtree', ARRAY['Greedy','Binary Search on Answer']::text[], ARRAY['Segment Tree','Sorting']::text[], ARRAY['Priority Queue','Fenwick Tree']::text[], ARRAY['Sweep days with a segtree of offers sorted by price']::text[], 'Process offers by day coverage; always take cheapest available cores.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1473e', 'Minimum Path', 'Codeforces', 'https://codeforces.com/problemset/problem/1473/E', 2200, 'Find a path from 1 to each node minimizing $\sum w - \max w + \min w$ (you may “skip” the max edge cost once and “double-count” the min once).', 'n m and m weighted undirected edges.', 'Print n−1 distances from 1 to 2..n.', '$2 \le n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N log N)');
@@ -48868,10 +48372,6 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-mo-05-a1', 'koda-b9-mo-05', 'Sqrt links', ARRAY['Data Structures']::text[], ARRAY['Mo''s Algorithm']::text[], ARRAY['1D Array']::text[], ARRAY['Sqrt decomposition on links — same block idea as Mo']::text[], 'Break array into blocks; store jumps to leave each block for hole queries/updates.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-z-04', 'Palindrome Degree', 'Other', 'https://codeforces.com/problemset/problem/7/D', 2300, 'Define k-palindrome recursively. Sum degrees over all prefixes of s.', 'String s.', 'Single integer sum.', '$|s| \le 5\cdot 10^6$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-z-04-a1', 'koda-b9-z-04', 'Z palindrome DP', ARRAY['String Algorithms']::text[], ARRAY['Z-Algorithm','String Hashing']::text[], ARRAY['1D Array']::text[], ARRAY['k-palindromes via Z or hashes on s+#rev']::text[], 'Detect prefixes that are palindromes using Z on s+#+rev; DP k-degree.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mo-03', 'Favorite Xor Ranges', 'Other', 'https://codeforces.com/problemset/problem/617/E', 2300, 'Count subarrays inside [l,r] whose xor equals k.', 'n m k, array, queries.', 'Answers.', '$n,m \le 10^5$', '[]'::jsonb, 'O(N √N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mo-03-a1', 'koda-b10-mo-03', 'Mo xor II', ARRAY['Data Structures']::text[], ARRAY['Mo''s Algorithm','Prefix Sums']::text[], ARRAY['Hash Map']::text[], ARRAY['Xor-pair counting with Mo on prefixes']::text[], 'Prefix xors; Mo maintains freq map and counts pairs with given xor.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-z-04', 'Necklace Periods', 'Other', 'https://codeforces.com/problemset/problem/526/D', 2300, 'Mark prefixes expressible as (AB)^k A for given k (A,B may be empty).', 'n k and string.', 'Bitstring of length n.', '$n \le 10^6$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-z-04-a1', 'koda-b10-z-04', 'Z period marks II', ARRAY['String Algorithms']::text[], ARRAY['Z-Algorithm','KMP']::text[], ARRAY['1D Array']::text[], ARRAY['Period structure (AB)^k A']::text[], 'Use Z-function periods to mark valid necklace prefixes.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-873f', 'Forbidden Indices', 'Codeforces', 'https://codeforces.com/problemset/problem/873/F', 2400, 'Given a string and a binary mask of forbidden starting indices, maximize (substring length) × (number of occurrences that start at allowed indices).', 'n, string s, binary string of length n.', 'Print the maximum value.', '$1 \le n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-873f-a1', 'cf-873f', 'Suffix automaton', ARRAY['String Algorithms']::text[], ARRAY['String Hashing']::text[], ARRAY['Trie']::text[], ARRAY['Suffix automaton / SA counts forbidden-letter substrings maximizing length*occ']::text[], 'Build SAM on the string with banned positions; maximize len * endpos size.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-912e', 'Prime Gift', 'Codeforces', 'https://codeforces.com/problemset/problem/912/E', 2400, 'Lucky numbers are products of a given set of primes (with replacement). Find the $k$-th lucky number.', 'n, n primes, then k.', 'Print the k-th lucky number.', '$n \le 16$', '[]'::jsonb, 'O(N log N)');
@@ -49888,12 +49388,8 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-mo-02-a1', 'koda-b9-mo-02', 'Tree Mo', ARRAY['Data Structures','Graph Algorithms']::text[], ARRAY['Mo''s Algorithm','DFS']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['Tree Mo on Euler tour; color frequency ≥ k']::text[], 'Euler tour tin/tout; Mo on [tin,tout] with BIT on frequency-of-frequencies.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-mo-06', 'Dominant Indices', 'Other', 'https://codeforces.com/problemset/problem/1009/F', 2400, 'Tree rooted at 1. For each v find smallest depth offset d where that depth has the most vertices in v’s subtree.', 'n and edges.', 'n lines of answers.', '$n \le 10^6$', '[]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-mo-06-a1', 'koda-b9-mo-06', 'Sack / Mo tree', ARRAY['Data Structures','Graph Algorithms']::text[], ARRAY['Mo''s Algorithm','DFS']::text[], ARRAY['Hash Map']::text[], ARRAY['DSU on tree / small-to-large; Mo alternative']::text[], 'For each subtree find most frequent depth; small-to-large merging of depth counts.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b9-z-05', 'Om Nom and Necklace', 'Other', 'https://codeforces.com/problemset/problem/526/D', 2400, 'String of length n and integer k. Mark which prefixes can be written as (AB)^k A with A,B possibly empty.', 'n k and string.', 'Bit string of length n.', '$n \le 10^6$', '[]'::jsonb, 'O(N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b9-z-05-a1', 'koda-b9-z-05', 'Z periods marks', ARRAY['String Algorithms']::text[], ARRAY['Z-Algorithm','KMP']::text[], ARRAY['1D Array']::text[], ARRAY['Pattern (AB)^k A via Z periods']::text[], 'Use Z/prefix function periods to mark positions belonging to some (AB)^k A covering.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-bpm-01', 'Maximize Mex', 'Other', 'https://codeforces.com/problemset/problem/1139/E', 2400, 'Students with potentials and clubs. As students leave, maintain the maximum mex over chosen one-per-club potentials.', 'n m, potentials, clubs, leaving order.', 'Mex after each departure (including initial).', '$n \le 5000$', '[]'::jsonb, 'O(N · M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-bpm-01-a1', 'koda-b10-bpm-01', 'Offline matching mex', ARRAY['Flows / Matching']::text[], ARRAY['Bipartite Matching','Max Flow']::text[], ARRAY['Adjacency List']::text[], ARRAY['Offline deletions; grow matching mex of potential']::text[], 'Process leaving students in reverse; extend bipartite matching while trying to raise mex of matched potentials.');
-insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('koda-b10-mo-05', 'Subtree Color Threshold', 'Other', 'https://codeforces.com/problemset/problem/375/D', 2400, 'Tree with colors; queries (v,k) = number of colors appearing ≥ k times in subtree v.', 'n m, colors, edges, queries.', 'Answers.', '$n,m \le 10^5$', '[]'::jsonb, 'O(N log N)');
-insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('koda-b10-mo-05-a1', 'koda-b10-mo-05', 'Tree Mo II', ARRAY['Data Structures','Graph Algorithms']::text[], ARRAY['Mo''s Algorithm','DFS']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['Euler tour + Mo + BIT on freq-of-freq']::text[], 'Subtree as [tin,tout]; Mo with BIT counting colors with frequency ≥ k.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('sbc-2020-p1-o-onibus-venusiano', 'Ônibus Venusiano', 'SBC Maratona', 'https://codeforces.com/gym/102861/attachments/download/12360/statements-pt.pdf', 2500, 'Problema O
                                      Ônibus Venusiano
 A Colônia Humana em Vênus está prosperando! Aqui, o meio de transporte mais usado é o Ônibus
