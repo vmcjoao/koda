@@ -37,7 +37,7 @@ See [`eas.json`](eas.json). Bundle IDs: `app.koda.mobile`.
 
 ## Features
 
-1. **Encounter → Radar → Hypothesis → Blueprint → Reveal**
+1. **Encounter → Radar → Hypothesis → Blueprint → Reveal** (statements support KaTeX, monospace grids, SVG/images)
 2. **Daily Set** — warm-up / target / boss from your rating **band**
 3. **Review deck** — spaced repetition for misses
 4. **Implement queue** — copy blueprints, open OJ links, mark AC (`npm run web` as PC companion)

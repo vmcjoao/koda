@@ -176,3 +176,50 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1201d-a1', 'cf-1201d', 'Row DP with safe columns', ARRAY['Dynamic Programming','Greedy']::text[], ARRAY['Binary Search']::text[], ARRAY['1D Array','Ordered Set']::text[], ARRAY['Process treasure rows bottom-up / top-down keeping only leftmost and rightmost per row','Transitions jump via nearest safe columns when changing rows']::text[], 'Compress to rows that contain treasures. DP states track ending at the leftmost or rightmost treasure of the current row; moving to the next treasure row uses the closest safe columns for vertical travel.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, constraints_text, sample_io, target_complexity) values ('atc-dp-frog2', 'Frog 2', 'AtCoder', 'https://atcoder.jp/contests/dp/tasks/dp_b', 1000, 'Same as Frog 1, but from stone $i$ the frog may jump to any of $i+1,\dots,i+K$ (within bounds), paying $|h_i-h_j|$. Minimize cost to reach stone $N$.', '$2 \le N \le 10^5$, $1 \le K \le 100$', '[{"input":"5 3\n10 30 40 50 20","output":"30"}]'::jsonb, 'O(N · X)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('atc-dp-frog2-a1', 'atc-dp-frog2', 'DP with K previous states', ARRAY['Dynamic Programming']::text[], ARRAY[]::text[], ARRAY['1D Array']::text[], ARRAY['$dp[i] = \min_{1 \le j \le K} dp[i-j] + |h_i-h_{i-j}|$','Generalizes Frog 1 ($K=2$)']::text[], 'For each stone, try all jumps of length $1..K$ from earlier stones. $O(NK)$ is fine under the constraints.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, constraints_text, sample_io, target_complexity) values ('uva-how-many-trees', 'How Many Trees?', 'Other', null, 1600, 'Count the number of different **labeled** binary trees that can be built using exactly $n$ distinct elements.
+
+With one element $A$, there is one tree. With two elements $A$ and $B$, there are four trees:
+
+[[figure:binary-trees]]
+
+Given several $n$ ($1 \le n \le 300$), print the count for each. Input ends with $0$.
+
+```text
+Sample input:
+1
+2
+10
+0
+
+Sample output:
+1
+4
+60949324800
+```', '$1 \le n \le 300$', '[{"input":"1\n2\n10\n0","output":"1\n4\n60949324800"}]'::jsonb, 'O(N²)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('uva-how-many-trees-a1', 'uva-how-many-trees', 'Catalan × n!', ARRAY['Dynamic Programming','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['1D Array']::text[], ARRAY['Unlabeled binary tree shapes are Catalan numbers $C_{n}$','Labeled count is $C_n \cdot n!$ (assign labels to nodes)','Need big integers for $n$ up to 300']::text[], 'The number of labeled binary trees on $n$ nodes is $n! \cdot C_n$ where $C_n$ is the $n$-th Catalan number. Precompute with big-integer DP.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, constraints_text, sample_io, target_complexity) values ('demo-euclidiana', 'Euclidiana', 'Other', null, 1500, 'A strange map numbers cells in a **counter-clockwise spiral** starting at $0$ in the center (Cartesian origin). Cell centers are at integer coordinates with unit spacing.
+
+[[figure:spiral-grid]]
+
+You may also think of the same pattern as a monospace matrix:
+
+```grid
+.  .  . 15  .  .  .
+.  . 14  6 16  .  .
+. 13  5  1  7 17  .
+24 12  4  0  2  8 18
+. 23 11  3  9 19  .
+.  . 22 10 20  .  .
+.  .  . 21  .  .  .
+```
+
+Given many pairs of cell ids $A,B$ ($0 \le A,B \le 10^9$), print the Euclidean distance between their centers. Terminate on $-1\ -1$.', '$0 \le A,B \le 10^9$', '[{"input":"0 1\n2 3\n-1 -1","output":"1.000\n1.414"}]'::jsonb, 'O(1)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('demo-euclidiana-a1', 'demo-euclidiana', 'Map id → (x,y) then distance', ARRAY['Math / Number Theory','Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Find the ring $r$ containing id $k$ from ring lengths $8r$','Walk the ring perimeter to recover $(x,y)$','Answer $\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$']::text[], 'Invert the spiral: locate the ring of each id, then the offset along that ring, yielding integer coordinates. Output Euclidean distance (typically printed with fixed precision).');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, constraints_text, sample_io, target_complexity) values ('demo-maja', 'Maja', 'Other', null, 1400, 'Bees live on a hexagonal hive. **Maja** uses axial coordinates $(x,y)$. **Willi** numbers cells in a clockwise spiral starting at $1$ in the center.
+
+![Hex hive coordinate systems](asset:hex-hive)
+
+For each Willi number ($< 10^5$), print Maja''s coordinates.
+
+Sample: $1 \mapsto (0,0)$, $2 \mapsto (0,1)$, $3 \mapsto (-1,1)$, $4 \mapsto (-1,0)$, $5 \mapsto (0,-1)$.', 'Each query $< 10^5$', '[{"input":"1\n2\n3\n4\n5","output":"0 0\n0 1\n-1 1\n-1 0\n0 -1"}]'::jsonb, 'O(N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('demo-maja-a1', 'demo-maja', 'Hex spiral walk', ARRAY['Math / Number Theory','Ad-Hoc']::text[], ARRAY[]::text[], ARRAY['1D Array']::text[], ARRAY['Hex grid has 6 directions; ring $r$ has $6r$ cells','Simulate spiral from center or closed-form ring + offset','Match the sample orientation carefully (clockwise vs CCW)']::text[], 'Find which ring contains Willi''s id, then walk the six sides of that hex ring to recover axial $(x,y)$.');

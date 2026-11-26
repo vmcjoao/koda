@@ -36,3 +36,32 @@ Rules:
 - `key_insights` must be the non-obvious twists (not “use an array”).
 - Do **not** invent constraints; leave uncertain fields empty and note them.
 - Human will review before import — accuracy over cleverness.
+
+## Figures, matrices, diagrams
+
+Koda statements support rich media in `statement_md` (and editorials):
+
+1. **Monospace grids / ASCII matrices** — fenced blocks:
+
+````markdown
+```grid
+.  6  .
+5  0  1
+.  4  .
+```
+````
+
+2. **Bundled SVG figures** — either:
+
+```markdown
+[[figure:spiral-grid]]
+![Hex hive](asset:hex-hive)
+```
+
+Built-in ids: `binary-trees`, `spiral-grid`, `hex-hive`. New diagrams go in `data/figures/` and `lib/figures.ts`.
+
+3. **Inline SVG** — fenced ` ```svg ` containing a full `<svg>...</svg>`.
+
+4. **Remote images** — `![alt](https://...)` (requires network in the WebView).
+
+When converting PDF/OJ statements: **do not drop figures**. Prefer redrawing as SVG or a ` ```grid ` block. Describe spatial structure in text as a backup for plain-text mode.

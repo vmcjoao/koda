@@ -40,3 +40,16 @@ Prefer filling thin slices before stacking more CSES greedy:
 - Dynamic Programming, String Algorithms, Trees / LCA
 - Math / Number Theory, Binary Search on Answer
 - AtCoder / USACO / harder CF (≥1800) for band stretch
+
+## Figures
+
+Statements may include:
+
+| Syntax | Use |
+|---|---|
+| `` ```grid `` / `` ```text `` | ASCII matrices, tables, layouts |
+| `[[figure:id]]` or `![…](asset:id)` | Bundled SVG (`data/figures` + `lib/figures.ts`) |
+| `` ```svg `` | Inline SVG diagram |
+| `![…](https://…)` | Remote image (online only) |
+
+Never discard PDF figures during ingest — redraw or grid-encode them.
