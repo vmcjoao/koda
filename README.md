@@ -5,7 +5,7 @@ Mobile app for studying competitive programming without writing syntax on a phon
 ## Stack
 
 - **Expo** (React Native + Expo Router), dark mode by default
-- **Supabase** (Auth + Postgres) with **offline guest mode** using a local catalog (+ cached remote reads)
+- **Supabase** (Auth + Postgres) with **offline guest mode** using a local catalog (~60 curated problems + SQLite/remote cache)
 
 ## Quick start
 

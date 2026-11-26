@@ -18,6 +18,12 @@ npm run ingest:validate -- scripts/ingest/inbox/my-problem.json
 npm run ingest:import -- scripts/ingest/inbox/my-problem.json
 ```
 
+Or validate an entire array file (e.g. after editing extras in bulk):
+
+```bash
+npm run ingest:validate-batch -- data/extra-problems.json
+```
+
 5. Regenerate SQL seed and apply in Supabase if needed:
 
 ```bash
@@ -26,3 +32,11 @@ npm run generate:seed
 ```
 
 The app merges `SEED_PROBLEMS` + `extra-problems.json` offline, and prefers Supabase when the remote catalog is available.
+
+## Coverage goals
+
+Prefer filling thin slices before stacking more CSES greedy:
+
+- Dynamic Programming, String Algorithms, Trees / LCA
+- Math / Number Theory, Binary Search on Answer
+- AtCoder / USACO / harder CF (≥1800) for band stretch

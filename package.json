@@ -53,6 +53,7 @@
     "test:sync": "tsx scripts/test-sync.ts",
     "generate:seed": "tsx scripts/generate-seed.ts",
     "ingest:validate": "tsx scripts/ingest/validate-draft.ts",
+    "ingest:validate-batch": "tsx scripts/ingest/validate-batch.ts",
     "ingest:import": "tsx scripts/ingest/import-draft.ts"
   },
   "private": true

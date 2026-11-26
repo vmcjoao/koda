@@ -1,1 +1,1040 @@
-[]
+[
+  {
+    "id": "cses-repetitions",
+    "title": "Repetitions",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1069",
+    "difficulty_rating": 800,
+    "statement_md": "You are given a DNA string of characters A, C, G, and T. Find the longest repetition — the maximum length of a contiguous substring consisting of a single character.",
+    "constraints_text": "$1 \\le |s| \\le 10^6$",
+    "sample_io": [{ "input": "ATTCGGGA", "output": "3" }],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-repetitions-a1",
+        "problem_id": "cses-repetitions",
+        "approach_name": "Linear scan",
+        "paradigms": ["Ad-Hoc", "String Algorithms"],
+        "algorithms": [],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Track current run length while scanning",
+          "Reset when the character changes"
+        ],
+        "editorial_summary_md": "Walk the string once, maintaining the streak of equal characters. Update the answer whenever the streak grows."
+      }
+    ]
+  },
+  {
+    "id": "cses-increasing-array",
+    "title": "Increasing Array",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1094",
+    "difficulty_rating": 800,
+    "statement_md": "You are given an array of $n$ integers. In one move you may increase any element by one. What is the minimum number of moves to make the array non-decreasing?",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$, $1 \\le a_i \\le 10^9$",
+    "sample_io": [{ "input": "5\n3 2 5 1 7", "output": "5" }],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-increasing-array-a1",
+        "problem_id": "cses-increasing-array",
+        "approach_name": "Greedy prefix max",
+        "paradigms": ["Greedy"],
+        "algorithms": [],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Never decrease earlier elements",
+          "Each $a_i$ must become at least $\\max(a_1..a_{i-1})$"
+        ],
+        "editorial_summary_md": "Scan left to right. Keep the running maximum so far. If $a_i$ is smaller, add $\\textit{max}-a_i$ moves and leave the max unchanged; otherwise update the max."
+      }
+    ]
+  },
+  {
+    "id": "cses-bit-strings",
+    "title": "Bit Strings",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1617",
+    "difficulty_rating": 800,
+    "statement_md": "Your task is to calculate the number of bit strings of length $n$. Since the answer can be very large, print it modulo $10^9+7$.",
+    "constraints_text": "$1 \\le n \\le 10^6$",
+    "sample_io": [{ "input": "3", "output": "8" }],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-bit-strings-a1",
+        "problem_id": "cses-bit-strings",
+        "approach_name": "Modular exponentiation of 2",
+        "paradigms": ["Math / Number Theory"],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Answer is $2^n \\bmod (10^9+7)$",
+          "Use iterative multiply or binary exponentiation"
+        ],
+        "editorial_summary_md": "There are $2^n$ binary strings. Compute the power modulo $10^9+7$ with a loop or fast pow."
+      }
+    ]
+  },
+  {
+    "id": "cses-distinct-numbers",
+    "title": "Distinct Numbers",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1621",
+    "difficulty_rating": 900,
+    "statement_md": "You are given a list of $n$ integers. Your task is to calculate the number of distinct values in the list.",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$, $1 \\le x_i \\le 10^9$",
+    "sample_io": [{ "input": "5\n2 3 2 2 3", "output": "2" }],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-distinct-numbers-a1",
+        "problem_id": "cses-distinct-numbers",
+        "approach_name": "Sort and unique",
+        "paradigms": ["Ad-Hoc"],
+        "algorithms": ["Sorting"],
+        "data_structures": ["1D Array", "Ordered Set"],
+        "key_insights": [
+          "Sort then count runs of equal values",
+          "A set / unordered set also works"
+        ],
+        "editorial_summary_md": "Sort the array and count how many times consecutive values differ, or insert into a set and take its size."
+      }
+    ]
+  },
+  {
+    "id": "cses-movie-festival",
+    "title": "Movie Festival",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1629",
+    "difficulty_rating": 1100,
+    "statement_md": "In a movie festival, $n$ movies will be shown. You know the starting and ending time of each movie. What is the maximum number of movies you can watch entirely? You can watch a movie only if its start is $\\ge$ the previous movie's end.",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$",
+    "sample_io": [{ "input": "3\n3 5\n4 9\n5 8", "output": "2" }],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-movie-festival-a1",
+        "problem_id": "cses-movie-festival",
+        "approach_name": "Sort by ending time",
+        "paradigms": ["Greedy"],
+        "algorithms": ["Sorting"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Sort by end time instead of start time",
+          "Always take the next movie that finishes earliest among feasible ones"
+        ],
+        "editorial_summary_md": "Classic activity selection: sort intervals by ending time and greedily pick the next compatible movie."
+      }
+    ]
+  },
+  {
+    "id": "cses-restaurant-customers",
+    "title": "Restaurant Customers",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1619",
+    "difficulty_rating": 1100,
+    "statement_md": "You are given the arrival and leaving times of $n$ customers in a restaurant. What was the maximum number of customers simultaneously present?",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$",
+    "sample_io": [{ "input": "3\n5 8\n2 4\n3 9", "output": "2" }],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-restaurant-customers-a1",
+        "problem_id": "cses-restaurant-customers",
+        "approach_name": "Sweep line events",
+        "paradigms": ["Greedy", "Ad-Hoc"],
+        "algorithms": ["Sorting"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Turn each customer into +1 at arrival and -1 at departure",
+          "Process events in time order; track running sum"
+        ],
+        "editorial_summary_md": "Create $2n$ events (arrive / leave), sort by time (leave before arrive on ties if needed), and scan while maintaining the current occupancy."
+      }
+    ]
+  },
+  {
+    "id": "cses-dice-combinations",
+    "title": "Dice Combinations",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1633",
+    "difficulty_rating": 1100,
+    "statement_md": "Your task is to count the number of ways to construct sum $n$ by throwing a dice one or more times. Each throw gives an integer between $1$ and $6$. Order matters. Print the answer modulo $10^9+7$.",
+    "constraints_text": "$1 \\le n \\le 10^6$",
+    "sample_io": [{ "input": "3", "output": "4" }],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-dice-combinations-a1",
+        "problem_id": "cses-dice-combinations",
+        "approach_name": "1D DP recurrence",
+        "paradigms": ["Dynamic Programming"],
+        "algorithms": ["Knapsack"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "$dp[x] = \\sum_{f=1}^{6} dp[x-f]$",
+          "Order of throws matters so this is permutations, not combinations"
+        ],
+        "editorial_summary_md": "Let $dp[x]$ be ways to form sum $x$. Transition by the last face. Base $dp[0]=1$. Compute up to $n$ modulo $10^9+7$."
+      }
+    ]
+  },
+  {
+    "id": "cses-minimizing-coins",
+    "title": "Minimizing Coins",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1634",
+    "difficulty_rating": 1300,
+    "statement_md": "Consider a money system with $n$ coins of values $c_1,\\dots,c_n$. You want to form sum $x$ using as few coins as possible. Print the minimum number of coins, or $-1$ if impossible.",
+    "constraints_text": "$1 \\le n \\le 100$, $1 \\le x \\le 10^6$",
+    "sample_io": [{ "input": "3 11\n1 5 7", "output": "3" }],
+    "target_complexity": "O(N · X)",
+    "approaches": [
+      {
+        "id": "cses-minimizing-coins-a1",
+        "problem_id": "cses-minimizing-coins",
+        "approach_name": "Unbounded knapsack DP",
+        "paradigms": ["Dynamic Programming"],
+        "algorithms": ["Knapsack"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "$dp[s] = \\min_c (dp[s-c]+1)$",
+          "Initialize unreachable states with a large sentinel"
+        ],
+        "editorial_summary_md": "Classic unbounded knapsack for coin change (min coins). Fill a 1D array of size $x+1$ updating with each coin value."
+      }
+    ]
+  },
+  {
+    "id": "cses-coin-combinations-ii",
+    "title": "Coin Combinations II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1636",
+    "difficulty_rating": 1400,
+    "statement_md": "Consider a money system with $n$ coins. Count the number of ordered-by-coin-type combinations that produce sum $x$ (order of coins does not create new combinations). Print modulo $10^9+7$.",
+    "constraints_text": "$1 \\le n \\le 100$, $1 \\le x \\le 10^6$",
+    "sample_io": [{ "input": "3 9\n2 3 5", "output": "3" }],
+    "target_complexity": "O(N · X)",
+    "approaches": [
+      {
+        "id": "cses-coin-combinations-ii-a1",
+        "problem_id": "cses-coin-combinations-ii",
+        "approach_name": "Outer loop over coins",
+        "paradigms": ["Dynamic Programming"],
+        "algorithms": ["Knapsack"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Loop coins outside sums to count combinations (not permutations)",
+          "Contrast with Coin Combinations I where order matters"
+        ],
+        "editorial_summary_md": "Use unbounded knapsack with the coin loop outside the sum loop so each multiset is counted once."
+      }
+    ]
+  },
+  {
+    "id": "cses-book-shop",
+    "title": "Book Shop",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1158",
+    "difficulty_rating": 1400,
+    "statement_md": "You have $n$ books. The $i$-th book costs $h_i$ and has $s_i$ pages. You can buy each book at most once and have budget $x$. Maximize the total number of pages.",
+    "constraints_text": "$1 \\le n \\le 1000$, $1 \\le x \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "4 10\n4 8 5 3\n5 12 8 1",
+        "output": "13"
+      }
+    ],
+    "target_complexity": "O(N · X)",
+    "approaches": [
+      {
+        "id": "cses-book-shop-a1",
+        "problem_id": "cses-book-shop",
+        "approach_name": "0/1 knapsack",
+        "paradigms": ["Dynamic Programming"],
+        "algorithms": ["Knapsack"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Each book is taken at most once → 0/1 knapsack",
+          "Iterate weights backwards to save space"
+        ],
+        "editorial_summary_md": "Standard 0/1 knapsack with capacity $x$, value = pages, weight = price. Use a rolling 1D DP updating from high capacity to low."
+      }
+    ]
+  },
+  {
+    "id": "cses-removing-digits",
+    "title": "Removing Digits",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1637",
+    "difficulty_rating": 1100,
+    "statement_md": "You are given an integer $n$. On each step you may subtract one of the digits of the current number. How many steps are needed to go from $n$ down to $0$?",
+    "constraints_text": "$1 \\le n \\le 10^6$",
+    "sample_io": [{ "input": "27", "output": "5" }],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-removing-digits-a1",
+        "problem_id": "cses-removing-digits",
+        "approach_name": "DP over values",
+        "paradigms": ["Dynamic Programming"],
+        "algorithms": [],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "$dp[x] = 1 + \\min_{\\text{digit } d \\text{ of } x} dp[x-d]$",
+          "Greedy always subtract largest digit is not always optimal to prove casually — DP is safe"
+        ],
+        "editorial_summary_md": "Compute $dp[0..n]$ bottom-up. For each $x$, try subtracting each digit appearing in the decimal representation of $x$."
+      }
+    ]
+  },
+  {
+    "id": "cses-grid-paths-dp",
+    "title": "Grid Paths",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1638",
+    "difficulty_rating": 1300,
+    "statement_md": "Consider an $n \\times n$ grid with some trapped squares `*`. Count paths from the top-left to the bottom-right moving only right or down, avoiding traps. Print modulo $10^9+7$.",
+    "constraints_text": "$1 \\le n \\le 1000$",
+    "sample_io": [
+      {
+        "input": "4\n....\n.*..\n...*\n*...",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-grid-paths-dp-a1",
+        "problem_id": "cses-grid-paths-dp",
+        "approach_name": "Grid DP",
+        "paradigms": ["Dynamic Programming"],
+        "algorithms": [],
+        "data_structures": ["2D Array"],
+        "key_insights": [
+          "$dp[i][j] = dp[i-1][j] + dp[i][j-1]$ if free",
+          "Trapped cells contribute $0$"
+        ],
+        "editorial_summary_md": "Standard path-counting DP on a grid with blocked cells. Initialize start to $1$ if free."
+      }
+    ]
+  },
+  {
+    "id": "cses-message-route",
+    "title": "Message Route",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1667",
+    "difficulty_rating": 1200,
+    "statement_md": "Syrjälä's network has $n$ computers and $m$ connections. What is the minimum number of computers on a route from computer $1$ to computer $n$? Also reconstruct one such route.",
+    "constraints_text": "$1 \\le n \\le 10^5$, $1 \\le m \\le 2 \\times 10^5$",
+    "sample_io": [
+      {
+        "input": "5 5\n1 2\n1 3\n1 4\n2 3\n5 4",
+        "output": "3\n1 4 5"
+      }
+    ],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-message-route-a1",
+        "problem_id": "cses-message-route",
+        "approach_name": "BFS + parent pointers",
+        "paradigms": ["Graph Algorithms"],
+        "algorithms": ["BFS"],
+        "data_structures": ["Queue", "Adjacency List"],
+        "key_insights": [
+          "Unweighted shortest path → BFS",
+          "Store parent[v] to reconstruct the path"
+        ],
+        "editorial_summary_md": "Run BFS from $1$. If $n$ is reached, walk parents back to $1$ and reverse the path. Otherwise print IMPOSSIBLE."
+      }
+    ]
+  },
+  {
+    "id": "cses-labyrinth",
+    "title": "Labyrinth",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1193",
+    "difficulty_rating": 1300,
+    "statement_md": "You are given a map of a labyrinth with walls `#`, floor `.`, start `A`, and end `B`. Find the shortest path from A to B moving up/down/left/right, and print the sequence of moves.",
+    "constraints_text": "$1 \\le n,m \\le 1000$",
+    "sample_io": [
+      {
+        "input": "5 8\n########\n#.A#...#\n#.##.#B#\n#......#\n########",
+        "output": "YES\n9\nLDDRRRRDD"
+      }
+    ],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "cses-labyrinth-a1",
+        "problem_id": "cses-labyrinth",
+        "approach_name": "Grid BFS",
+        "paradigms": ["Graph Algorithms"],
+        "algorithms": ["BFS"],
+        "data_structures": ["Queue", "2D Array"],
+        "key_insights": [
+          "Treat the grid as an unweighted graph",
+          "Store previous move / parent cell for reconstruction"
+        ],
+        "editorial_summary_md": "BFS from A on the grid graph. Keep a parent direction for each cell and reconstruct the path when B is found."
+      }
+    ]
+  },
+  {
+    "id": "cses-round-trip",
+    "title": "Round Trip",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1669",
+    "difficulty_rating": 1400,
+    "statement_md": "Given an undirected graph, find any cycle of length at least $4$ (a path that starts and ends at the same city and visits at least two other cities). Print the cycle or IMPOSSIBLE.",
+    "constraints_text": "$1 \\le n \\le 10^5$, $1 \\le m \\le 2 \\times 10^5$",
+    "sample_io": [
+      {
+        "input": "5 6\n1 3\n1 2\n5 3\n1 5\n2 4\n4 5",
+        "output": "4\n3 5 1 3"
+      }
+    ],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-round-trip-a1",
+        "problem_id": "cses-round-trip",
+        "approach_name": "DFS cycle detection",
+        "paradigms": ["Graph Algorithms"],
+        "algorithms": ["DFS"],
+        "data_structures": ["Adjacency List", "1D Array"],
+        "key_insights": [
+          "On finding a back edge to a non-parent ancestor, a cycle exists",
+          "Reconstruct using the recursion stack / parent array"
+        ],
+        "editorial_summary_md": "DFS the undirected graph. When you see an edge to an already-visited non-parent node, recover the cycle along parents."
+      }
+    ]
+  },
+  {
+    "id": "cses-tree-diameter",
+    "title": "Tree Diameter",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1131",
+    "difficulty_rating": 1400,
+    "statement_md": "You are given a tree of $n$ nodes. Find the diameter: the maximum number of edges on any path.",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$",
+    "sample_io": [
+      {
+        "input": "5\n1 2\n1 3\n3 4\n3 5",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-tree-diameter-a1",
+        "problem_id": "cses-tree-diameter",
+        "approach_name": "Two BFS / DFS sweeps",
+        "paradigms": ["Graph Algorithms"],
+        "algorithms": ["BFS", "DFS"],
+        "data_structures": ["Adjacency List"],
+        "key_insights": [
+          "Diameter endpoints: farthest from an arbitrary node, then farthest from that",
+          "Works specifically because the graph is a tree"
+        ],
+        "editorial_summary_md": "From any node find the farthest node $u$. From $u$ find the farthest node $v$. Distance $u$–$v$ is the diameter."
+      }
+    ]
+  },
+  {
+    "id": "cses-shortest-routes-ii",
+    "title": "Shortest Routes II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1672",
+    "difficulty_rating": 1500,
+    "statement_md": "There are $n$ cities and $m$ flights with lengths. Process $q$ queries asking for the shortest distance between two cities (or $-1$ if unreachable).",
+    "constraints_text": "$1 \\le n \\le 500$, $1 \\le m,q \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "4 3 3\n1 2 5\n1 3 9\n2 3 3\n1 2\n2 1\n1 4",
+        "output": "5\n5\n-1"
+      }
+    ],
+    "target_complexity": "O(N³)",
+    "approaches": [
+      {
+        "id": "cses-shortest-routes-ii-a1",
+        "problem_id": "cses-shortest-routes-ii",
+        "approach_name": "Floyd-Warshall",
+        "paradigms": ["Graph Algorithms"],
+        "algorithms": ["Floyd-Warshall"],
+        "data_structures": ["2D Array"],
+        "key_insights": [
+          "n ≤ 500 ⇒ all-pairs Floyd fits",
+          "Take min over parallel edges before FW"
+        ],
+        "editorial_summary_md": "Build an adjacency matrix with edge minima, run Floyd-Warshall, then answer each query in $O(1)$."
+      }
+    ]
+  },
+  {
+    "id": "cses-high-score",
+    "title": "High Score",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1673",
+    "difficulty_rating": 1800,
+    "statement_md": "A game has $n$ rooms and $m$ tunnels. Each tunnel gives a score. Starting in room $1$, what is the maximum score you can achieve when reaching room $n$? If the score can be arbitrarily large, print $-1$.",
+    "constraints_text": "$1 \\le n \\le 2500$, $1 \\le m \\le 5000$",
+    "sample_io": [
+      {
+        "input": "4 5\n1 2 3\n2 4 -1\n1 3 1\n3 4 1\n1 4 2",
+        "output": "2"
+      }
+    ],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "cses-high-score-a1",
+        "problem_id": "cses-high-score",
+        "approach_name": "Bellman-Ford + positive cycle check",
+        "paradigms": ["Graph Algorithms"],
+        "algorithms": ["Bellman-Ford"],
+        "data_structures": ["Adjacency List"],
+        "key_insights": [
+          "Negate scores and find shortest path, or run BF for longest path",
+          "A positive cycle reachable from 1 that can reach n ⇒ answer -1"
+        ],
+        "editorial_summary_md": "Use Bellman-Ford for longest paths (or negate edges for shortest). After $n-1$ relaxations, one more pass detects improving cycles; check reachability into $n$."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-frog1",
+    "title": "Frog 1",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_a",
+    "difficulty_rating": 900,
+    "statement_md": "There are $N$ stones in a row. The height of stone $i$ is $h_i$. A frog starts on stone $1$ and wants stone $N$. From stone $i$ it may jump to $i+1$ or $i+2$, paying $|h_i - h_j|$. Find the minimum total cost.",
+    "constraints_text": "$2 \\le N \\le 10^5$",
+    "sample_io": [{ "input": "4\n10 30 40 20", "output": "30" }],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "atc-dp-frog1-a1",
+        "problem_id": "atc-dp-frog1",
+        "approach_name": "Linear DP",
+        "paradigms": ["Dynamic Programming"],
+        "algorithms": [],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "$dp[i] = \\min(dp[i-1]+|h_i-h_{i-1}|, dp[i-2]+|h_i-h_{i-2}|)$",
+          "Classic intro DP transition"
+        ],
+        "editorial_summary_md": "Define $dp[i]$ as min cost to reach stone $i$. Transition from the previous one or two stones."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-knapsack1",
+    "title": "Knapsack 1",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_d",
+    "difficulty_rating": 1200,
+    "statement_md": "There are $N$ items with weight $w_i$ and value $v_i$. Choose a subset with total weight $\\le W$ maximizing total value. Each item at most once.",
+    "constraints_text": "$1 \\le N \\le 100$, $1 \\le W \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "3 8\n3 30\n4 50\n5 60",
+        "output": "90"
+      }
+    ],
+    "target_complexity": "O(N · W)",
+    "approaches": [
+      {
+        "id": "atc-dp-knapsack1-a1",
+        "problem_id": "atc-dp-knapsack1",
+        "approach_name": "0/1 knapsack DP",
+        "paradigms": ["Dynamic Programming"],
+        "algorithms": ["Knapsack"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "State is (item index, remaining capacity) or rolling 1D weight",
+          "Iterate weights backwards to save space"
+        ],
+        "editorial_summary_md": "Standard 0/1 knapsack. $dp[w] = \\max(dp[w], dp[w-w_i]+v_i)$ processed per item from high $w$ to low."
+      }
+    ]
+  },
+  {
+    "id": "cf-4a",
+    "title": "Watermelon",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/4/A",
+    "difficulty_rating": 800,
+    "statement_md": "Pete and Billy want to divide a watermelon of weight $w$ into two parts with even positive weights. Print YES or NO.",
+    "constraints_text": "$1 \\le w \\le 100$",
+    "sample_io": [{ "input": "8", "output": "YES" }],
+    "target_complexity": "O(1)",
+    "approaches": [
+      {
+        "id": "cf-4a-a1",
+        "problem_id": "cf-4a",
+        "approach_name": "Parity check",
+        "paradigms": ["Math / Number Theory", "Ad-Hoc"],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Need $w \\ge 4$ and $w$ even",
+          "2 cannot be split into two positive even parts"
+        ],
+        "editorial_summary_md": "Any even $w \\ge 4$ works (e.g. $2+(w-2)$). Odd weights and $w=2$ fail."
+      }
+    ]
+  },
+  {
+    "id": "cf-1a",
+    "title": "Theatre Square",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1/A",
+    "difficulty_rating": 1000,
+    "statement_md": "Theatre Square is an $n \\times m$ rectangle. Flagstones are $a \\times a$. How many flagstones are needed to pave the square? Flagstones may extend past the border and cannot be broken.",
+    "constraints_text": "$1 \\le n,m,a \\le 10^9$",
+    "sample_io": [{ "input": "6 6 4", "output": "4" }],
+    "target_complexity": "O(1)",
+    "approaches": [
+      {
+        "id": "cf-1a-a1",
+        "problem_id": "cf-1a",
+        "approach_name": "Ceiling division",
+        "paradigms": ["Math / Number Theory"],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Answer is $\\lceil n/a \\rceil \\cdot \\lceil m/a \\rceil$",
+          "Use 64-bit integers for large products"
+        ],
+        "editorial_summary_md": "Tiles along each side use ceiling division. Multiply the two counts with 64-bit arithmetic."
+      }
+    ]
+  },
+  {
+    "id": "cf-279b",
+    "title": "Books",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/279/B",
+    "difficulty_rating": 1400,
+    "statement_md": "You have $n$ books in a row; book $i$ takes $a_i$ minutes. You have $t$ free minutes and must read a contiguous segment. What is the maximum number of books you can finish?",
+    "constraints_text": "$1 \\le n \\le 10^5$, $1 \\le t \\le 10^9$",
+    "sample_io": [{ "input": "4 5\n3 1 2 1", "output": "3" }],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-279b-a1",
+        "problem_id": "cf-279b",
+        "approach_name": "Two pointers / sliding window",
+        "paradigms": ["Two Pointers"],
+        "algorithms": ["Prefix Sums"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Maintain a window with sum $\\le t$",
+          "Expand right, shrink left when sum exceeds $t$"
+        ],
+        "editorial_summary_md": "Sliding window over the contiguous segment. Advance the right endpoint and move left until the sum fits in $t$; track max length."
+      }
+    ]
+  },
+  {
+    "id": "usaco-fence-painting",
+    "title": "Fence Painting",
+    "source": "USACO",
+    "url": "http://www.usaco.org/index.php?page=viewproblem2&cpid=567",
+    "difficulty_rating": 800,
+    "statement_md": "Farmer John paints the interval $[a,b)$ on a fence; Bessie paints $[c,d)$. How many units of fence are painted at least once?",
+    "constraints_text": "$0 \\le a,b,c,d \\le 100$",
+    "sample_io": [{ "input": "7 10\n4 8", "output": "6" }],
+    "target_complexity": "O(1)",
+    "approaches": [
+      {
+        "id": "usaco-fence-painting-a1",
+        "problem_id": "usaco-fence-painting",
+        "approach_name": "Interval union length",
+        "paradigms": ["Math / Number Theory", "Ad-Hoc"],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Length $= (b-a)+(d-c) - \\text{overlap}$",
+          "Overlap is $\\max(0, \\min(b,d)-\\max(a,c))$"
+        ],
+        "editorial_summary_md": "Compute each painter's length and subtract the intersection of the two half-open intervals."
+      }
+    ]
+  },
+  {
+    "id": "cses-towers",
+    "title": "Towers",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1073",
+    "difficulty_rating": 1200,
+    "statement_md": "You are given $n$ cubes in order. Process them one by one: place each cube on top of a tower so that it sits on a strictly larger cube, or start a new tower. What is the minimum number of towers?",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$",
+    "sample_io": [{ "input": "5\n3 8 2 1 5", "output": "2" }],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-towers-a1",
+        "problem_id": "cses-towers",
+        "approach_name": "Multiset of tops / patience sorting",
+        "paradigms": ["Greedy"],
+        "algorithms": ["Binary Search", "LIS"],
+        "data_structures": ["Ordered Set"],
+        "key_insights": [
+          "Always place on the tower with the smallest top that is still $> cube$",
+          "Equivalent to length of longest non-decreasing subsequence intuition"
+        ],
+        "editorial_summary_md": "Maintain the sorted tops of towers in a multiset. For each cube, upper_bound the first top strictly greater and replace it; else create a new tower."
+      }
+    ]
+  },
+  {
+    "id": "cses-string-matching",
+    "title": "String Matching",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1753",
+    "difficulty_rating": 1400,
+    "statement_md": "Given a string $s$ and a pattern $p$, count how many times $p$ occurs in $s$ as a contiguous substring.",
+    "constraints_text": "$1 \\le |s|,|p| \\le 10^6$",
+    "sample_io": [{ "input": "saippuakauppias\npp", "output": "2" }],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-string-matching-a1",
+        "problem_id": "cses-string-matching",
+        "approach_name": "KMP / Z-algorithm",
+        "paradigms": ["String Algorithms"],
+        "algorithms": ["KMP"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Build the prefix-function (pi) of $p + \\# + s$",
+          "Count positions where $\\pi[i] = |p|$"
+        ],
+        "editorial_summary_md": "Use KMP: concatenate pattern, separator, and text; every place the prefix function equals $|p|$ is an occurrence. Z-algorithm works similarly."
+      }
+    ]
+  },
+  {
+    "id": "cses-word-combinations",
+    "title": "Word Combinations",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1731",
+    "difficulty_rating": 1700,
+    "statement_md": "You are given a string $s$ of length $n$ and a dictionary of $k$ words. Count the number of ways to form $s$ by concatenating dictionary words. Print modulo $10^9+7$.",
+    "constraints_text": "$1 \\le n \\le 5000$, $1 \\le k \\le 10^5$, total dictionary length $\\le 10^6$",
+    "sample_io": [
+      {
+        "input": "ababc\n4\nab\nabc\nba\na",
+        "output": "2"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-word-combinations-a1",
+        "problem_id": "cses-word-combinations",
+        "approach_name": "DP + Trie",
+        "paradigms": ["Dynamic Programming", "String Algorithms"],
+        "algorithms": [],
+        "data_structures": ["Trie", "1D Array"],
+        "key_insights": [
+          "$dp[i]$ = ways to form prefix $s[0..i)$",
+          "From each $i$, walk a trie of dictionary words over $s[i..]$"
+        ],
+        "editorial_summary_md": "Insert all dictionary words into a trie. Let $dp[0]=1$. For each position, traverse the trie along the suffix and add $dp[i]$ into reachable ends."
+      }
+    ]
+  },
+  {
+    "id": "cses-array-division",
+    "title": "Array Division",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1085",
+    "difficulty_rating": 1500,
+    "statement_md": "You are given an array of $n$ positive integers. Divide it into $k$ contiguous subarrays so that the maximum subarray sum is minimized. What is that minimum possible maximum?",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$, $1 \\le k \\le n$",
+    "sample_io": [{ "input": "5 3\n2 4 7 3 5", "output": "8" }],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-array-division-a1",
+        "problem_id": "cses-array-division",
+        "approach_name": "Binary search on answer",
+        "paradigms": ["Binary Search on Answer", "Greedy"],
+        "algorithms": ["Binary Search"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Monotone predicate: can we split into $\\le k$ parts with max sum $\\le mid$?",
+          "Greedy scan adds a new part whenever sum would exceed mid"
+        ],
+        "editorial_summary_md": "Binary search the maximum allowed sum. Feasibility is a left-to-right greedy that opens a new subarray whenever adding the next element would exceed the candidate."
+      }
+    ]
+  },
+  {
+    "id": "cses-tasks-and-deadlines",
+    "title": "Tasks and Deadlines",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1630",
+    "difficulty_rating": 1300,
+    "statement_md": "You have $n$ tasks. Task $i$ takes $a_i$ time units and has deadline $d_i$. You start at time $0$ and do tasks sequentially. Reward for finishing a task at time $f$ is $d_i - f$. Maximize the total reward.",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$",
+    "sample_io": [{ "input": "3\n6 10\n8 15\n5 12", "output": "2" }],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-tasks-and-deadlines-a1",
+        "problem_id": "cses-tasks-and-deadlines",
+        "approach_name": "Sort by duration",
+        "paradigms": ["Greedy"],
+        "algorithms": ["Sorting"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Optimal order is increasing duration $a_i$ (independent of deadlines)",
+          "Total reward $= \\sum d_i - \\sum$ finish times under that order"
+        ],
+        "editorial_summary_md": "Sort tasks by increasing processing time and simulate. Deadlines only affect the constant $\\sum d_i$; finish times are minimized by shortest-job-first."
+      }
+    ]
+  },
+  {
+    "id": "cses-subarray-sums-i",
+    "title": "Subarray Sums I",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1660",
+    "difficulty_rating": 1200,
+    "statement_md": "Given an array of $n$ positive integers, count the number of contiguous subarrays whose sum equals $x$.",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$, $1 \\le x \\le 10^{18}$",
+    "sample_io": [{ "input": "5 7\n2 4 1 2 7", "output": "3" }],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-subarray-sums-i-a1",
+        "problem_id": "cses-subarray-sums-i",
+        "approach_name": "Two pointers on positive array",
+        "paradigms": ["Two Pointers"],
+        "algorithms": ["Prefix Sums"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "All $a_i > 0$ ⇒ window sum is monotone as right advances",
+          "Advance left while sum $> x$"
+        ],
+        "editorial_summary_md": "Maintain a sliding window. Expand right; shrink left while the sum exceeds $x$; count when sum equals $x$."
+      }
+    ]
+  },
+  {
+    "id": "cses-subarray-sums-ii",
+    "title": "Subarray Sums II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1661",
+    "difficulty_rating": 1500,
+    "statement_md": "Given an array of $n$ integers (possibly negative), count contiguous subarrays whose sum equals $x$.",
+    "constraints_text": "$1 \\le n \\le 2 \\times 10^5$",
+    "sample_io": [{ "input": "5 7\n2 -1 3 5 -2", "output": "2" }],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-subarray-sums-ii-a1",
+        "problem_id": "cses-subarray-sums-ii",
+        "approach_name": "Prefix sums + hash map",
+        "paradigms": ["Ad-Hoc"],
+        "algorithms": ["Prefix Sums"],
+        "data_structures": ["Hash Map"],
+        "key_insights": [
+          "Subarray $(l,r]$ has sum $x$ iff $\\textit{pref}[r]-\\textit{pref}[l]=x$",
+          "Count previous prefixes equal to $\\textit{pref}[r]-x$"
+        ],
+        "editorial_summary_md": "Scan prefix sums left to right. Before adding the current prefix, query how many earlier prefixes equal $\\textit{pref}-x$, then insert $\\textit{pref}$ into the map (include $0$ initially)."
+      }
+    ]
+  },
+  {
+    "id": "cses-company-queries-i",
+    "title": "Company Queries I",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1687",
+    "difficulty_rating": 1600,
+    "statement_md": "A company has a tree hierarchy rooted at employee $1$. You process $q$ queries: given employee $x$ and integer $k$, who is the $k$-th boss above $x$? Print $-1$ if none.",
+    "constraints_text": "$1 \\le n,q \\le 2 \\times 10^5$",
+    "sample_io": [
+      {
+        "input": "5 3\n1 1 3 3\n4 1\n4 2\n4 3",
+        "output": "3\n1\n-1"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-company-queries-i-a1",
+        "problem_id": "cses-company-queries-i",
+        "approach_name": "Binary lifting",
+        "paradigms": ["Graph Algorithms"],
+        "algorithms": ["LCA"],
+        "data_structures": ["2D Array", "Adjacency List"],
+        "key_insights": [
+          "Precompute $up[v][j]$ = $2^j$-th ancestor of $v$",
+          "Answer each query by walking bits of $k$"
+        ],
+        "editorial_summary_md": "Build the parent tree, then binary-lifting table. For query $(x,k)$, jump according to set bits of $k$; if you fall off the root, answer $-1$."
+      }
+    ]
+  },
+  {
+    "id": "cses-distance-queries",
+    "title": "Distance Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1135",
+    "difficulty_rating": 1600,
+    "statement_md": "You are given a tree of $n$ nodes. Process $q$ queries asking for the distance (number of edges) between two nodes.",
+    "constraints_text": "$1 \\le n,q \\le 2 \\times 10^5$",
+    "sample_io": [
+      {
+        "input": "5 3\n1 2\n1 3\n3 4\n3 5\n2 5\n1 4\n4 5",
+        "output": "3\n2\n1"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-distance-queries-a1",
+        "problem_id": "cses-distance-queries",
+        "approach_name": "LCA + depths",
+        "paradigms": ["Graph Algorithms"],
+        "algorithms": ["LCA"],
+        "data_structures": ["2D Array", "Adjacency List"],
+        "key_insights": [
+          "$\\mathrm{dist}(a,b) = \\mathrm{depth}[a]+\\mathrm{depth}[b]-2\\cdot\\mathrm{depth}[\\mathrm{lca}(a,b)]$",
+          "Binary lifting answers LCA in $O(\\log N)$"
+        ],
+        "editorial_summary_md": "Root the tree, store depths, preprocess LCA with binary lifting, then answer each distance query with the depth formula."
+      }
+    ]
+  },
+  {
+    "id": "cses-range-sum-queries-i",
+    "title": "Range Sum Queries I",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1646",
+    "difficulty_rating": 900,
+    "statement_md": "Given an array of $n$ integers, process $q$ queries. Each query asks for the sum of values in range $[a,b]$ (1-indexed).",
+    "constraints_text": "$1 \\le n,q \\le 2 \\times 10^5$",
+    "sample_io": [
+      {
+        "input": "8 4\n3 2 4 5 1 1 5 3\n2 4\n5 6\n1 8\n3 3",
+        "output": "11\n2\n24\n4"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-range-sum-queries-i-a1",
+        "problem_id": "cses-range-sum-queries-i",
+        "approach_name": "Prefix sums",
+        "paradigms": ["Ad-Hoc"],
+        "algorithms": ["Prefix Sums"],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "Static range sum ⇒ prefix array",
+          "Answer is $\\textit{pref}[b]-\\textit{pref}[a-1]$"
+        ],
+        "editorial_summary_md": "Build prefix sums once in $O(n)$, then each query is $O(1)$. No Fenwick/segment tree needed because there are no updates."
+      }
+    ]
+  },
+  {
+    "id": "cses-range-update-queries",
+    "title": "Range Update Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1651",
+    "difficulty_rating": 1500,
+    "statement_md": "You have an array of $n$ integers and $q$ operations: either increase every value in range $[a,b]$ by $u$, or print the value at position $k$.",
+    "constraints_text": "$1 \\le n,q \\le 2 \\times 10^5$",
+    "sample_io": [
+      {
+        "input": "8 3\n3 2 4 5 1 1 5 3\n2 4\n1 2 5 1\n2 4",
+        "output": "5\n6"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-range-update-queries-a1",
+        "problem_id": "cses-range-update-queries",
+        "approach_name": "Fenwick / difference array",
+        "paradigms": ["Ad-Hoc"],
+        "algorithms": ["Prefix Sums"],
+        "data_structures": ["Fenwick Tree"],
+        "key_insights": [
+          "Range add + point query ⇒ Fenwick on a difference array",
+          "Add $+u$ at $a$, $-u$ at $b+1$; query is prefix sum to $k$"
+        ],
+        "editorial_summary_md": "Maintain a Fenwick tree of difference values. Range updates become two point updates; a point query is a prefix sum."
+      }
+    ]
+  },
+  {
+    "id": "cf-1201d",
+    "title": "Treasure Hunting",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1201/D",
+    "difficulty_rating": 2000,
+    "statement_md": "You are on an $n \\times m$ grid. Some cells contain treasures. You may only move right, left, or up, and you can only change rows using special safe columns. Collect all treasures with minimum moves (starting at $(1,1)$).",
+    "constraints_text": "$1 \\le n,m \\le 2 \\times 10^5$ (with sparse treasures)",
+    "sample_io": [
+      {
+        "input": "3 3 4 2\n1 1\n1 3\n3 1\n3 3\n2 3",
+        "output": "8"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1201d-a1",
+        "problem_id": "cf-1201d",
+        "approach_name": "Row DP with safe columns",
+        "paradigms": ["Dynamic Programming", "Greedy"],
+        "algorithms": ["Binary Search"],
+        "data_structures": ["1D Array", "Ordered Set"],
+        "key_insights": [
+          "Process treasure rows bottom-up / top-down keeping only leftmost and rightmost per row",
+          "Transitions jump via nearest safe columns when changing rows"
+        ],
+        "editorial_summary_md": "Compress to rows that contain treasures. DP states track ending at the leftmost or rightmost treasure of the current row; moving to the next treasure row uses the closest safe columns for vertical travel."
+      }
+    ]
+  },
+  {
+    "id": "atc-dp-frog2",
+    "title": "Frog 2",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/dp/tasks/dp_b",
+    "difficulty_rating": 1000,
+    "statement_md": "Same as Frog 1, but from stone $i$ the frog may jump to any of $i+1,\\dots,i+K$ (within bounds), paying $|h_i-h_j|$. Minimize cost to reach stone $N$.",
+    "constraints_text": "$2 \\le N \\le 10^5$, $1 \\le K \\le 100$",
+    "sample_io": [{ "input": "5 3\n10 30 40 50 20", "output": "30" }],
+    "target_complexity": "O(N · X)",
+    "approaches": [
+      {
+        "id": "atc-dp-frog2-a1",
+        "problem_id": "atc-dp-frog2",
+        "approach_name": "DP with K previous states",
+        "paradigms": ["Dynamic Programming"],
+        "algorithms": [],
+        "data_structures": ["1D Array"],
+        "key_insights": [
+          "$dp[i] = \\min_{1 \\le j \\le K} dp[i-j] + |h_i-h_{i-j}|$",
+          "Generalizes Frog 1 ($K=2$)"
+        ],
+        "editorial_summary_md": "For each stone, try all jumps of length $1..K$ from earlier stones. $O(NK)$ is fine under the constraints."
+      }
+    ]
+  }
+]
+
