@@ -51,7 +51,7 @@ export default function ReviewScreen() {
         : `${due} cards due — spaced reps until the pattern sticks.`;
 
   return (
-    <Screen scroll>
+    <Screen scroll profileCorner>
       <FadeInUp delayMs={40} waitForLaunch={false}>
         <View style={styles.hero}>
           <Text style={styles.kicker}>SPACED REPS</Text>

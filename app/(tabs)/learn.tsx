@@ -83,7 +83,7 @@ export default function LearnScreen() {
   ];
 
   return (
-    <Screen scroll>
+    <Screen scroll profileCorner>
       <FadeInUp delayMs={40} waitForLaunch={false}>
         <View style={styles.hero}>
           <Text style={styles.kicker}>ALGORITHM DOJO</Text>

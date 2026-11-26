@@ -121,28 +121,12 @@ export default function HomeScreen() {
   }
 
   return (
-    <Screen scroll refreshing={refreshing} onRefresh={onRefresh}>
+    <Screen scroll profileCorner refreshing={refreshing} onRefresh={onRefresh}>
       <OnboardingTips />
       <FadeInUp delayMs={40}>
         <View style={styles.hero}>
-          <View style={styles.heroTop}>
-            <View style={styles.heroBrand}>
-              <BrandWordmark size="hero" />
-              <Text style={styles.tagline}>Clear Warm-up → Target → Boss</Text>
-            </View>
-            <Pressable
-              onPress={() => router.push('/settings')}
-              hitSlop={8}
-              accessibilityRole="button"
-              accessibilityLabel="Open profile"
-            >
-              <PlayerAvatar
-                avatarId={profile?.avatar_id}
-                displayName={profile?.display_name}
-                size="md"
-              />
-            </Pressable>
-          </View>
+          <BrandWordmark size="hero" />
+          <Text style={styles.tagline}>Clear Warm-up → Target → Boss</Text>
         </View>
       </FadeInUp>
 
@@ -302,17 +286,8 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   hero: {
-    marginBottom: spacing.xs,
-  },
-  heroTop: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    gap: spacing.md,
-  },
-  heroBrand: {
-    flex: 1,
     gap: spacing.xs,
+    marginBottom: spacing.xs,
   },
   tagline: {
     color: colors.textMuted,
