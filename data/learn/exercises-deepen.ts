@@ -674,6 +674,14 @@ export const LESSON_EXERCISES_DEEPEN: Record<string, LearnExercise[]> = {
       answer: 1,
       explain_md: 'Classic linear recurrence companion matrix.',
     },
+    {
+      id: 'mat-size',
+      kind: 'mcq',
+      prompt: 'Raising a K×K matrix to power n costs roughly…',
+      choices: ['O(K log n)', 'O(K³ log n)', 'O(n)', 'O(Kⁿ)'],
+      answer: 1,
+      explain_md: 'Each mul is O(K³); binary expo does O(log n) muls.',
+    },
   ],
   'bfs-01': [
     {
@@ -714,6 +722,34 @@ export const LESSON_EXERCISES_DEEPEN: Record<string, LearnExercise[]> = {
       choices: ['2', '3', '6', '12'],
       answer: 2,
       explain_md: '30=2·12+6; 12=2·6+0 → **6**.',
+    },
+    {
+      id: 'nt-lcm',
+      kind: 'mcq',
+      prompt: 'lcm(a,b) equals…',
+      choices: ['gcd(a,b)', 'a·b / gcd(a,b)', 'a+b', 'a XOR b'],
+      answer: 1,
+      explain_md: 'Divide before multiply when worried about overflow.',
+    },
+    {
+      id: 'nt-euclid-trace',
+      kind: 'trace',
+      title: 'Euclid steps',
+      context_md: 'Compute gcd(48, 18).',
+      steps: [
+        {
+          prompt: 'First remainder 48 % 18?',
+          choices: ['0', '6', '12', '18'],
+          answer: 2,
+          explain_md: '48 = 2·18 + **12**.',
+        },
+        {
+          prompt: 'Next: gcd(18,12) → remainder?',
+          choices: ['0', '6', '8', '12'],
+          answer: 1,
+          explain_md: '18 = 1·12 + **6**; then gcd(12,6)=6.',
+        },
+      ],
     },
   ],
   'priority-queue': [
@@ -981,6 +1017,26 @@ export const LESSON_EXERCISES_DEEPEN: Record<string, LearnExercise[]> = {
       answer: 1,
       explain_md: 'Sign of the 2D cross = orientation / turn direction.',
     },
+    {
+      id: 'geo-orient-trace',
+      kind: 'trace',
+      title: 'Orientation',
+      context_md: 'A=(0,0), B=(2,0), C=(1,1). cross = (B−A)×(C−A).',
+      steps: [
+        {
+          prompt: 'Numeric cross value?',
+          choices: ['0', '1', '2', '−1'],
+          answer: 2,
+          explain_md: '2·1 − 0·1 = **2** > 0 → left turn.',
+        },
+        {
+          prompt: 'If C=(1,−1) instead, orientation is…',
+          choices: ['Left', 'Right', 'Collinear', 'Undefined'],
+          answer: 1,
+          explain_md: '2·(−1)−0·1 = −2 < 0 → **right**.',
+        },
+      ],
+    },
   ],
   interactive: [
     {
@@ -1016,6 +1072,19 @@ export const LESSON_EXERCISES_DEEPEN: Record<string, LearnExercise[]> = {
       answer: 0,
       explain_md: 'Keep the lower/upper hull convex — pop non-left turns.',
     },
+    {
+      id: 'ch-sort',
+      kind: 'mcq',
+      prompt: 'Before building chains you…',
+      choices: [
+        'Hash the points',
+        'Sort by (x, y) and drop duplicates',
+        'Run Dijkstra',
+        'Only shuffle',
+      ],
+      answer: 1,
+      explain_md: 'Monotone chain needs left→right order.',
+    },
   ],
   'sweep-line': [
     {
@@ -1030,6 +1099,34 @@ export const LESSON_EXERCISES_DEEPEN: Record<string, LearnExercise[]> = {
       ],
       answer: 1,
       explain_md: 'Vertical line moves left→right over sorted event x.',
+    },
+    {
+      id: 'sweep-active',
+      kind: 'mcq',
+      prompt: 'Between events the sweep maintains…',
+      choices: [
+        'Nothing',
+        'An active set (count / ordered structure)',
+        'Only a BFS queue',
+        'The full MST',
+      ],
+      answer: 1,
+      explain_md: 'Open segments / coverage change only at event x.',
+    },
+  ],
+  sieve: [
+    {
+      id: 'sieve-spf',
+      kind: 'mcq',
+      prompt: 'SPF sieve stores for each i…',
+      choices: [
+        'φ(i)',
+        'Smallest prime factor of i',
+        'Largest prime ≤ i',
+        'i²',
+      ],
+      answer: 1,
+      explain_md: 'Factorization walks i /= spf[i] until 1.',
     },
   ],
 };

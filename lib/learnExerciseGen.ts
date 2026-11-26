@@ -668,6 +668,7 @@ function genSieve(rng: Rng): LearnExercise[] {
     for (let j = i * i; j <= n; j += i) prime[j] = false;
   }
   const count = prime.reduce((a, p) => a + (p ? 1 : 0), 0);
+  const firstMark = 4; // always first composite from p=2
   return [
     mcqFrom(
       rng,
@@ -677,6 +678,93 @@ function genSieve(rng: Rng): LearnExercise[] {
       [String(count + 1), String(Math.max(0, count - 1)), String(count + 2)],
       `Sieve of Eratosthenes up to ${n} → **${count}**.`,
     ),
+    mcqFrom(
+      rng,
+      'sieve-mark',
+      'When p=2, first composite marked from p² is…',
+      String(firstMark),
+      ['2', '3', '6'],
+      'Start at p²=4, then 6, 8, …',
+    ),
+  ];
+}
+
+function gcd(a: number, b: number): number {
+  while (b) {
+    const t = a % b;
+    a = b;
+    b = t;
+  }
+  return Math.abs(a);
+}
+
+function genNumberTheory(rng: Rng): LearnExercise[] {
+  let a = randInt(rng, 20, 90);
+  let b = randInt(rng, 10, 60);
+  const g = gcd(a, b);
+  const r1 = a % b;
+  return [
+    {
+      id: 'nt-gen-euclid',
+      kind: 'trace',
+      title: 'Euclid',
+      context_md: `Compute \`gcd(${a}, ${b})\`.`,
+      steps: [
+        makeMcq(rng, {
+          prompt: `First remainder ${a} % ${b}?`,
+          correct: String(r1),
+          wrong: [String((r1 + 1) % b), String(b % Math.max(1, r1 || 1)), String(g)],
+          explain_md: `${a} = q·${b} + **${r1}**.`,
+        }),
+        makeMcq(rng, {
+          prompt: `Final gcd(${a}, ${b})?`,
+          correct: String(g),
+          wrong: [String(g + 1), String(Math.max(1, g - 1)), String(a)],
+          explain_md: `Euclid terminates at **${g}**.`,
+        }),
+      ],
+    },
+    mcqFrom(
+      rng,
+      'nt-gen-lcm',
+      `lcm(${a}, ${b}) = a·b/gcd = ?`,
+      String((a / g) * b),
+      [String(a * b), String(g), String(a + b)],
+      `lcm = ${a}·${b}/${g} = **${(a / g) * b}**.`,
+    ),
+  ];
+}
+
+function genGeometryBasics(rng: Rng): LearnExercise[] {
+  const ax = 0;
+  const ay = 0;
+  const bx = randInt(rng, 2, 5);
+  const by = 0;
+  const cx = randInt(rng, 1, 4);
+  const cy = randInt(rng, 1, 4) * (rng() < 0.5 ? 1 : -1);
+  const cross = bx * cy - by * cx;
+  const orient = cross > 0 ? 'left' : cross < 0 ? 'right' : 'collinear';
+  return [
+    {
+      id: 'geo-gen-orient',
+      kind: 'trace',
+      title: 'Orientation',
+      context_md: `A=(${ax},${ay}), B=(${bx},${by}), C=(${cx},${cy}).`,
+      steps: [
+        makeMcq(rng, {
+          prompt: 'cross (B−A)×(C−A)?',
+          correct: String(cross),
+          wrong: [String(-cross), String(cross + 1), '0'],
+          explain_md: `${bx}·${cy} − ${by}·${cx} = **${cross}**.`,
+        }),
+        makeMcq(rng, {
+          prompt: 'Turn at A toward C is…',
+          correct: orient,
+          wrong: ['left', 'right', 'collinear'].filter((x) => x !== orient).concat(['up']),
+          explain_md: `Sign of cross → **${orient}**.`,
+        }),
+      ],
+    },
   ];
 }
 
@@ -864,6 +952,8 @@ const GENERATORS: Record<string, Gen> = {
   'game-theory': genNim,
   'meet-in-middle': genMitm,
   'hash-map': genHashMap,
+  'math-number-theory': genNumberTheory,
+  'geometry-basics': genGeometryBasics,
 };
 
 /** True if this lesson can show a Check stage. */

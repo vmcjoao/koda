@@ -28,6 +28,8 @@ const GENERATIVE_DAILY = [
   'game-theory',
   'meet-in-middle',
   'hash-map',
+  'math-number-theory',
+  'geometry-basics',
 ] as const;
 
 /** XP granted the first time a calendar day is cleared. */
