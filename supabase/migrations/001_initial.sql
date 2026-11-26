@@ -134,3 +134,13 @@ drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
+
+-- Table privileges (RLS policies alone are not enough for anon/authenticated)
+grant usage on schema public to anon, authenticated;
+grant select on table public.tag_catalog to anon, authenticated;
+grant select on table public.problems to anon, authenticated;
+grant select on table public.solution_approaches to anon, authenticated;
+grant select, insert, update on table public.user_profiles to authenticated;
+grant select, insert, update, delete on table public.user_attempts to authenticated;
+grant select, insert, update on table public.user_problem_state to authenticated;
+grant usage, select on all sequences in schema public to authenticated;
