@@ -111,9 +111,9 @@ export default function RootLayout() {
                 <Stack.Screen name="(tabs)" options={{ headerShown: false, animation: 'fade' }} />
                 <Stack.Screen
                   name="(auth)/login"
-                  options={{ title: 'Sign in', presentation: 'modal' }}
+                  options={{ title: 'Account', presentation: 'modal' }}
                 />
-                <Stack.Screen name="settings" options={{ title: 'Settings' }} />
+                <Stack.Screen name="settings" options={{ title: 'Profile' }} />
                 <Stack.Screen name="catalog" options={{ title: 'Catalog' }} />
                 <Stack.Screen name="playlists/index" options={{ title: 'Playlists' }} />
                 <Stack.Screen name="playlists/[id]" options={{ title: 'Playlist' }} />
