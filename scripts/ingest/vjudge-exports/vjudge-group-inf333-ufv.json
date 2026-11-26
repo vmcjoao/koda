@@ -1,0 +1,530 @@
+{
+  "groupUrl": "https://vjudge.net/group/inf333-ccl",
+  "shortName": "inf333-ccl",
+  "groupId": 33085,
+  "title": "UFV-INF333-CCL",
+  "exportedAt": "2026-11-26T02:50:51.555Z",
+  "contests": [
+    {
+      "contestId": "807563",
+      "contestUrl": "https://vjudge.net/contest/807563",
+      "title": "Campeonato 2",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Aritmética de solteiro",
+          "oj": "UVA",
+          "probNum": "12114",
+          "originUrl": "https://vjudge.net/problem/UVA-12114",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Baralho",
+          "oj": "UVA",
+          "probNum": "651",
+          "originUrl": "https://vjudge.net/problem/UVA-651",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Ciclo (in)feliz",
+          "oj": "UVA",
+          "probNum": "10591",
+          "originUrl": "https://vjudge.net/problem/UVA-10591",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Dividindo a pizza",
+          "oj": "UVA",
+          "probNum": "10079",
+          "originUrl": "https://vjudge.net/problem/UVA-10079",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Euclidiana",
+          "oj": "UVA",
+          "probNum": "10964",
+          "originUrl": "https://vjudge.net/problem/UVA-10964",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Fatores dos Fatoriais",
+          "oj": "UVA",
+          "probNum": "160",
+          "originUrl": "https://vjudge.net/problem/UVA-160",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Gerações de Abel",
+          "oj": "UVA",
+          "probNum": "12459",
+          "originUrl": "https://vjudge.net/problem/UVA-12459",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Harmônica",
+          "oj": "UVA",
+          "probNum": "12068",
+          "originUrl": "https://vjudge.net/problem/UVA-12068",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "807221",
+      "contestUrl": "https://vjudge.net/contest/807221",
+      "title": "Lista 4",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Closest primes",
+          "oj": "UVA",
+          "probNum": "10140",
+          "originUrl": "https://vjudge.net/problem/UVA-10140",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Conjectura de Goldbach",
+          "oj": "UVA",
+          "probNum": "543",
+          "originUrl": "https://vjudge.net/problem/UVA-543",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Conta exata",
+          "oj": "UVA",
+          "probNum": "10139",
+          "originUrl": "https://vjudge.net/problem/UVA-10139",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Cartas",
+          "oj": "UVA",
+          "probNum": "10940",
+          "originUrl": "https://vjudge.net/problem/UVA-10940",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Conte as árvores",
+          "oj": "UVA",
+          "probNum": "10007",
+          "originUrl": "https://vjudge.net/problem/UVA-10007",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Coeficiente",
+          "oj": "UVA",
+          "probNum": "10105",
+          "originUrl": "https://vjudge.net/problem/UVA-10105",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Conte os cigarros",
+          "oj": "UVA",
+          "probNum": "10346",
+          "originUrl": "https://vjudge.net/problem/UVA-10346",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Conte os divisores",
+          "oj": "UVA",
+          "probNum": "294",
+          "originUrl": "https://vjudge.net/problem/UVA-294",
+          "descKey": null
+        },
+        {
+          "letter": "I",
+          "title": "Custo das caixas",
+          "oj": "UVA",
+          "probNum": "10090",
+          "originUrl": "https://vjudge.net/problem/UVA-10090",
+          "descKey": null
+        },
+        {
+          "letter": "J",
+          "title": "Chocolates",
+          "oj": "UVA",
+          "probNum": "10489",
+          "originUrl": "https://vjudge.net/problem/UVA-10489",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "807220",
+      "contestUrl": "https://vjudge.net/contest/807220",
+      "title": "Lista 3",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Ants",
+          "oj": "UVA",
+          "probNum": "10161",
+          "originUrl": "https://vjudge.net/problem/UVA-10161",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Bees",
+          "oj": "UVA",
+          "probNum": "10182",
+          "originUrl": "https://vjudge.net/problem/UVA-10182",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Cantor",
+          "oj": "UVA",
+          "probNum": "264",
+          "originUrl": "https://vjudge.net/problem/UVA-264",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Digits",
+          "oj": "UVA",
+          "probNum": "1225",
+          "originUrl": "https://vjudge.net/problem/UVA-1225",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Evaluate",
+          "oj": "UVA",
+          "probNum": "10188",
+          "originUrl": "https://vjudge.net/problem/UVA-10188",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Frequency",
+          "oj": "UVA",
+          "probNum": "499",
+          "originUrl": "https://vjudge.net/problem/UVA-499",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Polynomial",
+          "oj": "UVA",
+          "probNum": "498",
+          "originUrl": "https://vjudge.net/problem/UVA-498",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Quantos vai-um",
+          "oj": "UVA",
+          "probNum": "10035",
+          "originUrl": "https://vjudge.net/problem/UVA-10035",
+          "descKey": null
+        },
+        {
+          "letter": "I",
+          "title": "Reverse",
+          "oj": "UVA",
+          "probNum": "10018",
+          "originUrl": "https://vjudge.net/problem/UVA-10018",
+          "descKey": null
+        },
+        {
+          "letter": "J",
+          "title": "Simplify",
+          "oj": "UVA",
+          "probNum": "10814",
+          "originUrl": "https://vjudge.net/problem/UVA-10814",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "807219",
+      "contestUrl": "https://vjudge.net/contest/807219",
+      "title": "Campeonato 1",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Bom apetite",
+          "oj": "CodeForces",
+          "probNum": "1427A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1427A",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "A população de capivaras",
+          "oj": "CodeForces",
+          "probNum": "847M",
+          "originUrl": "https://vjudge.net/problem/CodeForces-847M",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Chaves",
+          "oj": "SPOJ",
+          "probNum": "ANARC09A",
+          "originUrl": "https://vjudge.net/problem/SPOJ-ANARC09A",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Desfile do CA",
+          "oj": "SPOJ",
+          "probNum": "STPAR",
+          "originUrl": "https://vjudge.net/problem/SPOJ-STPAR",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Eu odeio o teclado do PVB",
+          "oj": "UVA",
+          "probNum": "11988",
+          "originUrl": "https://vjudge.net/problem/UVA-11988",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Fila do RU",
+          "oj": "CodeForces",
+          "probNum": "1265B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1265B",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "804379",
+      "contestUrl": "https://vjudge.net/contest/804379",
+      "title": "Lista 2",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Running Median",
+          "oj": "HDU",
+          "probNum": "3282",
+          "originUrl": "https://vjudge.net/problem/HDU-3282",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Tanning Salon",
+          "oj": "POJ",
+          "probNum": "1250",
+          "originUrl": "https://vjudge.net/problem/POJ-1250",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Transform the Expression",
+          "oj": "SPOJ",
+          "probNum": "ONP",
+          "originUrl": "https://vjudge.net/problem/SPOJ-ONP",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Just Next !!!",
+          "oj": "SPOJ",
+          "probNum": "JNEXT",
+          "originUrl": "https://vjudge.net/problem/SPOJ-JNEXT",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Digital Logarithm",
+          "oj": "CodeForces",
+          "probNum": "1728C",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1728C",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Vito's Family",
+          "oj": "UVA",
+          "probNum": "10041",
+          "originUrl": "https://vjudge.net/problem/UVA-10041",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Football (aka Soccer)",
+          "oj": "UVA",
+          "probNum": "10194",
+          "originUrl": "https://vjudge.net/problem/UVA-10194",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Longest Nap",
+          "oj": "UVA",
+          "probNum": "10191",
+          "originUrl": "https://vjudge.net/problem/UVA-10191",
+          "descKey": null
+        },
+        {
+          "letter": "I",
+          "title": "Shoemaker's Problem",
+          "oj": "UVA",
+          "probNum": "10026",
+          "originUrl": "https://vjudge.net/problem/UVA-10026",
+          "descKey": null
+        },
+        {
+          "letter": "J",
+          "title": "Train Swapping",
+          "oj": "UVA",
+          "probNum": "299",
+          "originUrl": "https://vjudge.net/problem/UVA-299",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "804378",
+      "contestUrl": "https://vjudge.net/contest/804378",
+      "title": "Lista 1",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Snakes and Ladders",
+          "oj": "UVA",
+          "probNum": "11459",
+          "originUrl": "https://vjudge.net/problem/UVA-11459",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Antipalindrome",
+          "oj": "CodeForces",
+          "probNum": "981A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-981A",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "The Trip",
+          "oj": "UVA",
+          "probNum": "10137",
+          "originUrl": "https://vjudge.net/problem/UVA-10137",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Event Planning",
+          "oj": "UVA",
+          "probNum": "11559",
+          "originUrl": "https://vjudge.net/problem/UVA-11559",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Line to Cashier",
+          "oj": "CodeForces",
+          "probNum": "408A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-408A",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Straight <<A>>",
+          "oj": "CodeForces",
+          "probNum": "810A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-810A",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Jolly Jumpers",
+          "oj": "UVA",
+          "probNum": "10038",
+          "originUrl": "https://vjudge.net/problem/UVA-10038",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Musical Loop",
+          "oj": "UVA",
+          "probNum": "11496",
+          "originUrl": "https://vjudge.net/problem/UVA-11496",
+          "descKey": null
+        },
+        {
+          "letter": "I",
+          "title": "Parentheses Balance",
+          "oj": "UVA",
+          "probNum": "673",
+          "originUrl": "https://vjudge.net/problem/UVA-673",
+          "descKey": null
+        },
+        {
+          "letter": "J",
+          "title": "Rails",
+          "oj": "UVA",
+          "probNum": "514",
+          "originUrl": "https://vjudge.net/problem/UVA-514",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "796343",
+      "contestUrl": "https://vjudge.net/contest/796343",
+      "title": "Campeonato 0",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Algoritmo de IC",
+          "oj": "UVA",
+          "probNum": "13012",
+          "originUrl": "https://vjudge.net/problem/UVA-13012",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Bus Capivarão",
+          "oj": "Kattis",
+          "probNum": "busassignment",
+          "originUrl": "https://vjudge.net/problem/Kattis-busassignment",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Cartas Coloridas",
+          "oj": "POJ",
+          "probNum": "1576",
+          "originUrl": "https://vjudge.net/problem/POJ-1576",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Deixando strings iguais",
+          "oj": "HackerRank",
+          "probNum": "two-strings",
+          "originUrl": "https://vjudge.net/problem/HackerRank-two-strings",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Eleição",
+          "oj": "EOlymp",
+          "probNum": "1812",
+          "originUrl": "https://vjudge.net/problem/EOlymp-1812",
+          "descKey": null
+        }
+      ]
+    }
+  ]
+}

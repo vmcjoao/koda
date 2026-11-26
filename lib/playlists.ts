@@ -77,6 +77,45 @@ export async function createPlaylist(input: {
   return playlist;
 }
 
+/** Create or replace a playlist with a stable id (used by template imports). */
+export async function upsertPlaylist(input: {
+  id: string;
+  name: string;
+  description?: string;
+  problemIds: string[];
+}): Promise<Playlist> {
+  const name = input.name.trim();
+  if (!name) throw new Error('Playlist name is required');
+  const id = input.id.trim();
+  if (!id) throw new Error('Playlist id is required');
+  const list = await readAll();
+  const idx = list.findIndex((p) => p.id === id);
+  const now = new Date().toISOString();
+  const problemIds = [...new Set(input.problemIds)];
+  if (idx >= 0) {
+    const next = touch({
+      ...list[idx],
+      name,
+      description: (input.description ?? list[idx].description).trim(),
+      problemIds,
+    });
+    list[idx] = next;
+    await writeAll(list);
+    return next;
+  }
+  const playlist: Playlist = {
+    id,
+    name,
+    description: (input.description ?? '').trim(),
+    problemIds,
+    createdAt: now,
+    updatedAt: now,
+  };
+  list.unshift(playlist);
+  await writeAll(list);
+  return playlist;
+}
+
 /** Build a playlist containing every local problem from a given source label. */
 export async function createPlaylistFromSource(
   source: string,

@@ -1,0 +1,277 @@
+{
+  "groupUrl": "https://vjudge.net/group/inf330-2026-2",
+  "shortName": "inf330-2026-2",
+  "groupId": 36163,
+  "title": "INF330-2026-2",
+  "exportedAt": "2026-11-26T02:53:02.525Z",
+  "contests": [
+    {
+      "contestId": "867476",
+      "contestUrl": "https://vjudge.net/contest/867476",
+      "title": "Trabalho 5 - Fluxo",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Dança da Computação",
+          "oj": "CSES",
+          "originUrl": null,
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Quedas de energia em Viçosa",
+          "oj": "UVA",
+          "probNum": "10330",
+          "originUrl": "https://vjudge.net/problem/UVA-10330",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "867475",
+      "contestUrl": "https://vjudge.net/contest/867475",
+      "title": "Trabalho 4 - Caminho Mínimo",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Congresso da SBC",
+          "oj": "CSES",
+          "originUrl": null,
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Turismo em Viçosa",
+          "oj": "UVA",
+          "probNum": "10099",
+          "originUrl": "https://vjudge.net/problem/UVA-10099",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Indiana Jones",
+          "oj": "SPOJ",
+          "originUrl": null,
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "861614",
+      "contestUrl": "https://vjudge.net/contest/861614",
+      "title": "Trabalho 3 - Árvores",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "UFV",
+          "oj": "UVA",
+          "probNum": "10034",
+          "originUrl": "https://vjudge.net/problem/UVA-10034",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Anti Brute Force Lock",
+          "oj": "UVA",
+          "probNum": "1235",
+          "originUrl": "https://vjudge.net/problem/UVA-1235",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Competição na SI",
+          "oj": "USACO",
+          "probNum": "531",
+          "originUrl": "https://vjudge.net/problem/USACO-531",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "862912",
+      "contestUrl": "https://vjudge.net/contest/862912",
+      "title": "Aula do dia 31/10 (não é trabalho)",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "A",
+          "oj": "UVA",
+          "probNum": "12363",
+          "originUrl": "https://vjudge.net/problem/UVA-12363",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "B",
+          "oj": "UVA",
+          "probNum": "10842",
+          "originUrl": "https://vjudge.net/problem/UVA-10842",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "C",
+          "oj": "UVA",
+          "probNum": "200",
+          "originUrl": "https://vjudge.net/problem/UVA-200",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "D",
+          "oj": "CSES",
+          "probNum": "1194",
+          "originUrl": "https://vjudge.net/problem/CSES-1194",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "E",
+          "oj": "CSES",
+          "probNum": "1681",
+          "originUrl": "https://vjudge.net/problem/CSES-1681",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "861612",
+      "contestUrl": "https://vjudge.net/contest/861612",
+      "title": "Trabalho 2 - DFS/BFS continuação",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Jacares",
+          "oj": "CSES",
+          "probNum": "1194",
+          "originUrl": "https://vjudge.net/problem/CSES-1194",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Jogo da CCP",
+          "oj": "CSES",
+          "probNum": "1681",
+          "originUrl": "https://vjudge.net/problem/CSES-1681",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Doce para a SI",
+          "oj": "USACO",
+          "probNum": "620",
+          "originUrl": "https://vjudge.net/problem/USACO-620",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Em busca do doce de leite",
+          "oj": "CSES",
+          "probNum": "1193",
+          "originUrl": "https://vjudge.net/problem/CSES-1193",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "861613",
+      "contestUrl": "https://vjudge.net/contest/861613",
+      "title": "Exemplos aula 16 - MST - não é trabalho",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Highways",
+          "oj": "POJ",
+          "originUrl": null,
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "ACM Contest and Blackout",
+          "oj": "UVA",
+          "probNum": "10600",
+          "originUrl": "https://vjudge.net/problem/UVA-10600",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "856956",
+      "contestUrl": "https://vjudge.net/contest/856956",
+      "title": "Trabalho 1 - DFS/BFS, Problemas iniciais",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Estruturas de dados",
+          "oj": "UVA",
+          "probNum": "11550",
+          "originUrl": "https://vjudge.net/problem/UVA-11550",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Trilhas de capivara",
+          "oj": "CSES",
+          "probNum": "1666",
+          "originUrl": "https://vjudge.net/problem/CSES-1666",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Trem de Minas",
+          "oj": "CodeForces",
+          "probNum": "27D",
+          "originUrl": "https://vjudge.net/problem/CodeForces-27D",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Rank the Languages",
+          "oj": "UVA",
+          "probNum": "10336",
+          "originUrl": "https://vjudge.net/problem/UVA-10336",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "856955",
+      "contestUrl": "https://vjudge.net/contest/856955",
+      "title": "Problemas da aula do dia 09/10 (não é trabalho)",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Maze Exploration",
+          "oj": "UVA",
+          "probNum": "784",
+          "originUrl": "https://vjudge.net/problem/UVA-784",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Série de Tubos",
+          "oj": "SPOJ",
+          "probNum": "TUBOS",
+          "originUrl": "https://vjudge.net/problem/SPOJ-TUBOS",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Ordering Tasks",
+          "oj": "UVA",
+          "probNum": "10305",
+          "originUrl": "https://vjudge.net/problem/UVA-10305",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Word Transformation",
+          "oj": "UVA",
+          "probNum": "429",
+          "originUrl": "https://vjudge.net/problem/UVA-429",
+          "descKey": null
+        }
+      ]
+    }
+  ]
+}

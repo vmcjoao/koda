@@ -1,0 +1,826 @@
+{
+  "groupUrl": "https://vjudge.net/group/maratona",
+  "shortName": "maratona",
+  "groupId": 29932,
+  "title": "Treino-UFV",
+  "exportedAt": "2026-11-26T02:50:02.095Z",
+  "contests": [
+    {
+      "contestId": "834821",
+      "contestUrl": "https://vjudge.net/contest/834821",
+      "title": "8-II - Sets &#38; Maps",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Soma",
+          "oj": "CSES",
+          "probNum": "1640",
+          "originUrl": "https://vjudge.net/problem/CSES-1640",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Onde",
+          "oj": "USACO",
+          "probNum": "964",
+          "originUrl": "https://vjudge.net/problem/USACO-964",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Velha",
+          "oj": "USACO",
+          "probNum": "831",
+          "originUrl": "https://vjudge.net/problem/USACO-831",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Ano",
+          "oj": "USACO",
+          "probNum": "1107",
+          "originUrl": "https://vjudge.net/problem/USACO-1107",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Último",
+          "oj": "USACO",
+          "probNum": "687",
+          "originUrl": "https://vjudge.net/problem/USACO-687",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Mês",
+          "oj": "USACO",
+          "probNum": "1468",
+          "originUrl": "https://vjudge.net/problem/USACO-1468",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "834820",
+      "contestUrl": "https://vjudge.net/contest/834820",
+      "title": "7-II - Greedy",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Cientista louco",
+          "oj": "USACO",
+          "probNum": "1012",
+          "originUrl": "https://vjudge.net/problem/USACO-1012",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Mooloo",
+          "oj": "USACO",
+          "probNum": "1301",
+          "originUrl": "https://vjudge.net/problem/USACO-1301",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Tombada",
+          "oj": "USACO",
+          "probNum": "689",
+          "originUrl": "https://vjudge.net/problem/USACO-689",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Foto",
+          "oj": "USACO",
+          "probNum": "1084",
+          "originUrl": "https://vjudge.net/problem/USACO-1084",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Fora do lugar",
+          "oj": "USACO",
+          "probNum": "785",
+          "originUrl": "https://vjudge.net/problem/USACO-785",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Ordenha",
+          "oj": "USACO",
+          "probNum": "832",
+          "originUrl": "https://vjudge.net/problem/USACO-832",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Foto de novo",
+          "oj": "USACO",
+          "probNum": "1227",
+          "originUrl": "https://vjudge.net/problem/USACO-1227",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "834819",
+      "contestUrl": "https://vjudge.net/contest/834819",
+      "title": "6-II - Complete Search III",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Apple Division",
+          "oj": "CSES",
+          "probNum": "1623",
+          "originUrl": "https://vjudge.net/problem/CSES-1623",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Creating Strings",
+          "oj": "CSES",
+          "probNum": "1622",
+          "originUrl": "https://vjudge.net/problem/CSES-1622",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Air Cownditioning II",
+          "oj": "USACO",
+          "probNum": "1276",
+          "originUrl": "https://vjudge.net/problem/USACO-1276",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Livestock Lineup",
+          "oj": "USACO",
+          "probNum": "965",
+          "originUrl": "https://vjudge.net/problem/USACO-965",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Back and Forth",
+          "oj": "USACO",
+          "probNum": "857",
+          "originUrl": "https://vjudge.net/problem/USACO-857",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "830738",
+      "contestUrl": "https://vjudge.net/contest/830738",
+      "title": "5-II - Sorting",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Distintos",
+          "oj": "CSES",
+          "probNum": "1621",
+          "originUrl": "https://vjudge.net/problem/CSES-1621",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Kayak",
+          "oj": "CodeForces",
+          "probNum": "863B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-863B",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Mensalidade",
+          "oj": "USACO",
+          "probNum": "1251",
+          "originUrl": "https://vjudge.net/problem/USACO-1251",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "AngryCows",
+          "oj": "USACO",
+          "probNum": "592",
+          "originUrl": "https://vjudge.net/problem/USACO-592",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "830737",
+      "contestUrl": "https://vjudge.net/contest/830737",
+      "title": "4-II - Complete Search II",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Load Balancing",
+          "oj": "USACO",
+          "probNum": "617",
+          "originUrl": "https://vjudge.net/problem/USACO-617",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Bovine Genomics",
+          "oj": "USACO",
+          "probNum": "739",
+          "originUrl": "https://vjudge.net/problem/USACO-739",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Cow Checkups",
+          "oj": "USACO",
+          "probNum": "1469",
+          "originUrl": "https://vjudge.net/problem/USACO-1469",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Cowntact Tracing",
+          "oj": "USACO",
+          "probNum": "1037",
+          "originUrl": "https://vjudge.net/problem/USACO-1037",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Contaminated Milk",
+          "oj": "USACO",
+          "probNum": "569",
+          "originUrl": "https://vjudge.net/problem/USACO-569",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "830734",
+      "contestUrl": "https://vjudge.net/contest/830734",
+      "title": "3-II - Complete Search",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Maximum Distance",
+          "oj": "Gym",
+          "probNum": "102951A",
+          "originUrl": "https://vjudge.net/problem/Gym-102951A",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Milk Pails",
+          "oj": "USACO",
+          "probNum": "615",
+          "originUrl": "https://vjudge.net/problem/USACO-615",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Diamond Collector",
+          "oj": "USACO",
+          "probNum": "639",
+          "originUrl": "https://vjudge.net/problem/USACO-639",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Daisy Chains",
+          "oj": "USACO",
+          "probNum": "1060",
+          "originUrl": "https://vjudge.net/problem/USACO-1060",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Counting Liars",
+          "oj": "USACO",
+          "probNum": "1228",
+          "originUrl": "https://vjudge.net/problem/USACO-1228",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Cow Gymnastics",
+          "oj": "USACO",
+          "probNum": "963",
+          "originUrl": "https://vjudge.net/problem/USACO-963",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Bovine Genomics",
+          "oj": "USACO",
+          "probNum": "736",
+          "originUrl": "https://vjudge.net/problem/USACO-736",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Triangles",
+          "oj": "USACO",
+          "probNum": "1011",
+          "originUrl": "https://vjudge.net/problem/USACO-1011",
+          "descKey": null
+        },
+        {
+          "letter": "I",
+          "title": "Lifeguards",
+          "oj": "USACO",
+          "probNum": "784",
+          "originUrl": "https://vjudge.net/problem/USACO-784",
+          "descKey": null
+        },
+        {
+          "letter": "J",
+          "title": "Why Did the Cow Cross the Road II",
+          "oj": "USACO",
+          "probNum": "712",
+          "originUrl": "https://vjudge.net/problem/USACO-712",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "830732",
+      "contestUrl": "https://vjudge.net/contest/830732",
+      "title": "2-II - Simulação",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Measuring Traffic",
+          "oj": "USACO",
+          "probNum": "917",
+          "originUrl": "https://vjudge.net/problem/USACO-917",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Block Game",
+          "oj": "USACO",
+          "probNum": "664",
+          "originUrl": "https://vjudge.net/problem/USACO-664",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Team Tic Tac Toe",
+          "oj": "USACO",
+          "probNum": "831",
+          "originUrl": "https://vjudge.net/problem/USACO-831",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Reflection",
+          "oj": "USACO",
+          "probNum": "1491",
+          "originUrl": "https://vjudge.net/problem/USACO-1491",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Censoring (Bronze)",
+          "oj": "USACO",
+          "probNum": "526",
+          "originUrl": "https://vjudge.net/problem/USACO-526",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Stuck in a Rut",
+          "oj": "USACO",
+          "probNum": "1061",
+          "originUrl": "https://vjudge.net/problem/USACO-1061",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "830730",
+      "contestUrl": "https://vjudge.net/contest/830730",
+      "title": "1-II - Simulação",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Basketball One-on-One",
+          "oj": "Kattis",
+          "probNum": "basketballoneonone",
+          "originUrl": "https://vjudge.net/problem/Kattis-basketballoneonone",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Milk Measurement",
+          "oj": "USACO",
+          "probNum": "761",
+          "originUrl": "https://vjudge.net/problem/USACO-761",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "The Lost Cow",
+          "oj": "USACO",
+          "probNum": "735",
+          "originUrl": "https://vjudge.net/problem/USACO-735",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Why Did the Cow Cross the Road III",
+          "oj": "USACO",
+          "probNum": "713",
+          "originUrl": "https://vjudge.net/problem/USACO-713",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Mowing the Field",
+          "oj": "USACO",
+          "probNum": "593",
+          "originUrl": "https://vjudge.net/problem/USACO-593",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "The Bovine Shuffle",
+          "oj": "USACO",
+          "probNum": "760",
+          "originUrl": "https://vjudge.net/problem/USACO-760",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Circular Barn",
+          "oj": "USACO",
+          "probNum": "616",
+          "originUrl": "https://vjudge.net/problem/USACO-616",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Shell Game",
+          "oj": "USACO",
+          "probNum": "891",
+          "originUrl": "https://vjudge.net/problem/USACO-891",
+          "descKey": null
+        },
+        {
+          "letter": "I",
+          "title": "The Cow-Signal",
+          "oj": "USACO",
+          "probNum": "665",
+          "originUrl": "https://vjudge.net/problem/USACO-665",
+          "descKey": null
+        },
+        {
+          "letter": "J",
+          "title": "Speeding Ticket",
+          "oj": "USACO",
+          "probNum": "568",
+          "originUrl": "https://vjudge.net/problem/USACO-568",
+          "descKey": null
+        },
+        {
+          "letter": "K",
+          "title": "The Bucket List",
+          "oj": "USACO",
+          "probNum": "856",
+          "originUrl": "https://vjudge.net/problem/USACO-856",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "788136",
+      "contestUrl": "https://vjudge.net/contest/788136",
+      "title": "9 - Ad hoc",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Promoção",
+          "oj": "USACO",
+          "probNum": "591",
+          "originUrl": "https://vjudge.net/problem/USACO-591",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Ordem adormecida",
+          "oj": "USACO",
+          "probNum": "892",
+          "originUrl": "https://vjudge.net/problem/USACO-892",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Surto",
+          "oj": "USACO",
+          "probNum": "809",
+          "originUrl": "https://vjudge.net/problem/USACO-809",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Quadro",
+          "oj": "USACO",
+          "probNum": "737",
+          "originUrl": "https://vjudge.net/problem/USACO-737",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "779894",
+      "contestUrl": "https://vjudge.net/contest/779894",
+      "title": "8 - Sets &#38; Maps",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Soma",
+          "oj": "CSES",
+          "probNum": "1640",
+          "originUrl": "https://vjudge.net/problem/CSES-1640",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Onde",
+          "oj": "USACO",
+          "probNum": "964",
+          "originUrl": "https://vjudge.net/problem/USACO-964",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Velha",
+          "oj": "USACO",
+          "probNum": "831",
+          "originUrl": "https://vjudge.net/problem/USACO-831",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Ano",
+          "oj": "USACO",
+          "probNum": "1107",
+          "originUrl": "https://vjudge.net/problem/USACO-1107",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Último",
+          "oj": "USACO",
+          "probNum": "687",
+          "originUrl": "https://vjudge.net/problem/USACO-687",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Mês",
+          "oj": "USACO",
+          "probNum": "1468",
+          "originUrl": "https://vjudge.net/problem/USACO-1468",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "769903",
+      "contestUrl": "https://vjudge.net/contest/769903",
+      "title": "7 - Greedy",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Cientista louco",
+          "oj": "USACO",
+          "probNum": "1012",
+          "originUrl": "https://vjudge.net/problem/USACO-1012",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Mooloo",
+          "oj": "USACO",
+          "probNum": "1301",
+          "originUrl": "https://vjudge.net/problem/USACO-1301",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Tombada",
+          "oj": "USACO",
+          "probNum": "689",
+          "originUrl": "https://vjudge.net/problem/USACO-689",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Foto",
+          "oj": "USACO",
+          "probNum": "1084",
+          "originUrl": "https://vjudge.net/problem/USACO-1084",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Fora do lugar",
+          "oj": "USACO",
+          "probNum": "785",
+          "originUrl": "https://vjudge.net/problem/USACO-785",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Ordenha",
+          "oj": "USACO",
+          "probNum": "832",
+          "originUrl": "https://vjudge.net/problem/USACO-832",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Foto de novo",
+          "oj": "USACO",
+          "probNum": "1227",
+          "originUrl": "https://vjudge.net/problem/USACO-1227",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "767592",
+      "contestUrl": "https://vjudge.net/contest/767592",
+      "title": "6 - Complete Search III",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Apple Division",
+          "oj": "CSES",
+          "probNum": "1623",
+          "originUrl": "https://vjudge.net/problem/CSES-1623",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Creating Strings",
+          "oj": "CSES",
+          "probNum": "1622",
+          "originUrl": "https://vjudge.net/problem/CSES-1622",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Air Cownditioning II",
+          "oj": "USACO",
+          "probNum": "1276",
+          "originUrl": "https://vjudge.net/problem/USACO-1276",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Livestock Lineup",
+          "oj": "USACO",
+          "probNum": "965",
+          "originUrl": "https://vjudge.net/problem/USACO-965",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Back and Forth",
+          "oj": "USACO",
+          "probNum": "857",
+          "originUrl": "https://vjudge.net/problem/USACO-857",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "765580",
+      "contestUrl": "https://vjudge.net/contest/765580",
+      "title": "5 - Sorting",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Distintos",
+          "oj": "CSES",
+          "probNum": "1621",
+          "originUrl": "https://vjudge.net/problem/CSES-1621",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Kayak",
+          "oj": "CodeForces",
+          "probNum": "863B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-863B",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Mensalidade",
+          "oj": "USACO",
+          "probNum": "1251",
+          "originUrl": "https://vjudge.net/problem/USACO-1251",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "AngryCows",
+          "oj": "USACO",
+          "probNum": "592",
+          "originUrl": "https://vjudge.net/problem/USACO-592",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "763553",
+      "contestUrl": "https://vjudge.net/contest/763553",
+      "title": "Prática 1",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Misturar",
+          "oj": "USACO",
+          "probNum": "855",
+          "originUrl": "https://vjudge.net/problem/USACO-855",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Dormir",
+          "oj": "USACO",
+          "probNum": "1203",
+          "originUrl": "https://vjudge.net/problem/USACO-1203",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Adivinhar",
+          "oj": "USACO",
+          "probNum": "893",
+          "originUrl": "https://vjudge.net/problem/USACO-893",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Localizar",
+          "oj": "USACO",
+          "probNum": "964",
+          "originUrl": "https://vjudge.net/problem/USACO-964",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "762114",
+      "contestUrl": "https://vjudge.net/contest/762114",
+      "title": "4 - Complete Search II",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Load Balancing",
+          "oj": "USACO",
+          "probNum": "617",
+          "originUrl": "https://vjudge.net/problem/USACO-617",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Bovine Genomics",
+          "oj": "USACO",
+          "probNum": "739",
+          "originUrl": "https://vjudge.net/problem/USACO-739",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Cow Checkups",
+          "oj": "USACO",
+          "probNum": "1469",
+          "originUrl": "https://vjudge.net/problem/USACO-1469",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Cowntact Tracing",
+          "oj": "USACO",
+          "probNum": "1037",
+          "originUrl": "https://vjudge.net/problem/USACO-1037",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Contaminated Milk",
+          "oj": "USACO",
+          "probNum": "569",
+          "originUrl": "https://vjudge.net/problem/USACO-569",
+          "descKey": null
+        }
+      ]
+    }
+  ]
+}

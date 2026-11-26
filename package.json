@@ -56,7 +56,10 @@
     "generate:seed": "tsx scripts/generate-seed.ts",
     "ingest:validate": "tsx scripts/ingest/validate-draft.ts",
     "ingest:validate-batch": "tsx scripts/ingest/validate-batch.ts",
-    "ingest:import": "tsx scripts/ingest/import-draft.ts"
+    "ingest:import": "tsx scripts/ingest/import-draft.ts",
+    "ingest:vjudge-index": "tsx scripts/ingest/vjudge-index.ts",
+    "ingest:vjudge-statements": "tsx scripts/ingest/vjudge-fetch-statements.ts",
+    "ingest:vjudge-import-statements": "tsx scripts/ingest/vjudge-statements-to-extras.ts"
   },
   "private": true
 }

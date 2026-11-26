@@ -1,0 +1,426 @@
+{
+  "groupUrl": "https://vjudge.net/group/maratona-ufv",
+  "shortName": "maratona-ufv",
+  "groupId": 16355,
+  "title": "UFV-Maratona",
+  "exportedAt": "2026-11-26T02:51:29.953Z",
+  "contests": [
+    {
+      "contestId": "807833",
+      "contestUrl": "https://vjudge.net/contest/807833",
+      "title": "Seletiva Maratona Mineira 2026",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Caixas da maratona",
+          "oj": "UVA",
+          "probNum": "102",
+          "originUrl": "https://vjudge.net/problem/UVA-102",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Comprando com dígitos",
+          "oj": "CSES",
+          "probNum": "1637",
+          "originUrl": "https://vjudge.net/problem/CSES-1637",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Correndo pra casa",
+          "oj": "LightOJ",
+          "probNum": "1238",
+          "originUrl": "https://vjudge.net/problem/LightOJ-1238",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Combinação de dados",
+          "oj": "CSES",
+          "probNum": "1633",
+          "originUrl": "https://vjudge.net/problem/CSES-1633",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Cidades e mais cidades",
+          "oj": "CSES",
+          "probNum": "1680",
+          "originUrl": "https://vjudge.net/problem/CSES-1680",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Contramão",
+          "oj": "LightOJ",
+          "probNum": "1049",
+          "originUrl": "https://vjudge.net/problem/LightOJ-1049",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Cuidado com os Jacarés de OrMUz",
+          "oj": "CSES",
+          "probNum": "1090",
+          "originUrl": "https://vjudge.net/problem/CSES-1090",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Conquistando OrMUz",
+          "oj": "UVA",
+          "probNum": "11951",
+          "originUrl": "https://vjudge.net/problem/UVA-11951",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "712141",
+      "contestUrl": "https://vjudge.net/contest/712141",
+      "title": "Seletiva Maratona Mineira 2025",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Andando na reta",
+          "oj": "Gym",
+          "probNum": "104344C",
+          "originUrl": "https://vjudge.net/problem/Gym-104344C",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Banindo elementos",
+          "oj": "CodeForces",
+          "probNum": "1399A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1399A",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Clock *ptr[2];",
+          "oj": "UVA",
+          "probNum": "579",
+          "originUrl": "https://vjudge.net/problem/UVA-579",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Distribuindo ovos",
+          "oj": "Gym",
+          "probNum": "104344A",
+          "originUrl": "https://vjudge.net/problem/Gym-104344A",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Excelente gerador",
+          "oj": "CodeForces",
+          "probNum": "2093A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-2093A",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Fileira de doces",
+          "oj": "CodeForces",
+          "probNum": "2092B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-2092B",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Ganhando na Amarelinha",
+          "oj": "CodeForces",
+          "probNum": "1948C",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1948C",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Molas Mágicas",
+          "oj": "CodeForces",
+          "probNum": "1842C",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1842C",
+          "descKey": null
+        },
+        {
+          "letter": "I",
+          "title": "Interconectando PCs",
+          "oj": "UVA",
+          "probNum": "216",
+          "originUrl": "https://vjudge.net/problem/UVA-216",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "709997",
+      "contestUrl": "https://vjudge.net/contest/709997",
+      "title": "Teste de login",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Codeforces",
+          "oj": "CodeForces",
+          "probNum": "4A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-4A",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Gym",
+          "oj": "Gym",
+          "probNum": "104339B",
+          "originUrl": "https://vjudge.net/problem/Gym-104339B",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "624693",
+      "contestUrl": "https://vjudge.net/contest/624693",
+      "title": "Seletiva Maratona Mineira 2024",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Aquela visita indesejável",
+          "oj": "CodeForces",
+          "probNum": "617A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-617A",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Brincando de colorir",
+          "oj": "CodeForces",
+          "probNum": "149D",
+          "originUrl": "https://vjudge.net/problem/CodeForces-149D",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Caiu o servidor",
+          "oj": "CodeForces",
+          "probNum": "1020B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1020B",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "DNA alienígena",
+          "oj": "CodeForces",
+          "probNum": "1536B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1536B",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Engenharia Chiqueirial",
+          "oj": "CodeForces",
+          "probNum": "402A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-402A",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Fila de capivaras no PVB",
+          "oj": "CodeForces",
+          "probNum": "1681C",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1681C",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Gulosa essa capivara",
+          "oj": "POJ",
+          "probNum": "1556",
+          "originUrl": "https://vjudge.net/problem/POJ-1556",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "624069",
+      "contestUrl": "https://vjudge.net/contest/624069",
+      "title": "Aquecimento - Seletiva Maratona Mineira 2024",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Melancia",
+          "oj": "CodeForces",
+          "probNum": "4A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-4A",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Ladrilhos",
+          "oj": "CodeForces",
+          "probNum": "1A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1A",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Classificados",
+          "oj": "CodeForces",
+          "probNum": "158A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-158A",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Jogo",
+          "oj": "CodeForces",
+          "probNum": "510B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-510B",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Livros",
+          "oj": "CodeForces",
+          "probNum": "279B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-279B",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Flores",
+          "oj": "CodeForces",
+          "probNum": "474D",
+          "originUrl": "https://vjudge.net/problem/CodeForces-474D",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "554334",
+      "contestUrl": "https://vjudge.net/contest/554334",
+      "title": "Seletiva Maratona Mineira 2023 ",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Capivarão",
+          "oj": "CodeForces",
+          "probNum": "435A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-435A",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Enviando capivaras para a UFMS",
+          "oj": "CodeForces",
+          "probNum": "1023B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1023B",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Calouros atrapalhando a dieta das capivaras",
+          "oj": "CodeForces",
+          "probNum": "702A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-702A",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Pulando nas 24 pilastras da UFMS",
+          "oj": "CodeForces",
+          "probNum": "474E",
+          "originUrl": "https://vjudge.net/problem/CodeForces-474E",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Laser Contador de Capivaras",
+          "oj": "CodeForces",
+          "probNum": "514B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-514B",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "PCV - O Problema da Capivara Viajante",
+          "oj": "CodeForces",
+          "probNum": "1320A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1320A",
+          "descKey": null
+        },
+        {
+          "letter": "G",
+          "title": "Multiplicação Capivária",
+          "oj": "CodeForces",
+          "probNum": "300A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-300A",
+          "descKey": null
+        },
+        {
+          "letter": "H",
+          "title": "Formando times para a mineira (TODO: colocar capivara)",
+          "oj": "CodeForces",
+          "probNum": "300B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-300B",
+          "descKey": null
+        }
+      ]
+    },
+    {
+      "contestId": "553520",
+      "contestUrl": "https://vjudge.net/contest/553520",
+      "title": "Aquecimento - Seletiva Maratona Mineira 2023",
+      "problems": [
+        {
+          "letter": "A",
+          "title": "Melancia",
+          "oj": "CodeForces",
+          "probNum": "4A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-4A",
+          "descKey": null
+        },
+        {
+          "letter": "B",
+          "title": "Ladrilhos",
+          "oj": "CodeForces",
+          "probNum": "1A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-1A",
+          "descKey": null
+        },
+        {
+          "letter": "C",
+          "title": "Classificados",
+          "oj": "CodeForces",
+          "probNum": "158A",
+          "originUrl": "https://vjudge.net/problem/CodeForces-158A",
+          "descKey": null
+        },
+        {
+          "letter": "D",
+          "title": "Jogo",
+          "oj": "CodeForces",
+          "probNum": "510B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-510B",
+          "descKey": null
+        },
+        {
+          "letter": "E",
+          "title": "Livros",
+          "oj": "CodeForces",
+          "probNum": "279B",
+          "originUrl": "https://vjudge.net/problem/CodeForces-279B",
+          "descKey": null
+        },
+        {
+          "letter": "F",
+          "title": "Flores",
+          "oj": "CodeForces",
+          "probNum": "474D",
+          "originUrl": "https://vjudge.net/problem/CodeForces-474D",
+          "descKey": null
+        }
+      ]
+    }
+  ]
+}

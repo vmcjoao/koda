@@ -20,6 +20,7 @@ import {
   listPlaylists,
   type Playlist,
 } from '@/lib/playlists';
+import { importUfvPlaylistTemplates, ufvTemplateSummary } from '@/lib/playlistTemplates';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function PlaylistsScreen() {
@@ -91,6 +92,33 @@ export default function PlaylistsScreen() {
     );
   }
 
+  async function onImportUfv() {
+    const summary = ufvTemplateSummary();
+    Alert.alert(
+      'Import UFV VJudge playlists',
+      `${summary.contests} contests · ${summary.inCatalog} problems already in Koda · ${summary.pending} still need ingest.\n\nOnly contests with at least one catalog problem will be created; re-run after you ingest more.`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Import',
+          onPress: async () => {
+            const problems = await fetchProblems();
+            const { imported, skippedEmpty } = await importUfvPlaylistTemplates(
+              problems.map((p) => p.id),
+            );
+            await reload();
+            Alert.alert(
+              'UFV playlists',
+              imported.length
+                ? `Imported ${imported.length} playlist(s). Skipped ${skippedEmpty} empty (no matched problems yet).`
+                : `Nothing to import yet — ${skippedEmpty} contests need problems in the catalog first.`,
+            );
+          },
+        },
+      ],
+    );
+  }
+
   function confirmDelete(p: Playlist) {
     Alert.alert('Delete playlist?', `"${p.name}" will be removed on this device.`, [
       { text: 'Cancel', style: 'cancel' },
@@ -142,6 +170,9 @@ export default function PlaylistsScreen() {
         variant="secondary"
         onPress={onCreateFromSource}
       />
+      {!picking ? (
+        <PrimaryButton label="Import UFV VJudge…" variant="secondary" onPress={onImportUfv} />
+      ) : null}
 
       <Text style={styles.section}>Your playlists</Text>
       {loading ? <ActivityIndicator color={colors.accent} /> : null}

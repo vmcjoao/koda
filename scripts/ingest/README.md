@@ -2,6 +2,30 @@
 
 Human-reviewed pipeline — never auto-publish unreviewed approaches.
 
+## VJudge (UFV groups)
+
+1. On a group page, run [`vjudge-export-group.js`](vjudge-export-group.js) (copy from the file, not chat).
+2. Save the download under `scripts/ingest/vjudge-exports/`.
+3. Index against the catalog + emit playlist templates:
+
+```bash
+npm run ingest:vjudge-index
+```
+
+4. Enrich keys (browser): [`vjudge-enrich-problems.js`](vjudge-enrich-problems.js) with `window.__VJ_EXPORT__ = …`.
+5. Pull statement text + import stubs:
+
+```bash
+npm run ingest:vjudge-statements
+npm run ingest:vjudge-import-statements
+npm run ingest:vjudge-index
+npm run generate:seed
+```
+
+6. In the app: **Playlists → Import UFV VJudge…**
+
+Stub approaches are marked “Pending editorial review” — replace them as you solve. PDF-only UVA rows stay in `vjudge-exports/vjudge-pdf-pending.json`.
+
 ## Flow
 
 1. Paste a statement into an LLM with [`prompt.md`](prompt.md).
