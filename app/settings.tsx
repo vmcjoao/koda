@@ -60,6 +60,12 @@ export default function SettingsScreen() {
         <Text style={styles.statLine}>XP · {profile?.xp ?? 0}</Text>
       </View>
 
+      <PrimaryButton
+        label="Attempt history"
+        variant="secondary"
+        onPress={() => router.push('/history')}
+      />
+
       {demoMode ? (
         <PrimaryButton label="Sign in" variant="secondary" onPress={() => router.push('/(auth)/login')} />
       ) : (

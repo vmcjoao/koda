@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { useFocusEffect } from 'expo-router';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import { router, useFocusEffect } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
+import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
 import { computePipeline, computeTopicStats } from '@/lib/habit';
@@ -88,7 +89,9 @@ export default function AnalyticsScreen() {
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
       <View style={styles.row}>
-        <Metric label="Attempts" value={`${attempts.length}`} />
+        <Pressable style={{ flex: 1 }} onPress={() => router.push('/history')}>
+          <Metric label="Attempts ▸" value={`${attempts.length}`} />
+        </Pressable>
         <Metric label="Avg score" value={`${avgScore}%`} />
       </View>
       <View style={styles.row}>
@@ -124,17 +127,30 @@ export default function AnalyticsScreen() {
       {blindSpots.length > 0 ? (
         <>
           <Text style={styles.section}>Blind spots</Text>
-          <Text style={styles.sectionHint}>Topics averaging under 55% with 2+ attempts</Text>
+          <Text style={styles.sectionHint}>Tap a topic to practice matching catalog problems</Text>
           {blindSpots.map((t) => (
-            <View key={t.topic} style={styles.blindCard}>
+            <Pressable
+              key={t.topic}
+              style={styles.blindCard}
+              onPress={() =>
+                router.push({ pathname: '/catalog', params: { topic: t.topic } })
+              }
+            >
               <Text style={styles.blindTitle}>{t.topic}</Text>
               <Text style={styles.blindMeta}>
                 {t.avg}% avg · {t.n} attempts · ~{formatTime(t.avgTimeSec ?? 0)} insight
               </Text>
-            </View>
+              <Text style={styles.blindCta}>Practice →</Text>
+            </Pressable>
           ))}
         </>
       ) : null}
+
+      <PrimaryButton
+        label="Attempt history"
+        variant="secondary"
+        onPress={() => router.push('/history')}
+      />
 
       <Text style={styles.section}>Topic mastery</Text>
       {topicStats.map((t) => (
@@ -383,5 +399,11 @@ const styles = StyleSheet.create({
   blindMeta: {
     color: colors.textMuted,
     fontSize: 12,
+  },
+  blindCta: {
+    color: colors.warning,
+    fontSize: 13,
+    fontWeight: '700',
+    marginTop: 4,
   },
 });

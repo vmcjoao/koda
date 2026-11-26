@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { BrandWordmark } from '@/components/BrandWordmark';
+import { OnboardingTips } from '@/components/OnboardingTips';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
@@ -63,6 +64,7 @@ export default function HomeScreen() {
 
   return (
     <Screen scroll>
+      <OnboardingTips />
       <View style={styles.hero}>
         <BrandWordmark size="hero" />
         <Text style={styles.tagline}>Codeless competitive programming drills</Text>

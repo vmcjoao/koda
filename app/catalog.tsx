@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { router, useFocusEffect } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -19,6 +19,7 @@ type SourceFilter = 'All' | string;
 type DiffFilter = 'All' | '≤1200' | '1200–1600' | '1600+';
 
 export default function CatalogScreen() {
+  const { topic: topicParam } = useLocalSearchParams<{ topic?: string }>();
   const { user } = useAuth();
   const { beginProblem } = useAttempt();
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
@@ -27,10 +28,12 @@ export default function CatalogScreen() {
   const [query, setQuery] = useState('');
   const [source, setSource] = useState<SourceFilter>('All');
   const [diff, setDiff] = useState<DiffFilter>('All');
+  const [topic, setTopic] = useState<string | null>(topicParam ?? null);
 
   useFocusEffect(
     useCallback(() => {
       let active = true;
+      setTopic(topicParam ?? null);
       (async () => {
         setLoading(true);
         const [p, a] = await Promise.all([fetchProblems(), fetchAttempts(user?.id ?? null)]);
@@ -42,12 +45,22 @@ export default function CatalogScreen() {
       return () => {
         active = false;
       };
-    }, [user?.id]),
+    }, [user?.id, topicParam]),
   );
 
   const sources = useMemo(() => {
     const set = new Set(problems.map((p) => p.source));
     return ['All', ...[...set].sort()] as SourceFilter[];
+  }, [problems]);
+
+  const topics = useMemo(() => {
+    const set = new Set<string>();
+    for (const p of problems) {
+      for (const a of p.approaches) {
+        for (const t of a.paradigms) set.add(t);
+      }
+    }
+    return [...set].sort();
   }, [problems]);
 
   const bestByProblem = useMemo(() => {
@@ -68,13 +81,14 @@ export default function CatalogScreen() {
         return false;
       }
       if (diff === '1600+' && p.difficulty_rating < 1600) return false;
+      if (topic && !p.approaches.some((a) => a.paradigms.includes(topic))) return false;
       if (!q) return true;
       const hay = `${p.title} ${p.source} ${p.target_complexity} ${p.approaches
         .flatMap((a) => a.paradigms)
         .join(' ')}`.toLowerCase();
       return hay.includes(q);
     });
-  }, [problems, query, source, diff]);
+  }, [problems, query, source, diff, topic]);
 
   function start(p: ProblemWithApproaches) {
     beginProblem(p);
@@ -84,7 +98,10 @@ export default function CatalogScreen() {
   return (
     <Screen scroll>
       <Text style={styles.title}>Catalog</Text>
-      <Text style={styles.sub}>{filtered.length} of {problems.length} problems</Text>
+      <Text style={styles.sub}>
+        {filtered.length} of {problems.length} problems
+        {topic ? ` · ${topic}` : ''}
+      </Text>
 
       <TextInput
         style={styles.search}
@@ -95,6 +112,18 @@ export default function CatalogScreen() {
         autoCorrect={false}
         autoCapitalize="none"
       />
+
+      {topic ? (
+        <Pressable
+          style={styles.topicBanner}
+          onPress={() => {
+            setTopic(null);
+            router.setParams({ topic: undefined });
+          }}
+        >
+          <Text style={styles.topicBannerText}>Practicing: {topic} · tap to clear</Text>
+        </Pressable>
+      ) : null}
 
       <Text style={styles.filterLabel}>Source</Text>
       <View style={styles.chips}>
@@ -121,6 +150,23 @@ export default function CatalogScreen() {
           </Pressable>
         ))}
       </View>
+
+      {!topic ? (
+        <>
+          <Text style={styles.filterLabel}>Topic</Text>
+          <View style={styles.chips}>
+            {topics.slice(0, 10).map((t) => (
+              <Pressable
+                key={t}
+                onPress={() => setTopic(t)}
+                style={[styles.chip, topic === t && styles.chipOn]}
+              >
+                <Text style={[styles.chipText, topic === t && styles.chipTextOn]}>{t}</Text>
+              </Pressable>
+            ))}
+          </View>
+        </>
+      ) : null}
 
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
@@ -166,6 +212,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.md,
     fontSize: 15,
+  },
+  topicBanner: {
+    backgroundColor: '#2A1818',
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.danger,
+    padding: spacing.md,
+  },
+  topicBannerText: {
+    color: colors.danger,
+    fontWeight: '700',
+    fontSize: 13,
   },
   filterLabel: {
     color: colors.textDim,
