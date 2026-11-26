@@ -647,7 +647,8 @@
           "Graph Algorithms"
         ],
         "algorithms": [
-          "Bellman-Ford"
+          "Bellman-Ford",
+          "DFS"
         ],
         "data_structures": [
           "Adjacency List"
@@ -932,7 +933,8 @@
           "String Algorithms"
         ],
         "algorithms": [
-          "KMP"
+          "KMP",
+          "String Hashing"
         ],
         "data_structures": [
           "1D Array"
@@ -3528,9 +3530,13 @@
         "problem_id": "cses-1623",
         "approach_name": "Pending editorial review",
         "paradigms": [
-          "Brute Force"
+          "Brute Force",
+          "Divide & Conquer",
+          "Bitmask / Bit DP"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Meet in the Middle"
+        ],
         "data_structures": [],
         "key_insights": [
           "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
@@ -3564,9 +3570,12 @@
         "approach_name": "Pending editorial review",
         "paradigms": [
           "String Algorithms",
-          "Brute Force"
+          "Brute Force",
+          "Bitmask / Bit DP"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Sorting"
+        ],
         "data_structures": [],
         "key_insights": [
           "Auto-imported from VJudge — replace this approach after you solve / read an editorial",
@@ -7632,7 +7641,8 @@
           "Dynamic Programming"
         ],
         "algorithms": [
-          "LIS"
+          "LIS",
+          "Binary Search"
         ],
         "data_structures": [],
         "key_insights": [
@@ -7749,7 +7759,8 @@
         ],
         "algorithms": [],
         "data_structures": [
-          "Stack"
+          "Stack",
+          "Monotonic Stack"
         ],
         "key_insights": [
           "Monotonic increasing stack of indices for previous smaller element"
@@ -8186,10 +8197,13 @@
           "Greedy"
         ],
         "algorithms": [
-          "DSU"
+          "DSU",
+          "MST",
+          "Sorting"
         ],
         "data_structures": [
-          "DSU"
+          "DSU",
+          "Priority Queue"
         ],
         "key_insights": [
           "MST total weight; impossible if not connecting all cities"
@@ -8306,10 +8320,13 @@
         "problem_id": "cses-download-speed",
         "approach_name": "Max flow",
         "paradigms": [
-          "Graph Algorithms"
+          "Graph Algorithms",
+          "Flows / Matching"
         ],
         "algorithms": [
-          "Max Flow"
+          "Max Flow",
+          "DFS",
+          "BFS"
         ],
         "data_structures": [],
         "key_insights": [
@@ -8346,10 +8363,13 @@
         "problem_id": "cses-school-dance",
         "approach_name": "Bipartite matching",
         "paradigms": [
-          "Graph Algorithms"
+          "Graph Algorithms",
+          "Flows / Matching"
         ],
         "algorithms": [
-          "Max Flow"
+          "Max Flow",
+          "BFS",
+          "DFS"
         ],
         "data_structures": [],
         "key_insights": [
@@ -8538,9 +8558,14 @@
         "problem_id": "cses-meet-in-the-middle",
         "approach_name": "Meet in the middle",
         "paradigms": [
-          "Brute Force"
+          "Brute Force",
+          "Divide & Conquer"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Meet in the Middle",
+          "Binary Search",
+          "Sorting"
+        ],
         "data_structures": [],
         "key_insights": [
           "Split n≤40 into two halves; sort one half and binary-search complements"
@@ -9924,10 +9949,13 @@
         "paradigms": [
           "Prefix Sums"
         ],
-        "algorithms": [],
+        "algorithms": [
+          "Prefix Sums"
+        ],
         "data_structures": [
           "Multiset",
-          "Deque"
+          "Deque",
+          "Ordered Set"
         ],
         "key_insights": [
           "Max pref[r]-pref[l] with length in [a,b]; sliding window minimum on prefixes"
@@ -10409,10 +10437,12 @@
         "problem_id": "cses-police-chase",
         "approach_name": "Min cut",
         "paradigms": [
-          "Graph Algorithms"
+          "Graph Algorithms",
+          "Flows / Matching"
         ],
         "algorithms": [
-          "Max Flow"
+          "Max Flow",
+          "BFS"
         ],
         "data_structures": [],
         "key_insights": [
@@ -10440,10 +10470,13 @@
         "problem_id": "cses-distinct-routes",
         "approach_name": "Disjoint paths",
         "paradigms": [
-          "Graph Algorithms"
+          "Graph Algorithms",
+          "Flows / Matching"
         ],
         "algorithms": [
-          "Max Flow"
+          "Max Flow",
+          "BFS",
+          "DFS"
         ],
         "data_structures": [],
         "key_insights": [
@@ -11542,6 +11575,1365 @@
           "Kill order by largest (h-1)%k"
         ],
         "editorial_summary_md": "Priority is the damage needed beyond full k-hits; sort and print indices."
+      }
+    ]
+  },
+  {
+    "id": "cses-point-location-test",
+    "title": "Point Location Test",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2189",
+    "difficulty_rating": 1200,
+    "statement_md": "There is a line that goes through the points $p_1=(x_1,y_1)$ and $p_2=(x_2,y_2)$. There is also a point $p_3=(x_3,y_3)$.\n\nYour task is to determine whether $p_3$ is located on the left or right side of the line or if it touches the line when we are looking from $p_1$ to $p_2$.\n\nInput\n\nThe first input line has an integer $t$: the number of tests.\n\nAfter this, there are $t$ lines that describe the tests. Each line has six integers: $x_1$, $y_1$, $x_2$, $y_2$, $x_3$ and $y_3$.\n\nOutput\n\nFor each test, print \"LEFT\", \"RIGHT\" or \"TOUCH\".\n\nConstraints\n\n- $1 \\le t \\le 10^5$\n\n- $-10^9 \\le x_1, y_1, x_2, y_2, x_3, y_3 \\le 10^9$\n\n- $x_1 \\neq x_2$ or $y_1 \\neq y_2$\n\nExample\n\nInput:\n\n3\n1 1 5 3 2 3\n1 1 5 3 4 1\n1 1 5 3 3 2\n\nOutput:\n\nLEFT\nRIGHT\nTOUCH",
+    "input_format_md": "The first input line has an integer $t$: the number of tests.\n\nAfter this, there are $t$ lines that describe the tests. Each line has six integers: $x_1$, $y_1$, $x_2$, $y_2$, $x_3$ and $y_3$.",
+    "output_format_md": "For each test, print \"LEFT\", \"RIGHT\" or \"TOUCH\".",
+    "constraints_text": "- $1 \\le t \\le 10^5$\n\n- $-10^9 \\le x_1, y_1, x_2, y_2, x_3, y_3 \\le 10^9$\n\n- $x_1 \\neq x_2$ or $y_1 \\neq y_2$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-point-location-test-a1",
+        "problem_id": "cses-point-location-test",
+        "approach_name": "Orient test",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Cross product sign tells left/right/on of a point vs directed segment"
+        ],
+        "editorial_summary_md": "Use the sign of (b-a)×(c-a) to classify point C relative to line AB."
+      }
+    ]
+  },
+  {
+    "id": "cses-line-segment-intersection",
+    "title": "Line Segment Intersection",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2190",
+    "difficulty_rating": 1400,
+    "statement_md": "There are two line segments: the first goes through the points $(x_1,y_1)$ and $(x_2,y_2)$, and the second goes through the points $(x_3,y_3)$ and $(x_4,y_4)$.\n\nYour task is to determine if the line segments intersect, i.e., they have at least one common point.\n\nInput\n\nThe first input line has an integer $t$: the number of tests.\n\nAfter this, there are $t$ lines that describe the tests. Each line has eight integers $x_1$, $y_1$, $x_2$, $y_2$, $x_3$, $y_3$, $x_4$ and $y_4$.\n\nOutput\n\nFor each test, print \"YES\" if the line segments intersect and \"NO\" otherwise.\n\nConstraints\n\n- $1 \\le t \\le 10^5$\n\n- $-10^9 \\le x_1, y_1, x_2, y_2, x_3, y_3, x_4, y_4 \\le 10^9$\n\n- $(x_1,y_1) \\neq (x_2,y_2)$\n\n- $(x_3,y_3) \\neq (x_4,y_4)$\n\nExample\n\nInput:\n\n5\n1 1 5 3 1 2 4 3\n1 1 5 3 1 1 4 3\n1 1 5 3 2 3 4 1\n1 1 5 3 2 4 4 1\n1 1 5 3 3 2 7 4\n\nOutput:\n\nNO\nYES\nYES\nYES\nYES",
+    "input_format_md": "The first input line has an integer $t$: the number of tests.\n\nAfter this, there are $t$ lines that describe the tests. Each line has eight integers $x_1$, $y_1$, $x_2$, $y_2$, $x_3$, $y_3$, $x_4$ and $y_4$.",
+    "output_format_md": "For each test, print \"YES\" if the line segments intersect and \"NO\" otherwise.",
+    "constraints_text": "- $1 \\le t \\le 10^5$\n\n- $-10^9 \\le x_1, y_1, x_2, y_2, x_3, y_3, x_4, y_4 \\le 10^9$\n\n- $(x_1,y_1) \\neq (x_2,y_2)$\n\n- $(x_3,y_3) \\neq (x_4,y_4)$",
+    "sample_io": [],
+    "target_complexity": "O(1)",
+    "approaches": [
+      {
+        "id": "cses-line-segment-intersection-a1",
+        "problem_id": "cses-line-segment-intersection",
+        "approach_name": "Segment intersection",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Proper intersection via opposite orientations; handle collinear overlap"
+        ],
+        "editorial_summary_md": "Standard orientation predicates with special cases for touching endpoints."
+      }
+    ]
+  },
+  {
+    "id": "cses-polygon-area",
+    "title": "Polygon Area",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2191",
+    "difficulty_rating": 1200,
+    "statement_md": "Your task is to calculate the area of a given polygon.\n\nThe polygon consists of $n$ vertices $(x_1,y_1),(x_2,y_2),\\dots,(x_n,y_n)$. The vertices $(x_i,y_i)$ and $(x_{i+1},y_{i+1})$ are adjacent for $i=1,2,\\dots,n-1$, and the vertices $(x_1,y_1)$ and $(x_n,y_n)$ are also adjacent.\n\nInput\n\nThe first input line has an integer $n$: the number of vertices.\n\nAfter this, there are $n$ lines that describe the vertices. The $i$th such line has two integers $x_i$ and $y_i$.\n\nYou may assume that the polygon is simple, i.e., it does not intersect itself.\n\nOutput\n\nPrint one integer: $2a$ where the area of the polygon is $a$ (this ensures that the result is an integer).\n\nConstraints\n\n- $3 \\le n \\le 1000$\n\n- $-10^9 \\le x_i, y_i \\le 10^9$\n\nExample\n\nInput:\n\n4\n1 1\n4 2\n3 5\n1 4\n\nOutput:\n\n16",
+    "input_format_md": "The first input line has an integer $n$: the number of vertices.\n\nAfter this, there are $n$ lines that describe the vertices. The $i$th such line has two integers $x_i$ and $y_i$.\n\nYou may assume that the polygon is simple, i.e., it does not intersect itself.",
+    "output_format_md": "Print one integer: $2a$ where the area of the polygon is $a$ (this ensures that the result is an integer).",
+    "constraints_text": "- $3 \\le n \\le 1000$\n\n- $-10^9 \\le x_i, y_i \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-polygon-area-a1",
+        "problem_id": "cses-polygon-area",
+        "approach_name": "Shoelace",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Shoelace formula; report twice the area as an integer"
+        ],
+        "editorial_summary_md": "Sum x_i y_{i+1} - x_{i+1} y_i over the polygon vertices."
+      }
+    ]
+  },
+  {
+    "id": "cses-point-in-polygon",
+    "title": "Point in Polygon",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2192",
+    "difficulty_rating": 1500,
+    "statement_md": "You are given a polygon of $n$ vertices and a list of $m$ points. Your task is to determine for each point if it is inside, outside or on the boundary of the polygon.\n\nThe polygon consists of $n$ vertices $(x_1,y_1),(x_2,y_2),\\dots,(x_n,y_n)$. The vertices $(x_i,y_i)$ and $(x_{i+1},y_{i+1})$ are adjacent for $i=1,2,\\dots,n-1$, and the vertices $(x_1,y_1)$ and $(x_n,y_n)$ are also adjacent.\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of vertices in the polygon and the number of points.\n\nAfter this, there are $n$ lines that describe the polygon. The $i$th such line has two integers $x_i$ and $y_i$.\n\nYou may assume that the polygon is simple, i.e., it does not intersect itself.\n\nFinally, there are $m$ lines that describe the points. Each line has two integers $x$ and $y$.\n\nOutput\n\nFor each point, print \"INSIDE\", \"OUTSIDE\" or \"BOUNDARY\".\n\nConstraints\n\n- $3 \\le n,m \\le 1000$\n\n- $1 \\le m \\le 1000$\n\n- $-10^9 \\le x_i, y_i \\le 10^9$\n\n- $-10^9 \\le x, y \\le 10^9$\n\nExample\n\nInput:\n\n4 3\n1 1\n4 2\n3 5\n1 4\n2 3\n3 1\n1 3\n\nOutput:\n\nINSIDE\nOUTSIDE\nBOUNDARY",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of vertices in the polygon and the number of points.\n\nAfter this, there are $n$ lines that describe the polygon. The $i$th such line has two integers $x_i$ and $y_i$.\n\nYou may assume that the polygon is simple, i.e., it does not intersect itself.\n\nFinally, there are $m$ lines that describe the points. Each line has two integers $x$ and $y$.",
+    "output_format_md": "For each point, print \"INSIDE\", \"OUTSIDE\" or \"BOUNDARY\".",
+    "constraints_text": "- $3 \\le n,m \\le 1000$\n\n- $1 \\le m \\le 1000$\n\n- $-10^9 \\le x_i, y_i \\le 10^9$\n\n- $-10^9 \\le x, y \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-point-in-polygon-a1",
+        "problem_id": "cses-point-in-polygon",
+        "approach_name": "Ray casting",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Ray casting for inside/outside; on-boundary via segment occupancy"
+        ],
+        "editorial_summary_md": "Count crossings with a horizontal ray; separately detect boundary hits."
+      }
+    ]
+  },
+  {
+    "id": "cses-minimum-euclidean-distance",
+    "title": "Minimum Euclidean Distance",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2194",
+    "difficulty_rating": 1800,
+    "statement_md": "Given a set of points in the two-dimensional plane, your task is to find the minimum Euclidean distance between two distinct points.\n\nThe Euclidean distance of points $(x_1,y_1)$ and $(x_2,y_2)$ is $\\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$.\n\nInput\n\nThe first input line has an integer $n$: the number of points.\n\nAfter this, there are $n$ lines that describe the points. Each line has two integers $x$ and $y$. You may assume that each point is distinct.\n\nOutput\n\nPrint one integer: $d^2$ where $d$ is the minimum Euclidean distance (this ensures that the result is an integer).\n\nConstraints\n\n- $2 \\le n \\le 2 \\cdot 10^5$\n\n- $-10^9 \\le x,y \\le 10^9$\n\nExample\n\nInput:\n\n4\n2 1\n4 4\n1 2\n6 3\n\nOutput:\n\n2",
+    "input_format_md": "The first input line has an integer $n$: the number of points.\n\nAfter this, there are $n$ lines that describe the points. Each line has two integers $x$ and $y$. You may assume that each point is distinct.",
+    "output_format_md": "Print one integer: $d^2$ where $d$ is the minimum Euclidean distance (this ensures that the result is an integer).",
+    "constraints_text": "- $2 \\le n \\le 2 \\cdot 10^5$\n\n- $-10^9 \\le x,y \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-minimum-euclidean-distance-a1",
+        "problem_id": "cses-minimum-euclidean-distance",
+        "approach_name": "Closest pair D&C",
+        "paradigms": [
+          "Geometry",
+          "Divide & Conquer"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Classic closest-pair divide-and-conquer with strip check"
+        ],
+        "editorial_summary_md": "Sort by x; recurse; check a strip of width δ sorted by y."
+      }
+    ]
+  },
+  {
+    "id": "cses-convex-hull",
+    "title": "Convex Hull",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2195",
+    "difficulty_rating": 1600,
+    "statement_md": "Given a set of $n$ points in the two-dimensional plane, your task is to determine the convex hull of the points.\n\nInput\n\nThe first input line has an integer $n$: the number of points.\n\nAfter this, there are $n$ lines that describe the points. Each line has two integers $x$ and $y$: the coordinates of a point.\n\nYou may assume that each point is distinct, and the area of the hull is positive.\n\nOutput\n\nFirst print an integer $k$: the number of points in the convex hull.\n\nAfter this, print $k$ lines that describe the points. You can print the points in any order. Print all points that lie on the convex hull.\n\nConstraints\n\n- $3 \\le n \\le 2 \\cdot 10^5$\n\n- $-10^9 \\le x, y \\le 10^9$\n\nExample\n\nInput:\n\n6\n2 1\n2 5\n3 3\n4 3\n4 4\n6 3\n\nOutput:\n\n4\n2 1\n2 5\n4 4\n6 3",
+    "input_format_md": "The first input line has an integer $n$: the number of points.\n\nAfter this, there are $n$ lines that describe the points. Each line has two integers $x$ and $y$: the coordinates of a point.\n\nYou may assume that each point is distinct, and the area of the hull is positive.",
+    "output_format_md": "First print an integer $k$: the number of points in the convex hull.\n\nAfter this, print $k$ lines that describe the points. You can print the points in any order. Print all points that lie on the convex hull.",
+    "constraints_text": "- $3 \\le n \\le 2 \\cdot 10^5$\n\n- $-10^9 \\le x, y \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-convex-hull-a1",
+        "problem_id": "cses-convex-hull",
+        "approach_name": "Monotone chain",
+        "paradigms": [
+          "Geometry"
+        ],
+        "algorithms": [
+          "Sorting"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Monotone chain / Andrew’s algorithm builds lower and upper hulls"
+        ],
+        "editorial_summary_md": "Sort points; build hull with cross-product left turns."
+      }
+    ]
+  },
+  {
+    "id": "cf-1c",
+    "title": "Ancient Berland Circus",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1/C",
+    "difficulty_rating": 2100,
+    "statement_md": "Three points on the plane are vertices of a regular $n$-gon for some $n\\ge 3$. Find the smallest possible area of such a regular polygon.",
+    "input_format_md": "Three lines with coordinates of the points (absolute values $\\le 100$).",
+    "output_format_md": "Print the minimum area with high precision.",
+    "constraints_text": "Points are not collinear",
+    "sample_io": [
+      {
+        "input": "0.000000000000 0.000000000000\n1.000000000000 1.000000000000\n0.000000000000 1.000000000000",
+        "output": "1.000000000"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1c-a1",
+        "problem_id": "cf-1c",
+        "approach_name": "Regular polygon fit",
+        "paradigms": [
+          "Geometry",
+          "Math / Number Theory"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Circumcenter + angle steps; n from almost-integer multiples of central angles"
+        ],
+        "editorial_summary_md": "Recover the circumcircle and the smallest n whose chordal steps match the points."
+      }
+    ]
+  },
+  {
+    "id": "cses-common-divisors",
+    "title": "Common Divisors",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1081",
+    "difficulty_rating": 1400,
+    "statement_md": "You are given an array of $n$ positive integers. Your task is to find two integers such that their greatest common divisor is as large as possible.\n\nInput\n\nThe first input line has an integer $n$: the size of the array.\n\nThe second line has $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the array.\n\nOutput\n\nPrint the maximum greatest common divisor.\n\nConstraints\n\n- $2 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^6$\n\nExample\n\nInput:\n\n5\n3 14 15 7 9\n\nOutput:\n\n7",
+    "input_format_md": "The first input line has an integer $n$: the size of the array.\n\nThe second line has $n$ integers $x_1,x_2,\\ldots,x_n$: the contents of the array.",
+    "output_format_md": "Print the maximum greatest common divisor.",
+    "constraints_text": "- $2 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-common-divisors-a1",
+        "problem_id": "cses-common-divisors",
+        "approach_name": "Sieve frequencies",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Frequency array; scan multiples from high to low for largest d with ≥2 multiples"
+        ],
+        "editorial_summary_md": "Count occurrences; the largest d that divides at least two numbers wins."
+      }
+    ]
+  },
+  {
+    "id": "cses-sum-of-divisors",
+    "title": "Sum of Divisors",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1082",
+    "difficulty_rating": 1600,
+    "statement_md": "Let $\\sigma(n)$ denote the sum of divisors of an integer $n$. For example, $\\sigma(12)=1+2+3+4+6+12=28$.\n\nYour task is to calculate the sum $\\sum_{i=1}^n \\sigma(i)$ modulo $10^9+7$.\n\nInput\n\nThe only input line has an integer $n$.\n\nOutput\n\nPrint $\\sum_{i=1}^n \\sigma(i)$ modulo $10^9+7$.\n\nConstraints\n\n- $1 \\le n \\le 10^{12}$\n\nExample\n\nInput:\n\n5\n\nOutput:\n\n21",
+    "input_format_md": "The only input line has an integer $n$.",
+    "output_format_md": "Print $\\sum_{i=1}^n \\sigma(i)$ modulo $10^9+7$.",
+    "constraints_text": "- $1 \\le n \\le 10^{12}$",
+    "sample_io": [],
+    "target_complexity": "O(N √N)",
+    "approaches": [
+      {
+        "id": "cses-sum-of-divisors-a1",
+        "problem_id": "cses-sum-of-divisors",
+        "approach_name": "Dirichlet floor sum",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Floor blocks: sum_{i=1}^n σ(i) via iterating over quotient ranges"
+        ],
+        "editorial_summary_md": "Sum of divisor-sum function over 1..n using O(√n) floor segments."
+      }
+    ]
+  },
+  {
+    "id": "cses-prime-multiples",
+    "title": "Prime Multiples",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2185",
+    "difficulty_rating": 1600,
+    "statement_md": "You are given $k$ distinct prime numbers $a_1,a_2,\\ldots,a_k$ and an integer $n$.\n\nYour task is to calculate how many of the first $n$ positive integers are divisible by at least one of the given prime numbers.\n\nInput\n\nThe first input line has two integers $n$ and $k$.\n\nThe second line has $k$ prime numbers $a_1,a_2,\\ldots,a_k$.\n\nOutput\n\nPrint one integer: the number integers within the interval $1,2,\\ldots,n$ that are divisible by at least one of the prime numbers.\n\nConstraints\n\n- $1 \\le n \\le 10^{18}$\n\n- $1 \\le k \\le 20$\n\n- $2 \\le a_i \\le n$\n\nExample\n\nInput:\n\n20 2\n2 5\n\nOutput:\n\n12\n\nExplanation: the $12$ numbers are $2,4,5,6,8,10,12,14,15,16,18,20$.",
+    "input_format_md": "The first input line has two integers $n$ and $k$.\n\nThe second line has $k$ prime numbers $a_1,a_2,\\ldots,a_k$.",
+    "output_format_md": "Print one integer: the number integers within the interval $1,2,\\ldots,n$ that are divisible by at least one of the prime numbers.",
+    "constraints_text": "- $1 \\le n \\le 10^{18}$\n\n- $1 \\le k \\le 20$\n\n- $2 \\le a_i \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-prime-multiples-a1",
+        "problem_id": "cses-prime-multiples",
+        "approach_name": "Inclusion-exclusion",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Inclusion-exclusion over subsets of k primes counting multiples ≤ n"
+        ],
+        "editorial_summary_md": "Count integers ≤ n divisible by at least one of the given primes."
+      }
+    ]
+  },
+  {
+    "id": "cf-230b",
+    "title": "T-primes",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/230/B",
+    "difficulty_rating": 1300,
+    "statement_md": "A T-prime is a number with exactly three positive divisors. Given $n$ integers, decide for each whether it is a T-prime.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 10^5$).\n\nThe second line contains $n$ integers $x_i$ ($1 \\le x_i \\le 10^{12}$).",
+    "output_format_md": "Print `YES` or `NO` for each number on its own line.",
+    "constraints_text": "$1 \\le n \\le 10^5$, $1 \\le x_i \\le 10^{12}$",
+    "sample_io": [
+      {
+        "input": "3\n4 5 6",
+        "output": "YES\nNO\nNO"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-230b-a1",
+        "problem_id": "cf-230b",
+        "approach_name": "Prime squares",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Exactly 3 divisors iff number is square of a prime"
+        ],
+        "editorial_summary_md": "Sieve primes up to 1e6; check whether x is p² for prime p."
+      }
+    ]
+  },
+  {
+    "id": "cf-26a",
+    "title": "Almost Prime",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/26/A",
+    "difficulty_rating": 900,
+    "statement_md": "A number is almost prime if it has exactly two distinct prime factors. Count almost primes in $[1,n]$.",
+    "input_format_md": "A single integer $n$ ($1 \\le n \\le 3000$).",
+    "output_format_md": "Print the count of almost primes ≤ $n$.",
+    "constraints_text": "$1 \\le n \\le 3000$",
+    "sample_io": [
+      {
+        "input": "10",
+        "output": "2"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-26a-a1",
+        "problem_id": "cf-26a",
+        "approach_name": "SPF sieve",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Factorize each value with SPF sieve; count those with ω=2"
+        ],
+        "editorial_summary_md": "Linear sieve smallest prime factor; count almost primes ≤ n."
+      }
+    ]
+  },
+  {
+    "id": "cf-1245d",
+    "title": "Shichikuji and Power Grid",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1245/D",
+    "difficulty_rating": 1800,
+    "statement_md": "There are $n$ cities. You may build a power station in city $i$ for cost $c_i$, or connect $i$ and $j$ with a wire costing $(k_i+k_j)\\cdot dist(i,j)$. Supply every city with electricity at minimum cost; output stations and connections.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 2000$).\n\nThen $n$ coordinates, then array $c$, then array $k$.",
+    "output_format_md": "Print total cost, the list of stations, and the list of wires.",
+    "constraints_text": "$1 \\le n \\le 2000$",
+    "sample_io": [
+      {
+        "input": "3\n2 3\n1 1\n3 2\n3 2 3\n3 2 3",
+        "output": "8\n3\n1 2 3\n0"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-1245d-a1",
+        "problem_id": "cf-1245d",
+        "approach_name": "MST with virtual node",
+        "paradigms": [
+          "Graph Algorithms",
+          "Greedy"
+        ],
+        "algorithms": [
+          "MST",
+          "DSU"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Virtual node 0 for power stations; MST on complete graph with station edges"
+        ],
+        "editorial_summary_md": "Connect cities and a virtual power source; Kruskal yields stations + wires."
+      }
+    ]
+  },
+  {
+    "id": "cses-repeating-substring",
+    "title": "Repeating Substring",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2106",
+    "difficulty_rating": 1700,
+    "statement_md": "A repeating substring is a substring that occurs in two (or more) locations in the string. Your task is to find the longest repeating substring in a given string.\n\nInput\n\nThe only input line has a string of length $n$ that consists of characters a–z.\n\nOutput\n\nPrint the longest repeating substring. If there are several possibilities, you can print any of them. If there is no repeating substring, print $-1$.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\nExample\n\nInput:\n\ncabababc\n\nOutput:\n\nabab",
+    "input_format_md": "The only input line has a string of length $n$ that consists of characters a–z.",
+    "output_format_md": "Print the longest repeating substring. If there are several possibilities, you can print any of them. If there is no repeating substring, print $-1$.",
+    "constraints_text": "- $1 \\le n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-repeating-substring-a1",
+        "problem_id": "cses-repeating-substring",
+        "approach_name": "Hash + BSA",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "String Hashing"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Binary search length + hash set detects a repeated substring"
+        ],
+        "editorial_summary_md": "Search the longest string length that appears at least twice via double hashing."
+      }
+    ]
+  },
+  {
+    "id": "cses-finding-patterns",
+    "title": "Finding Patterns",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2102",
+    "difficulty_rating": 1800,
+    "statement_md": "Given a string and patterns, check for each pattern if it appears in the string.\n\nInput\n\nThe first input line has a string of length $n$.\n\nThe next input line has an integer $k$: the number of patterns. Finally, there are $k$ lines that describe the patterns.\n\nThe string and the patterns consist of characters a–z.\n\nOutput\n\nFor each pattern, print \"YES\" if it appears in the string and \"NO\" otherwise.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\n- $1 \\le k \\le 5 \\cdot 10^5$\n\n- the total length of the patterns is at most $5 \\cdot 10^5$\n\nExample\n\nInput:\n\naybabtu\n3\nbab\nabc\nayba\n\nOutput:\n\nYES\nNO\nYES",
+    "input_format_md": "The first input line has a string of length $n$.\n\nThe next input line has an integer $k$: the number of patterns. Finally, there are $k$ lines that describe the patterns.\n\nThe string and the patterns consist of characters a–z.",
+    "output_format_md": "For each pattern, print \"YES\" if it appears in the string and \"NO\" otherwise.",
+    "constraints_text": "- $1 \\le n \\le 10^5$\n\n- $1 \\le k \\le 5 \\cdot 10^5$\n\n- the total length of the patterns is at most $5 \\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-finding-patterns-a1",
+        "problem_id": "cses-finding-patterns",
+        "approach_name": "Multi-pattern matching",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "String Hashing"
+        ],
+        "data_structures": [
+          "Trie"
+        ],
+        "key_insights": [
+          "Aho-Corasick or suffix structure answers which patterns occur"
+        ],
+        "editorial_summary_md": "Mark which of the k patterns appear as substrings of s."
+      }
+    ]
+  },
+  {
+    "id": "cses-required-substring",
+    "title": "Required Substring",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1112",
+    "difficulty_rating": 1800,
+    "statement_md": "Your task is to calculate the number of strings of length $n$ having a given pattern of length $m$ as their substring. All strings consist of characters A–Z.\n\nInput\n\nThe first input line has an integer $n$: the length of the final string.\n\nThe second line has a pattern of length $m$.\n\nOutput\n\nPrint the number of strings modulo $10^9+7$.\n\nConstraints\n\n- $1 \\le n \\le 1000$\n\n- $1 \\le m \\le 100$\n\nExample\n\nInput:\n\n6\nABCDB\n\nOutput:\n\n52\n\nExplanation: The final string will be of the form ABCDB$x$ or $x$ABCDB where $x$ is any character between A–Z.",
+    "input_format_md": "The first input line has an integer $n$: the length of the final string.\n\nThe second line has a pattern of length $m$.",
+    "output_format_md": "Print the number of strings modulo $10^9+7$.",
+    "constraints_text": "- $1 \\le n \\le 1000$\n\n- $1 \\le m \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-required-substring-a1",
+        "problem_id": "cses-required-substring",
+        "approach_name": "KMP automaton DP",
+        "paradigms": [
+          "String Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "KMP"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "DP on position × KMP automaton state counting strings containing pattern"
+        ],
+        "editorial_summary_md": "Count length-n strings over A–Z that contain the required substring."
+      }
+    ]
+  },
+  {
+    "id": "cses-longest-palindrome",
+    "title": "Longest Palindrome",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1111",
+    "difficulty_rating": 1600,
+    "statement_md": "Given a string, your task is to determine the longest palindromic substring of the string. For example, the longest palindrome in aybabtu is bab.\n\nInput\n\nThe only input line contains a string of length $n$. Each character is one of a–z.\n\nOutput\n\nPrint the longest palindrome in the string. If there are several solutions, you may print any of them.\n\nConstraints\n\n- $1 \\le n \\le 10^6$\n\nExample\n\nInput:\n\naybabtu\n\nOutput:\n\nbab",
+    "input_format_md": "The only input line contains a string of length $n$. Each character is one of a–z.",
+    "output_format_md": "Print the longest palindrome in the string. If there are several solutions, you may print any of them.",
+    "constraints_text": "- $1 \\le n \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-longest-palindrome-a1",
+        "problem_id": "cses-longest-palindrome",
+        "approach_name": "Manacher / hash",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "String Hashing"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Manacher or binary search + hash for longest palindromic substring"
+        ],
+        "editorial_summary_md": "Find any longest palindromic substring of s."
+      }
+    ]
+  },
+  {
+    "id": "cf-835d",
+    "title": "Palindromic characteristics",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/835/D",
+    "difficulty_rating": 1800,
+    "statement_md": "A string is a $1$-palindrome if it is a palindrome. It is a $k$-palindrome ($k>1$) if it is a palindrome and its left half is a $(k-1)$-palindrome. Count how many substrings are $k$-palindromes for each $k$.",
+    "input_format_md": "A single string $s$ ($1 \\le |s| \\le 5000$) of lowercase letters.",
+    "output_format_md": "Print $|s|$ integers — counts for $k=1..|s|$.",
+    "constraints_text": "$1 \\le |s| \\le 5000$",
+    "sample_io": [
+      {
+        "input": "aaa",
+        "output": "6 3 1"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-835d-a1",
+        "problem_id": "cf-835d",
+        "approach_name": "Palindrome DP",
+        "paradigms": [
+          "String Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "String Hashing"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "DP + palindromic checks via hash; k-palindrome halves"
+        ],
+        "editorial_summary_md": "Classify every substring’s palindromic degree using hashing."
+      }
+    ]
+  },
+  {
+    "id": "cf-1200e",
+    "title": "Compress Words",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1200/E",
+    "difficulty_rating": 1600,
+    "statement_md": "You are given $n$ words. Start with the empty string and append each word, but remove the longest prefix of the new word that is already a suffix of the current string. Output the final string.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 10^5$).\n\nThe second line contains $n$ words (total length $\\le 10^6$).",
+    "output_format_md": "Print the compressed string.",
+    "constraints_text": "Total length $\\le 10^6$",
+    "sample_io": [
+      {
+        "input": "3\na aa aaa",
+        "output": "aaaa"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1200e-a1",
+        "problem_id": "cf-1200e",
+        "approach_name": "Suffix-prefix hash",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "String Hashing",
+          "KMP"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Hash the overlap between current suffix and next word prefix"
+        ],
+        "editorial_summary_md": "When appending each word, strip the longest matching border via hash/Z/KMP."
+      }
+    ]
+  },
+  {
+    "id": "cf-439d",
+    "title": "Devu and his Brother",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/439/D",
+    "difficulty_rating": 1600,
+    "statement_md": "Devu has array $a$ and his brother array $b$. In one move increase any $a_i$ by 1 or decrease any $b_j$ by 1. Minimize moves so $\\min a \\ge \\max b$.",
+    "input_format_md": "The first line contains $n$ and $m$ ($1 \\le n,m \\le 10^5$).\n\nThe second line contains $a_1\\dots a_n$.\n\nThe third line contains $b_1\\dots b_m$ ($1 \\le a_i,b_j \\le 10^9$).",
+    "output_format_md": "Print the minimum number of moves.",
+    "constraints_text": "$1 \\le n,m \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "2 2\n2 3\n3 5",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-439d-a1",
+        "problem_id": "cf-439d",
+        "approach_name": "Ternary on threshold",
+        "paradigms": [
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Ternary Search",
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Cost vs target threshold is convex; ternary/binary search the final barrier value"
+        ],
+        "editorial_summary_md": "Search the final value T that min a and max b converge to; cost is convex in T."
+      }
+    ]
+  },
+  {
+    "id": "cf-578c",
+    "title": "Weakness and Poorness",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/578/C",
+    "difficulty_rating": 1900,
+    "statement_md": "Given an array $a_1\\dots a_n$, choose a real $x$ and consider $b_i=a_i-x$. The weakness is the maximum absolute subarray sum of $b$. Minimize the weakness over $x$.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 2\\cdot 10^5$).\n\nThe second line contains $a_i$ ($|a_i| \\le 10^4$).",
+    "output_format_md": "Print the minimum possible weakness with absolute/relative error $10^{-6}$.",
+    "constraints_text": "$1 \\le n \\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "3\n1 2 3",
+        "output": "1.000000000000000"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-578c-a1",
+        "problem_id": "cf-578c",
+        "approach_name": "Ternary + Kadane",
+        "paradigms": [
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Ternary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Weakness(x) is convex; ternary search x and Kadane for abs subarray sums"
+        ],
+        "editorial_summary_md": "For fixed x evaluate weakness via max/min subarray sums; ternary search x."
+      }
+    ]
+  },
+  {
+    "id": "cf-25c",
+    "title": "Roads in Berland",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/25/C",
+    "difficulty_rating": 1600,
+    "statement_md": "Berland has $n$ cities with a matrix of shortest-path lengths. After each of $k$ new roads, recompute the sum of pairwise shortest distances over all unordered pairs.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 300$).\n\nThen an $n \\times n$ matrix of distances.\n\nThen $k$ ($1 \\le k \\le 300$) and $k$ roads $a\\ b\\ c$.",
+    "output_format_md": "After each new road print the sum of all pairwise shortest distances.",
+    "constraints_text": "$1 \\le n,k \\le 300$",
+    "sample_io": [
+      {
+        "input": "3\n0 4 5\n4 0 3\n5 3 0\n1\n1 3 1",
+        "output": "7"
+      }
+    ],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-25c-a1",
+        "problem_id": "cf-25c",
+        "approach_name": "Incremental Floyd",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Floyd-Warshall"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "After adding edge (a,b,c), update all pairs via going through a or b"
+        ],
+        "editorial_summary_md": "Maintain APSP matrix; each new road relaxes all pairs in O(n²)."
+      }
+    ]
+  },
+  {
+    "id": "cf-1213g",
+    "title": "Path Queries",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1213/G",
+    "difficulty_rating": 1800,
+    "statement_md": "You are given a weighted tree on $n$ vertices and $q$ queries. For each query $q_i$, count unordered pairs of vertices whose maximum edge on the path is $\\le q_i$.",
+    "input_format_md": "The first line contains $n$ and $q$ ($1 \\le n,q \\le 10^5$).\n\nThen $n-1$ edges with weights.\n\nThen $q$ integers $q_i$.",
+    "output_format_md": "Print $q$ answers.",
+    "constraints_text": "$1 \\le n,q \\le 10^5$",
+    "sample_io": [
+      {
+        "input": "7 5\n1 2 1\n1 3 1\n2 4 2\n2 5 3\n3 6 2\n3 7 4\n1 2 3 4 5",
+        "output": "0 3 5 7 7"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1213g-a1",
+        "problem_id": "cf-1213g",
+        "approach_name": "Offline DSU",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DSU",
+          "Sorting"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Offline queries: add edges by increasing weight; DSU component sizes count pairs"
+        ],
+        "editorial_summary_md": "Sort edges and queries; merge components while answering path-max ≤ q."
+      }
+    ]
+  },
+  {
+    "id": "cses-longest-flight-route",
+    "title": "Longest Flight Route",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1680",
+    "difficulty_rating": 1500,
+    "statement_md": "Uolevi has won a contest, and the prize is a free flight trip that can consist of one or more flights through cities. Of course, Uolevi wants to choose a trip that has as many cities as possible.\n\nUolevi wants to fly from Syrjälä to Lehmälä so that he visits the maximum number of cities. You are given the list of possible flights, and you know that there are no directed cycles in the flight network.\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of cities and flights. The cities are numbered $1,2,\\dots,n$. City $1$ is Syrjälä, and city $n$ is Lehmälä.\n\nAfter this, there are $m$ lines describing the flights. Each line has two integers $a$ and $b$: there is a flight from city $a$ to city $b$. Each flight is a one-way flight.\n\nOutput\n\nFirst print the maximum number of cities on the route. After this, print the cities in the order they will be visited. You can print any valid solution.\n\nIf there are no solutions, print \"IMPOSSIBLE\".\n\nConstraints\n\n- $2 \\le n \\le 10^5$\n\n- $1 \\le m \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\nExample\n\nInput:\n\n5 5\n1 2\n2 5\n1 3\n3 4\n4 5\n\nOutput:\n\n4\n1 3 4 5",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of cities and flights. The cities are numbered $1,2,\\dots,n$. City $1$ is Syrjälä, and city $n$ is Lehmälä.\n\nAfter this, there are $m$ lines describing the flights. Each line has two integers $a$ and $b$: there is a flight from city $a$ to city $b$. Each flight is a one-way flight.",
+    "output_format_md": "First print the maximum number of cities on the route. After this, print the cities in the order they will be visited. You can print any valid solution.\n\nIf there are no solutions, print \"IMPOSSIBLE\".",
+    "constraints_text": "- $2 \\le n \\le 10^5$\n\n- $1 \\le m \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-longest-flight-route-a1",
+        "problem_id": "cses-longest-flight-route",
+        "approach_name": "Topo DP",
+        "paradigms": [
+          "Graph Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "DAG DP for longest path 1→n with predecessor reconstruction"
+        ],
+        "editorial_summary_md": "Process cities in topological order; track max flights and parents."
+      }
+    ]
+  },
+  {
+    "id": "cses-game-routes",
+    "title": "Game Routes",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1681",
+    "difficulty_rating": 1500,
+    "statement_md": "A game has $n$ levels, connected by $m$ teleporters, and your task is to get from level $1$ to level $n$. The game has been designed so that there are no directed cycles in the underlying graph. In how many ways can you complete the game?\n\nInput\n\nThe first input line has two integers $n$ and $m$: the number of levels and teleporters. The levels are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the teleporters. Each line has two integers $a$ and $b$: there is a teleporter from level $a$ to level $b$.\n\nOutput\n\nPrint one integer: the number of ways you can complete the game. Since the result may be large, print it modulo $10^9+7$.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\n- $1 \\le m \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\nExample\n\nInput:\n\n4 5\n1 2\n2 4\n1 3\n3 4\n1 4\n\nOutput:\n\n3",
+    "input_format_md": "The first input line has two integers $n$ and $m$: the number of levels and teleporters. The levels are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the teleporters. Each line has two integers $a$ and $b$: there is a teleporter from level $a$ to level $b$.",
+    "output_format_md": "Print one integer: the number of ways you can complete the game. Since the result may be large, print it modulo $10^9+7$.",
+    "constraints_text": "- $1 \\le n \\le 10^5$\n\n- $1 \\le m \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cses-game-routes-a1",
+        "problem_id": "cses-game-routes",
+        "approach_name": "Topo path counts",
+        "paradigms": [
+          "Graph Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "DAG path-count DP modulo 1e9+7"
+        ],
+        "editorial_summary_md": "Number of routes from 1 to n in a DAG via topo DP."
+      }
+    ]
+  },
+  {
+    "id": "cses-dynamic-range-sum-queries",
+    "title": "Dynamic Range Sum Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1648",
+    "difficulty_rating": 1400,
+    "statement_md": "Given an array of $n$ integers, your task is to process $q$ queries of the following types:\n\n- update the value at position $k$ to $u$\n\n- what is the sum of values in range $[a,b]$?\n\nInput\n\nThe first input line has two integers $n$ and $q$: the number of values and queries.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.\n\nFinally, there are $q$ lines describing the queries. Each line has three integers: either \"$1$ $k$ $u$\" or \"$2$ $a$ $b$\".\n\nOutput\n\nPrint the result of each query of type 2.\n\nConstraints\n\n- $1 \\le n,q \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i, u \\le 10^9$\n\n- $1 \\le k \\le n$\n\n- $1 \\le a \\le b \\le n$\n\nExample\n\nInput:\n\n8 4\n3 2 4 5 1 1 5 3\n2 1 4\n2 5 6\n1 3 1\n2 1 4\n\nOutput:\n\n14\n2\n11",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the number of values and queries.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.\n\nFinally, there are $q$ lines describing the queries. Each line has three integers: either \"$1$ $k$ $u$\" or \"$2$ $a$ $b$\".",
+    "output_format_md": "Print the result of each query of type 2.",
+    "constraints_text": "- $1 \\le n,q \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i, u \\le 10^9$\n\n- $1 \\le k \\le n$\n\n- $1 \\le a \\le b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-dynamic-range-sum-queries-a1",
+        "problem_id": "cses-dynamic-range-sum-queries",
+        "approach_name": "Fenwick / segtree",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "Point updates + range sum with fenwick or segtree"
+        ],
+        "editorial_summary_md": "Support updating array values and querying range sums."
+      }
+    ]
+  },
+  {
+    "id": "cses-dynamic-range-minimum-queries",
+    "title": "Dynamic Range Minimum Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1649",
+    "difficulty_rating": 1400,
+    "statement_md": "Given an array of $n$ integers, your task is to process $q$ queries of the following types:\n\n- update the value at position $k$ to $u$\n\n- what is the minimum value in range $[a,b]$?\n\nInput\n\nThe first input line has two integers $n$ and $q$: the number of values and queries.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.\n\nFinally, there are $q$ lines describing the queries. Each line has three integers: either \"$1$ $k$ $u$\" or \"$2$ $a$ $b$\".\n\nOutput\n\nPrint the result of each query of type 2.\n\nConstraints\n\n- $1 \\le n,q \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i, u \\le 10^9$\n\n- $1 \\le k \\le n$\n\n- $1 \\le a \\le b \\le n$\n\nExample\n\nInput:\n\n8 4\n3 2 4 5 1 1 5 3\n2 1 4\n2 5 6\n1 2 3\n2 1 4\n\nOutput:\n\n2\n1\n3",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the number of values and queries.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.\n\nFinally, there are $q$ lines describing the queries. Each line has three integers: either \"$1$ $k$ $u$\" or \"$2$ $a$ $b$\".",
+    "output_format_md": "Print the result of each query of type 2.",
+    "constraints_text": "- $1 \\le n,q \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i, u \\le 10^9$\n\n- $1 \\le k \\le n$\n\n- $1 \\le a \\le b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-dynamic-range-minimum-queries-a1",
+        "problem_id": "cses-dynamic-range-minimum-queries",
+        "approach_name": "RMQ structure",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree"
+        ],
+        "data_structures": [
+          "Sparse Table"
+        ],
+        "key_insights": [
+          "If only queries static, sparse table; with updates use segtree"
+        ],
+        "editorial_summary_md": "Point updates and range minimum queries on an array."
+      }
+    ]
+  },
+  {
+    "id": "cses-range-updates-and-sums",
+    "title": "Range Updates and Sums",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1735",
+    "difficulty_rating": 1800,
+    "statement_md": "Your task is to maintain an array of $n$ values and efficiently process the following types of queries:\n\n- Increase each value in range $[a,b]$ by $x$.\n\n- Set each value in range $[a,b]$ to $x$.\n\n- Calculate the sum of values in range $[a,b]$.\n\nInput\n\nThe first input line has two integers $n$ and $q$: the array size and the number of queries.\n\nThe next line has $n$ values $t_1,t_2,\\dots,t_n$: the initial contents of the array.\n\nFinally, there are $q$ lines describing the queries. The format of each line is one of the following: \"1 $a$ $b$ $x$\",  \"2 $a$ $b$ $x$\", or \"3 $a$ $b$\".\n\nOutput\n\nPrint the answer to each sum query.\n\nConstraints\n\n- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le t_i, x \\le 10^6$\n\n- $1 \\le a \\le b \\le n$\n\nExample\n\nInput:\n\n6 5\n2 3 1 1 5 3\n3 3 5\n1 2 4 2\n3 3 5\n2 2 4 5\n3 3 5\n\nOutput:\n\n7\n11\n15",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the array size and the number of queries.\n\nThe next line has $n$ values $t_1,t_2,\\dots,t_n$: the initial contents of the array.\n\nFinally, there are $q$ lines describing the queries. The format of each line is one of the following: \"1 $a$ $b$ $x$\",  \"2 $a$ $b$ $x$\", or \"3 $a$ $b$\".",
+    "output_format_md": "Print the answer to each sum query.",
+    "constraints_text": "- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le t_i, x \\le 10^6$\n\n- $1 \\le a \\le b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-range-updates-and-sums-a1",
+        "problem_id": "cses-range-updates-and-sums",
+        "approach_name": "Lazy segtree",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Lazy segtree with range add and range assign + range sum"
+        ],
+        "editorial_summary_md": "Compose assign/add lazy tags carefully for range sum queries."
+      }
+    ]
+  },
+  {
+    "id": "cses-salary-queries",
+    "title": "Salary Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1144",
+    "difficulty_rating": 1700,
+    "statement_md": "A company has $n$ employees with certain salaries. Your task is to keep track of the salaries and process queries.\n\nInput\n\nThe first input line contains two integers $n$ and $q$: the number of employees and queries. The employees are numbered $1,2,\\ldots,n$.\n\nThe next line has $n$ integers $p_1,p_2,\\ldots,p_n$: each employee's salary.\n\nAfter this, there are $q$ lines describing the queries. Each line has one of the following forms:\n\n- ! $k$ $x$: change the salary of employee $k$ to $x$\n\n- ? $a$ $b$: count the number of employees whose salary is between $a \\ldots b$\n\nOutput\n\nPrint the answer to each ? query.\n\nConstraints\n\n- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le p_i \\le 10^9$\n\n- $1 \\le k \\le n$\n\n- $1 \\le x \\le 10^9$\n\n- $1 \\le a \\le b \\le 10^9$\n\nExample\n\nInput:\n\n5 3\n3 7 2 2 5\n? 2 3\n! 3 6\n? 2 3\n\nOutput:\n\n3\n2",
+    "input_format_md": "The first input line contains two integers $n$ and $q$: the number of employees and queries. The employees are numbered $1,2,\\ldots,n$.\n\nThe next line has $n$ integers $p_1,p_2,\\ldots,p_n$: each employee's salary.\n\nAfter this, there are $q$ lines describing the queries. Each line has one of the following forms:\n\n- ! $k$ $x$: change the salary of employee $k$ to $x$\n\n- ? $a$ $b$: count the number of employees whose salary is between $a \\ldots b$",
+    "output_format_md": "Print the answer to each ? query.",
+    "constraints_text": "- $1 \\le n, q \\le 2 \\cdot 10^5$\n\n- $1 \\le p_i \\le 10^9$\n\n- $1 \\le k \\le n$\n\n- $1 \\le x \\le 10^9$\n\n- $1 \\le a \\le b \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-salary-queries-a1",
+        "problem_id": "cses-salary-queries",
+        "approach_name": "Compressed fenwick",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Fenwick Tree",
+          "Ordered Set"
+        ],
+        "key_insights": [
+          "Coordinate compress salaries; fenwick counts employees in [a,b]"
+        ],
+        "editorial_summary_md": "Offline compress values; maintain frequency BIT for salary range counts."
+      }
+    ]
+  },
+  {
+    "id": "cses-list-removals",
+    "title": "List Removals",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1749",
+    "difficulty_rating": 1500,
+    "statement_md": "You are given a list consisting of $n$ integers. Your task is to remove elements from the list at given positions, and report the removed elements.\n\nInput\n\nThe first input line has an integer $n$: the initial size of the list. During the process, the elements are numbered $1,2,\\dots,k$ where $k$ is the current size of the list.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the list.\n\nThe last line has $n$ integers $p_1,p_2,\\dots,p_n$: the positions of the elements to be removed.\n\nOutput\n\nPrint the elements in the order they are removed.\n\nConstraints\n\n- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$\n\n- $1 \\le p_i \\le n-i+1$\n\nExample\n\nInput:\n\n5\n2 6 1 4 2\n3 1 3 1 1\n\nOutput:\n\n1 2 2 6 4\n\nExplanation: The contents of the list are $[2,6,1,4,2]$, $[2,6,4,2]$, $[6,4,2]$, $[6,4]$, $[4]$ and $[]$.",
+    "input_format_md": "The first input line has an integer $n$: the initial size of the list. During the process, the elements are numbered $1,2,\\dots,k$ where $k$ is the current size of the list.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the list.\n\nThe last line has $n$ integers $p_1,p_2,\\dots,p_n$: the positions of the elements to be removed.",
+    "output_format_md": "Print the elements in the order they are removed.",
+    "constraints_text": "- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$\n\n- $1 \\le p_i \\le n-i+1$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-list-removals-a1",
+        "problem_id": "cses-list-removals",
+        "approach_name": "Indexed removal",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree"
+        ],
+        "data_structures": [
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "Order-statistic fenwick finds the p-th remaining element"
+        ],
+        "editorial_summary_md": "Each query deletes the x-th still-present position using a BIT of alive flags."
+      }
+    ]
+  },
+  {
+    "id": "cses-distinct-values-queries",
+    "title": "Distinct Values Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1734",
+    "difficulty_rating": 1700,
+    "statement_md": "You are given an array of $n$ integers and $q$ queries of the form: how many distinct values are there in a range $[a,b]$?\n\nInput\n\nThe first input line has two integers $n$ and $q$: the array size and number of queries.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.\n\nFinally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$.\n\nOutput\n\nFor each query, print the number of distinct values in the range.\n\nConstraints\n\n- $1 \\le n,q \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$\n\n- $1 \\le a \\le b \\le n$\n\nExample\n\nInput:\n\n5 3\n3 2 3 1 2\n1 3\n2 4\n1 5\n\nOutput:\n\n2\n3\n3",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the array size and number of queries.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.\n\nFinally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$.",
+    "output_format_md": "For each query, print the number of distinct values in the range.",
+    "constraints_text": "- $1 \\le n,q \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$\n\n- $1 \\le a \\le b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-distinct-values-queries-a1",
+        "problem_id": "cses-distinct-values-queries",
+        "approach_name": "Offline distinct",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "Mo’s algorithm or last-occurrence fenwick offline for distinct counts"
+        ],
+        "editorial_summary_md": "Process queries by right endpoint; keep one occurrence per value in a BIT."
+      }
+    ]
+  },
+  {
+    "id": "cses-forest-queries-ii",
+    "title": "Forest Queries II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1739",
+    "difficulty_rating": 1700,
+    "statement_md": "You are given an $n \\times n$ grid representing the map of a forest. Each square is either empty or has a tree. Your task is to process $q$ queries of the following types:\n\n- Change the state (empty/tree) of a square.\n\n- How many trees are inside a rectangle in the forest?\n\nInput\n\nThe first input line has two integers $n$ and $q$: the size of the forest and the number of queries.\n\nThen, there are $n$ lines describing the forest. Each line has $n$ characters: . is an empty square and * is a tree.\n\nFinally, there are $q$ lines describing the queries. The format of each line is either \"$1$ $y$ $x$\" or \"2 $y_1$ $x_1$ $y_2$ $x_2$\".\n\nOutput\n\nPrint the answer to each query of the second type.\n\nConstraints\n\n- $1 \\le n \\le 1000$\n\n- $1 \\le q \\le 2 \\cdot 10^5$\n\n- $1 \\le y,x \\le n$\n\n- $1 \\le y_1 \\le y_2 \\le n$\n\n- $1 \\le x_1 \\le x_2 \\le n$\n\nExample\n\nInput:\n\n4 3\n.*..\n*.**\n**..\n****\n2 2 2 3 4\n1 3 3\n2 2 2 3 4\n\nOutput:\n\n3\n4",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the size of the forest and the number of queries.\n\nThen, there are $n$ lines describing the forest. Each line has $n$ characters: . is an empty square and * is a tree.\n\nFinally, there are $q$ lines describing the queries. The format of each line is either \"$1$ $y$ $x$\" or \"2 $y_1$ $x_1$ $y_2$ $x_2$\".",
+    "output_format_md": "Print the answer to each query of the second type.",
+    "constraints_text": "- $1 \\le n \\le 1000$\n\n- $1 \\le q \\le 2 \\cdot 10^5$\n\n- $1 \\le y,x \\le n$\n\n- $1 \\le y_1 \\le y_2 \\le n$\n\n- $1 \\le x_1 \\le x_2 \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cses-forest-queries-ii-a1",
+        "problem_id": "cses-forest-queries-ii",
+        "approach_name": "2D fenwick",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Fenwick Tree",
+          "2D Array"
+        ],
+        "key_insights": [
+          "2D fenwick for point flips and rectangle sum queries"
+        ],
+        "editorial_summary_md": "Toggle trees and query subtree rectangle counts on a grid."
+      }
+    ]
+  },
+  {
+    "id": "cses-advertisement",
+    "title": "Advertisement",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1142",
+    "difficulty_rating": 1500,
+    "statement_md": "A fence consists of $n$ vertical boards. The width of each board is 1 and their heights may vary.\n\nYou want to attach a rectangular advertisement to the fence. What is the maximum area of such an advertisement?\n\nInput\n\nThe first input line contains an integer $n$: the width of the fence.\n\nAfter this, there are $n$ integers $k_1,k_2,\\ldots,k_n$: the height of each board.\n\nOutput\n\nPrint one integer: the maximum area of an advertisement.\n\nConstraints\n\n- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le k_i \\le 10^9$\n\nExample\n\nInput:\n\n8\n4 1 5 3 3 2 4 1\n\nOutput:\n\n10",
+    "input_format_md": "The first input line contains an integer $n$: the width of the fence.\n\nAfter this, there are $n$ integers $k_1,k_2,\\ldots,k_n$: the height of each board.",
+    "output_format_md": "Print one integer: the maximum area of an advertisement.",
+    "constraints_text": "- $1 \\le n \\le 2 \\cdot 10^5$\n\n- $1 \\le k_i \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cses-advertisement-a1",
+        "problem_id": "cses-advertisement",
+        "approach_name": "Histogram stack",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [
+          "Sorting"
+        ],
+        "data_structures": [
+          "Monotonic Stack",
+          "Stack"
+        ],
+        "key_insights": [
+          "Largest rectangle in histogram via nearest smaller left/right"
+        ],
+        "editorial_summary_md": "For each bar, width = R-L-1 using monotonic stack of indices."
+      }
+    ]
+  },
+  {
+    "id": "cf-547b",
+    "title": "Mike and Feet",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/547/B",
+    "difficulty_rating": 1800,
+    "statement_md": "Given an array of $n$ bear strengths, for every group size $k=1..n$ find the maximum of the minimums over all contiguous groups of size $k$.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 2\\cdot 10^5$).\n\nThe second line contains $n$ integers $a_i$ ($1 \\le a_i \\le 10^9$).",
+    "output_format_md": "Print $n$ integers — answers for $k=1..n$.",
+    "constraints_text": "$1 \\le n \\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "10\n1 2 3 4 5 4 3 2 1 6",
+        "output": "6 4 4 3 3 2 2 1 1 1"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-547b-a1",
+        "problem_id": "cf-547b",
+        "approach_name": "Span via mono stack",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Monotonic Stack",
+          "Stack"
+        ],
+        "key_insights": [
+          "For each position, span where it is minimum; update answers by span length"
+        ],
+        "editorial_summary_md": "Nearest smaller left/right gives the max group size for each minimum."
+      }
+    ]
+  },
+  {
+    "id": "cf-1313c2",
+    "title": "Skyscrapers (hard version)",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1313/C2",
+    "difficulty_rating": 1900,
+    "statement_md": "You must build $n$ skyscrapers with heights $h_i \\le m_i$ that are first non-decreasing then non-increasing (unimodal). Maximize $\\sum h_i$.",
+    "input_format_md": "The first line contains $n$ ($1 \\le n \\le 5\\cdot 10^5$).\n\nThe second line contains $m_1\\dots m_n$ ($1 \\le m_i \\le 10^9$).",
+    "output_format_md": "Print $n$ heights of an optimal skyline.",
+    "constraints_text": "$1 \\le n \\le 5\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "5\n1 2 3 2 1",
+        "output": "1 2 3 2 1"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1313c2-a1",
+        "problem_id": "cf-1313c2",
+        "approach_name": "Unimodal mono stack",
+        "paradigms": [
+          "Greedy",
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Monotonic Stack",
+          "Stack"
+        ],
+        "key_insights": [
+          "Pref/suf best unimodal sums via mono stack contribution tricks"
+        ],
+        "editorial_summary_md": "Compute best mountain skyline with left and right histogram-like stacks."
+      }
+    ]
+  },
+  {
+    "id": "cf-514c",
+    "title": "Watto and Mechanism",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/514/C",
+    "difficulty_rating": 2100,
+    "statement_md": "You are given $n$ memory strings and $m$ queries. A query string matches if it differs in exactly one character from some memory string. Answer YES/NO for each query.",
+    "input_format_md": "The first line contains $n$ and $m$ ($1 \\le n,m \\le 3\\cdot 10^5$).\n\nThen $n$ memory strings and $m$ query strings over `abc` (total length $\\le 6\\cdot 10^5$).",
+    "output_format_md": "Print `YES` or `NO` for each query.",
+    "constraints_text": "Total length $\\le 6\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "2 3\naaaaa\nacacaca\naaaaab\nacacaca\nbbb",
+        "output": "YES\nYES\nNO"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-514c-a1",
+        "problem_id": "cf-514c",
+        "approach_name": "Hash set of strings",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "String Hashing"
+        ],
+        "data_structures": [
+          "Trie",
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Store hashes of memory strings; query by flipping one character hash"
+        ],
+        "editorial_summary_md": "Check existence of a string at Hamming distance 1 using polynomial hashes."
+      }
+    ]
+  },
+  {
+    "id": "cf-166e",
+    "title": "Tetrahedron",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/166/E",
+    "difficulty_rating": 1500,
+    "statement_md": "A grasshopper starts at vertex $D$ of a tetrahedron $ABCD$ and each second jumps to a different vertex. Count ways to be at $D$ after exactly $n$ jumps modulo $10^9+7$.",
+    "input_format_md": "A single integer $n$ ($1 \\le n \\le 10^7$).",
+    "output_format_md": "Print the number of ways modulo $10^9+7$.",
+    "constraints_text": "$1 \\le n \\le 10^7$",
+    "sample_io": [
+      {
+        "input": "2",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-166e-a1",
+        "problem_id": "cf-166e",
+        "approach_name": "State DP",
+        "paradigms": [
+          "Dynamic Programming",
+          "Bitmask / Bit DP"
+        ],
+        "algorithms": [],
+        "data_structures": [],
+        "key_insights": [
+          "Two states: at D vs elsewhere; recurrence ways[n]"
+        ],
+        "editorial_summary_md": "Let a_n ways at D, b_n elsewhere; a_n=3 b_{n-1}, b_n=2 b_{n-1}+a_{n-1}."
+      }
+    ]
+  },
+  {
+    "id": "cf-484b",
+    "title": "Maximum Value",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/484/B",
+    "difficulty_rating": 1900,
+    "statement_md": "Given a multiset of positive integers ≤ $2\\cdot 10^6$, find $\\max (a_i \\bmod a_j)$ over all pairs.",
+    "input_format_md": "The first line contains $n$ ($2 \\le n \\le 2\\cdot 10^5$).\n\nThe second line contains $n$ integers $a_i$ ($1 \\le a_i \\le 2\\cdot 10^6$).",
+    "output_format_md": "Print the maximum remainder.",
+    "constraints_text": "$2 \\le n \\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "3\n3 4 5",
+        "output": "2"
+      }
+    ],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-484b-a1",
+        "problem_id": "cf-484b",
+        "approach_name": "Multiples sweep",
+        "paradigms": [
+          "Math / Number Theory",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Binary Search",
+          "Sorting",
+          "Sieve"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "For each modulus candidate, scan multiples using next-present values"
+        ],
+        "editorial_summary_md": "Sort unique values; for each a_j walk multiples to maximize remainders."
+      }
+    ]
+  },
+  {
+    "id": "cf-1005e1",
+    "title": "Median on Segments (Permutations Edition)",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1005/E1",
+    "difficulty_rating": 1800,
+    "statement_md": "Given a permutation of $1..n$ and an integer $m$, count subsegments whose median is $m$.",
+    "input_format_md": "The first line contains $n$ and $m$ ($1 \\le m \\le n \\le 2\\cdot 10^5$).\n\nThe second line contains the permutation.",
+    "output_format_md": "Print the number of subsegments with median $m$.",
+    "constraints_text": "$1 \\le n \\le 2\\cdot 10^5$",
+    "sample_io": [
+      {
+        "input": "5 4\n1 4 5 2 3",
+        "output": "4"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1005e1-a1",
+        "problem_id": "cf-1005e1",
+        "approach_name": "Median prefixes",
+        "paradigms": [
+          "Two Pointers",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Map values to -1/0/+1 around m; count prefixes with balanced transforms"
+        ],
+        "editorial_summary_md": "Transform relative to m and count subarrays with the median property."
+      }
+    ]
+  },
+  {
+    "id": "cses-static-range-minimum-queries",
+    "title": "Static Range Minimum Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/1647",
+    "difficulty_rating": 1200,
+    "statement_md": "Given an array of $n$ integers, your task is to process $q$ queries of the form: what is the minimum value in range $[a,b]$?\n\nInput\n\nThe first input line has two integers $n$ and $q$: the number of values and queries.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.\n\nFinally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$: what is the minimum value in range $[a,b]$?\n\nOutput\n\nPrint the result of each query.\n\nConstraints\n\n- $1 \\le n,q \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$\n\n- $1 \\le a \\le b \\le n$\n\nExample\n\nInput:\n\n8 4\n3 2 4 5 1 1 5 3\n2 4\n5 6\n1 8\n3 3\n\nOutput:\n\n2\n1\n1\n4",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the number of values and queries.\n\nThe second line has $n$ integers $x_1,x_2,\\dots,x_n$: the array values.\n\nFinally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$: what is the minimum value in range $[a,b]$?",
+    "output_format_md": "Print the result of each query.",
+    "constraints_text": "- $1 \\le n,q \\le 2 \\cdot 10^5$\n\n- $1 \\le x_i \\le 10^9$\n\n- $1 \\le a \\le b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-static-range-minimum-queries-a1",
+        "problem_id": "cses-static-range-minimum-queries",
+        "approach_name": "Sparse table RMQ",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree"
+        ],
+        "data_structures": [
+          "Sparse Table"
+        ],
+        "key_insights": [
+          "Static RMQ: sparse table answers in O(1) after O(N log N) build"
+        ],
+        "editorial_summary_md": "Precompute minima of dyadic intervals; answer each query with two blocks."
       }
     ]
   }
