@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { AnimatedNumber } from '@/components/game/AnimatedNumber';
+import { FadeInUp } from '@/components/game/FadeInUp';
 import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
@@ -49,56 +50,65 @@ export default function ReviewScreen() {
 
   return (
     <Screen scroll>
-      <View style={styles.hero}>
-        <Text style={styles.kicker}>SPACED REPS</Text>
-        <Text style={styles.title}>Review</Text>
-        <Text style={styles.sub}>{formLine}</Text>
-      </View>
-
-      <View style={styles.deckPlate}>
-        <View>
-          <Text style={styles.deckLabel}>Due now</Text>
-          <AnimatedNumber value={due} style={styles.deckValue} />
+      <FadeInUp delayMs={40} waitForLaunch={false}>
+        <View style={styles.hero}>
+          <Text style={styles.kicker}>SPACED REPS</Text>
+          <Text style={styles.title}>Review</Text>
+          <Text style={styles.sub}>{formLine}</Text>
         </View>
-        <Text style={styles.deckHint}>Missed paradigms & twists resurface until cleared</Text>
-      </View>
+      </FadeInUp>
+
+      <FadeInUp delayMs={120} waitForLaunch={false}>
+        <View style={styles.deckPlate}>
+          <View>
+            <Text style={styles.deckLabel}>Due now</Text>
+            <AnimatedNumber value={due} style={styles.deckValue} />
+          </View>
+          <Text style={styles.deckHint}>Missed paradigms & twists resurface until cleared</Text>
+        </View>
+      </FadeInUp>
 
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
       {!loading && due === 0 ? (
-        <View style={styles.clearCard}>
-          <Text style={styles.clearTitle}>Deck cleared</Text>
-          <Text style={styles.clearSub}>
-            Nail a few runs or mark misses for review to fill this queue.
-          </Text>
-        </View>
+        <FadeInUp delayMs={180} waitForLaunch={false}>
+          <View style={styles.clearCard}>
+            <Text style={styles.clearTitle}>Deck cleared</Text>
+            <Text style={styles.clearSub}>
+              Nail a few runs or mark misses for review to fill this queue.
+            </Text>
+          </View>
+        </FadeInUp>
       ) : null}
 
       {queue.map((p, i) => {
         const isNext = i === 0;
         return (
-          <PressableScale
-            key={p.id}
-            style={[styles.card, isNext && styles.cardNext]}
-            haptic={isNext ? 'medium' : 'light'}
-            onPress={() => start(p)}
-          >
-            <View style={styles.cardTop}>
-              <Text style={[styles.badge, isNext && styles.badgeNext]}>
-                {isNext ? 'NEXT' : `#${i + 1}`}
-              </Text>
-              <Text style={styles.rating}>{p.difficulty_rating}</Text>
-            </View>
-            <Text style={styles.source}>{p.source}</Text>
-            <Text style={styles.cardTitle}>{p.title}</Text>
-            <Text style={styles.meta}>{p.target_complexity}</Text>
-            {isNext ? <Text style={styles.cta}>Draw →</Text> : null}
-          </PressableScale>
+          <FadeInUp key={p.id} delayMs={160 + i * 70} waitForLaunch={false}>
+            <PressableScale
+              style={[styles.card, isNext && styles.cardNext]}
+              haptic={isNext ? 'medium' : 'light'}
+              onPress={() => start(p)}
+            >
+              <View style={styles.cardTop}>
+                <Text style={[styles.badge, isNext && styles.badgeNext]}>
+                  {isNext ? 'NEXT' : `#${i + 1}`}
+                </Text>
+                <Text style={styles.rating}>{p.difficulty_rating}</Text>
+              </View>
+              <Text style={styles.source}>{p.source}</Text>
+              <Text style={styles.cardTitle}>{p.title}</Text>
+              <Text style={styles.meta}>{p.target_complexity}</Text>
+              {isNext ? <Text style={styles.cta}>Draw →</Text> : null}
+            </PressableScale>
+          </FadeInUp>
         );
       })}
 
       {queue[0] ? (
-        <PrimaryButton label="Review next" onPress={() => start(queue[0])} />
+        <FadeInUp delayMs={220} waitForLaunch={false}>
+          <PrimaryButton label="Review next" onPress={() => start(queue[0])} />
+        </FadeInUp>
       ) : null}
     </Screen>
   );

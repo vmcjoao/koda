@@ -3,13 +3,15 @@ import { useFonts } from 'expo-font';
 import { Stack, router, type Href } from 'expo-router';
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import { Platform } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Platform, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
+import { LaunchOverlay } from '@/components/game/LaunchOverlay';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { AttemptProvider } from '@/contexts/AttemptContext';
+import { LaunchProvider } from '@/contexts/LaunchContext';
 import { syncRemindersOnLaunch } from '@/lib/notifications';
 import { colors } from '@/constants/theme';
 
@@ -68,6 +70,7 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+  const [showLaunch, setShowLaunch] = useState(true);
 
   useNotificationObserver();
 
@@ -91,30 +94,46 @@ export default function RootLayout() {
   return (
     <AuthProvider>
       <AttemptProvider>
-        <ThemeProvider value={KodaDarkTheme}>
-          <StatusBar style="light" />
-          <Stack
-            screenOptions={{
-              headerStyle: { backgroundColor: colors.surface },
-              headerTintColor: colors.text,
-              headerTitleStyle: { fontWeight: '700' },
-              contentStyle: { backgroundColor: colors.background },
-            }}
-          >
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)/login" options={{ title: 'Sign in', presentation: 'modal' }} />
-            <Stack.Screen name="settings" options={{ title: 'Settings' }} />
-            <Stack.Screen name="catalog" options={{ title: 'Catalog' }} />
-            <Stack.Screen name="playlists/index" options={{ title: 'Playlists' }} />
-            <Stack.Screen name="playlists/[id]" options={{ title: 'Playlist' }} />
-            <Stack.Screen name="history" options={{ title: 'History' }} />
-            <Stack.Screen name="problem/[id]/index" options={{ title: 'Encounter' }} />
-            <Stack.Screen name="problem/[id]/radar" options={{ title: 'Constraint Radar' }} />
-            <Stack.Screen name="problem/[id]/hypothesis" options={{ title: 'Hypothesis' }} />
-            <Stack.Screen name="problem/[id]/blueprint" options={{ title: 'Blueprint' }} />
-            <Stack.Screen name="problem/[id]/reveal" options={{ title: 'Reveal', headerBackVisible: false }} />
-          </Stack>
-        </ThemeProvider>
+        <LaunchProvider ready={!showLaunch}>
+          <ThemeProvider value={KodaDarkTheme}>
+            <StatusBar style="light" />
+            <View style={{ flex: 1, backgroundColor: colors.background }}>
+              <Stack
+                screenOptions={{
+                  headerStyle: { backgroundColor: colors.surface },
+                  headerTintColor: colors.text,
+                  headerTitleStyle: { fontWeight: '700' },
+                  contentStyle: { backgroundColor: colors.background },
+                  animation: 'fade_from_bottom',
+                  animationDuration: 280,
+                }}
+              >
+                <Stack.Screen name="(tabs)" options={{ headerShown: false, animation: 'fade' }} />
+                <Stack.Screen
+                  name="(auth)/login"
+                  options={{ title: 'Sign in', presentation: 'modal' }}
+                />
+                <Stack.Screen name="settings" options={{ title: 'Settings' }} />
+                <Stack.Screen name="catalog" options={{ title: 'Catalog' }} />
+                <Stack.Screen name="playlists/index" options={{ title: 'Playlists' }} />
+                <Stack.Screen name="playlists/[id]" options={{ title: 'Playlist' }} />
+                <Stack.Screen name="history" options={{ title: 'History' }} />
+                <Stack.Screen name="problem/[id]/index" options={{ title: 'Encounter' }} />
+                <Stack.Screen name="problem/[id]/radar" options={{ title: 'Constraint Radar' }} />
+                <Stack.Screen
+                  name="problem/[id]/hypothesis"
+                  options={{ title: 'Hypothesis' }}
+                />
+                <Stack.Screen name="problem/[id]/blueprint" options={{ title: 'Blueprint' }} />
+                <Stack.Screen
+                  name="problem/[id]/reveal"
+                  options={{ title: 'Reveal', headerBackVisible: false, animation: 'fade' }}
+                />
+              </Stack>
+              {showLaunch ? <LaunchOverlay onFinished={() => setShowLaunch(false)} /> : null}
+            </View>
+          </ThemeProvider>
+        </LaunchProvider>
       </AttemptProvider>
     </AuthProvider>
   );

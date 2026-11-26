@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { AnimatedNumber } from '@/components/game/AnimatedNumber';
+import { FadeInUp } from '@/components/game/FadeInUp';
 import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
@@ -100,47 +101,55 @@ export default function AnalyticsScreen() {
 
   return (
     <Screen scroll>
-      <View style={styles.hero}>
-        <Text style={styles.kicker}>PERFORMANCE</Text>
-        <Text style={styles.title}>Stats</Text>
-        <Text style={styles.sub}>{formLine}</Text>
-      </View>
+      <FadeInUp delayMs={40} waitForLaunch={false}>
+        <View style={styles.hero}>
+          <Text style={styles.kicker}>PERFORMANCE</Text>
+          <Text style={styles.title}>Stats</Text>
+          <Text style={styles.sub}>{formLine}</Text>
+        </View>
+      </FadeInUp>
 
-      <View style={styles.bandPlate}>
-        <Text style={styles.bandLabel}>Rating band</Text>
-        <AnimatedNumber
-          value={profile?.rating_band ?? 1200}
-          style={styles.bandValue}
-        />
-        <Text style={styles.bandHint}>Steers Daily Set difficulty</Text>
-      </View>
+      <FadeInUp delayMs={110} waitForLaunch={false}>
+        <View style={styles.bandPlate}>
+          <Text style={styles.bandLabel}>Rating band</Text>
+          <AnimatedNumber
+            value={profile?.rating_band ?? 1200}
+            style={styles.bandValue}
+          />
+          <Text style={styles.bandHint}>Steers Daily Set difficulty</Text>
+        </View>
+      </FadeInUp>
 
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
-      <View style={styles.metricRow}>
-        <PressableScale style={styles.metric} onPress={() => router.push('/history')}>
-          <AnimatedNumber value={attempts.length} style={styles.metricValue} />
-          <Text style={styles.metricLabel}>Rounds ▸</Text>
-        </PressableScale>
-        <View style={[styles.metric, styles.metricAccent]}>
-          <AnimatedNumber value={avgScore} suffix="%" style={styles.metricValueAccent} />
-          <Text style={styles.metricLabel}>Avg score</Text>
+      <FadeInUp delayMs={180} waitForLaunch={false}>
+        <View style={styles.metricRow}>
+          <PressableScale style={styles.metric} onPress={() => router.push('/history')}>
+            <AnimatedNumber value={attempts.length} style={styles.metricValue} />
+            <Text style={styles.metricLabel}>Rounds ▸</Text>
+          </PressableScale>
+          <View style={[styles.metric, styles.metricAccent]}>
+            <AnimatedNumber value={avgScore} suffix="%" style={styles.metricValueAccent} />
+            <Text style={styles.metricLabel}>Avg score</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.metricRow}>
-        <View style={styles.metric}>
-          <Text style={styles.metricValue}>{formatTime(avgInsightSec)}</Text>
-          <Text style={styles.metricLabel}>Avg insight</Text>
+      </FadeInUp>
+      <FadeInUp delayMs={240} waitForLaunch={false}>
+        <View style={styles.metricRow}>
+          <View style={styles.metric}>
+            <Text style={styles.metricValue}>{formatTime(avgInsightSec)}</Text>
+            <Text style={styles.metricLabel}>Avg insight</Text>
+          </View>
+          <View style={[styles.metric, missRate >= 50 && styles.metricWarn]}>
+            <AnimatedNumber
+              value={missRate}
+              suffix="%"
+              style={missRate >= 50 ? styles.metricValueWarn : styles.metricValue}
+            />
+            <Text style={styles.metricLabel}>Miss rate</Text>
+          </View>
         </View>
-        <View style={[styles.metric, missRate >= 50 && styles.metricWarn]}>
-          <AnimatedNumber
-            value={missRate}
-            suffix="%"
-            style={missRate >= 50 ? styles.metricValueWarn : styles.metricValue}
-          />
-          <Text style={styles.metricLabel}>Miss rate</Text>
-        </View>
-      </View>
+      </FadeInUp>
 
       <Text style={styles.section}>Training calendar</Text>
       <Text style={styles.sectionHint}>

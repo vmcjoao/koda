@@ -11,6 +11,7 @@ import * as Clipboard from 'expo-clipboard';
 import * as WebBrowser from 'expo-web-browser';
 import { useFocusEffect } from 'expo-router';
 import { AnimatedNumber } from '@/components/game/AnimatedNumber';
+import { FadeInUp } from '@/components/game/FadeInUp';
 import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
@@ -81,32 +82,38 @@ export default function QueueScreen() {
 
   return (
     <Screen scroll contentStyle={isWide ? styles.wideContent : undefined}>
-      <View style={styles.hero}>
-        <Text style={styles.kicker}>BUILD QUEUE</Text>
-        <Text style={styles.title}>Implement</Text>
-        <Text style={styles.sub}>{formLine}</Text>
-      </View>
+      <FadeInUp delayMs={40} waitForLaunch={false}>
+        <View style={styles.hero}>
+          <Text style={styles.kicker}>BUILD QUEUE</Text>
+          <Text style={styles.title}>Implement</Text>
+          <Text style={styles.sub}>{formLine}</Text>
+        </View>
+      </FadeInUp>
 
-      <View style={styles.statRow}>
-        <View style={[styles.statCell, styles.statPending]}>
-          <Text style={styles.statLabel}>Queued</Text>
-          <AnimatedNumber value={pending} style={styles.statValue} />
+      <FadeInUp delayMs={120} waitForLaunch={false}>
+        <View style={styles.statRow}>
+          <View style={[styles.statCell, styles.statPending]}>
+            <Text style={styles.statLabel}>Queued</Text>
+            <AnimatedNumber value={pending} style={styles.statValue} />
+          </View>
+          <View style={[styles.statCell, styles.statDrafts]}>
+            <Text style={styles.statLabel}>With draft</Text>
+            <AnimatedNumber value={withDraft} style={styles.statValueAccent} />
+          </View>
         </View>
-        <View style={[styles.statCell, styles.statDrafts]}>
-          <Text style={styles.statLabel}>With draft</Text>
-          <AnimatedNumber value={withDraft} style={styles.statValueAccent} />
-        </View>
-      </View>
+      </FadeInUp>
 
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
       {!loading && attempts.length === 0 ? (
-        <View style={styles.clearCard}>
-          <Text style={styles.clearTitle}>No builds pending</Text>
-          <Text style={styles.clearSub}>
-            Clear a run, save a blueprint, and it drops into this forge.
-          </Text>
-        </View>
+        <FadeInUp delayMs={180} waitForLaunch={false}>
+          <View style={styles.clearCard}>
+            <Text style={styles.clearTitle}>No builds pending</Text>
+            <Text style={styles.clearSub}>
+              Clear a run, save a blueprint, and it drops into this forge.
+            </Text>
+          </View>
+        </FadeInUp>
       ) : null}
 
       <View style={isWide ? styles.grid : styles.stack}>
@@ -116,8 +123,10 @@ export default function QueueScreen() {
           const draft = a.pseudocode_draft?.trim() ?? '';
           const isLead = i === 0;
           return (
-            <View
+            <FadeInUp
               key={a.id}
+              delayMs={160 + i * 60}
+              waitForLaunch={false}
               style={[styles.card, isWide && styles.cardWide, isLead && styles.cardLead]}
             >
               <View style={styles.cardTop}>
@@ -193,7 +202,7 @@ export default function QueueScreen() {
                   style={styles.actionBtn}
                 />
               </View>
-            </View>
+            </FadeInUp>
           );
         })}
       </View>

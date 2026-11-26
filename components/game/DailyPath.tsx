@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { FadeInUp } from '@/components/game/FadeInUp';
 import { PressableScale } from '@/components/game/PressableScale';
 import { SLOT_LABELS, type DailySet, type DailySlotRole } from '@/lib/habit';
 import type { ProblemWithApproaches } from '@/types/database';
@@ -39,43 +40,48 @@ export function DailyPath({ daily, problemMap, onSelect }: Props) {
           const canOpen = !!problem && (done || isCurrent || prevDone);
 
           return (
-            <PressableScale
-              key={role}
-              disabled={!canOpen}
-              haptic={isBoss ? 'medium' : 'light'}
-              onPress={() => problem && onSelect(problem)}
-              style={[
-                styles.node,
-                isBoss && styles.nodeBoss,
-                done && styles.nodeDone,
-                isCurrent && styles.nodeCurrent,
-                locked && styles.nodeLocked,
-              ]}
-            >
-              <Text
+            <FadeInUp key={role} delayMs={index * 90} style={{ flex: 1 }}>
+              <PressableScale
+                disabled={!canOpen}
+                haptic={isBoss ? 'medium' : 'light'}
+                onPress={() => problem && onSelect(problem)}
                 style={[
-                  styles.nodeIndex,
-                  isBoss && styles.nodeIndexBoss,
-                  done && styles.nodeIndexDone,
+                  styles.node,
+                  isBoss && styles.nodeBoss,
+                  done && styles.nodeDone,
+                  isCurrent && styles.nodeCurrent,
+                  locked && styles.nodeLocked,
                 ]}
               >
-                {done ? '✓' : index + 1}
-              </Text>
-              <Text
-                style={[styles.nodeLabel, isBoss && styles.nodeLabelBoss, isCurrent && styles.nodeLabelCurrent]}
-                numberOfLines={1}
-              >
-                {SLOT_LABELS[role]}
-              </Text>
-              {done && slot?.score != null ? (
-                <Text style={styles.nodeScore}>{slot.score}%</Text>
-              ) : problem ? (
-                <Text style={styles.nodeRating}>{problem.difficulty_rating}</Text>
-              ) : (
-                <Text style={styles.nodeRating}>—</Text>
-              )}
-              {isCurrent ? <Text style={styles.now}>NOW</Text> : null}
-            </PressableScale>
+                <Text
+                  style={[
+                    styles.nodeIndex,
+                    isBoss && styles.nodeIndexBoss,
+                    done && styles.nodeIndexDone,
+                  ]}
+                >
+                  {done ? '✓' : index + 1}
+                </Text>
+                <Text
+                  style={[
+                    styles.nodeLabel,
+                    isBoss && styles.nodeLabelBoss,
+                    isCurrent && styles.nodeLabelCurrent,
+                  ]}
+                  numberOfLines={1}
+                >
+                  {SLOT_LABELS[role]}
+                </Text>
+                {done && slot?.score != null ? (
+                  <Text style={styles.nodeScore}>{slot.score}%</Text>
+                ) : problem ? (
+                  <Text style={styles.nodeRating}>{problem.difficulty_rating}</Text>
+                ) : (
+                  <Text style={styles.nodeRating}>—</Text>
+                )}
+                {isCurrent ? <Text style={styles.now}>NOW</Text> : null}
+              </PressableScale>
+            </FadeInUp>
           );
         })}
       </View>

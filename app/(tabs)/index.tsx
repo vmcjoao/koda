@@ -4,6 +4,7 @@ import { router, useFocusEffect } from 'expo-router';
 import { BrandWordmark } from '@/components/BrandWordmark';
 import { OnboardingTips } from '@/components/OnboardingTips';
 import { DailyPath } from '@/components/game/DailyPath';
+import { FadeInUp } from '@/components/game/FadeInUp';
 import { PlayerStrip } from '@/components/game/PlayerStrip';
 import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
@@ -98,22 +99,28 @@ export default function HomeScreen() {
   return (
     <Screen scroll refreshing={refreshing} onRefresh={onRefresh}>
       <OnboardingTips />
-      <View style={styles.hero}>
-        <BrandWordmark size="hero" />
-        <Text style={styles.tagline}>Clear Warm-up → Target → Boss</Text>
-      </View>
+      <FadeInUp delayMs={40}>
+        <View style={styles.hero}>
+          <BrandWordmark size="hero" />
+          <Text style={styles.tagline}>Clear Warm-up → Target → Boss</Text>
+        </View>
+      </FadeInUp>
 
-      <PlayerStrip
-        streak={profile?.streak ?? 0}
-        xp={profile?.xp ?? 0}
-        band={profile?.rating_band ?? 1200}
-        onBandPress={() => router.push('/settings')}
-      />
+      <FadeInUp delayMs={120}>
+        <PlayerStrip
+          streak={profile?.streak ?? 0}
+          xp={profile?.xp ?? 0}
+          band={profile?.rating_band ?? 1200}
+          onBandPress={() => router.push('/settings')}
+        />
+      </FadeInUp>
 
       {demoMode ? (
-        <Pressable onPress={() => router.push('/(auth)/login')}>
-          <Text style={styles.demo}>Guest mode · tap to sign in (uploads local progress)</Text>
-        </Pressable>
+        <FadeInUp delayMs={180}>
+          <Pressable onPress={() => router.push('/(auth)/login')}>
+            <Text style={styles.demo}>Guest mode · tap to sign in (uploads local progress)</Text>
+          </Pressable>
+        </FadeInUp>
       ) : null}
 
       {reminderHint ? (
@@ -126,87 +133,97 @@ export default function HomeScreen() {
         <ActivityIndicator color={colors.accent} />
       ) : (
         <>
-          <View style={styles.runHeader}>
-            <Text style={styles.runTitle}>Today&apos;s run</Text>
-            <Text style={styles.runProgress}>
-              {dailyDone}/{dailyTotal}
-            </Text>
-          </View>
-
-          {daily ? (
-            <DailyPath daily={daily} problemMap={problemMap} onSelect={startProblem} />
-          ) : null}
-
-          {nextDaily ? (
-            <PrimaryButton
-              label={
-                dailyDone === 0
-                  ? `Start run · ${SLOT_LABELS[nextDaily.role]}`
-                  : `Continue run · ${SLOT_LABELS[nextDaily.role]}`
-              }
-              onPress={() => {
-                const p = problemMap.get(nextDaily.problemId);
-                if (p) startProblem(p);
-              }}
-            />
-          ) : (
-            <View style={styles.cleared}>
-              <Text style={styles.clearedTitle}>Run cleared</Text>
-              <Text style={styles.good}>
-                {daily?.bonusAwarded ? '+50 XP daily bonus claimed' : 'All three slots done'}
+          <FadeInUp delayMs={200}>
+            <View style={styles.runHeader}>
+              <Text style={styles.runTitle}>Today&apos;s run</Text>
+              <Text style={styles.runProgress}>
+                {dailyDone}/{dailyTotal}
               </Text>
             </View>
-          )}
+          </FadeInUp>
 
-          {!runComplete ? (
-            <PrimaryButton label="Shuffle run" variant="ghost" onPress={onRegenerateDaily} />
+          {daily ? (
+            <FadeInUp delayMs={280}>
+              <DailyPath daily={daily} problemMap={problemMap} onSelect={startProblem} />
+            </FadeInUp>
           ) : null}
 
-          {reviewCount > 0 ? (
-            <PrimaryButton
-              label={`Review deck (${reviewCount})`}
-              variant="secondary"
-              onPress={() => router.push('/(tabs)/review')}
-            />
-          ) : null}
-
-          <PrimaryButton
-            label="Playlists"
-            variant="secondary"
-            onPress={() => router.push('/playlists')}
-          />
-
-          <View style={styles.secondaryBlock}>
-            <View style={styles.sectionRow}>
-              <Text style={styles.secondaryTitle}>Catalog</Text>
-              <Pressable onPress={() => router.push('/catalog')}>
-                <Text style={styles.seeAll}>See all</Text>
-              </Pressable>
-            </View>
-            <Text style={styles.secondaryHint}>
-              {problems.length} problems · {attempts.length} attempts logged
-            </Text>
-            {problems.slice(0, 3).map((p) => (
-              <PressableScale
-                key={p.id}
-                style={styles.quietCard}
-                onPress={() => startProblem(p)}
-              >
-                <View style={styles.cardTop}>
-                  <Text style={styles.source}>{p.source}</Text>
-                  <Text style={styles.rating}>{p.difficulty_rating}</Text>
-                </View>
-                <Text style={styles.cardTitle} numberOfLines={1}>
-                  {p.title}
+          <FadeInUp delayMs={360}>
+            {nextDaily ? (
+              <PrimaryButton
+                label={
+                  dailyDone === 0
+                    ? `Start run · ${SLOT_LABELS[nextDaily.role]}`
+                    : `Continue run · ${SLOT_LABELS[nextDaily.role]}`
+                }
+                onPress={() => {
+                  const p = problemMap.get(nextDaily.problemId);
+                  if (p) startProblem(p);
+                }}
+              />
+            ) : (
+              <View style={styles.cleared}>
+                <Text style={styles.clearedTitle}>Run cleared</Text>
+                <Text style={styles.good}>
+                  {daily?.bonusAwarded ? '+50 XP daily bonus claimed' : 'All three slots done'}
                 </Text>
-              </PressableScale>
-            ))}
+              </View>
+            )}
+          </FadeInUp>
+
+          <FadeInUp delayMs={420}>
+            {!runComplete ? (
+              <PrimaryButton label="Shuffle run" variant="ghost" onPress={onRegenerateDaily} />
+            ) : null}
+
+            {reviewCount > 0 ? (
+              <PrimaryButton
+                label={`Review deck (${reviewCount})`}
+                variant="secondary"
+                onPress={() => router.push('/(tabs)/review')}
+              />
+            ) : null}
+
             <PrimaryButton
-              label="Browse catalog"
-              variant="ghost"
-              onPress={() => router.push('/catalog')}
+              label="Playlists"
+              variant="secondary"
+              onPress={() => router.push('/playlists')}
             />
-          </View>
+          </FadeInUp>
+
+          <FadeInUp delayMs={500}>
+            <View style={styles.secondaryBlock}>
+              <View style={styles.sectionRow}>
+                <Text style={styles.secondaryTitle}>Catalog</Text>
+                <Pressable onPress={() => router.push('/catalog')}>
+                  <Text style={styles.seeAll}>See all</Text>
+                </Pressable>
+              </View>
+              <Text style={styles.secondaryHint}>
+                {problems.length} problems · {attempts.length} attempts logged
+              </Text>
+              {problems.slice(0, 3).map((p) => (
+                <PressableScale
+                  key={p.id}
+                  style={styles.quietCard}
+                  onPress={() => startProblem(p)}
+                >
+                  <View style={styles.cardTop}>
+                    <Text style={styles.source}>{p.source}</Text>
+                    <Text style={styles.rating}>{p.difficulty_rating}</Text>
+                  </View>
+                  <Text style={styles.cardTitle} numberOfLines={1}>
+                    {p.title}
+                  </Text>
+                </PressableScale>
+              ))}
+              <PrimaryButton
+                label="Browse catalog"
+                variant="ghost"
+                onPress={() => router.push('/catalog')}
+              />
+            </View>
+          </FadeInUp>
         </>
       )}
     </Screen>
