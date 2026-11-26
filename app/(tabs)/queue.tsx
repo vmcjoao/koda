@@ -1,8 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Platform,
-  Pressable,
   StyleSheet,
   Text,
   useWindowDimensions,
@@ -11,6 +10,8 @@ import {
 import * as Clipboard from 'expo-clipboard';
 import * as WebBrowser from 'expo-web-browser';
 import { useFocusEffect } from 'expo-router';
+import { AnimatedNumber } from '@/components/game/AnimatedNumber';
+import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
@@ -65,44 +66,83 @@ export default function QueueScreen() {
     await WebBrowser.openBrowserAsync(url);
   }
 
+  const pending = attempts.length;
+  const withDraft = useMemo(
+    () => attempts.filter((a) => (a.pseudocode_draft?.trim() ?? '').length > 0).length,
+    [attempts],
+  );
+
+  const formLine =
+    pending === 0
+      ? 'Forge empty — save a blueprint after a scored round.'
+      : Platform.OS === 'web'
+        ? 'PC companion — copy, open the OJ, land AC.'
+        : 'Blueprints ready — code on PC, then mark AC here.';
+
   return (
     <Screen scroll contentStyle={isWide ? styles.wideContent : undefined}>
-      <Text style={styles.title}>Implement Queue</Text>
-      <Text style={styles.sub}>
-        {Platform.OS === 'web'
-          ? 'PC companion — copy your blueprint, open the OJ, then mark AC when you pass.'
-          : 'Blueprints for your PC — open the OJ link, code from your draft, then mark AC.'}
-      </Text>
+      <View style={styles.hero}>
+        <Text style={styles.kicker}>BUILD QUEUE</Text>
+        <Text style={styles.title}>Implement</Text>
+        <Text style={styles.sub}>{formLine}</Text>
+      </View>
+
+      <View style={styles.statRow}>
+        <View style={[styles.statCell, styles.statPending]}>
+          <Text style={styles.statLabel}>Queued</Text>
+          <AnimatedNumber value={pending} style={styles.statValue} />
+        </View>
+        <View style={[styles.statCell, styles.statDrafts]}>
+          <Text style={styles.statLabel}>With draft</Text>
+          <AnimatedNumber value={withDraft} style={styles.statValueAccent} />
+        </View>
+      </View>
 
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
       {!loading && attempts.length === 0 ? (
-        <Text style={styles.empty}>No drafts yet. Solve a problem and save a blueprint.</Text>
+        <View style={styles.clearCard}>
+          <Text style={styles.clearTitle}>No builds pending</Text>
+          <Text style={styles.clearSub}>
+            Clear a run, save a blueprint, and it drops into this forge.
+          </Text>
+        </View>
       ) : null}
 
       <View style={isWide ? styles.grid : styles.stack}>
-        {attempts.map((a) => {
+        {attempts.map((a, i) => {
           const problem = problems[a.problem_id];
           const open = expanded[a.id] ?? isWide;
           const draft = a.pseudocode_draft?.trim() ?? '';
+          const isLead = i === 0;
           return (
-            <View key={a.id} style={[styles.card, isWide && styles.cardWide]}>
+            <View
+              key={a.id}
+              style={[styles.card, isWide && styles.cardWide, isLead && styles.cardLead]}
+            >
+              <View style={styles.cardTop}>
+                <Text style={[styles.badge, isLead && styles.badgeLead]}>
+                  {isLead ? 'UP NEXT' : `#${i + 1}`}
+                </Text>
+                <Text style={styles.scoreChip}>{a.score_accuracy}%</Text>
+              </View>
               <Text style={styles.source}>{problem?.source ?? 'Problem'}</Text>
               <Text style={styles.cardTitle}>{problem?.title ?? a.problem_id}</Text>
-              <Text style={styles.meta}>
-                Score {a.score_accuracy}% · {a.status.replace('_', ' ')}
-              </Text>
+              <Text style={styles.meta}>{a.status.replace('_', ' ')}</Text>
 
               {draft ? (
                 <>
-                  <Pressable onPress={() => setExpanded((e) => ({ ...e, [a.id]: !open }))}>
+                  <PressableScale
+                    haptic={false}
+                    onPress={() => setExpanded((e) => ({ ...e, [a.id]: !open }))}
+                  >
                     <Text style={styles.draft} numberOfLines={open ? undefined : 6}>
                       {draft}
                     </Text>
                     {!isWide ? (
                       <Text style={styles.toggle}>{open ? 'Show less' : 'Expand draft'}</Text>
                     ) : null}
-                  </Pressable>
+                  </PressableScale>
                   <View style={styles.actions}>
                     <PrimaryButton
                       label={copiedId === a.id ? 'Copied' : 'Copy'}
@@ -141,9 +181,13 @@ export default function QueueScreen() {
                     style={styles.actionBtn}
                   />
                 ) : null}
-                <PrimaryButton label="Mark AC" onPress={() => markAc(a.id)} style={styles.actionBtn} />
                 <PrimaryButton
-                  label="Review"
+                  label="Mark AC"
+                  onPress={() => markAc(a.id)}
+                  style={styles.actionBtn}
+                />
+                <PrimaryButton
+                  label="To Review"
                   variant="ghost"
                   onPress={() => markReview(a.id)}
                   style={styles.actionBtn}
@@ -163,19 +207,78 @@ const styles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
   },
+  hero: {
+    gap: 4,
+  },
+  kicker: {
+    color: colors.radar,
+    fontSize: 11,
+    fontWeight: '900',
+    letterSpacing: 2,
+  },
   title: {
     color: colors.text,
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: '800',
   },
   sub: {
     color: colors.textMuted,
     fontSize: 14,
-    marginBottom: spacing.sm,
+    fontWeight: '500',
   },
-  empty: {
+  statRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  statCell: {
+    flex: 1,
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    padding: spacing.md,
+    gap: 2,
+  },
+  statPending: {
+    borderColor: colors.radar,
+  },
+  statDrafts: {
+    borderColor: colors.accentDim,
+  },
+  statLabel: {
     color: colors.textDim,
-    fontSize: 14,
+    fontSize: 11,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.6,
+  },
+  statValue: {
+    color: colors.radar,
+    fontSize: 28,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
+  statValueAccent: {
+    color: colors.accent,
+    fontSize: 28,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
+  clearCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.accentDim,
+    padding: spacing.md,
+    gap: 4,
+  },
+  clearTitle: {
+    color: colors.accent,
+    fontSize: 16,
+    fontWeight: '800',
+  },
+  clearSub: {
+    color: colors.textMuted,
+    fontSize: 13,
   },
   stack: {
     gap: spacing.md,
@@ -198,9 +301,33 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     minWidth: 360,
   },
+  cardLead: {
+    borderColor: colors.radar,
+    borderWidth: 2,
+  },
+  cardTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  badge: {
+    color: colors.textDim,
+    fontSize: 11,
+    fontWeight: '900',
+    letterSpacing: 1,
+  },
+  badgeLead: {
+    color: colors.radar,
+  },
+  scoreChip: {
+    color: colors.xp,
+    fontSize: 13,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
   source: {
     color: colors.accent,
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '700',
     textTransform: 'uppercase',
   },
@@ -221,11 +348,14 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
     borderRadius: radii.sm,
     lineHeight: 18,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   toggle: {
     color: colors.radar,
     fontSize: 12,
     marginTop: 4,
+    fontWeight: '600',
   },
   actions: {
     flexDirection: 'row',

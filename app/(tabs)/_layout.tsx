@@ -47,6 +47,7 @@ export default function TabLayout() {
         name="review"
         options={{
           title: 'Review',
+          headerTitle: 'Review deck',
           tabBarIcon: ({ color }) => <TabIcon name="refresh" color={color} />,
         }}
       />
@@ -54,6 +55,7 @@ export default function TabLayout() {
         name="queue"
         options={{
           title: 'Implement',
+          headerTitle: 'Build queue',
           tabBarIcon: ({ color }) => <TabIcon name="code" color={color} />,
         }}
       />
