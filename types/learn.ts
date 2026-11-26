@@ -42,6 +42,32 @@ export type KnapsackDemo = {
 
 export type LearnDemo = GraphDemo | ArrayDemo | KnapsackDemo;
 
+/** Single multiple-choice beat (also used as steps inside a trace). */
+export type LearnMcq = {
+  prompt: string;
+  /** Optional setup (graph sketch, array, input). Markdown. */
+  context_md?: string;
+  choices: string[];
+  /** Index into choices. */
+  answer: number;
+  explain_md?: string;
+};
+
+/**
+ * Interactive check inside a lesson run.
+ * - mcq: pick the right output / fact
+ * - trace: multi-step “what’s next?” walkthrough
+ */
+export type LearnExercise =
+  | ({ id: string; kind: 'mcq' } & LearnMcq)
+  | {
+      id: string;
+      kind: 'trace';
+      title: string;
+      context_md?: string;
+      steps: LearnMcq[];
+    };
+
 export type LearnLesson = {
   id: string;
   /** Exact TAG_CATALOG label used for practice matching. */
@@ -66,6 +92,8 @@ export type LearnLesson = {
     code: string;
     notes_md?: string;
   };
+  /** In-lesson quizzes (trace / predict output). */
+  exercises?: LearnExercise[];
   practiceProblemIds?: string[];
   /** Explicit sibling lessons (merged with same-tag matches). */
   relatedIds?: string[];

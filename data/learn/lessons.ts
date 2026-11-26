@@ -2,6 +2,7 @@ import type { LearnLesson } from '@/types/learn';
 import { LESSONS_MORE } from '@/data/learn/lessons-more';
 import { LESSONS_EXTRA } from '@/data/learn/lessons-extra';
 import { LESSONS_VARIANTS } from '@/data/learn/lessons-variants';
+import { LESSON_EXERCISES } from '@/data/learn/exercises';
 
 const DEMO_GRAPH = {
   nodes: [
@@ -1251,4 +1252,7 @@ export const LESSONS: LearnLesson[] = [
   ...LESSONS_MORE,
   ...LESSONS_EXTRA,
   ...LESSONS_VARIANTS,
-];
+].map((lesson) => {
+  const exercises = LESSON_EXERCISES[lesson.id];
+  return exercises?.length ? { ...lesson, exercises } : lesson;
+});
