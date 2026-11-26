@@ -121,7 +121,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <Screen scroll profileCorner refreshing={refreshing} onRefresh={onRefresh}>
+    <Screen scroll refreshing={refreshing} onRefresh={onRefresh}>
       <OnboardingTips />
       <FadeInUp delayMs={40}>
         <View style={styles.hero}>

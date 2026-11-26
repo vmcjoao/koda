@@ -20,8 +20,6 @@ type Props = {
   onRefresh?: () => void;
   /** Soft mint wash behind content (default on). */
   atmosphere?: boolean;
-  /** Extra right inset so content clears the floating tab profile avatar. */
-  profileCorner?: boolean;
 };
 
 export function Screen({
@@ -32,9 +30,7 @@ export function Screen({
   refreshing,
   onRefresh,
   atmosphere = true,
-  profileCorner = false,
 }: Props) {
-  const cornerStyle = profileCorner ? styles.profileCorner : null;
   if (scroll) {
     return (
       <SafeAreaView style={[styles.safe, style]} edges={['top', 'left', 'right']}>
@@ -44,7 +40,7 @@ export function Screen({
           </View>
         ) : null}
         <ScrollView
-          contentContainerStyle={[styles.content, cornerStyle, contentStyle]}
+          contentContainerStyle={[styles.content, contentStyle]}
           keyboardShouldPersistTaps="handled"
           refreshControl={
             onRefresh ? (
@@ -70,7 +66,7 @@ export function Screen({
           <BreathingAtmosphere />
         </View>
       ) : null}
-      <View style={[styles.content, cornerStyle, contentStyle]}>{children}</View>
+      <View style={[styles.content, contentStyle]}>{children}</View>
     </SafeAreaView>
   );
 }
@@ -84,9 +80,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: spacing.md,
     gap: spacing.md,
-  },
-  profileCorner: {
-    paddingRight: spacing.md + 40,
   },
   atmosphereRoot: {
     ...StyleSheet.absoluteFill,

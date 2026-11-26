@@ -102,7 +102,7 @@ export default function AnalyticsScreen() {
           : 'Form is soft — Review deck will tighten reads.';
 
   return (
-    <Screen scroll profileCorner>
+    <Screen scroll>
       <FadeInUp delayMs={40} waitForLaunch={false}>
         <View style={styles.hero}>
           <Text style={styles.kicker}>PERFORMANCE</Text>

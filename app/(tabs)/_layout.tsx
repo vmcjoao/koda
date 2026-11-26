@@ -5,7 +5,6 @@ import {
   Platform,
   Pressable,
   StyleSheet,
-  Text,
   View,
   type AccessibilityState,
   type ColorValue,
@@ -78,7 +77,6 @@ function RunTabButton({ onPress, accessibilityState, style }: RunTabButtonProps)
             color={focused ? RUN_ICON_ON : colors.textMuted}
           />
         </View>
-        <Text style={[styles.runLabel, focused && styles.runLabelOn]}>Run</Text>
       </PressableScale>
     </View>
   );
@@ -199,7 +197,6 @@ const styles = StyleSheet.create({
   runPress: {
     alignItems: 'center',
     marginTop: -22,
-    gap: 2,
   },
   runOrb: {
     width: ORB,
@@ -222,14 +219,5 @@ const styles = StyleSheet.create({
   runOrbOn: {
     backgroundColor: colors.accent,
     borderColor: colors.accent,
-  },
-  runLabel: {
-    color: colors.textMuted,
-    fontSize: 11,
-    fontWeight: '800',
-    letterSpacing: 0.4,
-  },
-  runLabelOn: {
-    color: colors.accent,
   },
 });

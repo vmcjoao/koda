@@ -86,7 +86,7 @@ export default function QueueScreen() {
         : 'Blueprints ready — code on PC, then mark AC here.';
 
   return (
-    <Screen scroll profileCorner contentStyle={isWide ? styles.wideContent : undefined}>
+    <Screen scroll contentStyle={isWide ? styles.wideContent : undefined}>
       <FadeInUp delayMs={40} waitForLaunch={false}>
         <View style={styles.hero}>
           <Text style={styles.kicker}>BUILD QUEUE</Text>
