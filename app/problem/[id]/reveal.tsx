@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -18,17 +18,20 @@ import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { ProseCard } from '@/components/ProseCard';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
-import { saveAttempt, type SaveAttemptResult } from '@/lib/api';
-import { lessonLinksForTags } from '@/lib/learn';
+import { fetchAttempts, fetchProblems, saveAttempt, type SaveAttemptResult } from '@/lib/api';
+import { buildDrillNextPlan, type DrillNextPlan } from '@/lib/drillNext';
 import { formatScoreShare, shareText } from '@/lib/share';
+import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function RevealScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { user, refreshProfile } = useAuth();
-  const { problem, draft, breakdown, finalizeScore, reset } = useAttempt();
+  const { user, profile, refreshProfile } = useAuth();
+  const { problem, draft, breakdown, finalizeScore, reset, beginProblem } = useAttempt();
   const [saving, setSaving] = useState(false);
   const [result, setResult] = useState<SaveAttemptResult | null>(null);
+  const [catalog, setCatalog] = useState<ProblemWithApproaches[]>([]);
+  const [attempts, setAttempts] = useState<UserAttempt[]>([]);
 
   const scoreScale = useSharedValue(0.92);
 
@@ -44,9 +47,36 @@ export default function RevealScreen() {
     );
   }, [breakdown, scoreScale]);
 
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      const [p, a] = await Promise.all([
+        fetchProblems(),
+        fetchAttempts(user?.id ?? null),
+      ]);
+      if (!active) return;
+      setCatalog(p);
+      setAttempts(a);
+    })();
+    return () => {
+      active = false;
+    };
+  }, [user?.id]);
+
   const scoreAnimStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scoreScale.value }],
   }));
+
+  const drillPlan: DrillNextPlan | null = useMemo(() => {
+    if (!breakdown || !problem) return null;
+    return buildDrillNextPlan({
+      breakdown,
+      currentProblemId: problem.id,
+      catalog,
+      attempts,
+      ratingBand: profile?.rating_band ?? 1200,
+    });
+  }, [breakdown, problem, catalog, attempts, profile?.rating_band]);
 
   if (!problem || !draft || problem.id !== id || !breakdown) {
     return (
@@ -59,13 +89,11 @@ export default function RevealScreen() {
   const approach = breakdown.matchedApproach;
   const saved = !!result;
   const rank = scoreRank(breakdown.score);
-  const learnLinks = approach
-    ? lessonLinksForTags({
-        paradigms: approach.paradigms,
-        algorithms: approach.algorithms,
-        data_structures: approach.data_structures,
-      })
-    : [];
+
+  function startPractice(next: ProblemWithApproaches) {
+    beginProblem(next);
+    router.replace(`/problem/${next.id}`);
+  }
 
   async function persist(status: 'drafted' | 'needs_review') {
     setSaving(true);
@@ -147,22 +175,6 @@ export default function RevealScreen() {
           <Text style={styles.tags}>
             {[...approach.paradigms, ...approach.algorithms, ...approach.data_structures].join(' · ')}
           </Text>
-          {learnLinks.length ? (
-            <>
-              <Text style={styles.label}>Learn these</Text>
-              <View style={styles.learnRow}>
-                {learnLinks.map((link) => (
-                  <PressableScale
-                    key={link.lesson.id}
-                    style={styles.learnChip}
-                    onPress={() => router.push(`/learn/${link.lesson.id}`)}
-                  >
-                    <Text style={styles.learnChipText}>{link.lesson.title}</Text>
-                  </PressableScale>
-                ))}
-              </View>
-            </>
-          ) : null}
           {approach.key_insights.length ? (
             <>
               <Text style={styles.label}>Key insights</Text>
@@ -174,6 +186,51 @@ export default function RevealScreen() {
             </>
           ) : null}
         </>
+      ) : null}
+
+      {drillPlan && (drillPlan.lessons.length > 0 || drillPlan.practice.length > 0) ? (
+        <View style={styles.drillCard}>
+          <Text style={styles.drillHeadline}>{drillPlan.headline}</Text>
+          <Text style={styles.drillReason}>{drillPlan.focusReason}</Text>
+          {drillPlan.lessons.length ? (
+            <>
+              <Text style={styles.drillSub}>Learn</Text>
+              {drillPlan.lessons.map((link) => (
+                <PressableScale
+                  key={link.lesson.id}
+                  style={styles.drillRow}
+                  onPress={() => router.push(`/learn/${link.lesson.id}`)}
+                >
+                  <View style={styles.drillRowBody}>
+                    <Text style={styles.drillTitle}>{link.lesson.title}</Text>
+                    <Text style={styles.drillWhy}>{link.why}</Text>
+                  </View>
+                  <Text style={styles.drillCta}>Open</Text>
+                </PressableScale>
+              ))}
+            </>
+          ) : null}
+          {drillPlan.practice.length ? (
+            <>
+              <Text style={styles.drillSub}>Similar problems</Text>
+              {drillPlan.practice.map((rec) => (
+                <PressableScale
+                  key={rec.problem.id}
+                  style={styles.drillRow}
+                  onPress={() => startPractice(rec.problem)}
+                >
+                  <View style={styles.drillRowBody}>
+                    <Text style={styles.drillTitle}>{rec.problem.title}</Text>
+                    <Text style={styles.drillWhy}>
+                      {rec.problem.source} · {rec.why}
+                    </Text>
+                  </View>
+                  <Text style={styles.drillCta}>Run</Text>
+                </PressableScale>
+              ))}
+            </>
+          ) : null}
+        </View>
       ) : null}
 
       {!saved ? (
@@ -346,27 +403,66 @@ const styles = StyleSheet.create({
     color: colors.text,
     fontSize: 14,
   },
-  learnRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-  },
-  learnChip: {
-    backgroundColor: colors.chipSelected,
-    borderWidth: 1,
-    borderColor: colors.accent,
-    borderRadius: radii.sm,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-  },
-  learnChipText: {
-    color: colors.accent,
-    fontSize: 13,
-    fontWeight: '700',
-  },
   insight: {
     color: colors.text,
     fontSize: 14,
+  },
+  drillCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.radar,
+    padding: spacing.md,
+    gap: spacing.sm,
+    marginTop: spacing.sm,
+  },
+  drillHeadline: {
+    color: colors.text,
+    fontSize: 18,
+    fontWeight: '800',
+  },
+  drillReason: {
+    color: colors.textMuted,
+    fontSize: 13,
+    marginBottom: 4,
+  },
+  drillSub: {
+    color: colors.textDim,
+    fontSize: 11,
+    fontWeight: '700',
+    letterSpacing: 0.6,
+    textTransform: 'uppercase',
+    marginTop: 4,
+  },
+  drillRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    backgroundColor: colors.surfaceElevated,
+    borderRadius: radii.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingHorizontal: spacing.md,
+    paddingVertical: 10,
+  },
+  drillRowBody: {
+    flex: 1,
+    gap: 2,
+  },
+  drillTitle: {
+    color: colors.text,
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  drillWhy: {
+    color: colors.textMuted,
+    fontSize: 12,
+  },
+  drillCta: {
+    color: colors.radar,
+    fontSize: 12,
+    fontWeight: '800',
+    textTransform: 'uppercase',
   },
   xpCard: {
     backgroundColor: colors.surface,
