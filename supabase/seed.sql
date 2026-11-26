@@ -132,6 +132,45 @@ Output:
 
 After this, print $k$ lines that describe the moves. Each line has two integers $a$ and $b$: you move a disk from stack $a$ to stack $b$.', '- $1 \le n \le 16$', '[]'::jsonb, 'O(2^N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-tower-of-hanoi-a1', 'cses-tower-of-hanoi', 'Recursion', ARRAY['Brute Force']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['Classic recursive Hanoi: move n-1, move largest, move n-1']::text[], 'Print the minimal sequence of disk moves between three pegs.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-number-spiral', 'Number Spiral', 'CSES', 'https://cses.fi/problemset/task/1071', 1000, 'A number spiral is an infinite grid whose upper-left square has number 1. Here are the first five layers of the spiral:
+
+Your task is to find out the number in row $y$ and column $x$.
+
+Input
+
+The first input line contains an integer $t$: the number of tests.
+
+After this, there are $t$ lines, each containing integers $y$ and $x$.
+
+Output
+
+For each test, print the number in row $y$ and column $x$.
+
+Constraints
+
+- $1 \le t \le 10^5$
+
+- $1 \le y,x \le 10^9$
+
+Example
+
+Input:
+
+3
+2 3
+1 1
+4 2
+
+Output:
+
+8
+1
+15', 'The first input line contains an integer $t$: the number of tests.
+
+After this, there are $t$ lines, each containing integers $y$ and $x$.', 'For each test, print the number in row $y$ and column $x$.', '- $1 \le t \le 10^5$
+
+- $1 \le y,x \le 10^9$', '[]'::jsonb, 'O(N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-number-spiral-a1', 'cses-number-spiral', 'Standard approach', ARRAY['Ad-Hoc','Brute Force']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Introductory Problems: apply standard techniques for “Number Spiral”.']::text[], 'Auto-tagged from CSES section “Introductory Problems”. Review tags after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-apartments', 'Apartments', 'CSES', 'https://cses.fi/problemset/task/1084', 1100, 'There are $n$ applicants and $m$ apartments. Each applicant has a desired size $a_i$, and will accept an apartment of size in $[a_i-k, a_i+k]$. Assign apartments to maximize matches.', 'The first line contains three integers $n$, $m$, and $k$.
 
 The second line contains $n$ integers $a_1,\dots,a_n$ (desired sizes).
@@ -2444,6 +2483,139 @@ After this, there are $n$ lines, each of which contains two integers $a$ and $b$
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-binomial-coefficients-a1', 'cses-binomial-coefficients', 'Factorial mod', ARRAY['Math / Number Theory']::text[], ARRAY['Sieve']::text[], ARRAY[]::text[], ARRAY['Precompute factorials and inverse factorials mod prime']::text[], 'Answer many C(a,b) modulo 1e9+7.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1005d', 'Polycarp and Div 3', 'Codeforces', 'https://codeforces.com/problemset/problem/1005/D', 1400, 'Given a digit string, split it into the maximum number of contiguous pieces each divisible by 3 (as decimal integers; leading zeros allowed).', 'A single string of digits (length $1..2\cdot 10^5$).', 'Print the maximum number of pieces.', '$1 \le |s| \le 2\cdot 10^5$', '[{"input":"3121","output":"2"}]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1005d-a1', 'cf-1005d', 'Mod-3 greedy', ARRAY['Greedy','Math / Number Theory']::text[], ARRAY['Prefix Sums']::text[], ARRAY[]::text[], ARRAY['Running digit sum mod 3; cut whenever residue hits 0 or repeats']::text[], 'Greedily end a piece when the current segment sum is 0 mod 3.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-sliding-window-xor', 'Sliding Window Xor', 'CSES', 'https://cses.fi/problemset/task/3426', 1400, 'You are given an array of $n$ integers. Your task is to calculate the bitwise xor of each window of $k$ elements, from left to right.
+
+In this problem the input data is large and it is created using a generator.
+
+Input
+
+The first line contains two integers $n$ and $k$: the number of elements and the size of the window.
+
+The next line contains four integers $x$, $a$, $b$ and $c$: the input generator parameters. The input is generated as follows:
+
+- $x_1=x$
+
+- $x_i=(ax_{i-1}+b) \bmod c$ for $i=2,3,\dots,n$
+
+Output
+
+Print the xor of all window xors.
+
+Constraints
+
+- $1 \le k \le n \le 10^7$
+
+- $0 \le x, a, b \le 10^9$
+
+- $1 \le c \le 10^9$
+
+Example
+
+Input:
+
+8 5
+3 7 1 11
+
+Output:
+
+0
+
+Explanation: The input array is $[3,0,1,8,2,4,7,6]$. The windows are $[3,0,1,8,2]$, $[0,1,8,2,4]$, $[1,8,2,4,7]$ and $[8,2,4,7,6]$, and their xors are $8$, $15$, $8$ and $15$. Thus, the answer is $8 \oplus 15 \oplus 8 \oplus 15 = 0$.', 'The first line contains two integers $n$ and $k$: the number of elements and the size of the window.
+
+The next line contains four integers $x$, $a$, $b$ and $c$: the input generator parameters. The input is generated as follows:
+
+- $x_1=x$
+
+- $x_i=(ax_{i-1}+b) \bmod c$ for $i=2,3,\dots,n$', 'Print the xor of all window xors.', '- $1 \le k \le n \le 10^7$
+
+- $0 \le x, a, b \le 10^9$
+
+- $1 \le c \le 10^9$', '[]'::jsonb, 'O(N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-sliding-window-xor-a1', 'cses-sliding-window-xor', 'Standard approach', ARRAY['Two Pointers']::text[], ARRAY[]::text[], ARRAY['Deque']::text[], ARRAY['CSES Sliding Window Problems: apply standard techniques for “Sliding Window Xor”.']::text[], 'Auto-tagged from CSES section “Sliding Window Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-sliding-window-or', 'Sliding Window Or', 'CSES', 'https://cses.fi/problemset/task/3405', 1400, 'You are given an array of $n$ integers. Your task is to calculate the bitwise or of each window of $k$ elements, from left to right.
+
+In this problem the input data is large and it is created using a generator.
+
+Input
+
+The first line contains two integers $n$ and $k$: the number of elements and the size of the window.
+
+The next line contains four integers $x$, $a$, $b$ and $c$: the input generator parameters. The input is generated as follows:
+
+- $x_1=x$
+
+- $x_i=(ax_{i-1}+b) \bmod c$ for $i=2,3,\dots,n$
+
+Output
+
+Print the xor of all window ors.
+
+Constraints
+
+- $1 \le k \le n \le 10^7$
+
+- $0 \le x, a, b \le 10^9$
+
+- $1 \le c \le 10^9$
+
+Example
+
+Input:
+
+8 5
+3 7 1 11
+
+Output:
+
+4
+
+Explanation: The input array is $[3,0,1,8,2,4,7,6]$. The windows are $[3,0,1,8,2]$, $[0,1,8,2,4]$, $[1,8,2,4,7]$ and $[8,2,4,7,6]$, and their ors are $11$, $15$, $15$ and $15$. Thus, the answer is $11 \oplus 15 \oplus 15 \oplus 15 = 4$.', 'The first line contains two integers $n$ and $k$: the number of elements and the size of the window.
+
+The next line contains four integers $x$, $a$, $b$ and $c$: the input generator parameters. The input is generated as follows:
+
+- $x_1=x$
+
+- $x_i=(ax_{i-1}+b) \bmod c$ for $i=2,3,\dots,n$', 'Print the xor of all window ors.', '- $1 \le k \le n \le 10^7$
+
+- $0 \le x, a, b \le 10^9$
+
+- $1 \le c \le 10^9$', '[]'::jsonb, 'O(N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-sliding-window-or-a1', 'cses-sliding-window-or', 'Standard approach', ARRAY['Two Pointers']::text[], ARRAY[]::text[], ARRAY['Deque']::text[], ARRAY['CSES Sliding Window Problems: apply standard techniques for “Sliding Window Or”.']::text[], 'Auto-tagged from CSES section “Sliding Window Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-sliding-window-mode', 'Sliding Window Mode', 'CSES', 'https://cses.fi/problemset/task/3224', 1400, 'You are given an array of $n$ integers. Your task is to calculate the mode each window of $k$ elements, from left to right.
+
+The mode is the most frequent element in an array. If there are several possible modes, choose the smallest of them.
+
+Input
+
+The first line contains two integers $n$ and $k$: the number of elements and the size of the window.
+
+Then there are $n$ integers $x_1,x_2,\ldots,x_n$: the contents of the array.
+
+Output
+
+Print $n-k+1$ values: the modes.
+
+Constraints
+
+- $1 \le k \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+8 3
+1 2 3 2 5 2 4 4
+
+Output:
+
+1 2 2 2 2 4', 'The first line contains two integers $n$ and $k$: the number of elements and the size of the window.
+
+Then there are $n$ integers $x_1,x_2,\ldots,x_n$: the contents of the array.', 'Print $n-k+1$ values: the modes.', '- $1 \le k \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-sliding-window-mode-a1', 'cses-sliding-window-mode', 'Standard approach', ARRAY['Two Pointers']::text[], ARRAY[]::text[], ARRAY['Deque','Ordered Set','Priority Queue']::text[], ARRAY['CSES Sliding Window Problems: apply standard techniques for “Sliding Window Mode”.']::text[], 'Auto-tagged from CSES section “Sliding Window Problems”. Review tags after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-shortest-routes-i', 'Shortest Routes I', 'CSES', 'https://cses.fi/problemset/task/1671', 1500, 'A weighted directed graph with $n$ nodes and $m$ edges. Find the shortest path lengths from node $1$ to every node.', 'The first line contains two integers $n$ and $m$.
 
 Then $m$ lines follow with directed flights $a\ b\ c$.', 'Print $n$ integers: distances from city $1$ to cities $1\dots n$.', '$1 \le n \le 10^5$, $1 \le m \le 2 \times 10^5$, weights positive', '[{"input":"3 4\n1 2 6\n1 3 2\n3 2 3\n1 3 4","output":"0 5 2"}]'::jsonb, 'O(N log N)');
@@ -9327,6 +9499,559 @@ Then there are $n$ lines each consisting of one bit string of length $k$.', 'Pri
 
 - $1 \le k \le 30$', '[]'::jsonb, 'O(N²)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-hamming-distance-a1', 'cses-hamming-distance', 'Popcount pairs', ARRAY['Bitmask / Bit DP','Brute Force']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['n≤5000 bitstrings; XOR and popcount for min Hamming distance']::text[], 'Minimum Hamming distance between any two strings.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-maximum-xor-subset', 'Maximum Xor Subset', 'CSES', 'https://cses.fi/problemset/task/3191', 1500, 'Given an array of $n$ integers, your task is to find the maximum xor sum of a subset.
+
+Input
+
+The first line has an integer $n$: the size of the array.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the contents of the array.
+
+Output
+
+Print one integer: the maximum xor sum of a subset.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $0 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+4
+1 6 12 6
+
+Output:
+
+13', 'The first line has an integer $n$: the size of the array.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the contents of the array.', 'Print one integer: the maximum xor sum of a subset.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $0 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-maximum-xor-subset-a1', 'cses-maximum-xor-subset', 'Standard approach', ARRAY['Math / Number Theory','Bitmask / Bit DP']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Bitwise Operations: apply standard techniques for “Maximum Xor Subset”.']::text[], 'Auto-tagged from CSES section “Bitwise Operations”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-josephus-queries', 'Josephus Queries', 'CSES', 'https://cses.fi/problemset/task/2164', 1500, 'Consider a game where there are $n$ children (numbered $1,2,\dots,n$) in a circle. During the game, every second child is removed from the circle, until there are no children left.
+
+Your task is to process $q$ queries of the form: "when there are $n$ children, who is the $k$th child that will be removed?"
+
+Input
+
+The first input line has an integer $q$: the number of queries.
+
+After this, there are $q$ lines that describe the queries. Each line has two integers $n$ and $k$: the number of children and the position of the child.
+
+Output
+
+Print $q$ integers: the answer for each query.
+
+Constraints
+
+- $1 \le q \le 10^5$
+
+- $1 \le k \le n \le 10^9$
+
+Example
+
+Input:
+
+4
+7 1
+7 3
+2 2
+1337 1313
+
+Output:
+
+2
+6
+1
+1107', 'The first input line has an integer $q$: the number of queries.
+
+After this, there are $q$ lines that describe the queries. Each line has two integers $n$ and $k$: the number of children and the position of the child.', 'Print $q$ integers: the answer for each query.', '- $1 \le q \le 10^5$
+
+- $1 \le k \le n \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-josephus-queries-a1', 'cses-josephus-queries', 'Standard approach', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Mathematics: apply standard techniques for “Josephus Queries”.']::text[], 'Auto-tagged from CSES section “Mathematics”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-bouncing-ball-steps', 'Bouncing Ball Steps', 'CSES', 'https://cses.fi/problemset/task/3215', 1500, 'There is a ball at the top-left corner of an $n \times m$ grid. The rows of the grid are numbered $1,2,\dots,n$, and the columns are numbered $1,2,\dots,m$.
+
+The ball is initially moving diagonally away from the top-left corner. At every step, it moves one cell. Whenever the ball hits the border of the grid, it changes its direction.
+
+What is the location of the ball after $k$ steps and how many times has it changed direction?
+
+Input
+
+The first line has an integer $t$: the number of tests.
+
+After this, there are $t$ lines. Each line has three integers $n$, $m$ and $k$: the size of the grid and the number of steps.
+
+Output
+
+For each test, print three integers: the location of the ball and the number of direction changes.
+
+Constraints
+
+- $1 \le t \le 1000$
+
+- $2 \le n,m \le 10^9$
+
+- $0 \le k \le 10^{18}$
+
+Example
+
+Input:
+
+6
+3 4 0
+3 4 1
+3 4 2
+3 4 3
+3 4 4
+42 1337 123456789
+
+Output:
+
+1 1 0
+2 2 0
+3 3 1
+2 4 2
+1 3 3
+34 300 3101295', 'The first line has an integer $t$: the number of tests.
+
+After this, there are $t$ lines. Each line has three integers $n$, $m$ and $k$: the size of the grid and the number of steps.', 'For each test, print three integers: the location of the ball and the number of direction changes.', '- $1 \le t \le 1000$
+
+- $2 \le n,m \le 10^9$
+
+- $0 \le k \le 10^{18}$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-bouncing-ball-steps-a1', 'cses-bouncing-ball-steps', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Additional Problems II: apply standard techniques for “Bouncing Ball Steps”.']::text[], 'Auto-tagged from CSES section “Additional Problems II”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-inverse-inversions', 'Inverse Inversions', 'CSES', 'https://cses.fi/problemset/task/2214', 1500, 'Your task is to create a permutation of numbers $1,2,\dots,n$ that has exactly $k$ inversions.
+
+An inversion is a pair $(a,b)$ where $a<b$ and $p_a>p_b$ where $p_i$ denotes the number at position $i$ in the permutation.
+
+Input
+
+The only input line has two integers $n$ and $k$.
+
+Output
+
+Print a line that contains the permutation. You can print any valid solution.
+
+Constraints
+
+- $1 \le n \le 10^6$
+
+- $0 \le k \le \frac{n(n-1)}{2}$
+
+Example
+
+Input:
+
+5 4
+
+Output:
+
+1 5 2 4 3', 'The only input line has two integers $n$ and $k$.', 'Print a line that contains the permutation. You can print any valid solution.', '- $1 \le n \le 10^6$
+
+- $0 \le k \le \frac{n(n-1)}{2}$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-inverse-inversions-a1', 'cses-inverse-inversions', 'Standard approach', ARRAY['Ad-Hoc','Greedy']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Construction Problems: apply standard techniques for “Inverse Inversions”.']::text[], 'Auto-tagged from CSES section “Construction Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-permutations', 'Permutations', 'CSES', 'https://cses.fi/problemset/task/1070', 1500, 'A permutation of integers $1,2,\ldots,n$ is called beautiful if there are no adjacent elements whose difference is $1$.
+
+Given $n$, construct a beautiful permutation if such a permutation exists.
+
+Input
+
+The only input line contains an integer $n$.
+
+Output
+
+Print a beautiful permutation of integers $1,2,\ldots,n$. If there are several solutions, you may print any of them. If there are no solutions, print "NO SOLUTION".
+
+Constraints
+
+- $1 \le n \le 10^6$
+
+Example 1
+
+Input:
+
+5
+
+Output:
+
+4 2 5 3 1
+Example 2
+
+Input:
+
+3
+
+Output:
+
+NO SOLUTION', 'The only input line contains an integer $n$.', 'Print a beautiful permutation of integers $1,2,\ldots,n$. If there are several solutions, you may print any of them. If there are no solutions, print "NO SOLUTION".', '- $1 \le n \le 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-permutations-a1', 'cses-permutations', 'Standard approach', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Introductory Problems: apply standard techniques for “Permutations”.']::text[], 'Auto-tagged from CSES section “Introductory Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-number-of-subset-xors', 'Number of Subset Xors', 'CSES', 'https://cses.fi/problemset/task/3211', 1500, 'Given an array of $n$ integers, your task is to find the number of different subset xors.
+
+Input
+
+The first line has an integer $n$: the size of the array.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the contents of the array.
+
+Output
+
+Print one integer: the number of different subset xors.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $0 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+3
+3 6 5
+
+Output:
+
+4
+
+Explanation: The following values can be the xor of a subset:
+
+- $0 = \text{xor of the empty set}$
+
+- $3 = 3$
+
+- $5 = 3 \oplus 6$
+
+- $6 = 3 \oplus 5$
+
+In this case, no other values can be the xor of a subset.', 'The first line has an integer $n$: the size of the array.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the contents of the array.', 'Print one integer: the number of different subset xors.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $0 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-number-of-subset-xors-a1', 'cses-number-of-subset-xors', 'Standard approach', ARRAY['Math / Number Theory','Bitmask / Bit DP']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Bitwise Operations: apply standard techniques for “Number of Subset Xors”.']::text[], 'Auto-tagged from CSES section “Bitwise Operations”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-monotone-subsequences', 'Monotone Subsequences', 'CSES', 'https://cses.fi/problemset/task/2215', 1500, 'Your task is to create a permutation of numbers $1,2,\dots,n$ whose longest monotone subsequence has exactly $k$ elements.
+
+A monotone subsequence is either increasing or decreasing. For example, some monotone subsequences in $[2,1,4,5,3]$ are $[2,4,5]$ and $[4,3]$.
+
+Input
+
+The first input line has an integer $t$: the number of tests.
+
+After this, there are $t$ lines. Each line has two integers $n$ and $k$.
+
+Output
+
+For each test, print a line that contains the permutation. You can print any valid solution. If there are no solutions, print IMPOSSIBLE.
+
+Constraints
+
+- $1 \le t \le 1000$
+
+- $1 \le k \le n \le 100$
+
+Example
+
+Input:
+
+3
+5 3
+5 2
+7 7
+
+Output:
+
+2 1 4 5 3
+IMPOSSIBLE
+1 2 3 4 5 6 7', 'The first input line has an integer $t$: the number of tests.
+
+After this, there are $t$ lines. Each line has two integers $n$ and $k$.', 'For each test, print a line that contains the permutation. You can print any valid solution. If there are no solutions, print IMPOSSIBLE.', '- $1 \le t \le 1000$
+
+- $1 \le k \le n \le 100$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-monotone-subsequences-a1', 'cses-monotone-subsequences', 'Standard approach', ARRAY['Ad-Hoc','Greedy']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Construction Problems: apply standard techniques for “Monotone Subsequences”.']::text[], 'Auto-tagged from CSES section “Construction Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-k-subset-xors', 'K Subset Xors', 'CSES', 'https://cses.fi/problemset/task/3192', 1500, 'You are given an array of $n$ integers. Consider the xors of all $2^n$ subsets of the array (including the empty subset with xor equal to zero).
+
+Your task is to find the $k$ smallest subset xors.
+
+Input
+
+The first line has two integers $n$ and $k$: the size of the array and the number of subset xors $k$.
+
+The next line has $n$ integers $x_1, x_2,\dots, x_n$: the contents of the array.
+
+Output
+
+Print $k$ integers: the $k$ smallest subset xors in increasing order.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le k \le \min(2^n, 2 \cdot 10^5)$
+
+- $0 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+4 9
+3 5 14 8
+
+Output:
+
+0 0 3 3 5 5 6 6 8', 'The first line has two integers $n$ and $k$: the size of the array and the number of subset xors $k$.
+
+The next line has $n$ integers $x_1, x_2,\dots, x_n$: the contents of the array.', 'Print $k$ integers: the $k$ smallest subset xors in increasing order.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le k \le \min(2^n, 2 \cdot 10^5)$
+
+- $0 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-k-subset-xors-a1', 'cses-k-subset-xors', 'Standard approach', ARRAY['Math / Number Theory','Bitmask / Bit DP']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Bitwise Operations: apply standard techniques for “K Subset Xors”.']::text[], 'Auto-tagged from CSES section “Bitwise Operations”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-distributing-apples', 'Distributing Apples', 'CSES', 'https://cses.fi/problemset/task/1716', 1500, 'There are $n$ children and $m$ apples that will be distributed to them. Your task is to count the number of ways this can be done.
+
+For example, if $n=3$ and $m=2$, there are $6$ ways: $[0,0,2]$, $[0,1,1]$, $[0,2,0]$, $[1,0,1]$, $[1,1,0]$ and $[2,0,0]$.
+
+Input
+
+The only input line has two integers $n$ and $m$.
+
+Output
+
+Print the number of ways modulo $10^9+7$.
+
+Constraints
+
+- $1 \le n,m \le 10^6$
+
+Example
+
+Input:
+
+3 2
+
+Output:
+
+6', 'The only input line has two integers $n$ and $m$.', 'Print the number of ways modulo $10^9+7$.', '- $1 \le n,m \le 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-distributing-apples-a1', 'cses-distributing-apples', 'Standard approach', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Mathematics: apply standard techniques for “Distributing Apples”.']::text[], 'Auto-tagged from CSES section “Mathematics”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-swap-game', 'Swap Game', 'CSES', 'https://cses.fi/problemset/task/1670', 1500, 'You are given a $3 \times 3$ grid containing the numbers $1,2,\dots,9$. Your task is to perform a sequence of moves so that the grid will look like this:
+$$\begin{matrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9 \\
+\end{matrix}$$
+On each move, you can swap the numbers in any two adjacent squares (horizontally or vertically). What is the minimum number of moves required?
+
+Input
+
+The input has three lines, and each of them has three integers.
+
+Output
+
+Print one integer: the minimum number of moves.
+
+Example
+
+Input:
+
+2 1 3
+7 5 9
+8 4 6
+
+Output:
+
+4', 'The input has three lines, and each of them has three integers.', 'Print one integer: the minimum number of moves.', 'See statement.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-swap-game-a1', 'cses-swap-game', 'Standard approach', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Additional Problems I: apply standard techniques for “Swap Game”.']::text[], 'Auto-tagged from CSES section “Additional Problems I”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-third-permutation', 'Third Permutation', 'CSES', 'https://cses.fi/problemset/task/3422', 1500, 'You are given two permutations $a$ and $b$ such that $a_i \neq b_i$ in every position. Create a third permutation $c$ such that $a_i \neq c_i$ and $b_i \neq c_i$ in every position.
+
+Input
+
+The first line has an integer $n$: the permutation size.
+
+The second line has $n$ integers $a_1,a_2,\dots,a_n$.
+
+The third line has $n$ integers $b_1,b_2,\dots,b_n$.
+
+Output
+
+Print $n$ integers $c_1,c_2,\dots,c_n$. You can print any valid solution. If there are no solutions, print IMPOSSIBLE.
+
+Constraints
+
+- $2 \le n \le 10^5$
+
+Example
+
+Input:
+
+5
+1 3 2 5 4
+4 1 3 2 5
+
+Output:
+
+3 2 5 4 1', 'The first line has an integer $n$: the permutation size.
+
+The second line has $n$ integers $a_1,a_2,\dots,a_n$.
+
+The third line has $n$ integers $b_1,b_2,\dots,b_n$.', 'Print $n$ integers $c_1,c_2,\dots,c_n$. You can print any valid solution. If there are no solutions, print IMPOSSIBLE.', '- $2 \le n \le 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-third-permutation-a1', 'cses-third-permutation', 'Standard approach', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Construction Problems: apply standard techniques for “Third Permutation”.']::text[], 'Auto-tagged from CSES section “Construction Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-all-subarray-xors', 'All Subarray Xors', 'CSES', 'https://cses.fi/problemset/task/3233', 1500, 'Given an array of $n$ integers, your task is to find all integers that are the xor sum in some subarray.
+
+Input
+
+The first line has an integer $n$: the size of the array.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the contents of the array.
+
+Output
+
+First print an integer $k$: the number of distinct integers that are the xor sum in some subarray.
+
+After this print $k$ integers: the xor sums in increasing order.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $0 \le x_i \le 10^6$
+
+Example
+
+Input:
+
+4
+5 1 5 9
+
+Output:
+
+7
+1 4 5 8 9 12 13', 'The first line has an integer $n$: the size of the array.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the contents of the array.', 'First print an integer $k$: the number of distinct integers that are the xor sum in some subarray.
+
+After this print $k$ integers: the xor sums in increasing order.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $0 \le x_i \le 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-all-subarray-xors-a1', 'cses-all-subarray-xors', 'Standard approach', ARRAY['Math / Number Theory','Bitmask / Bit DP']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Bitwise Operations: apply standard techniques for “All Subarray Xors”.']::text[], 'Auto-tagged from CSES section “Bitwise Operations”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-christmas-party', 'Christmas Party', 'CSES', 'https://cses.fi/problemset/task/1717', 1500, 'There are $n$ children at a Christmas party, and each of them has brought a gift. The idea is that everybody will get a gift brought by someone else.
+
+In how many ways can the gifts be distributed?
+
+Input
+
+The only input line has an integer $n$: the number of children.
+
+Output
+
+Print the number of ways modulo $10^9+7$.
+
+Constraints
+
+- $1 \le n \le 10^6$
+
+Example
+
+Input:
+
+4
+
+Output:
+
+9', 'The only input line has an integer $n$: the number of children.', 'Print the number of ways modulo $10^9+7$.', '- $1 \le n \le 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-christmas-party-a1', 'cses-christmas-party', 'Standard approach', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Mathematics: apply standard techniques for “Christmas Party”.']::text[], 'Auto-tagged from CSES section “Mathematics”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-xor-pyramid-peak', 'Xor Pyramid Peak', 'CSES', 'https://cses.fi/problemset/task/2419', 1500, 'Consider a xor pyramid where each number is the xor of lower-left and lower-right numbers. Here is an example pyramid:
+
+Given the bottom row of the pyramid, your task is to find the topmost number.
+
+Input
+
+The first line has an integer $n$: the size of the pyramid.
+
+The next line has $n$ integers $a_1,a_2,\dots,a_n$: the bottom row of the pyramid.
+
+Output
+
+Print one integer: the topmost number.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le a_i \le 10^9$
+
+Example
+
+Input:
+
+8
+2 10 5 12 9 5 1 5
+
+Output:
+
+9', 'The first line has an integer $n$: the size of the pyramid.
+
+The next line has $n$ integers $a_1,a_2,\dots,a_n$: the bottom row of the pyramid.', 'Print one integer: the topmost number.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le a_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-xor-pyramid-peak-a1', 'cses-xor-pyramid-peak', 'Standard approach', ARRAY['Math / Number Theory','Bitmask / Bit DP']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Bitwise Operations: apply standard techniques for “Xor Pyramid Peak”.']::text[], 'Auto-tagged from CSES section “Bitwise Operations”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-permutation-order', 'Permutation Order', 'CSES', 'https://cses.fi/problemset/task/3397', 1500, 'Let $p(n,k)$ denote the $k$th permutation (in lexicographical order) of $1 \dots n$. For example, $p(4,1)=[1,2,3,4]$ and $p(4,2)=[1,2,4,3]$.
+
+Your task is to process two types of tests:
+
+- Given $n$ and $k$, find $p(n,k)$
+
+- Given $n$ and $p(n,k)$, find $k$
+
+Input
+
+The first line has an integer $t$: the number of tests.
+
+Each test is either "1 $n$ $k$" or "2 $n$ $p(n,k)$".
+
+Output
+
+For each test, print the answer according to the example.
+
+Constraints
+
+- $1 \le t \le 1000$
+
+- $1 \le n \le 20$
+
+- $1 \le k \le n!$
+
+Example
+
+Input:
+
+6
+1 4 1
+1 4 2
+2 4 1 2 3 4
+2 4 1 2 4 3
+1 5 42
+2 5 2 4 5 3 1
+
+Output:
+
+1 2 3 4
+1 2 4 3
+1
+2
+2 4 5 3 1
+42', 'The first line has an integer $t$: the number of tests.
+
+Each test is either "1 $n$ $k$" or "2 $n$ $p(n,k)$".', 'For each test, print the answer according to the example.', '- $1 \le t \le 1000$
+
+- $1 \le n \le 20$
+
+- $1 \le k \le n!$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-permutation-order-a1', 'cses-permutation-order', 'Standard approach', ARRAY['Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Mathematics: apply standard techniques for “Permutation Order”.']::text[], 'Auto-tagged from CSES section “Mathematics”. Review tags after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-edit-distance', 'Edit Distance', 'CSES', 'https://cses.fi/problemset/task/1639', 1600, 'Compute the minimum number of operations (insert, delete, replace) to transform string $s$ into string $t$.', 'The first line contains string $s$.
 
 The second line contains string $t$.', 'Print the edit distance between $s$ and $t$.', '$1 \le |s|,|t| \le 5000$', '[{"input":"LOVE\nMOVIE","output":"2"}]'::jsonb, 'O(N²)');
@@ -14033,6 +14758,1495 @@ Output:
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-throwing-dice-a1', 'cses-throwing-dice', 'Matrix recurrence', ARRAY['Dynamic Programming','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY['2D Array']::text[], ARRAY['Linear recurrence via matrix expo for dice sum ways']::text[], 'Number of ways to get sum n with 6-sided dice.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1288c', 'Two Arrays', 'Codeforces', 'https://codeforces.com/problemset/problem/1288/C', 1600, 'Count pairs of arrays $a,b$ of length $m$ with $1\le a_i,b_i\le n$, $a$ non-decreasing, $b$ non-increasing, and $a_i\le b_i$ for all $i$, modulo $10^9+7$.', 'Two integers $n$ and $m$ ($1 \le n \le 1000$, $1 \le m \le 10$).', 'Print the answer modulo $10^9+7$.', '$1 \le n \le 1000$, $1 \le m \le 10$', '[{"input":"2 2","output":"5"}]'::jsonb, 'O(N · M)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1288c-a1', 'cf-1288c', 'Combinatorics DP', ARRAY['Dynamic Programming','Math / Number Theory']::text[], ARRAY['Prefix Sums']::text[], ARRAY[]::text[], ARRAY['Combinatorial: choose with repetition = C(n+2m-1, 2m) style after transforming']::text[], 'Map monotone pairs to unrestricted combinations modulo prime.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-hidden-integer', 'Hidden Integer', 'CSES', 'https://cses.fi/problemset/task/3112', 1600, 'There is a hidden integer $x$. Your task is to find the value of $x$.
+
+To do this, you can ask questions: you can choose an integer $y$ and you will be told if $y < x$.
+
+Interaction
+
+This is an interactive problem. Your code will interact with the grader using standard input and output. You can start asking questions right away.
+
+On your turn, you can print one of the following:
+
+- "$?\ y$", where $1 \le y \le 10^9$: ask if $y < x$. The grader will return YES if $y < x$ and NO otherwise.
+
+- "$!\ x$": report that the hidden integer is $x$. Your program must terminate after this.
+
+Each line should be followed by a line break. You must make sure the output gets flushed after printing each line.
+
+Constraints
+
+- $1 \le x \le 10^9$
+
+- you can ask at most $30$ questions of type $?$
+
+Example
+
+? 3
+YES
+? 6
+YES
+? 7
+NO
+! 7', 'See statement.', 'See statement.', '- $1 \le x \le 10^9$
+
+- you can ask at most $30$ questions of type $?$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-hidden-integer-a1', 'cses-hidden-integer', 'Standard approach', ARRAY['Interactive']::text[], ARRAY['Binary Search']::text[], ARRAY[]::text[], ARRAY['CSES Interactive Problems: apply standard techniques for “Hidden Integer”.']::text[], 'Auto-tagged from CSES section “Interactive Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-maximum-manhattan-distances', 'Maximum Manhattan Distances', 'CSES', 'https://cses.fi/problemset/task/3410', 1600, 'A set is initially empty and $n$ points are added to it. Calculate the maximum Manhattan distance of two points after each addition.
+
+Input
+
+The first line has an integer $n$: the number of points.
+
+The following $n$ lines describe the points. Each line has two integers $x$ and $y$. You can assume that each point is distinct.
+
+Output
+
+After each addition, print the maximum distance.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $-10^9 \le x, y \le 10^9$
+
+Example
+
+Input:
+
+5
+1 1
+3 2
+2 4
+2 1
+4 5
+
+Output:
+
+0
+3
+4
+4
+7', 'The first line has an integer $n$: the number of points.
+
+The following $n$ lines describe the points. Each line has two integers $x$ and $y$. You can assume that each point is distinct.', 'After each addition, print the maximum distance.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $-10^9 \le x, y \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-maximum-manhattan-distances-a1', 'cses-maximum-manhattan-distances', 'Standard approach', ARRAY['Geometry']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Geometry: apply standard techniques for “Maximum Manhattan Distances”.']::text[], 'Auto-tagged from CSES section “Geometry”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-distinct-subsequences', 'Distinct Subsequences', 'CSES', 'https://cses.fi/problemset/task/1149', 1600, 'You are given a string. You can remove any number of characters from it, but you cannot change the order of the remaining characters.
+
+How many different strings can you generate?
+
+Input
+
+The first input line contains a string of size $n$. Each character is one of a–z.
+
+Output
+
+Print one integer: the number of strings modulo $10^9+7$.
+
+Constraints
+
+- $1 \le n \le 5 \cdot 10^5$
+
+Example
+
+Input:
+
+aybabtu
+
+Output:
+
+103', 'The first input line contains a string of size $n$. Each character is one of a–z.', 'Print one integer: the number of strings modulo $10^9+7$.', '- $1 \le n \le 5 \cdot 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-distinct-subsequences-a1', 'cses-distinct-subsequences', 'Standard approach', ARRAY['String Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES String Algorithms: apply standard techniques for “Distinct Subsequences”.']::text[], 'Auto-tagged from CSES section “String Algorithms”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-nearest-shops', 'Nearest Shops', 'CSES', 'https://cses.fi/problemset/task/3303', 1600, 'There are $n$ cities and $m$ roads. Each road is bidirectional and connects two cities. It is also known that $k$ cities have an anime shop.
+
+If you live in a city, you of course know the local anime shop well if there is one. You would like to find the nearest anime shop that is not in your city.
+
+For each city, determine the minimum distance to another city that has an anime shop.
+
+Input
+
+The first line has three integers $n$, $m$ and $k$: the number of cities, roads and anime shops. The cities are numbered $1,2,\dots,n$.
+
+The next line contains $k$ integers: the cities that have an anime shop.
+
+Finally, there are $m$ lines that describe the roads. Each line has two integers $a$ and $b$: there is a road between cities $a$ and $b$.
+
+Output
+
+Print $n$ integers: for each city, the minimum distance to another city with an anime shop. If there is no such city, print $-1$ instead.
+
+Constraints
+
+- $1 \le k \le n \le 10^5$
+
+- $0 \le m \le 2 \cdot 10^5$
+
+Example
+
+Input:
+
+9 6 4
+2 4 5 7
+1 2
+1 3
+1 8
+2 4
+3 4
+5 6
+
+Output:
+
+1 1 1 1 -1 1 -1 2 -1', 'The first line has three integers $n$, $m$ and $k$: the number of cities, roads and anime shops. The cities are numbered $1,2,\dots,n$.
+
+The next line contains $k$ integers: the cities that have an anime shop.
+
+Finally, there are $m$ lines that describe the roads. Each line has two integers $a$ and $b$: there is a road between cities $a$ and $b$.', 'Print $n$ integers: for each city, the minimum distance to another city with an anime shop. If there is no such city, print $-1$ instead.', '- $1 \le k \le n \le 10^5$
+
+- $0 \le m \le 2 \cdot 10^5$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-nearest-shops-a1', 'cses-nearest-shops', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY['BFS']::text[], ARRAY['Queue']::text[], ARRAY['CSES Advanced Graph Problems: apply standard techniques for “Nearest Shops”.']::text[], 'Auto-tagged from CSES section “Advanced Graph Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-visible-buildings-queries', 'Visible Buildings Queries', 'CSES', 'https://cses.fi/problemset/task/3304', 1600, 'There are $n$ buildings in a row numbered $1, 2,\dots, n$ from left to right. You are standing to the left of the first building. You can see a building if it is taller than all buildings to its left.
+
+Your task is to process $q$ queries: If only buildings in range $[a, b]$ existed, how many buildings would you see?
+
+Input
+
+The first line has two integers $n$ and $q$: the number of buildings and queries.
+
+The second line has $n$ integers $h_1, h_2, \dots, h_n$: the heights of the buildings.
+
+Finally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$.
+
+Output
+
+For each query, print one integer: the number of visible buildings.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+- $1 \le q \le 2 \cdot 10^5$
+
+- $1 \le h_i \le 10^9$
+
+- $1 \le a \le b \le n$
+
+Example
+
+Input:
+
+5 3
+4 1 2 2 3
+1 5
+2 5
+3 4
+
+Output:
+
+1
+3
+1', 'The first line has two integers $n$ and $q$: the number of buildings and queries.
+
+The second line has $n$ integers $h_1, h_2, \dots, h_n$: the heights of the buildings.
+
+Finally, there are $q$ lines describing the queries. Each line has two integers $a$ and $b$.', 'For each query, print one integer: the number of visible buildings.', '- $1 \le n \le 10^5$
+
+- $1 \le q \le 2 \cdot 10^5$
+
+- $1 \le h_i \le 10^9$
+
+- $1 \le a \le b \le n$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-visible-buildings-queries-a1', 'cses-visible-buildings-queries', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY[]::text[], ARRAY['CSES Range Queries: apply standard techniques for “Visible Buildings Queries”.']::text[], 'Auto-tagged from CSES section “Range Queries”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-longest-common-subsequence', 'Longest Common Subsequence', 'CSES', 'https://cses.fi/problemset/task/3403', 1600, 'Given two arrays of integers, find their longest common subsequence.
+
+A subsequence is a sequence of array elements from left to right that can contain gaps. A common subsequence is a subsequence that appears in both arrays.
+
+Input
+
+The first line has two integers $n$ and $m$: the sizes of the arrays.
+
+The second line has $n$ integers $a_1,a_2,\dots,a_n$: the contents of the first array.
+
+The third line has $m$ integers $b_1,b_2,\dots,b_m$: the contents of the second array.
+
+Output
+
+First print the length of the longest common subsequence.
+
+After that, print an example of such a sequence. If there are several solutions, you can print any of them.
+
+Constraints
+
+- $1 \le n,m \le 1000$
+
+- $1 \le a_i, b_i \le 10^9$
+
+Example
+
+Input:
+
+8 6
+3 1 3 2 7 4 8 2
+6 5 1 2 3 4
+
+Output:
+
+3
+1 2 4', 'The first line has two integers $n$ and $m$: the sizes of the arrays.
+
+The second line has $n$ integers $a_1,a_2,\dots,a_n$: the contents of the first array.
+
+The third line has $m$ integers $b_1,b_2,\dots,b_m$: the contents of the second array.', 'First print the length of the longest common subsequence.
+
+After that, print an example of such a sequence. If there are several solutions, you can print any of them.', '- $1 \le n,m \le 1000$
+
+- $1 \le a_i, b_i \le 10^9$', '[]'::jsonb, 'O(N²)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-longest-common-subsequence-a1', 'cses-longest-common-subsequence', 'Standard approach', ARRAY['Dynamic Programming']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Dynamic Programming: apply standard techniques for “Longest Common Subsequence”.']::text[], 'Auto-tagged from CSES section “Dynamic Programming”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-knight-s-tour', 'Knight''s Tour', 'CSES', 'https://cses.fi/problemset/task/1689', 1600, 'Given a starting position of a knight on an $8 \times 8$ chessboard, your task is to find a sequence of moves such that it visits every square exactly once.
+
+On each move, the knight may either move two steps horizontally and one step vertically, or one step horizontally and two steps vertically.
+
+Input
+
+The only line has two integers $x$ and $y$: the knight''s starting position.
+
+Output
+
+Print a grid that shows how the knight moves (according to the example). You can print any valid solution.
+
+Constraints
+
+- $1 \le x,y \le 8$
+
+Example
+
+Input:
+
+2 1
+
+Output:
+
+8 1 10 13 6 3 20 17
+11 14 7 2 19 16 23 4
+26 9 12 15 24 5 18 21
+49 58 25 28 51 22 33 30
+40 27 50 59 32 29 52 35
+57 48 41 44 37 34 31 62
+42 39 46 55 60 63 36 53
+47 56 43 38 45 54 61 64', 'The only line has two integers $x$ and $y$: the knight''s starting position.', 'Print a grid that shows how the knight moves (according to the example). You can print any valid solution.', '- $1 \le x,y \le 8$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-knight-s-tour-a1', 'cses-knight-s-tour', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Graph Algorithms: apply standard techniques for “Knight''s Tour”.']::text[], 'Auto-tagged from CSES section “Graph Algorithms”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-distinct-values-sum', 'Distinct Values Sum', 'CSES', 'https://cses.fi/problemset/task/3150', 1600, 'You are given an array $x_1,x_2,\dots,x_n$. Let $d(a,b)$ denote the number of distinct values in the subarray $x_a,x_{a+1},\dots,x_b$.
+
+Your task is to calculate the sum $\sum_{a=1}^n \sum_{b=a}^n d(a,b)$, i.e., the sum of $d(a,b)$ for all subarrays.
+
+Input
+
+The first line has an integer $n$: the array size.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the array contents.
+
+Output
+
+Print one integer: the required sum.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+5
+1 2 3 1 1
+
+Output:
+
+29
+
+Explanation: In this array, $6$ subarrays have $1$ distinct value, $4$ subarrays have $2$ distinct values and $5$ subarrays have $3$ distinct values. Thus, the sum is $6\cdot1+4\cdot2+5\cdot3=29$.', 'The first line has an integer $n$: the array size.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the array contents.', 'Print one integer: the required sum.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-distinct-values-sum-a1', 'cses-distinct-values-sum', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['CSES Additional Problems I: apply standard techniques for “Distinct Values Sum”.']::text[], 'Auto-tagged from CSES section “Additional Problems I”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-distinct-values-subarrays', 'Distinct Values Subarrays', 'CSES', 'https://cses.fi/problemset/task/3420', 1600, 'Given an array of $n$ integers, count the number of subarrays where each element is distinct.
+
+Input
+
+The first line has an integer $n$: the array size.
+
+The second line has $n$ integers $x_1,x_2,\dots,x_n$: the array contents.
+
+Output
+
+Print the number of subarrays with distinct elements.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+4
+1 2 1 3
+
+Output:
+
+8
+
+Explanation: The subarrays are $[1]$ (two times), $[2]$, $[3]$, $[1,2]$, $[1,3]$, $[2,1]$ and $[2,1,3]$.', 'The first line has an integer $n$: the array size.
+
+The second line has $n$ integers $x_1,x_2,\dots,x_n$: the array contents.', 'Print the number of subarrays with distinct elements.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-distinct-values-subarrays-a1', 'cses-distinct-values-subarrays', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['CSES Sorting and Searching: apply standard techniques for “Distinct Values Subarrays”.']::text[], 'Auto-tagged from CSES section “Sorting and Searching”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-hidden-permutation', 'Hidden Permutation', 'CSES', 'https://cses.fi/problemset/task/3139', 1600, 'There is a hidden permutation $a_1, a_2,\dots, a_n$ of integers $1, 2,\dots, n$. Your task is to find this permutation.
+
+To do this, you can ask questions: you can choose two indices $i$ and $j$ and you will be told if $a_i < a_j$.
+
+Interaction
+
+This is an interactive problem. Your code will interact with the grader using standard input and output. You should start by reading a single integer $n$: the length of the permutation.
+
+On your turn, you can print one of the following:
+
+- "$?\ i\ j$", where $1 \le i, j \le n$: ask if $a_i < a_j$. The grader will return YES if $a_i < a_j$ and NO otherwise.
+
+- "$!\ a_1\ a_2 \dots a_n$": report that the hidden permutation is $a_1, a_2,\dots, a_n$. Your program must terminate after this.
+
+Each line should be followed by a line break. You must make sure the output gets flushed after printing each line.
+
+Constraints
+
+- $1 \le n \le 1000$
+
+- you can ask at most $10^4$ questions of type $?$
+
+Example
+
+3
+? 3 2
+NO
+? 3 1
+YES
+! 3 1 2
+
+Explanation: The hidden permutation is $[3, 1, 2]$. The first question asks if $a_3 < a_2$ which is false, so the answer is NO. The second question asks if $a_3 < a_1$ which is true, so the answer is YES.', 'See statement.', 'See statement.', '- $1 \le n \le 1000$
+
+- you can ask at most $10^4$ questions of type $?$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-hidden-permutation-a1', 'cses-hidden-permutation', 'Standard approach', ARRAY['Interactive']::text[], ARRAY['Binary Search']::text[], ARRAY[]::text[], ARRAY['CSES Interactive Problems: apply standard techniques for “Hidden Permutation”.']::text[], 'Auto-tagged from CSES section “Interactive Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-all-manhattan-distances', 'All Manhattan Distances', 'CSES', 'https://cses.fi/problemset/task/3411', 1600, 'Given a set of points, calculate the sum of all Manhattan distances between two point pairs.
+
+Input
+
+The first line has an integer $n$: the number of points.
+
+The following $n$ lines describe the points. Each line has two integers $x$ and $y$. You can assume that each point is distinct.
+
+Output
+
+Print the sum of all Manhattan distances.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $-10^9 \le x, y \le 10^9$
+
+Example
+
+Input:
+
+5
+1 1
+3 2
+2 4
+2 1
+4 5
+
+Output:
+
+36', 'The first line has an integer $n$: the number of points.
+
+The following $n$ lines describe the points. Each line has two integers $x$ and $y$. You can assume that each point is distinct.', 'Print the sum of all Manhattan distances.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $-10^9 \le x, y \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-all-manhattan-distances-a1', 'cses-all-manhattan-distances', 'Standard approach', ARRAY['Geometry']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Geometry: apply standard techniques for “All Manhattan Distances”.']::text[], 'Auto-tagged from CSES section “Geometry”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-inverse-suffix-array', 'Inverse Suffix Array', 'CSES', 'https://cses.fi/problemset/task/3225', 1600, 'Given a suffix array of a string, your task is to reconstruct the string.
+
+The suffix array of a string of length $n$ is a permutation of numbers $1,2,\dots,n$ that presents the lexicographical order of the suffixes.
+
+Input
+
+The first line has an integer $n$: the length of the string.
+
+The next line has $n$ integers: the suffix array.
+
+Output
+
+Print a string that corresponds to the suffix array. The string must consist of characters a–z. If there are several possible strings, you can print any of them.
+
+If no string corresponds to the suffix array, print $-1$.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+Example
+
+Input:
+
+7
+4 1 3 5 6 7 2
+
+Output:
+
+aybabtu', 'The first line has an integer $n$: the length of the string.
+
+The next line has $n$ integers: the suffix array.', 'Print a string that corresponds to the suffix array. The string must consist of characters a–z. If there are several possible strings, you can print any of them.
+
+If no string corresponds to the suffix array, print $-1$.', '- $1 \le n \le 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-inverse-suffix-array-a1', 'cses-inverse-suffix-array', 'Standard approach', ARRAY['String Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES String Algorithms: apply standard techniques for “Inverse Suffix Array”.']::text[], 'Auto-tagged from CSES section “String Algorithms”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-pr-fer-code', 'Prüfer Code', 'CSES', 'https://cses.fi/problemset/task/1134', 1600, 'A Prüfer code of a tree of $n$ nodes is a sequence of $n-2$ integers that uniquely specifies the structure of the tree.
+
+The code is constructed as follows: As long as there are at least three nodes left, find a leaf with the smallest label, add the label of its only neighbor to the code, and remove the leaf from the tree.
+
+Given a Prüfer code of a tree, your task is to construct the original tree.
+
+Input
+
+The first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,\ldots,n$.
+
+The second line contains $n-2$ integers: the Prüfer code.
+
+Output
+
+Print $n-1$ lines describing the edges of the tree. Each line has to contain two integers $a$ and $b$: there is an edge between nodes $a$ and $b$. You can print the edges in any order.
+
+Constraints
+
+- $3 \le n \le 2 \cdot 10^5$
+
+- $1 \le a,b \le n$
+
+Example
+
+Input:
+
+5
+2 2 4
+
+Output:
+
+1 2
+2 3
+2 4
+4 5', 'The first input line contains an integer $n$: the number of nodes. The nodes are numbered $1,2,\ldots,n$.
+
+The second line contains $n-2$ integers: the Prüfer code.', 'Print $n-1$ lines describing the edges of the tree. Each line has to contain two integers $a$ and $b$: there is an edge between nodes $a$ and $b$. You can print the edges in any order.', '- $3 \le n \le 2 \cdot 10^5$
+
+- $1 \le a,b \le n$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-pr-fer-code-a1', 'cses-pr-fer-code', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Advanced Graph Problems: apply standard techniques for “Prüfer Code”.']::text[], 'Auto-tagged from CSES section “Advanced Graph Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-creating-strings-ii', 'Creating Strings II', 'CSES', 'https://cses.fi/problemset/task/1715', 1600, 'Given a string, your task is to calculate the number of different strings that can be created using its characters.
+
+Input
+
+The only input line has a string of length $n$. Each character is between a–z.
+
+Output
+
+Print the number of different strings modulo $10^9+7$.
+
+Constraints
+
+- $1 \le n \le 10^6$
+
+Example
+
+Input:
+
+aabac
+
+Output:
+
+20', 'The only input line has a string of length $n$. Each character is between a–z.', 'Print the number of different strings modulo $10^9+7$.', '- $1 \le n \le 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-creating-strings-ii-a1', 'cses-creating-strings-ii', 'Standard approach', ARRAY['String Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Mathematics: apply standard techniques for “Creating Strings II”.']::text[], 'Auto-tagged from CSES section “Mathematics”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-range-interval-queries', 'Range Interval Queries', 'CSES', 'https://cses.fi/problemset/task/3163', 1600, 'Given an array $x$ of $n$ integers, your task is to process $q$ queries of the form: how many integers $i$ satisfy $a \le i \le b$ and $c \le x_i \le d$?
+
+Input
+
+The first line has two integers $n$ and $q$: the number of values and queries.
+
+The second line has $n$ integers $x_1,x_2,\dots,x_n$: the array values.
+
+Finally, there are $q$ lines describing the queries. Each line has four integers $a$, $b$, $c$ and $d$: how many integers $i$ satisfy $a \le i \le b$ and $c \le x_i \le d$?
+
+Output
+
+Print the result of each query.
+
+Constraints
+
+- $1 \le n,q \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$
+
+- $1 \le a \le b \le n$
+
+- $1 \le c \le d \le 10^9$
+
+Example
+
+Input:
+
+8 4
+3 2 4 5 1 1 5 3
+2 4 2 4
+5 6 2 9
+1 8 1 5
+3 3 4 4
+
+Output:
+
+2
+0
+8
+1', 'The first line has two integers $n$ and $q$: the number of values and queries.
+
+The second line has $n$ integers $x_1,x_2,\dots,x_n$: the array values.
+
+Finally, there are $q$ lines describing the queries. Each line has four integers $a$, $b$, $c$ and $d$: how many integers $i$ satisfy $a \le i \le b$ and $c \le x_i \le d$?', 'Print the result of each query.', '- $1 \le n,q \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$
+
+- $1 \le a \le b \le n$
+
+- $1 \le c \le d \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-range-interval-queries-a1', 'cses-range-interval-queries', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY[]::text[], ARRAY['CSES Range Queries: apply standard techniques for “Range Interval Queries”.']::text[], 'Auto-tagged from CSES section “Range Queries”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-minimal-grid-path', 'Minimal Grid Path', 'CSES', 'https://cses.fi/problemset/task/3359', 1600, 'You are given an $n \times n$ grid whose each square contains a letter.
+
+You should move from the upper-left square to the lower-right square. You can only move right or down.
+
+What is the lexicographically minimal string you can construct?
+
+Input
+
+The first line has an integer $n$: the size of the grid.
+
+After this, there are $n$ lines that describe the grid. Each line has $n$ letters between A and Z.
+
+Output
+
+Print the lexicographically minimal string.
+
+Constraints
+
+- $1 \le n \le 3000$
+
+Example
+
+Input:
+
+4
+AACA
+BABC
+ABDA
+AACA
+
+Output:
+
+AAABACA', 'The first line has an integer $n$: the size of the grid.
+
+After this, there are $n$ lines that describe the grid. Each line has $n$ letters between A and Z.', 'Print the lexicographically minimal string.', '- $1 \le n \le 3000$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-minimal-grid-path-a1', 'cses-minimal-grid-path', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Dynamic Programming: apply standard techniques for “Minimal Grid Path”.']::text[], 'Auto-tagged from CSES section “Dynamic Programming”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-distinct-values-splits', 'Distinct Values Splits', 'CSES', 'https://cses.fi/problemset/task/3190', 1600, 'You are given an array of $n$ integers. Your task is to count the number of ways to split the array into continuous segments such that all segments consists of distinct values.
+
+Input
+
+The first line has an integers $n$: the size of the array.
+
+The next line has $n$ integers $x_1, x_2,\dots, x_n$: the contents of the array.
+
+Output
+
+Print one integer: the answer to the problem modulo $10^9 + 7$.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+4
+1 2 1 3
+
+Output:
+
+6
+
+Explanation: There are six valid splits:
+
+- $[1], [2], [1], [3]$
+
+- $[1], [2], [1, 3]$
+
+- $[1], [2, 1], [3]$
+
+- $[1], [2, 1, 3]$
+
+- $[1, 2], [1], [3]$
+
+- $[1, 2], [1, 3]$', 'The first line has an integers $n$: the size of the array.
+
+The next line has $n$ integers $x_1, x_2,\dots, x_n$: the contents of the array.', 'Print one integer: the answer to the problem modulo $10^9 + 7$.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-distinct-values-splits-a1', 'cses-distinct-values-splits', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['CSES Additional Problems I: apply standard techniques for “Distinct Values Splits”.']::text[], 'Auto-tagged from CSES section “Additional Problems I”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-bouncing-ball-cycle', 'Bouncing Ball Cycle', 'CSES', 'https://cses.fi/problemset/task/3216', 1600, 'There is a ball at the top-left corner of an $n \times m$ grid. The rows of the grid are numbered $1,2,\dots,n$, and the columns are numbered $1,2,\dots,m$.
+
+The ball is initially moving diagonally away from the top-left corner. At every step, it moves one cell. Whenever the ball hits the border of the grid, it changes its direction.
+
+After how many steps has the ball reached its initial location again? What is the number of distinct cells it has visited?
+
+Input
+
+The first line has an integer $t$: the number of tests.
+
+After this, there are $t$ lines. Each line has two integers $n$, $m$: the size of the grid.
+
+Output
+
+For each test, print two integers: the number of steps and the number of visited cells.
+
+Constraints
+
+- $1 \le t \le 1000$
+
+- $2 \le n,m \le 10^9$
+
+Example
+
+Input:
+
+4
+3 4
+2 2
+19 18
+42 1337
+
+Output:
+
+12 6
+2 2
+612 171
+109552 28077', 'The first line has an integer $t$: the number of tests.
+
+After this, there are $t$ lines. Each line has two integers $n$, $m$: the size of the grid.', 'For each test, print two integers: the number of steps and the number of visited cells.', '- $1 \le t \le 1000$
+
+- $2 \le n,m \le 10^9$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-bouncing-ball-cycle-a1', 'cses-bouncing-ball-cycle', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY['DFS']::text[], ARRAY[]::text[], ARRAY['CSES Additional Problems II: apply standard techniques for “Bouncing Ball Cycle”.']::text[], 'Auto-tagged from CSES section “Additional Problems II”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-distinct-values-subsequences', 'Distinct Values Subsequences', 'CSES', 'https://cses.fi/problemset/task/3421', 1600, 'Given an array of $n$ integers, count the number of subsequences where each element is distinct.
+
+A subsequence is a sequence of array elements from left to right that may have gaps.
+
+Input
+
+The first line has an integer $n$: the array size.
+
+The second line has $n$ integers $x_1,x_2,\dots,x_n$: the array contents.
+
+Output
+
+Print the number of subsequences with distinct elements. The answer can be large, so print it modulo $10^9+7$.
+
+Constraints
+
+- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+4
+1 2 1 3
+
+Output:
+
+11
+
+Explanation: The subsequences are $[1]$ (two times), $[2]$, $[3]$, $[1,2]$, $[1,3]$ (two times), $[2,1]$, $[2,3]$, $[1,2,3]$ and $[2,1,3]$.', 'The first line has an integer $n$: the array size.
+
+The second line has $n$ integers $x_1,x_2,\dots,x_n$: the array contents.', 'Print the number of subsequences with distinct elements. The answer can be large, so print it modulo $10^9+7$.', '- $1 \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-distinct-values-subsequences-a1', 'cses-distinct-values-subsequences', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['CSES Sorting and Searching: apply standard techniques for “Distinct Values Subsequences”.']::text[], 'Auto-tagged from CSES section “Sorting and Searching”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-k-th-highest-score', 'K-th Highest Score', 'CSES', 'https://cses.fi/problemset/task/3305', 1600, 'There were $n$ coders from Finland and $n$ coders from Sweden in a programming contest. It turned out that after the contest, each coder had a distinct score.
+
+Your task is to find the $k$-th highest score in the contest.
+
+To do this, you can ask questions: you can choose a country (Finland or Sweden) and an integer $i$ and you will be told the $i$-th highest score for the chosen country.
+
+Interaction
+
+This is an interactive problem. Your code will interact with the grader using standard input and output. You should start by reading two integers $n$ and $k$.
+
+On your turn, you can print one of the following:
+
+- "$\mathrm{F}\ i$", where $1 \le i \le n$: ask the $i$-th highest score for Finland.
+
+- "$\mathrm{S}\ i$", where $1 \le i \le n$: ask the $i$-th highest score for Sweden.
+
+- "$!\ s$": report that the $k$-th highest score is $s$. Your program must terminate after this.
+
+Each line should be followed by a line break. You must make sure the output gets flushed after printing each line.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+- $1 \le k \le 2n$
+
+- each score is between $1$ and $10^9$
+
+- you can ask at most $100$ queries of the first two types in total
+
+Example
+
+3 1
+F 1
+9
+S 1
+8
+! 9
+
+Explanation: The scores for Finland are $[9, 4, 3]$ and the scores for Sweden are $[8, 6, 1]$. Since $k = 1$, the task is to find the highest score overall, which in this case is $9$.', 'See statement.', 'See statement.', '- $1 \le n \le 10^5$
+
+- $1 \le k \le 2n$
+
+- each score is between $1$ and $10^9$
+
+- you can ask at most $100$ queries of the first two types in total', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-k-th-highest-score-a1', 'cses-k-th-highest-score', 'Standard approach', ARRAY['Interactive']::text[], ARRAY['Binary Search']::text[], ARRAY[]::text[], ARRAY['CSES Interactive Problems: apply standard techniques for “K-th Highest Score”.']::text[], 'Auto-tagged from CSES section “Interactive Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-line-segments-trace-i', 'Line Segments Trace I', 'CSES', 'https://cses.fi/problemset/task/3427', 1600, 'There are $n$ line segments whose endpoints have integer coordinates. The left x-coordinate of each segment is $0$ and the right x-coordinate is $m$. The slope of each segment is an integer.
+
+For each x-coordinate $0,1,\dots,m$, find the maximum point in any line segment.
+
+Input
+
+The first line has two integers $n$ and $m$: the number of line segments and the maximum x-coordinate.
+
+The next $n$ lines describe the line segments. Each line has two integers $y_1$ and $y_2$: there is a line segment between points $(0,y_1)$ and $(m,y_2)$.
+
+Output
+
+Print $m+1$ integers: the maximum points for $x=0,1,\dots,m$.
+
+Constraints
+
+- $1 \le n, m \le 10^5$
+
+- $0 \le y_1,y_2 \le 10^9$
+
+Example
+
+Input:
+
+4 5
+1 6
+7 2
+5 5
+10 0
+
+Output:
+
+10 8 6 5 5 6', 'The first line has two integers $n$ and $m$: the number of line segments and the maximum x-coordinate.
+
+The next $n$ lines describe the line segments. Each line has two integers $y_1$ and $y_2$: there is a line segment between points $(0,y_1)$ and $(m,y_2)$.', 'Print $m+1$ integers: the maximum points for $x=0,1,\dots,m$.', '- $1 \le n, m \le 10^5$
+
+- $0 \le y_1,y_2 \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-line-segments-trace-i-a1', 'cses-line-segments-trace-i', 'Standard approach', ARRAY['Geometry']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Geometry: apply standard techniques for “Line Segments Trace I”.']::text[], 'Auto-tagged from CSES section “Geometry”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-string-transform', 'String Transform', 'CSES', 'https://cses.fi/problemset/task/1113', 1600, 'Consider the following string transformation:
+
+- append the character # to the string (we assume that # is lexicographically smaller than all other characters of the string)
+
+- generate all rotations of the string
+
+- sort the rotations in increasing order
+
+- based on this order, construct a new string that contains the last character of each rotation
+
+For example, the string babc becomes babc#. Then, the sorted list of rotations is #babc, abc#b, babc#, bc#ba, and c#bab. This yields a string cb#ab.
+
+Input
+
+The only input line contains the transformed string of length $n+1$. Each character of the original string is one of a–z.
+
+Output
+
+Print the original string of length $n$.
+
+Constraints
+
+- $1 \le n \le 10^6$
+
+Example
+
+Input:
+
+cb#ab
+
+Output:
+
+babc', 'The only input line contains the transformed string of length $n+1$. Each character of the original string is one of a–z.', 'Print the original string of length $n$.', '- $1 \le n \le 10^6$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-string-transform-a1', 'cses-string-transform', 'Standard approach', ARRAY['String Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES String Algorithms: apply standard techniques for “String Transform”.']::text[], 'Auto-tagged from CSES section “String Algorithms”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-tree-traversals', 'Tree Traversals', 'CSES', 'https://cses.fi/problemset/task/1702', 1600, 'There are three common ways to traverse the nodes of a binary tree:
+
+- Preorder: First process the root, then the left subtree, and finally the right subtree.
+
+- Inorder: First process the left subtree, then the root, and finally the right subtree.
+
+- Postorder: First process the left subtree, then the right subtree, and finally the root.
+
+There is a binary tree of $n$ nodes with distinct labels. You are given the preorder and inorder traversals of the tree, and your task is to determine its postorder traversal.
+
+Input
+
+The first input line has an integer $n$: the number of nodes. The nodes are numbered $1,2,\dots,n$.
+
+After this, there are two lines describing the preorder and inorder traversals of the tree. Both lines consist of $n$ integers.
+
+You can assume that the input corresponds to a binary tree.
+
+Output
+
+Print the postorder traversal of the tree.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+Example
+
+Input:
+
+5
+5 3 2 1 4
+3 5 1 2 4
+
+Output:
+
+3 1 4 2 5', 'The first input line has an integer $n$: the number of nodes. The nodes are numbered $1,2,\dots,n$.
+
+After this, there are two lines describing the preorder and inorder traversals of the tree. Both lines consist of $n$ integers.
+
+You can assume that the input corresponds to a binary tree.', 'Print the postorder traversal of the tree.', '- $1 \le n \le 10^5$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-tree-traversals-a1', 'cses-tree-traversals', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Advanced Graph Problems: apply standard techniques for “Tree Traversals”.']::text[], 'Auto-tagged from CSES section “Advanced Graph Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-sliding-window-distinct-values', 'Sliding Window Distinct Values', 'CSES', 'https://cses.fi/problemset/task/3222', 1600, 'You are given an array of $n$ integers. Your task is to calculate the number of distinct values in each window of $k$ elements, from left to right.
+
+Input
+
+The first line contains two integers $n$ and $k$: the number of elements and the size of the window.
+
+Then there are $n$ integers $x_1,x_2,\ldots,x_n$: the contents of the array.
+
+Output
+
+Print $n-k+1$ values: the numbers of distinct values.
+
+Constraints
+
+- $1 \le k \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+8 3
+1 2 3 2 5 2 2 2
+
+Output:
+
+3 2 3 2 2 1', 'The first line contains two integers $n$ and $k$: the number of elements and the size of the window.
+
+Then there are $n$ integers $x_1,x_2,\ldots,x_n$: the contents of the array.', 'Print $n-k+1$ values: the numbers of distinct values.', '- $1 \le k \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-sliding-window-distinct-values-a1', 'cses-sliding-window-distinct-values', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['CSES Sliding Window Problems: apply standard techniques for “Sliding Window Distinct Values”.']::text[], 'Auto-tagged from CSES section “Sliding Window Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-subarray-sum-queries-ii', 'Subarray Sum Queries II', 'CSES', 'https://cses.fi/problemset/task/3226', 1600, 'You are given an array of $n$ integers and $q$ queries. In each query, your task is to calculate the maximum subarray sum in the range $[a,b]$.
+
+Empty subarrays (with sum $0$) are allowed.
+
+Input
+
+The first line contains two integers $n$ and $q$: the number of elements and the number of queries.
+
+Then there are $n$ integers $x_1,x_2,\ldots,x_n$: the contents of the array.
+
+Finally there are $q$ lines that describe the queries. Each line has two integers $a$ and $b$.
+
+Output
+
+Print the answer for each query.
+
+Constraints
+
+- $1 \le n, q\le 2 \cdot 10^5$
+
+- $-10^9 \le x_i \le 10^9$
+
+- $1 \le a \le b \le n$
+
+Example
+
+Input:
+
+8 4
+2 5 1 -2 3 -1 -7 1
+2 4
+2 5
+6 7
+4 8
+
+Output:
+
+6
+7
+0
+3', 'The first line contains two integers $n$ and $q$: the number of elements and the number of queries.
+
+Then there are $n$ integers $x_1,x_2,\ldots,x_n$: the contents of the array.
+
+Finally there are $q$ lines that describe the queries. Each line has two integers $a$ and $b$.', 'Print the answer for each query.', '- $1 \le n, q\le 2 \cdot 10^5$
+
+- $-10^9 \le x_i \le 10^9$
+
+- $1 \le a \le b \le n$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-subarray-sum-queries-ii-a1', 'cses-subarray-sum-queries-ii', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY[]::text[], ARRAY['CSES Range Queries: apply standard techniques for “Subarray Sum Queries II”.']::text[], 'Auto-tagged from CSES section “Range Queries”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-mountain-range', 'Mountain Range', 'CSES', 'https://cses.fi/problemset/task/3314', 1600, 'There are $n$ mountains in a row, each with a specific height. You begin your hang gliding route from some mountain.
+
+You can glide from mountain $a$ to mountain $b$ if mountain $a$ is taller than mountain $b$ and all mountains between $a$ and $b$.
+
+What is the maximum number of mountains you can visit on your route?
+
+Input
+
+The first line has an integer $n$: the number of mountains.
+
+The next line has $n$ integers $h_1, h_2,\dots, h_n$: the heights of the mountains.
+
+Output:
+
+Print one integer: the maximum number of mountains.
+
+Constraints
+
+- $1\le n \le 2 \cdot 10^5$
+
+- $1\le h_i \le 10^9$
+
+Example
+
+Input:
+
+10
+20 15 17 35 25 40 12 19 13 12
+
+Output:
+
+5', 'The first line has an integer $n$: the number of mountains.
+
+The next line has $n$ integers $h_1, h_2,\dots, h_n$: the heights of the mountains.', 'See statement.', '- $1\le n \le 2 \cdot 10^5$
+
+- $1\le h_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-mountain-range-a1', 'cses-mountain-range', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY[]::text[], ARRAY['CSES Dynamic Programming: apply standard techniques for “Mountain Range”.']::text[], 'Auto-tagged from CSES section “Dynamic Programming”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-knight-moves-queries', 'Knight Moves Queries', 'CSES', 'https://cses.fi/problemset/task/3218', 1600, 'There is a knight on an infinite chessboard. The rows and columns are $1$-indexed.
+
+Your task is to efficiently process queries of the form: when the knight starts at position $(x,y)$, what is the minimum number of moves the knight needs to do to reach the top-left corner.
+
+Input
+
+The first line has an integer $n$: the number of queries.
+
+After this, there are $n$ lines. Each line has two integers $x$ and $y$: the knight position.
+
+Output
+
+For each query, print the minimum number of moves.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+- $1 \le x, y \le 10^9$
+
+Example
+
+Input:
+
+4
+1 1
+2 3
+4 1
+42 1337
+
+Output:
+
+0
+1
+3
+669', 'The first line has an integer $n$: the number of queries.
+
+After this, there are $n$ lines. Each line has two integers $x$ and $y$: the knight position.', 'For each query, print the minimum number of moves.', '- $1 \le n \le 10^5$
+
+- $1 \le x, y \le 10^9$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-knight-moves-queries-a1', 'cses-knight-moves-queries', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Additional Problems II: apply standard techniques for “Knight Moves Queries”.']::text[], 'Auto-tagged from CSES section “Additional Problems II”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-distinct-values-subarrays-ii', 'Distinct Values Subarrays II', 'CSES', 'https://cses.fi/problemset/task/2428', 1600, 'Given an array of $n$ integers, your task is to calculate the number of subarrays that have at most $k$ distinct values.
+
+Input
+
+The first input line has two integers $n$ and $k$.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the contents of the array.
+
+Output
+
+Print one integer: the number of subarrays.
+
+Constraints
+
+- $1 \le k \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$
+
+Example
+
+Input:
+
+5 2
+1 2 3 1 1
+
+Output:
+
+10', 'The first input line has two integers $n$ and $k$.
+
+The next line has $n$ integers $x_1,x_2,\dots,x_n$: the contents of the array.', 'Print one integer: the number of subarrays.', '- $1 \le k \le n \le 2 \cdot 10^5$
+
+- $1 \le x_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-distinct-values-subarrays-ii-a1', 'cses-distinct-values-subarrays-ii', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['CSES Sorting and Searching: apply standard techniques for “Distinct Values Subarrays II”.']::text[], 'Auto-tagged from CSES section “Sorting and Searching”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-eulerian-subgraphs', 'Eulerian Subgraphs', 'CSES', 'https://cses.fi/problemset/task/2078', 1600, 'You are given an undirected graph that has $n$ nodes and $m$ edges.
+
+We consider subgraphs that have all nodes of the original graph and some of its edges. A subgraph is called Eulerian if each node has even degree.
+
+Your task is to count the number of Eulerian subgraphs modulo $10^9+7$.
+
+Input
+
+The first input line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\dots,n$.
+
+After this, there are $m$ lines that describe the edges. Each line has two integers $a$ and $b$: there is an edge between nodes $a$ and $b$. There is at most one edge between two nodes, and each edge connects two distinct nodes.
+
+Output
+
+Print the number of Eulerian subgraphs modulo $10^9+7$.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+- $0 \le m \le 2 \cdot 10^5$
+
+- $1 \le a,b \le n$
+
+Example
+
+Input:
+
+4 3
+1 2
+1 3
+2 3
+
+Output:
+
+2
+
+Explanation: You can either keep or remove all edges, so there are two possible Eulerian subgraphs.', 'The first input line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\dots,n$.
+
+After this, there are $m$ lines that describe the edges. Each line has two integers $a$ and $b$: there is an edge between nodes $a$ and $b$. There is at most one edge between two nodes, and each edge connects two distinct nodes.', 'Print the number of Eulerian subgraphs modulo $10^9+7$.', '- $1 \le n \le 10^5$
+
+- $0 \le m \le 2 \cdot 10^5$
+
+- $1 \le a,b \le n$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-eulerian-subgraphs-a1', 'cses-eulerian-subgraphs', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Advanced Techniques: apply standard techniques for “Eulerian Subgraphs”.']::text[], 'Auto-tagged from CSES section “Advanced Techniques”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-substring-order-i', 'Substring Order I', 'CSES', 'https://cses.fi/problemset/task/2108', 1600, 'You are given a string of length $n$. If all of its distinct substrings are ordered lexicographically, what is the $k$th smallest of them?
+
+Input
+
+The first input line has a string of length $n$ that consists of characters a–z.
+
+The second input line has an integer $k$.
+
+Output
+
+Print the $k$th smallest distinct substring in lexicographical order.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+- $1 \le k \le \frac{n(n+1)}{2}$
+
+- It is guaranteed that $k$ does not exceed the number of distinct substrings.
+
+Example
+
+Input:
+
+babaacbaab
+10
+
+Output:
+
+aba
+
+Explanation: The 10 smallest distinct substrings in order are a, aa, aab, aac, aacb, aacba, aacbaa, aacbaab, ab, and aba.', 'The first input line has a string of length $n$ that consists of characters a–z.
+
+The second input line has an integer $k$.', 'Print the $k$th smallest distinct substring in lexicographical order.', '- $1 \le n \le 10^5$
+
+- $1 \le k \le \frac{n(n+1)}{2}$
+
+- It is guaranteed that $k$ does not exceed the number of distinct substrings.', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-substring-order-i-a1', 'cses-substring-order-i', 'Standard approach', ARRAY['String Algorithms']::text[], ARRAY['String Hashing']::text[], ARRAY[]::text[], ARRAY['CSES String Algorithms: apply standard techniques for “Substring Order I”.']::text[], 'Auto-tagged from CSES section “String Algorithms”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-acyclic-graph-edges', 'Acyclic Graph Edges', 'CSES', 'https://cses.fi/problemset/task/1756', 1600, 'Given an undirected graph, your task is to choose a direction for each edge so that the resulting directed graph is acyclic.
+
+Input
+
+The first input line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\dots,n$.
+
+After this, there are $m$ lines describing the edges. Each line has two distinct integers $a$ and $b$: there is an edge between nodes $a$ and $b$.
+
+Output
+
+Print $m$ lines describing the directions of the edges. Each line has two integers $a$ and $b$: there is an edge from node $a$ to node $b$. You can print any valid solution.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+- $1 \le m \le 2 \cdot 10^5$
+
+- $1 \le a,b \le n$
+
+Example
+
+Input:
+
+3 3
+1 2
+2 3
+3 1
+
+Output:
+
+1 2
+3 2
+3 1', 'The first input line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\dots,n$.
+
+After this, there are $m$ lines describing the edges. Each line has two distinct integers $a$ and $b$: there is an edge between nodes $a$ and $b$.', 'Print $m$ lines describing the directions of the edges. Each line has two integers $a$ and $b$: there is an edge from node $a$ to node $b$. You can print any valid solution.', '- $1 \le n \le 10^5$
+
+- $1 \le m \le 2 \cdot 10^5$
+
+- $1 \le a,b \le n$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-acyclic-graph-edges-a1', 'cses-acyclic-graph-edges', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Advanced Graph Problems: apply standard techniques for “Acyclic Graph Edges”.']::text[], 'Auto-tagged from CSES section “Advanced Graph Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-distinct-values-queries-ii', 'Distinct Values Queries II', 'CSES', 'https://cses.fi/problemset/task/3356', 1600, 'Given an array of $n$ integers, your task is to process $q$ queries of the following types:
+
+- update the value at position $k$ to $u$
+
+- check if every value in range $[a, b]$ is distinct
+
+Input
+
+The first line has two integers $n$ and $q$: the number of values and queries.
+
+The second line has $n$ integers $x_1, x_2,\dots, x_n$: the array values.
+
+Finally, there are $q$ lines describing the queries. Each line has three integers: either "$1$ $k$ $u$" or "$2$ $a$ $b$".
+
+Output
+
+For each query of type 2, print YES if every value in the range is distinct and NO otherwise.
+
+Constraints
+
+- $1 \le n, q \le 2 \cdot 10^5$
+
+- $1 \le x_i, u \le 10^9$
+
+- $1 \le k \le n$
+
+- $1 \le a \le b \le n$
+
+Example
+
+Input:
+
+5 4
+3 2 7 2 8
+2 3 5
+2 2 5
+1 2 9
+2 2 5
+
+Output:
+
+YES
+NO
+YES', 'The first line has two integers $n$ and $q$: the number of values and queries.
+
+The second line has $n$ integers $x_1, x_2,\dots, x_n$: the array values.
+
+Finally, there are $q$ lines describing the queries. Each line has three integers: either "$1$ $k$ $u$" or "$2$ $a$ $b$".', 'For each query of type 2, print YES if every value in the range is distinct and NO otherwise.', '- $1 \le n, q \le 2 \cdot 10^5$
+
+- $1 \le x_i, u \le 10^9$
+
+- $1 \le k \le n$
+
+- $1 \le a \le b \le n$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-distinct-values-queries-ii-a1', 'cses-distinct-values-queries-ii', 'Standard approach', ARRAY['Ad-Hoc']::text[], ARRAY['Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['CSES Range Queries: apply standard techniques for “Distinct Values Queries II”.']::text[], 'Auto-tagged from CSES section “Range Queries”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-counting-numbers', 'Counting Numbers', 'CSES', 'https://cses.fi/problemset/task/2220', 1600, 'Your task is to count the number of integers between $a$ and $b$ where no two adjacent digits are the same.
+
+Input
+
+The only input line has two integers $a$ and $b$.
+
+Output
+
+Print one integer: the answer to the problem.
+
+Constraints
+
+- $0 \le a \le b \le 10^{18}$
+
+Example
+
+Input:
+
+123 321
+
+Output:
+
+171', 'The only input line has two integers $a$ and $b$.', 'Print one integer: the answer to the problem.', '- $0 \le a \le b \le 10^{18}$', '[]'::jsonb, 'O(N²)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-counting-numbers-a1', 'cses-counting-numbers', 'Standard approach', ARRAY['Dynamic Programming']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Dynamic Programming: apply standard techniques for “Counting Numbers”.']::text[], 'Auto-tagged from CSES section “Dynamic Programming”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-two-knights', 'Two Knights', 'CSES', 'https://cses.fi/problemset/task/1072', 1600, 'Your task is to count for $k=1,2,\ldots,n$ the number of ways two knights can be placed on a $k \times k$ chessboard so that they do not attack each other.
+
+Input
+
+The only input line contains an integer $n$.
+
+Output
+
+Print $n$ integers: the results.
+
+Constraints
+
+- $1 \le n \le 10000$
+
+Example
+
+Input:
+
+8
+
+Output:
+
+0
+6
+28
+96
+252
+550
+1056
+1848', 'The only input line contains an integer $n$.', 'Print $n$ integers: the results.', '- $1 \le n \le 10000$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-two-knights-a1', 'cses-two-knights', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Introductory Problems: apply standard techniques for “Two Knights”.']::text[], 'Auto-tagged from CSES section “Introductory Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-permuted-binary-strings', 'Permuted Binary Strings', 'CSES', 'https://cses.fi/problemset/task/3228', 1600, 'There is a hidden permutation $a_1, a_2,\dots, a_n$ of integers $1, 2,\dots, n$. Your task is to find this permutation.
+
+To do this, you can ask questions: you can choose a binary string $b_1b_2\dots b_n$ and you will receive the binary string $b_{a_1}b_{a_2}\dots b_{a_n}$.
+
+Interaction
+
+This is an interactive problem. Your code will interact with the grader using standard input and output. You should start by reading a single integer $n$: the length of the permutation.
+
+On your turn, you can print one of the following:
+
+- "$?\ b_1b_2\dots b_n$", where $b_i\in\{0, 1\}$: The grader will return the binary string $b_{a_1}b_{a_2}\dots b_{a_n}$.
+
+- "$!\ a_1\ a_2 \dots a_n$": report that the hidden permutation is $a_1, a_2,\dots, a_n$. Your program must terminate after this.
+
+Each line should be followed by a line break. You must make sure the output gets flushed after printing each line.
+
+Constraints
+
+- $1 \le n \le 1000$
+
+- you can ask at most $10$ questions of type $?$
+
+Example
+
+3
+? 100
+100
+? 010
+001
+? 001
+010
+! 1 3 2
+
+Explanation: The hidden permutation is $[1, 3, 2]$. In the first question $b_1b_2b_3 = 100$ and the grader returns $b_{a_1}b_{a_2}b_{a_3} = b_1b_3b_2 = 100$. In the second question $b_1b_2b_3 = 010$ and the grader returns $b_1b_3b_2 = 001$.', 'See statement.', 'See statement.', '- $1 \le n \le 1000$
+
+- you can ask at most $10$ questions of type $?$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-permuted-binary-strings-a1', 'cses-permuted-binary-strings', 'Standard approach', ARRAY['Interactive']::text[], ARRAY['Binary Search']::text[], ARRAY[]::text[], ARRAY['CSES Interactive Problems: apply standard techniques for “Permuted Binary Strings”.']::text[], 'Auto-tagged from CSES section “Interactive Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-line-segments-trace-ii', 'Line Segments Trace II', 'CSES', 'https://cses.fi/problemset/task/3428', 1600, 'There are $n$ line segments whose endpoints have integer coordinates. Each x-coordinate is between $0$ and $m$. The slope of each segment is an integer.
+
+For each x-coordinate $0,1,\dots,m$, find the maximum point in any line segment. If there is no segment at some point, the maximum is $-1$.
+
+Input
+
+The first line has two integers $n$ and $m$: the number of line segments and the maximum x-coordinate.
+
+The next $n$ lines describe the line segments. Each line has four integers $x_1$, $y_1$, $x_2$ and $y_2$: there is a line segment between points $(x_1,y_1)$ and $(x_2,y_2)$.
+
+Output
+
+Print $m+1$ integers: the maximum points for $x=0,1,\dots,m$.
+
+Constraints
+
+- $1 \le n, m \le 10^5$
+
+- $0 \le x_1 < x_2 \le m$
+
+- $0 \le y_1,y_2 \le 10^9$
+
+Example
+
+Input:
+
+4 5
+1 1 3 3
+1 2 4 2
+2 4 5 7
+2 8 5 2
+
+Output:
+
+-1 2 8 6 6 7', 'The first line has two integers $n$ and $m$: the number of line segments and the maximum x-coordinate.
+
+The next $n$ lines describe the line segments. Each line has four integers $x_1$, $y_1$, $x_2$ and $y_2$: there is a line segment between points $(x_1,y_1)$ and $(x_2,y_2)$.', 'Print $m+1$ integers: the maximum points for $x=0,1,\dots,m$.', '- $1 \le n, m \le 10^5$
+
+- $0 \le x_1 < x_2 \le m$
+
+- $0 \le y_1,y_2 \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-line-segments-trace-ii-a1', 'cses-line-segments-trace-ii', 'Standard approach', ARRAY['Geometry']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Geometry: apply standard techniques for “Line Segments Trace II”.']::text[], 'Auto-tagged from CSES section “Geometry”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-substring-order-ii', 'Substring Order II', 'CSES', 'https://cses.fi/problemset/task/2109', 1600, 'You are given a string of length $n$. If all of its substrings (not necessarily distinct) are ordered lexicographically, what is the $k$th smallest of them?
+
+Input
+
+The first input line has a string of length $n$ that consists of characters a–z.
+
+The second input line has an integer $k$.
+
+Output
+
+Print the $k$th smallest substring in lexicographical order.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+- $1 \le k \le \frac{n(n+1)}{2}$
+
+Example
+
+Input:
+
+baabaa
+10
+
+Output:
+
+ab
+
+Explanation: The 10 smallest substrings in order are a, a, a, a, aa, aa, aab, aaba, aabaa, and ab.', 'The first input line has a string of length $n$ that consists of characters a–z.
+
+The second input line has an integer $k$.', 'Print the $k$th smallest substring in lexicographical order.', '- $1 \le n \le 10^5$
+
+- $1 \le k \le \frac{n(n+1)}{2}$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-substring-order-ii-a1', 'cses-substring-order-ii', 'Standard approach', ARRAY['String Algorithms']::text[], ARRAY['String Hashing']::text[], ARRAY[]::text[], ARRAY['CSES String Algorithms: apply standard techniques for “Substring Order II”.']::text[], 'Auto-tagged from CSES section “String Algorithms”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-strongly-connected-edges', 'Strongly Connected Edges', 'CSES', 'https://cses.fi/problemset/task/2177', 1600, 'Given an undirected graph, your task is to choose a direction for each edge so that the resulting directed graph is strongly connected.
+
+Input
+
+The first input line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\dots,n$.
+
+After this, there are $m$ lines describing the edges. Each line has two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.
+
+You may assume that the graph is simple, i.e., there are at most one edge between two nodes and every edge connects two distinct nodes.
+
+Output
+
+Print $m$ lines describing the directions of the edges. Each line has two integers $a$ and $b$: there is an edge from node $a$ to node $b$. You can print any valid solution.
+
+If there are no solutions, only print IMPOSSIBLE.
+
+Constraints
+
+- $1 \le n \le 10^5$
+
+- $1 \le m \le 2 \cdot 10^5$
+
+- $1 \le a,b \le n$
+
+Example
+
+Input:
+
+3 3
+1 2
+1 3
+2 3
+
+Output:
+
+1 2
+2 3
+3 1', 'The first input line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\dots,n$.
+
+After this, there are $m$ lines describing the edges. Each line has two integers $a$ and $b$: there is an edge between nodes $a$ and $b$.
+
+You may assume that the graph is simple, i.e., there are at most one edge between two nodes and every edge connects two distinct nodes.', 'Print $m$ lines describing the directions of the edges. Each line has two integers $a$ and $b$: there is an edge from node $a$ to node $b$. You can print any valid solution.
+
+If there are no solutions, only print IMPOSSIBLE.', '- $1 \le n \le 10^5$
+
+- $1 \le m \le 2 \cdot 10^5$
+
+- $1 \le a,b \le n$', '[]'::jsonb, 'O(N + M)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-strongly-connected-edges-a1', 'cses-strongly-connected-edges', 'Standard approach', ARRAY['Graph Algorithms']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Advanced Graph Problems: apply standard techniques for “Strongly Connected Edges”.']::text[], 'Auto-tagged from CSES section “Advanced Graph Problems”. Review tags after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-flight-discount', 'Flight Discount', 'CSES', 'https://cses.fi/problemset/task/1195', 1700, 'Find the cheapest flight from $1$ to $n$ when you may halve the cost of **at most one** edge (rounded down).', 'The first line contains two integers $n$ and $m$.
 
 Then $m$ lines follow with flights $a\ b\ c$.', 'Print the minimum price from $1$ to $n$ when you may halve the cost of at most one flight.', '$2 \le n \le 10^5$, $1 \le m \le 2 \times 10^5$', '[{"input":"3 4\n1 2 3\n2 3 1\n1 3 7\n2 1 5","output":"2"}]'::jsonb, 'O(N log N)');
@@ -15590,6 +17804,8 @@ Then there are $m$ lines describing the edges. Each line has two distinct intege
 
 - $1 \le m \le 10^5$', '[]'::jsonb, 'O(2^N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-reachable-nodes-a1', 'cses-reachable-nodes', 'Bitset reachability', ARRAY['Graph Algorithms','Bitmask / Bit DP']::text[], ARRAY['DFS','Topological Sort']::text[], ARRAY[]::text[], ARRAY['Bitsets of reachable ancestors on a DAG / merge in topo order']::text[], 'For each node count reachable nodes in a digraph.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1251d', 'Salary Changing', 'Codeforces', 'https://codeforces.com/problemset/problem/1251/D', 1700, 'You have $n$ (odd) employees with salary ranges $[l_i,r_i]$ and budget $s$. Maximize the median salary.', 'Multiple tests with $n,s$ and ranges.', 'For each test print the max median.', '$1 \le \sum n \le 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1251d-a1', 'cf-1251d', 'Binary search median', ARRAY['Binary Search on Answer','Greedy']::text[], ARRAY['Binary Search','Sorting']::text[], ARRAY[]::text[], ARRAY['Binary search median salary; greedily assign highest possible under budget']::text[], 'Check whether a median ≥ x is affordable by forcing enough workers ≥ x.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-high-score', 'High Score', 'CSES', 'https://cses.fi/problemset/task/1673', 1800, 'A game has $n$ rooms and $m$ tunnels. Each tunnel gives a score. Starting in room $1$, what is the maximum score you can achieve when reaching room $n$? If the score can be arbitrarily large, print $-1$.', 'The first line contains two integers $n$ and $m$.
 
 Then $m$ lines follow with tunnels $a\ b\ x$ (from, to, score).', 'Print the maximum score when going from $1$ to $n$, or $-1$ if the score can be arbitrarily large.', '$1 \le n \le 2500$, $1 \le m \le 5000$', '[{"input":"4 5\n1 2 3\n2 4 -1\n1 3 1\n3 4 1\n1 4 2","output":"2"}]'::jsonb, 'O(N · M)');
@@ -17080,6 +19296,249 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1486c2-a1', 'cf-1486c2', 'Interactive binary search', ARRAY['Interactive','Binary Search on Answer']::text[], ARRAY['Binary Search']::text[], ARRAY[]::text[], ARRAY['Query second-max to binary search which side holds the maximum']::text[], 'Locate the second maximum first, then binary search the segment containing the max.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1083a', 'The Fair Nut and the Best Path', 'Codeforces', 'https://codeforces.com/problemset/problem/1083/A', 1800, 'A tree with vertex fuel $w_v$ and edge costs. Maximize $w_u + w_v - dist(u,v)$ over pairs (path fuel net).', 'Tree of $n$ vertices with fuels and weighted edges.', 'Print the maximum value.', '$1 \le n \le 3\cdot 10^5$', '[{"input":"3\n1 3 3\n1 2 2\n1 3 2","output":"3"}]'::jsonb, 'O(N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1083a-a1', 'cf-1083a', 'Tree path DP', ARRAY['Graph Algorithms','Dynamic Programming']::text[], ARRAY['DFS']::text[], ARRAY[]::text[], ARRAY['Tree DP keeping best two child downward paths']::text[], 'For each node combine best downward fuel paths minus edge costs.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-558c', 'Amr and Chemistry', 'Codeforces', 'https://codeforces.com/problemset/problem/558/C', 1800, 'You have $n$ positive integers. In one move pick an element and replace it by $\lfloor x/2 \rfloor$ or $2x$. Minimize total moves so all elements become equal.', 'First line $n$ ($1 \le n \le 10^5$).
+
+Second line $n$ integers $a_i$ ($1 \le a_i \le 10^5$).', 'Print the minimum number of moves.', '$1 \le n \le 10^5$', '[{"input":"3\n4 8 2","output":"2"}]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-558c-a1', 'cf-558c', 'Number BFS', ARRAY['Greedy','Math / Number Theory']::text[], ARRAY['BFS']::text[], ARRAY['Queue']::text[], ARRAY['All values can be reduced to a common core by /2 and *2; BFS costs on the number line']::text[], 'Try each possible final value reachable by shifts; sum min ops from each a_i.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1117c', 'Magic Ship', 'Codeforces', 'https://codeforces.com/problemset/problem/1117/C', 1800, 'A ship starts at $(x1,y1)$ and must reach $(x2,y2)$. Each day wind blows U/D/L/R in a cycle of length $n$, then you may also move one step or stay. Find minimum days or $-1$.', 'Coordinates, then $n$ and the wind string.', 'Print the minimum days or $-1$.', '$1 \le n \le 10^5$', '[{"input":"0 0\n4 6\n3\nUUU","output":"5"}]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1117c-a1', 'cf-1117c', 'Binary search time', ARRAY['Binary Search on Answer','Geometry']::text[], ARRAY['Binary Search']::text[], ARRAY[]::text[], ARRAY['Binary search days; wind prefix must leave a Manhattan remainder ≤ days']::text[], 'After t days of cyclic wind, check if remaining distance is achievable.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-corner-subgrid-check', 'Corner Subgrid Check', 'CSES', 'https://cses.fi/problemset/task/3360', 1800, 'You are given a grid of letters. Your task is to find subgrids whose height and width is at least two and all the corners have the same letter.
+
+For each letter, check if there is a valid subgrid whose corners have that letter.
+
+Input
+
+The first line has two integers $n$ and $k$: the size of the grid and the number of letters. The letters are the first $k$ uppercase letters.
+
+After this, there are $n$ lines that describe the grid. Each line has $n$ letters.
+
+Output
+
+Print $k$ lines: for each letter, YES if there is a valid subgrid and NO otherwise.
+
+Constraints
+
+- $1 \le n \le 3000$
+
+- $1 \le k \le 26$
+
+Example
+
+Input:
+
+4 5
+AAAA
+CBBC
+CBBE
+AAAA
+
+Output:
+
+YES
+YES
+NO
+NO
+NO', 'The first line has two integers $n$ and $k$: the size of the grid and the number of letters. The letters are the first $k$ uppercase letters.
+
+After this, there are $n$ lines that describe the grid. Each line has $n$ letters.', 'Print $k$ lines: for each letter, YES if there is a valid subgrid and NO otherwise.', '- $1 \le n \le 3000$
+
+- $1 \le k \le 26$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-corner-subgrid-check-a1', 'cses-corner-subgrid-check', 'Standard approach', ARRAY['Divide & Conquer','Brute Force']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Advanced Techniques: apply standard techniques for “Corner Subgrid Check”.']::text[], 'Auto-tagged from CSES section “Advanced Techniques”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-corner-subgrid-count', 'Corner Subgrid Count', 'CSES', 'https://cses.fi/problemset/task/2137', 1800, 'You are given an $n \times n$ grid whose each square is either black or white. A subgrid is called beautiful if its height and width is at least two and all of its corners are black. How many beautiful subgrids are there within the given grid?
+
+Input
+
+The first input line has an integer $n$: the size of the grid.
+
+Then there are $n$ lines describing the grid: 1 means that a square is black and 0 means it is white.
+
+Output
+
+Print the number of beautiful subgrids.
+
+Constraints
+
+- $1 \le n \le 3000$
+
+Example
+
+Input:
+
+5
+00010
+11111
+00110
+11001
+00010
+
+Output:
+
+4', 'The first input line has an integer $n$: the size of the grid.
+
+Then there are $n$ lines describing the grid: 1 means that a square is black and 0 means it is white.', 'Print the number of beautiful subgrids.', '- $1 \le n \le 3000$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-corner-subgrid-count-a1', 'cses-corner-subgrid-count', 'Standard approach', ARRAY['Divide & Conquer','Brute Force']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Advanced Techniques: apply standard techniques for “Corner Subgrid Count”.']::text[], 'Auto-tagged from CSES section “Advanced Techniques”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-filled-subgrid-count-i', 'Filled Subgrid Count I', 'CSES', 'https://cses.fi/problemset/task/3413', 1800, 'You are given a grid of letters. Your task is to calculate, for each letter, the number of square subgrids whose each letter is the same.
+
+Input
+
+The first line has two integers $n$ and $k$: the size of the grid and the number of letters. The letters are the first $k$ uppercase letters.
+
+After this, there are $n$ lines that describe the grid. Each line has $n$ letters.
+
+Output
+
+Print $k$ lines: for each letter, the number of subgrids.
+
+Constraints
+
+- $1 \le n \le 3000$
+
+- $1 \le k \le 26$
+
+Example
+
+Input:
+
+5 3
+ABBBC
+BBBBC
+BCAAA
+AAAAA
+AAAAA
+
+Output:
+
+21
+10
+3', 'The first line has two integers $n$ and $k$: the size of the grid and the number of letters. The letters are the first $k$ uppercase letters.
+
+After this, there are $n$ lines that describe the grid. Each line has $n$ letters.', 'Print $k$ lines: for each letter, the number of subgrids.', '- $1 \le n \le 3000$
+
+- $1 \le k \le 26$', '[]'::jsonb, 'O(N²)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-filled-subgrid-count-i-a1', 'cses-filled-subgrid-count-i', 'Standard approach', ARRAY['Dynamic Programming','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Counting Problems: apply standard techniques for “Filled Subgrid Count I”.']::text[], 'Auto-tagged from CSES section “Counting Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-reachability-queries', 'Reachability Queries', 'CSES', 'https://cses.fi/problemset/task/2143', 1800, 'A directed graph consists of $n$ nodes and $m$ edges. The edges are numbered $1,2,\dots,n$.
+
+Your task is to answer $q$ queries of the form "can you reach node $b$ from node $a$?"
+
+Input
+
+The first input line has three integers $n$, $m$ and $q$: the number of nodes, edges and queries.
+
+Then there are $m$ lines describing the edges. Each line has two distinct integers $a$ and $b$: there is an edge from node $a$ to node $b$.
+
+Finally there are $q$ lines describing the queries. Each line consists of two integers $a$ and $b$: "can you reach node $b$ from node $a$?"
+
+Output
+
+Print the answer for each query: either "YES" or "NO".
+
+Constraints
+
+- $1 \le n \le 5 \cdot 10^4$
+
+- $1 \le m,q \le 10^5$
+
+Example
+
+Input:
+
+4 4 3
+1 2
+2 3
+3 1
+4 3
+1 3
+1 4
+4 1
+
+Output:
+
+YES
+NO
+YES', 'The first input line has three integers $n$, $m$ and $q$: the number of nodes, edges and queries.
+
+Then there are $m$ lines describing the edges. Each line has two distinct integers $a$ and $b$: there is an edge from node $a$ to node $b$.
+
+Finally there are $q$ lines describing the queries. Each line consists of two integers $a$ and $b$: "can you reach node $b$ from node $a$?"', 'Print the answer for each query: either "YES" or "NO".', '- $1 \le n \le 5 \cdot 10^4$
+
+- $1 \le m,q \le 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-reachability-queries-a1', 'cses-reachability-queries', 'Standard approach', ARRAY['Divide & Conquer','Brute Force']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Advanced Techniques: apply standard techniques for “Reachability Queries”.']::text[], 'Auto-tagged from CSES section “Advanced Techniques”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-filled-subgrid-count-ii', 'Filled Subgrid Count II', 'CSES', 'https://cses.fi/problemset/task/3414', 1800, 'You are given a grid of letters. Your task is to calculate, for each letter, the number of rectangular subgrids whose each letter is the same.
+
+Input
+
+The first line has two integers $n$ and $k$: the size of the grid and the number of letters. The letters are the first $k$ uppercase letters.
+
+After this, there are $n$ lines that describe the grid. Each line has $n$ letters.
+
+Output
+
+Print $k$ lines: for each letter, the number of subgrids.
+
+Constraints
+
+- $1 \le n \le 3000$
+
+- $1 \le k \le 26$
+
+Example
+
+Input:
+
+5 3
+ABBBC
+BBBBC
+BCAAA
+AAAAA
+AAAAA
+
+Output:
+
+64
+24
+4', 'The first line has two integers $n$ and $k$: the size of the grid and the number of letters. The letters are the first $k$ uppercase letters.
+
+After this, there are $n$ lines that describe the grid. Each line has $n$ letters.', 'Print $k$ lines: for each letter, the number of subgrids.', '- $1 \le n \le 3000$
+
+- $1 \le k \le 26$', '[]'::jsonb, 'O(N²)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-filled-subgrid-count-ii-a1', 'cses-filled-subgrid-count-ii', 'Standard approach', ARRAY['Dynamic Programming','Math / Number Theory']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Counting Problems: apply standard techniques for “Filled Subgrid Count II”.']::text[], 'Auto-tagged from CSES section “Counting Problems”. Review tags after solving.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cses-houses-and-schools', 'Houses and Schools', 'CSES', 'https://cses.fi/problemset/task/2087', 1800, 'There are $n$ houses on a street, numbered $1,2,\dots,n$. The distance of houses $a$ and $b$ is $|a-b|$. You know the number of children in each house.
+
+Your task is to establish $k$ schools in such a way that each school is in some house. Then, each child goes to the nearest school. What is the minimum total walking distance of the children if you act optimally?
+
+Input
+
+The first input line has two integers $n$ and $k$: the number of houses and the number of schools. The houses are numbered $1,2\dots,n$.
+
+After this, there are $n$ integers $c_1,c_2,\dots,c_n$: the number of children in each house.
+
+Output
+
+Print the minimum total distance.
+
+Constraints
+
+- $1 \le k \le n \le 3000$
+
+- $1 \le c_i \le 10^9$
+
+Example
+
+Input:
+
+6 2
+2 7 1 4 6 4
+
+Output:
+
+11
+
+Explanation: Houses 2 and 5 will have schools.', 'The first input line has two integers $n$ and $k$: the number of houses and the number of schools. The houses are numbered $1,2\dots,n$.
+
+After this, there are $n$ integers $c_1,c_2,\dots,c_n$: the number of children in each house.', 'Print the minimum total distance.', '- $1 \le k \le n \le 3000$
+
+- $1 \le c_i \le 10^9$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cses-houses-and-schools-a1', 'cses-houses-and-schools', 'Standard approach', ARRAY['Divide & Conquer','Brute Force']::text[], ARRAY[]::text[], ARRAY[]::text[], ARRAY['CSES Advanced Techniques: apply standard techniques for “Houses and Schools”.']::text[], 'Auto-tagged from CSES section “Advanced Techniques”. Review tags after solving.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('atc-dp-subtree', 'Subtree', 'AtCoder', 'https://atcoder.jp/contests/dp/tasks/dp_v', 1900, 'Score : 100 points
 
 Problem Statement
@@ -17817,6 +20276,8 @@ Then $k$ trains $s\ y$ (edge $1\to s$ of length $y$).', 'Print the maximum numbe
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-449b-a1', 'cf-449b', 'Dijkstra trains', ARRAY['Graph Algorithms']::text[], ARRAY['Dijkstra']::text[], ARRAY['Priority Queue']::text[], ARRAY['Dijkstra; a train is redundant if dist[s] < y or another equal path exists without it']::text[], 'Compute distances allowing trains; count trains not needed for uniqueness of shortest paths.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-486e', 'LIS of Sequence', 'Codeforces', 'https://codeforces.com/problemset/problem/486/E', 1900, 'For each position of an array, classify whether it belongs to every LIS, some but not all, or no LIS. Output a string of `1`/`2`/`3` for each index.', 'First line $n$. Second line the array ($1 \le n \le 10^5$).', 'Print a string of length $n$ over `123`.', '$1 \le n \le 10^5$', '[{"input":"1\n4","output":"3"}]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-486e-a1', 'cf-486e', 'LIS classify', ARRAY['Dynamic Programming']::text[], ARRAY['LIS','Binary Search','Segment Tree']::text[], ARRAY['Fenwick Tree']::text[], ARRAY['Forward/backward LIS lengths; compare to global LIS for classification']::text[], 'Compute lis_left and lis_right; mark positions based on uniqueness of role.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1132f', 'Clear the String', 'Codeforces', 'https://codeforces.com/problemset/problem/1132/F', 1900, 'You have a string. In one move delete a contiguous substring of identical characters. What is the minimum number of moves to delete the whole string?', 'First line $n$. Second line the string ($1 \le n \le 500$).', 'Print the minimum moves.', '$1 \le n \le 500$', '[{"input":"4\nabba","output":"2"}]'::jsonb, 'O(N²)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1132f-a1', 'cf-1132f', 'Interval deletion DP', ARRAY['Dynamic Programming']::text[], ARRAY[]::text[], ARRAY['1D Array']::text[], ARRAY['Interval DP: delete a segment of equal letters in one move after clearing insides']::text[], 'dp[l][r] min moves to clear s[l..r]; try matching equal endpoints.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1201d', 'Treasure Hunting', 'Codeforces', 'https://codeforces.com/problemset/problem/1201/D', 2000, 'You are on an $n \times m$ grid. Some cells contain treasures. You may only move right, left, or up, and you can only change rows using special safe columns. Collect all treasures with minimum moves (starting at $(1,1)$).', 'The first line contains four integers $n$, $m$, $k$, $q$.
 
 Then $k$ lines with treasure coordinates.
@@ -18153,3 +20614,9 @@ insert into public.problems (id, title, source, url, difficulty_rating, statemen
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-319c-a1', 'cf-319c', 'CHT', ARRAY['Dynamic Programming','Divide & Conquer']::text[], ARRAY[]::text[], ARRAY['Deque']::text[], ARRAY['Convex hull trick on lines y = b_j x + dp_j']::text[], 'Maintain lower hull of lines for the logging DP.');
 insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1070c', 'Cloud Computing', 'Codeforces', 'https://codeforces.com/problemset/problem/1070/C', 2200, 'You need $k$ CPU cores on each of $n$ days. Offers $(l,r,c,p)$ provide $c$ cores on days $l..r$ at price $p$ each. Minimize total cost (or $-1$).', 'First line $n,k,m$. Then $m$ offers.', 'Print the minimum cost or $-1$.', '$1 \le n \le 10^6$, $1 \le m \le 2\cdot 10^5$', '[{"input":"4 2 2\n1 4 1 1\n1 4 1 1","output":"8"}]'::jsonb, 'O(N log N)');
 insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1070c-a1', 'cf-1070c', 'Sweep + segtree', ARRAY['Greedy','Binary Search on Answer']::text[], ARRAY['Segment Tree','Sorting']::text[], ARRAY['Priority Queue','Fenwick Tree']::text[], ARRAY['Sweep days with a segtree of offers sorted by price']::text[], 'Process offers by day coverage; always take cheapest available cores.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-321e', 'Ciel and Gondolas', 'Codeforces', 'https://codeforces.com/problemset/problem/321/E', 2300, 'Partition $n$ people in a line into $k$ contiguous gondola groups minimizing the sum of pairwise familiarity costs inside groups.', 'First line $n,k$. Then an $n\times n$ familiarity matrix.', 'Print the minimum total cost.', '$1 \le k \le \min(n,800)$, $1 \le n \le 4000$', '[]'::jsonb, 'O(N²)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-321e-a1', 'cf-321e', 'D&C DP', ARRAY['Dynamic Programming','Divide & Conquer']::text[], ARRAY[]::text[], ARRAY['Deque']::text[], ARRAY['D&C DP optimization on grouping people into k contiguous teams']::text[], 'dp[k][j]=min i dp[k-1][i]+cost(i+1,j) with monotone opt.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-1709e', 'XOR Tree', 'Codeforces', 'https://codeforces.com/problemset/problem/1709/E', 2300, 'A tree with edge XOR weights. You may change any number of edge values. Minimize changes so every simple path has a distinct XOR.', 'Tree with n vertices and edge XOR values.', 'Print the minimum number of edge changes.', '$1 \le n \le 10^5$', '[]'::jsonb, 'O(N log N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-1709e-a1', 'cf-1709e', 'DSU on tree XOR', ARRAY['Graph Algorithms']::text[], ARRAY['DFS']::text[], ARRAY['Hash Map','Ordered Set']::text[], ARRAY['Small-to-large on XOR path hashes to minimize cuts making all path XORs unique']::text[], 'Keep sets of path-XOR from subtree roots; cut when collisions appear.');
+insert into public.problems (id, title, source, url, difficulty_rating, statement_md, input_format_md, output_format_md, constraints_text, sample_io, target_complexity) values ('cf-873f', 'Forbidden Indices', 'Codeforces', 'https://codeforces.com/problemset/problem/873/F', 2400, 'Given a string and a binary mask of forbidden starting indices, maximize (substring length) × (number of occurrences that start at allowed indices).', 'n, string s, binary string of length n.', 'Print the maximum value.', '$1 \le n \le 2\cdot 10^5$', '[]'::jsonb, 'O(N)');
+insert into public.solution_approaches (id, problem_id, approach_name, paradigms, algorithms, data_structures, key_insights, editorial_summary_md) values ('cf-873f-a1', 'cf-873f', 'Suffix automaton', ARRAY['String Algorithms']::text[], ARRAY['String Hashing']::text[], ARRAY['Trie']::text[], ARRAY['Suffix automaton / SA counts forbidden-letter substrings maximizing length*occ']::text[], 'Build SAM on the string with banned positions; maximize len * endpos size.');
