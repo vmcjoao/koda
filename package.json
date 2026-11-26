@@ -70,7 +70,8 @@
     "ingest:curated-batch3": "tsx scripts/ingest/curated-batch3.ts",
     "ingest:curated-batch4": "tsx scripts/ingest/curated-batch4.ts",
     "ingest:curated-batch5": "tsx scripts/ingest/curated-batch5.ts",
-    "ingest:curated-batch6": "tsx scripts/ingest/curated-batch6.ts"
+    "ingest:curated-batch6": "tsx scripts/ingest/curated-batch6.ts",
+    "ingest:curated-batch7": "tsx scripts/ingest/curated-batch7.ts"
   },
   "private": true
 }

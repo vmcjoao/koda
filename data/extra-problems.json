@@ -18366,5 +18366,3927 @@
         "editorial_summary_md": "Auto-tagged from CSES section “Mathematics”. Review tags after solving."
       }
     ]
+  },
+  {
+    "id": "uva-558",
+    "title": "Wormholes",
+    "source": "UVA",
+    "url": "https://onlinejudge.org/external/5/558.pdf",
+    "difficulty_rating": 1500,
+    "statement_md": "In a spacetime with $n$ stars and $m$ wormholes (directed edges that may have negative time cost), decide whether there is a negative cycle (you can go back in time indefinitely).",
+    "input_format_md": "Multiple tests. Each: $n\\ m$ then $m$ triples $x\\ y\\ t$ (edge $x\\to y$ cost $t$).",
+    "output_format_md": "Print `possible` if a negative cycle exists, else `not possible`.",
+    "constraints_text": "$1 \\le n \\le 1000$, $1 \\le m \\le 2000$",
+    "sample_io": [
+      {
+        "input": "3 3\n0 1 1000\n1 2 15\n2 1 -42",
+        "output": "possible"
+      }
+    ],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "uva-558-a1",
+        "problem_id": "uva-558",
+        "approach_name": "Negative cycle BF",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bellman-Ford"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Bellman-Ford |V|-1 rounds then one more detects a negative cycle"
+        ],
+        "editorial_summary_md": "Run Bellman-Ford from a super-source or every node; report if a relaxing edge remains."
+      }
+    ]
+  },
+  {
+    "id": "poj-3259",
+    "title": "Wormholes",
+    "source": "POJ",
+    "url": "http://poj.org/problem?id=3259",
+    "difficulty_rating": 1600,
+    "statement_md": "Farmer John has $N$ fields, $M$ bidirectional paths with positive travel time, and $W$ wormholes that go back in time. Can he start somewhere and return before he left?",
+    "input_format_md": "First line $F$ tests. Each test: $N\\ M\\ W$, then $M$ roads and $W$ wormholes.",
+    "output_format_md": "For each test print `YES` if a negative cycle exists else `NO`.",
+    "constraints_text": "$1 \\le N \\le 500$",
+    "sample_io": [
+      {
+        "input": "2\n3 3 1\n1 2 2\n1 3 4\n2 3 1\n3 1 3\n3 2 1\n1 2 3\n2 3 4\n3 1 8",
+        "output": "NO\nYES"
+      }
+    ],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "poj-3259-a1",
+        "problem_id": "poj-3259",
+        "approach_name": "BF wormholes",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bellman-Ford"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Mix bidirectional roads (+) with directed wormholes (−); BF detects time-travel cycles"
+        ],
+        "editorial_summary_md": "Build the graph and use Bellman-Ford / SPFA to detect a negative cycle."
+      }
+    ]
+  },
+  {
+    "id": "uva-10449",
+    "title": "Traffic",
+    "source": "UVA",
+    "url": "https://onlinejudge.org/external/104/10449.pdf",
+    "difficulty_rating": 1700,
+    "statement_md": "Cities have business values $b_i$. Driving $u\\to v$ costs $(b_v-b_u)^3$. Find the cheapest path cost from city 1 to each queried city (or `?` if unreachable or arbitrarily small via a negative cycle).",
+    "input_format_md": "n, busyness array, m edges, then q queries.",
+    "output_format_md": "For each query print the cost if finite and ≥3, else `?`.",
+    "constraints_text": "$n \\le 200$",
+    "sample_io": [],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "uva-10449-a1",
+        "problem_id": "uva-10449",
+        "approach_name": "BF + neg-cycle flood",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bellman-Ford"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "BF with cubic edge costs; nodes reachable from a negative cycle get −∞"
+        ],
+        "editorial_summary_md": "After BF, DFS/BFS from nodes updated on the N-th pass and mark queries as unreachable/neg-inf."
+      }
+    ]
+  },
+  {
+    "id": "poj-1860",
+    "title": "Currency Exchange",
+    "source": "POJ",
+    "url": "http://poj.org/problem?id=1860",
+    "difficulty_rating": 1700,
+    "statement_md": "There are $N$ currencies and $M$ exchange points. Each point trades $A\\leftrightarrow B$ with rates and commissions. Starting with currency $S$ and amount $V$, can you increase your money by a sequence of exchanges?",
+    "input_format_md": "N M S V, then M lines of exchange parameters.",
+    "output_format_md": "Print `YES` or `NO`.",
+    "constraints_text": "$N \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "poj-1860-a1",
+        "problem_id": "poj-1860",
+        "approach_name": "Positive-cycle BF",
+        "paradigms": [
+          "Graph Algorithms",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Bellman-Ford"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Model exchange as edges that increase money; positive cycle reachable from start = profit"
+        ],
+        "editorial_summary_md": "Invert Bellman-Ford to maximize money; a positive cycle reachable from our currency works."
+      }
+    ]
+  },
+  {
+    "id": "cf-1473e",
+    "title": "Minimum Path",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1473/E",
+    "difficulty_rating": 2200,
+    "statement_md": "Find a path from 1 to each node minimizing $\\sum w - \\max w + \\min w$ (you may “skip” the max edge cost once and “double-count” the min once).",
+    "input_format_md": "n m and m weighted undirected edges.",
+    "output_format_md": "Print n−1 distances from 1 to 2..n.",
+    "constraints_text": "$2 \\le n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1473e-a1",
+        "problem_id": "cf-1473e",
+        "approach_name": "Layered Dijkstra",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Dijkstra",
+          "Bellman-Ford"
+        ],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "State Dijkstra with flags: used free min-edge and/or paid double max-edge"
+        ],
+        "editorial_summary_md": "Shortest paths in a product graph of (node × used_coupon × used_penalty)."
+      }
+    ]
+  },
+  {
+    "id": "cf-888e",
+    "title": "Maximum Subsequence",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/888/E",
+    "difficulty_rating": 1800,
+    "statement_md": "Given $n$ integers and modulus $m$, choose a subsequence maximizing the sum modulo $m$.",
+    "input_format_md": "First line $n\\ m$. Second line $n$ integers.",
+    "output_format_md": "Print the maximum sum modulo $m$.",
+    "constraints_text": "$1 \\le n \\le 35$, $1 \\le m \\le 10^9$",
+    "sample_io": [
+      {
+        "input": "4 4\n5 2 4 1",
+        "output": "3"
+      }
+    ],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-888e-a1",
+        "problem_id": "cf-888e",
+        "approach_name": "MITM subset sums",
+        "paradigms": [
+          "Divide & Conquer",
+          "Brute Force"
+        ],
+        "algorithms": [
+          "Meet in the Middle",
+          "Sorting",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Split array in half; enumerate subset sums; binary search complements mod m"
+        ],
+        "editorial_summary_md": "Generate all subset sums of each half and maximize (a+b) mod m."
+      }
+    ]
+  },
+  {
+    "id": "cf-1006f",
+    "title": "Xor Paths",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1006/F",
+    "difficulty_rating": 2100,
+    "statement_md": "An $n\\times m$ grid has values $a_{i,j}$. Count paths from $(1,1)$ to $(n,m)$ (only right/down) whose XOR equals $k$.",
+    "input_format_md": "n m k and the grid.",
+    "output_format_md": "Print the number of paths.",
+    "constraints_text": "$1 \\le n,m \\le 20$, $n+m \\le 40$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1006f-a1",
+        "problem_id": "cf-1006f",
+        "approach_name": "Grid MITM",
+        "paradigms": [
+          "Divide & Conquer",
+          "Brute Force",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Meet in the Middle",
+          "DFS"
+        ],
+        "data_structures": [
+          "Hash Map",
+          "2D Array"
+        ],
+        "key_insights": [
+          "Meet in the middle on grid paths: DFS from start and from end meeting on the diagonal"
+        ],
+        "editorial_summary_md": "Enumerate half-paths storing XOR→count; match with paths from the opposite corner."
+      }
+    ]
+  },
+  {
+    "id": "cf-912e",
+    "title": "Prime Gift",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/912/E",
+    "difficulty_rating": 2400,
+    "statement_md": "Lucky numbers are products of a given set of primes (with replacement). Find the $k$-th lucky number.",
+    "input_format_md": "n, n primes, then k.",
+    "output_format_md": "Print the k-th lucky number.",
+    "constraints_text": "$n \\le 16$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-912e-a1",
+        "problem_id": "cf-912e",
+        "approach_name": "Prime MITM",
+        "paradigms": [
+          "Divide & Conquer",
+          "Math / Number Theory",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Meet in the Middle",
+          "Binary Search",
+          "Sieve"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Split primes into two sets; generate products; binary search k-th lucky number"
+        ],
+        "editorial_summary_md": "Build all products from each half of the prime set and two-pointer/binary-search the k-th."
+      }
+    ]
+  },
+  {
+    "id": "atc-abc184-f",
+    "title": "Programming Contest",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/abc184/tasks/abc184_f",
+    "difficulty_rating": 1800,
+    "statement_md": "You have $n$ problems with times $a_i$ and limit $T$. Maximize total time of a subset that does not exceed $T$.",
+    "input_format_md": "n T and the array a.",
+    "output_format_md": "Print the maximum feasible sum.",
+    "constraints_text": "$1 \\le n \\le 40$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "atc-abc184-f-a1",
+        "problem_id": "atc-abc184-f",
+        "approach_name": "MITM knapsack",
+        "paradigms": [
+          "Divide & Conquer",
+          "Brute Force"
+        ],
+        "algorithms": [
+          "Meet in the Middle",
+          "Sorting",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Split n≤40 into halves; subset sums + upper_bound for capacity T"
+        ],
+        "editorial_summary_md": "Enumerate half subset sums; for each left sum take best right sum ≤ T−left."
+      }
+    ]
+  },
+  {
+    "id": "cf-1516c",
+    "title": "Baby Ehab Partitions Again",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1516/C",
+    "difficulty_rating": 1500,
+    "statement_md": "Array $a$ is “good” if it cannot be split into two subsequences with equal sums. Remove the minimum number of elements to make it good.",
+    "input_format_md": "n and the array.",
+    "output_format_md": "Print k, then k indices to remove.",
+    "constraints_text": "$1 \\le n \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1516c-a1",
+        "problem_id": "cf-1516c",
+        "approach_name": "Knapsack partition",
+        "paradigms": [
+          "Dynamic Programming",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Knapsack",
+          "Meet in the Middle"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "If total even and a subset hits half, remove a minimally odd-valued element after dividing by 2"
+        ],
+        "editorial_summary_md": "Subset-sum DP checks partition; strip factors of 2 to find a single removal."
+      }
+    ]
+  },
+  {
+    "id": "cf-33b",
+    "title": "String Problem",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/33/B",
+    "difficulty_rating": 1800,
+    "statement_md": "You may change letters paying given costs. Make two strings equal with minimum total cost (or determine impossible).",
+    "input_format_md": "Two strings, n change rules (c1 c2 cost).",
+    "output_format_md": "Minimum cost and the resulting string, or -1.",
+    "constraints_text": "$|s|,|t| \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-33b-a1",
+        "problem_id": "cf-33b",
+        "approach_name": "Alphabet FW",
+        "paradigms": [
+          "Graph Algorithms",
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Floyd-Warshall"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "26-letter graph of change costs; FW then align strings with best common letter"
+        ],
+        "editorial_summary_md": "All-pairs min cost to change letter a→b; for each position pick best target."
+      }
+    ]
+  },
+  {
+    "id": "cf-543b",
+    "title": "Destroying Roads",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/543/B",
+    "difficulty_rating": 1900,
+    "statement_md": "An unweighted connected graph. Keep a simple path s1–t1 of length ≤l1 and s2–t2 ≤l2; maximize remaining edges (destroy the rest).",
+    "input_format_md": "n m edges, then s1 t1 l1 and s2 t2 l2.",
+    "output_format_md": "Max edges kept, or -1.",
+    "constraints_text": "$n \\le 3000$",
+    "sample_io": [],
+    "target_complexity": "O(N³)",
+    "approaches": [
+      {
+        "id": "cf-543b-a1",
+        "problem_id": "cf-543b",
+        "approach_name": "APSP + enumerate",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Floyd-Warshall",
+          "BFS"
+        ],
+        "data_structures": [
+          "2D Array",
+          "Queue"
+        ],
+        "key_insights": [
+          "All-pairs BFS distances; try every shared edge/path overlap of two routes"
+        ],
+        "editorial_summary_md": "Precompute distances; maximize unused edges under two path length constraints."
+      }
+    ]
+  },
+  {
+    "id": "cf-1196f",
+    "title": "K-th Path",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1196/F",
+    "difficulty_rating": 2200,
+    "statement_md": "Undirected weighted graph. Among all unordered pairs of distinct vertices, consider the shortest-path distances; print the $k$-th smallest of those distances.",
+    "input_format_md": "n m k and m edges.",
+    "output_format_md": "Print the k-th smallest pairwise distance.",
+    "constraints_text": "$k \\le 400$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1196f-a1",
+        "problem_id": "cf-1196f",
+        "approach_name": "Top-k edges FW",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Floyd-Warshall",
+          "Dijkstra",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Priority Queue",
+          "2D Array"
+        ],
+        "key_insights": [
+          "Only the k lightest edges matter; build dense graph on endpoints and FW/Dijkstra"
+        ],
+        "editorial_summary_md": "Reduce to ≤2k vertices incident to the lightest k edges; compute k-th shortest among pairs."
+      }
+    ]
+  },
+  {
+    "id": "atc-abc218-f",
+    "title": "Blocked Roads",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/abc218/tasks/abc218_f",
+    "difficulty_rating": 1900,
+    "statement_md": "Directed unweighted graph. For each edge in order, print the shortest path from 1 to N if that edge is removed (or -1).",
+    "input_format_md": "N M and M directed edges.",
+    "output_format_md": "M lines of answers.",
+    "constraints_text": "$N \\le 400$",
+    "sample_io": [],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "atc-abc218-f-a1",
+        "problem_id": "atc-abc218-f",
+        "approach_name": "Path edge removal",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "BFS",
+          "Floyd-Warshall"
+        ],
+        "data_structures": [
+          "Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "BFS shortest path; for each edge check if bypassing it changes dist(1,n)"
+        ],
+        "editorial_summary_md": "Find one shortest path; for edges on it recompute BFS without that edge."
+      }
+    ]
+  },
+  {
+    "id": "cf-14d",
+    "title": "Two Paths",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/14/D",
+    "difficulty_rating": 1800,
+    "statement_md": "Given a tree, choose two edge-disjoint simple paths maximizing (length1)×(length2).",
+    "input_format_md": "n and n−1 edges.",
+    "output_format_md": "Print the maximum product.",
+    "constraints_text": "$n \\le 200$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-14d-a1",
+        "problem_id": "cf-14d",
+        "approach_name": "Tree split diameters",
+        "paradigms": [
+          "Graph Algorithms",
+          "Brute Force"
+        ],
+        "algorithms": [
+          "Floyd-Warshall",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Tree: try every edge as bridge between two components; diameters product"
+        ],
+        "editorial_summary_md": "Remove each edge, compute diameter of both sides, maximize product."
+      }
+    ]
+  },
+  {
+    "id": "cf-782b",
+    "title": "The Meeting Place Cannot Be Changed",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/782/B",
+    "difficulty_rating": 1800,
+    "statement_md": "Friends at positions $x_i$ with speeds $v_i$ on a line. Find the minimum time for all to meet at one point.",
+    "input_format_md": "n, then x array, then v array.",
+    "output_format_md": "Print the minimum time with absolute/relative error 1e-6.",
+    "constraints_text": "$1 \\le n \\le 60000$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-782b-a1",
+        "problem_id": "cf-782b",
+        "approach_name": "Ternary on line",
+        "paradigms": [
+          "Binary Search on Answer",
+          "Geometry"
+        ],
+        "algorithms": [
+          "Ternary Search",
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Meeting time as function of position is unimodal; ternary search the x-coordinate"
+        ],
+        "editorial_summary_md": "Ternary search position; check max |x−x_i|/v_i."
+      }
+    ]
+  },
+  {
+    "id": "cf-1288a",
+    "title": "Deadline",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1288/A",
+    "difficulty_rating": 1200,
+    "statement_md": "A program takes $x + \\lceil d/(x+1)\\rceil$ days if you wait $x$ days before compiling. Can you finish in ≤ $n$ days?",
+    "input_format_md": "t tests with n d.",
+    "output_format_md": "YES/NO per test.",
+    "constraints_text": "$1 \\le n,d \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1288a-a1",
+        "problem_id": "cf-1288a",
+        "approach_name": "Unimodal min",
+        "paradigms": [
+          "Math / Number Theory",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Ternary Search",
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "f(x)=x+ceil(d/(x+1)) is unimodal; ternary or check near sqrt(d)"
+        ],
+        "editorial_summary_md": "Minimize days = wait + ceil(d/(wait+1)); ternary or O(√d) scan."
+      }
+    ]
+  },
+  {
+    "id": "cf-1856c",
+    "title": "To Become Max",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1856/C",
+    "difficulty_rating": 1600,
+    "statement_md": "You may perform ≤ $k$ operations: choose i<n and increment a_i if a_i≤a_{i+1}. Maximize the maximum array value.",
+    "input_format_md": "Tests with n k and array a.",
+    "output_format_md": "Maximum achievable peak.",
+    "constraints_text": "$\\sum n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1856c-a1",
+        "problem_id": "cf-1856c",
+        "approach_name": "BSA on max",
+        "paradigms": [
+          "Binary Search on Answer",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Ternary Search",
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Binary/ternary search the final maximum; greedily propagate needed increments leftward"
+        ],
+        "editorial_summary_md": "Check whether a target max is achievable with ≤k increments under a_i+1 constraints."
+      }
+    ]
+  },
+  {
+    "id": "cf-340d",
+    "title": "Bubble Sort Graph",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/340/D",
+    "difficulty_rating": 1600,
+    "statement_md": "A permutation defines edges between elements that are out of order. Find the size of the maximum independent set (equiv. LIS length).",
+    "input_format_md": "n and the permutation.",
+    "output_format_md": "Print the LIS length.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-340d-a1",
+        "problem_id": "cf-340d",
+        "approach_name": "LIS length",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "LIS",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Permutation LIS length equals minimum moves in this bubble-sort related model"
+        ],
+        "editorial_summary_md": "Patience sorting / fenwick LIS on the permutation."
+      }
+    ]
+  },
+  {
+    "id": "cf-4d",
+    "title": "Mysterious Present",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/4/D",
+    "difficulty_rating": 1700,
+    "statement_md": "You have a card of size w×h and n envelopes. Nest envelopes (strictly larger both sides) maximizing chain length; print the sequence.",
+    "input_format_md": "n w h then n envelope sizes.",
+    "output_format_md": "Length and indices of envelopes.",
+    "constraints_text": "$n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-4d-a1",
+        "problem_id": "cf-4d",
+        "approach_name": "2D LIS",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "LIS",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Sort envelopes; DP LIS with both width and height strictly increasing"
+        ],
+        "editorial_summary_md": "Sort by width; DP longest chain with strict height increase; reconstruct path."
+      }
+    ]
+  },
+  {
+    "id": "cf-977f",
+    "title": "Consecutive Subsequence",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/977/F",
+    "difficulty_rating": 1600,
+    "statement_md": "Find the longest subsequence of consecutive values (x, x+1, x+2, …) and print indices.",
+    "input_format_md": "n and the array.",
+    "output_format_md": "Length then indices.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-977f-a1",
+        "problem_id": "cf-977f",
+        "approach_name": "Consecutive LIS",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "LIS",
+          "Hash Map"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "dp[value]=dp[value−1]+1; track best consecutive LIS"
+        ],
+        "editorial_summary_md": "Hash map stores best chain ending at each value; reconstruct indices."
+      }
+    ]
+  },
+  {
+    "id": "cf-1296e2",
+    "title": "String Coloring (hard version)",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1296/E2",
+    "difficulty_rating": 1900,
+    "statement_md": "Color characters so that sorting within each color makes the whole string sorted. Minimize number of colors.",
+    "input_format_md": "n and string s.",
+    "output_format_md": "k and color of each position.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1296e2-a1",
+        "problem_id": "cf-1296e2",
+        "approach_name": "LIS coloring",
+        "paradigms": [
+          "Greedy",
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "LIS",
+          "Sorting"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Color letters so each color class is sorted; colors needed = LIS of the string as sequence"
+        ],
+        "editorial_summary_md": "Greedily assign each letter the color = length of increasing chain ending there."
+      }
+    ]
+  },
+  {
+    "id": "cf-269b",
+    "title": "Greenhouse Effect",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/269/B",
+    "difficulty_rating": 1700,
+    "statement_md": "Plants have species and positions. Replant some so species become nondecreasing by position. Minimize replants.",
+    "input_format_md": "n m then n lines species position.",
+    "output_format_md": "Minimum plants to move.",
+    "constraints_text": "$n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-269b-a1",
+        "problem_id": "cf-269b",
+        "approach_name": "Species LIS",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "LIS"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "After sorting by position, species sequence LIS; n−LIS replants"
+        ],
+        "editorial_summary_md": "Minimum changes so species are nondecreasing along the row = n − LIS."
+      }
+    ]
+  },
+  {
+    "id": "cf-597c",
+    "title": "Subsequences",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/597/C",
+    "difficulty_rating": 2200,
+    "statement_md": "Permutation of 1..n. Count increasing subsequences of length exactly $k+1$.",
+    "input_format_md": "n k and the permutation.",
+    "output_format_md": "Print the count.",
+    "constraints_text": "$n \\le 10^5$, $k \\le 10$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-597c-a1",
+        "problem_id": "cf-597c",
+        "approach_name": "LIS count fenwick",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "LIS",
+          "Segment Tree"
+        ],
+        "data_structures": [
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "Count increasing subsequences of length k+1 with fenwick layers"
+        ],
+        "editorial_summary_md": "dp[len][val] via fenwick prefix sums over previous layer."
+      }
+    ]
+  },
+  {
+    "id": "cses-colored-chairs",
+    "title": "Colored Chairs",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/3273",
+    "difficulty_rating": 1700,
+    "statement_md": "There are $n$ chairs arranged in a circle. Each chair is either red or blue. The chairs are numbered $1, 2,\\dots, n$; chairs $i$ and $i+1$ are next to each other for all $1 \\le i \\le n$. Here chair $n+1$ refers to chair $1$.\n\nYour task is to find two chairs that have the same color and are next to each other.\n\nTo do this, you can ask questions: you can choose a chair and you will be told the color of that chair.\n\nInteraction\n\nThis is an interactive problem. Your code will interact with the grader using standard input and output. You should start by reading a single integer $n$: the number of chairs.\n\nOn your turn, you can print one of the following:\n\n- \"$?\\ i$\", where $1 \\le i \\le n$: ask the color of chair $i$. The grader will return R or B for red or blue.\n\n- \"$!\\ i$\": report that chairs $i$ and $i+1$ have the same color. Your program must terminate after this.\n\nEach line should be followed by a line break. You must make sure the output gets flushed after printing each line.\n\nConstraints\n\n- $3 \\le n \\le 2 \\cdot 10^5$, $n$ is odd\n\n- you can ask at most $20$ questions of type $?$\n\nExample\n\n5\n? 1\nR\n? 2\nB\n? 3\nB\n! 2",
+    "input_format_md": "See statement.",
+    "output_format_md": "See statement.",
+    "constraints_text": "- $3 \\le n \\le 2 \\cdot 10^5$, $n$ is odd\n\n- you can ask at most $20$ questions of type $?$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-colored-chairs-a1",
+        "problem_id": "cses-colored-chairs",
+        "approach_name": "Interactive search",
+        "paradigms": [
+          "Interactive",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Interactive queries compare chair colors to locate a target pattern"
+        ],
+        "editorial_summary_md": "Use adaptive queries to deduce the hidden coloring with few asks."
+      }
+    ]
+  },
+  {
+    "id": "cses-inversion-sorting",
+    "title": "Inversion Sorting",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/3140",
+    "difficulty_rating": 1800,
+    "statement_md": "There is a hidden permutation $a_1, a_2,\\dots, a_n$ of integers $1, 2,\\dots, n$. Your task is to sort the permutation by reversing subarrays.\n\nOn each turn, you can reverse a subarray of the permutation. After that, you will be reported the number of inversions in the permutation. If the number of inversions is $0$ (i.e., the permutation is sorted), you win.\n\nInteraction\n\nThis is an interactive problem. Your code will interact with the grader using standard input and output. You should start by reading a single integer $n$: the length of the permutation.\n\nOn your turn, print two integers $i$ and $j$: reverse the subarray between indices $i$ and $j$.\n\nAfter this, the next input line has a single integer: the number of inversions after the operation. If the number is $0$, you win and your program must terminate after this.\n\nConstraints\n\n- $1\\leq n\\leq 1000$\n\n- you can make at most $4n$ operations\n\nExample\n\n3\n1 2\n1\n2 3\n0\n\nExplanation: Here the initial permutation is $[3,1,2]$. After the first operation the permutation is $[1,3,2]$ and the number of inversions is $1$. After the second operation the permutation is $[1,2,3]$ and the number of inversions is $0$.",
+    "input_format_md": "See statement.",
+    "output_format_md": "See statement.",
+    "constraints_text": "- $1\\leq n\\leq 1000$\n\n- you can make at most $4n$ operations",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-inversion-sorting-a1",
+        "problem_id": "cses-inversion-sorting",
+        "approach_name": "Interactive sort",
+        "paradigms": [
+          "Interactive"
+        ],
+        "algorithms": [
+          "Binary Search",
+          "Sorting"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Query inversion-like responses to reconstruct/sort the hidden permutation"
+        ],
+        "editorial_summary_md": "Binary-search style interactive protocol to sort with limited feedback."
+      }
+    ]
+  },
+  {
+    "id": "cf-1486c1",
+    "title": "Guessing the Greatest (easy)",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1486/C1",
+    "difficulty_rating": 1500,
+    "statement_md": "Interactive: hidden permutation of 1..n. Query `? l r` returns index of the second maximum on [l,r]. Find the index of the maximum in ≤20 queries.",
+    "input_format_md": "First line n. Then interactive queries.",
+    "output_format_md": "Print `! i` when found.",
+    "constraints_text": "$2 \\le n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(log N)",
+    "approaches": [
+      {
+        "id": "cf-1486c1-a1",
+        "problem_id": "cf-1486c1",
+        "approach_name": "Interactive second-max",
+        "paradigms": [
+          "Interactive",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Binary Search",
+          "Ternary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Query second-max on ranges to binary search the position of the maximum"
+        ],
+        "editorial_summary_md": "Ask for second maximum on [1,n] then binary search the side containing the max."
+      }
+    ]
+  },
+  {
+    "id": "cf-727c",
+    "title": "Guess the Array",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/727/C",
+    "difficulty_rating": 1400,
+    "statement_md": "Interactive: hidden positive array. Query `? i j` returns a_i+a_j. Recover the array in ≤ n+20 queries.",
+    "input_format_md": "First line n.",
+    "output_format_md": "Print `! a1..an`.",
+    "constraints_text": "$3 \\le n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-727c-a1",
+        "problem_id": "cf-727c",
+        "approach_name": "Sum queries",
+        "paradigms": [
+          "Interactive",
+          "Math / Number Theory"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Query pairs to recover all a_i from sums a_i+a_j"
+        ],
+        "editorial_summary_md": "Ask 1+2, 2+3, 1+3 to solve first three, then pair each other with 1."
+      }
+    ]
+  },
+  {
+    "id": "cf-191c",
+    "title": "Fools and Roads",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/191/C",
+    "difficulty_rating": 1900,
+    "statement_md": "A tree of n cities. For each of k paths (a_i,b_i) every edge on the path gets +1. Print the final value of every edge.",
+    "input_format_md": "n, tree edges, k, then k pairs.",
+    "output_format_md": "n−1 integers — load on each input edge.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-191c-a1",
+        "problem_id": "cf-191c",
+        "approach_name": "Tree diff + LCA",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "LCA",
+          "DFS",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Difference array on tree paths via +1 at ends −2 at LCA; DFS sums to edges"
+        ],
+        "editorial_summary_md": "Accumulate path covers then push sums to edges."
+      }
+    ]
+  },
+  {
+    "id": "cf-519e",
+    "title": "A and B and Lecture Rooms",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/519/E",
+    "difficulty_rating": 1900,
+    "statement_md": "Tree on n vertices. For queries (a,b) count vertices x with dist(x,a)=dist(x,b).",
+    "input_format_md": "Tree then q queries.",
+    "output_format_md": "Answer per query.",
+    "constraints_text": "$n,q \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-519e-a1",
+        "problem_id": "cf-519e",
+        "approach_name": "LCA midpoint",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "LCA",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Subtree sizes + LCA/binary lifting to count vertices equidistant or on midpoints"
+        ],
+        "editorial_summary_md": "For each query climb to the middle of the path and combine subtree sizes."
+      }
+    ]
+  },
+  {
+    "id": "cf-587c",
+    "title": "Duff in the Army",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/587/C",
+    "difficulty_rating": 2200,
+    "statement_md": "Tree with people living in cities (ids). For queries v u a print up to a smallest ids on the path v–u.",
+    "input_format_md": "n m q, edges, people placements, queries.",
+    "output_format_md": "For each query: count then ids.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-587c-a1",
+        "problem_id": "cf-587c",
+        "approach_name": "LCA with merged lists",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "LCA",
+          "DFS"
+        ],
+        "data_structures": [
+          "Priority Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Binary lifting stores up to 10 smallest people ids on the path"
+        ],
+        "editorial_summary_md": "Lift while merging sorted id lists of size ≤10."
+      }
+    ]
+  },
+  {
+    "id": "cf-1328e",
+    "title": "Tree Queries",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1328/E",
+    "difficulty_rating": 1900,
+    "statement_md": "Rooted tree at 1. For each query set of vertices, check whether there is a path from 1 to some vertex that includes all of them or their parents.",
+    "input_format_md": "Tree, then queries with vertex lists.",
+    "output_format_md": "YES/NO per query.",
+    "constraints_text": "$n,q \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1328e-a1",
+        "problem_id": "cf-1328e",
+        "approach_name": "Root-path check",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "LCA",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Path to root queries: all vertices lie on one root path iff depths/tin-tout nest under the deepest"
+        ],
+        "editorial_summary_md": "Move each vertex to its parent; check they form a chain via tin/tout of the deepest."
+      }
+    ]
+  },
+  {
+    "id": "cf-609e",
+    "title": "Minimum spanning tree for each edge",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/609/E",
+    "difficulty_rating": 2100,
+    "statement_md": "For every edge, find the MST weight of the graph if that edge is forced to be included.",
+    "input_format_md": "n m and m weighted edges.",
+    "output_format_md": "m lines — MST weight forcing each edge.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-609e-a1",
+        "problem_id": "cf-609e",
+        "approach_name": "MST + path max LCA",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "MST",
+          "LCA",
+          "DSU",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Priority Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Build MST; for each edge answer MST_weight − max_on_path(u,v) + w(e)"
+        ],
+        "editorial_summary_md": "Kruskal MST then binary lifting for maximum edge on tree path."
+      }
+    ]
+  },
+  {
+    "id": "cf-1051f",
+    "title": "The Shortest Statement",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1051/F",
+    "difficulty_rating": 2400,
+    "statement_md": "Connected weighted graph with n≤1e5, m−n≤20. Answer shortest-path queries.",
+    "input_format_md": "n m edges, then q queries.",
+    "output_format_md": "Distance per query.",
+    "constraints_text": "$m-n \\le 20$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1051f-a1",
+        "problem_id": "cf-1051f",
+        "approach_name": "Near-tree APSP",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Dijkstra",
+          "LCA",
+          "DFS"
+        ],
+        "data_structures": [
+          "Priority Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Tree has ≤21 extra edges; Dijkstra from their endpoints + LCA tree distances"
+        ],
+        "editorial_summary_md": "Build spanning tree; for non-tree edges run Dijkstra from endpoints; combine with LCA."
+      }
+    ]
+  },
+  {
+    "id": "cf-5c",
+    "title": "Longest Regular Bracket Sequence",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/5/C",
+    "difficulty_rating": 1900,
+    "statement_md": "Given a bracket string, find the length of the longest regular substring and how many such substrings exist.",
+    "input_format_md": "One string of ( and ).",
+    "output_format_md": "Print length and count (0 1 if none).",
+    "constraints_text": "$|s| \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-5c-a1",
+        "problem_id": "cf-5c",
+        "approach_name": "Bracket stack",
+        "paradigms": [
+          "String Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Monotonic Stack",
+          "Stack"
+        ],
+        "key_insights": [
+          "Stack of indices of \"(\"; track longest valid bracket substring counts"
+        ],
+        "editorial_summary_md": "Classic longest valid parentheses via stack; count occurrences of that length."
+      }
+    ]
+  },
+  {
+    "id": "cf-1691d",
+    "title": "Max GEQ Sum Brute",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1691/D",
+    "difficulty_rating": 2000,
+    "statement_md": "Array is good if every subarray has maximum ≥ sum of the subarray. Decide if the array is good.",
+    "input_format_md": "Tests with n and array a (can be negative).",
+    "output_format_md": "YES/NO.",
+    "constraints_text": "$\\sum n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1691d-a1",
+        "problem_id": "cf-1691d",
+        "approach_name": "Mono stack ranges",
+        "paradigms": [
+          "Greedy",
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Monotonic Stack",
+          "Sparse Table"
+        ],
+        "key_insights": [
+          "For each position as max, span where it is maximum; check prefix maxima of sums"
+        ],
+        "editorial_summary_md": "Monotonic stack gives ownership ranges; sparse table / prefix checks sum constraints."
+      }
+    ]
+  },
+  {
+    "id": "cf-1420c2",
+    "title": "Pokemon Army (hard)",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1420/C2",
+    "difficulty_rating": 2000,
+    "statement_md": "Choose a subsequence maximizing a_{b1}−a_{b2}+a_{b3}−…. Support point updates and print the best value.",
+    "input_format_md": "Tests with n q, array, then updates.",
+    "output_format_md": "Initial answer and after each update.",
+    "constraints_text": "$\\sum n \\le 3\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1420c2-a1",
+        "problem_id": "cf-1420c2",
+        "approach_name": "Alternating peaks",
+        "paradigms": [
+          "Greedy",
+          "Ad-Hoc"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Monotonic Stack",
+          "1D Array"
+        ],
+        "key_insights": [
+          "Peak-valley contribution; updates adjust local extremum contributions"
+        ],
+        "editorial_summary_md": "Maintain sum of positive differences of a zigzag subsequence under point updates."
+      }
+    ]
+  },
+  {
+    "id": "cf-1313c1",
+    "title": "Skyscrapers (easy)",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1313/C1",
+    "difficulty_rating": 1400,
+    "statement_md": "Build heights h_i≤m_i that are first nondecreasing then nonincreasing; maximize sum h.",
+    "input_format_md": "n and array m.",
+    "output_format_md": "Optimal heights.",
+    "constraints_text": "$n \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-1313c1-a1",
+        "problem_id": "cf-1313c1",
+        "approach_name": "Enumerate peak",
+        "paradigms": [
+          "Greedy",
+          "Brute Force"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Monotonic Stack",
+          "1D Array"
+        ],
+        "key_insights": [
+          "Try each peak; force unimodal by taking min with peak going outward"
+        ],
+        "editorial_summary_md": "O(n²) choose maximum position and build the bitonic roof."
+      }
+    ]
+  },
+  {
+    "id": "cf-1156c",
+    "title": "Match Points",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1156/C",
+    "difficulty_rating": 1700,
+    "statement_md": "Points on a line. Pair as many as possible so each pair has distance ≥ z; each point in at most one pair.",
+    "input_format_md": "n z and positions.",
+    "output_format_md": "Maximum number of pairs.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1156c-a1",
+        "problem_id": "cf-1156c",
+        "approach_name": "Two pointers pairs",
+        "paradigms": [
+          "Two Pointers",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Sorting",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "Monotonic Stack"
+        ],
+        "key_insights": [
+          "Sort points; greedy pair smallest with earliest feasible large partner"
+        ],
+        "editorial_summary_md": "Sort and two-pointer match pairs with difference ≥z."
+      }
+    ]
+  },
+  {
+    "id": "cf-160d",
+    "title": "Edges in MST",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/160/D",
+    "difficulty_rating": 2100,
+    "statement_md": "For each edge say if it appears in every MST, some MST, or no MST.",
+    "input_format_md": "n m weighted edges.",
+    "output_format_md": "m lines: `any`, `at least one`, or `none`.",
+    "constraints_text": "$m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-160d-a1",
+        "problem_id": "cf-160d",
+        "approach_name": "Kruskal classify",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "MST",
+          "DSU",
+          "DFS",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Kruskal by weight; within equal-weight edges classify any/all/none via bridges in component graph"
+        ],
+        "editorial_summary_md": "Process weight groups; build meta-graph of DSU comps and find bridges."
+      }
+    ]
+  },
+  {
+    "id": "cf-888g",
+    "title": "Xor-MST",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/888/G",
+    "difficulty_rating": 2400,
+    "statement_md": "Complete graph on n vertices with labels a_i; edge weight a_i⊕a_j. Find MST weight.",
+    "input_format_md": "n and array a.",
+    "output_format_md": "MST total weight.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-888g-a1",
+        "problem_id": "cf-888g",
+        "approach_name": "Xor-MST trie",
+        "paradigms": [
+          "Graph Algorithms",
+          "Divide & Conquer"
+        ],
+        "algorithms": [
+          "MST",
+          "DFS"
+        ],
+        "data_structures": [
+          "Trie"
+        ],
+        "key_insights": [
+          "Borůvka / trie: recursively connect halves by minimum XOR edge"
+        ],
+        "editorial_summary_md": "Sort values, build binary trie, divide-and-conquer Borůvka on bit prefixes."
+      }
+    ]
+  },
+  {
+    "id": "cses-mst-edge-set-check",
+    "title": "MST Edge Set Check",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/3408",
+    "difficulty_rating": 1800,
+    "statement_md": "Given an undirected weighted graph and edge sets, determine for each set if the edges can be included in a minimum spanning tree.\n\nInput\n\nThe first line has three integers $n$,  $m$ and $q$: the number of nodes, edges and edge sets. The nodes are numbered $1,2,\\dots,n$.\n\nThe following $m$ lines describe the edges. Each line has three integers $a$, $b$, $w$: there is an edge between nodes $a$ and $b$ with weight $w$. The edges are numbered $1,2,\\dots,m$ in the input order.\n\nThe following $2q$ lines describe the edge sets. For each set, the first line contains its size and the second line contains its edges. The total number of edges in all sets is at most $m$.\n\nYou can assume that the graph is connected and simple and each edge appears at most once in the graph.\n\nOutput\n\nFor each edge set, print YES if the edges can be included in the minimum spanning tree and NO otherwise.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\n- $1 \\le m, q \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\n- $1 \\le w \\le 10^9$\n\nExample\n\nInput:\n\n5 6 4\n1 2 4\n1 3 2\n2 4 2\n3 4 1\n3 5 3\n4 5 3\n3\n2 3 4\n1\n1\n2\n2 6\n2\n5 6\n\nOutput:\n\nYES\nNO\nYES\nNO",
+    "input_format_md": "The first line has three integers $n$,  $m$ and $q$: the number of nodes, edges and edge sets. The nodes are numbered $1,2,\\dots,n$.\n\nThe following $m$ lines describe the edges. Each line has three integers $a$, $b$, $w$: there is an edge between nodes $a$ and $b$ with weight $w$. The edges are numbered $1,2,\\dots,m$ in the input order.\n\nThe following $2q$ lines describe the edge sets. For each set, the first line contains its size and the second line contains its edges. The total number of edges in all sets is at most $m$.\n\nYou can assume that the graph is connected and simple and each edge appears at most once in the graph.",
+    "output_format_md": "For each edge set, print YES if the edges can be included in the minimum spanning tree and NO otherwise.",
+    "constraints_text": "- $1 \\le n \\le 10^5$\n\n- $1 \\le m, q \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\n- $1 \\le w \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-mst-edge-set-check-a1",
+        "problem_id": "cses-mst-edge-set-check",
+        "approach_name": "MST set check",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "MST",
+          "DSU",
+          "Sorting"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Check whether a given edge set can be extended to / is part of an MST"
+        ],
+        "editorial_summary_md": "Kruskal logic: edges must connect different components at their weight threshold."
+      }
+    ]
+  },
+  {
+    "id": "cses-mst-edge-cost",
+    "title": "MST Edge Cost",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/3409",
+    "difficulty_rating": 1900,
+    "statement_md": "Given an undirected weighted graph, determine for each edge the minimum spanning tree cost if the edge must be included in the spanning tree.\n\nInput\n\nThe first line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\\dots,n$.\n\nThe following $m$ lines describe the edges. Each line has three integers $a$, $b$, $w$: there is an edge between nodes $a$ and $b$ with weight $w$.\n\nYou can assume that the graph is connected and simple and each edge appears at most once in the graph.\n\nOutput\n\nFor each edge in the input order, print the minimum spanning tree cost when the edge is included.\n\nConstraints\n\n- $1 \\le n \\le 10^5$\n\n- $1 \\le m \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\n- $1 \\le w \\le 10^9$\n\nExample\n\nInput:\n\n5 6\n1 2 4\n1 3 2\n2 4 2\n3 4 1\n3 5 4\n4 5 3\n\nOutput:\n\n10\n8\n8\n8\n9\n8",
+    "input_format_md": "The first line has two integers $n$ and $m$: the number of nodes and edges. The nodes are numbered $1,2,\\dots,n$.\n\nThe following $m$ lines describe the edges. Each line has three integers $a$, $b$, $w$: there is an edge between nodes $a$ and $b$ with weight $w$.\n\nYou can assume that the graph is connected and simple and each edge appears at most once in the graph.",
+    "output_format_md": "For each edge in the input order, print the minimum spanning tree cost when the edge is included.",
+    "constraints_text": "- $1 \\le n \\le 10^5$\n\n- $1 \\le m \\le 2 \\cdot 10^5$\n\n- $1 \\le a,b \\le n$\n\n- $1 \\le w \\le 10^9$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-mst-edge-cost-a1",
+        "problem_id": "cses-mst-edge-cost",
+        "approach_name": "MST edge cost",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "MST",
+          "LCA",
+          "DSU"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Similar to CF 609E: MST plus replacement cost via path maxima"
+        ],
+        "editorial_summary_md": "Compute for edges the MST weight if forced in/out using tree path max."
+      }
+    ]
+  },
+  {
+    "id": "cf-1242b",
+    "title": "0-1 MST",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1242/B",
+    "difficulty_rating": 2100,
+    "statement_md": "Complete graph on n vertices where listed edges have weight 1 and all others weight 0. Find the MST weight.",
+    "input_format_md": "n m and m weight-1 edges.",
+    "output_format_md": "MST total weight.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-1242b-a1",
+        "problem_id": "cf-1242b",
+        "approach_name": "Complement components",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "MST",
+          "DSU",
+          "BFS"
+        ],
+        "data_structures": [
+          "Ordered Set",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Complement-graph BFS / DSU: components in G-bar become MST leaves with cost 0/1"
+        ],
+        "editorial_summary_md": "Find connected components of the complement; MST cost is (#components−1)."
+      }
+    ]
+  },
+  {
+    "id": "cf-872b",
+    "title": "Maximum of Maximums of Minimums",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/872/B",
+    "difficulty_rating": 1500,
+    "statement_md": "Split the array into exactly k contiguous parts; maximize the minimum of the maxima of parts? Actually: maximize the maximum among the minima of the parts.",
+    "input_format_md": "n k and array a.",
+    "output_format_md": "The best achievable value.",
+    "constraints_text": "$1 \\le k \\le n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-872b-a1",
+        "problem_id": "cf-872b",
+        "approach_name": "Casework RMQ",
+        "paradigms": [
+          "Ad-Hoc",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Sparse Table",
+          "1D Array"
+        ],
+        "key_insights": [
+          "For k=1 answer is min; k≥3 answer max; k=2 is max of ends after one cut"
+        ],
+        "editorial_summary_md": "Analyze how many “remove segment min” operations interact with global max/min."
+      }
+    ]
+  },
+  {
+    "id": "cf-475d",
+    "title": "CGCDSSQ",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/475/D",
+    "difficulty_rating": 2100,
+    "statement_md": "For each query value x count subarrays whose GCD equals x.",
+    "input_format_md": "n, array, q, then q values.",
+    "output_format_md": "Answer per query.",
+    "constraints_text": "$n,q \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-475d-a1",
+        "problem_id": "cf-475d",
+        "approach_name": "GCD sparse table",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Sparse Table",
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Sparse table GCDs; for each L jump R while gcd stays constant"
+        ],
+        "editorial_summary_md": "Enumerate left endpoints and jump by powers of two while gcd is stable; map counts."
+      }
+    ]
+  },
+  {
+    "id": "cf-803g",
+    "title": "Periodic RMQ Problem",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/803/G",
+    "difficulty_rating": 2200,
+    "statement_md": "Array b is a repeated k times. Support range assign and range minimum on b.",
+    "input_format_md": "n k, array a (period), then q operations.",
+    "output_format_md": "Answers to minimum queries.",
+    "constraints_text": "$n\\cdot k \\le 10^5$ effective via structure",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-803g-a1",
+        "problem_id": "cf-803g",
+        "approach_name": "Periodic RMQ",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree"
+        ],
+        "data_structures": [
+          "Sparse Table"
+        ],
+        "key_insights": [
+          "Periodic array of length n·k; sparse table / segtree on the repeated array with care"
+        ],
+        "editorial_summary_md": "Build sparse table on one period and handle cross-period queries."
+      }
+    ]
+  },
+  {
+    "id": "cses-increasing-array-queries",
+    "title": "Increasing Array Queries",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2416",
+    "difficulty_rating": 1800,
+    "statement_md": "You are given an array that consists of $n$ integers. The array elements are indexed $1,2,\\dots,n$.\n\nYou can modify the array using the following operation: choose an array element and increase its value by one.\n\nYour task is to process $q$ queries of the form: when we consider a subarray from position $a$ to position $b$, what is the minimum number of operations after which the subarray is increasing?\n\nAn array is increasing if each element is greater than or equal with the previous element.\n\nInput\n\nThe first input line has two integers $n$ and $q$: the size of the array and the number of queries.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the array.\n\nFinally, there are $q$ lines that describe the queries. Each line has two integers $a$ and $b$: the starting and ending position of a subarray.\n\nOutput\n\nFor each query, print the minimum number of operations.\n\nConstraints\n\n- $1 \\le n,q \\le 2\\cdot10^5$\n\n- $1 \\le x_i \\le 10^9$\n\n- $1 \\le a \\le b \\le n$\n\nExample\n\nInput:\n\n5 3\n2 10 4 2 5\n3 5\n2 2\n1 4\n\nOutput:\n\n2\n0\n14",
+    "input_format_md": "The first input line has two integers $n$ and $q$: the size of the array and the number of queries.\n\nThe next line has $n$ integers $x_1,x_2,\\dots,x_n$: the contents of the array.\n\nFinally, there are $q$ lines that describe the queries. Each line has two integers $a$ and $b$: the starting and ending position of a subarray.",
+    "output_format_md": "For each query, print the minimum number of operations.",
+    "constraints_text": "- $1 \\le n,q \\le 2\\cdot10^5$\n\n- $1 \\le x_i \\le 10^9$\n\n- $1 \\le a \\le b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-increasing-array-queries-a1",
+        "problem_id": "cses-increasing-array-queries",
+        "approach_name": "Next-greater queries",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Sparse Table",
+          "Monotonic Stack"
+        ],
+        "key_insights": [
+          "Mono stack next greater + prefix sums / sparse for range costs to make increasing"
+        ],
+        "editorial_summary_md": "Precompute cost to raise subarrays using stack and answer offline."
+      }
+    ]
+  },
+  {
+    "id": "cf-1490f",
+    "title": "Equal Frequency",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1490/F",
+    "difficulty_rating": 1500,
+    "statement_md": "Delete the minimum number of elements so that every value that still appears does so the same number of times.",
+    "input_format_md": "Tests with n and array a.",
+    "output_format_md": "Minimum deletions.",
+    "constraints_text": "$\\sum n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1490f-a1",
+        "problem_id": "cf-1490f",
+        "approach_name": "Frequency sweep",
+        "paradigms": [
+          "Greedy",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Sorting",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "Sparse Table",
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Frequency map; for each possible surviving frequency, count deletions"
+        ],
+        "editorial_summary_md": "Try each threshold of equal frequencies; minimize removals so all remaining values share one frequency."
+      }
+    ]
+  },
+  {
+    "id": "cf-219d",
+    "title": "Choosing Capital for Treeland",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/219/D",
+    "difficulty_rating": 1800,
+    "statement_md": "Directed edges on a tree. Choose a capital minimizing the number of edges to reverse so every city can reach the capital.",
+    "input_format_md": "n and n−1 directed edges.",
+    "output_format_md": "Minimum reverses and all optimal capitals.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-219d-a1",
+        "problem_id": "cf-219d",
+        "approach_name": "Reroot reverses",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DFS",
+          "Topological Sort"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Rerooting: count edges to reverse toward each root"
+        ],
+        "editorial_summary_md": "DFS computes reverses needed for root 1; reroot DP adjusts when moving root."
+      }
+    ]
+  },
+  {
+    "id": "cf-510c",
+    "title": "Fox And Names",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/510/C",
+    "difficulty_rating": 1600,
+    "statement_md": "Given n names in the order they should appear, restore any alphabet order (permutation of letters) that makes the list sorted, or say impossible.",
+    "input_format_md": "n and n strings.",
+    "output_format_md": "A 26-letter permutation or `Impossible`.",
+    "constraints_text": "$n \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-510c-a1",
+        "problem_id": "cf-510c",
+        "approach_name": "Alphabet topo",
+        "paradigms": [
+          "Graph Algorithms",
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List",
+          "Queue"
+        ],
+        "key_insights": [
+          "Compare adjacent names to add alphabet inequality edges; topo order = alphabet"
+        ],
+        "editorial_summary_md": "Build 26-node graph from consecutive string comparisons; Kahn/DFS cycle detect."
+      }
+    ]
+  },
+  {
+    "id": "cf-919d",
+    "title": "Substring",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/919/D",
+    "difficulty_rating": 1800,
+    "statement_md": "Directed graph with a letter on each vertex. Maximize the number of times the most frequent letter appears on any path (or -1 if infinite).",
+    "input_format_md": "n m, string of labels, then edges.",
+    "output_format_md": "Maximum value or -1.",
+    "constraints_text": "$n \\le 3\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-919d-a1",
+        "problem_id": "cf-919d",
+        "approach_name": "Topo DP letters",
+        "paradigms": [
+          "Graph Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List",
+          "Queue"
+        ],
+        "key_insights": [
+          "DP on DAG (or cycle⇒inf): max count of a letter on a path"
+        ],
+        "editorial_summary_md": "If cycle print -1; else topo DP 26 counts per node."
+      }
+    ]
+  },
+  {
+    "id": "cf-1385e",
+    "title": "Directing Edges",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1385/E",
+    "difficulty_rating": 2000,
+    "statement_md": "Some edges directed, some undirected. Orient the undirected ones to make the whole graph acyclic.",
+    "input_format_md": "Tests with n m and edges typed 1/2.",
+    "output_format_md": "YES and orientations, or NO.",
+    "constraints_text": "$\\sum n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-1385e-a1",
+        "problem_id": "cf-1385e",
+        "approach_name": "Orient by topo",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List",
+          "Queue"
+        ],
+        "key_insights": [
+          "Topo order undirected edges according to a topo of the directed part"
+        ],
+        "editorial_summary_md": "If directed edges have a cycle → NO; else orient undirected edges along topo order."
+      }
+    ]
+  },
+  {
+    "id": "cf-1217d",
+    "title": "Coloring Edges",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1217/D",
+    "difficulty_rating": 1900,
+    "statement_md": "Color directed edges with minimum colors so no monochromatic cycle exists.",
+    "input_format_md": "n m and directed edges.",
+    "output_format_md": "Number of colors and color of each edge.",
+    "constraints_text": "$n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-1217d-a1",
+        "problem_id": "cf-1217d",
+        "approach_name": "2-color cycles",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Topological Sort",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "If DAG one color; else 2 colors — paint back-edges differently"
+        ],
+        "editorial_summary_md": "Detect cycle; color edges by whether they go forward in a DFS forest."
+      }
+    ]
+  },
+  {
+    "id": "cses-distinct-routes-ii",
+    "title": "Distinct Routes II",
+    "source": "CSES",
+    "url": "https://cses.fi/problemset/task/2130",
+    "difficulty_rating": 2000,
+    "statement_md": "A game consists of $n$ rooms and $m$ teleporters. At the beginning of each day, you start in room $1$ and you have to reach room $n$.\n\nYou can use each teleporter at most once during the game. You want to play the game for exactly $k$ days. Every time you use any teleporter you have to pay one coin. What is the minimum number of coins you have to pay during $k$ days if you play optimally?\n\nInput\n\nThe first input line has three integers $n$, $m$ and $k$: the number of rooms, the number of teleporters and the number of days you play the game. The rooms are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the teleporters. Each line has two integers $a$ and $b$: there is a teleporter from room $a$ to room $b$.\n\nThere are no two teleporters whose starting and ending room are the same.\n\nOutput\n\nFirst print one integer: the minimum number of coins you have to pay if you play optimally. Then, print $k$ route descriptions according to the example. You can print any valid solution.\n\nIf it is not possible to play the game for $k$ days, print only -1.\n\nConstraints\n\n- $2 \\le n \\le 500$\n\n- $1 \\le m \\le 1000$\n\n- $1 \\le k \\le n-1$\n\n- $1 \\le a,b \\le n$\n\nExample\n\nInput:\n\n8 10 2\n1 2\n1 3\n2 5\n2 4\n3 5\n3 6\n4 8\n5 8\n6 7\n7 8\n\nOutput:\n\n6\n4\n1 2 4 8\n4\n1 3 5 8",
+    "input_format_md": "The first input line has three integers $n$, $m$ and $k$: the number of rooms, the number of teleporters and the number of days you play the game. The rooms are numbered $1,2,\\dots,n$.\n\nAfter this, there are $m$ lines describing the teleporters. Each line has two integers $a$ and $b$: there is a teleporter from room $a$ to room $b$.\n\nThere are no two teleporters whose starting and ending room are the same.",
+    "output_format_md": "First print one integer: the minimum number of coins you have to pay if you play optimally. Then, print $k$ route descriptions according to the example. You can print any valid solution.\n\nIf it is not possible to play the game for $k$ days, print only -1.",
+    "constraints_text": "- $2 \\le n \\le 500$\n\n- $1 \\le m \\le 1000$\n\n- $1 \\le k \\le n-1$\n\n- $1 \\le a,b \\le n$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cses-distinct-routes-ii-a1",
+        "problem_id": "cses-distinct-routes-ii",
+        "approach_name": "MCMF routes",
+        "paradigms": [
+          "Flows / Matching",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "BFS"
+        ],
+        "data_structures": [
+          "Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Min-cost max-flow of unit paths from 1 to n; recover k routes"
+        ],
+        "editorial_summary_md": "Successively find shortest augmenting paths; output the disjoint routes."
+      }
+    ]
+  },
+  {
+    "id": "cf-546e",
+    "title": "Soldier and Traveling",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/546/E",
+    "difficulty_rating": 2000,
+    "statement_md": "n cities with a_i soldiers now and b_i required. Soldiers may move along edges (or stay). Decide if possible and output the movement matrix.",
+    "input_format_md": "n m, arrays a b, then edges.",
+    "output_format_md": "YES and n×n matrix of moves, or NO.",
+    "constraints_text": "$n \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-546e-a1",
+        "problem_id": "cf-546e",
+        "approach_name": "Circulation flow",
+        "paradigms": [
+          "Flows / Matching",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "BFS"
+        ],
+        "data_structures": [
+          "2D Array",
+          "Queue"
+        ],
+        "key_insights": [
+          "Split vertices in/out; max flow models troop movements along edges"
+        ],
+        "editorial_summary_md": "Build flow network with supplies/demands; check full flow equals sum a_i."
+      }
+    ]
+  },
+  {
+    "id": "cf-1082g",
+    "title": "Petya and Graph",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1082/G",
+    "difficulty_rating": 2300,
+    "statement_md": "Undirected graph with vertex costs and edge profits. Choose a subgraph maximizing sum(edge weights)−sum(vertex costs).",
+    "input_format_md": "n m, vertex costs, then weighted edges.",
+    "output_format_md": "Maximum profit.",
+    "constraints_text": "$n \\le 1000$, $m \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-1082g-a1",
+        "problem_id": "cf-1082g",
+        "approach_name": "Project min-cut",
+        "paradigms": [
+          "Flows / Matching",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "BFS"
+        ],
+        "data_structures": [
+          "Queue"
+        ],
+        "key_insights": [
+          "Project-subgraph value = sum edge weights − vertex costs; max flow / min cut"
+        ],
+        "editorial_summary_md": "Classic “close vertices vs take edges” min-cut construction."
+      }
+    ]
+  },
+  {
+    "id": "cf-1209d",
+    "title": "Cow and Snacks",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1209/D",
+    "difficulty_rating": 1600,
+    "statement_md": "k guests each want two snacks. Serve guests in some order; a guest is sad if either snack is already taken. Minimize sad guests.",
+    "input_format_md": "n k and k pairs.",
+    "output_format_md": "Minimum number of sad guests.",
+    "constraints_text": "$n,k \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1209d-a1",
+        "problem_id": "cf-1209d",
+        "approach_name": "DSU components",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DSU",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Each edge is a satisfied guest; components of size s give s−1 useful edges"
+        ],
+        "editorial_summary_md": "Build graph of ingredients; answer = k − sum (comp_size−1)."
+      }
+    ]
+  },
+  {
+    "id": "cf-1005f",
+    "title": "Berland and the Shortest Paths",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1005/F",
+    "difficulty_rating": 2100,
+    "statement_md": "Unweighted undirected graph. Among spanning subgraphs where dist(1,v) equals original distances for all v, print up to k of them.",
+    "input_format_md": "n m k and edges.",
+    "output_format_md": "t≤k, then t binary strings of chosen edges.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-1005f-a1",
+        "problem_id": "cf-1005f",
+        "approach_name": "Shortest-path tree enum",
+        "paradigms": [
+          "Graph Algorithms",
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "BFS",
+          "DFS"
+        ],
+        "data_structures": [
+          "Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "BFS tree from 1; each non-root chooses a parent edge among shortest-path predecessors"
+        ],
+        "editorial_summary_md": "Count ways ≤k by choosing parents; output edge subsets."
+      }
+    ]
+  },
+  {
+    "id": "cf-182d",
+    "title": "Common Divisors",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/182/D",
+    "difficulty_rating": 1500,
+    "statement_md": "Two strings. Count strings t that generate both as concatenations of t.",
+    "input_format_md": "Two strings s and t.",
+    "output_format_md": "The count.",
+    "constraints_text": "$|s|,|t| \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-182d-a1",
+        "problem_id": "cf-182d",
+        "approach_name": "Period check",
+        "paradigms": [
+          "String Algorithms",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "KMP",
+          "String Hashing"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Common divisors of lengths; check if prefix repeats via KMP border / hashing"
+        ],
+        "editorial_summary_md": "A string is generated by period p if n%|p|==0 and s=p*(n/|p|)."
+      }
+    ]
+  },
+  {
+    "id": "cf-432d",
+    "title": "Prefixes and Suffixes",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/432/D",
+    "difficulty_rating": 1800,
+    "statement_md": "List all prefixes that are also suffixes, and how many times each occurs in the string as a substring.",
+    "input_format_md": "One string s.",
+    "output_format_md": "k then k lines length count.",
+    "constraints_text": "$|s| \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-432d-a1",
+        "problem_id": "cf-432d",
+        "approach_name": "Border frequencies",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "KMP",
+          "String Hashing"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Z-function or KMP borders that are also prefixes occurring as suffixes"
+        ],
+        "editorial_summary_md": "Compute Z or prefix-function; count occurrences of each border length."
+      }
+    ]
+  },
+  {
+    "id": "cf-526d",
+    "title": "Om Nom and Necklace",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/526/D",
+    "difficulty_rating": 2100,
+    "statement_md": "Mark each prefix whether it can be written as (a…a k times)+b with |b|<|a| (b may be empty).",
+    "input_format_md": "n k and string s.",
+    "output_format_md": "Binary string of length n.",
+    "constraints_text": "$n \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-526d-a1",
+        "problem_id": "cf-526d",
+        "approach_name": "K-repeat KMP",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "KMP",
+          "String Hashing"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "KMP periods: positions covered by k-fold repetitions of a border"
+        ],
+        "editorial_summary_md": "Use prefix-function periods to mark indices belonging to a^k b patterns."
+      }
+    ]
+  },
+  {
+    "id": "cf-471d",
+    "title": "MUH and Important Things",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/471/D",
+    "difficulty_rating": 1800,
+    "statement_md": "Two sequences of heights (bear sculptures). Count positions where the pattern can match the wall after a uniform vertical shift.",
+    "input_format_md": "n m and two arrays.",
+    "output_format_md": "Number of matches.",
+    "constraints_text": "$n,m \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-471d-a1",
+        "problem_id": "cf-471d",
+        "approach_name": "Diff KMP",
+        "paradigms": [
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "KMP"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Difference arrays of heights; KMP count occurrences of pattern diffs in text diffs"
+        ],
+        "editorial_summary_md": "Match consecutive differences so absolute heights can shift."
+      }
+    ]
+  },
+  {
+    "id": "cf-346b",
+    "title": "Lucky Common Subsequence",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/346/B",
+    "difficulty_rating": 2000,
+    "statement_md": "Find the longest common subsequence of s and t that does not contain virus string v as a substring.",
+    "input_format_md": "Three strings s, t, v.",
+    "output_format_md": "The LCS or 0.",
+    "constraints_text": "Lengths ≤100",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-346b-a1",
+        "problem_id": "cf-346b",
+        "approach_name": "LCS + KMP automaton",
+        "paradigms": [
+          "Dynamic Programming",
+          "String Algorithms"
+        ],
+        "algorithms": [
+          "KMP"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "LCS DP with KMP automaton state on the forbidden virus string"
+        ],
+        "editorial_summary_md": "dp[i][j][k] on prefixes of s,t and match depth in virus."
+      }
+    ]
+  },
+  {
+    "id": "cf-706d",
+    "title": "Vasiliy's Multiset",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/706/D",
+    "difficulty_rating": 1800,
+    "statement_md": "Start with {0}. Support insert x, delete x, or query max (x XOR y) over y in the multiset.",
+    "input_format_md": "q operations `+ x`, `- x`, or `? x`.",
+    "output_format_md": "For each `?` print the answer.",
+    "constraints_text": "$q \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-706d-a1",
+        "problem_id": "cf-706d",
+        "approach_name": "XOR trie",
+        "paradigms": [
+          "Math / Number Theory",
+          "Bitmask / Bit DP"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Trie",
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Binary trie of multiset values for max XOR with query"
+        ],
+        "editorial_summary_md": "Support insert/delete/query maximum XOR with x."
+      }
+    ]
+  },
+  {
+    "id": "cf-665e",
+    "title": "Beautiful Subarrays",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/665/E",
+    "difficulty_rating": 2100,
+    "statement_md": "Count subarrays whose XOR is ≥ k.",
+    "input_format_md": "n k and array a.",
+    "output_format_md": "The count.",
+    "constraints_text": "$n \\le 10^6$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-665e-a1",
+        "problem_id": "cf-665e",
+        "approach_name": "Prefix XOR trie",
+        "paradigms": [
+          "Math / Number Theory",
+          "Bitmask / Bit DP"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Trie"
+        ],
+        "key_insights": [
+          "Prefix XOR trie counting pairs with XOR ≥ k"
+        ],
+        "editorial_summary_md": "Insert prefix xors; for each new prefix walk trie counting branches ≥k."
+      }
+    ]
+  },
+  {
+    "id": "cf-455b",
+    "title": "A Lot of Games",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/455/B",
+    "difficulty_rating": 1900,
+    "statement_md": "Two players alternately extend a string keeping it a prefix of some given word. After k rounds who wins with optimal play?",
+    "input_format_md": "n k and n strings.",
+    "output_format_md": "`First` or `Second`.",
+    "constraints_text": "Total length ≤10^5",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-455b-a1",
+        "problem_id": "cf-455b",
+        "approach_name": "Trie game theory",
+        "paradigms": [
+          "String Algorithms",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "DFS"
+        ],
+        "data_structures": [
+          "Trie"
+        ],
+        "key_insights": [
+          "Trie game: grundy/win-lose positions for first and second player"
+        ],
+        "editorial_summary_md": "Compute whether first can force a win / force a loss on the trie of words."
+      }
+    ]
+  },
+  {
+    "id": "cf-1132c",
+    "title": "Painting the Fence",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1132/C",
+    "difficulty_rating": 1700,
+    "statement_md": "q painters each paint [l_i,r_i]. Choose q−2 of them to maximize the number of painted sections (covered ≥1).",
+    "input_format_md": "n q and q segments.",
+    "output_format_md": "Maximum painted sections.",
+    "constraints_text": "$n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1132c-a1",
+        "problem_id": "cf-1132c",
+        "approach_name": "Skip two painters",
+        "paradigms": [
+          "Greedy",
+          "Brute Force"
+        ],
+        "algorithms": [
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Try every pair of painters to skip; prefix counts of coverage 1 and 2"
+        ],
+        "editorial_summary_md": "Precompute coverage; O(q²) remove two intervals and evaluate painted cells."
+      }
+    ]
+  },
+  {
+    "id": "cf-948d",
+    "title": "Perfect Security",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/948/D",
+    "difficulty_rating": 1800,
+    "statement_md": "Given arrays a and p, permute p to minimize the lexicographic sequence a_i XOR p_{π(i)}.",
+    "input_format_md": "n, array a, array p.",
+    "output_format_md": "The optimal XOR sequence.",
+    "constraints_text": "$n \\le 3\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-948d-a1",
+        "problem_id": "cf-948d",
+        "approach_name": "XOR pairing trie",
+        "paradigms": [
+          "Math / Number Theory",
+          "Bitmask / Bit DP"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "Trie"
+        ],
+        "key_insights": [
+          "Binary trie of a_i; greedily match bits of each a_i against remaining p values"
+        ],
+        "editorial_summary_md": "Insert all p_j; for each a_i in order extract the best XOR partner from the trie."
+      }
+    ]
+  },
+  {
+    "id": "cf-567e",
+    "title": "President and Roads",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/567/E",
+    "difficulty_rating": 2200,
+    "statement_md": "For each road say if it lies on some shortest path from s to t, and if yes whether it is a bridge among them (must keep).",
+    "input_format_md": "n m s t and weighted directed edges.",
+    "output_format_md": "Per edge: `YES`, `YES x` (can decrease by x), or `NO`.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-567e-a1",
+        "problem_id": "cf-567e",
+        "approach_name": "Bidirectional Dijkstra",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Dijkstra"
+        ],
+        "data_structures": [
+          "Priority Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Forward/backward Dijkstra; edge is on all/some shortest s–t paths"
+        ],
+        "editorial_summary_md": "Classify edges by dist[s→u]+w+dist[v→t] vs shortest and uniqueness via counts."
+      }
+    ]
+  },
+  {
+    "id": "cf-1366d",
+    "title": "Two Divisors",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1366/D",
+    "difficulty_rating": 1800,
+    "statement_md": "For each a_i find d1,d2>1 with d1|a_i, d2|a_i and gcd(d1+d2,a_i)=1, or -1 -1.",
+    "input_format_md": "n and array a.",
+    "output_format_md": "Two lines of n answers.",
+    "constraints_text": "$a_i \\le 10^7$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1366d-a1",
+        "problem_id": "cf-1366d",
+        "approach_name": "SPF split",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Linear sieve smallest prime factor; split n into two coprime factors >1"
+        ],
+        "editorial_summary_md": "For each a_i output two factors whose gcd with each other is 1, or -1s."
+      }
+    ]
+  },
+  {
+    "id": "cf-615d",
+    "title": "Multiscale Numbers",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/615/D",
+    "difficulty_rating": 1900,
+    "statement_md": "Given the prime factorization of n (list of primes with repetition), output the product of all positive divisors of n modulo 1e9+7.",
+    "input_format_md": "k then k prime factors.",
+    "output_format_md": "One integer.",
+    "constraints_text": "$k \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-615d-a1",
+        "problem_id": "cf-615d",
+        "approach_name": "Divisor product",
+        "paradigms": [
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Sieve"
+        ],
+        "data_structures": [
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Product of divisors of n = n^{τ(n)/2}; compute via prime exponents mod φ"
+        ],
+        "editorial_summary_md": "From prime factorization compute n^{τ/2} modulo 1e9+7 with careful exponents."
+      }
+    ]
+  },
+  {
+    "id": "cf-27e",
+    "title": "Number With The Given Amount Of Divisors",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/27/E",
+    "difficulty_rating": 2000,
+    "statement_md": "Find the minimum positive integer with exactly n divisors.",
+    "input_format_md": "Single integer n.",
+    "output_format_md": "The minimal integer.",
+    "constraints_text": "$1 \\le n \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-27e-a1",
+        "problem_id": "cf-27e",
+        "approach_name": "Divisor DP",
+        "paradigms": [
+          "Dynamic Programming",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Knapsack"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Minimize number with exactly n divisors via DP over prime exponents"
+        ],
+        "editorial_summary_md": "dp[divisors]=min number; try multiply next primes with exponents."
+      }
+    ]
+  },
+  {
+    "id": "cf-864e",
+    "title": "Fire",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/864/E",
+    "difficulty_rating": 1800,
+    "statement_md": "Items have rescue time t_i, burn deadline d_i, value p_i. Maximize value of items saved before each burns; recover the set.",
+    "input_format_md": "n then n triples t d p.",
+    "output_format_md": "Max value, count, indices.",
+    "constraints_text": "$n \\le 100$, $d_i \\le 2000$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-864e-a1",
+        "problem_id": "cf-864e",
+        "approach_name": "Deadline knapsack",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Knapsack"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "0/1 knapsack with deadline: items sorted by burn time; DP over time"
+        ],
+        "editorial_summary_md": "Sort by d_i; dp[t]=max value rescued by time t without exceeding deadlines."
+      }
+    ]
+  },
+  {
+    "id": "spoj-easydij",
+    "title": "Easy Dijkstra Problem",
+    "source": "SPOJ",
+    "url": "https://www.spoj.com/problems/EZDIJKST/",
+    "difficulty_rating": 1400,
+    "statement_md": "Directed weighted graph (nonnegative). Find shortest path from A to B or report no path.",
+    "input_format_md": "Tests with V K edges, then A B.",
+    "output_format_md": "Distance or `NO`.",
+    "constraints_text": "Typical SPOJ limits",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "spoj-easydij-a1",
+        "problem_id": "spoj-easydij",
+        "approach_name": "SSSP",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bellman-Ford",
+          "Dijkstra"
+        ],
+        "data_structures": [
+          "Priority Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Classic single-source shortest paths; BF works; Dijkstra preferred for nonnegative"
+        ],
+        "editorial_summary_md": "Run Dijkstra (or Bellman-Ford) from A to B."
+      }
+    ]
+  },
+  {
+    "id": "uva-558-b",
+    "title": "Wormholes (SPFA practice)",
+    "source": "UVA",
+    "url": "https://onlinejudge.org/external/5/558.pdf",
+    "difficulty_rating": 1600,
+    "statement_md": "Detect whether a system of wormholes admits a negative cycle using SPFA visit counting.",
+    "input_format_md": "Multiple tests with n m wormholes.",
+    "output_format_md": "`possible` / `not possible`.",
+    "constraints_text": "$n \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "uva-558-b-a1",
+        "problem_id": "uva-558-b",
+        "approach_name": "SPFA cycle",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bellman-Ford"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Same wormhole setting; practice SPFA / BF cycle detection variants"
+        ],
+        "editorial_summary_md": "Queue-based Bellman-Ford with visit counters detects negative cycles."
+      }
+    ]
+  },
+  {
+    "id": "cf-786b",
+    "title": "Legacy",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/786/B",
+    "difficulty_rating": 2300,
+    "statement_md": "n planets with three edge types (point→point, point→range, range→point). Shortest paths from s.",
+    "input_format_md": "n q s and q edge descriptions.",
+    "output_format_md": "Distances from s (or -1).",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-786b-a1",
+        "problem_id": "cf-786b",
+        "approach_name": "Segtree shortest paths",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Dijkstra",
+          "Bellman-Ford",
+          "Segment Tree"
+        ],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Segment-tree graph: range-to-point and point-to-range edges then Dijkstra"
+        ],
+        "editorial_summary_md": "Build 4n nodes for in/out segment trees; Dijkstra from source."
+      }
+    ]
+  },
+  {
+    "id": "cf-715b",
+    "title": "Complete The Graph",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/715/B",
+    "difficulty_rating": 2300,
+    "statement_md": "Some edges have weight 0 (erasable). Assign positive weights so the shortest path from s to t equals exactly L.",
+    "input_format_md": "n m L s t and edges (0 = erasable).",
+    "output_format_md": "YES with weights, or NO.",
+    "constraints_text": "$n \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-715b-a1",
+        "problem_id": "cf-715b",
+        "approach_name": "Erase edges carefully",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Dijkstra",
+          "Bellman-Ford"
+        ],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Assign weights to zero-edges so shortest s–t equals L via two Dijkstras"
+        ],
+        "editorial_summary_md": "Binary-search / constructive assignment of erased edge weights."
+      }
+    ]
+  },
+  {
+    "id": "cf-1494d",
+    "title": "Dogeforces",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1494/D",
+    "difficulty_rating": 2400,
+    "statement_md": "Given n×n matrix of LCA salaries of employees, restore a company tree with distinct salaries.",
+    "input_format_md": "n and the matrix.",
+    "output_format_md": "Tree description with salaries.",
+    "constraints_text": "$n \\le 500$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-1494d-a1",
+        "problem_id": "cf-1494d",
+        "approach_name": "Matrix divide",
+        "paradigms": [
+          "Divide & Conquer",
+          "Brute Force"
+        ],
+        "algorithms": [
+          "Meet in the Middle",
+          "DFS"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Reconstruct hierarchy tree from LCA-salary matrix via divide on max"
+        ],
+        "editorial_summary_md": "Recursively split employees by maximum pairwise LCA salary blocks."
+      }
+    ]
+  },
+  {
+    "id": "cf-1517e",
+    "title": "Rubik's Cube Coloring",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1517/E",
+    "difficulty_rating": 2300,
+    "statement_md": "Count ways to assign ± to array elements under median/sum constraints (see statement).",
+    "input_format_md": "Tests with n and array a.",
+    "output_format_md": "Answer modulo 998244353.",
+    "constraints_text": "$\\sum n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1517e-a1",
+        "problem_id": "cf-1517e",
+        "approach_name": "Sign patterns",
+        "paradigms": [
+          "Divide & Conquer",
+          "Two Pointers"
+        ],
+        "algorithms": [
+          "Meet in the Middle",
+          "Binary Search",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Casework on pattern of +/− assignment; two pointers / MITM on prefix sums"
+        ],
+        "editorial_summary_md": "Count assignments of ± with p1=− and constraints via prefix techniques."
+      }
+    ]
+  },
+  {
+    "id": "atc-abc212-f",
+    "title": "Greedy Takahashi",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/abc212/tasks/abc212_f",
+    "difficulty_rating": 2100,
+    "statement_md": "Buses between cities with departure/arrival times. Answer queries: starting at city A at time S, where are you after traveling until time T?",
+    "input_format_md": "N M Q, buses, then queries.",
+    "output_format_md": "City per query.",
+    "constraints_text": "$N,M,Q \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "atc-abc212-f-a1",
+        "problem_id": "atc-abc212-f",
+        "approach_name": "Bus doubling",
+        "paradigms": [
+          "Graph Algorithms",
+          "Divide & Conquer"
+        ],
+        "algorithms": [
+          "Meet in the Middle",
+          "Binary Search",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Ordered Set"
+        ],
+        "key_insights": [
+          "Buses as edges in time; binary lifting / doubling on next bus"
+        ],
+        "editorial_summary_md": "Precompute 2^k jumps on the next usable bus from each bus end."
+      }
+    ]
+  },
+  {
+    "id": "cf-1209f",
+    "title": "Koala and Notebook",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1209/F",
+    "difficulty_rating": 2400,
+    "statement_md": "Undirected graph with edges labeled by their index digits. Among paths from 1 to each v, minimize the decimal number formed by concatenating edge labels; print that number mod 1e9+7.",
+    "input_format_md": "n m and m edges.",
+    "output_format_md": "n−1 lines for vertices 2..n.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N + M)",
+    "approaches": [
+      {
+        "id": "cf-1209f-a1",
+        "problem_id": "cf-1209f",
+        "approach_name": "Digit BFS",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "BFS",
+          "Dijkstra"
+        ],
+        "data_structures": [
+          "Queue",
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Digit-expand edges into a graph on digits; BFS from 0 for lexicographic shortest"
+        ],
+        "editorial_summary_md": "Split multi-digit edge weights into unit digit nodes; BFS layers by digit value."
+      }
+    ]
+  },
+  {
+    "id": "cf-1794c",
+    "title": "Hard Problem",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1794/C",
+    "difficulty_rating": 1400,
+    "statement_md": "For each prefix of the array, find the maximum number of problems you can choose so that the k-th easiest has rating ≥k.",
+    "input_format_md": "Tests with n and array a.",
+    "output_format_md": "n integers — answers for each prefix.",
+    "constraints_text": "$\\sum n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1794c-a1",
+        "problem_id": "cf-1794c",
+        "approach_name": "Deque window",
+        "paradigms": [
+          "Greedy",
+          "Two Pointers"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [
+          "Deque"
+        ],
+        "key_insights": [
+          "Maintain a deque of the current prefix; shrink while a_i < length"
+        ],
+        "editorial_summary_md": "For each prefix find maximum k such that you can keep k problems with a≥1..k after sorting."
+      }
+    ]
+  },
+  {
+    "id": "cf-217a",
+    "title": "Ice Skating",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/217/A",
+    "difficulty_rating": 1200,
+    "statement_md": "Snow drifts at integer points. You can skate between drifts sharing x or y. How many new drifts to connect all?",
+    "input_format_md": "n and n points.",
+    "output_format_md": "Minimum new drifts.",
+    "constraints_text": "$n \\le 100$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-217a-a1",
+        "problem_id": "cf-217a",
+        "approach_name": "Grid components",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Floyd-Warshall",
+          "DFS",
+          "DSU"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "Snow drifts share row/col; components; answer = components−1"
+        ],
+        "editorial_summary_md": "Connect drifts on same row/column; need components−1 new drifts."
+      }
+    ]
+  },
+  {
+    "id": "cf-1257d",
+    "title": "Yet Another Monster Killing Problem",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1257/D",
+    "difficulty_rating": 1600,
+    "statement_md": "Monsters with powers; heroes with (power, endurance). Minimum days to kill all monsters in order (each day one hero fights a prefix).",
+    "input_format_md": "Tests with monsters and heroes.",
+    "output_format_md": "Minimum days or -1.",
+    "constraints_text": "$\\sum n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1257d-a1",
+        "problem_id": "cf-1257d",
+        "approach_name": "Hero coverage",
+        "paradigms": [
+          "Binary Search on Answer",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Ternary Search",
+          "Binary Search",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Sparse Table"
+        ],
+        "key_insights": [
+          "For each endurance, max power; greedy cover monsters with best hero"
+        ],
+        "editorial_summary_md": "Sparse table / suffix max of hero power by endurance; greedy days."
+      }
+    ]
+  },
+  {
+    "id": "cf-1282c",
+    "title": "Petya and Exam",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1282/C",
+    "difficulty_rating": 1700,
+    "statement_md": "n problems easy/hard with times a,b and mandatory times t_i. Maximize problems solved before exam at time T.",
+    "input_format_md": "Tests with n T a b and problems.",
+    "output_format_md": "Max problems.",
+    "constraints_text": "$\\sum n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1282c-a1",
+        "problem_id": "cf-1282c",
+        "approach_name": "Exam sweep",
+        "paradigms": [
+          "Greedy",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Ternary Search",
+          "Sorting"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Sort problems by time; decide how many hard/easy before exam"
+        ],
+        "editorial_summary_md": "Try finishing just before each problem deadline; greedy fill remaining time."
+      }
+    ]
+  },
+  {
+    "id": "cf-1359d",
+    "title": "Yet Another Yet Another Task",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1359/D",
+    "difficulty_rating": 1900,
+    "statement_md": "Choose a subarray; score = sum − maximum. Maximize the score.",
+    "input_format_md": "n and array a (−30..30).",
+    "output_format_md": "Maximum score.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1359d-a1",
+        "problem_id": "cf-1359d",
+        "approach_name": "Kadane without max",
+        "paradigms": [
+          "Dynamic Programming",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Ternary Search",
+          "Prefix Sums"
+        ],
+        "data_structures": [
+          "Monotonic Stack"
+        ],
+        "key_insights": [
+          "Kadane-like with maximum element removed from the subarray score"
+        ],
+        "editorial_summary_md": "For each possible max value, run constrained Kadane on elements ≤ that max."
+      }
+    ]
+  },
+  {
+    "id": "cf-1632d",
+    "title": "New Year Concert",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1632/D",
+    "difficulty_rating": 2100,
+    "statement_md": "Build array left to right; whenever a subarray has GCD equal to its length, change the current element. Count changes.",
+    "input_format_md": "n and array a.",
+    "output_format_md": "n integers — changes after placing each prefix.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1632d-a1",
+        "problem_id": "cf-1632d",
+        "approach_name": "GCD segments",
+        "paradigms": [
+          "Math / Number Theory",
+          "Greedy"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [
+          "Sparse Table",
+          "Monotonic Stack"
+        ],
+        "key_insights": [
+          "Sparse table GCDs; two pointers segments where gcd decreases"
+        ],
+        "editorial_summary_md": "Maintain active segments of equal GCD; count when gcd equals length."
+      }
+    ]
+  },
+  {
+    "id": "cf-1471e",
+    "title": "Finding the Array",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1471/E",
+    "difficulty_rating": 2200,
+    "statement_md": "Interactive: hidden array is a cyclic shift of a unimodal permutation. Find the position of value 1 with limited queries.",
+    "input_format_md": "n then interactive `? i` queries.",
+    "output_format_md": "`! i` when found.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(log N)",
+    "approaches": [
+      {
+        "id": "cf-1471e-a1",
+        "problem_id": "cf-1471e",
+        "approach_name": "Interactive peak",
+        "paradigms": [
+          "Interactive",
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Binary Search"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Interactive rotating array; find 1 then binary search neighbors"
+        ],
+        "editorial_summary_md": "Find position of 1 with sparse queries then locate k via comparisons."
+      }
+    ]
+  },
+  {
+    "id": "cf-1487e",
+    "title": "Cheap Dinner",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1487/E",
+    "difficulty_rating": 2000,
+    "statement_md": "Four dish types with prices and forbidden consecutive pairs. Pick one of each minimizing total price (or -1).",
+    "input_format_md": "Sizes, prices, then forbidden pair lists.",
+    "output_format_md": "Minimum cost or -1.",
+    "constraints_text": "$n_i \\le 1.5\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1487e-a1",
+        "problem_id": "cf-1487e",
+        "approach_name": "Multi-layer cheapest",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [
+          "Dijkstra",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Priority Queue",
+          "Ordered Set"
+        ],
+        "key_insights": [
+          "Cheapest combination of 4 courses avoiding forbidden pairs via sorted sets"
+        ],
+        "editorial_summary_md": "Sort each meal layer; skip forbidden edges with sets / priority queue."
+      }
+    ]
+  },
+  {
+    "id": "cf-1625c",
+    "title": "Road Optimization",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1625/C",
+    "difficulty_rating": 1800,
+    "statement_md": "Road of length L with speed-limit signs. Remove ≤k signs to minimize travel time.",
+    "input_format_md": "n L k, positions, speed limits.",
+    "output_format_md": "Minimum time.",
+    "constraints_text": "$n \\le 500$",
+    "sample_io": [],
+    "target_complexity": "O(N²)",
+    "approaches": [
+      {
+        "id": "cf-1625c-a1",
+        "problem_id": "cf-1625c",
+        "approach_name": "Remove signs DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Knapsack"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "DP: remove ≤k signs; cost = length × speed of last kept sign"
+        ],
+        "editorial_summary_md": "dp[i][used]=min time to reach sign i having removed `used` prior signs."
+      }
+    ]
+  },
+  {
+    "id": "cf-1436e",
+    "title": "Two Arrays",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1436/E",
+    "difficulty_rating": 2400,
+    "statement_md": "Compute the MEX of the set of MEXes of all subarrays of a.",
+    "input_format_md": "n and array a.",
+    "output_format_md": "That MEX.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1436e-a1",
+        "problem_id": "cf-1436e",
+        "approach_name": "Subarray MEX",
+        "paradigms": [
+          "Ad-Hoc"
+        ],
+        "algorithms": [
+          "Segment Tree"
+        ],
+        "data_structures": [
+          "Monotonic Stack",
+          "Fenwick Tree"
+        ],
+        "key_insights": [
+          "MEX of all subarrays; fenwick tracks last positions per value"
+        ],
+        "editorial_summary_md": "Find smallest positive integer that is not a MEX of any subarray."
+      }
+    ]
+  },
+  {
+    "id": "cf-1092f",
+    "title": "Tree with Maximum Cost",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1092/F",
+    "difficulty_rating": 1900,
+    "statement_md": "Tree with vertex weights a_i. Choose a root maximizing sum over v of a_v·dist(root,v).",
+    "input_format_md": "n, array a, edges.",
+    "output_format_md": "Maximum cost.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1092f-a1",
+        "problem_id": "cf-1092f",
+        "approach_name": "Reroot tree DP",
+        "paradigms": [
+          "Graph Algorithms",
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "DFS",
+          "MST"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Rerooting: sum of dist×value; transfer when moving root"
+        ],
+        "editorial_summary_md": "Compute for root 1 then reroot to maximize Σ a_v·dist(root,v)."
+      }
+    ]
+  },
+  {
+    "id": "cf-1006e",
+    "title": "Military Problem",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1006/E",
+    "difficulty_rating": 1600,
+    "statement_md": "Rooted tree. For queries (u,k) print the k-th vertex in DFS order of u’s subtree (or -1).",
+    "input_format_md": "n q, parents, queries.",
+    "output_format_md": "Answer per query.",
+    "constraints_text": "$n,q \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1006e-a1",
+        "problem_id": "cf-1006e",
+        "approach_name": "DFS order queries",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "DFS",
+          "Topological Sort",
+          "LCA"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "DFS order + subtree sizes answer k-th vertex in DFS listing of subtree"
+        ],
+        "editorial_summary_md": "tin/subtree size; k-th in subtree is order[tin+k−1]."
+      }
+    ]
+  },
+  {
+    "id": "cf-1363e",
+    "title": "Tree Shuffling",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1363/E",
+    "difficulty_rating": 2000,
+    "statement_md": "Tree rooted at 1; each node has cost a_i and bits b_i,c_i. Flip bits paying a_i (affects subtree). Match b to c minimizing cost.",
+    "input_format_md": "n, triples a b c, edges.",
+    "output_format_md": "Minimum cost.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1363e-a1",
+        "problem_id": "cf-1363e",
+        "approach_name": "Tree flip greedy",
+        "paradigms": [
+          "Graph Algorithms",
+          "Greedy"
+        ],
+        "algorithms": [
+          "DFS",
+          "Topological Sort"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Push needed flips down the tree; pay at cheapest ancestor"
+        ],
+        "editorial_summary_md": "DFS returns excess 0/1 needing flip; resolve at minimum a_i on path."
+      }
+    ]
+  },
+  {
+    "id": "cf-487e",
+    "title": "Tourists",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/487/E",
+    "difficulty_rating": 2400,
+    "statement_md": "Undirected 2-edge-connected components form a cactus. Support vertex value updates and path minimum queries.",
+    "input_format_md": "n m q, values, edges, operations.",
+    "output_format_md": "Answers to queries.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-487e-a1",
+        "problem_id": "cf-487e",
+        "approach_name": "Cactus path min",
+        "paradigms": [
+          "Graph Algorithms",
+          "Flows / Matching"
+        ],
+        "algorithms": [
+          "DFS",
+          "Segment Tree"
+        ],
+        "data_structures": [
+          "Adjacency List",
+          "Stack"
+        ],
+        "key_insights": [
+          "Build bridge-block tree (cactus); HLD/segtree for path minima with square vertices"
+        ],
+        "editorial_summary_md": "Round-square tree; maintain multiset of values on squares for path queries/updates."
+      }
+    ]
+  },
+  {
+    "id": "cf-342e",
+    "title": "Xenia and Tree",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/342/E",
+    "difficulty_rating": 2400,
+    "statement_md": "Tree initially with node 1 red. Support paint-a-node-red and query distance to the nearest red.",
+    "input_format_md": "n m, edges, then m operations.",
+    "output_format_md": "Answers to distance queries.",
+    "constraints_text": "$n,m \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-342e-a1",
+        "problem_id": "cf-342e",
+        "approach_name": "Centroid coloring",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "LCA",
+          "DFS",
+          "BFS"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Centroid decomposition: maintain closest red in each centroid region"
+        ],
+        "editorial_summary_md": "Update paints a node red; query min dist to a red via centroid ancestors."
+      }
+    ]
+  },
+  {
+    "id": "cf-208e",
+    "title": "Blood Cousins",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/208/E",
+    "difficulty_rating": 1900,
+    "statement_md": "Forest of rooted trees. For each query (v,p) count vertices that share the p-th ancestor with v (cousins).",
+    "input_format_md": "n, parents, q queries.",
+    "output_format_md": "Answer per query.",
+    "constraints_text": "$n,q \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-208e-a1",
+        "problem_id": "cf-208e",
+        "approach_name": "K-th ancestor queries",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "LCA",
+          "DFS"
+        ],
+        "data_structures": [
+          "Adjacency List",
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Binary lift to k-th ancestor; count vertices with same depth in subtree via DFS times"
+        ],
+        "editorial_summary_md": "For query v p find p-th ancestor and count depth peers in its subtree minus 1."
+      }
+    ]
+  },
+  {
+    "id": "atc-abc079-d",
+    "title": "Wall",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/abc079/tasks/abc079_d",
+    "difficulty_rating": 1400,
+    "statement_md": "A grid of digits. You may change digit i to j for a given cost (then further changes allowed). Minimize total cost to make every non-−1 cell equal to 1.",
+    "input_format_md": "H W, 10×10 cost matrix, then the grid.",
+    "output_format_md": "Minimum total cost.",
+    "constraints_text": "$H,W \\le 200$",
+    "sample_io": [],
+    "target_complexity": "O(1)",
+    "approaches": [
+      {
+        "id": "atc-abc079-d-a1",
+        "problem_id": "atc-abc079-d",
+        "approach_name": "Digit FW",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Floyd-Warshall"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "FW on digit-change costs; sum min cost to turn each wall cell into 1"
+        ],
+        "editorial_summary_md": "All-pairs min cost among digits 0–9; apply to the grid."
+      }
+    ]
+  },
+  {
+    "id": "atc-abc012-d",
+    "title": "Bus Stop",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/abc012/tasks/abc012_4",
+    "difficulty_rating": 1400,
+    "statement_md": "Undirected weighted graph of bus stops. Choose a stop minimizing the maximum travel time to any other stop.",
+    "input_format_md": "N M and M edges.",
+    "output_format_md": "The minimum possible maximum time.",
+    "constraints_text": "$N \\le 300$",
+    "sample_io": [],
+    "target_complexity": "O(N³)",
+    "approaches": [
+      {
+        "id": "atc-abc012-d-a1",
+        "problem_id": "atc-abc012-d",
+        "approach_name": "Minimax FW",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Floyd-Warshall"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "FW all-pairs; choose bus stop minimizing the maximum distance to any other"
+        ],
+        "editorial_summary_md": "Compute APSP; pick vertex with minimum eccentricity."
+      }
+    ]
+  },
+  {
+    "id": "atc-abc70-d",
+    "title": "Transit Tree Path",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/abc070/tasks/abc070_d",
+    "difficulty_rating": 1400,
+    "statement_md": "Weighted tree. Queries ask shortest path a→b that must pass through vertex K.",
+    "input_format_md": "N, edges, K, Q, then queries.",
+    "output_format_md": "Distance per query.",
+    "constraints_text": "$N \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "atc-abc70-d-a1",
+        "problem_id": "atc-abc70-d",
+        "approach_name": "Tree via hub",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Floyd-Warshall",
+          "DFS",
+          "Dijkstra"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Tree: fix hub K; answer dist(a,K)+dist(b,K) via one DFS"
+        ],
+        "editorial_summary_md": "DFS/BFS distances from K; each query is sum of two distances."
+      }
+    ]
+  },
+  {
+    "id": "uva-10496",
+    "title": "Collecting Beepers",
+    "source": "UVA",
+    "url": "https://onlinejudge.org/external/104/10496.pdf",
+    "difficulty_rating": 1600,
+    "statement_md": "Robot on a grid must visit all beepers and return to start. Minimize Manhattan travel.",
+    "input_format_md": "Scenarios with size, start, beepers.",
+    "output_format_md": "Minimum length per scenario.",
+    "constraints_text": "≤10 beepers",
+    "sample_io": [],
+    "target_complexity": "O(2^N)",
+    "approaches": [
+      {
+        "id": "uva-10496-a1",
+        "problem_id": "uva-10496",
+        "approach_name": "TSP bit DP",
+        "paradigms": [
+          "Dynamic Programming",
+          "Bitmask / Bit DP"
+        ],
+        "algorithms": [
+          "Floyd-Warshall"
+        ],
+        "data_structures": [
+          "2D Array"
+        ],
+        "key_insights": [
+          "FW/manhattan distances then TSP bit DP on beepers"
+        ],
+        "editorial_summary_md": "Collect all beepers and return; classic Held-Karp on ≤10 points."
+      }
+    ]
+  },
+  {
+    "id": "cf-986c",
+    "title": "AND Graph",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/986/C",
+    "difficulty_rating": 2400,
+    "statement_md": "Vertices are given n-bit integers. Edge if a&b=0. Count connected components.",
+    "input_format_md": "n m and m distinct integers.",
+    "output_format_md": "Number of components.",
+    "constraints_text": "$n \\le 22$",
+    "sample_io": [],
+    "target_complexity": "O(2^N)",
+    "approaches": [
+      {
+        "id": "cf-986c-a1",
+        "problem_id": "cf-986c",
+        "approach_name": "Bitmask components",
+        "paradigms": [
+          "Graph Algorithms",
+          "Bitmask / Bit DP"
+        ],
+        "algorithms": [
+          "DFS",
+          "BFS",
+          "Meet in the Middle"
+        ],
+        "data_structures": [
+          "Queue"
+        ],
+        "key_insights": [
+          "Complement graph on bitmasks; DFS components of given numbers and reachable complements"
+        ],
+        "editorial_summary_md": "Traverse using subset edges of XOR complement; count components."
+      }
+    ]
+  },
+  {
+    "id": "cf-1157e",
+    "title": "Minimum Array",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1157/E",
+    "difficulty_rating": 1600,
+    "statement_md": "Permute b to minimize lexicographic (a_i+b_p_i) mod n.",
+    "input_format_md": "n, a, b.",
+    "output_format_md": "Optimal c.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1157e-a1",
+        "problem_id": "cf-1157e",
+        "approach_name": "Multiset complements",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [
+          "LIS",
+          "Sorting"
+        ],
+        "data_structures": [
+          "Ordered Set"
+        ],
+        "key_insights": [
+          "Ordered multiset of b; pick best (a_i+b)%n partner"
+        ],
+        "editorial_summary_md": "For each a_i take lower_bound of (n-a_i) in remaining b values."
+      }
+    ]
+  },
+  {
+    "id": "cf-572b",
+    "title": "Order Book",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/572/B",
+    "difficulty_rating": 1300,
+    "statement_md": "Process buy/sell orders; print the s best sell and buy price levels with aggregated volumes.",
+    "input_format_md": "n s and n orders.",
+    "output_format_md": "Sell then buy levels.",
+    "constraints_text": "$n \\le 1000$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-572b-a1",
+        "problem_id": "cf-572b",
+        "approach_name": "Order book",
+        "paradigms": [
+          "Greedy"
+        ],
+        "algorithms": [
+          "Sorting",
+          "LIS"
+        ],
+        "data_structures": [
+          "Ordered Set",
+          "Hash Map"
+        ],
+        "key_insights": [
+          "Aggregate orders by price; take best s buy/sell levels"
+        ],
+        "editorial_summary_md": "Map prices to volumes; print top s sell and buy levels."
+      }
+    ]
+  },
+  {
+    "id": "cf-1486d",
+    "title": "Max Median",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1486/D",
+    "difficulty_rating": 2100,
+    "statement_md": "Maximize the median of a subarray of length at least k.",
+    "input_format_md": "n k and array.",
+    "output_format_md": "Maximum median.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1486d-a1",
+        "problem_id": "cf-1486d",
+        "approach_name": "BSA median",
+        "paradigms": [
+          "Binary Search on Answer"
+        ],
+        "algorithms": [
+          "Binary Search",
+          "Prefix Sums",
+          "LIS"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "BSA on median; ±1 prefix check for length ≥k"
+        ],
+        "editorial_summary_md": "Binary search median value; verify with prefix minima."
+      }
+    ]
+  },
+  {
+    "id": "cf-727c-b",
+    "title": "Guess the Array (practice)",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/727/C",
+    "difficulty_rating": 1400,
+    "statement_md": "Interactive recovery of an array from pairwise sums.",
+    "input_format_md": "n then `?` queries.",
+    "output_format_md": "`!` array.",
+    "constraints_text": "$n \\le 5000$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-727c-b-a1",
+        "problem_id": "cf-727c-b",
+        "approach_name": "Sum queries",
+        "paradigms": [
+          "Interactive"
+        ],
+        "algorithms": [],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Pair-sum queries recover the hidden array"
+        ],
+        "editorial_summary_md": "Three equations for first three elements; then query with index 1."
+      }
+    ]
+  },
+  {
+    "id": "lightoj-1074",
+    "title": "Extended Traffic",
+    "source": "LightOJ",
+    "url": "https://lightoj.com/problem/extended-traffic",
+    "difficulty_rating": 1700,
+    "statement_md": "Cities with busyness; edge cost (b_v−b_u)³. Answer shortest path queries from city 1, printing `?` if unreachable or −∞.",
+    "input_format_md": "T cases with n, busyness, edges, queries.",
+    "output_format_md": "Case headers and answers.",
+    "constraints_text": "$n \\le 200$",
+    "sample_io": [],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "lightoj-1074-a1",
+        "problem_id": "lightoj-1074",
+        "approach_name": "BF traffic",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bellman-Ford"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Cubic busyness differences as edge weights; BF + neg-cycle flood"
+        ],
+        "editorial_summary_md": "Same pattern as UVA Traffic: mark nodes reachable from negative cycles."
+      }
+    ]
+  },
+  {
+    "id": "spoj-highways",
+    "title": "Highways",
+    "source": "SPOJ",
+    "url": "https://www.spoj.com/problems/HIGHWAYS/",
+    "difficulty_rating": 1500,
+    "statement_md": "Find shortest route between two cities in an undirected weighted graph.",
+    "input_format_md": "Tests with n m start end and edges.",
+    "output_format_md": "Distance or `NONE`.",
+    "constraints_text": "SPOJ typical",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "spoj-highways-a1",
+        "problem_id": "spoj-highways",
+        "approach_name": "SSSP highways",
+        "paradigms": [
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "Bellman-Ford",
+          "Dijkstra"
+        ],
+        "data_structures": [
+          "Priority Queue"
+        ],
+        "key_insights": [
+          "Shortest path between two cities on undirected roads"
+        ],
+        "editorial_summary_md": "Dijkstra from source; BF also correct on nonnegative weights."
+      }
+    ]
+  },
+  {
+    "id": "cf-372c",
+    "title": "Watching Fireworks is Fun",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/372/C",
+    "difficulty_rating": 2100,
+    "statement_md": "Fireworks at times t_i positions a_i; move ≤d per unit time. Maximize sum of happiness values.",
+    "input_format_md": "n m d and m fireworks.",
+    "output_format_md": "Maximum happiness.",
+    "constraints_text": "$n \\le 150000$, $m \\le 300$",
+    "sample_io": [],
+    "target_complexity": "O(N · M)",
+    "approaches": [
+      {
+        "id": "cf-372c-a1",
+        "problem_id": "cf-372c",
+        "approach_name": "Deque DP",
+        "paradigms": [
+          "Dynamic Programming"
+        ],
+        "algorithms": [
+          "Ternary Search"
+        ],
+        "data_structures": [
+          "Deque"
+        ],
+        "key_insights": [
+          "DP with sliding window maximum over reachable positions between fireworks"
+        ],
+        "editorial_summary_md": "For each firework time, update happiness with deque of prior positions."
+      }
+    ]
+  },
+  {
+    "id": "cf-626e",
+    "title": "Group of Students",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/626/E",
+    "difficulty_rating": 2400,
+    "statement_md": "Choose an odd-sized multiset from the array maximizing (mean − median). Print the subset.",
+    "input_format_md": "n and array a.",
+    "output_format_md": "Size then elements.",
+    "constraints_text": "$n \\le 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-626e-a1",
+        "problem_id": "cf-626e",
+        "approach_name": "Ternary on take size",
+        "paradigms": [
+          "Binary Search on Answer",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "Ternary Search",
+          "Sorting",
+          "Prefix Sums"
+        ],
+        "data_structures": [],
+        "key_insights": [
+          "Sort; for each median ternary/binary search how many to take from ends to max mean−median"
+        ],
+        "editorial_summary_md": "For fixed median index, the optimal number of paired extremes is unimodal."
+      }
+    ]
+  },
+  {
+    "id": "atc-abc184-f2",
+    "title": "Programming Contest (MITM)",
+    "source": "AtCoder",
+    "url": "https://atcoder.jp/contests/abc184/tasks/abc184_f",
+    "difficulty_rating": 1800,
+    "statement_md": "n≤40 problem times; maximize total time without exceeding T.",
+    "input_format_md": "n T and times.",
+    "output_format_md": "Maximum sum ≤T.",
+    "constraints_text": "$n \\le 40$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "atc-abc184-f2-a1",
+        "problem_id": "atc-abc184-f2",
+        "approach_name": "MITM knapsack",
+        "paradigms": [
+          "Divide & Conquer",
+          "Brute Force"
+        ],
+        "algorithms": [
+          "Meet in the Middle",
+          "Sorting",
+          "Binary Search"
+        ],
+        "data_structures": [
+          "1D Array"
+        ],
+        "key_insights": [
+          "Half subset sums; upper_bound for remaining capacity"
+        ],
+        "editorial_summary_md": "Split n≤40; maximize sum ≤T."
+      }
+    ]
+  },
+  {
+    "id": "cf-1101d",
+    "title": "GCD Counting",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1101/D",
+    "difficulty_rating": 2100,
+    "statement_md": "Tree with values a_v. Longest simple path where gcd of values on the path is >1.",
+    "input_format_md": "n, array a, edges.",
+    "output_format_md": "Maximum length (edges) or 0.",
+    "constraints_text": "$n \\le 2\\cdot 10^5$",
+    "sample_io": [],
+    "target_complexity": "O(N log N)",
+    "approaches": [
+      {
+        "id": "cf-1101d-a1",
+        "problem_id": "cf-1101d",
+        "approach_name": "Prime tree DP",
+        "paradigms": [
+          "Graph Algorithms",
+          "Math / Number Theory"
+        ],
+        "algorithms": [
+          "DFS",
+          "Sieve"
+        ],
+        "data_structures": [
+          "Adjacency List"
+        ],
+        "key_insights": [
+          "Tree DP per prime factor: longest path where gcd of vertex values >1"
+        ],
+        "editorial_summary_md": "For each prime, consider subgraph of multiples; tree diameter style DP."
+      }
+    ]
+  },
+  {
+    "id": "cf-1534e",
+    "title": "Lost Array",
+    "source": "Codeforces",
+    "url": "https://codeforces.com/problemset/problem/1534/E",
+    "difficulty_rating": 2200,
+    "statement_md": "Interactive: hidden array. Query any k distinct indices; receive XOR of those values. Find the whole array with limited queries.",
+    "input_format_md": "n k then interactive queries.",
+    "output_format_md": "`!` and the array.",
+    "constraints_text": "$n \\le 500$",
+    "sample_io": [],
+    "target_complexity": "O(N)",
+    "approaches": [
+      {
+        "id": "cf-1534e-a1",
+        "problem_id": "cf-1534e",
+        "approach_name": "Interactive XOR BFS",
+        "paradigms": [
+          "Interactive",
+          "Graph Algorithms"
+        ],
+        "algorithms": [
+          "BFS"
+        ],
+        "data_structures": [
+          "Queue"
+        ],
+        "key_insights": [
+          "Interactive: query k indices; model XOR of answers; shortest path in state graph"
+        ],
+        "editorial_summary_md": "BFS on number of known elements; reconstruct query sequence."
+      }
+    ]
   }
 ]
