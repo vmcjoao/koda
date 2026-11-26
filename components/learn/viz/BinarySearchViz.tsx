@@ -21,11 +21,25 @@ export function BinarySearchViz({ demo, step }: { demo: ArrayDemo; step: number 
     return frames;
   }, [demo.values, target]);
 
-  const frame = snapshot[Math.min(step, snapshot.length - 1)];
+  const frame = snapshot[Math.min(step, snapshot.length - 1)]!;
+  const midVal = frame.mid >= 0 ? demo.values[frame.mid] : undefined;
+  let action = 'start · half-open [lo, hi)';
+  if (frame.mid < 0 && step === 0) action = 'start · half-open [lo, hi)';
+  else if (frame.mid < 0 || (frame.lo >= frame.hi && step > 0)) {
+    action =
+      frame.lo < demo.values.length && demo.values[frame.lo] === target
+        ? `found at lo=${frame.lo}`
+        : `done · insert/bound at lo=${frame.lo}`;
+  } else if (midVal != null && midVal < target) {
+    action = `a[mid]=${midVal} < ${target} → lo = mid+1`;
+  } else if (midVal != null) {
+    action = `a[mid]=${midVal} ≥ ${target} → hi = mid`;
+  }
 
   return (
     <View style={styles.wrap}>
       <Text style={styles.target}>target = {target}</Text>
+      <Text style={styles.action}>{action}</Text>
       <View style={styles.row}>
         {demo.values.map((v, i) => {
           const inRange = i >= frame.lo && i < frame.hi;
@@ -56,6 +70,12 @@ export function BinarySearchViz({ demo, step }: { demo: ArrayDemo; step: number 
 const styles = StyleSheet.create({
   wrap: { gap: spacing.sm, alignItems: 'center', width: '100%' },
   target: { color: colors.xp, fontFamily: 'SpaceMono', fontWeight: '700' },
+  action: {
+    color: colors.textMuted,
+    fontFamily: 'SpaceMono',
+    fontSize: 12,
+    alignSelf: 'flex-start',
+  },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, justifyContent: 'center' },
   cell: {
     width: 36,
