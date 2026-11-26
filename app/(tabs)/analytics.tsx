@@ -1,6 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
+import { AnimatedNumber } from '@/components/game/AnimatedNumber';
+import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
@@ -87,28 +89,63 @@ export default function AnalyticsScreen() {
       )
     : 0;
 
+  const formLine =
+    attempts.length === 0
+      ? 'No rounds yet — clear a run to start the board.'
+      : avgScore >= 75
+        ? 'Form is sharp — keep pressure on the blind spots.'
+        : avgScore >= 55
+          ? 'Form is steady — push Boss slots for growth.'
+          : 'Form is soft — Review deck will tighten reads.';
+
   return (
     <Screen scroll>
-      <Text style={styles.title}>Analytics</Text>
-      <Text style={styles.sub}>
-        Band {profile?.rating_band ?? 1200} · signals that steer Daily Set & Review.
-      </Text>
+      <View style={styles.hero}>
+        <Text style={styles.kicker}>PERFORMANCE</Text>
+        <Text style={styles.title}>Stats</Text>
+        <Text style={styles.sub}>{formLine}</Text>
+      </View>
+
+      <View style={styles.bandPlate}>
+        <Text style={styles.bandLabel}>Rating band</Text>
+        <AnimatedNumber
+          value={profile?.rating_band ?? 1200}
+          style={styles.bandValue}
+        />
+        <Text style={styles.bandHint}>Steers Daily Set difficulty</Text>
+      </View>
 
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
-      <View style={styles.row}>
-        <Pressable style={{ flex: 1 }} onPress={() => router.push('/history')}>
-          <Metric label="Attempts ▸" value={`${attempts.length}`} />
-        </Pressable>
-        <Metric label="Avg score" value={`${avgScore}%`} />
+      <View style={styles.metricRow}>
+        <PressableScale style={styles.metric} onPress={() => router.push('/history')}>
+          <AnimatedNumber value={attempts.length} style={styles.metricValue} />
+          <Text style={styles.metricLabel}>Rounds ▸</Text>
+        </PressableScale>
+        <View style={[styles.metric, styles.metricAccent]}>
+          <AnimatedNumber value={avgScore} suffix="%" style={styles.metricValueAccent} />
+          <Text style={styles.metricLabel}>Avg score</Text>
+        </View>
       </View>
-      <View style={styles.row}>
-        <Metric label="Avg insight" value={formatTime(avgInsightSec)} />
-        <Metric label="Miss rate" value={`${missRate}%`} />
+      <View style={styles.metricRow}>
+        <View style={styles.metric}>
+          <Text style={styles.metricValue}>{formatTime(avgInsightSec)}</Text>
+          <Text style={styles.metricLabel}>Avg insight</Text>
+        </View>
+        <View style={[styles.metric, missRate >= 50 && styles.metricWarn]}>
+          <AnimatedNumber
+            value={missRate}
+            suffix="%"
+            style={missRate >= 50 ? styles.metricValueWarn : styles.metricValue}
+          />
+          <Text style={styles.metricLabel}>Miss rate</Text>
+        </View>
       </View>
 
-      <Text style={styles.section}>Activity · 12 weeks</Text>
-      <Text style={styles.sectionHint}>{activeDays} active day{activeDays === 1 ? '' : 's'} in this window</Text>
+      <Text style={styles.section}>Training calendar</Text>
+      <Text style={styles.sectionHint}>
+        {activeDays} active day{activeDays === 1 ? '' : 's'} · last 12 weeks
+      </Text>
       <View style={styles.card}>
         <HeatmapGrid days={heatmap} />
         <View style={styles.legendRow}>
@@ -120,51 +157,77 @@ export default function AnalyticsScreen() {
         </View>
       </View>
 
-      <Text style={styles.section}>Pipeline funnel</Text>
-      <Text style={styles.sectionHint}>Diagnosed → Blueprinted → Implemented (AC)</Text>
-      <View style={styles.card}>
-        <FunnelRow
-          label="Diagnosed"
-          value={`${funnel.diagnosed}`}
-          detail="hypothesis saved"
-        />
-        <FunnelRow
-          label="Blueprinted"
-          value={`${funnel.blueprinted}`}
-          detail={`${funnel.blueprintRate}% of diagnosed`}
-        />
-        <FunnelRow
-          label="Implemented"
-          value={`${funnel.implemented}`}
-          detail={`${funnel.implementRate}% of diagnosed`}
-        />
-        <View style={styles.funnelBars}>
-          <FunnelBar label="D" pct={100} color={colors.radar} />
-          <FunnelBar label="B" pct={funnel.blueprintRate} color={colors.accent} />
-          <FunnelBar label="I" pct={funnel.implementRate} color={colors.warning} />
+      <Text style={styles.section}>Pipeline</Text>
+      <Text style={styles.sectionHint}>Diagnose → Blueprint → Implement</Text>
+      <View style={styles.pipelineCard}>
+        <View style={styles.pipelineTrack}>
+          <View
+            style={[
+              styles.pipelineFill,
+              {
+                width: `${Math.max(
+                  funnel.diagnosed ? Math.round((funnel.implemented / funnel.diagnosed) * 100) : 0,
+                  4,
+                )}%`,
+              },
+            ]}
+          />
+        </View>
+        <View style={styles.pipelineNodes}>
+          <PipelineNode
+            label="Diagnosed"
+            value={funnel.diagnosed}
+            detail="rounds saved"
+            tone="radar"
+            active
+          />
+          <PipelineNode
+            label="Blueprinted"
+            value={funnel.blueprinted}
+            detail={`${funnel.blueprintRate}%`}
+            tone="accent"
+            active={funnel.blueprinted > 0}
+          />
+          <PipelineNode
+            label="Implemented"
+            value={funnel.implemented}
+            detail={`${funnel.implementRate}%`}
+            tone="warning"
+            active={funnel.implemented > 0}
+          />
         </View>
       </View>
 
       {blindSpots.length > 0 ? (
         <>
           <Text style={styles.section}>Blind spots</Text>
-          <Text style={styles.sectionHint}>Tap a topic to practice matching catalog problems</Text>
-          {blindSpots.map((t) => (
-            <Pressable
+          <Text style={styles.sectionHint}>Missions — tap to open matching catalog problems</Text>
+          {blindSpots.map((t, i) => (
+            <PressableScale
               key={t.topic}
               style={styles.blindCard}
+              haptic="medium"
               onPress={() =>
                 router.push({ pathname: '/catalog', params: { topic: t.topic } })
               }
             >
+              <View style={styles.blindTop}>
+                <Text style={styles.blindBadge}>WEAK #{i + 1}</Text>
+                <Text style={styles.blindScore}>{t.avg}%</Text>
+              </View>
               <Text style={styles.blindTitle}>{t.topic}</Text>
               <Text style={styles.blindMeta}>
-                {t.avg}% avg · {t.n} attempts · ~{formatTime(t.avgTimeSec ?? 0)} insight
+                {t.n} attempts · ~{formatTime(t.avgTimeSec ?? 0)} insight
               </Text>
               <Text style={styles.blindCta}>Practice →</Text>
-            </Pressable>
+            </PressableScale>
           ))}
         </>
+      ) : attempts.length > 0 ? (
+        <View style={styles.clearCard}>
+          <Text style={styles.clearTitle}>No blind spots flagged</Text>
+          <Text style={styles.clearSub}>Topics with enough samples are holding above the floor.</Text>
+        </View>
       ) : null}
 
       <PrimaryButton
@@ -174,42 +237,47 @@ export default function AnalyticsScreen() {
       />
 
       <Text style={styles.section}>Topic mastery</Text>
-      {topicStats.map((t) => (
-        <View key={t.topic} style={styles.topicRow}>
-          <Text style={[styles.topicLabel, t.blindSpot && styles.topicBlind]} numberOfLines={1}>
-            {t.topic}
-          </Text>
-          <View style={styles.barTrack}>
-            <View
-              style={[
-                styles.barFill,
-                {
-                  width: `${t.avg ?? 0}%`,
-                  backgroundColor: t.blindSpot
-                    ? colors.danger
-                    : (t.avg ?? 0) < 50
-                      ? colors.warning
-                      : colors.accent,
-                },
-              ]}
-            />
+      <View style={styles.masteryCard}>
+        {topicStats.map((t) => (
+          <View key={t.topic} style={styles.topicRow}>
+            <Text style={[styles.topicLabel, t.blindSpot && styles.topicBlind]} numberOfLines={1}>
+              {t.topic}
+            </Text>
+            <View style={styles.barTrack}>
+              <View
+                style={[
+                  styles.barFill,
+                  {
+                    width: `${t.avg ?? 0}%`,
+                    backgroundColor: t.blindSpot
+                      ? colors.danger
+                      : (t.avg ?? 0) < 50
+                        ? colors.warning
+                        : colors.accent,
+                  },
+                ]}
+              />
+            </View>
+            <Text style={styles.topicValue}>{t.n ? `${t.avg}%` : '—'}</Text>
           </View>
-          <Text style={styles.topicValue}>{t.n ? `${t.avg}%` : '—'}</Text>
-        </View>
-      ))}
+        ))}
+      </View>
 
       <Text style={styles.section}>Mistake breakdown</Text>
       {mistakeCounts.length === 0 ? (
-        <Text style={styles.sub}>No misses logged yet.</Text>
+        <Text style={styles.emptyMiss}>No misses logged yet — keep clearing runs.</Text>
       ) : (
-        mistakeCounts.map(([label, count]) => {
+        mistakeCounts.map(([label, count], i) => {
           const share = Math.round((count / Math.max(1, attempts.length)) * 100);
           return (
             <View key={label} style={styles.mistakeRow}>
+              <Text style={styles.mistakeRank}>{i + 1}</Text>
               <View style={{ flex: 1 }}>
                 <Text style={styles.mistakeLabel}>{label}</Text>
                 <View style={styles.barTrack}>
-                  <View style={[styles.barFill, { width: `${share}%`, backgroundColor: colors.warning }]} />
+                  <View
+                    style={[styles.barFill, { width: `${share}%`, backgroundColor: colors.warning }]}
+                  />
                 </View>
               </View>
               <Text style={styles.topicValue}>{count}</Text>
@@ -226,42 +294,26 @@ function formatTime(sec: number) {
   return `${Math.floor(sec / 60)}m ${sec % 60}s`;
 }
 
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <View style={styles.metric}>
-      <Text style={styles.metricValue}>{value}</Text>
-      <Text style={styles.metricLabel}>{label}</Text>
-    </View>
-  );
-}
-
-function FunnelRow({
+function PipelineNode({
   label,
   value,
   detail,
+  tone,
+  active,
 }: {
   label: string;
-  value: string;
+  value: number;
   detail: string;
+  tone: 'radar' | 'accent' | 'warning';
+  active: boolean;
 }) {
+  const color =
+    tone === 'radar' ? colors.radar : tone === 'accent' ? colors.accent : colors.warning;
   return (
-    <View style={styles.funnelRow}>
-      <View>
-        <Text style={styles.funnelLabel}>{label}</Text>
-        <Text style={styles.funnelDetail}>{detail}</Text>
-      </View>
-      <Text style={styles.topicValue}>{value}</Text>
-    </View>
-  );
-}
-
-function FunnelBar({ label, pct, color }: { label: string; pct: number; color: string }) {
-  return (
-    <View style={styles.funnelBarCol}>
-      <View style={styles.funnelBarTrack}>
-        <View style={[styles.funnelBarFill, { height: `${Math.max(8, pct)}%`, backgroundColor: color }]} />
-      </View>
-      <Text style={styles.funnelBarLabel}>{label}</Text>
+    <View style={[styles.pipeNode, active && { borderColor: color }]}>
+      <Text style={[styles.pipeValue, { color }]}>{value}</Text>
+      <Text style={styles.pipeLabel}>{label}</Text>
+      <Text style={styles.pipeDetail}>{detail}</Text>
     </View>
   );
 }
@@ -306,21 +358,52 @@ function HeatmapGrid({ days }: { days: DayActivity[] }) {
 }
 
 const styles = StyleSheet.create({
+  hero: {
+    gap: 4,
+  },
+  kicker: {
+    color: colors.xp,
+    fontSize: 11,
+    fontWeight: '900',
+    letterSpacing: 2,
+  },
   title: {
     color: colors.text,
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: '800',
   },
   sub: {
     color: colors.textMuted,
     fontSize: 14,
+    fontWeight: '500',
   },
-  sectionHint: {
+  bandPlate: {
+    backgroundColor: colors.surfaceElevated,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.radar,
+    padding: spacing.md,
+    alignItems: 'flex-start',
+    gap: 2,
+  },
+  bandLabel: {
+    color: colors.textDim,
+    fontSize: 11,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+  },
+  bandValue: {
+    color: colors.radar,
+    fontSize: 36,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
+  bandHint: {
     color: colors.textDim,
     fontSize: 12,
-    marginTop: -4,
   },
-  row: {
+  metricRow: {
     flexDirection: 'row',
     gap: spacing.sm,
   },
@@ -331,23 +414,168 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     padding: spacing.md,
+    gap: 2,
+  },
+  metricAccent: {
+    borderColor: colors.accentDim,
+  },
+  metricWarn: {
+    borderColor: colors.warning,
   },
   metricValue: {
     color: colors.text,
-    fontSize: 22,
-    fontWeight: '700',
+    fontSize: 24,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
+  metricValueAccent: {
+    color: colors.accent,
+    fontSize: 24,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
+  metricValueWarn: {
+    color: colors.warning,
+    fontSize: 24,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
   },
   metricLabel: {
     color: colors.textDim,
-    fontSize: 12,
+    fontSize: 11,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.4,
   },
   section: {
     color: colors.text,
     fontSize: 17,
-    fontWeight: '700',
+    fontWeight: '800',
     marginTop: spacing.sm,
   },
+  sectionHint: {
+    color: colors.textDim,
+    fontSize: 12,
+    marginTop: -8,
+  },
   card: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.md,
+    gap: spacing.sm,
+  },
+  pipelineCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.md,
+    gap: spacing.sm,
+  },
+  pipelineTrack: {
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: colors.runTrack,
+    overflow: 'hidden',
+    marginHorizontal: spacing.xs,
+  },
+  pipelineFill: {
+    height: '100%',
+    backgroundColor: colors.warning,
+    borderRadius: 3,
+  },
+  pipelineNodes: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  pipeNode: {
+    flex: 1,
+    borderRadius: radii.sm,
+    borderWidth: 1.5,
+    borderColor: colors.border,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.xs,
+    alignItems: 'center',
+    gap: 2,
+    backgroundColor: colors.surfaceElevated,
+  },
+  pipeValue: {
+    fontSize: 20,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
+  pipeLabel: {
+    color: colors.textMuted,
+    fontSize: 10,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+    textAlign: 'center',
+  },
+  pipeDetail: {
+    color: colors.textDim,
+    fontSize: 11,
+    fontFamily: 'SpaceMono',
+  },
+  blindCard: {
+    backgroundColor: '#2A1818',
+    borderRadius: radii.md,
+    borderWidth: 1.5,
+    borderColor: colors.danger,
+    padding: spacing.md,
+    gap: 4,
+  },
+  blindTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  blindBadge: {
+    color: colors.danger,
+    fontSize: 10,
+    fontWeight: '900',
+    letterSpacing: 1,
+  },
+  blindScore: {
+    color: colors.danger,
+    fontSize: 16,
+    fontWeight: '800',
+    fontFamily: 'SpaceMono',
+  },
+  blindTitle: {
+    color: colors.text,
+    fontWeight: '700',
+    fontSize: 16,
+  },
+  blindMeta: {
+    color: colors.textMuted,
+    fontSize: 12,
+  },
+  blindCta: {
+    color: colors.warning,
+    fontSize: 13,
+    fontWeight: '800',
+    marginTop: 4,
+  },
+  clearCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.accentDim,
+    padding: spacing.md,
+    gap: 4,
+  },
+  clearTitle: {
+    color: colors.accent,
+    fontSize: 15,
+    fontWeight: '800',
+  },
+  clearSub: {
+    color: colors.textMuted,
+    fontSize: 13,
+  },
+  masteryCard: {
     backgroundColor: colors.surface,
     borderRadius: radii.md,
     borderWidth: 1,
@@ -375,7 +603,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: colors.surfaceElevated,
     overflow: 'hidden',
-    marginTop: 4,
   },
   barFill: {
     height: '100%',
@@ -387,6 +614,10 @@ const styles = StyleSheet.create({
     width: 40,
     textAlign: 'right',
   },
+  emptyMiss: {
+    color: colors.textDim,
+    fontSize: 13,
+  },
   mistakeRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -397,74 +628,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
   },
+  mistakeRank: {
+    color: colors.warning,
+    fontSize: 14,
+    fontWeight: '900',
+    fontFamily: 'SpaceMono',
+    width: 18,
+  },
   mistakeLabel: {
     color: colors.textMuted,
     fontSize: 13,
-  },
-  funnelRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  funnelLabel: {
-    color: colors.text,
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  funnelDetail: {
-    color: colors.textDim,
-    fontSize: 12,
-  },
-  funnelBars: {
-    flexDirection: 'row',
-    gap: spacing.md,
-    height: 80,
-    marginTop: spacing.sm,
-    justifyContent: 'center',
-  },
-  funnelBarCol: {
-    alignItems: 'center',
-    width: 36,
-  },
-  funnelBarTrack: {
-    flex: 1,
-    width: 20,
-    backgroundColor: colors.surfaceElevated,
-    borderRadius: 4,
-    overflow: 'hidden',
-    justifyContent: 'flex-end',
-  },
-  funnelBarFill: {
-    width: '100%',
-    borderRadius: 4,
-  },
-  funnelBarLabel: {
-    color: colors.textDim,
-    fontSize: 11,
-    marginTop: 4,
-  },
-  blindCard: {
-    backgroundColor: '#2A1818',
-    borderRadius: radii.md,
-    borderWidth: 1,
-    borderColor: colors.danger,
-    padding: spacing.md,
-    gap: 2,
-  },
-  blindTitle: {
-    color: colors.danger,
-    fontWeight: '700',
-    fontSize: 15,
-  },
-  blindMeta: {
-    color: colors.textMuted,
-    fontSize: 12,
-  },
-  blindCta: {
-    color: colors.warning,
-    fontSize: 13,
-    fontWeight: '700',
-    marginTop: 4,
+    marginBottom: 4,
   },
   heatGrid: {
     flexDirection: 'row',
