@@ -12,7 +12,6 @@ import {
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PlayerAvatar } from '@/components/game/PlayerAvatar';
 import { PressableScale } from '@/components/game/PressableScale';
 import { useAuth } from '@/contexts/AuthContext';
@@ -82,16 +81,15 @@ function RunTabButton({ onPress, accessibilityState, style }: RunTabButtonProps)
   );
 }
 
-function FloatingProfileButton() {
+function ProfileHeaderButton() {
   const { profile } = useAuth();
-  const insets = useSafeAreaInsets();
   return (
     <Pressable
       onPress={() => router.push('/settings')}
-      hitSlop={8}
+      hitSlop={10}
       accessibilityRole="button"
       accessibilityLabel="Open profile"
-      style={[styles.profileFloat, { top: insets.top + 6 }]}
+      style={styles.profileBtn}
     >
       <PlayerAvatar
         avatarId={profile?.avatar_id}
@@ -104,75 +102,68 @@ function FloatingProfileButton() {
 
 export default function TabLayout() {
   return (
-    <View style={styles.root}>
-      <Tabs
-        screenOptions={{
-          headerShown: false,
-          tabBarStyle: styles.tabBar,
-          tabBarActiveTintColor: colors.accent,
-          tabBarInactiveTintColor: colors.textMuted,
-          tabBarLabelStyle: styles.sideLabel,
-          tabBarItemStyle: styles.sideItem,
+    <Tabs
+      screenOptions={{
+        // Transparent overlay header: no reserved bar, profile stays tappable on top.
+        headerTransparent: true,
+        headerTitle: () => null,
+        headerLeft: () => null,
+        headerShadowVisible: false,
+        headerStyle: { backgroundColor: 'transparent' },
+        headerRight: () => <ProfileHeaderButton />,
+        tabBarStyle: styles.tabBar,
+        tabBarActiveTintColor: colors.accent,
+        tabBarInactiveTintColor: colors.textMuted,
+        tabBarLabelStyle: styles.sideLabel,
+        tabBarItemStyle: styles.sideItem,
+      }}
+    >
+      <Tabs.Screen
+        name="learn"
+        options={{
+          title: 'Learn',
+          tabBarIcon: ({ color }) => <TabIcon name="book" color={color} />,
         }}
-      >
-        <Tabs.Screen
-          name="learn"
-          options={{
-            title: 'Learn',
-            tabBarIcon: ({ color }) => <TabIcon name="book" color={color} />,
-          }}
-        />
-        <Tabs.Screen
-          name="review"
-          options={{
-            title: 'Review',
-            tabBarIcon: ({ color }) => <TabIcon name="refresh" color={color} />,
-          }}
-        />
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: 'Run',
-            tabBarLabel: () => null,
-            tabBarIcon: () => null,
-            tabBarButton: (props) => <RunTabButton {...props} />,
-          }}
-        />
-        <Tabs.Screen
-          name="queue"
-          options={{
-            title: 'Implement',
-            tabBarIcon: ({ color }) => <TabIcon name="code" color={color} />,
-          }}
-        />
-        <Tabs.Screen
-          name="analytics"
-          options={{
-            title: 'Stats',
-            tabBarIcon: ({ color }) => <TabIcon name="bar-chart" color={color} />,
-          }}
-        />
-      </Tabs>
-      <View pointerEvents="box-none" style={styles.profileOverlay}>
-        <FloatingProfileButton />
-      </View>
-    </View>
+      />
+      <Tabs.Screen
+        name="review"
+        options={{
+          title: 'Review',
+          tabBarIcon: ({ color }) => <TabIcon name="refresh" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Run',
+          tabBarLabel: () => null,
+          tabBarIcon: () => null,
+          tabBarButton: (props) => <RunTabButton {...props} />,
+        }}
+      />
+      <Tabs.Screen
+        name="queue"
+        options={{
+          title: 'Implement',
+          tabBarIcon: ({ color }) => <TabIcon name="code" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="analytics"
+        options={{
+          title: 'Stats',
+          tabBarIcon: ({ color }) => <TabIcon name="bar-chart" color={color} />,
+        }}
+      />
+    </Tabs>
   );
 }
 
 const ORB = 64;
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
-  profileOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 20,
-  },
-  profileFloat: {
-    position: 'absolute',
-    right: spacing.md,
+  profileBtn: {
+    marginRight: spacing.md,
   },
   tabBar: {
     backgroundColor: colors.surface,
@@ -205,7 +196,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 3,
-    // Soft lift above the bar
     shadowColor: '#000',
     shadowOpacity: 0.35,
     shadowRadius: 8,
