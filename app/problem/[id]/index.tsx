@@ -8,6 +8,7 @@ import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchProblem } from '@/lib/api';
 import { getFavorites, toggleFavorite } from '@/lib/favorites';
 import { relativeDifficulty } from '@/lib/habit';
+import { takePendingProblem } from '@/lib/openProblem';
 import { addProblemToPlaylistFlow } from '@/lib/playlistPicker';
 import { useAuth } from '@/contexts/AuthContext';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -28,7 +29,8 @@ export default function EncounterScreen() {
         return;
       }
       setLoading(true);
-      const p = await fetchProblem(id);
+      const pending = takePendingProblem(id);
+      const p = pending ?? (await fetchProblem(id));
       if (!active) return;
       if (!p) {
         setError('Problem not found');

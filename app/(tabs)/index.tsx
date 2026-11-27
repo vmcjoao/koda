@@ -10,7 +10,6 @@ import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
-import { useAttempt } from '@/contexts/AttemptContext';
 import {
   fetchAttempts,
   fetchProblems,
@@ -22,12 +21,12 @@ import { beatCountForDate, dailyAlgoStreak, lessonForDate } from '@/lib/dailyAlg
 import { getClearedDailyAlgoDates } from '@/lib/dailyAlgorithmProgress';
 import { SLOT_LABELS, todayIso, type DailySet } from '@/lib/habit';
 import { areRemindersEnabled, formatReminderLabel, getReminderHour } from '@/lib/notifications';
+import { openProblem } from '@/lib/openProblem';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function HomeScreen() {
   const { profile, demoMode, user, refreshProfile } = useAuth();
-  const { beginProblem } = useAttempt();
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [daily, setDaily] = useState<DailySet | null>(null);
@@ -116,10 +115,7 @@ export default function HomeScreen() {
   const runComplete = dailyTotal > 0 && dailyDone >= dailyTotal;
 
   function startProblem(problem: ProblemWithApproaches) {
-    beginProblem(problem);
-    // If a prior run left screens under Home, clear them before opening the next.
-    if (router.canDismiss()) router.dismissAll();
-    router.push(`/problem/${problem.id}`);
+    openProblem(problem);
   }
 
   return (

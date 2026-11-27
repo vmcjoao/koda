@@ -11,7 +11,6 @@ import {
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
-import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchProblems } from '@/lib/api';
 import {
   getPlaylist,
@@ -20,13 +19,13 @@ import {
   type Playlist,
 } from '@/lib/playlists';
 import { relativeDifficulty } from '@/lib/habit';
+import { openProblem } from '@/lib/openProblem';
 import { useAuth } from '@/contexts/AuthContext';
 import type { ProblemWithApproaches } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function PlaylistDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { beginProblem } = useAttempt();
   const { profile } = useAuth();
   const [playlist, setPlaylist] = useState<Playlist | null>(null);
   const [problems, setProblems] = useState<Record<string, ProblemWithApproaches>>({});
@@ -68,8 +67,7 @@ export default function PlaylistDetailScreen() {
     : 0;
 
   function start(p: ProblemWithApproaches) {
-    beginProblem(p);
-    router.push(`/problem/${p.id}`);
+    openProblem(p);
   }
 
   async function onSaveMeta() {

@@ -2,7 +2,6 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
-import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
 import {
@@ -10,6 +9,7 @@ import {
   HISTORY_FILTER_LABELS,
   type HistoryFilter,
 } from '@/lib/habit';
+import { openProblem } from '@/lib/openProblem';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -17,7 +17,6 @@ const FILTERS = Object.keys(HISTORY_FILTER_LABELS) as HistoryFilter[];
 
 export default function HistoryScreen() {
   const { user } = useAuth();
-  const { beginProblem } = useAttempt();
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [problems, setProblems] = useState<Record<string, ProblemWithApproaches>>({});
   const [loading, setLoading] = useState(true);
@@ -51,8 +50,7 @@ export default function HistoryScreen() {
   function reopen(a: UserAttempt) {
     const p = problems[a.problem_id];
     if (!p) return;
-    beginProblem(p);
-    router.push(`/problem/${p.id}`);
+    openProblem(p);
   }
 
   return (

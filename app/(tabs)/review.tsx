@@ -7,14 +7,13 @@ import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
-import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchAttempts, fetchProblems, getReviewQueue } from '@/lib/api';
+import { openProblem } from '@/lib/openProblem';
 import type { ProblemWithApproaches } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function ReviewScreen() {
   const { user } = useAuth();
-  const { beginProblem } = useAttempt();
   const [queue, setQueue] = useState<ProblemWithApproaches[]>([]);
   const [loading, setLoading] = useState(true);
   const hasLoadedRef = useRef(false);
@@ -38,9 +37,7 @@ export default function ReviewScreen() {
   );
 
   function start(problem: ProblemWithApproaches) {
-    beginProblem(problem);
-    if (router.canDismiss()) router.dismissAll();
-    router.push(`/problem/${problem.id}`);
+    openProblem(problem);
   }
 
   const due = queue.length;

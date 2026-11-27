@@ -10,11 +10,11 @@ import {
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
-import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
 import { getFavorites, toggleFavorite } from '@/lib/favorites';
 import { relativeDifficulty } from '@/lib/habit';
+import { openProblem } from '@/lib/openProblem';
 import { addProblemToPlaylistFlow } from '@/lib/playlistPicker';
 import {
   addProblemToPlaylist,
@@ -37,7 +37,6 @@ export default function CatalogScreen() {
     addTo?: string;
   }>();
   const { user, profile } = useAuth();
-  const { beginProblem } = useAttempt();
   const band = profile?.rating_band ?? 1200;
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
@@ -138,8 +137,7 @@ export default function CatalogScreen() {
   }
 
   function start(p: ProblemWithApproaches) {
-    beginProblem(p);
-    router.push(`/problem/${p.id}`);
+    openProblem(p);
   }
 
   async function onToggleFavorite(id: string) {

@@ -20,6 +20,7 @@ import { useAttempt } from '@/contexts/AttemptContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems, saveAttempt, type SaveAttemptResult } from '@/lib/api';
 import { buildDrillNextPlan, type DrillNextPlan } from '@/lib/drillNext';
+import { exitProblemFlow, openProblem } from '@/lib/openProblem';
 import { formatScoreShare, shareText } from '@/lib/share';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -28,7 +29,7 @@ export default function RevealScreen() {
   const { id, from } = useLocalSearchParams<{ id: string; from?: string }>();
   const fromStuck = from === 'stuck';
   const { user, profile, refreshProfile } = useAuth();
-  const { problem, draft, breakdown, finalizeScore, reset, beginProblem } = useAttempt();
+  const { problem, draft, breakdown, finalizeScore } = useAttempt();
   const [saving, setSaving] = useState(false);
   const [result, setResult] = useState<SaveAttemptResult | null>(null);
   const [catalog, setCatalog] = useState<ProblemWithApproaches[]>([]);
@@ -92,10 +93,7 @@ export default function RevealScreen() {
   const rank = scoreRank(breakdown.score);
 
   function startPractice(next: ProblemWithApproaches) {
-    beginProblem(next);
-    // Drop the finished encounter stack (WebViews) before opening another problem.
-    if (router.canDismiss()) router.dismissAll();
-    router.push(`/problem/${next.id}`);
+    openProblem(next);
   }
 
   async function persist(status: 'drafted' | 'needs_review') {
@@ -130,10 +128,7 @@ export default function RevealScreen() {
   }
 
   function goHome() {
-    reset();
-    // Must dismiss the whole Encounter → … → Reveal stack. `replace` alone left
-    // WebView screens mounted underneath Home and crashed the next problem open.
-    router.dismissTo('/(tabs)');
+    exitProblemFlow();
   }
 
   const totalXp = result ? result.xpGain.total + result.dailyBonusXp : 0;

@@ -10,7 +10,6 @@ import 'react-native-reanimated';
 
 import { LaunchOverlay } from '@/components/game/LaunchOverlay';
 import { AuthProvider } from '@/contexts/AuthContext';
-import { AttemptProvider } from '@/contexts/AttemptContext';
 import { LaunchProvider } from '@/contexts/LaunchContext';
 import { syncRemindersOnLaunch } from '@/lib/notifications';
 import { colors } from '@/constants/theme';
@@ -93,42 +92,35 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
-      <AttemptProvider>
-        <LaunchProvider ready={!showLaunch}>
-          <ThemeProvider value={KodaDarkTheme}>
-            <StatusBar style="light" />
-            <View style={{ flex: 1, backgroundColor: colors.background }}>
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                  contentStyle: { backgroundColor: colors.background },
-                  animation: 'fade_from_bottom',
-                  animationDuration: 280,
-                }}
-              >
-                <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
-                <Stack.Screen name="(auth)/login" options={{ presentation: 'modal' }} />
-                <Stack.Screen name="(auth)/reset" options={{ presentation: 'modal' }} />
-                <Stack.Screen name="settings" />
-                <Stack.Screen name="catalog" />
-                <Stack.Screen name="playlists/index" />
-                <Stack.Screen name="playlists/[id]" />
-                <Stack.Screen name="history" />
-                <Stack.Screen name="learn/[id]" />
-                <Stack.Screen name="daily-algorithm/index" />
-                <Stack.Screen name="daily-algorithm/[date]" />
-                <Stack.Screen name="problem/[id]/index" />
-                <Stack.Screen name="problem/[id]/radar" />
-                <Stack.Screen name="problem/[id]/hypothesis" />
-                <Stack.Screen name="problem/[id]/blueprint" />
-                <Stack.Screen name="problem/[id]/stuck" />
-                <Stack.Screen name="problem/[id]/reveal" options={{ animation: 'fade' }} />
-              </Stack>
-              {showLaunch ? <LaunchOverlay onFinished={() => setShowLaunch(false)} /> : null}
-            </View>
-          </ThemeProvider>
-        </LaunchProvider>
-      </AttemptProvider>
+      <LaunchProvider ready={!showLaunch}>
+        <ThemeProvider value={KodaDarkTheme}>
+          <StatusBar style="light" />
+          <View style={{ flex: 1, backgroundColor: colors.background }}>
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: { backgroundColor: colors.background },
+                animation: 'fade_from_bottom',
+                animationDuration: 280,
+              }}
+            >
+              <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
+              <Stack.Screen name="(auth)/login" options={{ presentation: 'modal' }} />
+              <Stack.Screen name="(auth)/reset" options={{ presentation: 'modal' }} />
+              <Stack.Screen name="settings" />
+              <Stack.Screen name="catalog" />
+              <Stack.Screen name="playlists/index" />
+              <Stack.Screen name="playlists/[id]" />
+              <Stack.Screen name="history" />
+              <Stack.Screen name="learn/[id]" />
+              <Stack.Screen name="daily-algorithm/index" />
+              <Stack.Screen name="daily-algorithm/[date]" />
+              <Stack.Screen name="problem/[id]" />
+            </Stack>
+            {showLaunch ? <LaunchOverlay onFinished={() => setShowLaunch(false)} /> : null}
+          </View>
+        </ThemeProvider>
+      </LaunchProvider>
     </AuthProvider>
   );
 }

@@ -18,7 +18,6 @@ import { VizPlayer } from '@/components/learn/VizPlayer';
 import { ProseCard } from '@/components/ProseCard';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
-import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchProblems } from '@/lib/api';
 import {
   getLesson,
@@ -28,6 +27,7 @@ import {
   STUDY_PATH_IDS,
 } from '@/lib/learn';
 import { buildExercises, lessonHasExercises } from '@/lib/learnExerciseGen';
+import { openProblem } from '@/lib/openProblem';
 import { isLessonStudied, setLessonStudied } from '@/lib/learnProgress';
 import type { ProblemWithApproaches } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -66,7 +66,6 @@ export default function LearnLessonScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const navigation = useNavigation();
   const lesson = getLesson(String(id ?? ''));
-  const { beginProblem } = useAttempt();
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
   const [loading, setLoading] = useState(true);
   const [studied, setStudied] = useState(false);
@@ -142,8 +141,7 @@ export default function LearnLessonScreen() {
   const current = lesson;
 
   function start(p: ProblemWithApproaches) {
-    beginProblem(p);
-    router.push(`/problem/${p.id}`);
+    openProblem(p);
   }
 
   async function bumpHaptic(kind: 'light' | 'medium' | 'success' = 'light') {
