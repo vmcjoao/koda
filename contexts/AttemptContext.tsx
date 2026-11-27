@@ -2,11 +2,21 @@ import React, { createContext, useCallback, useContext, useMemo, useState } from
 import type { HypothesisDraft, ProblemWithApproaches, ScoreBreakdown } from '@/types/database';
 import { scoreHypothesis } from '@/lib/scoring';
 
+export type ProblemFlowStep = 'statement' | 'radar' | 'hypothesis' | 'blueprint';
+
+const FLOW_ORDER: ProblemFlowStep[] = ['statement', 'radar', 'hypothesis', 'blueprint'];
+
+function stepRank(step: ProblemFlowStep): number {
+  return FLOW_ORDER.indexOf(step);
+}
+
 type AttemptContextValue = {
   problem: ProblemWithApproaches | null;
   draft: HypothesisDraft | null;
   breakdown: ScoreBreakdown | null;
+  furthestStep: ProblemFlowStep;
   beginProblem: (problem: ProblemWithApproaches) => void;
+  markStepReached: (step: ProblemFlowStep) => void;
   setComplexityGuess: (complexity: string, bonus: boolean) => void;
   setHypothesis: ( partial: Partial<Pick<HypothesisDraft, 'paradigms' | 'algorithms' | 'dataStructures' | 'twists'>>) => void;
   setPseudocode: (text: string) => void;
@@ -34,11 +44,17 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
   const [problem, setProblem] = useState<ProblemWithApproaches | null>(null);
   const [draft, setDraft] = useState<HypothesisDraft | null>(null);
   const [breakdown, setBreakdown] = useState<ScoreBreakdown | null>(null);
+  const [furthestStep, setFurthestStep] = useState<ProblemFlowStep>('statement');
 
   const beginProblem = useCallback((p: ProblemWithApproaches) => {
     setProblem(p);
     setDraft(emptyDraft(p.id));
     setBreakdown(null);
+    setFurthestStep('statement');
+  }, []);
+
+  const markStepReached = useCallback((step: ProblemFlowStep) => {
+    setFurthestStep((prev) => (stepRank(step) > stepRank(prev) ? step : prev));
   }, []);
 
   const setComplexityGuess = useCallback((complexity: string, bonus: boolean) => {
@@ -75,6 +91,7 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
     setProblem(null);
     setDraft(null);
     setBreakdown(null);
+    setFurthestStep('statement');
   }, []);
 
   const value = useMemo(
@@ -82,7 +99,9 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
       problem,
       draft,
       breakdown,
+      furthestStep,
       beginProblem,
+      markStepReached,
       setComplexityGuess,
       setHypothesis,
       setPseudocode,
@@ -94,7 +113,9 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
       problem,
       draft,
       breakdown,
+      furthestStep,
       beginProblem,
+      markStepReached,
       setComplexityGuess,
       setHypothesis,
       setPseudocode,

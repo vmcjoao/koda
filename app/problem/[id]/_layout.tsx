@@ -1,5 +1,7 @@
 import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { Stack } from 'expo-router';
+import { ProblemFlowChrome } from '@/components/ProblemFlowChrome';
 import { AttemptProvider } from '@/contexts/AttemptContext';
 import { colors } from '@/constants/theme';
 
@@ -10,21 +12,35 @@ import { colors } from '@/constants/theme';
 export default function ProblemFlowLayout() {
   return (
     <AttemptProvider>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: colors.background },
-          animation: 'fade_from_bottom',
-          animationDuration: 280,
-        }}
-      >
-        <Stack.Screen name="index" />
-        <Stack.Screen name="radar" />
-        <Stack.Screen name="hypothesis" />
-        <Stack.Screen name="blueprint" />
-        <Stack.Screen name="stuck" />
-        <Stack.Screen name="reveal" options={{ animation: 'fade', gestureEnabled: false }} />
-      </Stack>
+      <View style={styles.root}>
+        <ProblemFlowChrome />
+        <Stack
+          style={styles.stack}
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: colors.background },
+            animation: 'fade_from_bottom',
+            animationDuration: 280,
+          }}
+        >
+          <Stack.Screen name="index" />
+          <Stack.Screen name="radar" />
+          <Stack.Screen name="hypothesis" />
+          <Stack.Screen name="blueprint" />
+          <Stack.Screen name="stuck" />
+          <Stack.Screen name="reveal" options={{ animation: 'fade', gestureEnabled: false }} />
+        </Stack>
+      </View>
     </AttemptProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  stack: {
+    flex: 1,
+  },
+});
