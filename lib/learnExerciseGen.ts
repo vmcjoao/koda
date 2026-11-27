@@ -397,7 +397,7 @@ function genBfs(rng: Rng): LearnExercise[] {
   ];
   const out: LearnExercise[] = [];
   if (predict) out.push(predict);
-  out.push(...samplePool(rng, pool, randInt(rng, 3, 4)));
+  out.push(...samplePool(rng, pool, randInt(rng, 4, pool.length)));
   return out;
 }
 
@@ -461,7 +461,7 @@ function genDfs(rng: Rng): LearnExercise[] {
   ];
   const out: LearnExercise[] = [];
   if (predict) out.push(predict);
-  out.push(...samplePool(rng, pool, randInt(rng, 3, 4)));
+  out.push(...samplePool(rng, pool, randInt(rng, 4, pool.length)));
   return out;
 }
 
@@ -537,7 +537,7 @@ function genDijkstra(rng: Rng): LearnExercise[] {
   ];
   const out: LearnExercise[] = [];
   if (predict) out.push(predict);
-  out.push(...samplePool(rng, pool, randInt(rng, 3, 4)));
+  out.push(...samplePool(rng, pool, randInt(rng, 4, pool.length)));
   return out;
 }
 
@@ -617,7 +617,7 @@ function genTopo(rng: Rng): LearnExercise[] {
       ['A tree', 'Strongly connected', 'Undirected'],
       'A cycle blocks a linear extension.',
     ),
-  ], randInt(rng, 2, 3));
+  ], 99);
 }
 
 function genBinarySearch(rng: Rng): LearnExercise[] {
@@ -683,7 +683,7 @@ function genBinarySearch(rng: Rng): LearnExercise[] {
         'One transition false→true (or sorted order) is the invariant.',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1182,7 +1182,7 @@ function genNim(rng: Rng): LearnExercise[] {
         'Single Nim heap grundy = size.',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1227,7 +1227,7 @@ function genMitm(rng: Rng): LearnExercise[] {
         'Trade $2^{N/2}$ time + memory for the join step.',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1266,7 +1266,7 @@ function genHashMap(rng: Rng): LearnExercise[] {
         'CF anti-hash: custom splitmix or ordered map.',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1305,7 +1305,7 @@ function genSorting(rng: Rng): LearnExercise[] {
         '`cmp(a,a)` false; never both cmp(a,b) and cmp(b,a).',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1369,7 +1369,7 @@ function genMst(rng: Rng): LearnExercise[] {
         'Union-Find detects whether an edge closes a cycle.',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1413,7 +1413,7 @@ function genFenwickDrill(rng: Rng): LearnExercise[] {
         'Lazy / non-invertible combines → segtree.',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1570,7 +1570,7 @@ function genBsAnswer(rng: Rng): LearnExercise[] {
         `First true is **${threshold}**.`,
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1696,7 +1696,7 @@ function genPrefixMore(rng: Rng): LearnExercise[] {
         'Point updates → Fenwick/segtree; static → prefix.',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1829,7 +1829,7 @@ function genDsuMore(rng: Rng): LearnExercise[] {
         'Ackermann inverse α(n) in practice constant.',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -1964,7 +1964,7 @@ function genNumberTheoryMore(rng: Rng): LearnExercise[] {
         'a^{p-1}≡1 → multiply by a^{p-2}.',
       ),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -2058,14 +2058,14 @@ function genUpperMore(rng: Rng): LearnExercise[] {
 function concepts(
   rng: Rng,
   rows: { id: string; prompt: string; correct: string; wrong: string[]; explain: string }[],
-  k = 3,
+  k = 4,
 ): LearnExercise[] {
   return samplePool(
     rng,
     rows.map((r) =>
       mcqFrom(rng, r.id, r.prompt, r.correct, r.wrong, r.explain),
     ),
-    Math.min(k, rows.length),
+    Math.min(Math.max(k, 3), rows.length),
   );
 }
 
@@ -2091,6 +2091,20 @@ function genFloyd(rng: Rng): LearnExercise[] {
       correct: 'O(N³)',
       wrong: ['O(N² log N)', 'O(NM)', 'O(N!)'],
       explain: 'Three nested loops over vertices.',
+    },
+    {
+      id: 'fw-space',
+      prompt: 'Floyd’s distance matrix uses…',
+      correct: 'O(N²) memory',
+      wrong: ['O(N)', 'O(M)', 'O(N³)'],
+      explain: 'An N×N table (can overwrite in place).',
+    },
+    {
+      id: 'fw-use',
+      prompt: 'Floyd is a good default when…',
+      correct: 'N is small and you need all-pairs distances',
+      wrong: ['N=1e5 single-source', 'You only need MST', 'The graph is a functional graph of size 1e6'],
+      explain: 'All-pairs for N≲400–500; else run many Dijkstras.',
     },
   ]);
 }
@@ -2118,6 +2132,20 @@ function genBellman(rng: Rng): LearnExercise[] {
       wrong: ['All weights are positive', 'The graph is undirected unit', 'You need MST'],
       explain: 'Dijkstra’s settle-once needs non-negative weights.',
     },
+    {
+      id: 'bf-time',
+      prompt: 'Bellman–Ford time complexity?',
+      correct: 'O(NM)',
+      wrong: ['O(N² log N)', 'O(N+M)', 'O(N³)'],
+      explain: 'N−1 passes over all M edges.',
+    },
+    {
+      id: 'bf-spfa',
+      prompt: 'SPFA is…',
+      correct: 'A queue-optimized Bellman–Ford (worst-case still bad)',
+      wrong: ['Always O(M log N)', 'A max-flow algorithm', 'Only for DAGs'],
+      explain: 'Fast on random graphs; adversarial cases are exponential.',
+    },
   ]);
 }
 
@@ -2143,6 +2171,20 @@ function genBridges(rng: Rng): LearnExercise[] {
       correct: 'Every edge is a bridge',
       wrong: ['None', 'Only leaf edges', 'N/2'],
       explain: 'Removing any tree edge disconnects it.',
+    },
+    {
+      id: 'br-cycle',
+      prompt: 'An edge on a simple cycle is…',
+      correct: 'Never a bridge',
+      wrong: ['Always a bridge', 'A bridge iff tree edge', 'An SCC root'],
+      explain: 'Alternate path remains after removal.',
+    },
+    {
+      id: 'br-art',
+      prompt: 'Related notion for vertices is…',
+      correct: 'Articulation points / cut vertices',
+      wrong: ['Sources in a topo order', 'Centroid only', 'Matching mates'],
+      explain: 'Same DFS tree / lowlink family of algorithms.',
     },
   ]);
 }
@@ -2170,9 +2212,22 @@ function genScc(rng: Rng): LearnExercise[] {
       wrong: ['A cycle', 'A tree', 'Bipartite'],
       explain: 'A cycle among SCCs would merge them.',
     },
+    {
+      id: 'scc-tarjan',
+      prompt: 'Tarjan’s SCC algorithm uses…',
+      correct: 'One DFS with a stack + lowlink',
+      wrong: ['Two full graph copies only', 'Kruskal', '0-1 BFS'],
+      explain: 'Pop the stack when low[u]=disc[u].',
+    },
+    {
+      id: 'scc-sink',
+      prompt: 'A sink SCC in the condensation…',
+      correct: 'Has outdegree 0',
+      wrong: ['Has indegree 0', 'Is always a single vertex', 'Contains the global source'],
+      explain: 'No edges leave that component.',
+    },
   ]);
 }
-
 function genBitmask(rng: Rng): LearnExercise[] {
   const n = randInt(rng, 3, 4);
   const a = Array.from({ length: n }, () => randInt(rng, 1, 9));
@@ -2209,9 +2264,9 @@ function genBitmask(rng: Rng): LearnExercise[] {
           wrong: ['Sorting the mask', 'BFS on residual', 'Kruskal edges'],
           explain: 'dp[mask][v] ← dp[mask\\v][u] + cost(u,v).',
         },
-      ], 2),
+      ], 99),
     ],
-    randInt(rng, 2, 3),
+    99,
   );
 }
 
@@ -2238,6 +2293,20 @@ function genTrieDrill(rng: Rng): LearnExercise[] {
       wrong: ['All-pairs shortest paths', 'Sorting integers', 'MST'],
       explain: 'Shared prefixes → fast autocomplete / XOR tries.',
     },
+    {
+      id: 'trie-xor',
+      prompt: 'A binary trie on bits is often used for…',
+      correct: 'Maximum XOR pair queries',
+      wrong: ['Kruskal MST', 'Topo sort', '0-1 BFS layers'],
+      explain: 'Walk opposite bits greedily.',
+    },
+    {
+      id: 'trie-fail',
+      prompt: 'Aho–Corasick extends a trie with…',
+      correct: 'Failure links (KMP-like)',
+      wrong: ['Union-Find parents', 'Lazy segtree tags', 'Mo’s blocks'],
+      explain: 'Automaton for multi-pattern matching.',
+    },
   ]);
 }
 
@@ -2263,6 +2332,20 @@ function genFlow(rng: Rng): LearnExercise[] {
       correct: 'Unit-capacity edges through a bipartition',
       wrong: ['Negative weights', 'Undirected MST', 'Only DFS'],
       explain: 'Source→L→R→sink, caps 1.',
+    },
+    {
+      id: 'flow-dinic',
+      prompt: 'Dinic’s algorithm layers the residual graph with…',
+      correct: 'BFS levels + DFS blocking flow',
+      wrong: ['Only Kruskal', 'Bellman–Ford SPFA', 'Mo’s blocks'],
+      explain: 'Level graph then push blocking flow.',
+    },
+    {
+      id: 'flow-cap',
+      prompt: 'Saturating an edge in the residual means…',
+      correct: 'No more flow can use that residual capacity',
+      wrong: ['The edge is a bridge in G', 'Distances become negative', 'The cut is empty'],
+      explain: 'Residual capacity hits 0 on that direction.',
     },
   ]);
 }
@@ -2300,7 +2383,7 @@ function genPq(rng: Rng): LearnExercise[] {
           wrong: ['O(N²) always', 'O(M)', 'O(N!)'],
           explain: 'Each edge may decrease-key / push; pop N times.',
         },
-      ], 1),
+      ], 99),
     ],
     2,
   );
@@ -2329,6 +2412,20 @@ function genMoDrill(rng: Rng): LearnExercise[] {
       wrong: ['Rebuild the array', 'Sort the subarray', 'Run Dijkstra'],
       explain: 'Maintain a frequency structure as L/R move.',
     },
+    {
+      id: 'mo-block',
+      prompt: 'Typical Mo block size is about…',
+      correct: '√N',
+      wrong: ['log N', 'N/2', 'N'],
+      explain: 'Balances L jumps vs R movement.',
+    },
+    {
+      id: 'mo-hilbert',
+      prompt: 'Hilbert-order Mo is a…',
+      correct: 'Cache-friendly query ordering optimization',
+      wrong: ['Replacement for add/remove', 'Online update structure', 'Max-flow reduction'],
+      explain: 'Same algorithm; better locality on some tests.',
+    },
   ]);
 }
 
@@ -2354,6 +2451,20 @@ function genStringHash(rng: Rng): LearnExercise[] {
       correct: 'Likely equal strings (check on collision)',
       wrong: ['Always different strings', 'A guaranteed palindrome', 'Sorted order'],
       explain: 'Hashing is probabilistic unless verified.',
+    },
+    {
+      id: 'sh-lcp',
+      prompt: 'Binary-searching LCP with hashes needs…',
+      correct: 'Monotone equality of prefixes',
+      wrong: ['A max-flow', 'Negative edge weights', 'Topo sort'],
+      explain: 'Longer equal prefixes stay equal when shortened.',
+    },
+    {
+      id: 'sh-base',
+      prompt: 'A good rolling-hash base is usually…',
+      correct: 'A random odd integer / large multiplier',
+      wrong: ['Always 2', 'Always 10', 'The string length'],
+      explain: 'Fixed tiny bases are easier to attack.',
     },
   ]);
 }
@@ -2381,6 +2492,20 @@ function genLcaDrill(rng: Rng): LearnExercise[] {
       wrong: ['Dijkstra', 'Max-flow', 'Counting sort'],
       explain: 'LCA = min-depth node on the tour segment.',
     },
+    {
+      id: 'lca-build',
+      prompt: 'Binary lifting build time is…',
+      correct: 'O(N log N)',
+      wrong: ['O(N)', 'O(N²)', 'O(N log log N) only'],
+      explain: 'log N parents for each of N nodes.',
+    },
+    {
+      id: 'lca-query',
+      prompt: 'One LCA query with lifting is…',
+      correct: 'O(log N)',
+      wrong: ['O(1) without RMQ prep', 'O(N)', 'O(log log N) always'],
+      explain: 'Equalize depth then jump down the bits.',
+    },
   ]);
 }
 
@@ -2395,7 +2520,7 @@ function genDpIntro(rng: Rng): LearnExercise[] {
         wrong: ['Only the final answer type', 'A random recursion', 'MST first'],
         explain: 'Wrong order is the classic bug.',
       },
-    ], 1),
+    ], 99),
   ];
 }
 
@@ -2410,7 +2535,7 @@ function gen01Bfs(rng: Rng): LearnExercise[] {
         wrong: ['At the back always', 'Into a binary heap', 'Into a stack'],
         explain: '0-cost stays in the current distance layer.',
       },
-    ], 1),
+    ], 99),
   ];
 }
 
@@ -2497,12 +2622,14 @@ export function countExerciseBeats(exercises: LearnExercise[]): number {
   return n;
 }
 
-const MIN_BEATS = 5;
+const MIN_BEATS = 8;
+/** Soft cap so Skill Check stays finishable. */
+const MAX_BEATS = 14;
 
 /**
  * Build exercises for a lesson. Prefers a procedural generator (fresh graph/array);
- * mixes a *varying* subset of the static bank so “New drills” doesn’t always
- * replay the same curated traces; shuffles final order; tops up to ≥5 beats when possible.
+ * mixes curated static drills; always aims for a fat pack (≥8 beats) with a second
+ * procedural pass when needed; shuffles final order.
  */
 export function buildExercises(lessonId: string, seed: number): LearnExercise[] {
   const rng = mulberry32(seed >>> 0);
@@ -2514,6 +2641,12 @@ export function buildExercises(lessonId: string, seed: number): LearnExercise[] 
   if (gen) {
     try {
       out.push(...gen(rng).map((ex) => shuffleExercise(rng, ex)));
+      // Second independent pack → more graphs/arrays/questions per run.
+      out.push(
+        ...gen(rng).map((ex) =>
+          shuffleExercise(rng, { ...ex, id: `${ex.id}-alt` }),
+        ),
+      );
     } catch {
       /* fall through to static */
     }
@@ -2533,17 +2666,18 @@ export function buildExercises(lessonId: string, seed: number): LearnExercise[] 
   }
 
   if (out.length > 0) {
-    // Vary how many curated beats hitch a ride (0..min(3, bank)).
-    const maxExtra = Math.min(3, shuffledStatic.length);
-    const nExtra = maxExtra === 0 ? 0 : randInt(rng, 0, maxExtra);
+    // Prefer mixing most of the curated bank (at least 1 when any exist).
+    const maxExtra = Math.min(shuffledStatic.length, 4);
+    const nExtra =
+      maxExtra === 0 ? 0 : randInt(rng, Math.min(1, maxExtra), maxExtra);
     for (let i = 0; i < nExtra; i++) pushStatic(shuffledStatic[i]!, 'mix');
   } else {
     for (const ex of shuffledStatic) pushStatic(ex, 'static');
   }
 
-  // Top up short runs: more static, then a second procedural pack.
+  // Top up short runs: more static, then more procedural packs.
   let guard = 0;
-  while (countExerciseBeats(out) < MIN_BEATS && guard++ < 8) {
+  while (countExerciseBeats(out) < MIN_BEATS && guard++ < 12) {
     const next = shuffledStatic.find((ex) => !usedStatic.has(ex.id));
     if (next) {
       pushStatic(next, 'pad');
@@ -2562,5 +2696,30 @@ export function buildExercises(lessonId: string, seed: number): LearnExercise[] 
     } else break;
   }
 
+  // Trim oversized packs while keeping predict drills and a mix of MCQs.
+  let beats = countExerciseBeats(out);
+  if (beats > MAX_BEATS) {
+    const predict = out.filter((e) => e.kind === 'graph_predict');
+    const rest = shuffle(
+      rng,
+      out.filter((e) => e.kind !== 'graph_predict'),
+    );
+    const kept = [...predict];
+    for (const ex of rest) {
+      if (countExerciseBeats(kept) >= MIN_BEATS && countExerciseBeats(kept) + exerciseWeight(ex) > MAX_BEATS) {
+        continue;
+      }
+      kept.push(ex);
+      if (countExerciseBeats(kept) >= MAX_BEATS) break;
+    }
+    return shuffle(rng, kept);
+  }
+
   return shuffle(rng, out);
+}
+
+function exerciseWeight(ex: LearnExercise): number {
+  if (ex.kind === 'mcq') return 1;
+  if (ex.kind === 'trace') return ex.steps.length;
+  return ex.checkpoints.length;
 }

@@ -18,12 +18,16 @@ for (const lesson of LESSONS) {
   const a = buildExercises(lesson.id, 101);
   const b = buildExercises(lesson.id, 202);
   assert.ok(
-    countExerciseBeats(a) >= 5,
-    `${lesson.id} seed=101 should have ≥5 beats (got ${countExerciseBeats(a)})`,
+    countExerciseBeats(a) >= 8,
+    `${lesson.id} seed=101 should have ≥8 beats (got ${countExerciseBeats(a)})`,
   );
   assert.ok(
-    countExerciseBeats(b) >= 5,
-    `${lesson.id} seed=202 should have ≥5 beats (got ${countExerciseBeats(b)})`,
+    countExerciseBeats(b) >= 8,
+    `${lesson.id} seed=202 should have ≥8 beats (got ${countExerciseBeats(b)})`,
+  );
+  assert.ok(
+    countExerciseBeats(a) <= 14,
+    `${lesson.id} seed=101 should stay ≤14 beats (got ${countExerciseBeats(a)})`,
   );
   assert.notStrictEqual(
     fingerprint(a),
