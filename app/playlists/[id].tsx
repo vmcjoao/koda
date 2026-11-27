@@ -11,7 +11,7 @@ import {
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
-import { fetchProblems } from '@/lib/api';
+import { fetchAttempts, fetchProblems } from '@/lib/api';
 import {
   getPlaylist,
   removeProblemFromPlaylist,
@@ -21,14 +21,40 @@ import {
 import { relativeDifficulty } from '@/lib/habit';
 import { openProblem } from '@/lib/openProblem';
 import { useAuth } from '@/contexts/AuthContext';
-import type { ProblemWithApproaches } from '@/types/database';
+import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
+
+function playlistNext(
+  ordered: ProblemWithApproaches[],
+  attempts: UserAttempt[],
+): ProblemWithApproaches | null {
+  if (!ordered.length) return null;
+  const byProblem = new Map<string, UserAttempt[]>();
+  for (const a of attempts) {
+    const list = byProblem.get(a.problem_id) ?? [];
+    list.push(a);
+    byProblem.set(a.problem_id, list);
+  }
+  // Prefer never attempted, then not-AC / not-strong, then anything without AC.
+  const neverTried = ordered.find((p) => !byProblem.has(p.id));
+  if (neverTried) return neverTried;
+  const unfinished = ordered.find((p) => {
+    const list = byProblem.get(p.id) ?? [];
+    const ac = list.some((a) => a.status === 'implemented_ac');
+    const strong = list.some((a) => a.score_accuracy >= 70);
+    return !ac && !strong;
+  });
+  if (unfinished) return unfinished;
+  const notAc = ordered.find((p) => !(byProblem.get(p.id) ?? []).some((a) => a.status === 'implemented_ac'));
+  return notAc ?? ordered[0];
+}
 
 export default function PlaylistDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { profile } = useAuth();
+  const { profile, user } = useAuth();
   const [playlist, setPlaylist] = useState<Playlist | null>(null);
   const [problems, setProblems] = useState<Record<string, ProblemWithApproaches>>({});
+  const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState('');
@@ -37,17 +63,22 @@ export default function PlaylistDetailScreen() {
   const reload = useCallback(async () => {
     if (!id) return;
     setLoading(true);
-    const [pl, all] = await Promise.all([getPlaylist(id), fetchProblems()]);
+    const [pl, all, a] = await Promise.all([
+      getPlaylist(id),
+      fetchProblems(),
+      fetchAttempts(user?.id ?? null),
+    ]);
     const map: Record<string, ProblemWithApproaches> = {};
     for (const p of all) map[p.id] = p;
     setPlaylist(pl);
     setProblems(map);
+    setAttempts(a);
     if (pl) {
       setName(pl.name);
       setDescription(pl.description);
     }
     setLoading(false);
-  }, [id]);
+  }, [id, user?.id]);
 
   useFocusEffect(
     useCallback(() => {
@@ -62,12 +93,15 @@ export default function PlaylistDetailScreen() {
       .filter((p): p is ProblemWithApproaches => !!p);
   }, [playlist, problems]);
 
+  const nextUp = useMemo(() => playlistNext(ordered, attempts), [ordered, attempts]);
+
   const missing = playlist
     ? playlist.problemIds.length - ordered.length
     : 0;
 
   function start(p: ProblemWithApproaches) {
-    openProblem(p);
+    const prior = attempts.find((a) => a.problem_id === p.id) ?? null;
+    openProblem(p, prior ? { priorAttempt: prior, intent: 'retry' } : undefined);
   }
 
   async function onSaveMeta() {
@@ -137,8 +171,11 @@ export default function PlaylistDetailScreen() {
         </>
       )}
 
-      {ordered[0] ? (
-        <PrimaryButton label="Start next" onPress={() => start(ordered[0])} />
+      {nextUp ? (
+        <PrimaryButton
+          label={nextUp === ordered[0] ? 'Start next' : `Continue · ${nextUp.title}`}
+          onPress={() => start(nextUp)}
+        />
       ) : (
         <Text style={styles.empty}>
           Empty playlist. Open Catalog and use “Add to playlist”, or create from a source.

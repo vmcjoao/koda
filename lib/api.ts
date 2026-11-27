@@ -637,6 +637,11 @@ export async function fetchAttempts(userId: string | null): Promise<UserAttempt[
   return [...(data as UserAttempt[]), ...local.filter((a) => !ids.has(a.id))];
 }
 
+/**
+ * Flip attempt disposition and keep SRS / solved state in sync.
+ * Mark AC graduates the problem; To Review schedules a due date without
+ * bumping attempt_count (that only increments on saveAttempt).
+ */
 export async function updateAttemptStatus(
   attemptId: string,
   userId: string | null,
@@ -644,13 +649,66 @@ export async function updateAttemptStatus(
 ): Promise<void> {
   const attempts = await readLocalAttempts();
   const idx = attempts.findIndex((a) => a.id === attemptId);
+  let problemId: string | null = null;
+  let score = 0;
   if (idx >= 0) {
     attempts[idx] = { ...attempts[idx], status };
+    problemId = attempts[idx].problem_id;
+    score = attempts[idx].score_accuracy;
     await writeLocalAttempts(attempts);
   }
 
   if (supabase && userId && !attemptId.startsWith('local-')) {
-    await supabase.from('user_attempts').update({ status }).eq('id', attemptId).eq('user_id', userId);
+    const { data } = await supabase
+      .from('user_attempts')
+      .update({ status })
+      .eq('id', attemptId)
+      .eq('user_id', userId)
+      .select('problem_id, score_accuracy')
+      .maybeSingle();
+    if (data) {
+      problemId = (data as { problem_id: string; score_accuracy: number }).problem_id;
+      score = (data as { problem_id: string; score_accuracy: number }).score_accuracy;
+    }
+  }
+
+  if (!problemId) return;
+
+  const states = await readLocalStates();
+  const existing = states.find((s) => s.problem_id === problemId);
+  const base: UserProblemState = existing ?? {
+    user_id: userId ?? DEMO_USER_ID,
+    problem_id: problemId,
+    is_solved: false,
+    attempt_count: 0,
+    next_review_date: null,
+    best_score: score,
+  };
+
+  const next: UserProblemState = { ...base, best_score: Math.max(base.best_score, score) };
+  if (status === 'implemented_ac') {
+    next.is_solved = true;
+    next.next_review_date = null;
+  } else if (status === 'needs_review') {
+    next.next_review_date = nextReviewDate(Math.min(score, 49));
+  } else if (status === 'drafted') {
+    // Keep existing SRS schedule; forge queue owns this disposition.
+  }
+
+  const stateIdx = states.findIndex((s) => s.problem_id === problemId);
+  if (stateIdx >= 0) states[stateIdx] = next;
+  else states.push(next);
+  await writeLocalStates(states);
+
+  if (supabase && userId) {
+    await supabase.from('user_problem_state').upsert({
+      user_id: userId,
+      problem_id: problemId,
+      is_solved: next.is_solved,
+      attempt_count: next.attempt_count,
+      best_score: next.best_score,
+      next_review_date: next.next_review_date,
+    });
   }
 }
 
@@ -667,6 +725,35 @@ export function pickNextProblem(
     (a, b) => Math.abs(a.difficulty_rating - ratingBand) - Math.abs(b.difficulty_rating - ratingBand),
   );
   return sorted[0] ?? null;
+}
+
+/**
+ * Surprise pick near the player's band. Prefers unattempted; avoids excludeIds
+ * (e.g. today's daily slots) when possible.
+ */
+export function pickRandomProblem(
+  problems: ProblemWithApproaches[],
+  attempts: UserAttempt[],
+  ratingBand: number,
+  opts?: { excludeIds?: string[] },
+): ProblemWithApproaches | null {
+  if (!problems.length) return null;
+  const exclude = new Set(opts?.excludeIds ?? []);
+  const attempted = new Set(attempts.map((a) => a.problem_id));
+  const near = (p: ProblemWithApproaches) => Math.abs(p.difficulty_rating - ratingBand) <= 400;
+
+  const tiers: ProblemWithApproaches[][] = [
+    problems.filter((p) => !exclude.has(p.id) && !attempted.has(p.id) && near(p)),
+    problems.filter((p) => !exclude.has(p.id) && !attempted.has(p.id)),
+    problems.filter((p) => !exclude.has(p.id) && near(p)),
+    problems.filter((p) => !exclude.has(p.id)),
+    problems,
+  ];
+  for (const pool of tiers) {
+    if (!pool.length) continue;
+    return pool[Math.floor(Math.random() * pool.length)]!;
+  }
+  return null;
 }
 
 export async function getDailySet(

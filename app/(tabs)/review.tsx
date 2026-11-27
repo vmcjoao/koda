@@ -9,12 +9,13 @@ import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems, getReviewQueue } from '@/lib/api';
 import { openProblem } from '@/lib/openProblem';
-import type { ProblemWithApproaches } from '@/types/database';
+import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
 export default function ReviewScreen() {
   const { user } = useAuth();
   const [queue, setQueue] = useState<ProblemWithApproaches[]>([]);
+  const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [loading, setLoading] = useState(true);
   const hasLoadedRef = useRef(false);
 
@@ -27,6 +28,7 @@ export default function ReviewScreen() {
         const review = await getReviewQueue(user?.id ?? null, p, a);
         if (!active) return;
         setQueue(review);
+        setAttempts(a);
         hasLoadedRef.current = true;
         setLoading(false);
       })();
@@ -37,7 +39,11 @@ export default function ReviewScreen() {
   );
 
   function start(problem: ProblemWithApproaches) {
-    openProblem(problem);
+    const prior =
+      attempts.find((a) => a.problem_id === problem.id && a.status === 'needs_review') ??
+      attempts.find((a) => a.problem_id === problem.id) ??
+      null;
+    openProblem(problem, { priorAttempt: prior, intent: 'review' });
   }
 
   const due = queue.length;

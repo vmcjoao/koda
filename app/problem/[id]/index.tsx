@@ -9,7 +9,7 @@ import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchProblem } from '@/lib/api';
 import { getFavorites, toggleFavorite } from '@/lib/favorites';
 import { relativeDifficulty } from '@/lib/habit';
-import { takePendingProblem } from '@/lib/openProblem';
+import { takePendingOpen } from '@/lib/openProblem';
 import { addProblemToPlaylistFlow } from '@/lib/playlistPicker';
 import { useAuth } from '@/contexts/AuthContext';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -17,7 +17,7 @@ import { colors, radii, spacing } from '@/constants/theme';
 export default function EncounterScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { profile, user } = useAuth();
-  const { problem, draft, beginProblem, tickTime } = useAttempt();
+  const { problem, draft, beginProblem, priorAttempt, flowIntent } = useAttempt();
   const [loading, setLoading] = useState(!problem || problem.id !== id);
   const [error, setError] = useState<string | null>(null);
   const [favorite, setFavorite] = useState(false);
@@ -30,26 +30,21 @@ export default function EncounterScreen() {
         return;
       }
       setLoading(true);
-      const pending = takePendingProblem(id);
-      const p = pending ?? (await fetchProblem(id));
+      const pending = takePendingOpen(id);
+      const p = pending?.problem ?? (await fetchProblem(id));
       if (!active) return;
       if (!p) {
         setError('Problem not found');
         setLoading(false);
         return;
       }
-      beginProblem(p);
+      beginProblem(p, pending?.opts);
       setLoading(false);
     })();
     return () => {
       active = false;
     };
   }, [id, problem?.id, beginProblem]);
-
-  useEffect(() => {
-    const timer = setInterval(tickTime, 1000);
-    return () => clearInterval(timer);
-  }, [tickTime]);
 
   useEffect(() => {
     let active = true;
@@ -113,6 +108,30 @@ export default function EncounterScreen() {
       <Text style={styles.rel}>
         {relativeDifficulty(problem.difficulty_rating, profile?.rating_band ?? 1200)} vs your band
       </Text>
+
+      {priorAttempt ? (
+        <View style={styles.priorCard}>
+          <Text style={styles.priorTitle}>
+            {flowIntent === 'review' ? 'Review retry' : 'Last attempt'} · {priorAttempt.score_accuracy}%
+          </Text>
+          <Text style={styles.priorBody} numberOfLines={3}>
+            {[
+              ...priorAttempt.selected_paradigms,
+              ...priorAttempt.selected_algorithms,
+              ...priorAttempt.selected_ds,
+              ...priorAttempt.selected_twists,
+            ]
+              .filter(Boolean)
+              .join(' · ') || 'No tags saved — rebuild the hypothesis from scratch.'}
+          </Text>
+          {priorAttempt.mistake_types?.length ? (
+            <Text style={styles.priorMiss} numberOfLines={2}>
+              Miss: {priorAttempt.mistake_types.join(' · ')}
+            </Text>
+          ) : null}
+          <Text style={styles.priorHint}>Fresh attempt — prior answers are reference only.</Text>
+        </View>
+      ) : null}
 
       <Text style={styles.label}>Statement</Text>
       <ProseCard markdown={problem.statement_md} />
@@ -224,5 +243,34 @@ const styles = StyleSheet.create({
   },
   error: {
     color: colors.danger,
+  },
+  priorCard: {
+    backgroundColor: colors.surfaceElevated,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.md,
+    gap: 4,
+  },
+  priorTitle: {
+    color: colors.warning,
+    fontSize: 13,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+    letterSpacing: 0.4,
+  },
+  priorBody: {
+    color: colors.textMuted,
+    fontSize: 13,
+    lineHeight: 18,
+  },
+  priorMiss: {
+    color: colors.warning,
+    fontSize: 12,
+  },
+  priorHint: {
+    color: colors.textDim,
+    fontSize: 12,
+    marginTop: 2,
   },
 });

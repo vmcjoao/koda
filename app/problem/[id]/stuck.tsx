@@ -5,6 +5,7 @@ import { PressableScale } from '@/components/game/PressableScale';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useAttempt } from '@/contexts/AttemptContext';
+import { exitProblemFlow } from '@/lib/openProblem';
 import { stuckHintSteps, stuckLearnLinks } from '@/lib/stuckHints';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -71,7 +72,10 @@ export default function StuckScreen() {
             <PressableScale
               key={link.lesson.id}
               style={styles.learnRow}
-              onPress={() => router.push(`/learn/${link.lesson.id}`)}
+              onPress={() => {
+                exitProblemFlow('/(tabs)/learn');
+                router.push(`/learn/${link.lesson.id}`);
+              }}
             >
               <Text style={styles.learnTitle}>{link.lesson.title}</Text>
               <Text style={styles.learnCta}>Open</Text>

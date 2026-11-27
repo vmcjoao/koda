@@ -38,7 +38,8 @@ export default function QueueScreen() {
       const [a, p] = await Promise.all([fetchAttempts(user?.id ?? null), fetchProblems()]);
       const map: Record<string, ProblemWithApproaches> = {};
       for (const item of p) map[item.id] = item;
-      setAttempts(a.filter((x) => x.status === 'drafted' || !!x.pseudocode_draft));
+      // Forge = pending builds only. AC / review leave this queue.
+      setAttempts(a.filter((x) => x.status === 'drafted'));
       setProblems(map);
       hasLoadedRef.current = true;
       setLoading(false);

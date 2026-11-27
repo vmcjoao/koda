@@ -126,7 +126,7 @@ export default function HistoryScreen() {
   function reopen(a: UserAttempt) {
     const p = problems[a.problem_id];
     if (!p) return;
-    openProblem(p);
+    openProblem(p, { priorAttempt: a, intent: 'retry' });
   }
 
   return (

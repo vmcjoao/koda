@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { router, useLocalSearchParams, usePathname } from 'expo-router';
+import { router, useLocalSearchParams, usePathname, type Href } from 'expo-router';
 import { useAttempt, type ProblemFlowStep } from '@/contexts/AttemptContext';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -63,7 +63,7 @@ export function ProblemFlowChrome() {
               disabled={!tappable}
               onPress={() => {
                 if (!tappable) return;
-                router.replace(step.path(id));
+                router.replace(step.path(id) as Href);
               }}
               style={[styles.step, active && styles.stepActive, !reached && styles.stepLocked]}
             >

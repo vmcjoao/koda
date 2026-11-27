@@ -1,5 +1,18 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
-import type { HypothesisDraft, ProblemWithApproaches, ScoreBreakdown } from '@/types/database';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import type {
+  HypothesisDraft,
+  ProblemWithApproaches,
+  ScoreBreakdown,
+  UserAttempt,
+} from '@/types/database';
+import type { OpenProblemIntent, OpenProblemOptions } from '@/lib/openProblem';
 import { scoreHypothesis } from '@/lib/scoring';
 
 export type ProblemFlowStep = 'statement' | 'radar' | 'hypothesis' | 'blueprint';
@@ -15,10 +28,17 @@ type AttemptContextValue = {
   draft: HypothesisDraft | null;
   breakdown: ScoreBreakdown | null;
   furthestStep: ProblemFlowStep;
-  beginProblem: (problem: ProblemWithApproaches) => void;
+  /** Prior attempt for review/retry framing (reference only). */
+  priorAttempt: UserAttempt | null;
+  flowIntent: OpenProblemIntent;
+  beginProblem: (problem: ProblemWithApproaches, opts?: OpenProblemOptions) => void;
   markStepReached: (step: ProblemFlowStep) => void;
   setComplexityGuess: (complexity: string, bonus: boolean) => void;
-  setHypothesis: ( partial: Partial<Pick<HypothesisDraft, 'paradigms' | 'algorithms' | 'dataStructures' | 'twists'>>) => void;
+  setHypothesis: (
+    partial: Partial<
+      Pick<HypothesisDraft, 'paradigms' | 'algorithms' | 'dataStructures' | 'twists'>
+    >,
+  ) => void;
   setPseudocode: (text: string) => void;
   tickTime: () => void;
   finalizeScore: () => ScoreBreakdown | null;
@@ -45,12 +65,16 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
   const [draft, setDraft] = useState<HypothesisDraft | null>(null);
   const [breakdown, setBreakdown] = useState<ScoreBreakdown | null>(null);
   const [furthestStep, setFurthestStep] = useState<ProblemFlowStep>('statement');
+  const [priorAttempt, setPriorAttempt] = useState<UserAttempt | null>(null);
+  const [flowIntent, setFlowIntent] = useState<OpenProblemIntent>('fresh');
 
-  const beginProblem = useCallback((p: ProblemWithApproaches) => {
+  const beginProblem = useCallback((p: ProblemWithApproaches, opts?: OpenProblemOptions) => {
     setProblem(p);
     setDraft(emptyDraft(p.id));
     setBreakdown(null);
     setFurthestStep('statement');
+    setPriorAttempt(opts?.priorAttempt ?? null);
+    setFlowIntent(opts?.intent ?? 'fresh');
   }, []);
 
   const markStepReached = useCallback((step: ProblemFlowStep) => {
@@ -62,7 +86,11 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setHypothesis = useCallback(
-    (partial: Partial<Pick<HypothesisDraft, 'paradigms' | 'algorithms' | 'dataStructures' | 'twists'>>) => {
+    (
+      partial: Partial<
+        Pick<HypothesisDraft, 'paradigms' | 'algorithms' | 'dataStructures' | 'twists'>
+      >,
+    ) => {
       setDraft((d) => (d ? { ...d, ...partial } : d));
     },
     [],
@@ -80,6 +108,14 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  // Keep insight timer running for the whole Encounter → Reveal flow.
+  const timingProblemId = draft?.problemId ?? null;
+  useEffect(() => {
+    if (!timingProblemId) return;
+    const timer = setInterval(tickTime, 1000);
+    return () => clearInterval(timer);
+  }, [timingProblemId, tickTime]);
+
   const finalizeScore = useCallback(() => {
     if (!problem || !draft) return null;
     const result = scoreHypothesis(draft, problem.approaches, problem.target_complexity);
@@ -92,6 +128,8 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
     setDraft(null);
     setBreakdown(null);
     setFurthestStep('statement');
+    setPriorAttempt(null);
+    setFlowIntent('fresh');
   }, []);
 
   const value = useMemo(
@@ -100,6 +138,8 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
       draft,
       breakdown,
       furthestStep,
+      priorAttempt,
+      flowIntent,
       beginProblem,
       markStepReached,
       setComplexityGuess,
@@ -114,6 +154,8 @@ export function AttemptProvider({ children }: { children: React.ReactNode }) {
       draft,
       breakdown,
       furthestStep,
+      priorAttempt,
+      flowIntent,
       beginProblem,
       markStepReached,
       setComplexityGuess,

@@ -29,9 +29,10 @@ export default function RevealScreen() {
   const { id, from } = useLocalSearchParams<{ id: string; from?: string }>();
   const fromStuck = from === 'stuck';
   const { user, profile, refreshProfile } = useAuth();
-  const { problem, draft, breakdown, finalizeScore } = useAttempt();
+  const { problem, draft, breakdown, finalizeScore, flowIntent } = useAttempt();
   const [saving, setSaving] = useState(false);
   const [result, setResult] = useState<SaveAttemptResult | null>(null);
+  const [savedStatus, setSavedStatus] = useState<'drafted' | 'needs_review' | null>(null);
   const [catalog, setCatalog] = useState<ProblemWithApproaches[]>([]);
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
 
@@ -96,6 +97,15 @@ export default function RevealScreen() {
     openProblem(next);
   }
 
+  function openLesson(lessonId: string) {
+    exitProblemFlow('/(tabs)/learn');
+    router.push(`/learn/${lessonId}`);
+  }
+
+  const hasBlueprint = !!(draft?.pseudocode?.trim());
+  const preferReview =
+    fromStuck || flowIntent === 'review' || (!hasBlueprint && breakdown.score < 70);
+
   async function persist(status: 'drafted' | 'needs_review') {
     setSaving(true);
     const savedAttempt = await saveAttempt({
@@ -114,6 +124,7 @@ export default function RevealScreen() {
       status,
     });
     setResult(savedAttempt);
+    setSavedStatus(status);
     await refreshProfile();
     try {
       if (savedAttempt.dailyBonusXp > 0) {
@@ -128,7 +139,15 @@ export default function RevealScreen() {
   }
 
   function goHome() {
-    exitProblemFlow();
+    exitProblemFlow('/(tabs)');
+  }
+
+  function goImplement() {
+    exitProblemFlow('/(tabs)/queue');
+  }
+
+  function goReview() {
+    exitProblemFlow('/(tabs)/review');
   }
 
   const totalXp = result ? result.xpGain.total + result.dailyBonusXp : 0;
@@ -207,7 +226,7 @@ export default function RevealScreen() {
                 <PressableScale
                   key={link.lesson.id}
                   style={styles.drillRow}
-                  onPress={() => router.push(`/learn/${link.lesson.id}`)}
+                  onPress={() => openLesson(link.lesson.id)}
                 >
                   <View style={styles.drillRowBody}>
                     <Text style={styles.drillTitle}>{link.lesson.title}</Text>
@@ -244,15 +263,27 @@ export default function RevealScreen() {
       {!saved ? (
         <>
           <PrimaryButton
-            label={fromStuck ? 'Mark for review (SRS)' : 'Add to Implement Queue'}
+            label={
+              preferReview
+                ? 'Schedule spaced review'
+                : hasBlueprint
+                  ? 'Save blueprint → Implement'
+                  : 'Save for coding later'
+            }
             loading={saving}
-            onPress={() => persist(fromStuck ? 'needs_review' : 'drafted')}
+            onPress={() => persist(preferReview ? 'needs_review' : 'drafted')}
           />
           <PrimaryButton
-            label={fromStuck ? 'Add to Implement Queue' : 'Mark for review (SRS)'}
+            label={
+              preferReview
+                ? hasBlueprint
+                  ? 'Save blueprint → Implement'
+                  : 'Save for coding later'
+                : 'Schedule spaced review'
+            }
             variant="secondary"
             disabled={saving}
-            onPress={() => persist(fromStuck ? 'drafted' : 'needs_review')}
+            onPress={() => persist(preferReview ? 'drafted' : 'needs_review')}
           />
         </>
       ) : (
@@ -280,6 +311,12 @@ export default function RevealScreen() {
           {result.dailyBonusXp > 0 ? (
             <Text style={styles.good}>Daily run cleared — nice work.</Text>
           ) : null}
+          {savedStatus === 'drafted' ? (
+            <PrimaryButton label="Open Implement" onPress={goImplement} />
+          ) : null}
+          {savedStatus === 'needs_review' ? (
+            <PrimaryButton label="Open Review deck" onPress={goReview} />
+          ) : null}
           <PrimaryButton
             label="Share result"
             variant="secondary"
@@ -304,7 +341,7 @@ export default function RevealScreen() {
 
       <PrimaryButton
         label={saved ? 'Back to run' : 'Back to Home'}
-        variant={saved ? 'primary' : 'ghost'}
+        variant={saved ? (savedStatus ? 'ghost' : 'primary') : 'ghost'}
         onPress={goHome}
       />
     </Screen>

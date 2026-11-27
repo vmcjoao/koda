@@ -11,6 +11,7 @@ export const LOCAL_KEYS = [
   'koda.onboarding.v1',
   'koda.reminders.enabled',
   'koda.reminders.hour',
+  'koda.prefs.learn_random_scope',
 ] as const;
 
 const KEY_SET = new Set<string>(LOCAL_KEYS);

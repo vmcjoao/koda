@@ -14,22 +14,23 @@ export default function ProblemFlowLayout() {
     <AttemptProvider>
       <View style={styles.root}>
         <ProblemFlowChrome />
-        <Stack
-          style={styles.stack}
-          screenOptions={{
-            headerShown: false,
-            contentStyle: { backgroundColor: colors.background },
-            animation: 'fade_from_bottom',
-            animationDuration: 280,
-          }}
-        >
-          <Stack.Screen name="index" />
-          <Stack.Screen name="radar" />
-          <Stack.Screen name="hypothesis" />
-          <Stack.Screen name="blueprint" />
-          <Stack.Screen name="stuck" />
-          <Stack.Screen name="reveal" options={{ animation: 'fade', gestureEnabled: false }} />
-        </Stack>
+        <View style={styles.stack}>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: colors.background },
+              animation: 'fade_from_bottom',
+              animationDuration: 280,
+            }}
+          >
+            <Stack.Screen name="index" />
+            <Stack.Screen name="radar" />
+            <Stack.Screen name="hypothesis" />
+            <Stack.Screen name="blueprint" />
+            <Stack.Screen name="stuck" />
+            <Stack.Screen name="reveal" options={{ animation: 'fade', gestureEnabled: false }} />
+          </Stack>
+        </View>
       </View>
     </AttemptProvider>
   );
