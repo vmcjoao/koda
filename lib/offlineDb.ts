@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native';
 import type { ProblemWithApproaches } from '../types/database';
 
 const ASYNC_CATALOG_KEY = 'koda.catalog.cache';
@@ -15,7 +14,6 @@ let dbPromise: Promise<SqliteDb | null> | null = null;
 let migrated = false;
 
 async function openDb(): Promise<SqliteDb | null> {
-  if (Platform.OS === 'web') return null;
   try {
     const SQLite = await import('expo-sqlite');
     const db = await SQLite.openDatabaseAsync('koda.db');
@@ -72,7 +70,7 @@ function parseCatalog(raw: string | null | undefined): ProblemWithApproaches[] |
   }
 }
 
-/** Read cached catalog from SQLite (native) or AsyncStorage (web / fallback). */
+/** Read cached catalog from SQLite (native) or AsyncStorage fallback. */
 export async function readCatalogCache(): Promise<ProblemWithApproaches[] | null> {
   try {
     const db = await getDb();
@@ -95,7 +93,7 @@ export async function readCatalogCache(): Promise<ProblemWithApproaches[] | null
   }
 }
 
-/** Persist catalog to SQLite when available; always mirror to AsyncStorage on web. */
+/** Persist catalog to SQLite when available. */
 export async function writeCatalogCache(problems: ProblemWithApproaches[]): Promise<void> {
   const payload = JSON.stringify(problems);
   const now = new Date().toISOString();
