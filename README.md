@@ -24,84 +24,100 @@
 
 ## Launch
 
-The brand opens as a graph: one node mitoses into a **K**, then **oda** slides in.
+Graph-K mitosis into **koda** — then you’re on the Run tab.
 
 <p align="center">
-  <img src="docs/media/01-launch.gif" alt="Koda launch — graph-K mitosis" width="280" />
+  <img src="docs/media/launch.gif" alt="Koda launch animation" width="280" />
 </p>
 
 ---
 
-## The Run tab
+## Run
 
-Home is one composition: wordmark, streak / XP / band, today’s algorithm, and the daily path.
+Home is one composition: wordmark, streak / XP / band, Daily Algorithm, and today’s path.
 
 <p align="center">
-  <img src="docs/media/02-home-run.png" alt="Koda Home — Run tab with Daily Path" width="280" />
+  <img src="docs/media/run-page.jpeg" alt="Koda Run tab — Daily Path" width="280" />
 </p>
 
-| Piece | Why it hits |
+| Piece | |
 | --- | --- |
-| **Graph-K wordmark** | Tap to replay the mitosis in place |
-| **PlayerStrip** | Streak ◆ · XP gold count-up · Band ◎ |
+| **Graph-K wordmark** | Tap to replay the mitosis |
+| **PlayerStrip** | Streak · XP · Band |
 | **Daily Path** | Warm-up → Target → Boss |
-| **Raised Run orb** | Center tab bolt — mint when you’re on Home |
+| **Raised Run orb** | Center tab bolt |
 
 ---
 
 ## Daily Algorithm
 
-One seeded skill-check a day. Calendar like a habit game — streak, catch-up, +XP on first clear.
+One seeded skill-check a day. Streak, catch-up, calendar.
 
 <p align="center">
-  <img src="docs/media/05-daily-algo-calendar.png" alt="Daily Algorithm calendar" width="280" />
+  <img src="docs/media/puzzle-calendar.jpeg" alt="Daily Algorithm puzzle calendar" width="280" />
 </p>
 
 ---
 
 ## Learn — Algorithm Dojo
 
-Curriculum as a path. Units, zigzag nodes, Check drills, and **Live Replay** visualizations — watch the algorithm move before you tag it.
+Suggested path, unit progress, Check drills, and **Live Replay** visualizations.
 
 <p align="center">
-  <img src="docs/media/07-learn-path.png" alt="Learn path — Algorithm Dojo" width="280" />
+  <img src="docs/media/learn.jpeg" alt="Learn — Algorithm Dojo" width="280" />
   &nbsp;
-  <img src="docs/media/08-learn-viz.gif" alt="Live Replay visualization" width="280" />
+  <img src="docs/media/lesson-units.jpeg" alt="Lesson units path" width="280" />
 </p>
 
-BFS · DFS · Dijkstra · knapsack · LIS · segtree · hull · and more.
+### Live Replay
+
+<p align="center">
+  <img src="docs/media/bfs-viz.gif" alt="BFS Live Replay" width="220" />
+  &nbsp;
+  <img src="docs/media/lis-viz.gif" alt="LIS Live Replay" width="220" />
+  &nbsp;
+  <img src="docs/media/seg-tree-viz.gif" alt="Segment tree Live Replay" width="220" />
+</p>
+
+<p align="center">
+  <sub>BFS · LIS · Segment tree — plus knapsack, hull, Dijkstra, and more in-app.</sub>
+</p>
 
 ---
 
-## Encounter → Reveal
+## Review · Implement
 
-The core loop is diagnosis, not typing:
+Misses land in the Review deck. Blueprints wait in the Build Queue until you AC them on a real OJ.
+
+<p align="center">
+  <img src="docs/media/review.jpeg" alt="Review deck" width="280" />
+  &nbsp;
+  <img src="docs/media/implement.jpeg" alt="Implement queue" width="280" />
+</p>
+
+Core loop:
 
 ```text
 Encounter  →  Radar  →  Hypothesis  →  Blueprint  →  Reveal
 ```
 
-Read the statement. Tag complexity. Name paradigm, algorithm, structures, twists. Sketch a blueprint for later PC work. Then see how sharp your read was.
-
-<p align="center">
-  <img src="docs/media/11-reveal-score.png" alt="Reveal score breakdown" width="280" />
-</p>
-
-Stuck? Progressive hints — coaching layers, not instant spoilers.
-
 ---
 
-## Implement · Stats
+## Stats
 
-Blueprints wait in the Build Queue until you AC them on a real OJ. Stats track band, heat, pipeline, and topic mastery.
+Band, heatmap, diagnose → blueprint → implement pipeline, topic mastery.
 
 <p align="center">
-  <img src="docs/media/14-implement-queue.png" alt="Implement queue" width="280" />
+  <img src="docs/media/stats-full-page.jpeg" alt="Stats overview" width="240" />
   &nbsp;
-  <img src="docs/media/13-stats.png" alt="Stats heatmap" width="280" />
+  <img src="docs/media/stats-calendar.jpeg" alt="Training calendar heatmap" width="240" />
 </p>
 
-Also in the app: Review deck, catalog, playlists, history filters, offline SQLite catalog, guest → cloud sync when you want it.
+<p align="center">
+  <img src="docs/media/stats-pipeline.jpeg" alt="Pipeline funnel" width="280" />
+  &nbsp;
+  <img src="docs/media/stats-mastery.jpeg" alt="Topic mastery" width="280" />
+</p>
 
 ---
 
@@ -110,7 +126,7 @@ Also in the app: Review deck, catalog, playlists, history filters, offline SQLit
 Most CP apps shove an editor onto a phone. Koda flips it:
 
 1. **Train recognition** — paradigms and twists under time pressure  
-2. **Keep implementation for a keyboard** — blueprints land in the Implement queue  
+2. **Keep implementation for a keyboard** — blueprints land in Implement  
 3. **Feel like a run** — daily set, streaks, bands, haptics, motion with purpose  
 
 | | |
@@ -125,47 +141,27 @@ Built with **Expo · React Native · Expo Router · Reanimated · Supabase** (op
 
 ---
 
-## Try it
-
-Android preview builds ship as installable APKs via [EAS](https://expo.dev) (internal distribution).  
-Repo stays private while the product is yours — share the build link, not the source.
+<details>
+<summary><strong>Dev notes</strong></summary>
 
 ```bash
 npm install
 npx expo start
+# web screenshots: npm run web
+# Android APK: npx eas-cli build --platform android --profile preview
 ```
 
-Guest mode works with no backend. Optional sync: copy `.env.example` → `.env` and set Supabase keys.
-
-<details>
-<summary><strong>Dev notes</strong> (setup, scripts, ingest)</summary>
-
-### Stack
-- Expo (RN + Router), dark by default  
-- Supabase Auth + Postgres, offline guest via SQLite / cache  
-
-### Supabase
-1. Enable Email auth  
-2. Run migrations `001` … `005_io_formats.sql`  
-3. Seed with `supabase/seed.sql` (`npm run generate:seed`)  
-4. Redirect URLs: `koda://(auth)/reset`, `koda://(auth)/login`  
-
-### Scripts
-
-| Command | Purpose |
-| --- | --- |
-| `npm start` | Expo dev server |
-| `npm run typecheck` | TypeScript |
-| `npm test` | Scoring + habit + local-data |
-| `npm run generate:seed` | Rebuild seed SQL |
-| `npx eas-cli build --profile preview -p android` | Preview APK |
-
-Ingest pipeline: [`scripts/ingest/README.md`](scripts/ingest/README.md).
+Guest mode works with no backend. Optional sync: `.env` from `.env.example`.  
+Ingest: [`scripts/ingest/README.md`](scripts/ingest/README.md).
 
 </details>
 
 ---
 
 <p align="center">
-  <sub>Designed & built by <strong>João</strong> · graph-K brand · mint on void</sub>
+  <a href="https://github.com/vmcjoao"><img src="https://img.shields.io/badge/github-vmcjoao-181717?style=flat-square&logo=github" alt="vmcjoao" /></a>
+</p>
+
+<p align="center">
+  <sub>Designed & built by <strong>vmcjoao</strong> · graph-K brand · mint on void</sub>
 </p>
