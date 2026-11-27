@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { GraphSearchViz, type GraphStep } from '@/components/learn/viz/GraphSearchViz';
@@ -30,17 +30,25 @@ import type {
   StringDemo,
 } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
+import { randomLessonDemo } from '@/lib/learnDemoGen';
+import { buildSortFrames } from '@/lib/learnSortFrames';
 import {
+  build01BfsSteps,
+  buildBellmanSteps,
   buildBfsSteps,
+  buildBridgeSteps,
   buildDfsSteps,
   buildDijkstraSteps,
   buildMstSteps,
+  buildSccSteps,
   buildTopoSteps,
 } from '@/lib/learnViz';
 
 type Props = {
   kind: LearnVizKind;
   demo: LearnDemo;
+  /** Used for purpose-fit shuffle overrides (e.g. LCA tree). */
+  lessonId?: string;
 };
 
 function isGraph(demo: LearnDemo): demo is GraphDemo {
@@ -59,106 +67,152 @@ function isString(demo: LearnDemo): demo is StringDemo {
   return 'text' in demo;
 }
 
-export function VizPlayer({ kind, demo }: Props) {
+/** Remount (via `key` on the parent) when lesson/kind changes so curated demo resets. */
+export function VizPlayer({ kind, demo, lessonId }: Props) {
+  const [liveDemo, setLiveDemo] = useState<LearnDemo>(demo);
+  const [step, setStep] = useState(0);
+
   const graphSteps = useMemo(() => {
-    if (!isGraph(demo)) return [] as GraphStep[];
+    if (!isGraph(liveDemo)) return [] as GraphStep[];
     switch (kind) {
       case 'graph-bfs':
-        return buildBfsSteps(demo);
+        return buildBfsSteps(liveDemo);
       case 'graph-dfs':
-        return buildDfsSteps(demo);
+        return buildDfsSteps(liveDemo);
       case 'graph-dijkstra':
-        return buildDijkstraSteps(demo);
+        return buildDijkstraSteps(liveDemo);
       case 'graph-topo':
-        return buildTopoSteps(demo);
+        return buildTopoSteps(liveDemo);
       case 'graph-mst':
-        return buildMstSteps(demo);
+        return buildMstSteps(liveDemo);
+      case 'graph-scc':
+        return buildSccSteps(liveDemo);
+      case 'graph-bridges':
+        return buildBridgeSteps(liveDemo);
+      case 'graph-bellman':
+        return buildBellmanSteps(liveDemo);
+      case 'graph-01-bfs':
+        return build01BfsSteps(liveDemo);
       default:
         return [];
     }
-  }, [demo, kind]);
+  }, [liveDemo, kind]);
 
   const maxStep = useMemo(() => {
-    if (kind === 'array-binary-search' && isArray(demo)) {
+    if (kind === 'array-binary-search' && isArray(liveDemo)) {
       let lo = 0;
-      let hi = demo.values.length;
-      const target = demo.target ?? demo.values[Math.floor(demo.values.length / 2)];
+      let hi = liveDemo.values.length;
+      const target = liveDemo.target ?? liveDemo.values[Math.floor(liveDemo.values.length / 2)];
       let frames = 1;
       let guard = 0;
       while (lo < hi && guard++ < 20) {
         const mid = lo + Math.floor((hi - lo) / 2);
         frames += 1;
-        if (demo.values[mid] < target) lo = mid + 1;
+        if (liveDemo.values[mid]! < target!) lo = mid + 1;
         else hi = mid;
       }
       frames += 1;
       return Math.max(0, frames - 1);
     }
-    if (kind === 'array-prefix' && isArray(demo)) return demo.values.length;
+    if (kind === 'array-prefix' && isArray(liveDemo)) return liveDemo.values.length;
     if (kind === 'dsu-merge') return 4;
-    if (kind === 'dp-knapsack' && isKnapsack(demo)) return knapsackFrameCount(demo);
-    if (kind === 'mono-stack' && isArray(demo)) return monoStackFrameCount(demo) - 1;
-    if (kind === 'array-two-pointers' && isArray(demo))
-      return Math.max(0, twoPointersFrameCount(demo) - 1);
-    if (kind === 'array-lis' && isArray(demo)) return Math.max(0, lisFrameCount(demo) - 1);
-    if (kind === 'array-sort' && isArray(demo)) return Math.max(0, sortFrameCount(demo) - 1);
-    if (kind === 'array-sieve' && isArray(demo)) return Math.max(0, sieveFrameCount(demo) - 1);
-    if (kind === 'geo-orient' && isPoints(demo)) return Math.max(0, orientFrameCount(demo) - 1);
-    if (kind === 'geo-hull' && isPoints(demo)) return Math.max(0, hullFrameCount(demo) - 1);
-    if (kind === 'string-z' && isString(demo)) return Math.max(0, stringZFrameCount(demo) - 1);
-    if (kind === 'nim-heaps' && isArray(demo)) return Math.max(0, nimFrameCount(demo) - 1);
-    if ((kind === 'array-stack' || kind === 'array-queue') && isArray(demo))
-      return Math.max(0, stackQueueFrameCount(demo) - 1);
-    if (kind === 'segtree-sum' && isArray(demo)) return Math.max(0, segtreeFrameCount(demo) - 1);
+    if (kind === 'dp-knapsack' && isKnapsack(liveDemo)) return knapsackFrameCount(liveDemo);
+    if (kind === 'mono-stack' && isArray(liveDemo)) return monoStackFrameCount(liveDemo) - 1;
+    if (kind === 'array-two-pointers' && isArray(liveDemo))
+      return Math.max(0, twoPointersFrameCount(liveDemo) - 1);
+    if (kind === 'array-lis' && isArray(liveDemo)) return Math.max(0, lisFrameCount(liveDemo) - 1);
+    if (kind === 'array-sort' && isArray(liveDemo))
+      return Math.max(0, sortFrameCount(liveDemo, lessonId) - 1);
+    if (kind === 'array-sieve' && isArray(liveDemo)) return Math.max(0, sieveFrameCount(liveDemo) - 1);
+    if (kind === 'geo-orient' && isPoints(liveDemo)) return Math.max(0, orientFrameCount(liveDemo) - 1);
+    if (kind === 'geo-hull' && isPoints(liveDemo)) return Math.max(0, hullFrameCount(liveDemo) - 1);
+    if (kind === 'string-z' && isString(liveDemo)) return Math.max(0, stringZFrameCount(liveDemo) - 1);
+    if (kind === 'nim-heaps' && isArray(liveDemo)) return Math.max(0, nimFrameCount(liveDemo) - 1);
+    if ((kind === 'array-stack' || kind === 'array-queue') && isArray(liveDemo))
+      return Math.max(0, stackQueueFrameCount(liveDemo) - 1);
+    if (kind === 'segtree-sum' && isArray(liveDemo)) return Math.max(0, segtreeFrameCount(liveDemo) - 1);
     return Math.max(0, graphSteps.length - 1);
-  }, [demo, graphSteps.length, kind]);
+  }, [liveDemo, graphSteps.length, kind, lessonId]);
 
-  const [step, setStep] = useState(0);
-  useEffect(() => setStep(0), [kind, demo]);
+  const sortFrames = useMemo(() => {
+    if (kind !== 'array-sort' || !isArray(liveDemo)) return null;
+    return buildSortFrames(liveDemo, lessonId);
+  }, [kind, liveDemo, lessonId]);
 
   const reset = useCallback(() => setStep(0), []);
   const next = useCallback(() => setStep((s) => Math.min(maxStep, s + 1)), [maxStep]);
   const prev = useCallback(() => setStep((s) => Math.max(0, s - 1)), []);
 
+  const shuffle = useCallback(() => {
+    setLiveDemo(randomLessonDemo(kind, Date.now() ^ (Math.random() * 1e9), lessonId));
+    setStep(0);
+  }, [kind, lessonId]);
+
+  const setBinaryTarget = useCallback((target: number) => {
+    setLiveDemo((prev) => {
+      if (!isArray(prev)) return prev;
+      if (prev.target === target) return prev;
+      return { ...prev, target };
+    });
+    setStep(0);
+  }, []);
+
   const captionExtra =
     kind.startsWith('graph-') && graphSteps[step]?.label
-      ? ` · ${graphSteps[step].label}`
-      : '';
+      ? ` · ${graphSteps[step]!.label}`
+      : sortFrames?.[Math.min(step, sortFrames.length - 1)]?.label
+        ? ` · ${sortFrames[Math.min(step, sortFrames.length - 1)]!.label}`
+        : '';
 
   return (
     <View style={styles.wrap}>
       <View style={styles.stage}>
-        {kind.startsWith('graph-') && isGraph(demo) ? (
-          <GraphSearchViz demo={demo} step={graphSteps[Math.min(step, graphSteps.length - 1)]} />
+        {kind.startsWith('graph-') && isGraph(liveDemo) ? (
+          <GraphSearchViz
+            demo={liveDemo}
+            step={graphSteps[Math.min(step, Math.max(0, graphSteps.length - 1))]}
+          />
         ) : null}
-        {kind === 'array-binary-search' && isArray(demo) ? (
-          <BinarySearchViz demo={demo} step={step} />
+        {kind === 'array-binary-search' && isArray(liveDemo) ? (
+          <BinarySearchViz demo={liveDemo} step={step} onTargetChange={setBinaryTarget} />
         ) : null}
-        {kind === 'dsu-merge' && isGraph(demo) ? <DsuViz demo={demo} step={step} /> : null}
-        {kind === 'array-prefix' && isArray(demo) ? <PrefixViz demo={demo} step={step} /> : null}
-        {kind === 'dp-knapsack' && isKnapsack(demo) ? (
-          <KnapsackViz demo={demo} step={step} />
+        {kind === 'dsu-merge' && isGraph(liveDemo) ? <DsuViz demo={liveDemo} step={step} /> : null}
+        {kind === 'array-prefix' && isArray(liveDemo) ? (
+          <PrefixViz demo={liveDemo} step={step} />
         ) : null}
-        {kind === 'mono-stack' && isArray(demo) ? (
-          <MonoStackViz demo={demo} step={step} />
+        {kind === 'dp-knapsack' && isKnapsack(liveDemo) ? (
+          <KnapsackViz demo={liveDemo} step={step} />
         ) : null}
-        {kind === 'array-two-pointers' && isArray(demo) ? (
-          <TwoPointersViz demo={demo} step={step} />
+        {kind === 'mono-stack' && isArray(liveDemo) ? (
+          <MonoStackViz demo={liveDemo} step={step} />
         ) : null}
-        {kind === 'array-lis' && isArray(demo) ? <LisViz demo={demo} step={step} /> : null}
-        {kind === 'array-sort' && isArray(demo) ? <SortViz demo={demo} step={step} /> : null}
-        {kind === 'array-sieve' && isArray(demo) ? <SieveViz demo={demo} step={step} /> : null}
-        {kind === 'geo-orient' && isPoints(demo) ? <OrientViz demo={demo} step={step} /> : null}
-        {kind === 'geo-hull' && isPoints(demo) ? <HullViz demo={demo} step={step} /> : null}
-        {kind === 'string-z' && isString(demo) ? <StringZViz demo={demo} step={step} /> : null}
-        {kind === 'nim-heaps' && isArray(demo) ? <NimViz demo={demo} step={step} /> : null}
-        {kind === 'array-stack' && isArray(demo) ? (
-          <StackQueueViz demo={demo} step={step} mode="stack" />
+        {kind === 'array-two-pointers' && isArray(liveDemo) ? (
+          <TwoPointersViz demo={liveDemo} step={step} />
         ) : null}
-        {kind === 'array-queue' && isArray(demo) ? (
-          <StackQueueViz demo={demo} step={step} mode="queue" />
+        {kind === 'array-lis' && isArray(liveDemo) ? <LisViz demo={liveDemo} step={step} /> : null}
+        {kind === 'array-sort' && isArray(liveDemo) ? (
+          <SortViz demo={liveDemo} step={step} lessonId={lessonId} />
         ) : null}
-        {kind === 'segtree-sum' && isArray(demo) ? <SegtreeViz demo={demo} step={step} /> : null}
+        {kind === 'array-sieve' && isArray(liveDemo) ? (
+          <SieveViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'geo-orient' && isPoints(liveDemo) ? (
+          <OrientViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'geo-hull' && isPoints(liveDemo) ? <HullViz demo={liveDemo} step={step} /> : null}
+        {kind === 'string-z' && isString(liveDemo) ? (
+          <StringZViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'nim-heaps' && isArray(liveDemo) ? <NimViz demo={liveDemo} step={step} /> : null}
+        {kind === 'array-stack' && isArray(liveDemo) ? (
+          <StackQueueViz demo={liveDemo} step={step} mode="stack" />
+        ) : null}
+        {kind === 'array-queue' && isArray(liveDemo) ? (
+          <StackQueueViz demo={liveDemo} step={step} mode="queue" />
+        ) : null}
+        {kind === 'segtree-sum' && isArray(liveDemo) ? (
+          <SegtreeViz demo={liveDemo} step={step} />
+        ) : null}
       </View>
       <Text style={styles.caption}>
         Step {step}/{maxStep}
@@ -169,6 +223,7 @@ export function VizPlayer({ kind, demo }: Props) {
         <PrimaryButton label="Back" variant="secondary" onPress={prev} style={styles.btn} />
         <PrimaryButton label="Step" onPress={next} style={styles.btn} />
       </View>
+      <PrimaryButton label="Shuffle example" variant="secondary" onPress={shuffle} />
     </View>
   );
 }

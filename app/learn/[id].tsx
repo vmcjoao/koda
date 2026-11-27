@@ -63,7 +63,7 @@ function buildStages(hasViz: boolean, hasExercises: boolean): Stage[] {
 }
 
 export default function LearnLessonScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, focus } = useLocalSearchParams<{ id: string; focus?: string }>();
   const navigation = useNavigation();
   const lesson = getLesson(String(id ?? ''));
   const [problems, setProblems] = useState<ProblemWithApproaches[]>([]);
@@ -96,10 +96,15 @@ export default function LearnLessonScreen() {
   }, [lesson, navigation]);
 
   useEffect(() => {
-    setStageIndex(0);
     setJustCleared(false);
     setDrillSeed(Date.now());
-  }, [lesson?.id]);
+    if (focus === 'check' && hasExercises) {
+      const checkIdx = stages.findIndex((s) => s.id === 'check');
+      setStageIndex(checkIdx >= 0 ? checkIdx : 0);
+    } else {
+      setStageIndex(0);
+    }
+  }, [lesson?.id, focus, hasExercises, stages]);
 
   useFocusEffect(
     useCallback(() => {
@@ -296,8 +301,10 @@ export default function LearnLessonScreen() {
             <View style={styles.stageBody}>
               <Text style={styles.stagePrompt}>Watch the pattern move.</Text>
               <VizPlayer
+                key={`${current.id}-${current.visualization.kind}`}
                 kind={current.visualization.kind}
                 demo={current.visualization.demo}
+                lessonId={current.id}
               />
             </View>
           ) : null}
