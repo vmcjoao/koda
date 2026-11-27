@@ -3,80 +3,18 @@ import { StyleSheet, Text, View } from 'react-native';
 import type { GraphDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import { PulseOnActive } from '@/components/learn/viz/AnimatedSlot';
-
-const INF = 1e9;
-
-type Frame = {
-  label: string;
-  d: number[][];
-  /** Highlighted cells [i][j] */
-  hot: [number, number][];
-  k: number;
-};
-
-function initMatrix(demo: GraphDemo): number[][] {
-  const n = demo.nodes.length;
-  const d = Array.from({ length: n }, () => Array(n).fill(INF));
-  for (let i = 0; i < n; i++) d[i]![i] = 0;
-  for (const e of demo.edges) {
-    const u = Number(e.from);
-    const v = Number(e.to);
-    const w = e.w ?? 1;
-    d[u]![v] = Math.min(d[u]![v]!, w);
-    if (!demo.directed) d[v]![u] = Math.min(d[v]![u]!, w);
-  }
-  return d;
-}
-
-export function buildFloydFrames(demo: GraphDemo): Frame[] {
-  const n = demo.nodes.length;
-  const d = initMatrix(demo);
-  const frames: Frame[] = [
-    {
-      label: 'init · d[i][i]=0, edges loaded',
-      d: d.map((row) => [...row]),
-      hot: [],
-      k: -1,
-    },
-  ];
-  for (let k = 0; k < n; k++) {
-    const improved: [number, number][] = [];
-    for (let i = 0; i < n; i++) {
-      if (d[i]![k]! >= INF) continue;
-      for (let j = 0; j < n; j++) {
-        if (d[k]![j]! >= INF) continue;
-        const nd = d[i]![k]! + d[k]![j]!;
-        if (nd < d[i]![j]!) {
-          d[i]![j] = nd;
-          improved.push([i, j]);
-        }
-      }
-    }
-    frames.push({
-      label:
-        improved.length === 0
-          ? `k=${k} · no improvements`
-          : `k=${k} · relaxed ${improved.length} pairs via node ${k}`,
-      d: d.map((row) => [...row]),
-      hot: improved.slice(0, 8),
-      k,
-    });
-  }
-  frames.push({
-    label: 'done · all-pairs distances',
-    d: d.map((row) => [...row]),
-    hot: [],
-    k: n,
-  });
-  return frames;
-}
+import {
+  buildFloydFrames,
+  floydFrameCount as countFrames,
+  FLOYD_INF,
+} from '@/lib/learnFloyd';
 
 export function floydFrameCount(demo: GraphDemo): number {
-  return buildFloydFrames(demo).length;
+  return countFrames(demo);
 }
 
 function fmt(v: number): string {
-  return v >= INF / 2 ? '∞' : String(v);
+  return v >= FLOYD_INF / 2 ? '∞' : String(v);
 }
 
 export function FloydViz({ demo, step }: { demo: GraphDemo; step: number }) {

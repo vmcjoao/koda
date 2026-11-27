@@ -26,6 +26,12 @@ import { SparseTableViz, sparseTableFrameCount } from '@/components/learn/viz/Sp
 import { DiffArrayViz, diffArrayFrameCount } from '@/components/learn/viz/DiffArrayViz';
 import { FloydViz, floydFrameCount } from '@/components/learn/viz/FloydViz';
 import { HeapViz, heapFrameCount } from '@/components/learn/viz/HeapViz';
+import { TrieViz, trieFrameCount } from '@/components/learn/viz/TrieViz';
+import { BitmaskDpViz, bitmaskDpFrameCount } from '@/components/learn/viz/BitmaskDpViz';
+import { DequeWindowViz, dequeWindowFrameCount } from '@/components/learn/viz/DequeWindowViz';
+import { TernarySearchViz, ternaryFrameCount } from '@/components/learn/viz/TernarySearchViz';
+import { HashMapViz, hashMapFrameCount } from '@/components/learn/viz/HashMapViz';
+import { LazySegViz, lazySegFrameCount } from '@/components/learn/viz/LazySegViz';
 import type {
   ArrayDemo,
   GraphDemo,
@@ -131,22 +137,34 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
       return Math.max(0, floydFrameCount(liveDemo) - 1);
     if (kind === 'dsu-merge') return 4;
     if (kind === 'dp-knapsack' && isKnapsack(liveDemo)) return knapsackFrameCount(liveDemo);
+    if (kind === 'dp-bitmask' && isArray(liveDemo))
+      return Math.max(0, bitmaskDpFrameCount(liveDemo) - 1);
     if (kind === 'mono-stack' && isArray(liveDemo)) return monoStackFrameCount(liveDemo) - 1;
     if (kind === 'array-two-pointers' && isArray(liveDemo))
       return Math.max(0, twoPointersFrameCount(liveDemo) - 1);
+    if (kind === 'array-deque-window' && isArray(liveDemo))
+      return Math.max(0, dequeWindowFrameCount(liveDemo) - 1);
     if (kind === 'array-lis' && isArray(liveDemo)) return Math.max(0, lisFrameCount(liveDemo) - 1);
     if (kind === 'array-sort' && isArray(liveDemo))
       return Math.max(0, sortFrameCount(liveDemo, lessonId) - 1);
     if (kind === 'array-sieve' && isArray(liveDemo)) return Math.max(0, sieveFrameCount(liveDemo) - 1);
+    if (kind === 'array-ternary' && isArray(liveDemo))
+      return Math.max(0, ternaryFrameCount(liveDemo) - 1);
+    if (kind === 'array-hashmap' && isArray(liveDemo))
+      return Math.max(0, hashMapFrameCount(liveDemo) - 1);
     if (kind === 'geo-orient' && isPoints(liveDemo)) return Math.max(0, orientFrameCount(liveDemo) - 1);
     if (kind === 'geo-hull' && isPoints(liveDemo)) return Math.max(0, hullFrameCount(liveDemo) - 1);
     if (kind === 'string-z' && isString(liveDemo)) return Math.max(0, stringZFrameCount(liveDemo) - 1);
     if (kind === 'string-kmp' && isString(liveDemo)) return Math.max(0, kmpFrameCount(liveDemo) - 1);
+    if (kind === 'string-trie' && isString(liveDemo))
+      return Math.max(0, trieFrameCount(liveDemo) - 1);
     if (kind === 'nim-heaps' && isArray(liveDemo)) return Math.max(0, nimFrameCount(liveDemo) - 1);
     if (kind === 'heap-pq' && isArray(liveDemo)) return Math.max(0, heapFrameCount(liveDemo) - 1);
     if ((kind === 'array-stack' || kind === 'array-queue') && isArray(liveDemo))
       return Math.max(0, stackQueueFrameCount(liveDemo) - 1);
     if (kind === 'segtree-sum' && isArray(liveDemo)) return Math.max(0, segtreeFrameCount(liveDemo) - 1);
+    if (kind === 'segtree-lazy' && isArray(liveDemo))
+      return Math.max(0, lazySegFrameCount(liveDemo) - 1);
     return Math.max(0, graphSteps.length - 1);
   }, [liveDemo, graphSteps.length, kind, lessonId]);
 
@@ -211,11 +229,17 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
         {kind === 'dp-knapsack' && isKnapsack(liveDemo) ? (
           <KnapsackViz demo={liveDemo} step={step} />
         ) : null}
+        {kind === 'dp-bitmask' && isArray(liveDemo) ? (
+          <BitmaskDpViz demo={liveDemo} step={step} />
+        ) : null}
         {kind === 'mono-stack' && isArray(liveDemo) ? (
           <MonoStackViz demo={liveDemo} step={step} />
         ) : null}
         {kind === 'array-two-pointers' && isArray(liveDemo) ? (
           <TwoPointersViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'array-deque-window' && isArray(liveDemo) ? (
+          <DequeWindowViz demo={liveDemo} step={step} />
         ) : null}
         {kind === 'array-lis' && isArray(liveDemo) ? <LisViz demo={liveDemo} step={step} /> : null}
         {kind === 'array-sort' && isArray(liveDemo) ? (
@@ -223,6 +247,12 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
         ) : null}
         {kind === 'array-sieve' && isArray(liveDemo) ? (
           <SieveViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'array-ternary' && isArray(liveDemo) ? (
+          <TernarySearchViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'array-hashmap' && isArray(liveDemo) ? (
+          <HashMapViz demo={liveDemo} step={step} />
         ) : null}
         {kind === 'geo-orient' && isPoints(liveDemo) ? (
           <OrientViz demo={liveDemo} step={step} />
@@ -234,6 +264,9 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
         {kind === 'string-kmp' && isString(liveDemo) ? (
           <KmpViz demo={liveDemo} step={step} />
         ) : null}
+        {kind === 'string-trie' && isString(liveDemo) ? (
+          <TrieViz demo={liveDemo} step={step} />
+        ) : null}
         {kind === 'nim-heaps' && isArray(liveDemo) ? <NimViz demo={liveDemo} step={step} /> : null}
         {kind === 'heap-pq' && isArray(liveDemo) ? <HeapViz demo={liveDemo} step={step} /> : null}
         {kind === 'array-stack' && isArray(liveDemo) ? (
@@ -244,6 +277,9 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
         ) : null}
         {kind === 'segtree-sum' && isArray(liveDemo) ? (
           <SegtreeViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'segtree-lazy' && isArray(liveDemo) ? (
+          <LazySegViz demo={liveDemo} step={step} />
         ) : null}
       </View>
       <Text style={styles.caption}>

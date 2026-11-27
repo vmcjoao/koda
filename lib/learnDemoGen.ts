@@ -357,6 +357,53 @@ function genKmp(rng: Rng): StringDemo {
   return { text: text.slice(0, 10) };
 }
 
+function genTrie(rng: Rng): StringDemo {
+  const roots = ['a', 'ab', 'b', 'ba', 'c'];
+  const words = new Set<string>();
+  const n = randInt(rng, 3, 4);
+  while (words.size < n) {
+    const base = roots[randInt(rng, 0, roots.length - 1)]!;
+    words.add(base + (rng() > 0.5 ? alphabetPick(rng) : ''));
+  }
+  return { text: [...words].join(' ') };
+}
+
+function alphabetPick(rng: Rng): string {
+  return 'abc'[randInt(rng, 0, 2)]!;
+}
+
+function genBitmask(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 3, 4);
+  return { values: Array.from({ length: n }, () => randInt(rng, 1, 9)) };
+}
+
+function genDequeWindow(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 6, 8);
+  return {
+    values: Array.from({ length: n }, () => randInt(rng, 1, 12)),
+    target: randInt(rng, 2, 4),
+  };
+}
+
+function genTernary(rng: Rng): ArrayDemo {
+  // Build a unimodal (valley) sequence
+  const n = randInt(rng, 7, 9);
+  const mid = randInt(rng, 2, n - 3);
+  const values: number[] = [];
+  let v = randInt(rng, 8, 14);
+  for (let i = 0; i < n; i++) {
+    values.push(v);
+    if (i < mid) v -= randInt(rng, 1, 3);
+    else v += randInt(rng, 1, 3);
+  }
+  return { values };
+}
+
+function genHashMap(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 6, 8);
+  return { values: Array.from({ length: n }, () => randInt(rng, 1, 5)) };
+}
+
 function genArrayLis(rng: Rng): ArrayDemo {
   const n = randInt(rng, 6, 8);
   return { values: Array.from({ length: n }, () => randInt(rng, 1, 12)) };
@@ -478,16 +525,26 @@ export function randomLessonDemo(
       return genArrayLis(rng);
     case 'array-two-pointers':
       return genTwoPointers(rng);
+    case 'array-deque-window':
+      return genDequeWindow(rng);
     case 'mono-stack':
       return genMonoStack(rng);
     case 'array-sieve':
       return genSieve(rng);
+    case 'array-ternary':
+      return genTernary(rng);
+    case 'array-hashmap':
+      return genHashMap(rng);
     case 'dp-knapsack':
       return genKnapsack(rng);
+    case 'dp-bitmask':
+      return genBitmask(rng);
     case 'string-z':
       return genStringZ(rng);
     case 'string-kmp':
       return genKmp(rng);
+    case 'string-trie':
+      return genTrie(rng);
     case 'geo-orient':
       return genPoints(rng, false);
     case 'geo-hull':
@@ -500,6 +557,8 @@ export function randomLessonDemo(
     case 'array-queue':
       return genStackQueue(rng);
     case 'segtree-sum':
+      return genSegtree(rng);
+    case 'segtree-lazy':
       return genSegtree(rng);
     default:
       return genArraySort(rng);

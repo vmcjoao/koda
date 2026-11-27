@@ -199,7 +199,7 @@ int find_hidden(int lo, int hi) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'array-prefix',
+      kind: 'array-hashmap',
       demo: { values: [1, 2, 1, 3, 2, 1] },
     },
     relatedIds: ['string-hashing', 'sorting', 'coordinate-compression'],

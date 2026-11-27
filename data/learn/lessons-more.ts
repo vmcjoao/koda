@@ -263,8 +263,8 @@ int min_coins(vector<int>& coins, int S) {
       notes_md: 'Submask enumeration is $O(3^N)$ — use when combining two halves of a mask.',
     },
     visualization: {
-      kind: 'dp-knapsack',
-      demo: { weights: [2, 3, 4], values: [3, 4, 5], capacity: 5 },
+      kind: 'dp-bitmask',
+      demo: { values: [4, 7, 2, 5] },
     },
     relatedIds: ['brute-force', 'meet-in-middle', 'dynamic-programming'],
     implementation: {
@@ -380,8 +380,8 @@ long long assign_min(vector<vector<int>>& cost) {
       extraMemory: 'O(total characters)',
     },
     visualization: {
-      kind: 'string-z',
-      demo: { text: 'abaabc' },
+      kind: 'string-trie',
+      demo: { text: 'a ab abc' },
     },
     relatedIds: ['kmp', 'string-hashing', 'z-algorithm'],
     implementation: {
@@ -522,8 +522,8 @@ int pred = (it == s.begin() ? -1 : *prev(it)); // first < 6 → 5
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'mono-stack',
-      demo: { values: [1, 3, 2, 5, 4, 6] },
+      kind: 'array-deque-window',
+      demo: { values: [1, 3, 2, 5, 4, 6], target: 3 },
     },
     relatedIds: ['monotonic-stack', 'two-pointers', 'queue-ds'],
     implementation: {
@@ -557,7 +557,7 @@ vector<int> window_max(vector<int>& a, int k) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'segtree-sum',
+      kind: 'segtree-lazy',
       demo: { values: [2, 1, 4, 3, 5, 6] },
     },
     relatedIds: ['segment-tree', 'fenwick', 'sparse-table'],
