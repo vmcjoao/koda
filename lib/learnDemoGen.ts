@@ -303,6 +303,10 @@ function genArrayPrefix(rng: Rng): ArrayDemo {
 }
 
 function genArraySort(rng: Rng, lessonId?: string): ArrayDemo {
+  if (lessonId === 'counting-sort') {
+    const n = 6;
+    return { values: Array.from({ length: n }, () => randInt(rng, 0, 4)) };
+  }
   // Merge/quick replays stay readable with a fixed-ish length.
   const n =
     lessonId === 'mergesort' ||
@@ -312,6 +316,45 @@ function genArraySort(rng: Rng, lessonId?: string): ArrayDemo {
       : randInt(rng, 5, 8);
   const values = uniqueSorted(rng, n, 1, 20);
   return { values: shuffleInPlace(rng, [...values]) };
+}
+
+function genFenwick(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 5, 7);
+  return { values: Array.from({ length: n }, () => randInt(rng, 1, 6)) };
+}
+
+function genSparse(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 5, 7);
+  return { values: Array.from({ length: n }, () => randInt(rng, 1, 12)) };
+}
+
+function genDiff(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 5, 7);
+  const d = Array(n).fill(0);
+  // 2–3 synthetic range updates → difference array
+  const ops = randInt(rng, 2, 3);
+  for (let o = 0; o < ops; o++) {
+    const l = randInt(rng, 0, n - 2);
+    const r = randInt(rng, l, n - 1);
+    const v = randInt(rng, 1, 4) * (rng() > 0.3 ? 1 : -1);
+    d[l] += v;
+    if (r + 1 < n) d[r + 1] -= v;
+  }
+  return { values: d };
+}
+
+function genHeap(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 4, 6);
+  return { values: Array.from({ length: n }, () => randInt(rng, 1, 15)) };
+}
+
+function genKmp(rng: Rng): StringDemo {
+  const alphabet = 'ab';
+  const n = randInt(rng, 5, 8);
+  let text = '';
+  for (let i = 0; i < n; i++) text += alphabet[randInt(rng, 0, 1)];
+  if (rng() > 0.3) text = text.slice(0, 2) + text;
+  return { text: text.slice(0, 10) };
 }
 
 function genArrayLis(rng: Rng): ArrayDemo {
@@ -395,7 +438,6 @@ export function randomLessonDemo(
   const rng = mulberry32(seed >>> 0);
 
   if (lessonId === 'lca') return genTree(rng);
-  if (lessonId === 'floyd-warshall') return genFloyd(rng);
 
   switch (kind) {
     case 'graph-bfs':
@@ -416,12 +458,20 @@ export function randomLessonDemo(
       return genBellman(rng);
     case 'graph-01-bfs':
       return gen01Bfs(rng);
+    case 'graph-floyd':
+      return genFloyd(rng);
     case 'dsu-merge':
       return genDsu(rng);
     case 'array-binary-search':
       return genArrayBinarySearch(rng);
     case 'array-prefix':
       return genArrayPrefix(rng);
+    case 'array-fenwick':
+      return genFenwick(rng);
+    case 'array-sparse':
+      return genSparse(rng);
+    case 'array-diff':
+      return genDiff(rng);
     case 'array-sort':
       return genArraySort(rng, lessonId);
     case 'array-lis':
@@ -436,12 +486,16 @@ export function randomLessonDemo(
       return genKnapsack(rng);
     case 'string-z':
       return genStringZ(rng);
+    case 'string-kmp':
+      return genKmp(rng);
     case 'geo-orient':
       return genPoints(rng, false);
     case 'geo-hull':
       return genPoints(rng, true);
     case 'nim-heaps':
       return genNim(rng);
+    case 'heap-pq':
+      return genHeap(rng);
     case 'array-stack':
     case 'array-queue':
       return genStackQueue(rng);

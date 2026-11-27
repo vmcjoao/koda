@@ -9,11 +9,13 @@ import {
 } from '../data/learn/graph-demos';
 import { randomLessonDemo } from '../lib/learnDemoGen';
 import {
+  buildCountingFrames,
   buildMergeFrames,
   buildQuickFrames,
   buildSelectionFrames,
   buildSortFrames,
   finalOrderValues,
+  resolveSortAlgo,
   sortFrameCount,
 } from '../lib/learnSortFrames';
 import type { ArrayDemo, GraphDemo, LearnVizKind } from '../types/learn';
@@ -28,6 +30,13 @@ import {
   buildSccSteps,
   buildTopoSteps,
 } from '../lib/learnViz';
+import { buildFloydFrames } from '../components/learn/viz/FloydViz';
+import { fenwickFrameCount } from '../components/learn/viz/FenwickViz';
+import { sparseTableFrameCount } from '../components/learn/viz/SparseTableViz';
+import { diffArrayFrameCount } from '../components/learn/viz/DiffArrayViz';
+import { kmpFrameCount } from '../components/learn/viz/KmpViz';
+import { heapFrameCount } from '../components/learn/viz/HeapViz';
+import { DEMO_FLOYD } from '../data/learn/graph-demos';
 
 function asGraph(demo: unknown): GraphDemo {
   assert.ok(demo && typeof demo === 'object' && 'nodes' in demo && 'edges' in demo);
@@ -198,6 +207,45 @@ function asArray(demo: unknown): ArrayDemo {
     const demo = asArray(randomLessonDemo('array-sort', seed * 733, 'quicksort'));
     assert.strictEqual(demo.values.length, 6);
     assert.ok(isSorted(finalOrderValues(buildSortFrames(demo, 'quicksort'))));
+  }
+
+  assert.strictEqual(resolveSortAlgo('counting-sort'), 'counting');
+  const counting = buildCountingFrames([3, 1, 2, 0, 3, 1]);
+  assert.ok(counting[0]!.label.includes('Counting'));
+  assert.ok(isSorted(finalOrderValues(counting)), 'counting ends sorted');
+  assert.ok(counting.some((f) => (f.counts?.length ?? 0) > 0), 'counting shows count[]');
+}
+
+// --- purpose-fit pass 1 kinds ---
+{
+  const fenwick = asArray(randomLessonDemo('array-fenwick', 42));
+  assert.ok(fenwickFrameCount(fenwick) >= fenwick.values.length + 2);
+
+  const sparse = asArray(randomLessonDemo('array-sparse', 43));
+  assert.ok(sparseTableFrameCount(sparse) >= sparse.values.length);
+
+  const diff = asArray(randomLessonDemo('array-diff', 44));
+  assert.ok(diffArrayFrameCount(diff) >= diff.values.length + 1);
+
+  const floyd = buildFloydFrames(DEMO_FLOYD);
+  assert.ok(floyd.some((f) => f.label.includes('k=')), 'floyd frames mention k');
+  assert.ok(floyd[floyd.length - 1]!.d[0]![3]! < 1e8, 'floyd reaches 0→3');
+
+  const floydDemo = asGraph(randomLessonDemo('graph-floyd', 45));
+  assert.strictEqual(floydDemo.directed, true);
+
+  assert.ok(kmpFrameCount({ text: 'aabaaab' }) >= 5);
+  assert.ok(heapFrameCount({ values: [5, 1, 8, 3] }) >= 5);
+
+  for (const kind of [
+    'array-fenwick',
+    'array-sparse',
+    'array-diff',
+    'graph-floyd',
+    'string-kmp',
+    'heap-pq',
+  ] as LearnVizKind[]) {
+    assert.ok(randomLessonDemo(kind, 99), `shuffle ${kind}`);
   }
 }
 

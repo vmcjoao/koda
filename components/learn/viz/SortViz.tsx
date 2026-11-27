@@ -100,6 +100,20 @@ export function SortViz({
           );
         })}
       </View>
+      {frame.counts ? (
+        <View style={styles.countRow}>
+          <Text style={styles.countLabel}>count</Text>
+          {frame.counts.map((c, i) => (
+            <View
+              key={i}
+              style={[styles.countCell, frame.countHot === i && styles.countHot]}
+            >
+              <Text style={styles.idx}>{i}</Text>
+              <Text style={styles.val}>{c}</Text>
+            </View>
+          ))}
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -115,6 +129,34 @@ const styles = StyleSheet.create({
   canvas: {
     position: 'relative',
     alignSelf: 'center',
+  },
+  countRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 4,
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+  },
+  countLabel: {
+    color: colors.textDim,
+    fontSize: 11,
+    fontWeight: '700',
+    marginRight: 4,
+  },
+  countCell: {
+    minWidth: 28,
+    paddingVertical: 4,
+    paddingHorizontal: 4,
+    borderRadius: radii.sm,
+    borderWidth: 1,
+    borderColor: colors.radar,
+    backgroundColor: colors.surfaceElevated,
+    alignItems: 'center',
+  },
+  countHot: {
+    borderColor: colors.warning,
+    borderWidth: 2,
+    backgroundColor: colors.chipSelected,
   },
   cell: {
     width: CELL_W,

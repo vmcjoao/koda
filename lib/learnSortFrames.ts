@@ -1,6 +1,6 @@
 import type { ArrayDemo } from '@/types/learn';
 
-export type SortAlgo = 'selection' | 'merge' | 'quick';
+export type SortAlgo = 'selection' | 'merge' | 'quick' | 'counting';
 
 export type SortItem = { id: string; value: number };
 
@@ -25,11 +25,15 @@ export type SortFrame = {
   };
   layout: 'row' | 'split' | 'merge';
   bands?: SortBand[];
+  /** Counting-sort frequency table (index = key). */
+  counts?: number[];
+  countHot?: number;
 };
 
 export function resolveSortAlgo(lessonId?: string): SortAlgo {
   if (lessonId === 'mergesort' || lessonId === 'divide-conquer') return 'merge';
   if (lessonId === 'quicksort') return 'quick';
+  if (lessonId === 'counting-sort') return 'counting';
   return 'selection';
 }
 
@@ -308,10 +312,84 @@ export function buildQuickFrames(values: number[]): SortFrame[] {
   return frames;
 }
 
+/** Stable counting sort for non-negative keys (typical contest demo). */
+export function buildCountingFrames(values: number[]): SortFrame[] {
+  const items = toItems(values);
+  const order = items.map((it) => it.id);
+  const K = values.length ? Math.max(...values) : 0;
+  const counts = Array(K + 1).fill(0);
+  const frames: SortFrame[] = [
+    {
+      label: 'Counting sort · start',
+      order: [...order],
+      items,
+      layout: 'row',
+      counts: [...counts],
+    },
+  ];
+
+  for (let i = 0; i < order.length; i++) {
+    const v = items.find((it) => it.id === order[i])!.value;
+    counts[v]!++;
+    frames.push({
+      label: `count[${v}]++ → ${counts[v]}`,
+      order: [...order],
+      items,
+      layout: 'row',
+      highlight: { a: i },
+      counts: [...counts],
+      countHot: v,
+    });
+  }
+
+  for (let i = 1; i <= K; i++) {
+    counts[i]! += counts[i - 1]!;
+    frames.push({
+      label: `prefix count[${i}] = ${counts[i]}`,
+      order: [...order],
+      items,
+      layout: 'row',
+      counts: [...counts],
+      countHot: i,
+    });
+  }
+
+  // Stable place right→left into out[]; show the array filling slot-by-slot.
+  const out: (string | null)[] = Array(order.length).fill(null);
+  for (let i = order.length - 1; i >= 0; i--) {
+    const id = order[i]!;
+    const v = items.find((it) => it.id === id)!.value;
+    const pos = --counts[v]!;
+    out[pos] = id;
+    const display = out.map((oid, j) => oid ?? order[j]!);
+    frames.push({
+      label: `place a[${i}]=${v} → out[${pos}] (stable)`,
+      order: display,
+      items,
+      layout: 'row',
+      highlight: { a: pos },
+      counts: [...counts],
+      countHot: v,
+    });
+  }
+
+  const finalOrder = out as string[];
+  frames.push({
+    label: 'done · sorted',
+    order: finalOrder,
+    items,
+    layout: 'row',
+    highlight: { lo: 0, hi: finalOrder.length },
+    counts: Array(K + 1).fill(0),
+  });
+  return frames;
+}
+
 export function buildSortFrames(demo: ArrayDemo, lessonId?: string): SortFrame[] {
   const algo = resolveSortAlgo(lessonId);
   if (algo === 'merge') return buildMergeFrames(demo.values);
   if (algo === 'quick') return buildQuickFrames(demo.values);
+  if (algo === 'counting') return buildCountingFrames(demo.values);
   return buildSelectionFrames(demo.values);
 }
 

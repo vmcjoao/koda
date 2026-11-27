@@ -20,9 +20,13 @@ export type LearnVizKind =
   | 'graph-bridges'
   | 'graph-bellman'
   | 'graph-01-bfs'
+  | 'graph-floyd'
   | 'array-binary-search'
   | 'dsu-merge'
   | 'array-prefix'
+  | 'array-fenwick'
+  | 'array-sparse'
+  | 'array-diff'
   | 'dp-knapsack'
   | 'mono-stack'
   | 'array-two-pointers'
@@ -32,10 +36,12 @@ export type LearnVizKind =
   | 'geo-orient'
   | 'geo-hull'
   | 'string-z'
+  | 'string-kmp'
   | 'nim-heaps'
   | 'array-stack'
   | 'array-queue'
-  | 'segtree-sum';
+  | 'segtree-sum'
+  | 'heap-pq';
 
 export type GraphDemo = {
   nodes: { id: string; x: number; y: number; label?: string }[];

@@ -302,7 +302,7 @@ long long assign_min(vector<vector<int>>& cost) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'array-prefix',
+      kind: 'array-fenwick',
       demo: { values: [1, 2, 3, 4, 5, 6] },
     },
     relatedIds: ['prefix-sums', 'segment-tree', 'difference-array'],
@@ -340,7 +340,7 @@ long long assign_min(vector<vector<int>>& cost) {
       extraMemory: 'O(N log N)',
     },
     visualization: {
-      kind: 'array-prefix',
+      kind: 'array-sparse',
       demo: { values: [4, 2, 3, 7, 1, 5] },
     },
     relatedIds: ['segment-tree', 'fenwick', 'prefix-sums'],
@@ -463,7 +463,7 @@ vector<int> next_greater(vector<int>& a) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'array-sort',
+      kind: 'heap-pq',
       demo: { values: [5, 1, 8, 3, 2] },
     },
     relatedIds: ['dijkstra', 'sorting', 'greedy'],
@@ -611,7 +611,7 @@ vector<int> window_max(vector<int>& a, int k) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'array-prefix',
+      kind: 'array-diff',
       demo: { values: [2, -1, 3, 0, -2, 1] },
     },
     relatedIds: ['prefix-sums', 'fenwick', 'segment-tree'],

@@ -652,7 +652,7 @@ vector<ll> bellman(int n, vector<array<ll,3>>& edges, int s, vector<char>& neg) 
       time: 'O(N³)',
       extraMemory: 'O(N²)',
     },
-    visualization: { kind: 'graph-dijkstra', demo: DEMO_FLOYD },
+    visualization: { kind: 'graph-floyd', demo: DEMO_FLOYD },
     relatedIds: ['bellman-ford', 'dijkstra', 'matrix-expo'],
     implementation: {
       language: 'cpp',
@@ -1098,7 +1098,7 @@ bool first_wins(vector<int>& piles, vector<int>& g) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'string-z',
+      kind: 'string-kmp',
       demo: { text: 'aabxaab' },
     },
     relatedIds: ['z-algorithm', 'string-hashing', 'trie'],
