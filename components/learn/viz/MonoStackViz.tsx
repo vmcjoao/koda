@@ -2,11 +2,15 @@ import React, { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { ArrayDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
+import { AnimatedSlot, PulseOnActive } from '@/components/learn/viz/AnimatedSlot';
 
 /** Frames: start + one per index processed (after push). */
 export function monoStackFrameCount(demo: ArrayDemo): number {
   return demo.values.length + 1;
 }
+
+const CELL = 40;
+const GAP = 6;
 
 export function MonoStackViz({ demo, step }: { demo: ArrayDemo; step: number }) {
   const snapshot = useMemo(() => {
@@ -16,7 +20,7 @@ export function MonoStackViz({ demo, step }: { demo: ArrayDemo; step: number }) 
     const frames: { i: number; stack: number[]; ng: number[] }[] = [];
     frames.push({ i: -1, stack: [], ng: [...ng] });
     for (let i = 0; i < a.length; i++) {
-      while (st.length && a[st[st.length - 1]] < a[i]) {
+      while (st.length && a[st[st.length - 1]!]! < a[i]!) {
         ng[st.pop()!] = i;
       }
       st.push(i);
@@ -25,34 +29,50 @@ export function MonoStackViz({ demo, step }: { demo: ArrayDemo; step: number }) 
     return frames;
   }, [demo.values]);
 
-  const frame = snapshot[Math.min(step, snapshot.length - 1)];
+  const frame = snapshot[Math.min(step, snapshot.length - 1)]!;
+  const n = demo.values.length;
+  const rowW = n * CELL + Math.max(0, n - 1) * GAP;
+  const stackW = Math.max(frame.stack.length * (CELL + GAP) + 8, 48);
 
   return (
     <View style={styles.wrap}>
       <Text style={styles.meta}>
         {frame.i < 0 ? 'empty stack' : `process i=${frame.i} (a=${demo.values[frame.i]})`}
       </Text>
-      <View style={styles.row}>
+      <View style={[styles.rowCanvas, { width: rowW }]}>
         {demo.values.map((v, i) => {
           const onStack = frame.stack.includes(i);
           const isCur = i === frame.i;
           return (
-            <View
+            <PulseOnActive
               key={i}
-              style={[styles.cell, onStack && styles.onStack, isCur && styles.cur]}
+              active={isCur}
+              style={[styles.cellAbs, { left: i * (CELL + GAP) }]}
             >
-              <Text style={styles.idx}>{i}</Text>
-              <Text style={[styles.val, (onStack || isCur) && styles.valOn]}>{v}</Text>
-              <Text style={styles.ng}>
-                →{frame.ng[i] < 0 ? '·' : frame.ng[i]}
-              </Text>
-            </View>
+              <View style={[styles.cell, onStack && styles.onStack, isCur && styles.cur]}>
+                <Text style={styles.idx}>{i}</Text>
+                <Text style={[styles.val, (onStack || isCur) && styles.valOn]}>{v}</Text>
+                <Text style={styles.ng}>→{frame.ng[i]! < 0 ? '·' : frame.ng[i]}</Text>
+              </View>
+            </PulseOnActive>
           );
         })}
       </View>
-      <Text style={styles.stackLine}>
-        stack: [{frame.stack.join(', ') || ' '}]
-      </Text>
+      <Text style={styles.stackLabel}>stack (bottom → top)</Text>
+      <View style={[styles.stackCanvas, { width: stackW }]}>
+        {frame.stack.length === 0 ? (
+          <Text style={styles.empty}>[ ]</Text>
+        ) : (
+          frame.stack.map((idx, pos) => (
+            <AnimatedSlot key={`st-${idx}`} x={4 + pos * (CELL + GAP)} y={4}>
+              <View style={[styles.stackCell, pos === frame.stack.length - 1 && styles.stackTop]}>
+                <Text style={styles.val}>{demo.values[idx]}</Text>
+                <Text style={styles.idx}>i={idx}</Text>
+              </View>
+            </AnimatedSlot>
+          ))
+        )}
+      </View>
     </View>
   );
 }
@@ -60,9 +80,11 @@ export function MonoStackViz({ demo, step }: { demo: ArrayDemo; step: number }) 
 const styles = StyleSheet.create({
   wrap: { gap: spacing.sm, width: '100%', alignItems: 'center' },
   meta: { color: colors.xp, fontFamily: 'SpaceMono', fontSize: 12, fontWeight: '700' },
-  row: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, justifyContent: 'center' },
+  rowCanvas: { position: 'relative', height: 68, alignSelf: 'center' },
+  cellAbs: { position: 'absolute', top: 0 },
   cell: {
-    minWidth: 40,
+    width: CELL,
+    minWidth: CELL,
     paddingVertical: 6,
     paddingHorizontal: 4,
     borderRadius: radii.sm,
@@ -77,5 +99,22 @@ const styles = StyleSheet.create({
   val: { color: colors.text, fontFamily: 'SpaceMono', fontWeight: '800' },
   valOn: { color: colors.background },
   ng: { color: colors.textDim, fontSize: 9, fontFamily: 'SpaceMono' },
-  stackLine: { color: colors.textMuted, fontFamily: 'SpaceMono', fontSize: 12 },
+  stackLabel: {
+    color: colors.textDim,
+    fontSize: 12,
+    fontWeight: '700',
+    alignSelf: 'flex-start',
+  },
+  stackCanvas: { position: 'relative', height: 56, alignSelf: 'flex-start', minWidth: 48 },
+  empty: { color: colors.textDim, fontFamily: 'SpaceMono', marginTop: 12 },
+  stackCell: {
+    width: CELL,
+    paddingVertical: 6,
+    borderRadius: radii.sm,
+    borderWidth: 2,
+    borderColor: colors.radar,
+    backgroundColor: colors.surfaceElevated,
+    alignItems: 'center',
+  },
+  stackTop: { borderColor: colors.warning, backgroundColor: colors.chipSelected },
 });

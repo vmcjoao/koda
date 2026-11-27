@@ -1,7 +1,13 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated from 'react-native-reanimated';
 import type { ArrayDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
+import {
+  PulseOnActive,
+  vizEntering,
+  vizLayout,
+} from '@/components/learn/viz/AnimatedSlot';
 
 export function lisFrameCount(demo: ArrayDemo): number {
   return demo.values.length + 1;
@@ -23,26 +29,42 @@ export function LisViz({ demo, step }: { demo: ArrayDemo; step: number }) {
 
   return (
     <View style={styles.wrap}>
-      <Text style={styles.meta}>LIS length so far · max dp = {built ? Math.max(...dp.slice(0, built)) : 0} (final {best})</Text>
+      <Text style={styles.meta}>
+        LIS length so far · max dp = {built ? Math.max(...dp.slice(0, built)) : 0} (final {best})
+      </Text>
       <Text style={styles.label}>a[i]</Text>
       <View style={styles.row}>
         {demo.values.map((v, i) => (
-          <View key={`a${i}`} style={[styles.cell, i < built && styles.done]}>
-            <Text style={styles.idx}>{i}</Text>
-            <Text style={styles.val}>{v}</Text>
-          </View>
+          <PulseOnActive key={`a${i}`} active={i === built - 1 && built > 0}>
+            <View style={[styles.cell, i < built && styles.done]}>
+              <Text style={styles.idx}>{i}</Text>
+              <Text style={styles.val}>{v}</Text>
+            </View>
+          </PulseOnActive>
         ))}
       </View>
       <Text style={styles.label}>dp[i] = LIS ending at i</Text>
       <View style={styles.row}>
         {dp.map((v, i) => (
-          <View
+          <Animated.View
             key={`d${i}`}
-            style={[styles.cell, styles.dp, i < built && styles.dpOn, v === best && i < built && styles.dpBest]}
+            entering={i === built - 1 && built > 0 ? vizEntering : undefined}
+            layout={vizLayout}
           >
-            <Text style={styles.idx}>{i}</Text>
-            <Text style={styles.val}>{i < built ? v : '·'}</Text>
-          </View>
+            <PulseOnActive active={i === built - 1 && built > 0}>
+              <View
+                style={[
+                  styles.cell,
+                  styles.dp,
+                  i < built && styles.dpOn,
+                  v === best && i < built && styles.dpBest,
+                ]}
+              >
+                <Text style={styles.idx}>{i}</Text>
+                <Text style={styles.val}>{i < built ? v : '·'}</Text>
+              </View>
+            </PulseOnActive>
+          </Animated.View>
         ))}
       </View>
     </View>

@@ -1,7 +1,9 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated from 'react-native-reanimated';
 import type { ArrayDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
+import { vizEntering, vizLayout } from '@/components/learn/viz/AnimatedSlot';
 
 function buildLevels(values: number[]): number[][] {
   const n = values.length;
@@ -42,7 +44,12 @@ export function SegtreeViz({ demo, step }: { demo: ArrayDemo; step: number }) {
         const depthFromLeaf = levels.length - 1 - revIdx;
         if (depthFromLeaf > reveal) return null;
         return (
-          <View key={depthFromLeaf} style={styles.level}>
+          <Animated.View
+            key={depthFromLeaf}
+            entering={depthFromLeaf === reveal && reveal > 0 ? vizEntering : undefined}
+            layout={vizLayout}
+            style={styles.level}
+          >
             <Text style={styles.levelTag}>
               {depthFromLeaf === 0 ? 'leaves' : `combine ↑${depthFromLeaf}`}
             </Text>
@@ -61,7 +68,7 @@ export function SegtreeViz({ demo, step }: { demo: ArrayDemo; step: number }) {
                 </View>
               ))}
             </View>
-          </View>
+          </Animated.View>
         );
       })}
     </View>

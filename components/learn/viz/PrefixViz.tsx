@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated from 'react-native-reanimated';
 import type { ArrayDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
+import {
+  PulseOnActive,
+  vizEntering,
+  vizLayout,
+} from '@/components/learn/viz/AnimatedSlot';
 
 export function PrefixViz({ demo, step }: { demo: ArrayDemo; step: number }) {
   const built = Math.min(Math.max(0, step), demo.values.length);
@@ -23,29 +29,37 @@ export function PrefixViz({ demo, step }: { demo: ArrayDemo; step: number }) {
       <Text style={styles.label}>a[i]</Text>
       <View style={styles.row}>
         {demo.values.map((v, i) => (
-          <View
-            key={i}
-            style={[
-              styles.cell,
-              i < built && styles.done,
-              i === built - 1 && styles.active,
-            ]}
-          >
-            <Text style={styles.idx}>{i}</Text>
-            <Text style={styles.val}>{v}</Text>
-          </View>
+          <PulseOnActive key={i} active={i === built - 1 && built > 0}>
+            <View
+              style={[
+                styles.cell,
+                i < built && styles.done,
+                i === built - 1 && styles.active,
+              ]}
+            >
+              <Text style={styles.idx}>{i}</Text>
+              <Text style={styles.val}>{v}</Text>
+            </View>
+          </PulseOnActive>
         ))}
       </View>
       <Text style={styles.label}>pref[i] = sum a[0..i)</Text>
       <View style={styles.row}>
         {prefs.map((v, i) => (
-          <View
+          <Animated.View
             key={i}
-            style={[styles.cell, styles.pref, i === built && built > 0 && styles.prefNew]}
+            entering={i === built && built > 0 ? vizEntering : undefined}
+            layout={vizLayout}
           >
-            <Text style={styles.idx}>{i}</Text>
-            <Text style={styles.val}>{v}</Text>
-          </View>
+            <PulseOnActive active={i === built && built > 0}>
+              <View
+                style={[styles.cell, styles.pref, i === built && built > 0 && styles.prefNew]}
+              >
+                <Text style={styles.idx}>{i}</Text>
+                <Text style={styles.val}>{v}</Text>
+              </View>
+            </PulseOnActive>
+          </Animated.View>
         ))}
       </View>
     </View>
