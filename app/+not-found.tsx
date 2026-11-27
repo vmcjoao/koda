@@ -5,7 +5,7 @@ import { colors } from '@/constants/theme';
 export default function NotFoundScreen() {
   return (
     <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
+      <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
         <Text style={styles.title}>This screen does not exist.</Text>
         <Link href="/" style={styles.link}>

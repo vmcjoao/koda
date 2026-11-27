@@ -100,52 +100,29 @@ export default function RootLayout() {
             <View style={{ flex: 1, backgroundColor: colors.background }}>
               <Stack
                 screenOptions={{
-                  headerStyle: { backgroundColor: colors.surface },
-                  headerTintColor: colors.text,
-                  headerTitleStyle: { fontWeight: '700' },
+                  headerShown: false,
                   contentStyle: { backgroundColor: colors.background },
                   animation: 'fade_from_bottom',
                   animationDuration: 280,
                 }}
               >
-                <Stack.Screen name="(tabs)" options={{ headerShown: false, animation: 'fade' }} />
-                <Stack.Screen
-                  name="(auth)/login"
-                  options={{ title: 'Account', presentation: 'modal' }}
-                />
-                <Stack.Screen
-                  name="(auth)/reset"
-                  options={{ title: 'New password', presentation: 'modal' }}
-                />
-                <Stack.Screen name="settings" options={{ title: 'Profile' }} />
-                <Stack.Screen name="catalog" options={{ title: 'Catalog' }} />
-                <Stack.Screen name="playlists/index" options={{ title: 'Playlists' }} />
-                <Stack.Screen name="playlists/[id]" options={{ title: 'Playlist' }} />
-                <Stack.Screen name="history" options={{ title: 'History' }} />
-                <Stack.Screen name="learn/[id]" options={{ title: 'Lesson' }} />
-                <Stack.Screen
-                  name="daily-algorithm/index"
-                  options={{ title: 'Daily algorithm' }}
-                />
-                <Stack.Screen
-                  name="daily-algorithm/[date]"
-                  options={{ title: 'Daily puzzle' }}
-                />
-                <Stack.Screen name="problem/[id]/index" options={{ title: 'Encounter' }} />
-                <Stack.Screen name="problem/[id]/radar" options={{ title: 'Constraint Radar' }} />
-                <Stack.Screen
-                  name="problem/[id]/hypothesis"
-                  options={{ title: 'Hypothesis' }}
-                />
-                <Stack.Screen name="problem/[id]/blueprint" options={{ title: 'Blueprint' }} />
-                <Stack.Screen
-                  name="problem/[id]/stuck"
-                  options={{ title: 'Stuck path' }}
-                />
-                <Stack.Screen
-                  name="problem/[id]/reveal"
-                  options={{ title: 'Reveal', headerBackVisible: false, animation: 'fade' }}
-                />
+                <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
+                <Stack.Screen name="(auth)/login" options={{ presentation: 'modal' }} />
+                <Stack.Screen name="(auth)/reset" options={{ presentation: 'modal' }} />
+                <Stack.Screen name="settings" />
+                <Stack.Screen name="catalog" />
+                <Stack.Screen name="playlists/index" />
+                <Stack.Screen name="playlists/[id]" />
+                <Stack.Screen name="history" />
+                <Stack.Screen name="learn/[id]" />
+                <Stack.Screen name="daily-algorithm/index" />
+                <Stack.Screen name="daily-algorithm/[date]" />
+                <Stack.Screen name="problem/[id]/index" />
+                <Stack.Screen name="problem/[id]/radar" />
+                <Stack.Screen name="problem/[id]/hypothesis" />
+                <Stack.Screen name="problem/[id]/blueprint" />
+                <Stack.Screen name="problem/[id]/stuck" />
+                <Stack.Screen name="problem/[id]/reveal" options={{ animation: 'fade' }} />
               </Stack>
               {showLaunch ? <LaunchOverlay onFinished={() => setShowLaunch(false)} /> : null}
             </View>
