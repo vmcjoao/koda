@@ -10,6 +10,7 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { GithubCredit } from '@/components/GithubCredit';
 import { BreathingAtmosphere } from '@/components/game/BreathingAtmosphere';
 import { colors, spacing } from '@/constants/theme';
 
@@ -26,6 +27,8 @@ type Props = {
   onEndReached?: () => void;
   /** Distance from bottom (px) that triggers onEndReached. Default 240. */
   onEndReachedThreshold?: number;
+  /** Hide the scroll-end GitHub credit. Default false on scroll screens. */
+  hideCredit?: boolean;
 };
 
 export function Screen({
@@ -38,6 +41,7 @@ export function Screen({
   atmosphere = true,
   onEndReached,
   onEndReachedThreshold = 240,
+  hideCredit = false,
 }: Props) {
   const locked = useRef(false);
 
@@ -79,6 +83,7 @@ export function Screen({
           }
         >
           {children}
+          {!hideCredit ? <GithubCredit style={styles.credit} /> : null}
         </ScrollView>
       </SafeAreaView>
     );
@@ -109,5 +114,9 @@ const styles = StyleSheet.create({
   atmosphereRoot: {
     ...StyleSheet.absoluteFill,
     overflow: 'hidden',
+  },
+  credit: {
+    marginTop: spacing.lg,
+    paddingBottom: spacing.sm,
   },
 });

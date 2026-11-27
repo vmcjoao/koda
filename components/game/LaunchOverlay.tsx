@@ -13,7 +13,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Circle, Line } from 'react-native-svg';
-import { colors } from '@/constants/theme';
+import { GithubCredit } from '@/components/GithubCredit';
+import { colors, spacing } from '@/constants/theme';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedLine = Animated.createAnimatedComponent(Line);
@@ -120,6 +121,11 @@ export function LaunchOverlay({ onFinished }: Props) {
     };
   });
 
+  const creditStyle = useAnimatedStyle(() => ({
+    opacity: reveal.value,
+    transform: [{ translateY: interpolate(reveal.value, [0, 1], [10, 0]) }],
+  }));
+
   const topProps = useAnimatedProps(() => {
     const t = splitTop.value;
     return {
@@ -193,9 +199,9 @@ export function LaunchOverlay({ onFinished }: Props) {
   const color = colors.accent;
 
   return (
-    <Animated.View pointerEvents="none" style={[styles.root, rootStyle]}>
-      <Animated.View style={[styles.wash, washStyle]} />
-      <Animated.View style={[styles.washSecondary, washStyle]} />
+    <Animated.View pointerEvents="box-none" style={[styles.root, rootStyle]}>
+      <Animated.View pointerEvents="none" style={[styles.wash, washStyle]} />
+      <Animated.View pointerEvents="none" style={[styles.washSecondary, washStyle]} />
 
       {/* Invisible measurer — real “oda” width for true centering */}
       <Text
@@ -205,7 +211,7 @@ export function LaunchOverlay({ onFinished }: Props) {
         oda
       </Text>
 
-      <Animated.View style={[styles.mark, markStyle]} accessibilityLabel="Koda">
+      <Animated.View pointerEvents="none" style={[styles.mark, markStyle]} accessibilityLabel="Koda">
         <Svg width={K_SIZE} height={K_SIZE * 1.4} viewBox="0 0 100 140">
           <AnimatedLine
             animatedProps={stemProps}
@@ -235,6 +241,10 @@ export function LaunchOverlay({ onFinished }: Props) {
           {/* Full-width text; parent clips — no numberOfLines (avoids “…” ellipsis). */}
           <Text style={[styles.oda, odaW > 0 && { width: odaW }]}>oda</Text>
         </Animated.View>
+      </Animated.View>
+
+      <Animated.View style={[styles.credit, creditStyle]}>
+        <GithubCredit tone="launch" />
       </Animated.View>
     </Animated.View>
   );
@@ -293,5 +303,12 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     letterSpacing: 2,
     includeFontPadding: false,
+  },
+  credit: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: spacing.xl + 12,
+    alignItems: 'center',
   },
 });
