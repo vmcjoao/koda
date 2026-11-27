@@ -25,8 +25,6 @@
 
 ## Launch
 
-Graph-K mitosis into **koda** — then you’re on the Run tab.
-
 <p align="center">
   <img src="docs/media/launch.gif" alt="Koda launch animation" width="280" />
 </p>
@@ -43,7 +41,7 @@ Home is one composition: wordmark, streak / XP / band, Daily Algorithm, and toda
 
 | Piece | |
 | --- | --- |
-| **Graph-K wordmark** | Tap to replay the mitosis |
+| **Graph-K wordmark** | Tap to replay the animation |
 | **PlayerStrip** | Streak · XP · Band |
 | **Daily Path** | Warm-up → Target → Boss |
 | **Raised Run orb** | Center tab bolt |
@@ -109,15 +107,7 @@ Encounter  →  Radar  →  Hypothesis  →  Blueprint  →  Reveal
 Band, heatmap, diagnose → blueprint → implement pipeline, topic mastery.
 
 <p align="center">
-  <img src="docs/media/stats-full-page.jpeg" alt="Stats overview" width="240" />
-  &nbsp;
-  <img src="docs/media/stats-calendar.jpeg" alt="Training calendar heatmap" width="240" />
-</p>
-
-<p align="center">
-  <img src="docs/media/stats-pipeline.jpeg" alt="Pipeline funnel" width="280" />
-  &nbsp;
-  <img src="docs/media/stats-mastery.jpeg" alt="Topic mastery" width="280" />
+  <img src="docs/media/stats-full-page.jpeg" alt="Stats overview" width="340" />
 </p>
 
 ---
