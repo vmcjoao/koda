@@ -32,6 +32,14 @@ import { DequeWindowViz, dequeWindowFrameCount } from '@/components/learn/viz/De
 import { TernarySearchViz, ternaryFrameCount } from '@/components/learn/viz/TernarySearchViz';
 import { HashMapViz, hashMapFrameCount } from '@/components/learn/viz/HashMapViz';
 import { LazySegViz, lazySegFrameCount } from '@/components/learn/viz/LazySegViz';
+import { MoViz, moFrameCount } from '@/components/learn/viz/MoViz';
+import { MitmViz, mitmFrameCount } from '@/components/learn/viz/MitmViz';
+import { SweepViz, sweepFrameCount } from '@/components/learn/viz/SweepViz';
+import { GreedyViz, greedyFrameCount } from '@/components/learn/viz/GreedyViz';
+import { BruteViz, bruteFrameCount } from '@/components/learn/viz/BruteViz';
+import { GcdViz, gcdFrameCount } from '@/components/learn/viz/GcdViz';
+import { CompressViz, compressFrameCount } from '@/components/learn/viz/CompressViz';
+import { StringHashViz, stringHashFrameCount } from '@/components/learn/viz/StringHashViz';
 import type {
   ArrayDemo,
   GraphDemo,
@@ -51,7 +59,9 @@ import {
   buildBridgeSteps,
   buildDfsSteps,
   buildDijkstraSteps,
+  buildLcaSteps,
   buildMstSteps,
+  buildPrimSteps,
   buildSccSteps,
   buildTopoSteps,
 } from '@/lib/learnViz';
@@ -97,6 +107,10 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
         return buildTopoSteps(liveDemo);
       case 'graph-mst':
         return buildMstSteps(liveDemo);
+      case 'graph-prim':
+        return buildPrimSteps(liveDemo);
+      case 'graph-lca':
+        return buildLcaSteps(liveDemo);
       case 'graph-scc':
         return buildSccSteps(liveDemo);
       case 'graph-bridges':
@@ -144,6 +158,9 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
       return Math.max(0, twoPointersFrameCount(liveDemo) - 1);
     if (kind === 'array-deque-window' && isArray(liveDemo))
       return Math.max(0, dequeWindowFrameCount(liveDemo) - 1);
+    if (kind === 'array-mo' && isArray(liveDemo)) return Math.max(0, moFrameCount(liveDemo) - 1);
+    if (kind === 'array-mitm' && isArray(liveDemo))
+      return Math.max(0, mitmFrameCount(liveDemo) - 1);
     if (kind === 'array-lis' && isArray(liveDemo)) return Math.max(0, lisFrameCount(liveDemo) - 1);
     if (kind === 'array-sort' && isArray(liveDemo))
       return Math.max(0, sortFrameCount(liveDemo, lessonId) - 1);
@@ -152,12 +169,23 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
       return Math.max(0, ternaryFrameCount(liveDemo) - 1);
     if (kind === 'array-hashmap' && isArray(liveDemo))
       return Math.max(0, hashMapFrameCount(liveDemo) - 1);
+    if (kind === 'array-greedy' && isArray(liveDemo))
+      return Math.max(0, greedyFrameCount(liveDemo) - 1);
+    if (kind === 'array-brute' && isArray(liveDemo))
+      return Math.max(0, bruteFrameCount(liveDemo) - 1);
+    if (kind === 'array-gcd' && isArray(liveDemo)) return Math.max(0, gcdFrameCount(liveDemo) - 1);
+    if (kind === 'array-compress' && isArray(liveDemo))
+      return Math.max(0, compressFrameCount(liveDemo) - 1);
+    if (kind === 'array-sweep' && isArray(liveDemo))
+      return Math.max(0, sweepFrameCount(liveDemo) - 1);
     if (kind === 'geo-orient' && isPoints(liveDemo)) return Math.max(0, orientFrameCount(liveDemo) - 1);
     if (kind === 'geo-hull' && isPoints(liveDemo)) return Math.max(0, hullFrameCount(liveDemo) - 1);
     if (kind === 'string-z' && isString(liveDemo)) return Math.max(0, stringZFrameCount(liveDemo) - 1);
     if (kind === 'string-kmp' && isString(liveDemo)) return Math.max(0, kmpFrameCount(liveDemo) - 1);
     if (kind === 'string-trie' && isString(liveDemo))
       return Math.max(0, trieFrameCount(liveDemo) - 1);
+    if (kind === 'string-hash' && isString(liveDemo))
+      return Math.max(0, stringHashFrameCount(liveDemo) - 1);
     if (kind === 'nim-heaps' && isArray(liveDemo)) return Math.max(0, nimFrameCount(liveDemo) - 1);
     if (kind === 'heap-pq' && isArray(liveDemo)) return Math.max(0, heapFrameCount(liveDemo) - 1);
     if ((kind === 'array-stack' || kind === 'array-queue') && isArray(liveDemo))
@@ -241,6 +269,10 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
         {kind === 'array-deque-window' && isArray(liveDemo) ? (
           <DequeWindowViz demo={liveDemo} step={step} />
         ) : null}
+        {kind === 'array-mo' && isArray(liveDemo) ? <MoViz demo={liveDemo} step={step} /> : null}
+        {kind === 'array-mitm' && isArray(liveDemo) ? (
+          <MitmViz demo={liveDemo} step={step} />
+        ) : null}
         {kind === 'array-lis' && isArray(liveDemo) ? <LisViz demo={liveDemo} step={step} /> : null}
         {kind === 'array-sort' && isArray(liveDemo) ? (
           <SortViz demo={liveDemo} step={step} lessonId={lessonId} />
@@ -254,6 +286,19 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
         {kind === 'array-hashmap' && isArray(liveDemo) ? (
           <HashMapViz demo={liveDemo} step={step} />
         ) : null}
+        {kind === 'array-greedy' && isArray(liveDemo) ? (
+          <GreedyViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'array-brute' && isArray(liveDemo) ? (
+          <BruteViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'array-gcd' && isArray(liveDemo) ? <GcdViz demo={liveDemo} step={step} /> : null}
+        {kind === 'array-compress' && isArray(liveDemo) ? (
+          <CompressViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'array-sweep' && isArray(liveDemo) ? (
+          <SweepViz demo={liveDemo} step={step} />
+        ) : null}
         {kind === 'geo-orient' && isPoints(liveDemo) ? (
           <OrientViz demo={liveDemo} step={step} />
         ) : null}
@@ -266,6 +311,9 @@ export function VizPlayer({ kind, demo, lessonId }: Props) {
         ) : null}
         {kind === 'string-trie' && isString(liveDemo) ? (
           <TrieViz demo={liveDemo} step={step} />
+        ) : null}
+        {kind === 'string-hash' && isString(liveDemo) ? (
+          <StringHashViz demo={liveDemo} step={step} />
         ) : null}
         {kind === 'nim-heaps' && isArray(liveDemo) ? <NimViz demo={liveDemo} step={step} /> : null}
         {kind === 'heap-pq' && isArray(liveDemo) ? <HeapViz demo={liveDemo} step={step} /> : null}

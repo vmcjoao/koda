@@ -26,11 +26,13 @@ import {
   buildBridgeSteps,
   buildDfsSteps,
   buildDijkstraSteps,
+  buildLcaSteps,
   buildMstSteps,
+  buildPrimSteps,
   buildSccSteps,
   buildTopoSteps,
 } from '../lib/learnViz';
-import { DEMO_FLOYD } from '../data/learn/graph-demos';
+import { DEMO_FLOYD, DEMO_TREE } from '../data/learn/graph-demos';
 import { buildFloydFrames } from '../lib/learnFloyd';
 
 function asGraph(demo: unknown): GraphDemo {
@@ -142,11 +144,27 @@ for (let seed = 1; seed <= 8; seed++) {
 }
 
 for (let seed = 1; seed <= 8; seed++) {
-  const demo = asGraph(randomLessonDemo('graph-dfs', seed, 'lca'));
+  const demo = asGraph(randomLessonDemo('graph-lca', seed));
   assert.strictEqual(
     demo.edges.length,
     demo.nodes.length - 1,
     `lca seed=${seed} should be a tree`,
+  );
+}
+
+{
+  const prim = buildPrimSteps(DEMO_MST);
+  assert.ok(prim.some((s) => s.label.startsWith('take')), 'Prim takes nodes');
+  const finalPrim = prim[prim.length - 1]!;
+  assert.ok((finalPrim.mstEdges ?? []).length >= DEMO_MST.nodes.length - 1);
+
+  const lca = buildLcaSteps(DEMO_TREE, '3', '5');
+  assert.ok(lca.some((s) => s.label.includes('LCA')), 'LCA labels query');
+  const lastLca = lca[lca.length - 1]!;
+  assert.ok(
+    Object.values(lastLca.nodeState).includes('current') ||
+      lastLca.label.toLowerCase().includes('lca'),
+    'LCA ends on ancestor',
   );
 }
 
@@ -233,6 +251,16 @@ function asArray(demo: unknown): ArrayDemo {
     'array-ternary',
     'array-hashmap',
     'segtree-lazy',
+    'array-mo',
+    'array-mitm',
+    'graph-prim',
+    'graph-lca',
+    'array-sweep',
+    'array-greedy',
+    'array-brute',
+    'array-gcd',
+    'array-compress',
+    'string-hash',
   ] as LearnVizKind[]) {
     assert.ok(randomLessonDemo(kind, 101), `shuffle ${kind}`);
   }
@@ -242,6 +270,15 @@ function asArray(demo: unknown): ArrayDemo {
 
   const ternary = asArray(randomLessonDemo('array-ternary', 8));
   assert.ok(ternary.values.length >= 5);
+
+  const mitm = asArray(randomLessonDemo('array-mitm', 9));
+  assert.ok(mitm.values.length >= 4 && mitm.target != null);
+
+  const hash = randomLessonDemo('string-hash', 11) as { text: string };
+  assert.ok(hash.text.length >= 4);
+
+  const gcd = asArray(randomLessonDemo('array-gcd', 12));
+  assert.strictEqual(gcd.values.length, 2);
 }
 
 console.log('learn-viz tests passed');

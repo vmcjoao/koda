@@ -147,8 +147,8 @@ vector<int> radix_pass(const vector<int>& a) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'array-binary-search',
-      demo: { values: [10, 20, 30, 40, 50], target: 30 },
+      kind: 'array-compress',
+      demo: { values: [1000, 42, 17, 42, 9999, 17] },
     },
     relatedIds: ['sorting', 'lower-bound', 'fenwick', 'segment-tree'],
     implementation: {

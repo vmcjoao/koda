@@ -52,8 +52,8 @@ long long simulate(vector<int>& a) {
       extraMemory: 'O(1)',
     },
     visualization: {
-      kind: 'array-binary-search',
-      demo: { values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15], target: 6 },
+      kind: 'array-gcd',
+      demo: { values: [48, 18] },
     },
     relatedIds: ['sieve', 'matrix-expo', 'binary-search'],
     implementation: {

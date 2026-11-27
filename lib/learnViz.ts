@@ -310,6 +310,160 @@ export function buildMstSteps(demo: GraphDemo): GraphStep[] {
   return steps;
 }
 
+/** Prim: grow MST from start with a binary-heap-style frontier. */
+export function buildPrimSteps(demo: GraphDemo): GraphStep[] {
+  const g = adjList(demo, true);
+  const steps: GraphStep[] = [];
+  const state = baseState(demo);
+  const inMst = new Set<string>();
+  const mst: string[] = [];
+  const best: Record<string, number> = {};
+  const parentEdge: Record<string, string> = {};
+  const INF = 1e15;
+
+  for (const n of demo.nodes) best[n.id] = INF;
+  best[demo.start] = 0;
+  state[demo.start] = 'frontier';
+  steps.push({
+    label: `Prim start ${demo.start}`,
+    nodeState: { ...state },
+    activeEdges: [],
+    mstEdges: [],
+    dist: { ...best },
+  });
+
+  while (inMst.size < demo.nodes.length) {
+    let u: string | null = null;
+    let bu = INF;
+    for (const n of demo.nodes) {
+      if (inMst.has(n.id)) continue;
+      if (best[n.id]! < bu) {
+        bu = best[n.id]!;
+        u = n.id;
+      }
+    }
+    if (u == null || bu >= INF) break;
+    inMst.add(u);
+    state[u] = 'current';
+    if (parentEdge[u]) mst.push(parentEdge[u]!);
+    steps.push({
+      label: `take ${u} (key=${bu === INF ? '∞' : bu})`,
+      nodeState: { ...state },
+      activeEdges: parentEdge[u] ? [parentEdge[u]!] : [],
+      mstEdges: [...mst],
+      dist: { ...best },
+    });
+    for (const { to: v, w } of g.get(u) ?? []) {
+      if (inMst.has(v)) continue;
+      if (w < best[v]!) {
+        best[v] = w;
+        parentEdge[v] = edgeKey(u, v);
+        state[v] = 'frontier';
+        steps.push({
+          label: `relax ${v} via ${u} (w=${w})`,
+          nodeState: { ...state },
+          activeEdges: [edgeKey(u, v)],
+          mstEdges: [...mst],
+          dist: { ...best },
+        });
+      }
+    }
+    state[u] = 'done';
+  }
+  steps.push({
+    label: 'Prim MST complete',
+    nodeState: { ...state },
+    activeEdges: [],
+    mstEdges: [...mst],
+    dist: { ...best },
+  });
+  return steps;
+}
+
+/** LCA query on a rooted tree (demo.start = root). Highlights lift of u,v to LCA. */
+export function buildLcaSteps(demo: GraphDemo, uId = '3', vId = '5'): GraphStep[] {
+  const g = adjList(demo, true);
+  const parent: Record<string, string> = {};
+  const depth: Record<string, number> = {};
+  const root = demo.start;
+  parent[root] = root;
+  depth[root] = 0;
+  const stack = [root];
+  const seen = new Set([root]);
+  while (stack.length) {
+    const u = stack.pop()!;
+    for (const { to: v } of g.get(u) ?? []) {
+      if (seen.has(v)) continue;
+      seen.add(v);
+      parent[v] = u;
+      depth[v] = depth[u]! + 1;
+      stack.push(v);
+    }
+  }
+
+  const u0 = demo.nodes.some((n) => n.id === uId) ? uId : demo.nodes[demo.nodes.length - 1]!.id;
+  const v0 = demo.nodes.some((n) => n.id === vId) ? vId : demo.nodes[Math.min(2, demo.nodes.length - 1)]!.id;
+
+  const steps: GraphStep[] = [];
+  const state = baseState(demo);
+  state[u0] = 'frontier';
+  state[v0] = 'frontier';
+  steps.push({
+    label: `query LCA(${u0}, ${v0})`,
+    nodeState: { ...state },
+    activeEdges: [],
+  });
+
+  let u = u0;
+  let v = v0;
+  while (depth[u]! > depth[v]!) {
+    const p = parent[u]!;
+    state[u] = 'done';
+    state[p] = 'current';
+    steps.push({
+      label: `lift ${u} → ${p}`,
+      nodeState: { ...state },
+      activeEdges: [edgeKey(u, p)],
+    });
+    state[p] = 'frontier';
+    u = p;
+  }
+  while (depth[v]! > depth[u]!) {
+    const p = parent[v]!;
+    state[v] = 'done';
+    state[p] = 'current';
+    steps.push({
+      label: `lift ${v} → ${p}`,
+      nodeState: { ...state },
+      activeEdges: [edgeKey(v, p)],
+    });
+    state[p] = 'frontier';
+    v = p;
+  }
+  while (u !== v) {
+    const pu = parent[u]!;
+    const pv = parent[v]!;
+    state[u] = 'done';
+    state[v] = 'done';
+    steps.push({
+      label: `lift both ${u},${v} → ${pu},${pv}`,
+      nodeState: { ...state },
+      activeEdges: [edgeKey(u, pu), edgeKey(v, pv)],
+    });
+    state[pu] = 'frontier';
+    state[pv] = 'frontier';
+    u = pu;
+    v = pv;
+  }
+  state[u] = 'current';
+  steps.push({
+    label: `LCA = ${u}`,
+    nodeState: { ...state },
+    activeEdges: [],
+  });
+  return steps;
+}
+
 /** Kosaraju: finish-order DFS on G, then DFS on Gᵀ assigning components. */
 export function buildSccSteps(demo: GraphDemo): GraphStep[] {
   const g = adjList(demo, false);

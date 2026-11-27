@@ -19,8 +19,8 @@ export const LESSONS_MORE: LearnLesson[] = [
       notes_md: 'Sorting usually dominates. Exact bound depends on the selection step.',
     },
     visualization: {
-      kind: 'array-sort',
-      demo: { values: [4, 1, 3, 2, 5] },
+      kind: 'array-greedy',
+      demo: { values: [4, 6, 8, 9, 12] },
     },
     relatedIds: ['sorting', 'mst', 'binary-search-answer'],
     implementation: {
@@ -55,8 +55,8 @@ int max_intervals(vector<pair<int,int>> a) {
       notes_md: 'Typical contest limits: $2^{20}$, $9!$, or heavily pruned DFS.',
     },
     visualization: {
-      kind: 'array-sort',
-      demo: { values: [3, 1, 4, 1, 5] },
+      kind: 'array-brute',
+      demo: { values: [3, 1, 4, 2] },
     },
     relatedIds: ['bitmask-dp', 'meet-in-middle', 'divide-conquer'],
     implementation: {
@@ -685,7 +685,7 @@ vector<long long> apply_range_adds(int n, vector<array<long long,3>>& ops) {
       extraMemory: 'O(N)',
       notes_md: 'Kruskal is usually simpler with a DSU; Prim fits “grow a component” thinking.',
     },
-    visualization: { kind: 'graph-mst', demo: DEMO_MST },
+    visualization: { kind: 'graph-prim', demo: DEMO_MST },
     relatedIds: ['mst', 'dijkstra', 'dsu'],
     implementation: {
       language: 'cpp',

@@ -473,6 +473,71 @@ function genSegtree(rng: Rng): ArrayDemo {
   return { values: Array.from({ length: n }, () => randInt(rng, 1, 12)) };
 }
 
+function genMo(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 6, 8);
+  return { values: Array.from({ length: n }, () => randInt(rng, 1, 5)) };
+}
+
+function genMitm(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 4, 6);
+  const values = Array.from({ length: n }, () => randInt(rng, 1, 9));
+  const mid = Math.floor(n / 2);
+  let left = 0;
+  let right = 0;
+  for (let i = 0; i < mid; i++) if (rng() > 0.45) left += values[i]!;
+  for (let i = mid; i < n; i++) if (rng() > 0.45) right += values[i]!;
+  return { values, target: left + right };
+}
+
+function genGreedy(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 5, 7);
+  const ends = Array.from({ length: n }, () => randInt(rng, 3, 16));
+  ends.sort((a, b) => a - b);
+  return { values: ends };
+}
+
+function genBrute(rng: Rng): ArrayDemo {
+  const n = randInt(rng, 3, 4);
+  return { values: Array.from({ length: n }, () => randInt(rng, 1, 7)) };
+}
+
+function genGcd(rng: Rng): ArrayDemo {
+  const a = randInt(rng, 20, 90);
+  const b = randInt(rng, 12, 60);
+  return { values: [a, b] };
+}
+
+function genCompress(rng: Rng): ArrayDemo {
+  const pool = [3, 17, 42, 99, 1000, 5000, 42, 17];
+  const n = randInt(rng, 5, 7);
+  return {
+    values: Array.from({ length: n }, () => pool[randInt(rng, 0, pool.length - 1)]!),
+  };
+}
+
+function genSweep(rng: Rng): ArrayDemo {
+  // Difference-style events: +1 open, -1 close — keep active ≥ 0.
+  const n = randInt(rng, 6, 8);
+  const values = Array.from({ length: n }, () => 0);
+  const opens = randInt(rng, 2, 3);
+  for (let k = 0; k < opens; k++) {
+    const l = randInt(rng, 0, n - 3);
+    const r = randInt(rng, l + 1, n - 1);
+    values[l]! += 1;
+    values[r]! -= 1;
+  }
+  return { values };
+}
+
+function genStringHash(rng: Rng): StringDemo {
+  const alphabet = 'abcd';
+  const n = randInt(rng, 5, 8);
+  let text = '';
+  for (let i = 0; i < n; i++) text += alphabet[randInt(rng, 0, 3)];
+  if (rng() > 0.4) text = text.slice(0, 2) + text.slice(0, 2) + text.slice(2);
+  return { text: text.slice(0, 10) };
+}
+
 /**
  * Fresh purpose-fit demo for a lesson Replay shuffle.
  * `lessonId` overrides kind when the viz kind alone is ambiguous (LCA tree, Floyd).
@@ -496,7 +561,10 @@ export function randomLessonDemo(
     case 'graph-topo':
       return genTopo(rng);
     case 'graph-mst':
+    case 'graph-prim':
       return genMst(rng);
+    case 'graph-lca':
+      return genTree(rng);
     case 'graph-scc':
       return genScc(rng);
     case 'graph-bridges':
@@ -527,6 +595,10 @@ export function randomLessonDemo(
       return genTwoPointers(rng);
     case 'array-deque-window':
       return genDequeWindow(rng);
+    case 'array-mo':
+      return genMo(rng);
+    case 'array-mitm':
+      return genMitm(rng);
     case 'mono-stack':
       return genMonoStack(rng);
     case 'array-sieve':
@@ -535,6 +607,16 @@ export function randomLessonDemo(
       return genTernary(rng);
     case 'array-hashmap':
       return genHashMap(rng);
+    case 'array-greedy':
+      return genGreedy(rng);
+    case 'array-brute':
+      return genBrute(rng);
+    case 'array-gcd':
+      return genGcd(rng);
+    case 'array-compress':
+      return genCompress(rng);
+    case 'array-sweep':
+      return genSweep(rng);
     case 'dp-knapsack':
       return genKnapsack(rng);
     case 'dp-bitmask':
@@ -545,6 +627,8 @@ export function randomLessonDemo(
       return genKmp(rng);
     case 'string-trie':
       return genTrie(rng);
+    case 'string-hash':
+      return genStringHash(rng);
     case 'geo-orient':
       return genPoints(rng, false);
     case 'geo-hull':

@@ -688,7 +688,7 @@ bool has_neg_cycle(vector<vector<ll>>& d) {
       time: 'O(N log N) build, O(log N) query',
       extraMemory: 'O(N log N)',
     },
-    visualization: { kind: 'graph-dfs', demo: DEMO_TREE },
+    visualization: { kind: 'graph-lca', demo: DEMO_TREE },
     relatedIds: ['dfs', 'sparse-table', 'binary-search'],
     implementation: {
       language: 'cpp',
@@ -822,8 +822,8 @@ int ternary_int(int lo, int hi, auto f) {
       notes_md: 'C++17 structured bindings in the snippet; otherwise use `equal_range` iterators.',
     },
     visualization: {
-      kind: 'array-binary-search',
-      demo: { values: [0, 1, 3, 4, 7, 8, 10, 12], target: 7 },
+      kind: 'array-mitm',
+      demo: { values: [2, 3, 5, 7, 11, 13], target: 16 },
     },
     relatedIds: ['brute-force', 'knapsack', 'binary-search'],
     implementation: {
@@ -917,7 +917,7 @@ long long meet_in_middle(vector<int>& a, long long target) {
       notes_md: '$F$ = cost of one add/remove. Example below uses 0-based inclusive $[l,r]$.',
     },
     visualization: {
-      kind: 'array-two-pointers',
+      kind: 'array-mo',
       demo: { values: [1, 2, 1, 3, 2, 1, 4] },
     },
     relatedIds: ['prefix-sums', 'segment-tree', 'two-pointers'],
@@ -1173,8 +1173,8 @@ vector<int> kmp_match(string& text, string& pat) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'array-prefix',
-      demo: { values: [1, 2, 3, 1, 2, 3] },
+      kind: 'string-hash',
+      demo: { text: 'abacaba' },
     },
     relatedIds: ['prefix-sums', 'kmp', 'z-algorithm'],
     implementation: {
@@ -1273,7 +1273,7 @@ vector<Pt> convex_hull(vector<Pt> a) {
       extraMemory: 'O(N)',
     },
     visualization: {
-      kind: 'array-prefix',
+      kind: 'array-sweep',
       demo: { values: [1, 0, 1, -1, 0, -1, 1, -1] },
     },
     relatedIds: ['geometry-basics', 'difference-array', 'convex-hull'],
