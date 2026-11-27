@@ -22,10 +22,6 @@
 
 ---
 
-> **📸 Media checklist** — capture shots listed in [`docs/media/SHOTLIST.md`](docs/media/SHOTLIST.md) and drop them into `docs/media/` with those exact filenames. The gallery below lights up as files land.
-
----
-
 ## Launch
 
 The brand opens as a graph: one node mitoses into a **K**, then **oda** slides in.
@@ -34,32 +30,22 @@ The brand opens as a graph: one node mitoses into a **K**, then **oda** slides i
   <img src="docs/media/01-launch.gif" alt="Koda launch — graph-K mitosis" width="280" />
 </p>
 
-<p align="center">
-  <sub>Prefer MP4? Use <code>01-launch.mp4</code> — GitHub embeds both.</sub>
-</p>
-
 ---
 
 ## The Run tab
 
-Home is a single composition: wordmark, streak / XP / band, today’s algorithm, and the daily path.
+Home is one composition: wordmark, streak / XP / band, today’s algorithm, and the daily path.
 
 <p align="center">
   <img src="docs/media/02-home-run.png" alt="Koda Home — Run tab with Daily Path" width="280" />
-  &nbsp;
-  <img src="docs/media/04-daily-path-boss.png" alt="Daily Path with Boss ready" width="280" />
 </p>
 
 | Piece | Why it hits |
 | --- | --- |
 | **Graph-K wordmark** | Tap to replay the mitosis in place |
 | **PlayerStrip** | Streak ◆ · XP gold count-up · Band ◎ |
-| **Daily Path** | Warm-up → Target → Boss, Clash-style progress |
+| **Daily Path** | Warm-up → Target → Boss |
 | **Raised Run orb** | Center tab bolt — mint when you’re on Home |
-
-<p align="center">
-  <img src="docs/media/03-tab-bar.png" alt="Tab bar with raised Run orb" width="360" />
-</p>
 
 ---
 
@@ -69,8 +55,6 @@ One seeded skill-check a day. Calendar like a habit game — streak, catch-up, +
 
 <p align="center">
   <img src="docs/media/05-daily-algo-calendar.png" alt="Daily Algorithm calendar" width="280" />
-  &nbsp;
-  <img src="docs/media/06-daily-algo-puzzle.png" alt="Daily Algorithm puzzle" width="280" />
 </p>
 
 ---
@@ -97,54 +81,27 @@ The core loop is diagnosis, not typing:
 Encounter  →  Radar  →  Hypothesis  →  Blueprint  →  Reveal
 ```
 
-Read the statement (KaTeX, grids, samples). Tag complexity. Name paradigm, algorithm, structures, twists. Sketch a blueprint for later PC work. Then see how sharp your read was.
+Read the statement. Tag complexity. Name paradigm, algorithm, structures, twists. Sketch a blueprint for later PC work. Then see how sharp your read was.
 
 <p align="center">
-  <img src="docs/media/09-encounter.png" alt="Problem encounter with statement" width="220" />
-  &nbsp;
-  <img src="docs/media/10-hypothesis.png" alt="Hypothesis chip wall" width="220" />
-  &nbsp;
-  <img src="docs/media/11-reveal-score.png" alt="Reveal score breakdown" width="220" />
+  <img src="docs/media/11-reveal-score.png" alt="Reveal score breakdown" width="280" />
 </p>
 
 Stuck? Progressive hints — coaching layers, not instant spoilers.
 
-<p align="center">
-  <img src="docs/media/12-stuck-hints.png" alt="Stuck path progressive hints" width="280" />
-</p>
-
 ---
 
-## Review · Implement · Stats
+## Implement · Stats
 
-| Review | Implement | Stats |
-| :---: | :---: | :---: |
-| Spaced reps for misses | Copy blueprints · open OJ · mark AC | Band, heatmap, blind spots, funnel |
-| <img src="docs/media/20-review.png" alt="Review deck" width="200" /> | <img src="docs/media/14-implement-queue.png" alt="Implement queue" width="200" /> | <img src="docs/media/13-stats.png" alt="Stats heatmap" width="200" /> |
-
-Catalog, playlists, history filters, offline SQLite catalog, guest → cloud sync when you want it.
+Blueprints wait in the Build Queue until you AC them on a real OJ. Stats track band, heat, pipeline, and topic mastery.
 
 <p align="center">
-  <img src="docs/media/15-catalog.png" alt="Problem catalog" width="280" />
+  <img src="docs/media/14-implement-queue.png" alt="Implement queue" width="280" />
   &nbsp;
-  <img src="docs/media/16-profile.png" alt="Profile and avatars" width="280" />
+  <img src="docs/media/13-stats.png" alt="Stats heatmap" width="280" />
 </p>
 
----
-
-## Brand
-
-<p align="center">
-  <img src="docs/media/17-wordmark.png" alt="Koda graph-K wordmark" width="320" />
-</p>
-
-| | |
-| --- | --- |
-| **Mint** `#3DDC97` | Accents, Run orb, wordmark |
-| **Gold** `#F0C14B` | XP |
-| **Amber** `#F5A623` | Streak · Boss · Daily Algo |
-| **Radar blue** `#5B8CFF` | Band · Constraint Radar |
-| **Void** `#121212` | Stage |
+Also in the app: Review deck, catalog, playlists, history filters, offline SQLite catalog, guest → cloud sync when you want it.
 
 ---
 
@@ -155,6 +112,14 @@ Most CP apps shove an editor onto a phone. Koda flips it:
 1. **Train recognition** — paradigms and twists under time pressure  
 2. **Keep implementation for a keyboard** — blueprints land in the Implement queue  
 3. **Feel like a run** — daily set, streaks, bands, haptics, motion with purpose  
+
+| | |
+| --- | --- |
+| **Mint** `#3DDC97` | Accents, Run orb, wordmark |
+| **Gold** `#F0C14B` | XP |
+| **Amber** `#F5A623` | Streak · Boss · Daily Algo |
+| **Radar blue** `#5B8CFF` | Band · Constraint Radar |
+| **Void** `#121212` | Stage |
 
 Built with **Expo · React Native · Expo Router · Reanimated · Supabase** (optional) · local-first guest mode.
 
