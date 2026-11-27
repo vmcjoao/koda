@@ -1,6 +1,8 @@
-import { writeFileSync } from 'fs';
-import { getAllLocalProblems } from '../lib/catalog';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { SEED_PROBLEMS } from '../data/seed-problems';
+import { withIoFormats } from '../lib/catalog';
 import { TAG_CATALOG } from '../constants/tags';
+import type { ProblemWithApproaches } from '../types/database';
 
 function esc(s: string) {
   return s.replace(/'/g, "''");
@@ -11,9 +13,37 @@ function arr(a: string[]) {
   return `ARRAY[${a.map((x) => `'${esc(x)}'`).join(',')}]::text[]`;
 }
 
-const problems = getAllLocalProblems();
+function isProblem(value: unknown): value is ProblemWithApproaches {
+  if (!value || typeof value !== 'object') return false;
+  const p = value as ProblemWithApproaches;
+  return (
+    typeof p.id === 'string' &&
+    typeof p.title === 'string' &&
+    Array.isArray(p.approaches) &&
+    p.approaches.length > 0
+  );
+}
 
-let sql = '-- Auto-generated from seed + extras + io-formats overlay\n';
+/** Local ingest sources only — never bundled into the mobile app. */
+function loadProblemsForSeed(): ProblemWithApproaches[] {
+  const byId = new Map<string, ProblemWithApproaches>();
+  for (const p of SEED_PROBLEMS) byId.set(p.id, withIoFormats(p));
+
+  const extrasPath = 'data/extra-problems.json';
+  if (existsSync(extrasPath)) {
+    const raw = JSON.parse(readFileSync(extrasPath, 'utf8')) as unknown;
+    const extras = (Array.isArray(raw) ? raw : []).filter(isProblem);
+    for (const p of extras) byId.set(p.id, withIoFormats(p));
+  } else {
+    console.warn(`Missing ${extrasPath} — seeding curated SEED_PROBLEMS only.`);
+  }
+
+  return [...byId.values()].sort((a, b) => a.difficulty_rating - b.difficulty_rating);
+}
+
+const problems = loadProblemsForSeed();
+
+let sql = '-- Auto-generated from local seed + extras (not shipped in the app)\n';
 sql += 'truncate public.solution_approaches, public.problems, public.tag_catalog cascade;\n\n';
 
 for (const t of TAG_CATALOG) {
@@ -29,4 +59,4 @@ for (const p of problems) {
 }
 
 writeFileSync('supabase/seed.sql', sql);
-console.log(`Wrote supabase/seed.sql (${problems.length} problems)`);
+console.log(`Wrote supabase/seed.sql (${problems.length} problems) — apply to Supabase; do not commit.`);

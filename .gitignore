@@ -34,6 +34,10 @@ yarn-error.*
 .env
 .env*.local
 
+# Problem catalog — local ingest only; app loads problems from Supabase
+data/extra-problems.json
+supabase/seed.sql
+
 # typescript
 *.tsbuildinfo
 

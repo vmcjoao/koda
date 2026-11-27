@@ -56,7 +56,7 @@ npm run generate:seed
 # then run supabase/seed.sql in the SQL editor
 ```
 
-The app merges `SEED_PROBLEMS` + `extra-problems.json` offline, and prefers Supabase when the remote catalog is available.
+`data/extra-problems.json` and `supabase/seed.sql` are **local-only** (gitignored). Generate the seed and apply it in the Supabase SQL editor — the mobile app loads problems from Supabase only, never from a bundled catalog.
 
 ## Coverage goals
 

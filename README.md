@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img alt="Catalog" src="https://img.shields.io/badge/catalog-1%2C200%2B%20problems-3DDC97?style=flat-square" />
+  <img alt="Catalog" src="https://img.shields.io/badge/catalog-1%2C200%2B%20via%20Supabase-3DDC97?style=flat-square" />
   <img alt="Expo" src="https://img.shields.io/badge/Expo-58-000?style=flat-square&logo=expo&logoColor=3DDC97" />
   <img alt="React Native" src="https://img.shields.io/badge/React%20Native-0.88-61DAFB?style=flat-square&logo=react&logoColor=white" />
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white" />
@@ -114,9 +114,9 @@ Band, heatmap, diagnose → blueprint → implement pipeline, topic mastery.
 
 ## Catalog
 
-**1,200+** curated problems ship on-device — searchable, filterable, and usable offline (no account required).
+**1,200+** curated problems live in **Supabase** — not in the GitHub repo and not bundled into the app binary. The client loads the catalog over the API (search, filters, Daily Set, Learn drills, Review).
 
-Drawn from **CSES**, **Codeforces**, **SBC Maratona**, **Maratona Mineira**, **UVA**, **USACO**, **AtCoder**, and more. Each entry carries statement, samples, complexity target, and tagged solution approaches so Daily Set, Learn drills, and Review can pull real contest material — not a toy list of ten demos.
+Sources include **CSES**, **Codeforces**, **SBC Maratona**, **Maratona Mineira**, **UVA**, **USACO**, **AtCoder**, and more. Each row carries statement, samples, complexity target, and tagged approaches.
 
 ---
 
@@ -127,7 +127,7 @@ Most CP apps shove an editor onto a phone. Koda flips it:
 1. **Train recognition** — paradigms and twists under time pressure  
 2. **Keep implementation for a keyboard** — blueprints land in Implement  
 3. **Feel like a run** — daily set, streaks, bands, haptics, motion with purpose  
-4. **Train on a real catalog** — 1,200+ problems offline, not a thin demo pack  
+4. **Train on a real catalog** — 1,200+ problems via Supabase, not a thin demo pack  
 
 | | |
 | --- | --- |
@@ -137,7 +137,7 @@ Most CP apps shove an editor onto a phone. Koda flips it:
 | **Radar blue** `#5B8CFF` | Band · Constraint Radar |
 | **Void** `#121212` | Stage |
 
-Built with **Expo · React Native · Expo Router · Reanimated · Supabase** (optional) · local-first guest mode.
+Built with **Expo · React Native · Expo Router · Reanimated · Supabase** (catalog + optional auth). Progress can stay local as guest; problems always come from Supabase.
 
 ---
 

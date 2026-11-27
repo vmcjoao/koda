@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getAllLocalProblems, getLocalProblem, withIoFormats } from '@/lib/catalog';
+import { withIoFormats } from '@/lib/catalog';
 import {
   adjustRatingBand,
   buildDailySet,
@@ -11,7 +11,6 @@ import {
   type DailySet,
 } from '@/lib/habit';
 import { syncFavoritesToCloud } from '@/lib/favorites';
-import { readCatalogCache, writeCatalogCache } from '@/lib/offlineDb';
 import { syncPlaylistsToCloud } from '@/lib/playlists';
 import { isPendingCloudAttempt, mergeProfilesForSync } from '@/lib/sync';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
@@ -29,34 +28,6 @@ const LOCAL_PROFILE_KEY = 'koda.profile';
 const LOCAL_STATE_KEY = 'koda.problem_state';
 const LOCAL_DAILY_KEY = 'koda.daily_set';
 const DEMO_USER_ID = 'demo-user';
-
-function preferFilled(a: string | undefined, b: string | undefined): string {
-  return a?.trim() || b?.trim() || '';
-}
-
-function mergeCatalog(
-  primary: ProblemWithApproaches[],
-  secondary: ProblemWithApproaches[],
-): ProblemWithApproaches[] {
-  const byId = new Map<string, ProblemWithApproaches>();
-  for (const p of secondary) byId.set(p.id, withIoFormats(p));
-  for (const p of primary) {
-    const prev = byId.get(p.id);
-    const next = withIoFormats(p);
-    if (!prev) {
-      byId.set(p.id, next);
-      continue;
-    }
-    // Remote/primary wins identity, but keep non-empty I/O from local overlay/extras.
-    byId.set(p.id, {
-      ...next,
-      input_format_md: preferFilled(next.input_format_md, prev.input_format_md),
-      output_format_md: preferFilled(next.output_format_md, prev.output_format_md),
-      approaches: next.approaches?.length ? next.approaches : prev.approaches,
-    });
-  }
-  return [...byId.values()].sort((a, b) => a.difficulty_rating - b.difficulty_rating);
-}
 
 async function readLocalAttempts(): Promise<UserAttempt[]> {
   const raw = await AsyncStorage.getItem(LOCAL_ATTEMPTS_KEY);
@@ -146,10 +117,8 @@ let problemsMemory: ProblemWithApproaches[] | null = null;
 let problemsMemoryAt = 0;
 let problemsRefreshInflight: Promise<ProblemWithApproaches[]> | null = null;
 
-async function loadProblemsFromNetwork(
-  local: ProblemWithApproaches[],
-): Promise<ProblemWithApproaches[]> {
-  if (!supabase) return local;
+async function loadProblemsFromSupabase(): Promise<ProblemWithApproaches[]> {
+  if (!supabase) return [];
 
   const { data: problems, error } = await supabase
     .from('problems')
@@ -157,23 +126,19 @@ async function loadProblemsFromNetwork(
     .order('difficulty_rating', { ascending: true });
 
   if (error || !problems?.length) {
-    console.warn('Falling back to catalog cache / local seed:', error?.message);
-    const cached = await readCatalogCache();
-    return cached?.length ? mergeCatalog(cached, local) : local;
+    console.warn('Supabase catalog unavailable:', error?.message ?? 'empty');
+    return [];
   }
 
   const { data: approaches } = await supabase.from('solution_approaches').select('*');
   const byProblem = new Map<string, Record<string, unknown>[]>();
   for (const a of approaches ?? []) {
-    const list = byProblem.get(a.problem_id) ?? [];
+    const list = byProblem.get(a.problem_id as string) ?? [];
     list.push(a);
-    byProblem.set(a.problem_id, list);
+    byProblem.set(a.problem_id as string, list);
   }
 
-  const remote = problems.map((p) => mapProblemRow(p, byProblem.get(p.id) ?? []));
-  await writeCatalogCache(remote);
-  // Remote wins on id clash; keep local-only extras (ingestion) available offline.
-  return mergeCatalog(remote, local);
+  return problems.map((p) => withIoFormats(mapProblemRow(p, byProblem.get(p.id as string) ?? [])));
 }
 
 function rememberProblems(list: ProblemWithApproaches[]): ProblemWithApproaches[] {
@@ -182,11 +147,11 @@ function rememberProblems(list: ProblemWithApproaches[]): ProblemWithApproaches[
   return list;
 }
 
-function refreshProblemsInBackground(local: ProblemWithApproaches[]): void {
+function refreshProblemsInBackground(): void {
   if (problemsRefreshInflight) return;
-  problemsRefreshInflight = loadProblemsFromNetwork(local)
+  problemsRefreshInflight = loadProblemsFromSupabase()
     .then((list) => rememberProblems(list))
-    .catch(() => problemsMemory ?? local)
+    .catch(() => problemsMemory ?? [])
     .finally(() => {
       problemsRefreshInflight = null;
     });
@@ -199,13 +164,12 @@ export function invalidateProblemsCache(): void {
 }
 
 /**
- * Catalog for training screens. Uses memory → disk → network, and refreshes
- * Supabase in the background so tab switches stay snappy.
+ * Catalog for training screens — Supabase only (no bundled / on-device problem pack).
+ * Keeps a short in-memory TTL so tab switches stay snappy.
  */
 export async function fetchProblems(options?: {
   force?: boolean;
 }): Promise<ProblemWithApproaches[]> {
-  const local = getAllLocalProblems();
   const force = !!options?.force;
   const fresh =
     !!problemsMemory && Date.now() - problemsMemoryAt < PROBLEMS_TTL_MS;
@@ -215,26 +179,18 @@ export async function fetchProblems(options?: {
   }
 
   if (!force && problemsMemory) {
-    refreshProblemsInBackground(local);
+    refreshProblemsInBackground();
     return problemsMemory;
   }
 
   if (!supabase) {
-    return rememberProblems(local);
-  }
-
-  if (!force) {
-    const cached = await readCatalogCache();
-    if (cached?.length) {
-      const merged = rememberProblems(mergeCatalog(cached, local));
-      refreshProblemsInBackground(local);
-      return merged;
-    }
+    console.warn('Supabase is not configured — catalog is empty.');
+    return rememberProblems([]);
   }
 
   if (problemsRefreshInflight) return problemsRefreshInflight;
 
-  problemsRefreshInflight = loadProblemsFromNetwork(local)
+  problemsRefreshInflight = loadProblemsFromSupabase()
     .then((list) => rememberProblems(list))
     .finally(() => {
       problemsRefreshInflight = null;
@@ -243,28 +199,18 @@ export async function fetchProblems(options?: {
 }
 
 export async function fetchProblem(id: string): Promise<ProblemWithApproaches | null> {
-  if (!supabase) return getLocalProblem(id) ?? null;
+  if (!supabase) return null;
 
   const { data: problem, error } = await supabase.from('problems').select('*').eq('id', id).maybeSingle();
   if (error || !problem) {
-    const cached = await readCatalogCache();
-    const fromCache = cached?.find((p) => p.id === id);
-    const fallback = fromCache ?? getLocalProblem(id) ?? null;
-    return fallback ? withIoFormats(fallback) : null;
+    const cached = problemsMemory?.find((p) => p.id === id);
+    return cached ? withIoFormats(cached) : null;
   }
   const { data: approaches } = await supabase
     .from('solution_approaches')
     .select('*')
     .eq('problem_id', id);
-  const mapped = mapProblemRow(problem, approaches ?? []);
-  const local = getLocalProblem(id);
-  // Prefer non-empty curated I/O when remote row left those columns blank.
-  return withIoFormats({
-    ...mapped,
-    input_format_md: preferFilled(mapped.input_format_md, local?.input_format_md),
-    output_format_md: preferFilled(mapped.output_format_md, local?.output_format_md),
-    approaches: mapped.approaches?.length ? mapped.approaches : local?.approaches ?? [],
-  });
+  return withIoFormats(mapProblemRow(problem, approaches ?? []));
 }
 
 export async function getProfile(userId: string | null): Promise<UserProfile> {

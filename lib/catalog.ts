@@ -1,22 +1,9 @@
-import { SEED_PROBLEMS } from '@/data/seed-problems';
-import extraJson from '@/data/extra-problems.json';
 import ioFormats from '@/data/io-formats.json';
 import type { ProblemWithApproaches } from '@/types/database';
 
 type IoOverlay = { input_format_md?: string; output_format_md?: string };
 
-function isProblem(value: unknown): value is ProblemWithApproaches {
-  if (!value || typeof value !== 'object') return false;
-  const p = value as ProblemWithApproaches;
-  return (
-    typeof p.id === 'string' &&
-    typeof p.title === 'string' &&
-    Array.isArray(p.approaches) &&
-    p.approaches.length > 0
-  );
-}
-
-/** Fill empty I/O format fields from the curated overlay. */
+/** Fill empty I/O format fields from the curated overlay (metadata only — not statements). */
 export function withIoFormats(p: ProblemWithApproaches): ProblemWithApproaches {
   const overlay = (ioFormats as Record<string, IoOverlay>)[p.id];
   return {
@@ -24,29 +11,4 @@ export function withIoFormats(p: ProblemWithApproaches): ProblemWithApproaches {
     input_format_md: p.input_format_md?.trim() || overlay?.input_format_md || '',
     output_format_md: p.output_format_md?.trim() || overlay?.output_format_md || '',
   };
-}
-
-let localProblemsList: ProblemWithApproaches[] | null = null;
-let localProblemsById: Map<string, ProblemWithApproaches> | null = null;
-
-function buildLocalProblems(): ProblemWithApproaches[] {
-  const raw = extraJson as unknown;
-  const extras = (Array.isArray(raw) ? raw : []).filter(isProblem);
-  const byId = new Map<string, ProblemWithApproaches>();
-  for (const p of SEED_PROBLEMS) byId.set(p.id, withIoFormats(p as ProblemWithApproaches));
-  for (const p of extras) byId.set(p.id, withIoFormats(p));
-  const list = [...byId.values()].sort((a, b) => a.difficulty_rating - b.difficulty_rating);
-  localProblemsList = list;
-  localProblemsById = byId;
-  return list;
-}
-
-/** Built-in seed + reviewed extras from ingestion (+ I/O format overlay). Memoized. */
-export function getAllLocalProblems(): ProblemWithApproaches[] {
-  return localProblemsList ?? buildLocalProblems();
-}
-
-export function getLocalProblem(id: string): ProblemWithApproaches | undefined {
-  if (!localProblemsById) buildLocalProblems();
-  return localProblemsById!.get(id);
 }
