@@ -23,6 +23,11 @@ import {
   setReminderHour,
   setRemindersEnabled,
 } from '@/lib/notifications';
+import {
+  getLearnRandomScope,
+  setLearnRandomScope,
+  type LearnRandomScope,
+} from '@/lib/preferences';
 import { shareText } from '@/lib/share';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -65,6 +70,7 @@ export default function SettingsScreen() {
   const [reminders, setReminders] = useState(false);
   const [reminderHour, setReminderHourState] = useState(19);
   const [reminderBusy, setReminderBusy] = useState(false);
+  const [learnRandomScope, setLearnRandomScopeState] = useState<LearnRandomScope>('completed');
   const [importText, setImportText] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -74,8 +80,20 @@ export default function SettingsScreen() {
     (async () => {
       setReminders(await areRemindersEnabled());
       setReminderHourState(await getReminderHour());
+      setLearnRandomScopeState(await getLearnRandomScope());
     })();
   }, []);
+
+  async function onToggleLearnRandomScope(unlockAll: boolean) {
+    const next: LearnRandomScope = unlockAll ? 'all' : 'completed';
+    await setLearnRandomScope(next);
+    setLearnRandomScopeState(next);
+    flashSaved(
+      unlockAll
+        ? 'Random drills · any lesson'
+        : 'Random drills · completed lessons only',
+    );
+  }
 
   useEffect(() => {
     if (profile?.rating_band != null) setBand(String(profile.rating_band));
@@ -312,6 +330,23 @@ export default function SettingsScreen() {
             }}
           />
         )}
+      </Section>
+
+      <Section kicker="LEARN" title="Random drills">
+        <View style={styles.reminderRow}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.label}>Unlock all lessons</Text>
+            <Text style={styles.hint}>
+              Off = only from completed lessons. On = any lesson with a Skill Check.
+            </Text>
+          </View>
+          <Switch
+            value={learnRandomScope === 'all'}
+            onValueChange={onToggleLearnRandomScope}
+            trackColor={{ false: colors.border, true: colors.accentDim }}
+            thumbColor={learnRandomScope === 'all' ? colors.accent : colors.textDim}
+          />
+        </View>
       </Section>
 
       <Section kicker="TRAINING" title="Rating band">

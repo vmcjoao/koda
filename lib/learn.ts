@@ -3,6 +3,8 @@ import { TAG_CATALOG } from '@/constants/tags';
 import type { LearnLesson, LearnTagKind } from '@/types/learn';
 import type { ProblemWithApproaches } from '@/types/database';
 import { todayIso } from '@/lib/habit';
+import { lessonHasExercises } from '@/lib/learnExerciseGen';
+import type { LearnRandomScope } from '@/lib/preferences';
 
 export function listLessons(): LearnLesson[] {
   return LESSONS;
@@ -54,6 +56,22 @@ export function filterLessons(query: string): LearnLesson[] {
       .toLowerCase();
     return hay.includes(q);
   });
+}
+
+/**
+ * Random lesson that has a Skill Check. Scope `completed` prefers studied
+ * lessons; falls back to any exercise lesson if none are completed yet.
+ */
+export function pickRandomExerciseLesson(
+  studied: Set<string>,
+  scope: LearnRandomScope,
+): LearnLesson | null {
+  const withExercises = LESSONS.filter((l) => lessonHasExercises(l.id));
+  if (!withExercises.length) return null;
+  const completed = withExercises.filter((l) => studied.has(l.id));
+  const pool =
+    scope === 'completed' && completed.length > 0 ? completed : withExercises;
+  return pool[Math.floor(Math.random() * pool.length)] ?? null;
 }
 
 export type LearnUnit = {

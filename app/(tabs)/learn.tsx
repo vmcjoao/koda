@@ -9,12 +9,15 @@ import {
   filterLessons,
   listLessons,
   nextStudyPathLesson,
+  pickRandomExerciseLesson,
   studyPathLessons,
 } from '@/lib/learn';
 import { lessonHasExercises } from '@/lib/learnExerciseGen';
 import { getStudiedLessonIds } from '@/lib/learnProgress';
+import { getLearnRandomScope, type LearnRandomScope } from '@/lib/preferences';
 import { LEARN_FAMILY_LABELS, type LearnFamily, type LearnLesson } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
+import { PrimaryButton } from '@/components/ui/PrimaryButton';
 
 const FAMILY_ORDER: LearnFamily[] = [
   'techniques',
@@ -37,19 +40,31 @@ export default function LearnScreen() {
   const [query, setQuery] = useState('');
   const [familyFilter, setFamilyFilter] = useState<FamilyFilter>('all');
   const [studied, setStudied] = useState<Set<string>>(new Set());
+  const [randomScope, setRandomScope] = useState<LearnRandomScope>('completed');
 
   useFocusEffect(
     useCallback(() => {
       let active = true;
       (async () => {
-        const ids = await getStudiedLessonIds();
-        if (active) setStudied(ids);
+        const [ids, scope] = await Promise.all([
+          getStudiedLessonIds(),
+          getLearnRandomScope(),
+        ]);
+        if (!active) return;
+        setStudied(ids);
+        setRandomScope(scope);
       })();
       return () => {
         active = false;
       };
     }, []),
   );
+
+  function startRandomDrill() {
+    const lesson = pickRandomExerciseLesson(studied, randomScope);
+    if (!lesson) return;
+    router.push({ pathname: '/learn/[id]', params: { id: lesson.id, focus: 'check' } });
+  }
 
   const continueLesson = useMemo(() => nextStudyPathLesson(studied), [studied]);
   const pathDone = useMemo(
@@ -95,6 +110,17 @@ export default function LearnScreen() {
           </Text>
         </View>
       </FadeInUp>
+
+      <PrimaryButton
+        label="Random drill"
+        variant="secondary"
+        onPress={startRandomDrill}
+      />
+      <Text style={styles.randomHint}>
+        {randomScope === 'completed'
+          ? 'Pulls a Skill Check from completed lessons (Profile → unlock all).'
+          : 'Pulls a Skill Check from any lesson with exercises.'}
+      </Text>
 
       <View style={styles.modeRow}>
         <Pressable
@@ -258,6 +284,11 @@ const styles = StyleSheet.create({
     color: colors.text,
     fontSize: 28,
     fontWeight: '800',
+  },
+  randomHint: {
+    color: colors.textDim,
+    fontSize: 12,
+    marginTop: -spacing.sm,
   },
   sub: {
     color: colors.textMuted,

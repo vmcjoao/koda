@@ -15,6 +15,7 @@ import {
   fetchProblems,
   getDailySet,
   getReviewQueue,
+  pickRandomProblem,
   regenerateDailySet,
 } from '@/lib/api';
 import { beatCountForDate, dailyAlgoStreak, lessonForDate } from '@/lib/dailyAlgorithm';
@@ -118,6 +119,14 @@ export default function HomeScreen() {
     openProblem(problem);
   }
 
+  function startSurprise() {
+    const excludeIds = daily?.slots.map((s) => s.problemId) ?? [];
+    const pick = pickRandomProblem(problems, attempts, profile?.rating_band ?? 1200, {
+      excludeIds,
+    });
+    if (pick) startProblem(pick);
+  }
+
   return (
     <Screen scroll refreshing={refreshing} onRefresh={onRefresh}>
       <OnboardingTips />
@@ -219,11 +228,21 @@ export default function HomeScreen() {
                 <Text style={styles.good}>
                   {daily?.bonusAwarded ? '+50 XP daily bonus claimed' : 'All three slots done'}
                 </Text>
+                <Text style={styles.clearedHint}>
+                  Keep the streak warm — grab a surprise problem near your band.
+                </Text>
               </View>
             )}
           </FadeInUp>
 
           <FadeInUp delayMs={420}>
+            <PrimaryButton
+              label="Surprise problem"
+              variant={runComplete ? 'primary' : 'secondary'}
+              onPress={startSurprise}
+              disabled={problems.length === 0}
+            />
+
             {!runComplete ? (
               <PrimaryButton label="Shuffle run" variant="ghost" onPress={onRegenerateDaily} />
             ) : null}
@@ -381,6 +400,11 @@ const styles = StyleSheet.create({
     color: colors.accent,
     fontSize: 14,
     fontWeight: '600',
+  },
+  clearedHint: {
+    color: colors.textMuted,
+    fontSize: 13,
+    marginTop: 2,
   },
   secondaryBlock: {
     marginTop: spacing.md,
