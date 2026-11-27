@@ -3,6 +3,7 @@ import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BrandWordmark } from '@/components/BrandWordmark';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { useLaunchReady } from '@/contexts/LaunchContext';
 import { colors, radii, spacing } from '@/constants/theme';
 
 const KEY = 'koda.onboarding.v1';
@@ -23,10 +24,12 @@ const TIPS = [
 ];
 
 export function OnboardingTips() {
+  const launchReady = useLaunchReady();
   const [visible, setVisible] = useState(false);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
+    if (!launchReady) return;
     let mounted = true;
     (async () => {
       const seen = await AsyncStorage.getItem(KEY);
@@ -35,7 +38,7 @@ export function OnboardingTips() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [launchReady]);
 
   async function finish() {
     await AsyncStorage.setItem(KEY, '1');
