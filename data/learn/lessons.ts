@@ -3,27 +3,18 @@ import { LESSONS_MORE } from '@/data/learn/lessons-more';
 import { LESSONS_EXTRA } from '@/data/learn/lessons-extra';
 import { LESSONS_VARIANTS } from '@/data/learn/lessons-variants';
 import { LESSON_EXERCISES } from '@/data/learn/exercises';
-
-const DEMO_GRAPH = {
-  nodes: [
-    { id: '0', x: 40, y: 110, label: '0' },
-    { id: '1', x: 120, y: 40, label: '1' },
-    { id: '2', x: 120, y: 180, label: '2' },
-    { id: '3', x: 200, y: 110, label: '3' },
-    { id: '4', x: 280, y: 40, label: '4' },
-    { id: '5', x: 280, y: 180, label: '5' },
-  ],
-  edges: [
-    { from: '0', to: '1', w: 2 },
-    { from: '0', to: '2', w: 4 },
-    { from: '1', to: '3', w: 3 },
-    { from: '2', to: '3', w: 1 },
-    { from: '3', to: '4', w: 2 },
-    { from: '3', to: '5', w: 5 },
-    { from: '1', to: '4', w: 7 },
-  ],
-  start: '0',
-};
+import {
+  DEMO_BELLMAN,
+  DEMO_BFS,
+  DEMO_BRIDGES,
+  DEMO_DFS,
+  DEMO_DIJKSTRA,
+  DEMO_FLOYD,
+  DEMO_MST,
+  DEMO_SCC,
+  DEMO_TOPO,
+  DEMO_TREE,
+} from '@/data/learn/graph-demos';
 
 const LESSONS_CORE: LearnLesson[] = [
   {
@@ -39,7 +30,7 @@ const LESSONS_CORE: LearnLesson[] = [
       extraMemory: 'O(N)',
       notes_md: 'Queue + visited (or dist[]) over N nodes and M edges.',
     },
-    visualization: { kind: 'graph-bfs', demo: DEMO_GRAPH },
+    visualization: { kind: 'graph-bfs', demo: DEMO_BFS },
     implementation: {
       language: 'cpp',
       code: `vector<int> bfs(int n, vector<vector<int>>& g, int s) {
@@ -72,7 +63,7 @@ const LESSONS_CORE: LearnLesson[] = [
       extraMemory: 'O(N)',
       notes_md: 'Visited/color array; recursion stack can be $O(N)$ on a line graph.',
     },
-    visualization: { kind: 'graph-dfs', demo: DEMO_GRAPH },
+    visualization: { kind: 'graph-dfs', demo: DEMO_DFS },
     implementation: {
       language: 'cpp',
       code: `void dfs(int u, vector<vector<int>>& g, vector<int>& vis) {
@@ -105,7 +96,7 @@ int components(int n, vector<vector<int>>& g) {
       extraMemory: 'O(N)',
       notes_md: 'Binary heap Dijkstra. Fibonacci heaps are rare in contests.',
     },
-    visualization: { kind: 'graph-dijkstra', demo: DEMO_GRAPH },
+    visualization: { kind: 'graph-dijkstra', demo: DEMO_DIJKSTRA },
     implementation: {
       language: 'cpp',
       code: `using ll = long long;
@@ -142,26 +133,7 @@ vector<ll> dijkstra(int n, vector<vector<pair<int,ll>>>& g, int s) {
       extraMemory: 'O(N)',
       notes_md: 'Kahn (indegree + queue) and DFS-finish order are both fine; Kahn makes cycles obvious.',
     },
-    visualization: {
-      kind: 'graph-topo',
-      demo: {
-        nodes: [
-          { id: '0', x: 40, y: 110, label: 'A' },
-          { id: '1', x: 140, y: 50, label: 'B' },
-          { id: '2', x: 140, y: 170, label: 'C' },
-          { id: '3', x: 240, y: 110, label: 'D' },
-          { id: '4', x: 340, y: 110, label: 'E' },
-        ],
-        edges: [
-          { from: '0', to: '1' },
-          { from: '0', to: '2' },
-          { from: '1', to: '3' },
-          { from: '2', to: '3' },
-          { from: '3', to: '4' },
-        ],
-        start: '0',
-      },
-    },
+    visualization: { kind: 'graph-topo', demo: DEMO_TOPO },
     implementation: {
       language: 'cpp',
       code: `vector<int> kahn(int n, vector<vector<int>>& g) {
@@ -194,7 +166,7 @@ vector<ll> dijkstra(int n, vector<vector<pair<int,ll>>>& g, int s) {
       extraMemory: 'O(N)',
       notes_md: 'Sorting dominates; DSU is nearly O(M).',
     },
-    visualization: { kind: 'graph-mst', demo: DEMO_GRAPH },
+    visualization: { kind: 'graph-mst', demo: DEMO_MST },
     implementation: {
       language: 'cpp',
       code: `struct DSU {
@@ -443,7 +415,7 @@ vector<int> build_spf(int n) {
       time: 'O(N + M)',
       extraMemory: 'O(N + M)',
     },
-    visualization: { kind: 'graph-dfs', demo: DEMO_GRAPH },
+    visualization: { kind: 'graph-scc', demo: DEMO_SCC },
     relatedIds: ['dfs', 'bridges', 'topo-sort'],
     implementation: {
       language: 'cpp',
@@ -481,7 +453,7 @@ int scc(int n, vector<vector<int>>& g, vector<vector<int>>& gt, vector<int>& com
       time: 'O(N + M)',
       extraMemory: 'O(N + M)',
     },
-    visualization: { kind: 'graph-dfs', demo: DEMO_GRAPH },
+    visualization: { kind: 'graph-bridges', demo: DEMO_BRIDGES },
     relatedIds: ['dfs', 'scc', 'dsu'],
     implementation: {
       language: 'cpp',
@@ -632,7 +604,7 @@ int bpm(int nL, int nR, vector<vector<int>>& g) {
       extraMemory: 'O(N)',
       notes_md: 'SPFA is a queue optimization — still $O(NM)$ worst case; fine for many contests, risky against anti-SPFA tests.',
     },
-    visualization: { kind: 'graph-dijkstra', demo: DEMO_GRAPH },
+    visualization: { kind: 'graph-bellman', demo: DEMO_BELLMAN },
     relatedIds: ['dijkstra', 'floyd-warshall', 'bfs-01'],
     implementation: {
       language: 'cpp',
@@ -680,7 +652,7 @@ vector<ll> bellman(int n, vector<array<ll,3>>& edges, int s, vector<char>& neg) 
       time: 'O(N³)',
       extraMemory: 'O(N²)',
     },
-    visualization: { kind: 'graph-dijkstra', demo: DEMO_GRAPH },
+    visualization: { kind: 'graph-dijkstra', demo: DEMO_FLOYD },
     relatedIds: ['bellman-ford', 'dijkstra', 'matrix-expo'],
     implementation: {
       language: 'cpp',
@@ -716,7 +688,7 @@ bool has_neg_cycle(vector<vector<ll>>& d) {
       time: 'O(N log N) build, O(log N) query',
       extraMemory: 'O(N log N)',
     },
-    visualization: { kind: 'graph-dfs', demo: DEMO_GRAPH },
+    visualization: { kind: 'graph-dfs', demo: DEMO_TREE },
     relatedIds: ['dfs', 'sparse-table', 'binary-search'],
     implementation: {
       language: 'cpp',

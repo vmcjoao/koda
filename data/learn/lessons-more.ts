@@ -1,4 +1,5 @@
 import type { LearnLesson } from '@/types/learn';
+import { DEMO_01_BFS, DEMO_MST } from '@/data/learn/graph-demos';
 
 /** Paradigm, data-structure, and advanced-variant lessons. */
 export const LESSONS_MORE: LearnLesson[] = [
@@ -646,24 +647,7 @@ vector<long long> apply_range_adds(int n, vector<array<long long,3>>& ops) {
       time: 'O(N + M)',
       extraMemory: 'O(N)',
     },
-    visualization: {
-      kind: 'graph-bfs',
-      demo: {
-        nodes: [
-          { id: '0', x: 40, y: 110, label: '0' },
-          { id: '1', x: 140, y: 50, label: '1' },
-          { id: '2', x: 140, y: 170, label: '2' },
-          { id: '3', x: 260, y: 110, label: '3' },
-        ],
-        edges: [
-          { from: '0', to: '1', w: 0 },
-          { from: '0', to: '2', w: 1 },
-          { from: '1', to: '3', w: 1 },
-          { from: '2', to: '3', w: 0 },
-        ],
-        start: '0',
-      },
-    },
+    visualization: { kind: 'graph-01-bfs', demo: DEMO_01_BFS },
     relatedIds: ['bfs', 'dijkstra'],
     implementation: {
       language: 'cpp',
@@ -701,26 +685,7 @@ vector<long long> apply_range_adds(int n, vector<array<long long,3>>& ops) {
       extraMemory: 'O(N)',
       notes_md: 'Kruskal is usually simpler with a DSU; Prim fits “grow a component” thinking.',
     },
-    visualization: { kind: 'graph-mst', demo: {
-      nodes: [
-        { id: '0', x: 40, y: 110, label: '0' },
-        { id: '1', x: 120, y: 40, label: '1' },
-        { id: '2', x: 120, y: 180, label: '2' },
-        { id: '3', x: 200, y: 110, label: '3' },
-        { id: '4', x: 280, y: 40, label: '4' },
-        { id: '5', x: 280, y: 180, label: '5' },
-      ],
-      edges: [
-        { from: '0', to: '1', w: 2 },
-        { from: '0', to: '2', w: 4 },
-        { from: '1', to: '3', w: 3 },
-        { from: '2', to: '3', w: 1 },
-        { from: '3', to: '4', w: 2 },
-        { from: '3', to: '5', w: 5 },
-        { from: '1', to: '4', w: 7 },
-      ],
-      start: '0',
-    } },
+    visualization: { kind: 'graph-mst', demo: DEMO_MST },
     relatedIds: ['mst', 'dijkstra', 'dsu'],
     implementation: {
       language: 'cpp',

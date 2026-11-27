@@ -16,6 +16,10 @@ export type LearnVizKind =
   | 'graph-dijkstra'
   | 'graph-topo'
   | 'graph-mst'
+  | 'graph-scc'
+  | 'graph-bridges'
+  | 'graph-bellman'
+  | 'graph-01-bfs'
   | 'array-binary-search'
   | 'dsu-merge'
   | 'array-prefix'
@@ -37,6 +41,8 @@ export type GraphDemo = {
   nodes: { id: string; x: number; y: number; label?: string }[];
   edges: { from: string; to: string; w?: number }[];
   start: string;
+  /** When true, edges are one-way (SCC, topo, Bellman, …). Default undirected. */
+  directed?: boolean;
 };
 
 export type ArrayDemo = {

@@ -8,13 +8,15 @@ export type GraphStep = {
   activeEdges: string[]; // "u-v"
   dist?: Record<string, number>;
   mstEdges?: string[];
+  /** SCC / partition id per node (for multi-color replay). */
+  component?: Record<string, number>;
 };
 
 function edgeKey(a: string, b: string) {
   return `${a}-${b}`;
 }
 
-function adjList(demo: GraphDemo, undirected = true) {
+function adjList(demo: GraphDemo, undirected = !demo.directed) {
   const g = new Map<string, { to: string; w: number }[]>();
   for (const n of demo.nodes) g.set(n.id, []);
   for (const e of demo.edges) {
@@ -163,6 +165,57 @@ export function buildDijkstraSteps(demo: GraphDemo): GraphStep[] {
   return steps;
 }
 
+/** 0-1 BFS with a deque — weight-0 edges go to the front. */
+export function build01BfsSteps(demo: GraphDemo): GraphStep[] {
+  const g = adjList(demo, false);
+  const steps: GraphStep[] = [];
+  const state = baseState(demo);
+  const dist: Record<string, number> = {};
+  for (const n of demo.nodes) dist[n.id] = Infinity;
+  dist[demo.start] = 0;
+  state[demo.start] = 'frontier';
+  const dq: string[] = [demo.start];
+  steps.push({
+    label: `start ${demo.start}`,
+    nodeState: { ...state },
+    activeEdges: [],
+    dist: { ...dist },
+  });
+
+  while (dq.length) {
+    const u = dq.shift()!;
+    state[u] = 'current';
+    steps.push({
+      label: `pop ${u} (d=${dist[u]})`,
+      nodeState: { ...state },
+      activeEdges: [],
+      dist: { ...dist },
+    });
+    for (const { to: v, w } of g.get(u) ?? []) {
+      const nw = dist[u] + (w === 0 ? 0 : 1);
+      if (dist[v] <= nw) continue;
+      dist[v] = nw;
+      state[v] = 'frontier';
+      if (w === 0) dq.unshift(v);
+      else dq.push(v);
+      steps.push({
+        label: w === 0 ? `front ${v}` : `back ${v}`,
+        nodeState: { ...state },
+        activeEdges: [edgeKey(u, v)],
+        dist: { ...dist },
+      });
+    }
+    state[u] = 'done';
+  }
+  steps.push({
+    label: 'done',
+    nodeState: { ...state },
+    activeEdges: [],
+    dist: { ...dist },
+  });
+  return steps;
+}
+
 export function buildTopoSteps(demo: GraphDemo): GraphStep[] {
   const g = adjList(demo, false);
   const indeg: Record<string, number> = {};
@@ -253,6 +306,225 @@ export function buildMstSteps(demo: GraphDemo): GraphStep[] {
     nodeState: { ...state },
     activeEdges: [],
     mstEdges: [...mst],
+  });
+  return steps;
+}
+
+/** Kosaraju: finish-order DFS on G, then DFS on Gᵀ assigning components. */
+export function buildSccSteps(demo: GraphDemo): GraphStep[] {
+  const g = adjList(demo, false);
+  const gt = new Map<string, { to: string; w: number }[]>();
+  for (const n of demo.nodes) gt.set(n.id, []);
+  for (const e of demo.edges) {
+    gt.get(e.to)!.push({ to: e.from, w: e.w ?? 1 });
+  }
+
+  const steps: GraphStep[] = [];
+  const state = baseState(demo);
+  const order: string[] = [];
+  const vis = new Set<string>();
+
+  function dfs1(u: string) {
+    vis.add(u);
+    state[u] = 'current';
+    steps.push({
+      label: `DFS1 enter ${u}`,
+      nodeState: { ...state },
+      activeEdges: [],
+    });
+    for (const { to: v } of g.get(u) ?? []) {
+      if (vis.has(v)) continue;
+      state[v] = 'frontier';
+      steps.push({
+        label: `DFS1 → ${v}`,
+        nodeState: { ...state },
+        activeEdges: [edgeKey(u, v)],
+      });
+      dfs1(v);
+    }
+    state[u] = 'done';
+    order.push(u);
+    steps.push({
+      label: `finish ${u}`,
+      nodeState: { ...state },
+      activeEdges: [],
+    });
+  }
+
+  for (const n of demo.nodes) {
+    if (!vis.has(n.id)) dfs1(n.id);
+  }
+
+  steps.push({
+    label: `order ${[...order].reverse().join(' → ')}`,
+    nodeState: { ...state },
+    activeEdges: [],
+  });
+
+  const comp: Record<string, number> = {};
+  let cid = 0;
+  const assigned = new Set<string>();
+
+  function dfs2(u: string, id: number) {
+    assigned.add(u);
+    comp[u] = id;
+    state[u] = 'current';
+    steps.push({
+      label: `SCC ${id} ← ${u}`,
+      nodeState: { ...state },
+      activeEdges: [],
+      component: { ...comp },
+    });
+    for (const { to: v } of gt.get(u) ?? []) {
+      if (assigned.has(v)) continue;
+      state[v] = 'frontier';
+      steps.push({
+        label: `Gᵀ ${u}→${v}`,
+        nodeState: { ...state },
+        activeEdges: [edgeKey(u, v)],
+        component: { ...comp },
+      });
+      dfs2(v, id);
+    }
+    state[u] = 'done';
+  }
+
+  for (let i = order.length - 1; i >= 0; i--) {
+    const u = order[i]!;
+    if (assigned.has(u)) continue;
+    dfs2(u, cid);
+    cid += 1;
+  }
+
+  for (const n of demo.nodes) state[n.id] = 'done';
+  steps.push({
+    label: `${cid} SCCs`,
+    nodeState: { ...state },
+    activeEdges: [],
+    component: { ...comp },
+  });
+  return steps;
+}
+
+/** DFS low-link bridges — highlights bridge edges as they are found. */
+export function buildBridgeSteps(demo: GraphDemo): GraphStep[] {
+  const g = adjList(demo, true);
+  const steps: GraphStep[] = [];
+  const state = baseState(demo);
+  const tin: Record<string, number> = {};
+  const low: Record<string, number> = {};
+  const bridges: string[] = [];
+  let timer = 0;
+
+  function dfs(u: string, p: string | null) {
+    tin[u] = low[u] = ++timer;
+    state[u] = 'current';
+    steps.push({
+      label: `enter ${u} (tin=${tin[u]})`,
+      nodeState: { ...state },
+      activeEdges: p ? [edgeKey(p, u)] : [],
+      mstEdges: [...bridges],
+    });
+    for (const { to: v } of g.get(u) ?? []) {
+      if (v === p) continue;
+      if (tin[v] != null) {
+        low[u] = Math.min(low[u], tin[v]);
+        steps.push({
+          label: `back ${u}→${v}`,
+          nodeState: { ...state },
+          activeEdges: [edgeKey(u, v)],
+          mstEdges: [...bridges],
+        });
+        continue;
+      }
+      state[v] = 'frontier';
+      dfs(v, u);
+      low[u] = Math.min(low[u], low[v]);
+      if (low[v] > tin[u]) {
+        bridges.push(edgeKey(u, v));
+        steps.push({
+          label: `bridge ${u}—${v}`,
+          nodeState: { ...state },
+          activeEdges: [edgeKey(u, v)],
+          mstEdges: [...bridges],
+        });
+      }
+    }
+    state[u] = 'done';
+    steps.push({
+      label: `leave ${u} (low=${low[u]})`,
+      nodeState: { ...state },
+      activeEdges: [],
+      mstEdges: [...bridges],
+    });
+  }
+
+  for (const n of demo.nodes) {
+    if (tin[n.id] == null) dfs(n.id, null);
+  }
+  steps.push({
+    label: bridges.length ? `bridges: ${bridges.join(', ')}` : 'no bridges',
+    nodeState: { ...state },
+    activeEdges: [],
+    mstEdges: [...bridges],
+  });
+  return steps;
+}
+
+/** Bellman-Ford: |V|-1 full relax passes, then flag residual improvements. */
+export function buildBellmanSteps(demo: GraphDemo): GraphStep[] {
+  const steps: GraphStep[] = [];
+  const state = baseState(demo);
+  const dist: Record<string, number> = {};
+  for (const n of demo.nodes) dist[n.id] = Infinity;
+  dist[demo.start] = 0;
+  state[demo.start] = 'frontier';
+  steps.push({
+    label: `start ${demo.start}`,
+    nodeState: { ...state },
+    activeEdges: [],
+    dist: { ...dist },
+  });
+
+  const n = demo.nodes.length;
+  for (let pass = 1; pass <= n - 1; pass++) {
+    let any = false;
+    for (const e of demo.edges) {
+      const w = e.w ?? 1;
+      if (dist[e.from] === Infinity) continue;
+      if (dist[e.to] > dist[e.from] + w) {
+        dist[e.to] = dist[e.from] + w;
+        state[e.to] = 'frontier';
+        state[e.from] = 'current';
+        any = true;
+        steps.push({
+          label: `pass ${pass}: ${e.from}→${e.to} = ${dist[e.to]}`,
+          nodeState: { ...state },
+          activeEdges: [edgeKey(e.from, e.to)],
+          dist: { ...dist },
+        });
+        state[e.from] = 'done';
+      }
+    }
+    if (!any) {
+      steps.push({
+        label: `pass ${pass}: stable`,
+        nodeState: { ...state },
+        activeEdges: [],
+        dist: { ...dist },
+      });
+      break;
+    }
+  }
+
+  for (const n of demo.nodes) {
+    if (dist[n.id] < Infinity) state[n.id] = 'done';
+  }
+  steps.push({
+    label: 'done',
+    nodeState: { ...state },
+    activeEdges: [],
+    dist: { ...dist },
   });
   return steps;
 }
