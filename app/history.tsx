@@ -1,11 +1,13 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
+import { FilterBar } from '@/components/ui/FilterBar';
+import { SortMenu } from '@/components/ui/SortMenu';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
 import {
-  filterAttempts,
+  filterAttemptsMulti,
   HISTORY_FILTER_LABELS,
   type HistoryFilter,
 } from '@/lib/habit';
@@ -13,7 +15,16 @@ import { openProblem } from '@/lib/openProblem';
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
-const FILTERS = Object.keys(HISTORY_FILTER_LABELS) as HistoryFilter[];
+const STRENGTH_FILTERS: HistoryFilter[] = ['strong', 'weak'];
+const STATUS_FILTERS: HistoryFilter[] = ['drafted', 'needs_review', 'implemented_ac', 'radar'];
+
+type HistorySort = 'newest' | 'oldest' | 'score';
+
+const HISTORY_SORTS: { id: HistorySort; label: string }[] = [
+  { id: 'newest', label: 'Newest' },
+  { id: 'oldest', label: 'Oldest' },
+  { id: 'score', label: 'Score' },
+];
 
 function TagRow({ label, tags }: { label: string; tags: string[] }) {
   if (!tags.length) return null;
@@ -36,7 +47,10 @@ export default function HistoryScreen() {
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [problems, setProblems] = useState<Record<string, ProblemWithApproaches>>({});
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<HistoryFilter>('all');
+  const [strengthFilters, setStrengthFilters] = useState<string[]>([]);
+  const [statusFilters, setStatusFilters] = useState<string[]>([]);
+  const [sourceFilters, setSourceFilters] = useState<string[]>([]);
+  const [sort, setSort] = useState<HistorySort>('newest');
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useFocusEffect(
@@ -58,11 +72,56 @@ export default function HistoryScreen() {
     }, [user?.id]),
   );
 
-  const sorted = useMemo(
+  const sourceOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const a of attempts) {
+      const src = problems[a.problem_id]?.source;
+      if (!src) continue;
+      counts.set(src, (counts.get(src) ?? 0) + 1);
+    }
+    return [...counts.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([id, count]) => ({ id, label: id, count }));
+  }, [attempts, problems]);
+
+  const strengthOptions = useMemo(
     () =>
-      filterAttempts(attempts, filter).sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1)),
-    [attempts, filter],
+      STRENGTH_FILTERS.map((id) => ({
+        id,
+        label: HISTORY_FILTER_LABELS[id],
+        count: filterAttemptsMulti(attempts, [id]).length,
+      })),
+    [attempts],
   );
+
+  const statusOptions = useMemo(
+    () =>
+      STATUS_FILTERS.map((id) => ({
+        id,
+        label: HISTORY_FILTER_LABELS[id],
+        count: filterAttemptsMulti(attempts, [id]).length,
+      })),
+    [attempts],
+  );
+
+  const sorted = useMemo(() => {
+    const filters = [
+      ...strengthFilters,
+      ...statusFilters,
+    ] as HistoryFilter[];
+    let list = filterAttemptsMulti(attempts, filters);
+    if (sourceFilters.length) {
+      list = list.filter((a) => {
+        const src = problems[a.problem_id]?.source;
+        return !!src && sourceFilters.includes(src);
+      });
+    }
+    return [...list].sort((a, b) => {
+      if (sort === 'score') return b.score_accuracy - a.score_accuracy;
+      if (sort === 'oldest') return a.timestamp < b.timestamp ? -1 : 1;
+      return a.timestamp < b.timestamp ? 1 : -1;
+    });
+  }, [attempts, strengthFilters, statusFilters, sourceFilters, problems, sort]);
 
   function reopen(a: UserAttempt) {
     const p = problems[a.problem_id];
@@ -75,22 +134,34 @@ export default function HistoryScreen() {
       <Text style={styles.title}>Attempt history</Text>
       <Text style={styles.sub}>Past diagnoses — tap to retry a problem.</Text>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filters}>
-        {FILTERS.map((f) => {
-          const active = filter === f;
-          return (
-            <Pressable
-              key={f}
-              style={[styles.chip, active && styles.chipOn]}
-              onPress={() => setFilter(f)}
-            >
-              <Text style={[styles.chipText, active && styles.chipTextOn]}>
-                {HISTORY_FILTER_LABELS[f]}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
+      <SortMenu
+        options={HISTORY_SORTS}
+        value={sort}
+        onChange={(id) => setSort(id as HistorySort)}
+      />
+      <FilterBar
+        label="Strength"
+        options={strengthOptions}
+        selected={strengthFilters}
+        onChange={setStrengthFilters}
+        multi
+      />
+      <FilterBar
+        label="Status"
+        options={statusOptions}
+        selected={statusFilters}
+        onChange={setStatusFilters}
+        multi
+      />
+      {sourceOptions.length > 0 ? (
+        <FilterBar
+          label="Source"
+          options={sourceOptions}
+          selected={sourceFilters}
+          onChange={setSourceFilters}
+          multi
+        />
+      ) : null}
 
       {loading ? <ActivityIndicator color={colors.accent} /> : null}
 
@@ -98,7 +169,7 @@ export default function HistoryScreen() {
         <Text style={styles.empty}>
           {attempts.length === 0
             ? 'No attempts yet. Finish a Daily Set problem to start logging.'
-            : 'No attempts match this filter.'}
+            : 'No attempts match these filters.'}
         </Text>
       ) : null}
 
@@ -202,31 +273,6 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
     fontSize: 14,
     marginBottom: spacing.sm,
-  },
-  filters: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-    paddingBottom: spacing.sm,
-  },
-  chip: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    borderRadius: radii.sm,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
-  },
-  chipOn: {
-    borderColor: colors.chipSelectedBorder,
-    backgroundColor: colors.chipSelected,
-  },
-  chipText: {
-    color: colors.textMuted,
-    fontSize: 13,
-    fontWeight: '600',
-  },
-  chipTextOn: {
-    color: colors.accent,
   },
   empty: {
     color: colors.textDim,

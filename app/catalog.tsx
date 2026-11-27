@@ -10,6 +10,8 @@ import {
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { FilterBar } from '@/components/ui/FilterBar';
+import { SortMenu } from '@/components/ui/SortMenu';
 import { useAuth } from '@/contexts/AuthContext';
 import { fetchAttempts, fetchProblems } from '@/lib/api';
 import { getFavorites, toggleFavorite } from '@/lib/favorites';
@@ -25,11 +27,21 @@ import {
 import type { ProblemWithApproaches, UserAttempt } from '@/types/database';
 import { colors, radii, spacing } from '@/constants/theme';
 
-type SourceFilter = 'All' | string;
-type DiffFilter = 'All' | '≤1200' | '1200–1600' | '1600+';
-type StatusFilter = 'All' | 'Unattempted' | 'Needs work' | 'Favorites';
+type DiffFilter = '≤1200' | '1200–1600' | '1600+';
+type ProgressFilter = 'Unattempted' | 'Needs work' | 'Favorites';
+type CatalogSort = 'diff_asc' | 'diff_desc' | 'title' | 'source';
 
 const PAGE_SIZE = 20;
+const TOPIC_PREVIEW = 10;
+
+const DIFF_OPTIONS: DiffFilter[] = ['≤1200', '1200–1600', '1600+'];
+const PROGRESS_OPTIONS: ProgressFilter[] = ['Unattempted', 'Needs work', 'Favorites'];
+const CATALOG_SORTS: { id: CatalogSort; label: string }[] = [
+  { id: 'diff_asc', label: 'Difficulty ↑' },
+  { id: 'diff_desc', label: 'Difficulty ↓' },
+  { id: 'title', label: 'Title' },
+  { id: 'source', label: 'Source' },
+];
 
 export default function CatalogScreen() {
   const { topic: topicParam, addTo } = useLocalSearchParams<{
@@ -44,10 +56,12 @@ export default function CatalogScreen() {
   const [targetPlaylist, setTargetPlaylist] = useState<Playlist | null>(null);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState('');
-  const [source, setSource] = useState<SourceFilter>('All');
-  const [diff, setDiff] = useState<DiffFilter>('All');
-  const [status, setStatus] = useState<StatusFilter>('All');
+  const [sourcesSelected, setSourcesSelected] = useState<string[]>([]);
+  const [diffSelected, setDiffSelected] = useState<string[]>([]);
+  const [progressSelected, setProgressSelected] = useState<string[]>([]);
   const [topic, setTopic] = useState<string | null>(topicParam ?? null);
+  const [showAllTopics, setShowAllTopics] = useState(false);
+  const [sort, setSort] = useState<CatalogSort>('diff_asc');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   useFocusEffect(
@@ -75,20 +89,30 @@ export default function CatalogScreen() {
     }, [user?.id, topicParam, addTo]),
   );
 
-  const sources = useMemo(() => {
-    const set = new Set(problems.map((p) => p.source));
-    return ['All', ...[...set].sort()] as SourceFilter[];
+  const sourceOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const p of problems) counts.set(p.source, (counts.get(p.source) ?? 0) + 1);
+    return [...counts.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([id, count]) => ({ id, label: id, count }));
   }, [problems]);
 
   const topics = useMemo(() => {
-    const set = new Set<string>();
+    const counts = new Map<string, number>();
     for (const p of problems) {
       for (const a of p.approaches) {
-        for (const t of a.paradigms) set.add(t);
+        for (const t of a.paradigms) counts.set(t, (counts.get(t) ?? 0) + 1);
       }
     }
-    return [...set].sort();
+    return [...counts.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([id, count]) => ({ id, label: id, count }));
   }, [problems]);
+
+  const topicOptions = useMemo(() => {
+    if (showAllTopics || topics.length <= TOPIC_PREVIEW) return topics;
+    return topics.slice(0, TOPIC_PREVIEW);
+  }, [topics, showAllTopics]);
 
   const bestByProblem = useMemo(() => {
     const m = new Map<string, number>();
@@ -99,31 +123,78 @@ export default function CatalogScreen() {
     return m;
   }, [attempts]);
 
+  const progressOptions = useMemo(() => {
+    let unattempted = 0;
+    let needsWork = 0;
+    let favCount = 0;
+    for (const p of problems) {
+      const best = bestByProblem.get(p.id);
+      if (best == null) unattempted += 1;
+      if (best != null && best < 70) needsWork += 1;
+      if (favorites.includes(p.id)) favCount += 1;
+    }
+    return PROGRESS_OPTIONS.map((id) => ({
+      id,
+      label: id,
+      count: id === 'Unattempted' ? unattempted : id === 'Needs work' ? needsWork : favCount,
+    }));
+  }, [problems, bestByProblem, favorites]);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return problems.filter((p) => {
-      if (source !== 'All' && p.source !== source) return false;
-      if (diff === '≤1200' && p.difficulty_rating > 1200) return false;
-      if (diff === '1200–1600' && (p.difficulty_rating < 1200 || p.difficulty_rating > 1600)) {
-        return false;
+    const list = problems.filter((p) => {
+      if (sourcesSelected.length && !sourcesSelected.includes(p.source)) return false;
+      if (diffSelected.length) {
+        const ok = diffSelected.some((d) => {
+          if (d === '≤1200') return p.difficulty_rating <= 1200;
+          if (d === '1200–1600') return p.difficulty_rating >= 1200 && p.difficulty_rating <= 1600;
+          if (d === '1600+') return p.difficulty_rating >= 1600;
+          return false;
+        });
+        if (!ok) return false;
       }
-      if (diff === '1600+' && p.difficulty_rating < 1600) return false;
       if (topic && !p.approaches.some((a) => a.paradigms.includes(topic))) return false;
       const best = bestByProblem.get(p.id);
-      if (status === 'Unattempted' && best != null) return false;
-      if (status === 'Needs work' && !(best != null && best < 70)) return false;
-      if (status === 'Favorites' && !favorites.includes(p.id)) return false;
+      if (progressSelected.length) {
+        const ok = progressSelected.some((s) => {
+          if (s === 'Unattempted') return best == null;
+          if (s === 'Needs work') return best != null && best < 70;
+          if (s === 'Favorites') return favorites.includes(p.id);
+          return false;
+        });
+        if (!ok) return false;
+      }
       if (!q) return true;
       const hay = `${p.title} ${p.source} ${p.target_complexity} ${p.approaches
         .flatMap((a) => a.paradigms)
         .join(' ')}`.toLowerCase();
       return hay.includes(q);
     });
-  }, [problems, query, source, diff, topic, status, bestByProblem, favorites]);
+
+    return [...list].sort((a, b) => {
+      if (sort === 'diff_desc') return b.difficulty_rating - a.difficulty_rating;
+      if (sort === 'title') return a.title.localeCompare(b.title);
+      if (sort === 'source') {
+        const bySource = a.source.localeCompare(b.source);
+        return bySource !== 0 ? bySource : a.title.localeCompare(b.title);
+      }
+      return a.difficulty_rating - b.difficulty_rating;
+    });
+  }, [
+    problems,
+    query,
+    sourcesSelected,
+    diffSelected,
+    topic,
+    progressSelected,
+    bestByProblem,
+    favorites,
+    sort,
+  ]);
 
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
-  }, [query, source, diff, topic, status]);
+  }, [query, sourcesSelected, diffSelected, topic, progressSelected, sort]);
 
   const visible = useMemo(
     () => filtered.slice(0, visibleCount),
@@ -202,59 +273,56 @@ export default function CatalogScreen() {
         </Pressable>
       ) : null}
 
-      <Text style={styles.filterLabel}>Source</Text>
-      <View style={styles.chips}>
-        {sources.map((s) => (
-          <Pressable
-            key={s}
-            onPress={() => setSource(s)}
-            style={[styles.chip, source === s && styles.chipOn]}
-          >
-            <Text style={[styles.chipText, source === s && styles.chipTextOn]}>{s}</Text>
-          </Pressable>
-        ))}
-      </View>
-
-      <Text style={styles.filterLabel}>Difficulty</Text>
-      <View style={styles.chips}>
-        {(['All', '≤1200', '1200–1600', '1600+'] as DiffFilter[]).map((d) => (
-          <Pressable
-            key={d}
-            onPress={() => setDiff(d)}
-            style={[styles.chip, diff === d && styles.chipOn]}
-          >
-            <Text style={[styles.chipText, diff === d && styles.chipTextOn]}>{d}</Text>
-          </Pressable>
-        ))}
-      </View>
-
-      <Text style={styles.filterLabel}>Progress</Text>
-      <View style={styles.chips}>
-        {(['All', 'Unattempted', 'Needs work', 'Favorites'] as StatusFilter[]).map((s) => (
-          <Pressable
-            key={s}
-            onPress={() => setStatus(s)}
-            style={[styles.chip, status === s && styles.chipOn]}
-          >
-            <Text style={[styles.chipText, status === s && styles.chipTextOn]}>{s}</Text>
-          </Pressable>
-        ))}
-      </View>
+      <SortMenu
+        options={CATALOG_SORTS}
+        value={sort}
+        onChange={(id) => setSort(id as CatalogSort)}
+      />
+      <FilterBar
+        label="Source"
+        options={sourceOptions}
+        selected={sourcesSelected}
+        onChange={setSourcesSelected}
+        multi
+      />
+      <FilterBar
+        label="Difficulty"
+        options={DIFF_OPTIONS.map((id) => ({ id, label: id }))}
+        selected={diffSelected}
+        onChange={setDiffSelected}
+        multi
+      />
+      <FilterBar
+        label="Progress"
+        options={progressOptions}
+        selected={progressSelected}
+        onChange={setProgressSelected}
+        multi
+      />
 
       {!topic ? (
         <>
-          <Text style={styles.filterLabel}>Topic</Text>
-          <View style={styles.chips}>
-            {topics.slice(0, 10).map((t) => (
-              <Pressable
-                key={t}
-                onPress={() => setTopic(t)}
-                style={[styles.chip, topic === t && styles.chipOn]}
-              >
-                <Text style={[styles.chipText, topic === t && styles.chipTextOn]}>{t}</Text>
-              </Pressable>
-            ))}
-          </View>
+          <FilterBar
+            label="Topic"
+            options={topicOptions}
+            selected={[]}
+            onChange={(next) => {
+              const picked = next[0];
+              if (picked) setTopic(picked);
+            }}
+          />
+          {!showAllTopics && topics.length > TOPIC_PREVIEW ? (
+            <Pressable onPress={() => setShowAllTopics(true)}>
+              <Text style={styles.moreTopics}>
+                More topics · {topics.length - TOPIC_PREVIEW} hidden
+              </Text>
+            </Pressable>
+          ) : null}
+          {showAllTopics && topics.length > TOPIC_PREVIEW ? (
+            <Pressable onPress={() => setShowAllTopics(false)}>
+              <Text style={styles.moreTopics}>Show fewer topics</Text>
+            </Pressable>
+          ) : null}
         </>
       ) : null}
 
@@ -357,36 +425,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 13,
   },
-  filterLabel: {
-    color: colors.textDim,
-    fontSize: 12,
-    fontWeight: '700',
-    textTransform: 'uppercase',
-  },
-  chips: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-  },
-  chip: {
-    backgroundColor: colors.chip,
-    borderRadius: radii.sm,
-    borderWidth: 1,
-    borderColor: colors.border,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-  },
-  chipOn: {
-    backgroundColor: colors.chipSelected,
-    borderColor: colors.chipSelectedBorder,
-  },
-  chipText: {
-    color: colors.textMuted,
+  moreTopics: {
+    color: colors.accent,
     fontSize: 13,
     fontWeight: '600',
-  },
-  chipTextOn: {
-    color: colors.accent,
   },
   card: {
     backgroundColor: colors.surface,

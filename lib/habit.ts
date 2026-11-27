@@ -266,23 +266,54 @@ export const HISTORY_FILTER_LABELS: Record<HistoryFilter, string> = {
   radar: 'Radar',
 };
 
-export function filterAttempts(attempts: UserAttempt[], filter: HistoryFilter): UserAttempt[] {
+function matchesHistoryFilter(a: UserAttempt, filter: HistoryFilter): boolean {
   switch (filter) {
     case 'all':
-      return attempts;
+      return true;
     case 'strong':
-      return attempts.filter((a) => a.score_accuracy >= 70);
+      return a.score_accuracy >= 70;
     case 'weak':
-      return attempts.filter((a) => a.score_accuracy < 70);
+      return a.score_accuracy < 70;
     case 'drafted':
-      return attempts.filter((a) => a.status === 'drafted');
+      return a.status === 'drafted';
     case 'needs_review':
-      return attempts.filter((a) => a.status === 'needs_review');
+      return a.status === 'needs_review';
     case 'implemented_ac':
-      return attempts.filter((a) => a.status === 'implemented_ac');
+      return a.status === 'implemented_ac';
     case 'radar':
-      return attempts.filter((a) => a.complexity_bonus);
+      return a.complexity_bonus;
   }
+}
+
+export function filterAttempts(attempts: UserAttempt[], filter: HistoryFilter): UserAttempt[] {
+  if (filter === 'all') return attempts;
+  return attempts.filter((a) => matchesHistoryFilter(a, filter));
+}
+
+/**
+ * Combine filters with AND. Empty / only-`all` means no filter.
+ * Within strength (strong|weak) and status (drafted|needs_review|implemented_ac)
+ * groups, matching is OR so multi-select stays useful.
+ */
+export function filterAttemptsMulti(
+  attempts: UserAttempt[],
+  filters: HistoryFilter[],
+): UserAttempt[] {
+  const active = filters.filter((f) => f !== 'all');
+  if (active.length === 0) return attempts;
+
+  const strength = active.filter((f) => f === 'strong' || f === 'weak');
+  const status = active.filter(
+    (f) => f === 'drafted' || f === 'needs_review' || f === 'implemented_ac',
+  );
+  const extras = active.filter((f) => f === 'radar');
+
+  return attempts.filter((a) => {
+    if (strength.length && !strength.some((f) => matchesHistoryFilter(a, f))) return false;
+    if (status.length && !status.some((f) => matchesHistoryFilter(a, f))) return false;
+    if (extras.length && !extras.every((f) => matchesHistoryFilter(a, f))) return false;
+    return true;
+  });
 }
 
 export type DayActivity = {
