@@ -15,12 +15,29 @@ import { colors, radii, spacing } from '@/constants/theme';
 
 const FILTERS = Object.keys(HISTORY_FILTER_LABELS) as HistoryFilter[];
 
+function TagRow({ label, tags }: { label: string; tags: string[] }) {
+  if (!tags.length) return null;
+  return (
+    <View style={styles.tagBlock}>
+      <Text style={styles.tagLabel}>{label}</Text>
+      <View style={styles.tagWrap}>
+        {tags.map((t) => (
+          <View key={`${label}-${t}`} style={styles.tagChip}>
+            <Text style={styles.tagChipText}>{t}</Text>
+          </View>
+        ))}
+      </View>
+    </View>
+  );
+}
+
 export default function HistoryScreen() {
   const { user } = useAuth();
   const [attempts, setAttempts] = useState<UserAttempt[]>([]);
   const [problems, setProblems] = useState<Record<string, ProblemWithApproaches>>({});
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<HistoryFilter>('all');
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -96,32 +113,79 @@ export default function HistoryScreen() {
               hour: '2-digit',
               minute: '2-digit',
             });
+        const expanded = expandedId === a.id;
+        const draft = a.pseudocode_draft?.trim() ?? '';
+        const hasAnswers =
+          a.selected_paradigms.length > 0 ||
+          a.selected_algorithms.length > 0 ||
+          a.selected_ds.length > 0 ||
+          a.selected_twists.length > 0 ||
+          !!a.guessed_complexity ||
+          !!draft;
         return (
-          <Pressable key={a.id} style={styles.card} onPress={() => reopen(a)}>
-            <View style={styles.cardTop}>
-              <Text style={styles.source}>{p?.source ?? 'Problem'}</Text>
-              <Text
-                style={[
-                  styles.score,
-                  a.score_accuracy >= 70 ? styles.scoreGood : styles.scoreWeak,
-                ]}
-              >
-                {a.score_accuracy}%
+          <View key={a.id} style={styles.card}>
+            <Pressable
+              onPress={() => setExpandedId(expanded ? null : a.id)}
+              accessibilityRole="button"
+              accessibilityState={{ expanded }}
+            >
+              <View style={styles.cardTop}>
+                <Text style={styles.source}>{p?.source ?? 'Problem'}</Text>
+                <Text
+                  style={[
+                    styles.score,
+                    a.score_accuracy >= 70 ? styles.scoreGood : styles.scoreWeak,
+                  ]}
+                >
+                  {a.score_accuracy}%
+                </Text>
+              </View>
+              <Text style={styles.cardTitle}>{p?.title ?? a.problem_id}</Text>
+              <Text style={styles.meta}>
+                {timeLabel} · {Math.round(a.time_spent_sec / 60)}m insight ·{' '}
+                {a.status.replace('_', ' ')}
+                {hasAnswers ? (expanded ? ' · hide' : ' · answers') : ''}
               </Text>
-            </View>
-            <Text style={styles.cardTitle}>{p?.title ?? a.problem_id}</Text>
-            <Text style={styles.meta}>
-              {timeLabel} · {Math.round(a.time_spent_sec / 60)}m insight · {a.status.replace('_', ' ')}
-            </Text>
-            {a.mistake_types?.length ? (
-              <Text style={styles.miss} numberOfLines={1}>
-                {a.mistake_types.join(' · ')}
-              </Text>
-            ) : (
-              <Text style={styles.ok}>Clean read</Text>
-            )}
-            {a.complexity_bonus ? <Text style={styles.ok}>Radar bonus</Text> : null}
-          </Pressable>
+              {a.mistake_types?.length ? (
+                <Text style={styles.miss} numberOfLines={1}>
+                  {a.mistake_types.join(' · ')}
+                </Text>
+              ) : (
+                <Text style={styles.ok}>Clean read</Text>
+              )}
+            </Pressable>
+
+            {expanded ? (
+              <View style={styles.detail}>
+                <TagRow label="Paradigms" tags={a.selected_paradigms} />
+                <TagRow label="Algorithms" tags={a.selected_algorithms} />
+                <TagRow label="Data structures" tags={a.selected_ds} />
+                <TagRow label="Twists" tags={a.selected_twists} />
+                {a.guessed_complexity ? (
+                  <Text style={styles.detailLine}>
+                    Complexity guess: {a.guessed_complexity}
+                    {a.complexity_bonus ? ' · radar bonus' : ''}
+                  </Text>
+                ) : a.complexity_bonus ? (
+                  <Text style={styles.ok}>Radar bonus</Text>
+                ) : null}
+                {draft ? (
+                  <View style={styles.draftBox}>
+                    <Text style={styles.tagLabel}>Draft</Text>
+                    <Text style={styles.draft} numberOfLines={6}>
+                      {draft}
+                    </Text>
+                  </View>
+                ) : null}
+                {!hasAnswers ? (
+                  <Text style={styles.emptyDetail}>No saved hypothesis for this attempt.</Text>
+                ) : null}
+                <Pressable onPress={() => reopen(a)} style={styles.reopen}>
+                  <Text style={styles.reopenText}>Reopen problem</Text>
+                </Pressable>
+              </View>
+            ) : null}
+          </View>
         );
       })}
     </Screen>
@@ -213,5 +277,70 @@ const styles = StyleSheet.create({
   ok: {
     color: colors.accentDim,
     fontSize: 12,
+  },
+  detail: {
+    marginTop: spacing.sm,
+    paddingTop: spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+    gap: spacing.sm,
+  },
+  tagBlock: {
+    gap: spacing.xs,
+  },
+  tagLabel: {
+    color: colors.textDim,
+    fontSize: 11,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.4,
+  },
+  tagWrap: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.xs,
+  },
+  tagChip: {
+    backgroundColor: colors.chip,
+    borderRadius: radii.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 3,
+  },
+  tagChipText: {
+    color: colors.textMuted,
+    fontSize: 12,
+  },
+  detailLine: {
+    color: colors.textMuted,
+    fontSize: 13,
+  },
+  draftBox: {
+    gap: spacing.xs,
+  },
+  draft: {
+    color: colors.text,
+    fontFamily: 'SpaceMono',
+    fontSize: 12,
+    lineHeight: 18,
+    backgroundColor: colors.surfaceElevated,
+    borderRadius: radii.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.sm,
+  },
+  emptyDetail: {
+    color: colors.textDim,
+    fontSize: 12,
+  },
+  reopen: {
+    alignSelf: 'flex-start',
+    paddingVertical: spacing.xs,
+  },
+  reopenText: {
+    color: colors.accent,
+    fontSize: 14,
+    fontWeight: '700',
   },
 });
