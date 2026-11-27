@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { WebView } from 'react-native-webview';
+import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 import { colors, radii, spacing } from '@/constants/theme';
 import {
   plainStatement,
@@ -10,29 +10,47 @@ import {
 
 type Props = {
   markdown: string;
+  /** Seed height before content reports its size. */
   minHeight?: number;
   /**
    * Fit a parent ProseCard: 100% width, no extra border / plain-text link.
-   * Keeps KaTeX WebView with inner scroll — does not auto-resize height
-   * (that path blanked content on some devices).
+   * Height grows to content so the page ScrollView is the only scroller.
    */
   embedded?: boolean;
 };
+
+/** Safety valve — absurdly long statements still get an inner scroll. */
+const MAX_AUTO_HEIGHT = 2400;
 
 /** @deprecated use plainStatement — kept for call sites / tests */
 export function plainMath(markdown: string): string {
   return plainStatement(markdown);
 }
 
-export function MarkdownMath({ markdown, minHeight = 160, embedded = false }: Props) {
+export function MarkdownMath({ markdown, minHeight = 120, embedded = false }: Props) {
   const { width } = useWindowDimensions();
   const html = useMemo(() => statementToHtml(markdown), [markdown]);
   const fallback = useMemo(() => plainStatement(markdown), [markdown]);
   const [useFallback, setUseFallback] = useState(false);
   const tall = statementHasFigures(markdown);
-  // Explicit height (not only minHeight) — nested WebViews in ScrollView
-  // often collapse to 0 when relying on flex/minHeight alone.
-  const height = Math.max(minHeight, tall ? 280 : minHeight);
+  const seed = Math.max(minHeight, tall ? 200 : minHeight);
+  const [height, setHeight] = useState(seed);
+
+  useEffect(() => {
+    setHeight(seed);
+    setUseFallback(false);
+  }, [markdown, seed]);
+
+  function onMessage(e: WebViewMessageEvent) {
+    try {
+      const data = JSON.parse(e.nativeEvent.data) as { type?: string; height?: number };
+      if (data.type === 'height' && typeof data.height === 'number' && data.height > 0) {
+        setHeight(Math.min(MAX_AUTO_HEIGHT, Math.max(seed, Math.ceil(data.height))));
+      }
+    } catch {
+      /* ignore */
+    }
+  }
 
   if (useFallback) {
     return (
@@ -41,7 +59,6 @@ export function MarkdownMath({ markdown, minHeight = 160, embedded = false }: Pr
           styles.wrap,
           styles.fallbackBox,
           embedded ? styles.embedded : { width: width - 32 },
-          { height },
         ]}
       >
         <Text style={styles.fallbackText}>{fallback}</Text>
@@ -51,6 +68,8 @@ export function MarkdownMath({ markdown, minHeight = 160, embedded = false }: Pr
       </View>
     );
   }
+
+  const capped = height >= MAX_AUTO_HEIGHT;
 
   return (
     <View
@@ -64,10 +83,11 @@ export function MarkdownMath({ markdown, minHeight = 160, embedded = false }: Pr
         originWhitelist={['*']}
         source={{ html }}
         style={[styles.web, { height, backgroundColor: colors.surface }]}
-        scrollEnabled
-        nestedScrollEnabled
+        scrollEnabled={capped}
+        nestedScrollEnabled={capped}
         setSupportMultipleWindows={false}
         androidLayerType="hardware"
+        onMessage={onMessage}
         onError={() => setUseFallback(true)}
         onHttpError={() => setUseFallback(true)}
       />

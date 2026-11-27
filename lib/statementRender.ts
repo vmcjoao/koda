@@ -160,7 +160,22 @@ ${KATEX_CSS}
   strong { font-weight: 700; color: ${colors.text}; }
 </style>
 </head>
-<body><p>${body}</p></body>
+<body><p>${body}</p>
+<script>
+(function () {
+  function report() {
+    var h = Math.ceil(document.documentElement.scrollHeight || document.body.scrollHeight || 0);
+    if (window.ReactNativeWebView && h > 0) {
+      window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'height', height: h }));
+    }
+  }
+  report();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(report).catch(report);
+  setTimeout(report, 50);
+  setTimeout(report, 200);
+})();
+</script>
+</body>
 </html>`;
 }
 
