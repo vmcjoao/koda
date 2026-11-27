@@ -93,7 +93,9 @@ export default function RevealScreen() {
 
   function startPractice(next: ProblemWithApproaches) {
     beginProblem(next);
-    router.replace(`/problem/${next.id}`);
+    // Drop the finished encounter stack (WebViews) before opening another problem.
+    if (router.canDismiss()) router.dismissAll();
+    router.push(`/problem/${next.id}`);
   }
 
   async function persist(status: 'drafted' | 'needs_review') {
@@ -129,7 +131,9 @@ export default function RevealScreen() {
 
   function goHome() {
     reset();
-    router.replace('/(tabs)');
+    // Must dismiss the whole Encounter → … → Reveal stack. `replace` alone left
+    // WebView screens mounted underneath Home and crashed the next problem open.
+    router.dismissTo('/(tabs)');
   }
 
   const totalXp = result ? result.xpGain.total + result.dailyBonusXp : 0;

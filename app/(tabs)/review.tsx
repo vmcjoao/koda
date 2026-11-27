@@ -39,6 +39,7 @@ export default function ReviewScreen() {
 
   function start(problem: ProblemWithApproaches) {
     beginProblem(problem);
+    if (router.canDismiss()) router.dismissAll();
     router.push(`/problem/${problem.id}`);
   }
 

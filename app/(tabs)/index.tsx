@@ -117,6 +117,8 @@ export default function HomeScreen() {
 
   function startProblem(problem: ProblemWithApproaches) {
     beginProblem(problem);
+    // If a prior run left screens under Home, clear them before opening the next.
+    if (router.canDismiss()) router.dismissAll();
     router.push(`/problem/${problem.id}`);
   }
 
