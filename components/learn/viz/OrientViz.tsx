@@ -40,58 +40,60 @@ export function OrientViz({ demo, step }: { demo: PointsDemo; step: number }) {
   return (
     <View style={styles.wrap}>
       <Text style={styles.meta}>{labels[phase]}</Text>
-      <View style={styles.canvas}>
-        {/* AB */}
-        {phase >= 1 ? (
-          <View
-            style={[
-              styles.edge,
-              {
-                left: o.x,
-                top: o.y,
-                width: Math.hypot(a.x - o.x, a.y - o.y),
-                transform: [
-                  {
-                    rotate: `${Math.atan2(a.y - o.y, a.x - o.x)}rad`,
-                  },
-                ],
-              },
-            ]}
-          />
-        ) : null}
-        {/* AC */}
-        {phase >= 1 ? (
-          <View
-            style={[
-              styles.edge,
-              styles.edgeC,
-              {
-                left: o.x,
-                top: o.y,
-                width: Math.hypot(b.x - o.x, b.y - o.y),
-                transform: [
-                  {
-                    rotate: `${Math.atan2(b.y - o.y, b.x - o.x)}rad`,
-                  },
-                ],
-              },
-            ]}
-          />
-        ) : null}
-        {[o, a, b].map((p, i) => (
-          <View
-            key={i}
-            style={[
-              styles.dot,
-              { left: p.x - 10, top: p.y - 10 },
-              phase >= 2 && sign > 0 && i === 2 && styles.dotLeft,
-              phase >= 2 && sign < 0 && i === 2 && styles.dotRight,
-            ]}
-          >
-            <Text style={styles.dotLabel}>{p.label ?? ['A', 'B', 'C'][i]}</Text>
-          </View>
-        ))}
-      </View>
+      <FitCanvas logicalWidth={W} logicalHeight={H}>
+        <View style={styles.canvas}>
+          {/* AB */}
+          {phase >= 1 ? (
+            <View
+              style={[
+                styles.edge,
+                {
+                  left: o.x,
+                  top: o.y,
+                  width: Math.hypot(a.x - o.x, a.y - o.y),
+                  transform: [
+                    {
+                      rotate: `${Math.atan2(a.y - o.y, a.x - o.x)}rad`,
+                    },
+                  ],
+                },
+              ]}
+            />
+          ) : null}
+          {/* AC */}
+          {phase >= 1 ? (
+            <View
+              style={[
+                styles.edge,
+                styles.edgeC,
+                {
+                  left: o.x,
+                  top: o.y,
+                  width: Math.hypot(b.x - o.x, b.y - o.y),
+                  transform: [
+                    {
+                      rotate: `${Math.atan2(b.y - o.y, b.x - o.x)}rad`,
+                    },
+                  ],
+                },
+              ]}
+            />
+          ) : null}
+          {[o, a, b].map((p, i) => (
+            <View
+              key={i}
+              style={[
+                styles.dot,
+                { left: p.x - 10, top: p.y - 10 },
+                phase >= 2 && sign > 0 && i === 2 && styles.dotLeft,
+                phase >= 2 && sign < 0 && i === 2 && styles.dotRight,
+              ]}
+            >
+              <Text style={styles.dotLabel}>{p.label ?? ['A', 'B', 'C'][i]}</Text>
+            </View>
+          ))}
+        </View>
+      </FitCanvas>
       {phase >= 2 ? (
         <Text style={styles.result}>
           (B−A)×(C−A) = {v} → C is {turn.toLowerCase()} of directed AB

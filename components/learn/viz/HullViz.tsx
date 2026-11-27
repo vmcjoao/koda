@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { PointsDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
+import { FitCanvas } from '@/components/learn/viz/FitCanvas';
 
 const W = 280;
 const H = 180;
@@ -69,47 +70,49 @@ export function HullViz({ demo, step }: { demo: PointsDemo; step: number }) {
   return (
     <View style={styles.wrap}>
       <Text style={styles.meta}>Andrew monotone chain · {frame.label}</Text>
-      <View style={styles.canvas}>
-        {frame.hull.length >= 2
-          ? frame.hull.slice(0, -1).map((p, i) => {
-              const q = frame.hull[i + 1]!;
-              const dx = q.x - p.x;
-              const dy = q.y - p.y;
-              const len = Math.hypot(dx, dy);
-              return (
-                <View
-                  key={`e${i}`}
-                  style={[
-                    styles.edge,
-                    {
-                      left: p.x,
-                      top: p.y,
-                      width: len,
-                      transform: [{ rotate: `${Math.atan2(dy, dx)}rad` }],
-                    },
-                  ]}
-                />
-              );
-            })
-          : null}
-        {sorted.map((p, i) => {
-          const onHull = hullSet.has(`${p.x},${p.y}`);
-          const focused = frame.focus === i;
-          return (
-            <View
-              key={`${p.x},${p.y},${i}`}
-              style={[
-                styles.dot,
-                { left: p.x - 9, top: p.y - 9 },
-                onHull && styles.dotHull,
-                focused && styles.dotFocus,
-              ]}
-            >
-              <Text style={styles.dotLabel}>{p.label ?? String(i)}</Text>
-            </View>
-          );
-        })}
-      </View>
+      <FitCanvas logicalWidth={W} logicalHeight={H}>
+        <View style={styles.canvas}>
+          {frame.hull.length >= 2
+            ? frame.hull.slice(0, -1).map((p, i) => {
+                const q = frame.hull[i + 1]!;
+                const dx = q.x - p.x;
+                const dy = q.y - p.y;
+                const len = Math.hypot(dx, dy);
+                return (
+                  <View
+                    key={`e${i}`}
+                    style={[
+                      styles.edge,
+                      {
+                        left: p.x,
+                        top: p.y,
+                        width: len,
+                        transform: [{ rotate: `${Math.atan2(dy, dx)}rad` }],
+                      },
+                    ]}
+                  />
+                );
+              })
+            : null}
+          {sorted.map((p, i) => {
+            const onHull = hullSet.has(`${p.x},${p.y}`);
+            const focused = frame.focus === i;
+            return (
+              <View
+                key={`${p.x},${p.y},${i}`}
+                style={[
+                  styles.dot,
+                  { left: p.x - 9, top: p.y - 9 },
+                  onHull && styles.dotHull,
+                  focused && styles.dotFocus,
+                ]}
+              >
+                <Text style={styles.dotLabel}>{p.label ?? String(i)}</Text>
+              </View>
+            );
+          })}
+        </View>
+      </FitCanvas>
     </View>
   );
 }
