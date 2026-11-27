@@ -109,14 +109,6 @@ Band, heatmap, diagnose → blueprint → implement pipeline, topic mastery.
   <img src="docs/media/stats-full-page.jpeg" alt="Stats overview" width="340" />
 </p>
 
-<p align="center">
-  <img src="docs/media/stats-calendar.jpeg" alt="Training calendar heatmap" width="240" />
-  &nbsp;
-  <img src="docs/media/stats-pipeline.jpeg" alt="Pipeline funnel" width="280" />
-  &nbsp;
-  <img src="docs/media/stats-mastery.jpeg" alt="Topic mastery" width="280" />
-</p>
-
 ---
 
 ## Why Koda
