@@ -10,6 +10,7 @@
 </p>
 
 <p align="center">
+  <img alt="Catalog" src="https://img.shields.io/badge/catalog-1%2C200%2B%20problems-3DDC97?style=flat-square" />
   <img alt="Expo" src="https://img.shields.io/badge/Expo-58-000?style=flat-square&logo=expo&logoColor=3DDC97" />
   <img alt="React Native" src="https://img.shields.io/badge/React%20Native-0.88-61DAFB?style=flat-square&logo=react&logoColor=white" />
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white" />
@@ -121,6 +122,14 @@ Band, heatmap, diagnose → blueprint → implement pipeline, topic mastery.
 
 ---
 
+## Catalog
+
+**1,200+** curated problems ship on-device — searchable, filterable, and usable offline (no account required).
+
+Drawn from **CSES**, **Codeforces**, **SBC Maratona**, **Maratona Mineira**, **UVA**, **USACO**, **AtCoder**, and more. Each entry carries statement, samples, complexity target, and tagged solution approaches so Daily Set, Learn drills, and Review can pull real contest material — not a toy list of ten demos.
+
+---
+
 ## Why Koda
 
 Most CP apps shove an editor onto a phone. Koda flips it:
@@ -128,6 +137,7 @@ Most CP apps shove an editor onto a phone. Koda flips it:
 1. **Train recognition** — paradigms and twists under time pressure  
 2. **Keep implementation for a keyboard** — blueprints land in Implement  
 3. **Feel like a run** — daily set, streaks, bands, haptics, motion with purpose  
+4. **Train on a real catalog** — 1,200+ problems offline, not a thin demo pack  
 
 | | |
 | --- | --- |
