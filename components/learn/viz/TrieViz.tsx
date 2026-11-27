@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import type { StringDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import { PulseOnActive } from '@/components/learn/viz/AnimatedSlot';
+import { FitCanvas } from '@/components/learn/viz/FitCanvas';
 
 type Node = { id: number; label: string; end: boolean; depth: number; parent: number };
 
@@ -103,43 +104,45 @@ export function TrieViz({ demo, step }: { demo: StringDemo; step: number }) {
       <Text style={styles.words}>
         words: {parseWords(demo.text).map((w) => `"${w}"`).join(' ')}
       </Text>
-      <View style={[styles.canvas, { height: canvasH }]}>
-        {f.edges.map((e) => {
-          const a = pos.get(e.from);
-          const b = pos.get(e.to);
-          if (!a || !b) return null;
-          const midX = (a.x + b.x) / 2 + CELL / 2;
-          const midY = (a.y + b.y) / 2 + CELL / 2;
-          return (
-            <Text
-              key={`${e.from}-${e.to}`}
-              style={[styles.edgeCh, { left: midX - 6, top: midY - 8 }]}
-            >
-              {e.ch}
-            </Text>
-          );
-        })}
-        {f.nodes.map((n) => {
-          const p = pos.get(n.id)!;
-          const hot = f.hot.includes(n.id);
-          return (
-            <View key={n.id} style={[styles.nodeAbs, { left: p.x, top: p.y }]}>
-              <PulseOnActive active={hot}>
-                <View
-                  style={[
-                    styles.node,
-                    n.end && styles.end,
-                    hot && styles.hot,
-                    n.id === 0 && styles.root,
-                  ]}
-                >
-                  <Text style={styles.val}>{n.label}</Text>
-                </View>
-              </PulseOnActive>
-            </View>
-          );
-        })}
-      </View>
+      <FitCanvas logicalWidth={320} logicalHeight={canvasH}>
+        <View style={[styles.canvas, { height: canvasH }]}>
+          {f.edges.map((e) => {
+            const a = pos.get(e.from);
+            const b = pos.get(e.to);
+            if (!a || !b) return null;
+            const midX = (a.x + b.x) / 2 + CELL / 2;
+            const midY = (a.y + b.y) / 2 + CELL / 2;
+            return (
+              <Text
+                key={`${e.from}-${e.to}`}
+                style={[styles.edgeCh, { left: midX - 6, top: midY - 8 }]}
+              >
+                {e.ch}
+              </Text>
+            );
+          })}
+          {f.nodes.map((n) => {
+            const p = pos.get(n.id)!;
+            const hot = f.hot.includes(n.id);
+            return (
+              <View key={n.id} style={[styles.nodeAbs, { left: p.x, top: p.y }]}>
+                <PulseOnActive active={hot}>
+                  <View
+                    style={[
+                      styles.node,
+                      n.end && styles.end,
+                      hot && styles.hot,
+                      n.id === 0 && styles.root,
+                    ]}
+                  >
+                    <Text style={styles.val}>{n.label}</Text>
+                  </View>
+                </PulseOnActive>
+              </View>
+            );
+          })}
+        </View>
+      </FitCanvas>
     </View>
   );
 }

@@ -9,9 +9,11 @@ import Animated, {
 import type { ArrayDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import { PulseOnActive, VIZ_MOVE_MS } from '@/components/learn/viz/AnimatedSlot';
+import { FitCanvas } from '@/components/learn/viz/FitCanvas';
 
 const CELL = 40;
 const GAP = 6;
+const ROW_H = 72;
 const EASE = Easing.out(Easing.cubic);
 
 /** Sliding-window frames for non-negative sum ≤ target (target defaults to a sensible budget). */
@@ -100,39 +102,41 @@ export function TwoPointersViz({ demo, step }: { demo: ArrayDemo; step: number }
       <Text style={styles.meta}>
         budget {budget} · sum {f.sum} · best {f.best}
       </Text>
-      <View style={[styles.canvas, { width: rowW }]}>
-        <Animated.View style={[styles.winBand, bandStyle]} />
-        {demo.values.map((v, i) => {
-          const inWin = f.r >= 0 && i >= f.l && i <= f.r;
-          const isL = i === f.l && f.r >= 0;
-          const isR = i === f.r && f.r >= 0;
-          return (
-            <PulseOnActive
-              key={i}
-              active={isR}
-              style={[styles.cellAbs, { left: i * (CELL + GAP) }]}
-            >
-              <View
-                style={[
-                  styles.cell,
-                  inWin && styles.inWin,
-                  isL && styles.ptrL,
-                  isR && styles.ptrR,
-                ]}
+      <FitCanvas logicalWidth={Math.max(rowW, 1)} logicalHeight={ROW_H}>
+        <View style={[styles.canvas, { width: rowW }]}>
+          <Animated.View style={[styles.winBand, bandStyle]} />
+          {demo.values.map((v, i) => {
+            const inWin = f.r >= 0 && i >= f.l && i <= f.r;
+            const isL = i === f.l && f.r >= 0;
+            const isR = i === f.r && f.r >= 0;
+            return (
+              <PulseOnActive
+                key={i}
+                active={isR}
+                style={[styles.cellAbs, { left: i * (CELL + GAP) }]}
               >
-                <Text style={styles.idx}>{i}</Text>
-                <Text style={styles.val}>{v}</Text>
-              </View>
-            </PulseOnActive>
-          );
-        })}
-        <Animated.View style={[styles.tagFloat, lStyle]}>
-          <Text style={[styles.tag, { color: colors.accent }]}>L</Text>
-        </Animated.View>
-        <Animated.View style={[styles.tagFloat, rStyle]}>
-          <Text style={[styles.tag, { color: colors.warning }]}>R</Text>
-        </Animated.View>
-      </View>
+                <View
+                  style={[
+                    styles.cell,
+                    inWin && styles.inWin,
+                    isL && styles.ptrL,
+                    isR && styles.ptrR,
+                  ]}
+                >
+                  <Text style={styles.idx}>{i}</Text>
+                  <Text style={styles.val}>{v}</Text>
+                </View>
+              </PulseOnActive>
+            );
+          })}
+          <Animated.View style={[styles.tagFloat, lStyle]}>
+            <Text style={[styles.tag, { color: colors.accent }]}>L</Text>
+          </Animated.View>
+          <Animated.View style={[styles.tagFloat, rStyle]}>
+            <Text style={[styles.tag, { color: colors.warning }]}>R</Text>
+          </Animated.View>
+        </View>
+      </FitCanvas>
     </View>
   );
 }

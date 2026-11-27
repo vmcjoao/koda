@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import type { ArrayDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import { AnimatedSlot, PulseOnActive } from '@/components/learn/viz/AnimatedSlot';
+import { FitCanvas } from '@/components/learn/viz/FitCanvas';
+import { VIZ_W } from '@/components/learn/viz/vizCanvas';
 
 type Frame = {
   label: string;
@@ -86,9 +88,9 @@ function heapPos(i: number): { x: number; y: number } {
   const posInRow = i - rowStart;
   const rowCount = 1 << depth;
   const rowW = rowCount * CELL + (rowCount - 1) * GAP;
-  const x = (360 - rowW) / 2 + posInRow * (CELL + GAP);
+  const x = (VIZ_W - rowW) / 2 + posInRow * (CELL + GAP);
   const y = 8 + depth * 52;
-  return { x: Math.max(0, x), y };
+  return { x: Math.max(0, Math.min(VIZ_W - CELL, x)), y };
 }
 
 export function HeapViz({ demo, step }: { demo: ArrayDemo; step: number }) {
@@ -100,23 +102,25 @@ export function HeapViz({ demo, step }: { demo: ArrayDemo; step: number }) {
   return (
     <View style={styles.wrap}>
       <Text style={styles.meta}>{f.label}</Text>
-      <View style={[styles.canvas, { height: canvasH }]}>
-        {f.heap.map((v, i) => {
-          const { x, y } = heapPos(i);
-          const hot = i === f.hot;
-          return (
-            <AnimatedSlot key={`${v}-${i}-${f.heap.length}`} x={x} y={y}>
-              <PulseOnActive active={hot}>
-                <View style={[styles.cell, i === 0 && styles.root, hot && styles.hot]}>
-                  <Text style={styles.idx}>{i}</Text>
-                  <Text style={styles.val}>{v}</Text>
-                </View>
-              </PulseOnActive>
-            </AnimatedSlot>
-          );
-        })}
-        {f.heap.length === 0 ? <Text style={styles.empty}>[ ]</Text> : null}
-      </View>
+      <FitCanvas logicalWidth={VIZ_W} logicalHeight={canvasH}>
+        <View style={[styles.canvas, { height: canvasH }]}>
+          {f.heap.map((v, i) => {
+            const { x, y } = heapPos(i);
+            const hot = i === f.hot;
+            return (
+              <AnimatedSlot key={`${v}-${i}-${f.heap.length}`} x={x} y={y}>
+                <PulseOnActive active={hot}>
+                  <View style={[styles.cell, i === 0 && styles.root, hot && styles.hot]}>
+                    <Text style={styles.idx}>{i}</Text>
+                    <Text style={styles.val}>{v}</Text>
+                  </View>
+                </PulseOnActive>
+              </AnimatedSlot>
+            );
+          })}
+          {f.heap.length === 0 ? <Text style={styles.empty}>[ ]</Text> : null}
+        </View>
+      </FitCanvas>
       <Text style={styles.arr}>
         array: [{f.heap.join(', ') || ' '}]
       </Text>
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     alignSelf: 'flex-start',
   },
-  canvas: { width: 360, position: 'relative', alignSelf: 'center' },
+  canvas: { width: VIZ_W, position: 'relative', alignSelf: 'center' },
   empty: {
     color: colors.textDim,
     fontFamily: 'SpaceMono',

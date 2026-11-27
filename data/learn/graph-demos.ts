@@ -91,8 +91,8 @@ export const DEMO_SCC: GraphDemo = {
     { id: '1', x: 140, y: 40, label: '1' },
     { id: '2', x: 140, y: 120, label: '2' },
     { id: '3', x: 240, y: 60, label: '3' },
-    { id: '4', x: 320, y: 100, label: '4' },
-    { id: '5', x: 300, y: 180, label: '5' },
+    { id: '4', x: 310, y: 100, label: '4' },
+    { id: '5', x: 300, y: 176, label: '5' },
   ],
   edges: [
     { from: '0', to: '1' },
@@ -135,7 +135,7 @@ export const DEMO_BELLMAN: GraphDemo = {
     { id: '0', x: 40, y: 110, label: '0' },
     { id: '1', x: 140, y: 50, label: '1' },
     { id: '2', x: 240, y: 50, label: '2' },
-    { id: '3', x: 320, y: 110, label: '3' },
+    { id: '3', x: 312, y: 110, label: '3' },
     { id: '4', x: 140, y: 180, label: '4' },
   ],
   edges: [
@@ -172,12 +172,12 @@ export const DEMO_FLOYD: GraphDemo = {
 /** Rooted tree for LCA / tree DFS. */
 export const DEMO_TREE: GraphDemo = {
   nodes: [
-    { id: '0', x: 180, y: 30, label: '0' },
+    { id: '0', x: 180, y: 40, label: '0' },
     { id: '1', x: 90, y: 100, label: '1' },
     { id: '2', x: 270, y: 100, label: '2' },
-    { id: '3', x: 40, y: 180, label: '3' },
-    { id: '4', x: 140, y: 180, label: '4' },
-    { id: '5', x: 270, y: 180, label: '5' },
+    { id: '3', x: 48, y: 176, label: '3' },
+    { id: '4', x: 140, y: 176, label: '4' },
+    { id: '5', x: 270, y: 176, label: '5' },
   ],
   edges: [
     { from: '0', to: '1' },
@@ -210,11 +210,11 @@ export const DEMO_01_BFS: GraphDemo = {
 export const DEMO_TOPO: GraphDemo = {
   directed: true,
   nodes: [
-    { id: '0', x: 40, y: 110, label: 'A' },
-    { id: '1', x: 140, y: 50, label: 'B' },
-    { id: '2', x: 140, y: 170, label: 'C' },
-    { id: '3', x: 240, y: 110, label: 'D' },
-    { id: '4', x: 340, y: 110, label: 'E' },
+    { id: '0', x: 48, y: 110, label: 'A' },
+    { id: '1', x: 130, y: 52, label: 'B' },
+    { id: '2', x: 130, y: 168, label: 'C' },
+    { id: '3', x: 230, y: 110, label: 'D' },
+    { id: '4', x: 312, y: 110, label: 'E' },
   ],
   edges: [
     { from: '0', to: '1' },

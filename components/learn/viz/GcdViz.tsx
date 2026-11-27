@@ -10,8 +10,13 @@ function buildFrames(demo: ArrayDemo): Frame[] {
   let a = Math.abs(demo.values[0] ?? 48);
   let b = Math.abs(demo.values[1] ?? 18);
   if (a < b) [a, b] = [b, a];
+  // Keep Euclid demos short — huge seeds make long remainder chains.
+  a = Math.min(a, 99);
+  b = Math.min(b, 99);
+  if (a < b) [a, b] = [b, a];
   const frames: Frame[] = [{ label: `gcd(${a}, ${b})`, a, b }];
-  while (b !== 0) {
+  let guard = 0;
+  while (b !== 0 && guard++ < 12) {
     const r = a % b;
     frames.push({
       label: `${a} = ${Math.floor(a / b)}·${b} + ${r}`,
@@ -35,9 +40,11 @@ export function GcdViz({ demo, step }: { demo: ArrayDemo; step: number }) {
 
   return (
     <View style={styles.wrap}>
-      <Text style={styles.meta}>{f.label}</Text>
+      <Text style={styles.meta} numberOfLines={2}>
+        {f.label}
+      </Text>
       <View style={styles.row}>
-        <PulseOnActive active>
+        <PulseOnActive active={f.b !== 0 || step === 0}>
           <View style={[styles.cell, styles.a]}>
             <Text style={styles.tag}>a</Text>
             <Text style={styles.val}>{f.a}</Text>
@@ -50,31 +57,70 @@ export function GcdViz({ demo, step }: { demo: ArrayDemo; step: number }) {
           </View>
         </PulseOnActive>
       </View>
+      {/* Compact Euclid bar — width proportional, capped to canvas. */}
+      <View style={styles.bars}>
+        <View style={styles.barTrack}>
+          <View
+            style={[
+              styles.barFill,
+              styles.barA,
+              { width: `${Math.min(100, (f.a / Math.max(f.a, f.b, 1)) * 100)}%` },
+            ]}
+          />
+        </View>
+        {f.b > 0 ? (
+          <View style={styles.barTrack}>
+            <View
+              style={[
+                styles.barFill,
+                styles.barB,
+                { width: `${Math.min(100, (f.b / Math.max(f.a, f.b, 1)) * 100)}%` },
+              ]}
+            />
+          </View>
+        ) : null}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { gap: spacing.md, width: '100%', alignItems: 'center' },
+  wrap: {
+    gap: spacing.sm,
+    width: '100%',
+    maxWidth: 320,
+    alignSelf: 'center',
+    alignItems: 'center',
+  },
   meta: {
     color: colors.xp,
     fontFamily: 'SpaceMono',
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '700',
-    alignSelf: 'flex-start',
+    alignSelf: 'stretch',
   },
-  row: { flexDirection: 'row', gap: spacing.md },
+  row: { flexDirection: 'row', gap: spacing.sm },
   cell: {
-    minWidth: 72,
-    paddingVertical: 16,
-    paddingHorizontal: 12,
-    borderRadius: radii.md,
+    minWidth: 56,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderRadius: radii.sm,
     borderWidth: 2,
     alignItems: 'center',
     backgroundColor: colors.surfaceElevated,
   },
   a: { borderColor: colors.accent },
   b: { borderColor: colors.radar },
-  tag: { color: colors.textDim, fontSize: 11, fontWeight: '700' },
-  val: { color: colors.text, fontFamily: 'SpaceMono', fontWeight: '800', fontSize: 22 },
+  tag: { color: colors.textDim, fontSize: 10, fontWeight: '700' },
+  val: { color: colors.text, fontFamily: 'SpaceMono', fontWeight: '800', fontSize: 18 },
+  bars: { width: '100%', gap: 4 },
+  barTrack: {
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: colors.surfaceElevated,
+    overflow: 'hidden',
+  },
+  barFill: { height: '100%', borderRadius: 5 },
+  barA: { backgroundColor: colors.accent },
+  barB: { backgroundColor: colors.radar },
 });

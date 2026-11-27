@@ -1,14 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { LayoutChangeEvent, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle, Defs, Line, Marker, Path, Text as SvgText } from 'react-native-svg';
 import type { GraphDemo } from '@/types/learn';
 import type { GraphStep } from '@/lib/learnViz';
 import { colors } from '@/constants/theme';
+import { clampVizPoint, VIZ_H, VIZ_W } from '@/components/learn/viz/vizCanvas';
 
 export type { GraphStep };
-
-const W = 360;
-const H = 220;
 
 const COMP_COLORS = ['#3DDC97', '#5B8CFF', '#F5A623', '#FF6B6B', '#C084FC', '#2DD4BF'];
 
@@ -48,6 +46,7 @@ export function GraphSearchViz({
   onNodePress,
   feedback,
 }: Props) {
+  const [svgW, setSvgW] = useState(VIZ_W);
   const nodeState = step?.nodeState ?? {};
   const active = new Set(step?.activeEdges ?? []);
   const mst = new Set(step?.mstEdges ?? []);
@@ -56,9 +55,26 @@ export function GraphSearchViz({
   const directed = !!demo.directed;
   const canTap = interactive && !!onNodePress;
 
+  const nodes = useMemo(
+    () =>
+      demo.nodes.map((n) => {
+        const p = clampVizPoint(n.x, n.y);
+        return { ...n, x: p.x, y: p.y };
+      }),
+    [demo.nodes],
+  );
+  const byId = useMemo(() => new Map(nodes.map((n) => [n.id, n])), [nodes]);
+
+  function onLayout(e: LayoutChangeEvent) {
+    const w = e.nativeEvent.layout.width;
+    if (w > 0) setSvgW(Math.min(VIZ_W, w));
+  }
+
+  const svgH = (svgW * VIZ_H) / VIZ_W;
+
   return (
-    <View style={styles.wrap}>
-      <Svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
+    <View style={styles.wrap} onLayout={onLayout}>
+      <Svg width={svgW} height={svgH} viewBox={`0 0 ${VIZ_W} ${VIZ_H}`}>
         {directed ? (
           <Defs>
             <Marker
@@ -86,8 +102,8 @@ export function GraphSearchViz({
           </Defs>
         ) : null}
         {demo.edges.map((e) => {
-          const a = demo.nodes.find((n) => n.id === e.from)!;
-          const b = demo.nodes.find((n) => n.id === e.to)!;
+          const a = byId.get(e.from)!;
+          const b = byId.get(e.to)!;
           const key = `${e.from}-${e.to}`;
           const rev = `${e.to}-${e.from}`;
           const isActive = active.has(key) || active.has(rev);
@@ -125,7 +141,7 @@ export function GraphSearchViz({
             </React.Fragment>
           );
         })}
-        {demo.nodes.map((n) => {
+        {nodes.map((n) => {
           const st = nodeState[n.id];
           const fill = nodeColor(st, component?.[n.id], hasComponents);
           const dist = step?.dist?.[n.id];
@@ -150,7 +166,7 @@ export function GraphSearchViz({
                 <Circle
                   cx={n.x}
                   cy={n.y}
-                  r={32}
+                  r={28}
                   fill="transparent"
                   onPress={() => onNodePress(n.id)}
                 />
@@ -218,7 +234,7 @@ export function GraphSearchViz({
 }
 
 const styles = StyleSheet.create({
-  wrap: { alignItems: 'center', gap: 8 },
+  wrap: { width: '100%', alignItems: 'center', gap: 8, overflow: 'hidden' },
   legend: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, justifyContent: 'center' },
   leg: { color: colors.textDim, fontSize: 11, fontWeight: '600' },
 });

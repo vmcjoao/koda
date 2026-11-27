@@ -9,9 +9,11 @@ import Animated, {
 import type { ArrayDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import { PulseOnActive, VIZ_MOVE_MS } from '@/components/learn/viz/AnimatedSlot';
+import { FitCanvas } from '@/components/learn/viz/FitCanvas';
 
 const CELL = 36;
 const GAP = 6;
+const ROW_H = 64;
 const EASE = Easing.out(Easing.cubic);
 
 export function BinarySearchViz({
@@ -119,30 +121,32 @@ export function BinarySearchViz({
         <Text style={styles.target}>target = {target}</Text>
       )}
       <Text style={styles.action}>{action}</Text>
-      <View style={[styles.canvas, { width: rowW }]}>
-        <Animated.View style={[styles.rangeBand, rangeStyle]} />
-        {demo.values.map((v, i) => {
-          const inRange = i >= frame.lo && i < frame.hi;
-          const isMid = i === frame.mid;
-          return (
-            <PulseOnActive
-              key={i}
-              active={isMid}
-              style={[styles.cellAbs, { left: i * (CELL + GAP) }]}
-            >
-              <View style={[styles.cell, inRange && styles.inRange, isMid && styles.mid]}>
-                <Text style={[styles.idx, isMid && styles.onMid]}>{i}</Text>
-                <Text style={[styles.val, isMid && styles.onMid]}>{v}</Text>
-              </View>
-            </PulseOnActive>
-          );
-        })}
-        {frame.mid >= 0 ? (
-          <Animated.View style={[styles.midTick, midStyle]}>
-            <Text style={styles.midTickText}>▼</Text>
-          </Animated.View>
-        ) : null}
-      </View>
+      <FitCanvas logicalWidth={Math.max(rowW, 1)} logicalHeight={ROW_H}>
+        <View style={[styles.canvas, { width: rowW }]}>
+          <Animated.View style={[styles.rangeBand, rangeStyle]} />
+          {demo.values.map((v, i) => {
+            const inRange = i >= frame.lo && i < frame.hi;
+            const isMid = i === frame.mid;
+            return (
+              <PulseOnActive
+                key={i}
+                active={isMid}
+                style={[styles.cellAbs, { left: i * (CELL + GAP) }]}
+              >
+                <View style={[styles.cell, inRange && styles.inRange, isMid && styles.mid]}>
+                  <Text style={[styles.idx, isMid && styles.onMid]}>{i}</Text>
+                  <Text style={[styles.val, isMid && styles.onMid]}>{v}</Text>
+                </View>
+              </PulseOnActive>
+            );
+          })}
+          {frame.mid >= 0 ? (
+            <Animated.View style={[styles.midTick, midStyle]}>
+              <Text style={styles.midTickText}>▼</Text>
+            </Animated.View>
+          ) : null}
+        </View>
+      </FitCanvas>
       <Text style={styles.meta}>
         lo={frame.lo} hi={frame.hi}
         {frame.mid >= 0 ? ` mid=${frame.mid}` : ''}

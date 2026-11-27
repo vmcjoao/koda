@@ -25,7 +25,8 @@ function shuffleInPlace<T>(rng: Rng, a: T[]): T[] {
 
 const W = 360;
 const H = 220;
-const PAD = 36;
+/** Keep shuffled graph nodes inside the Replay SVG (nodes have ~20px radius). */
+const PAD = 44;
 
 function layoutCircle(n: number): { x: number; y: number }[] {
   const cx = W / 2;
@@ -57,8 +58,8 @@ function nodesFromPositions(
 ): GraphDemo['nodes'] {
   return positions.map((p, i) => ({
     id: String(i),
-    x: p.x,
-    y: p.y,
+    x: Math.min(W - PAD, Math.max(PAD, p.x)),
+    y: Math.min(H - PAD, Math.max(PAD, p.y)),
     label: labels?.[i] ?? String(i),
   }));
 }
@@ -502,8 +503,9 @@ function genBrute(rng: Rng): ArrayDemo {
 }
 
 function genGcd(rng: Rng): ArrayDemo {
-  const a = randInt(rng, 20, 90);
-  const b = randInt(rng, 12, 60);
+  // Keep Euclid demos compact on the Replay canvas.
+  const a = randInt(rng, 24, 72);
+  const b = randInt(rng, 10, 36);
   return { values: [a, b] };
 }
 

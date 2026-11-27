@@ -354,9 +354,11 @@ const styles = StyleSheet.create({
     padding: spacing.md,
   },
   stage: {
-    minHeight: 220,
+    minHeight: 180,
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   caption: {
     color: colors.textMuted,

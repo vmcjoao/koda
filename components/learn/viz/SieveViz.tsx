@@ -5,7 +5,7 @@ import { colors, radii, spacing } from '@/constants/theme';
 
 /** Frames: start + one per prime p with p² ≤ N + final. */
 export function sieveFrameCount(demo: ArrayDemo): number {
-  const n = Math.max(2, Math.min(36, demo.target ?? demo.values[0] ?? 20));
+  const n = Math.max(2, Math.min(28, demo.target ?? demo.values[0] ?? 20));
   let frames = 2; // start + done
   const prime = Array(n + 1).fill(true);
   prime[0] = prime[1] = false;
@@ -18,7 +18,7 @@ export function sieveFrameCount(demo: ArrayDemo): number {
 }
 
 export function SieveViz({ demo, step }: { demo: ArrayDemo; step: number }) {
-  const n = Math.max(2, Math.min(36, demo.target ?? demo.values[0] ?? 20));
+  const n = Math.max(2, Math.min(28, demo.target ?? demo.values[0] ?? 20));
 
   const frames = useMemo(() => {
     const prime = Array(n + 1).fill(true);

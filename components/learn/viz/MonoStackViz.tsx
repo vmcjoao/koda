@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import type { ArrayDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
 import { AnimatedSlot, PulseOnActive } from '@/components/learn/viz/AnimatedSlot';
+import { FitCanvas } from '@/components/learn/viz/FitCanvas';
 
 /** Frames: start + one per index processed (after push). */
 export function monoStackFrameCount(demo: ArrayDemo): number {
@@ -11,6 +12,8 @@ export function monoStackFrameCount(demo: ArrayDemo): number {
 
 const CELL = 40;
 const GAP = 6;
+const ROW_H = 68;
+const STACK_H = 56;
 
 export function MonoStackViz({ demo, step }: { demo: ArrayDemo; step: number }) {
   const snapshot = useMemo(() => {
@@ -39,40 +42,44 @@ export function MonoStackViz({ demo, step }: { demo: ArrayDemo; step: number }) 
       <Text style={styles.meta}>
         {frame.i < 0 ? 'empty stack' : `process i=${frame.i} (a=${demo.values[frame.i]})`}
       </Text>
-      <View style={[styles.rowCanvas, { width: rowW }]}>
-        {demo.values.map((v, i) => {
-          const onStack = frame.stack.includes(i);
-          const isCur = i === frame.i;
-          return (
-            <PulseOnActive
-              key={i}
-              active={isCur}
-              style={[styles.cellAbs, { left: i * (CELL + GAP) }]}
-            >
-              <View style={[styles.cell, onStack && styles.onStack, isCur && styles.cur]}>
-                <Text style={styles.idx}>{i}</Text>
-                <Text style={[styles.val, (onStack || isCur) && styles.valOn]}>{v}</Text>
-                <Text style={styles.ng}>→{frame.ng[i]! < 0 ? '·' : frame.ng[i]}</Text>
-              </View>
-            </PulseOnActive>
-          );
-        })}
-      </View>
+      <FitCanvas logicalWidth={Math.max(rowW, 1)} logicalHeight={ROW_H}>
+        <View style={[styles.rowCanvas, { width: rowW }]}>
+          {demo.values.map((v, i) => {
+            const onStack = frame.stack.includes(i);
+            const isCur = i === frame.i;
+            return (
+              <PulseOnActive
+                key={i}
+                active={isCur}
+                style={[styles.cellAbs, { left: i * (CELL + GAP) }]}
+              >
+                <View style={[styles.cell, onStack && styles.onStack, isCur && styles.cur]}>
+                  <Text style={styles.idx}>{i}</Text>
+                  <Text style={[styles.val, (onStack || isCur) && styles.valOn]}>{v}</Text>
+                  <Text style={styles.ng}>→{frame.ng[i]! < 0 ? '·' : frame.ng[i]}</Text>
+                </View>
+              </PulseOnActive>
+            );
+          })}
+        </View>
+      </FitCanvas>
       <Text style={styles.stackLabel}>stack (bottom → top)</Text>
-      <View style={[styles.stackCanvas, { width: stackW }]}>
-        {frame.stack.length === 0 ? (
-          <Text style={styles.empty}>[ ]</Text>
-        ) : (
-          frame.stack.map((idx, pos) => (
-            <AnimatedSlot key={`st-${idx}`} x={4 + pos * (CELL + GAP)} y={4}>
-              <View style={[styles.stackCell, pos === frame.stack.length - 1 && styles.stackTop]}>
-                <Text style={styles.val}>{demo.values[idx]}</Text>
-                <Text style={styles.idx}>i={idx}</Text>
-              </View>
-            </AnimatedSlot>
-          ))
-        )}
-      </View>
+      <FitCanvas logicalWidth={Math.max(stackW, 48)} logicalHeight={STACK_H}>
+        <View style={[styles.stackCanvas, { width: stackW }]}>
+          {frame.stack.length === 0 ? (
+            <Text style={styles.empty}>[ ]</Text>
+          ) : (
+            frame.stack.map((idx, pos) => (
+              <AnimatedSlot key={`st-${idx}`} x={4 + pos * (CELL + GAP)} y={4}>
+                <View style={[styles.stackCell, pos === frame.stack.length - 1 && styles.stackTop]}>
+                  <Text style={styles.val}>{demo.values[idx]}</Text>
+                  <Text style={styles.idx}>i={idx}</Text>
+                </View>
+              </AnimatedSlot>
+            ))
+          )}
+        </View>
+      </FitCanvas>
     </View>
   );
 }

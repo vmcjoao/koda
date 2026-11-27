@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { PointsDemo } from '@/types/learn';
 import { colors, radii, spacing } from '@/constants/theme';
+import { FitCanvas } from '@/components/learn/viz/FitCanvas';
 
 const W = 280;
 const H = 180;
