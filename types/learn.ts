@@ -101,10 +101,22 @@ export type LearnMcq = {
   explain_md?: string;
 };
 
+/** Graph algo for tap-the-next-vertex Skill Checks. */
+export type GraphPredictAlgo = 'bfs' | 'dfs' | 'dijkstra' | 'topo' | 'mst';
+
+export type GraphPredictCheckpoint = {
+  /** Play through this step index (inclusive), then ask. */
+  freezeAt: number;
+  answerNodeId: string;
+  prompt: string;
+  explain_md?: string;
+};
+
 /**
  * Interactive check inside a lesson run.
  * - mcq: pick the right output / fact
  * - trace: multi-step “what’s next?” walkthrough
+ * - graph_predict: autoplay Replay, then tap the next vertex
  */
 export type LearnExercise =
   | ({ id: string; kind: 'mcq' } & LearnMcq)
@@ -114,6 +126,14 @@ export type LearnExercise =
       title: string;
       context_md?: string;
       steps: LearnMcq[];
+    }
+  | {
+      id: string;
+      kind: 'graph_predict';
+      title: string;
+      algo: GraphPredictAlgo;
+      demo: GraphDemo;
+      checkpoints: GraphPredictCheckpoint[];
     };
 
 export type LearnLesson = {

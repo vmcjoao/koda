@@ -26,7 +26,7 @@ import {
   relatedLessons,
   STUDY_PATH_IDS,
 } from '@/lib/learn';
-import { buildExercises, lessonHasExercises } from '@/lib/learnExerciseGen';
+import { buildExercises, countExerciseBeats, lessonHasExercises } from '@/lib/learnExerciseGen';
 import { openProblem } from '@/lib/openProblem';
 import { isLessonStudied, setLessonStudied } from '@/lib/learnProgress';
 import type { ProblemWithApproaches } from '@/types/database';
@@ -331,13 +331,11 @@ export default function LearnLessonScreen() {
             <View style={styles.stageBody}>
               <Text style={styles.stagePrompt}>Prove you can drive it.</Text>
               <Text style={styles.practiceHint}>
-                {drills.reduce(
-                  (n, e) => n + (e.kind === 'mcq' ? 1 : e.steps.length),
-                  0,
-                )}{' '}
-                beats this run · graphs and arrays reshuffle when you reroll.
+                {countExerciseBeats(drills)} beats this run · graphs and arrays
+                reshuffle when you reroll.
               </Text>
               <LessonExercise
+                key={drillSeed}
                 exercises={drills}
                 onRetryFresh={() => setDrillSeed(Date.now())}
               />

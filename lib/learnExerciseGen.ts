@@ -1,5 +1,17 @@
 import { LESSON_EXERCISES } from '@/data/learn/exercises';
-import type { LearnExercise, LearnMcq } from '@/types/learn';
+import {
+  buildBfsSteps,
+  buildDfsSteps,
+  buildDijkstraSteps,
+  type GraphStep,
+} from '@/lib/learnViz';
+import type {
+  GraphDemo,
+  GraphPredictAlgo,
+  GraphPredictCheckpoint,
+  LearnExercise,
+  LearnMcq,
+} from '@/types/learn';
 
 type Rng = () => number; // [0, 1)
 
@@ -45,6 +57,7 @@ function shuffleMcq(rng: Rng, q: LearnMcq): LearnMcq {
 
 function shuffleExercise(rng: Rng, ex: LearnExercise): LearnExercise {
   if (ex.kind === 'mcq') return { ...shuffleMcq(rng, ex), id: ex.id, kind: 'mcq' };
+  if (ex.kind === 'graph_predict') return ex;
   return {
     ...ex,
     steps: ex.steps.map((s) => shuffleMcq(rng, s)),
@@ -164,6 +177,125 @@ function edgeKey(u: number, v: number) {
   return u < v ? `${u}-${v}` : `${v}-${u}`;
 }
 
+const DEMO_W = 360;
+const DEMO_H = 220;
+const DEMO_PAD = 36;
+
+/** Circle layout matching Replay canvas so taps stay unambiguous. */
+function layoutCircle(n: number): { x: number; y: number }[] {
+  const cx = DEMO_W / 2;
+  const cy = DEMO_H / 2;
+  const r = Math.min(cx, cy) - DEMO_PAD;
+  return Array.from({ length: n }, (_, i) => {
+    const ang = -Math.PI / 2 + (2 * Math.PI * i) / n;
+    return { x: Math.round(cx + r * Math.cos(ang)), y: Math.round(cy + r * Math.sin(ang)) };
+  });
+}
+
+/**
+ * Lex-sorted undirected edges → adj lists with ascending neighbors in build*Steps.
+ */
+export function graphToDemo(
+  g: Graph,
+  start: number,
+  weights?: Map<string, number>,
+): GraphDemo {
+  const positions = layoutCircle(g.n);
+  const nodes = positions.map((p, i) => ({
+    id: String(i),
+    x: p.x,
+    y: p.y,
+    label: String(i),
+  }));
+  const edges: GraphDemo['edges'] = [];
+  for (let u = 0; u < g.n; u++) {
+    for (const v of g.adj[u]!) {
+      if (u >= v) continue;
+      const e: GraphDemo['edges'][number] = { from: String(u), to: String(v) };
+      const w = weights?.get(edgeKey(u, v));
+      if (w != null) e.w = w;
+      edges.push(e);
+    }
+  }
+  return { nodes, edges, start: String(start) };
+}
+
+type VisitKind = 'visit' | 'enter' | 'settle';
+
+function parseVisitNode(label: string, kind: VisitKind): string | null {
+  if (kind === 'settle') {
+    const m = /^settle (\S+)/.exec(label);
+    return m?.[1] ?? null;
+  }
+  if (kind === 'visit') {
+    const m = /^visit (\S+)$/.exec(label);
+    return m?.[1] ?? null;
+  }
+  const m = /^enter (\S+)$/.exec(label);
+  return m?.[1] ?? null;
+}
+
+/**
+ * Pick 2–3 “next node” checkpoints from Replay steps (skip the start visit).
+ * freezeAt = visitIndex − 1; answer = node that becomes current on the visit step.
+ */
+export function pickGraphPredictCheckpoints(
+  steps: GraphStep[],
+  kind: VisitKind,
+  max = 3,
+): GraphPredictCheckpoint[] {
+  const visits: { index: number; nodeId: string }[] = [];
+  for (let i = 0; i < steps.length; i++) {
+    const nodeId = parseVisitNode(steps[i]!.label, kind);
+    if (nodeId != null) visits.push({ index: i, nodeId });
+  }
+  const candidates = visits.slice(1).filter((v) => v.index > 0);
+  if (!candidates.length) return [];
+
+  const want = Math.min(max, Math.max(1, Math.min(3, candidates.length)));
+  const picked: typeof candidates = [];
+  if (want >= candidates.length) {
+    picked.push(...candidates);
+  } else {
+    for (let k = 0; k < want; k++) {
+      const idx = Math.round((k * (candidates.length - 1)) / Math.max(1, want - 1));
+      const c = candidates[idx]!;
+      if (!picked.some((p) => p.index === c.index)) picked.push(c);
+    }
+  }
+
+  const prompts: Record<VisitKind, string> = {
+    visit: 'Which node is visited (dequeued) next?',
+    enter: 'Which node does DFS enter next?',
+    settle: 'Which node does Dijkstra settle next?',
+  };
+
+  return picked.map(({ index, nodeId }) => ({
+    freezeAt: index - 1,
+    answerNodeId: nodeId,
+    prompt: prompts[kind],
+    explain_md: `Next processed node is **${nodeId}**.`,
+  }));
+}
+
+function buildGraphPredict(
+  id: string,
+  title: string,
+  algo: GraphPredictAlgo,
+  demo: GraphDemo,
+  kind: VisitKind,
+): LearnExercise | null {
+  const steps =
+    algo === 'bfs'
+      ? buildBfsSteps(demo)
+      : algo === 'dfs'
+        ? buildDfsSteps(demo)
+        : buildDijkstraSteps(demo);
+  const checkpoints = pickGraphPredictCheckpoints(steps, kind);
+  if (!checkpoints.length) return null;
+  return { id, kind: 'graph_predict', title, algo, demo, checkpoints };
+}
+
 /** Build MCQ with correct + wrongs shuffled. */
 function makeMcq(
   rng: Rng,
@@ -187,94 +319,58 @@ function genBfs(rng: Rng): LearnExercise[] {
   const n = randInt(rng, 5, 7);
   const g = buildTreePlus(rng, n, randInt(rng, 1, 3));
   const start = 0;
-  const { order, dist } = bfsOrder(g, start);
-  const frontier = g.adj[start]!.join(', ');
-  const visitStr = order.join(', ');
+  const demo = graphToDemo(g, start);
+  const { dist } = bfsOrder(g, start);
   const far = dist.reduce((best, d, i) => (d > dist[best]! ? i : best), 0);
-  const altOrders = new Set<string>();
-  altOrders.add([...order].reverse().join(', '));
-  altOrders.add(shuffle(rng, [...order]).join(', '));
-  altOrders.add(
-    order
-      .slice()
-      .sort((a, b) => a - b)
-      .join(', '),
-  );
-  altOrders.delete(visitStr);
-
-  return [
-    {
-      id: 'bfs-gen',
-      kind: 'trace',
-      title: 'BFS trace',
-      context_md: graphContext(g) + `\n\nStart at **${start}**.`,
-      steps: [
-        makeMcq(rng, {
-          prompt: `First nodes enqueued from ${start}?`,
-          correct: frontier || '(none)',
-          wrong: [
-            [...g.adj[start]!].reverse().join(', ') || '0',
-            String(g.adj[start]![0] ?? 0),
-            `${start}, ${frontier}`,
-          ],
-          explain_md: `Ascending neighbors of ${start}: **${frontier}**.`,
-        }),
-        makeMcq(rng, {
-          prompt: 'Full BFS visit (dequeue) order?',
-          correct: visitStr,
-          wrong: [...altOrders].slice(0, 3),
-          explain_md: `Layer by layer from ${start}: **${visitStr}**.`,
-        }),
-        makeMcq(rng, {
-          prompt: `Distance (edges) from ${start} to ${far}?`,
-          correct: String(dist[far]),
-          wrong: [
-            String(dist[far]! + 1),
-            String(Math.max(0, dist[far]! - 1)),
-            String(dist[far]! + 2),
-          ],
-          explain_md: `dist[${far}] = **${dist[far]}**.`,
-        }),
+  const predict = buildGraphPredict('bfs-predict', 'BFS · tap next', 'bfs', demo, 'visit');
+  const out: LearnExercise[] = [];
+  if (predict) out.push(predict);
+  out.push(
+    mcqFrom(
+      rng,
+      'bfs-dist',
+      `Distance (edges) from ${start} to ${far}?`,
+      String(dist[far]),
+      [
+        String(dist[far]! + 1),
+        String(Math.max(0, dist[far]! - 1)),
+        String(dist[far]! + 2),
       ],
-    },
-  ];
+      `dist[${far}] = **${dist[far]}**.`,
+      graphContext(g) + `\n\nStart at **${start}**.`,
+    ),
+  );
+  return out;
 }
+
 function genDfs(rng: Rng): LearnExercise[] {
   const n = randInt(rng, 5, 7);
   const g = buildTreePlus(rng, n, randInt(rng, 0, 2));
   const start = 0;
+  const demo = graphToDemo(g, start);
   const order = dfsOrder(g, start);
-  const firstChild = g.adj[start]![0];
-  return [
-    {
-      id: 'dfs-gen',
-      kind: 'trace',
-      title: 'DFS trace',
-      context_md: graphContext(g) + `\n\nStart DFS at **${start}** (recurse first unused neighbor).`,
-      steps: [
-        makeMcq(rng, {
-          prompt: `First node entered after ${start}?`,
-          correct: String(firstChild ?? start),
-          wrong: [
-            String(g.adj[start]![1] ?? (firstChild ?? 0) + 1),
-            String(order[order.length - 1]),
-            String(start),
-          ],
-          explain_md: `Lowest-id neighbor of ${start} is **${firstChild}**.`,
-        }),
-        makeMcq(rng, {
-          prompt: 'Full DFS discovery order?',
-          correct: order.join(', '),
-          wrong: [
-            [...order].reverse().join(', '),
-            shuffle(rng, [...order]).join(', '),
-            order.slice().sort((a, b) => a - b).join(', '),
-          ],
-          explain_md: `Discovery order: **${order.join(', ')}**.`,
-        }),
+  const predict = buildGraphPredict('dfs-predict', 'DFS · tap next', 'dfs', demo, 'enter');
+  const out: LearnExercise[] = [];
+  if (predict) out.push(predict);
+  out.push(
+    mcqFrom(
+      rng,
+      'dfs-order',
+      'Full DFS discovery order?',
+      order.join(', '),
+      [
+        [...order].reverse().join(', '),
+        shuffle(rng, [...order]).join(', '),
+        order
+          .slice()
+          .sort((a, b) => a - b)
+          .join(', '),
       ],
-    },
-  ];
+      `Discovery order: **${order.join(', ')}**.`,
+      graphContext(g) + `\n\nStart DFS at **${start}** (recurse first unused neighbor).`,
+    ),
+  );
+  return out;
 }
 
 function genDijkstra(rng: Rng): LearnExercise[] {
@@ -287,33 +383,31 @@ function genDijkstra(rng: Rng): LearnExercise[] {
     }
   }
   const start = 0;
+  const demo = graphToDemo(g, start, weights);
   const dist = dijkstra(g, weights, start);
   const target = n - 1;
   const d = dist[target]!;
-  return [
-    {
-      id: 'dij-gen',
-      kind: 'trace',
-      title: 'Dijkstra',
-      context_md: graphContext(g, weights) + `\n\nSource **${start}**. Non-negative weights.`,
-      steps: [
-        makeMcq(rng, {
-          prompt: `Shortest distance ${start} → ${target}?`,
-          correct: String(d),
-          wrong: [String(d + 1), String(d + 2), String(Math.max(0, d - 1))],
-          explain_md: `Dijkstra yields dist[${target}] = **${d}**.`,
-        }),
-        makeMcq(rng, {
-          prompt: `dist[${g.adj[start]![0] ?? 1}] right after relaxing ${start}'s edges?`,
-          correct: String(
-            weights.get(edgeKey(start, g.adj[start]![0] ?? 1)) ?? dist[g.adj[start]![0] ?? 1],
-          ),
-          wrong: ['0', '∞', String((weights.get(edgeKey(start, g.adj[start]![0] ?? 1)) ?? 1) + 3)],
-          explain_md: 'First hop = the direct edge weight from the source.',
-        }),
-      ],
-    },
-  ];
+  const predict = buildGraphPredict(
+    'dij-predict',
+    'Dijkstra · tap next',
+    'dijkstra',
+    demo,
+    'settle',
+  );
+  const out: LearnExercise[] = [];
+  if (predict) out.push(predict);
+  out.push(
+    mcqFrom(
+      rng,
+      'dij-dist',
+      `Shortest distance ${start} → ${target}?`,
+      String(d),
+      [String(d + 1), String(d + 2), String(Math.max(0, d - 1))],
+      `Dijkstra yields dist[${target}] = **${d}**.`,
+      graphContext(g, weights) + `\n\nSource **${start}**. Non-negative weights.`,
+    ),
+  );
+  return out;
 }
 
 function genTopo(rng: Rng): LearnExercise[] {
@@ -959,6 +1053,17 @@ const GENERATORS: Record<string, Gen> = {
 /** True if this lesson can show a Check stage. */
 export function lessonHasExercises(lessonId: string): boolean {
   return lessonId in GENERATORS || (LESSON_EXERCISES[lessonId]?.length ?? 0) > 0;
+}
+
+/** Flattened scored beats (MCQ steps + graph_predict checkpoints). */
+export function countExerciseBeats(exercises: LearnExercise[]): number {
+  let n = 0;
+  for (const ex of exercises) {
+    if (ex.kind === 'mcq') n += 1;
+    else if (ex.kind === 'trace') n += ex.steps.length;
+    else n += ex.checkpoints.length;
+  }
+  return n;
 }
 
 /**

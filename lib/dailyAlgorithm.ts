@@ -1,5 +1,5 @@
 import { getLesson } from '@/lib/learn';
-import { buildExercises, lessonHasExercises } from '@/lib/learnExerciseGen';
+import { buildExercises, countExerciseBeats, lessonHasExercises } from '@/lib/learnExerciseGen';
 import { todayIso } from '@/lib/habit';
 import type { LearnLesson } from '@/types/learn';
 
@@ -69,7 +69,7 @@ export function lessonForDate(iso: string): LearnLesson | undefined {
 export function beatCountForDate(iso: string): number {
   const id = lessonIdForDate(iso);
   const drills = buildExercises(id, seedForDate(iso));
-  return drills.reduce((n, e) => n + (e.kind === 'mcq' ? 1 : e.steps.length), 0);
+  return countExerciseBeats(drills);
 }
 
 export function parseIso(iso: string): Date {

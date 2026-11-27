@@ -23,7 +23,7 @@ import {
   isDailyAlgoCleared,
   markDailyAlgoCleared,
 } from '@/lib/dailyAlgorithmProgress';
-import { buildExercises } from '@/lib/learnExerciseGen';
+import { buildExercises, countExerciseBeats } from '@/lib/learnExerciseGen';
 import { todayIso } from '@/lib/habit';
 import { colors, radii, spacing } from '@/constants/theme';
 
@@ -39,10 +39,7 @@ export default function DailyAlgorithmPuzzleScreen() {
     () => (lesson ? buildExercises(lesson.id, seed) : []),
     [lesson, seed],
   );
-  const beatCount = useMemo(
-    () => drills.reduce((n, e) => n + (e.kind === 'mcq' ? 1 : e.steps.length), 0),
-    [drills],
-  );
+  const beatCount = useMemo(() => countExerciseBeats(drills), [drills]);
 
   const [cleared, setCleared] = useState(false);
   const [justCleared, setJustCleared] = useState(false);
@@ -170,7 +167,7 @@ export default function DailyAlgorithmPuzzleScreen() {
               ? 'Catch up — same seeded instance as that calendar day.'
               : 'Solve today’s seeded instance of this algorithm.'}
           </Text>
-          <LessonExercise exercises={drills} onAllCleared={onAllCleared} />
+          <LessonExercise key={seed} exercises={drills} onAllCleared={onAllCleared} />
         </View>
       </FadeInUp>
 

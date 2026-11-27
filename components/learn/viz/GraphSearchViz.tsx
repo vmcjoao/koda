@@ -35,17 +35,26 @@ function nodeColor(
 type Props = {
   demo: GraphDemo;
   step?: GraphStep;
+  /** Larger invisible hit targets + tap affordance. Replay leaves this off. */
+  interactive?: boolean;
   onNodePress?: (nodeId: string) => void;
   feedback?: Record<string, 'correct' | 'wrong'>;
 };
 
-export function GraphSearchViz({ demo, step, onNodePress, feedback }: Props) {
+export function GraphSearchViz({
+  demo,
+  step,
+  interactive = false,
+  onNodePress,
+  feedback,
+}: Props) {
   const nodeState = step?.nodeState ?? {};
   const active = new Set(step?.activeEdges ?? []);
   const mst = new Set(step?.mstEdges ?? []);
   const component = step?.component;
   const hasComponents = !!component && Object.keys(component).length > 0;
   const directed = !!demo.directed;
+  const canTap = interactive && !!onNodePress;
 
   return (
     <View style={styles.wrap}>
@@ -123,6 +132,7 @@ export function GraphSearchViz({ demo, step, onNodePress, feedback }: Props) {
           const fb = feedback?.[n.id];
           const labelFill = !st || st === 'idle' ? colors.text : colors.background;
           const isCurrent = st === 'current';
+          const r = isCurrent ? 20 : interactive ? 20 : 18;
           return (
             <React.Fragment key={n.id}>
               {isCurrent ? (
@@ -136,20 +146,33 @@ export function GraphSearchViz({ demo, step, onNodePress, feedback }: Props) {
                   opacity={0.45}
                 />
               ) : null}
+              {canTap ? (
+                <Circle
+                  cx={n.x}
+                  cy={n.y}
+                  r={32}
+                  fill="transparent"
+                  onPress={() => onNodePress(n.id)}
+                />
+              ) : null}
               <Circle
                 cx={n.x}
                 cy={n.y}
-                r={isCurrent ? 20 : 18}
+                r={r}
                 fill={fill}
                 stroke={
                   fb === 'correct'
                     ? colors.accent
                     : fb === 'wrong'
                       ? colors.danger
-                      : colors.text
+                      : interactive && (st === 'idle' || st === 'frontier')
+                        ? colors.radar
+                        : colors.text
                 }
-                strokeWidth={fb ? 3 : isCurrent ? 2.5 : 1.5}
-                onPress={onNodePress ? () => onNodePress(n.id) : undefined}
+                strokeWidth={
+                  fb ? 3 : isCurrent ? 2.5 : interactive && (st === 'idle' || st === 'frontier') ? 2 : 1.5
+                }
+                onPress={canTap ? () => onNodePress(n.id) : undefined}
               />
               <SvgText
                 x={n.x}
@@ -158,6 +181,7 @@ export function GraphSearchViz({ demo, step, onNodePress, feedback }: Props) {
                 fontSize="14"
                 fontWeight="700"
                 textAnchor="middle"
+                pointerEvents="none"
               >
                 {n.label ?? n.id}
               </SvgText>
@@ -168,6 +192,7 @@ export function GraphSearchViz({ demo, step, onNodePress, feedback }: Props) {
                   fill={colors.textMuted}
                   fontSize="11"
                   textAnchor="middle"
+                  pointerEvents="none"
                 >
                   {dist === Infinity ? '∞' : dist}
                 </SvgText>
