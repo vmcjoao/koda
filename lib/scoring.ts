@@ -20,6 +20,29 @@ export function jaccard(selected: string[], expected: string[]): number {
   return union === 0 ? 0 : intersection / union;
 }
 
+/**
+ * Approach-relative axis score.
+ *
+ * Tags listed on one approach are treated as an *accepted vocabulary* for that
+ * axis (often OR alternatives like Hash Map vs Ordered Set), not a checklist
+ * the player must complete:
+ * - Empty expected → axis unused for this approach → full credit (extras OK).
+ * - Otherwise → precision of the player's tags against the accepted set.
+ *   Wrong tags hurt; omitting other valid alternatives does not.
+ */
+export function axisScore(selected: string[], expected: string[]): number {
+  const a = normalize(selected);
+  const b = normalize(expected);
+  if (b.size === 0) return 1;
+  if (a.size === 0) return 0;
+
+  let hits = 0;
+  for (const item of a) {
+    if (b.has(item)) hits += 1;
+  }
+  return hits / a.size;
+}
+
 function scoreApproach(
   draft: Pick<
     HypothesisDraft,
@@ -28,10 +51,10 @@ function scoreApproach(
   approach: SolutionApproach,
   targetComplexity: string,
 ): ScoreBreakdown {
-  const paradigmScore = jaccard(draft.paradigms, approach.paradigms);
-  const algorithmScore = jaccard(draft.algorithms, approach.algorithms);
-  const dsScore = jaccard(draft.dataStructures, approach.data_structures);
-  const twistScore = jaccard(draft.twists, approach.key_insights);
+  const paradigmScore = axisScore(draft.paradigms, approach.paradigms);
+  const algorithmScore = axisScore(draft.algorithms, approach.algorithms);
+  const dsScore = axisScore(draft.dataStructures, approach.data_structures);
+  const twistScore = axisScore(draft.twists, approach.key_insights);
 
   // Weighted: twists and paradigms matter most for "Codeless CP"
   const base =

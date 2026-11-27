@@ -368,7 +368,7 @@ const SPECS: Spec[] = [
     url: 'https://cses.fi/problemset/task/1141',
     difficulty_rating: 1300,
     paradigms: ['Two Pointers'],
-    data_structures: ['Set', 'Map'],
+    data_structures: ['Hash Map', 'Ordered Set', '1D Array'],
     key_insights: ['Longest subarray with distinct values via two pointers + last index map'],
     approach_name: 'Distinct window',
     editorial_summary_md: 'Advance right; move left past duplicates; track max window length.',

@@ -117,13 +117,16 @@ export const SEED_PROBLEMS: ProblemWithApproaches[] = [
       {
         id: 'cses-playlist-a1',
         problem_id: 'cses-playlist',
-        approach_name: 'Sliding window + set',
+        approach_name: 'Sliding window + last index',
         paradigms: ['Two Pointers'],
-        algorithms: ['Sorting'],
-        data_structures: ['Hash Map', 'Ordered Set'],
-        key_insights: ['Maintain a window of unique songs', 'Move left pointer when duplicate appears'],
+        algorithms: [],
+        data_structures: ['Hash Map', 'Ordered Set', '1D Array'],
+        key_insights: [
+          'Maintain a window of unique songs',
+          'Move left pointer when duplicate appears',
+        ],
         editorial_summary_md:
-          'Two pointers with a map/set of song indices. Expand right; when a duplicate appears, jump left past the previous occurrence.',
+          'Two pointers over the playlist. Track the last index of each song with a map/set or an array after compression; when a duplicate appears, jump left past the previous occurrence and keep the max window length.',
       },
     ],
   },
