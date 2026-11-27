@@ -29,6 +29,8 @@ type Props = {
   onEndReachedThreshold?: number;
   /** Hide the scroll-end GitHub credit. Default false on scroll screens. */
   hideCredit?: boolean;
+  /** Sticky footer outside the ScrollView (e.g. floating continue CTA). */
+  footer?: React.ReactNode;
 };
 
 export function Screen({
@@ -42,6 +44,7 @@ export function Screen({
   onEndReached,
   onEndReachedThreshold = 240,
   hideCredit = false,
+  footer,
 }: Props) {
   const locked = useRef(false);
 
@@ -58,16 +61,22 @@ export function Screen({
     }
   }
 
+  const atmosphereNode = atmosphere ? (
+    <View pointerEvents="none" style={styles.atmosphereRoot}>
+      <BreathingAtmosphere />
+    </View>
+  ) : null;
+
   if (scroll) {
     return (
       <SafeAreaView style={[styles.safe, style]} edges={['top', 'left', 'right']}>
-        {atmosphere ? (
-          <View pointerEvents="none" style={styles.atmosphereRoot}>
-            <BreathingAtmosphere />
-          </View>
-        ) : null}
+        {atmosphereNode}
         <ScrollView
-          contentContainerStyle={[styles.content, contentStyle]}
+          contentContainerStyle={[
+            styles.content,
+            footer ? styles.contentWithFooter : null,
+            contentStyle,
+          ]}
           keyboardShouldPersistTaps="handled"
           scrollEventThrottle={16}
           onScroll={onEndReached ? handleScroll : undefined}
@@ -85,18 +94,16 @@ export function Screen({
           {children}
           {!hideCredit ? <GithubCredit style={styles.credit} /> : null}
         </ScrollView>
+        {footer ? <View style={styles.footer}>{footer}</View> : null}
       </SafeAreaView>
     );
   }
 
   return (
     <SafeAreaView style={[styles.safe, style]} edges={['top', 'left', 'right']}>
-      {atmosphere ? (
-        <View pointerEvents="none" style={styles.atmosphereRoot}>
-          <BreathingAtmosphere />
-        </View>
-      ) : null}
+      {atmosphereNode}
       <View style={[styles.content, contentStyle]}>{children}</View>
+      {footer ? <View style={styles.footer}>{footer}</View> : null}
     </SafeAreaView>
   );
 }
@@ -110,6 +117,12 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: spacing.md,
     gap: spacing.md,
+  },
+  contentWithFooter: {
+    paddingBottom: spacing.xl,
+  },
+  footer: {
+    backgroundColor: colors.background,
   },
   atmosphereRoot: {
     ...StyleSheet.absoluteFill,

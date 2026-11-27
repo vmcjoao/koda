@@ -3,6 +3,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { FloatingCta } from '@/components/ui/FloatingCta';
 import { SymbolBar } from '@/components/SymbolBar';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { colors, radii, spacing } from '@/constants/theme';
@@ -26,7 +27,15 @@ export default function BlueprintScreen() {
   }
 
   return (
-    <Screen scroll>
+    <Screen
+      scroll
+      footer={
+        <FloatingCta
+          label="Submit hypothesis"
+          onPress={() => router.push(`/problem/${id}/reveal`)}
+        />
+      }
+    >
       <Text style={styles.title}>Blueprint</Text>
       <Text style={styles.sub}>
         Optional scratchpad for state transitions, recurrences, and edge cases to code later.
@@ -45,10 +54,6 @@ export default function BlueprintScreen() {
         autoCorrect={false}
         autoCapitalize="none"
       />
-
-      <View style={styles.actions}>
-        <PrimaryButton label="Submit hypothesis" onPress={() => router.push(`/problem/${id}/reveal`)} />
-      </View>
     </Screen>
   );
 }
@@ -74,9 +79,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     padding: spacing.md,
     lineHeight: 22,
-  },
-  actions: {
-    marginTop: spacing.sm,
   },
   muted: {
     color: colors.textMuted,

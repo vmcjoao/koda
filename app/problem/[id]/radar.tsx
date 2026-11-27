@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { FloatingCta } from '@/components/ui/FloatingCta';
 import { ChipPicker } from '@/components/ChipPicker';
 import { ProseCard } from '@/components/ProseCard';
 import { useAttempt } from '@/contexts/AttemptContext';
@@ -36,7 +37,15 @@ export default function RadarScreen() {
   }
 
   return (
-    <Screen scroll>
+    <Screen
+      scroll
+      footer={
+        <FloatingCta
+          label={selected.length ? 'Lock guess & continue' : 'Skip radar'}
+          onPress={continueNext}
+        />
+      }
+    >
       <Text style={styles.title}>Constraint Radar</Text>
       <Text style={styles.sub}>
         Read the limits and guess the target complexity. Correct guesses award bonus XP.
@@ -58,10 +67,6 @@ export default function RadarScreen() {
         multi={false}
       />
 
-      <PrimaryButton
-        label={selected.length ? 'Lock guess & continue' : 'Skip radar'}
-        onPress={continueNext}
-      />
       <PrimaryButton
         label="Stuck? Hint path"
         variant="ghost"

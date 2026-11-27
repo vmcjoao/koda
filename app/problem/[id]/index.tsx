@@ -3,6 +3,7 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-nati
 import { router, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { FloatingCta } from '@/components/ui/FloatingCta';
 import { ProseCard } from '@/components/ProseCard';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { fetchProblem } from '@/lib/api';
@@ -80,7 +81,15 @@ export default function EncounterScreen() {
   const elapsed = draft?.timeSpentSec ?? 0;
 
   return (
-    <Screen scroll>
+    <Screen
+      scroll
+      footer={
+        <FloatingCta
+          label="Constraint Radar"
+          onPress={() => router.push(`/problem/${problem.id}/radar`)}
+        />
+      }
+    >
       <View style={styles.header}>
         <Text style={styles.source}>
           {problem.source} · {problem.difficulty_rating}
@@ -135,10 +144,6 @@ export default function EncounterScreen() {
         </View>
       ))}
 
-      <PrimaryButton
-        label="Constraint Radar"
-        onPress={() => router.push(`/problem/${problem.id}/radar`)}
-      />
       <PrimaryButton
         label="Stuck? Hint path"
         variant="secondary"

@@ -3,6 +3,7 @@ import { StyleSheet, Text } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Screen } from '@/components/ui/Screen';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { FloatingCta } from '@/components/ui/FloatingCta';
 import { ChipPicker } from '@/components/ChipPicker';
 import { useAttempt } from '@/contexts/AttemptContext';
 import { tagsByKind } from '@/constants/tags';
@@ -44,7 +45,19 @@ export default function HypothesisScreen() {
     draft.paradigms.length > 0 || draft.algorithms.length > 0 || draft.dataStructures.length > 0;
 
   return (
-    <Screen scroll>
+    <Screen
+      scroll
+      footer={
+        <FloatingCta
+          label="Blueprint scratchpad"
+          onPress={() => router.push(`/problem/${id}/blueprint`)}
+          disabled={!canContinue}
+          secondaryLabel="Skip blueprint → Reveal"
+          onSecondaryPress={() => router.push(`/problem/${id}/reveal`)}
+          secondaryDisabled={!canContinue}
+        />
+      }
+    >
       <Text style={styles.title}>Hypothesis</Text>
       <Text style={styles.sub}>
         Build your solution path with chips — paradigm, algorithm, structures, and the key twist.
@@ -79,17 +92,6 @@ export default function HypothesisScreen() {
         onChange={(twists) => setHypothesis({ twists })}
       />
 
-      <PrimaryButton
-        label="Blueprint scratchpad"
-        onPress={() => router.push(`/problem/${id}/blueprint`)}
-        disabled={!canContinue}
-      />
-      <PrimaryButton
-        label="Skip blueprint → Reveal"
-        variant="secondary"
-        onPress={() => router.push(`/problem/${id}/reveal`)}
-        disabled={!canContinue}
-      />
       <PrimaryButton
         label="Stuck? Hint path"
         variant="ghost"
